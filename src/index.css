@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'KFGQPC Uthman Taha Naskh';
+  src: url('/assets/fonts/KFGQPC-Uthman-Taha-Naskh-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --color-primary: #7EC3E6;
+    --color-primary-dark: #4FA3D1;
+    --color-primary-light: #A9D8F0;
+    --color-primary-50: #EAF7FC;
+    --color-background: #f9fafb;
+    --color-card-white: #FFFFFF;
+    --color-card-green: #A9D8F0;
+    --color-card-blue: #D6E9FE;
+    --color-card-peach: #FFEAE0;
+    --color-card-yellow: #FFF2CD;
+    --color-card-pink: #FFDDF4;
+    --color-text-primary: #1A1A2E;
+    --color-text-secondary: #6B7280;
+    --color-text-muted: #9CA3AF;
+    --color-border: #E5E7EB;
+    --color-success: #26C76D;
+    --color-warning: #F39C12;
+    --color-danger: #E74C3C;
+    --color-info: #3498DB;
+
+    --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+    --font-arabic: 'KFGQPC Uthman Taha Naskh', 'Traditional Arabic', 'Amiri', 'Noto Naskh Arabic', serif;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+
+    --shadow-card: 0 8px 24px rgba(149, 157, 165, 0.15);
+    --shadow-card-hover: 0 12px 32px rgba(149, 157, 165, 0.25);
+    --shadow-elevated: 0 16px 40px rgba(0, 0, 0, 0.12);
+    --shadow-nav: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@layer utilities {
+  .font-arabic,
+  [lang='ar'],
+  [dir='rtl'] {
+    font-family: var(--font-arabic) !important;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+
+  .arabic-text {
+    font-family: var(--font-arabic) !important;
+    direction: rtl;
+    unicode-bidi: isolate;
+    line-height: 1.9;
+  }
+
+  .arabic-lesson-content > .flex.h-\[100dvh\],
+  .arabic-lesson-content > .flex.md\:h-full {
+    height: auto !important;
+    min-height: 0 !important;
+    background: transparent !important;
+  }
+
+  .arabic-lesson-content header {
+    top: 72px;
+    border-radius: 16px;
+    border: 1px solid rgb(226 232 240 / 0.9);
+    box-shadow: 0 8px 24px rgb(15 23 42 / 0.06);
+    overflow: hidden;
+  }
+
+  .arabic-lesson-content .custom-scrollbar {
+    overflow: visible !important;
+  }
+
+  .arabic-lesson-content [dir='rtl'] {
+    letter-spacing: 0;
+    text-align: right;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-[0_8px_32px_rgba(31,38,135,0.05)];
+  }
+
+  .desktop-card {
+    @apply bg-white rounded-2xl transition-all duration-200;
+    box-shadow: var(--shadow-card);
+  }
+
+  .desktop-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  .desktop-sidebar-widget {
+    @apply bg-white rounded-2xl p-5;
+    box-shadow: var(--shadow-card);
+  }
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar — desktop */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Mobile: hide scrollbar */
+@media (max-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+}
+
+/* Hide scrollbar utility (horizontal carousels) */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Badge animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(126, 195, 230, 0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(126, 195, 230, 0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(126, 195, 230, 0.15); }
+  50% { box-shadow: 0 0 20px rgba(126, 195, 230, 0.3); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Lock overlay */
+.locked-overlay {
+  position: relative;
+}
+
+.locked-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(1px);
+  border-radius: inherit;
+}
+
+/* No-scroll on body when modal open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Safe area padding for mobile */
+.safe-bottom {
+  padding-bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+}
+
+@media (min-width: 768px) {
+  .safe-bottom {
+    padding-bottom: 2rem;
+  }
+}

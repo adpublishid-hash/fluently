@@ -1,0 +1,648 @@
+export type Language = 'en' | 'id';
+
+export const translations = {
+  // ──────────── Onboarding ────────────
+  'welcome.title': {
+    en: 'Welcome to Fluently',
+    id: 'Selamat Datang di Fluently',
+  },
+  'welcome.chooseLanguage': {
+    en: 'Choose Language',
+    id: 'Pilih Bahasa',
+  },
+  'goals.title': {
+    en: 'Achieve Your Language Goals\nwith Fluently AI',
+    id: 'Raih Tujuan Bahasamu\ndengan Fluently AI',
+  },
+  'goals.subtitle': {
+    en: 'For travel, career, or personal growth.',
+    id: 'Untuk perjalanan, karier, atau pengembangan diri.',
+  },
+  'goals.getStarted': {
+    en: 'Get Started',
+    id: 'Mulai',
+  },
+  'goals.signIn': {
+    en: 'Sign In',
+    id: 'Masuk',
+  },
+  'startLearning.title': {
+    en: "It's time to\nstart learning!",
+    id: 'Saatnya\nmulai belajar!',
+  },
+  'startLearning.continueEmail': {
+    en: 'Continue with Email',
+    id: 'Lanjutkan dengan Email',
+  },
+  'startLearning.terms': {
+    en: 'By creating an account, you agree to our',
+    id: 'Dengan membuat akun, Anda menyetujui',
+  },
+  'startLearning.termsLink': {
+    en: 'Terms',
+    id: 'Ketentuan',
+  },
+  'startLearning.privacyIntro': {
+    en: 'and that you have read our',
+    id: 'dan telah membaca',
+  },
+  'startLearning.privacyLink': {
+    en: 'Privacy Policy',
+    id: 'Kebijakan Privasi',
+  },
+  'signUp.title': {
+    en: 'Create Your Account',
+    id: 'Buat Akunmu',
+  },
+  'signUp.subtitle': {
+    en: 'Start your learning journey today',
+    id: 'Mulai perjalanan belajarmu hari ini',
+  },
+  'signUp.name': {
+    en: 'Full Name',
+    id: 'Nama Lengkap',
+  },
+  'signUp.namePlaceholder': {
+    en: 'Enter your full name',
+    id: 'Masukkan nama lengkapmu',
+  },
+  'signUp.email': {
+    en: 'Email Address',
+    id: 'Alamat Email',
+  },
+  'signUp.emailPlaceholder': {
+    en: 'you@example.com',
+    id: 'kamu@contoh.com',
+  },
+  'signUp.password': {
+    en: 'Password',
+    id: 'Kata Sandi',
+  },
+  'signUp.passwordPlaceholder': {
+    en: 'Create a strong password',
+    id: 'Buat kata sandi yang kuat',
+  },
+  'signUp.confirmPassword': {
+    en: 'Confirm Password',
+    id: 'Konfirmasi Kata Sandi',
+  },
+  'signUp.confirmPlaceholder': {
+    en: 'Re-enter your password',
+    id: 'Masukkan ulang kata sandimu',
+  },
+  'signUp.createAccount': {
+    en: 'Create Account',
+    id: 'Buat Akun',
+  },
+  'signUp.alreadyHaveAccount': {
+    en: 'Already have an account?',
+    id: 'Sudah punya akun?',
+  },
+  'signUp.errorNameRequired': {
+    en: 'Name is required',
+    id: 'Nama wajib diisi',
+  },
+  'signUp.errorEmailRequired': {
+    en: 'Email is required',
+    id: 'Email wajib diisi',
+  },
+  'signUp.errorEmailInvalid': {
+    en: 'Please enter a valid email',
+    id: 'Masukkan email yang valid',
+  },
+  'signUp.errorPasswordMin': {
+    en: 'Password must be at least 8 characters',
+    id: 'Kata sandi minimal 8 karakter',
+  },
+  'signUp.errorPasswordMatch': {
+    en: 'Passwords do not match',
+    id: 'Kata sandi tidak cocok',
+  },
+  'signUp.passwordStrength.weak': {
+    en: 'Weak',
+    id: 'Lemah',
+  },
+  'signUp.passwordStrength.fair': {
+    en: 'Fair',
+    id: 'Cukup',
+  },
+  'signUp.passwordStrength.good': {
+    en: 'Good',
+    id: 'Baik',
+  },
+  'signUp.passwordStrength.strong': {
+    en: 'Strong',
+    id: 'Kuat',
+  },
+  'welcomeUser.title': {
+    en: 'Welcome,',
+    id: 'Selamat Datang,',
+  },
+  'welcomeUser.subtitle': {
+    en: "I'm Polly, your friendly AI tutor. Why don't you tell me a bit about yourself?",
+    id: 'Saya Polly, tutor AI kamu. Ceritakan sedikit tentang dirimu, yuk!',
+  },
+  'ageRange.title': {
+    en: "What's your age range?",
+    id: 'Berapa rentang usiamu?',
+  },
+  'ageRange.subtitle': {
+    en: 'This will let me compare your results with your peers.',
+    id: 'Ini akan membantu saya membandingkan hasilmu dengan teman sebaya.',
+  },
+  'gender.title': {
+    en: 'How do you identify?',
+    id: 'Apa jenis kelaminmu?',
+  },
+  'gender.male': {
+    en: 'Male',
+    id: 'Laki-laki',
+  },
+  'gender.female': {
+    en: 'Female',
+    id: 'Perempuan',
+  },
+  'gender.nonBinary': {
+    en: 'Non-binary',
+    id: 'Non-biner',
+  },
+  'gender.preferNot': {
+    en: 'Prefer not to say',
+    id: 'Tidak ingin menyebutkan',
+  },
+  'language.title': {
+    en: 'Language you want to learn',
+    id: 'Bahasa yang ingin kamu pelajari',
+  },
+  'level.title': {
+    en: 'What is your English level?',
+    id: 'Apa level Bahasa Inggrismu?',
+  },
+  'level.foundation': {
+    en: "I'm starting fresh",
+    id: 'Saya mulai dari awal',
+  },
+  'level.beginner': {
+    en: 'I know the basics',
+    id: 'Saya tahu dasarnya',
+  },
+  'level.intermediate': {
+    en: "I'm pretty confident",
+    id: 'Saya cukup percaya diri',
+  },
+  'level.advanced': {
+    en: "I'm an expert",
+    id: 'Saya sudah ahli',
+  },
+  'whyLearning.title': {
+    en: 'Why are you learning English?',
+    id: 'Mengapa kamu belajar Bahasa Inggris?',
+  },
+  'whyLearning.business': { en: 'Business', id: 'Bisnis' },
+  'whyLearning.travel': { en: 'Travel', id: 'Perjalanan' },
+  'whyLearning.school': { en: 'School', id: 'Sekolah' },
+  'whyLearning.activities': { en: 'Activities', id: 'Aktivitas' },
+  'whyLearning.dailyLife': { en: 'Daily Life', id: 'Kehidupan Sehari-hari' },
+  'whyLearning.familyFriends': { en: 'Family & Friends', id: 'Keluarga & Teman' },
+  'whyLearning.other': { en: 'Other', id: 'Lainnya' },
+  'specificGoals.title': {
+    en: 'Do you have specific goals?',
+    id: 'Apakah kamu punya tujuan tertentu?',
+  },
+  'specificGoals.subtitle': {
+    en: 'This will help me create a relevant learning plan for you',
+    id: 'Ini akan membantu saya membuat rencana belajar yang sesuai untukmu',
+  },
+  'specificGoals.wantTo': {
+    en: 'I want to be able to:',
+    id: 'Saya ingin bisa:',
+  },
+  'specificGoals.readNewspaper': { en: 'Read a newspaper', id: 'Membaca koran' },
+  'specificGoals.chatFriend': { en: 'Chat with a friend', id: 'Mengobrol dengan teman' },
+  'specificGoals.watchMovie': { en: 'Watch a movie', id: 'Menonton film' },
+  'specificGoals.orderRestaurant': { en: 'Order in a restaurant', id: 'Memesan di restoran' },
+  'specificGoals.presentation': { en: 'Give a presentation', id: 'Memberikan presentasi' },
+  'specificGoals.orderCoffee': { en: 'Order a coffee', id: 'Memesan kopi' },
+  'specificGoals.writeEmail': { en: 'Write an email', id: 'Menulis email' },
+  'specificGoals.speakPhone': { en: 'Speak on the phone', id: 'Berbicara di telepon' },
+  'specificGoals.playGames': { en: 'Play video games', id: 'Bermain video game' },
+  'specificGoals.jobInterview': { en: 'Ace a job interview', id: 'Sukses wawancara kerja' },
+  'specificGoals.checkHotel': { en: 'Check into a hotel', id: 'Check-in hotel' },
+  'specificGoals.listenMusic': { en: 'Listen to music', id: 'Mendengarkan musik' },
+  'specificGoals.tellJoke': { en: 'Tell a joke', id: 'Menceritakan lelucon' },
+  'specificGoals.askDirections': { en: 'Ask for directions', id: 'Bertanya arah' },
+  'interests.title': {
+    en: 'What interest you?',
+    id: 'Apa yang menarik bagimu?',
+  },
+  'interests.subtitle': {
+    en: 'Choose as many as you like',
+    id: 'Pilih sebanyak yang kamu suka',
+  },
+  'interests.animal': { en: 'Animal', id: 'Hewan' },
+  'interests.climateChange': { en: 'Climate change', id: 'Perubahan iklim' },
+  'interests.food': { en: 'Food', id: 'Makanan' },
+  'interests.workLife': { en: 'Work life', id: 'Kehidupan kerja' },
+  'interests.reading': { en: 'Reading', id: 'Membaca' },
+  'interests.sports': { en: 'Sports', id: 'Olahraga' },
+  'interests.outdoors': { en: 'Outdoors', id: 'Alam terbuka' },
+  'interests.fashion': { en: 'Fashion', id: 'Fashion' },
+  'interests.languages': { en: 'Languages', id: 'Bahasa' },
+  'interests.romance': { en: 'Romance', id: 'Romansa' },
+  'interests.selfCare': { en: 'Self-care', id: 'Perawatan diri' },
+  'interests.parenting': { en: 'Parenting', id: 'Parenting' },
+  'interests.pets': { en: 'Pets', id: 'Hewan peliharaan' },
+  'interests.makingFriends': { en: 'Making friends', id: 'Mencari teman' },
+  'interests.culture': { en: 'Culture', id: 'Budaya' },
+  'interests.travel': { en: 'Travel', id: 'Perjalanan' },
+  'interests.tech': { en: 'Tech', id: 'Teknologi' },
+  'interests.tvMovies': { en: 'TV/Movies', id: 'TV/Film' },
+  'interests.gaming': { en: 'Gaming', id: 'Gaming' },
+  'interests.shopping': { en: 'Shopping', id: 'Belanja' },
+  'interests.studies': { en: 'Studies', id: 'Belajar' },
+  'interests.fitness': { en: 'Fitness', id: 'Kebugaran' },
+  'interests.music': { en: 'Music', id: 'Musik' },
+  'greatNews.title': {
+    en: 'Great news,',
+    id: 'Kabar baik,',
+  },
+  'greatNews.subtitle': {
+    en: "I've successfully taught 300,000 learners with similar English goals. You're in good hands!",
+    id: 'Saya telah berhasil mengajar 300.000 pelajar dengan tujuan bahasa Inggris serupa. Kamu di tangan yang tepat!',
+  },
+  'studyDuration.title': {
+    en: 'How long should we study together each day?',
+    id: 'Berapa lama kita belajar bersama setiap hari?',
+  },
+  'studyDuration.10min': { en: '10 min / day', id: '10 menit / hari' },
+  'studyDuration.20min': { en: '20 min / day', id: '20 menit / hari' },
+  'studyDuration.30min': { en: '30 min / day', id: '30 menit / hari' },
+  'allSet.title': {
+    en: "You're all set,",
+    id: 'Kamu sudah siap,',
+  },
+  'allSet.subtitle': {
+    en: "Let's start your learning journey together!",
+    id: 'Ayo mulai perjalanan belajarmu bersama!',
+  },
+  'allSet.letsGo': {
+    en: "Let's Go! 🚀",
+    id: 'Ayo Mulai! 🚀',
+  },
+  'common.continue': {
+    en: 'Continue',
+    id: 'Lanjut',
+  },
+
+  // ──────────── Courses Page ────────────
+  'courses.welcomeBack': { en: 'Welcome Back', id: 'Selamat Datang Kembali' },
+  'courses.unlockPotential': { en: 'Unlock Your Potential!', id: 'Raih Potensimu!' },
+  'courses.continueJourney': {
+    en: "Continue your language journey. You're doing great!",
+    id: 'Lanjutkan perjalanan bahasamu. Kamu hebat!',
+  },
+  'courses.continue': { en: 'Continue', id: 'Lanjutkan' },
+  'courses.progress': { en: 'Progress', id: 'Progres' },
+  'courses.all': { en: 'All', id: 'Semua' },
+  'courses.work': { en: 'Work', id: 'Kerja' },
+  'courses.dailyLife': { en: 'Daily Life', id: 'Kehidupan Sehari-hari' },
+  'courses.familyFriends': { en: 'Family / Friends', id: 'Keluarga / Teman' },
+  'courses.travel': { en: 'Travel', id: 'Perjalanan' },
+  'courses.personalInterest': { en: 'Personal Interest', id: 'Minat Pribadi' },
+  'courses.recommendedForYou': { en: 'Recommended for You', id: 'Rekomendasi Untukmu' },
+  'courses.curatedBased': {
+    en: 'Curated based on your level and interests',
+    id: 'Dipilih berdasarkan level dan minatmu',
+  },
+  'courses.allLevels': { en: 'All levels', id: 'Semua level' },
+  'courses.workFluency': { en: 'Work Fluency', id: 'Kefasihan Kerja' },
+  'courses.complete10': {
+    en: 'Complete 10 Courses and get a special bonus from Fluently AI!',
+    id: 'Selesaikan 10 Kursus dan dapatkan bonus spesial dari Fluently AI!',
+  },
+  'courses.miniGames': { en: 'Mini Games Zone', id: 'Zone Mini Games' },
+  'courses.learnFun': { en: 'Learn with fun word games!', id: 'Belajar dengan permainan kata yang seru!' },
+  'courses.courseCollections': { en: 'Course Collections', id: 'Koleksi Kursus' },
+  'courses.seeAll': { en: 'See All', id: 'Lihat Semua' },
+  'courses.todayGoal': { en: "Today's Goal", id: 'Target Hari Ini' },
+  'courses.almostThere': { en: 'Almost there!', id: 'Hampir selesai!' },
+  'courses.topLearners': { en: 'Top Learners', id: 'Pelajar Terbaik' },
+  'courses.activity': { en: 'Activity', id: 'Aktivitas' },
+  'courses.courses': { en: 'Courses', id: 'Kursus' },
+  'courses.continueLessons': {
+    en: 'Continue your lessons\nwith excited.',
+    id: 'Lanjutkan pelajaran\ndengan semangat.',
+  },
+  'courses.forYou': { en: 'For you', id: 'Untukmu' },
+  'courses.basedOnLevel': {
+    en: 'Based on your level and topic interests',
+    id: 'Berdasarkan level dan minat topikmu',
+  },
+  'courses.level': { en: 'Level', id: 'Level' },
+  'courses.basedOnYourLevel': {
+    en: 'Based on your level',
+    id: 'Berdasarkan levelmu',
+  },
+  'courses.popularTopic': { en: 'Popular Topic', id: 'Topik Populer' },
+  'courses.takeCourses': { en: 'Take the Courses', id: 'Ambil Kursus' },
+  'courses.coursesLeft': { en: 'Courses left', id: 'Kursus tersisa' },
+  'courses.foundationCourses': {
+    en: 'All Foundation Courses',
+    id: 'Semua Kursus Dasar',
+  },
+  'courses.foundationFriendly': {
+    en: 'Foundation Friendly · 18 Courses',
+    id: 'Ramah Pemula · 18 Kursus',
+  },
+  'courses.essentials': { en: 'Travel Essentials', id: 'Esensial Perjalanan' },
+  'courses.essentialsSub': {
+    en: 'For globetrotters · 12 Courses',
+    id: 'Untuk pejalan · 12 Kursus',
+  },
+  'courses.beginner': { en: 'Beginner', id: 'Pemula' },
+  'courses.intermediate': { en: 'Intermediate', id: 'Menengah' },
+  'courses.advanced': { en: 'Advanced', id: 'Mahir' },
+
+  // ──────────── Chat Page ────────────
+  'chat.assistant': { en: 'Fluently Assistant', id: 'Asisten Fluently' },
+  'chat.trainedOn': { en: 'Trained on latest Cambridge English', id: 'Dilatih dengan Cambridge English terbaru' },
+  'chat.practiceConversation': { en: 'Practice Conversation', id: 'Latihan Percakapan' },
+  'chat.grammarHelp': { en: 'Grammar Help', id: 'Bantuan Grammar' },
+  'chat.vocabularyQuiz': { en: 'Vocabulary Quiz', id: 'Kuis Kosakata' },
+  'chat.dailyChallenge': { en: 'Daily Challenge', id: 'Tantangan Harian' },
+  'chat.learningTopics': { en: 'Learning Topics', id: 'Topik Belajar' },
+  'chat.recentSessions': { en: 'Recent Sessions', id: 'Sesi Terakhir' },
+  'chat.today': { en: 'Today', id: 'Hari Ini' },
+  'chat.placeholder': { en: 'Ask anything or practice here...', id: 'Tanya apapun atau latihan di sini...' },
+  'chat.disclaimer': {
+    en: 'Fluently AI can make mistakes. Consider verifying translation.',
+    id: 'Fluently AI bisa membuat kesalahan. Pertimbangkan untuk memverifikasi terjemahan.',
+  },
+
+  // ──────────── Rank Page ────────────
+  'rank.globalLeaderboard': { en: 'Global Leaderboard', id: 'Papan Peringkat Global' },
+  'rank.competeWorldwide': { en: 'Compete with learners worldwide!', id: 'Bersaing dengan pelajar di seluruh dunia!' },
+  'rank.thisWeek': { en: 'This Week', id: 'Minggu Ini' },
+  'rank.thisMonth': { en: 'This Month', id: 'Bulan Ini' },
+  'rank.you': { en: 'YOU', id: 'KAMU' },
+  'rank.yourRank': { en: 'Your Rank', id: 'Peringkatmu' },
+  'rank.diamondLeague': { en: 'Diamond League', id: 'Liga Berlian' },
+  'rank.weeklyXP': { en: 'Weekly XP', id: 'XP Mingguan' },
+  'rank.top3Check': { en: 'Top 3 Check', id: 'Cek Top 3' },
+  'rank.toTop5': { en: '1,150 XP to Top 5', id: '1.150 XP menuju Top 5' },
+  'rank.weeklyProgress': { en: 'Weekly Progress', id: 'Progres Mingguan' },
+  'rank.keepGoing': { en: 'Keep going! You need 1,150 XP to reach Top 5', id: 'Terus semangat! Kamu butuh 1.150 XP untuk mencapai Top 5' },
+
+  // ──────────── Profile Page ────────────
+  'profile.title': { en: 'Profile', id: 'Profil' },
+  'profile.coursesDone': { en: 'Courses Done', id: 'Kursus Selesai' },
+  'profile.totalXP': { en: 'Total XP', id: 'Total XP' },
+  'profile.dayStreak': { en: 'Day Streak', id: 'Hari Beruntun' },
+  'profile.globalRank': { en: 'Global Rank', id: 'Peringkat Global' },
+  'profile.yourBadges': { en: 'Your Badges', id: 'Lencana Kamu' },
+  'profile.unlocked': { en: 'Unlocked', id: 'Terbuka' },
+  'profile.learningStats': { en: 'Learning Stats', id: 'Statistik Belajar' },
+  'profile.overallProgress': { en: 'Overall Progress', id: 'Progres Keseluruhan' },
+  'profile.coursesActive': { en: 'Courses Active', id: 'Kursus Aktif' },
+  'profile.completed': { en: 'Completed', id: 'Selesai' },
+  'profile.timeSpent': { en: 'Time Spent', id: 'Waktu Dihabiskan' },
+  'profile.settings': { en: 'Settings', id: 'Pengaturan' },
+  'profile.language': { en: 'Language', id: 'Bahasa' },
+  'profile.notifications': { en: 'Notifications', id: 'Notifikasi' },
+  'profile.privacy': { en: 'Privacy', id: 'Privasi' },
+  'profile.rateUs': { en: 'Rate Us', id: 'Beri Penilaian' },
+  'profile.helpCenter': { en: 'Help Center', id: 'Pusat Bantuan' },
+  'profile.logOut': { en: 'Log Out', id: 'Keluar' },
+  'profile.levelLearner': { en: 'Learner', id: 'Pelajar' },
+  'profile.joined': { en: 'Joined Jan 2025', id: 'Bergabung Jan 2025' },
+  'profile.levelProgress': { en: 'Level', id: 'Level' },
+  'profile.streak': { en: 'streak', id: 'beruntun' },
+  'profile.dayStreakLabel': { en: 'day streak', id: 'hari beruntun' },
+
+  // Achievements
+  'achievement.7DayStreak': { en: '7-Day Streak', id: '7 Hari Beruntun' },
+  'achievement.bookworm': { en: 'Bookworm', id: 'Kutu Buku' },
+  'achievement.starStudent': { en: 'Star Student', id: 'Siswa Bintang' },
+  'achievement.top10': { en: 'Top 10', id: 'Top 10' },
+  'achievement.diamond': { en: 'Diamond', id: 'Berlian' },
+  'achievement.speedLearner': { en: 'Speed Learner', id: 'Pelajar Cepat' },
+  'achievement.perfectScore': { en: 'Perfect Score', id: 'Nilai Sempurna' },
+  'achievement.master': { en: 'Master', id: 'Master' },
+
+  // ──────────── Navigation ────────────
+  'nav.courses': { en: 'Courses', id: 'Kursus' },
+  'nav.chat': { en: 'Chat', id: 'Chat' },
+  'nav.rank': { en: 'Rank', id: 'Peringkat' },
+  'nav.profile': { en: 'Profile', id: 'Profil' },
+  'nav.chatAI': { en: 'Chat & AI', id: 'Chat & AI' },
+  'nav.leaderboard': { en: 'Leaderboard', id: 'Papan Peringkat' },
+  'nav.settings': { en: 'Settings', id: 'Pengaturan' },
+  'nav.logOut': { en: 'Log Out', id: 'Keluar' },
+
+  // ──────────── Auth: Login ────────────
+  'login.title': { en: 'Welcome Back', id: 'Selamat Datang Kembali' },
+  'login.subtitle': { en: 'Sign in to continue your learning journey', id: 'Masuk untuk melanjutkan perjalanan belajarmu' },
+  'login.email': { en: 'Email Address', id: 'Alamat Email' },
+  'login.emailPlaceholder': { en: 'you@example.com', id: 'kamu@contoh.com' },
+  'login.password': { en: 'Password', id: 'Kata Sandi' },
+  'login.passwordPlaceholder': { en: 'Enter your password', id: 'Masukkan kata sandimu' },
+  'login.rememberMe': { en: 'Remember me', id: 'Ingat saya' },
+  'login.forgotPassword': { en: 'Forgot Password?', id: 'Lupa Kata Sandi?' },
+  'login.signIn': { en: 'Sign In', id: 'Masuk' },
+  'login.noAccount': { en: "Don't have an account?", id: 'Belum punya akun?' },
+  'login.signUp': { en: 'Sign Up', id: 'Daftar' },
+  'login.orContinueWith': { en: 'or continue with', id: 'atau lanjutkan dengan' },
+  'login.errorInvalidCredentials': { en: 'Invalid email or password', id: 'Email atau kata sandi salah' },
+  'login.errorEmailRequired': { en: 'Email is required', id: 'Email wajib diisi' },
+  'login.errorPasswordRequired': { en: 'Password is required', id: 'Kata sandi wajib diisi' },
+
+  // ──────────── Auth: Forgot Password ────────────
+  'forgot.title': { en: 'Reset Password', id: 'Atur Ulang Kata Sandi' },
+  'forgot.subtitle': { en: 'Enter your email to receive a verification code', id: 'Masukkan emailmu untuk menerima kode verifikasi' },
+  'forgot.email': { en: 'Email Address', id: 'Alamat Email' },
+  'forgot.emailPlaceholder': { en: 'you@example.com', id: 'kamu@contoh.com' },
+  'forgot.sendCode': { en: 'Send Verification Code', id: 'Kirim Kode Verifikasi' },
+  'forgot.backToLogin': { en: 'Back to Login', id: 'Kembali ke Login' },
+  'forgot.errorEmailNotFound': { en: 'No account found with this email', id: 'Tidak ada akun dengan email ini' },
+  'forgot.codeTitle': { en: 'Enter Verification Code', id: 'Masukkan Kode Verifikasi' },
+  'forgot.codeSubtitle': { en: 'We sent a 6-digit code to', id: 'Kami mengirim kode 6 digit ke' },
+  'forgot.verify': { en: 'Verify Code', id: 'Verifikasi Kode' },
+  'forgot.resendCode': { en: 'Resend Code', id: 'Kirim Ulang Kode' },
+  'forgot.resendIn': { en: 'Resend in', id: 'Kirim ulang dalam' },
+  'forgot.errorInvalidCode': { en: 'Please enter a 6-digit code', id: 'Masukkan kode 6 digit' },
+  'forgot.newPasswordTitle': { en: 'Create New Password', id: 'Buat Kata Sandi Baru' },
+  'forgot.newPasswordSubtitle': { en: 'Your new password must be different from previous passwords', id: 'Kata sandi barumu harus berbeda dari yang sebelumnya' },
+  'forgot.newPassword': { en: 'New Password', id: 'Kata Sandi Baru' },
+  'forgot.newPasswordPlaceholder': { en: 'Create a strong password', id: 'Buat kata sandi yang kuat' },
+  'forgot.confirmNewPassword': { en: 'Confirm New Password', id: 'Konfirmasi Kata Sandi Baru' },
+  'forgot.confirmNewPlaceholder': { en: 'Re-enter your new password', id: 'Masukkan ulang kata sandi barumu' },
+  'forgot.resetPassword': { en: 'Reset Password', id: 'Atur Ulang Kata Sandi' },
+  'forgot.successTitle': { en: 'Password Reset! 🎉', id: 'Kata Sandi Diatur Ulang! 🎉' },
+  'forgot.successSubtitle': { en: 'Your password has been successfully reset. You can now sign in with your new password.', id: 'Kata sandimu berhasil diatur ulang. Kamu sekarang bisa masuk dengan kata sandi baru.' },
+  'forgot.goToLogin': { en: 'Go to Login', id: 'Ke Halaman Login' },
+
+  // ──────────── Auth: General ────────────
+  'auth.or': { en: 'OR', id: 'ATAU' },
+
+  // ──────────── Navigation (NEW 5-tab) ────────────
+  'nav.modul': { en: 'Module', id: 'Modul' },
+  'nav.game': { en: 'Game', id: 'Game' },
+  'nav.latihan': { en: 'Practice', id: 'Latihan' },
+  'nav.chatAi': { en: 'Chat AI', id: 'Chat AI' },
+
+  // ──────────── CEFR Levels ────────────
+  'cefr.basic': { en: 'Basic', id: 'Dasar' },
+  'cefr.beginner': { en: 'Beginner', id: 'Pemula' },
+  'cefr.elementary': { en: 'Elementary', id: 'Dasar Menengah' },
+  'cefr.intermediate': { en: 'Intermediate', id: 'Menengah' },
+  'cefr.upperIntermediate': { en: 'Upper-Intermediate', id: 'Menengah Atas' },
+  'cefr.advanced': { en: 'Advanced', id: 'Lanjutan' },
+  'cefr.proficiency': { en: 'Proficiency', id: 'Mahir' },
+  'cefr.mixed': { en: 'Mixed', id: 'Campuran' },
+  'cefr.mixedSublabel': { en: 'All Levels', id: 'Semua Level' },
+
+  // ──────────── Skills ────────────
+  'skill.speaking': { en: 'Speaking', id: 'Berbicara' },
+  'skill.speakingSub': { en: 'Practice pronunciation', id: 'Latihan pelafalan' },
+  'skill.listening': { en: 'Listening', id: 'Menyimak' },
+  'skill.listeningSub': { en: 'Train your ears', id: 'Latih pendengaranmu' },
+  'skill.reading': { en: 'Reading', id: 'Membaca' },
+  'skill.readingSub': { en: 'Comprehension practice', id: 'Latihan pemahaman' },
+  'skill.writing': { en: 'Writing', id: 'Menulis' },
+  'skill.writingSub': { en: 'Express your thoughts', id: 'Ungkapkan pikiranmu' },
+  'skill.grammar': { en: 'Grammar', id: 'Tata Bahasa' },
+  'skill.grammarSub': { en: 'Master the rules', id: 'Kuasai aturannya' },
+  'skill.vocabulary': { en: 'Vocabulary', id: 'Kosakata' },
+  'skill.vocabularySub': { en: 'Expand your words', id: 'Perluas kosakatamu' },
+  'skill.pronunciation': { en: 'Pronunciation', id: 'Pelafalan' },
+  'skill.pronunciationSub': { en: 'Speak clearly', id: 'Bicara dengan jelas' },
+
+  // ──────────── Modul Page ────────────
+  'modul.title': { en: 'Learning Modules', id: 'Modul Belajar' },
+  'modul.subtitle': { en: 'Choose your level to start learning', id: 'Pilih levelmu untuk mulai belajar' },
+  'modul.skillsTitle': { en: 'Skills', id: 'Kemampuan' },
+  'modul.skillsSubtitle': { en: 'Master each skill to advance', id: 'Kuasai setiap kemampuan untuk maju' },
+  'modul.daysTitle': { en: 'Learning Path', id: 'Jalur Belajar' },
+  'modul.daysSubtitle': { en: 'Complete each day to unlock the next', id: 'Selesaikan setiap hari untuk membuka berikutnya' },
+  'modul.progress': { en: 'Progress', id: 'Progres' },
+  'modul.days': { en: 'days', id: 'hari' },
+  'modul.dayLabel': { en: 'Day', id: 'Hari' },
+
+  // ──────────── Day Subtitles ────────────
+  'day.title': { en: 'Day', id: 'Hari' },
+  'day.subtitle1': { en: 'Greetings', id: 'Sapaan' },
+  'day.subtitle2': { en: 'Introducing', id: 'Perkenalan' },
+  'day.subtitle3': { en: 'Numbers', id: 'Angka' },
+  'day.subtitle4': { en: 'Daily Routines', id: 'Rutinitas Harian' },
+  'day.subtitle5': { en: 'At the Market', id: 'Di Pasar' },
+
+  // ──────────── Game Page ────────────
+  'game.title': { en: 'Game Zone', id: 'Zona Game' },
+  'game.subtitle': { en: 'Learn while having fun!', id: 'Belajar sambil bersenang-senang!' },
+  'game.modesTitle': { en: 'Game Modes', id: 'Mode Game' },
+  'game.modesSubtitle': { en: 'Choose your game mode', id: 'Pilih mode gamemu' },
+  'game.difficultyTitle': { en: 'Select Difficulty', id: 'Pilih Kesulitan' },
+  'game.difficultySubtitle': { en: 'Choose your challenge level', id: 'Pilih level tantanganmu' },
+
+  // ──────────── Game Categories ────────────
+  'gameCategory.vocabulary': { en: 'Vocabulary', id: 'Kosakata' },
+  'gameCategory.vocabularySub': { en: 'Word games', id: 'Permainan kata' },
+  'gameCategory.grammar': { en: 'Grammar', id: 'Tata Bahasa' },
+  'gameCategory.grammarSub': { en: 'Grammar rules', id: 'Aturan tata bahasa' },
+  'gameCategory.listening': { en: 'Listening', id: 'Menyimak' },
+  'gameCategory.listeningSub': { en: 'Audio challenges', id: 'Tantangan audio' },
+  'gameCategory.speaking': { en: 'Speaking', id: 'Pelafalan' },
+  'gameCategory.speakingSub': { en: 'Pronunciation', id: 'Pengucapan' },
+
+  // ──────────── Game Modes ────────────
+  'gameMode.wordMatch': { en: 'Word Match', id: 'Cocokkan Kata' },
+  'gameMode.wordMatchSub': { en: 'Match word pairs', id: 'Cocokkan pasangan kata' },
+  'gameMode.memoryCard': { en: 'Memory Card', id: 'Kartu Memori' },
+  'gameMode.memoryCardSub': { en: 'Flip and match', id: 'Balik dan cocokkan' },
+  'gameMode.speedQuiz': { en: 'Speed Quiz', id: 'Kuis Cepat' },
+  'gameMode.speedQuizSub': { en: 'Race against time', id: 'Lawan waktu' },
+  'gameMode.crossword': { en: 'Crossword', id: 'Teka-teki Silang' },
+  'gameMode.crosswordSub': { en: 'Fill the puzzle', id: 'Isi teka-teki' },
+  'gameMode.clanBattle': { en: 'Clan Battle', id: 'Pertempuran Klan' },
+  'gameMode.clanBattleSub': { en: 'Team PvP', id: 'PvP Tim' },
+
+  // ──────────── Game Difficulty ────────────
+  'gameDifficulty.easy': { en: 'Easy', id: 'Mudah' },
+  'gameDifficulty.easySub': { en: 'A1 – A2', id: 'A1 – A2' },
+  'gameDifficulty.medium': { en: 'Medium', id: 'Sedang' },
+  'gameDifficulty.mediumSub': { en: 'B1 – B2', id: 'B1 – B2' },
+  'gameDifficulty.hard': { en: 'Hard', id: 'Sulit' },
+  'gameDifficulty.hardSub': { en: 'C1 – C2', id: 'C1 – C2' },
+
+  // ──────────── Latihan (Practice) Page ────────────
+  'latihan.title': { en: 'Practice', id: 'Latihan Soal' },
+  'latihan.subtitle': { en: 'Sharpen your skills with exercises', id: 'Asah kemampuanmu dengan latihan' },
+  'latihan.skillsTitle': { en: 'Skills', id: 'Kemampuan' },
+  'latihan.questionTypes': { en: 'Question Types', id: 'Tipe Soal' },
+  'latihan.questionTypesSub': { en: 'Choose how you want to practice', id: 'Pilih cara latihanmu' },
+
+  // ──────────── Practice Question Types ────────────
+  'practice.multipleChoice': { en: 'Multiple Choice', id: 'Pilihan Ganda' },
+  'practice.multipleChoiceSub': { en: '4 answer options', id: '4 opsi jawaban' },
+  'practice.shortAnswer': { en: 'Short Answer', id: 'Isian Singkat' },
+  'practice.shortAnswerSub': { en: 'Type your answer', id: 'Ketik jawaban' },
+  'practice.sentenceArrange': { en: 'Arrange Sentence', id: 'Susun Kalimat' },
+  'practice.sentenceArrangeSub': { en: 'Drag and drop', id: 'Seret dan lepas' },
+  'practice.voiceRecord': { en: 'Voice Record', id: 'Rekam Suara' },
+  'practice.voiceRecordSub': { en: 'Speech check', id: 'Cek ucapan' },
+  'practice.translation': { en: 'Translation', id: 'Terjemahan' },
+  'practice.translationSub': { en: 'Translate sentences', id: 'Terjemahkan kalimat' },
+
+  // ──────────── Chat AI Page ────────────
+  'chatAi.title': { en: 'Chat AI', id: 'Chat AI' },
+  'chatAi.subtitle': { en: 'Practice with your AI tutor', id: 'Latihan dengan tutor AI-mu' },
+  'chatAi.scenariosTitle': { en: 'Scenarios', id: 'Skenario' },
+  'chatAi.scenariosSub': { en: 'Choose a conversation scenario', id: 'Pilih skenario percakapan' },
+  'chatAi.difficultyTitle': { en: 'Difficulty', id: 'Kesulitan' },
+  'chatAi.difficultySub': { en: 'Choose your challenge level', id: 'Pilih level tantanganmu' },
+
+  // ──────────── Chat AI Modes ────────────
+  'chatMode.freeChat': { en: 'Free Chat', id: 'Bebas Bicara' },
+  'chatMode.freeChatSub': { en: 'Talk about anything', id: 'Bicara tentang apapun' },
+  'chatMode.roleplay': { en: 'Roleplay', id: 'Bermain Peran' },
+  'chatMode.roleplaySub': { en: 'Scenario simulation', id: 'Simulasi skenario' },
+  'chatMode.textCorrection': { en: 'Text Correction', id: 'Koreksi Teks' },
+  'chatMode.textCorrectionSub': { en: 'Writing check', id: 'Cek tulisan' },
+  'chatMode.pronunciation': { en: 'Pronunciation', id: 'Pelafalan' },
+  'chatMode.pronunciationSub': { en: 'Speak & learn', id: 'Bicara & belajar' },
+  'chatMode.askTeacher': { en: 'Ask Teacher', id: 'Tanya Guru' },
+  'chatMode.askTeacherSub': { en: 'Ask anything', id: 'Tanya apapun' },
+
+  // ──────────── Chat AI Scenarios ────────────
+  'chatScenario.restaurant': { en: 'At Restaurant', id: 'Di Restoran' },
+  'chatScenario.restaurantSub': { en: 'Order food', id: 'Pesan makanan' },
+  'chatScenario.airport': { en: 'At Airport', id: 'Di Bandara' },
+  'chatScenario.airportSub': { en: 'Check-in & gate', id: 'Check-in & gate' },
+  'chatScenario.interview': { en: 'Job Interview', id: 'Wawancara Kerja' },
+  'chatScenario.interviewSub': { en: 'Practice interviews', id: 'Latihan wawancara' },
+  'chatScenario.shopping': { en: 'Shopping', id: 'Belanja' },
+  'chatScenario.shoppingSub': { en: 'Bargain & pay', id: 'Tawar & bayar' },
+  'chatScenario.smallTalk': { en: 'Small Talk', id: 'Basa-basi' },
+  'chatScenario.smallTalkSub': { en: 'Meet new people', id: 'Kenalan baru' },
+
+  // ──────────── Chat AI Difficulty ────────────
+  'chatDifficulty.easy': { en: 'Easy Mode', id: 'Mode Mudah' },
+  'chatDifficulty.easySub': { en: 'Lots of hints', id: 'Banyak petunjuk' },
+  'chatDifficulty.normal': { en: 'Normal Mode', id: 'Mode Normal' },
+  'chatDifficulty.normalSub': { en: 'Limited hints', id: 'Petunjuk terbatas' },
+  'chatDifficulty.challenge': { en: 'Challenge', id: 'Tantangan' },
+  'chatDifficulty.challengeSub': { en: 'No hints', id: 'Tanpa petunjuk' },
+
+  // ──────────── Shared ────────────
+  'common.back': { en: 'Back', id: 'Kembali' },
+  'common.comingSoon': { en: 'Coming Soon', id: 'Segera Hadir' },
+  'common.comingSoonDesc': { en: 'This feature is being built with love. Stay tuned!', id: 'Fitur ini sedang dibangun dengan penuh cinta. Nantikan ya!' },
+  'common.startLearning': { en: 'Start Learning', id: 'Mulai Belajar' },
+  'common.play': { en: 'Play', id: 'Main' },
+  'common.start': { en: 'Start', id: 'Mulai' },
+  'common.completed': { en: 'Completed', id: 'Selesai' },
+  'common.locked': { en: 'Locked', id: 'Terkunci' },
+  'common.available': { en: 'Available', id: 'Tersedia' },
+} as const;
+
+export type TranslationKey = keyof typeof translations;

@@ -1,0 +1,838 @@
+<!--
+╔══════════════════════════════════════════════════════════════╗
+║   SEA INTERACTIVE TOURISM MAP — Elementor Custom HTML v3     ║
+║   • Full width, semua CSS di-scope (#sea-root) agar tidak    ║
+║     mempengaruhi komponen Elementor lainnya                  ║
+║   • Peta akurat via D3.js + Natural Earth TopoJSON           ║
+║   • Proyeksi di-fit persis ke wilayah Asia Tenggara          ║
+╚══════════════════════════════════════════════════════════════╝
+-->
+
+<!-- Google Fonts (hanya load jika belum ada di halaman) -->
+<link id="sea-gfont" rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;600&display=swap">
+
+<!-- ░░░░░░░░░░░ SCOPED CSS — hanya berlaku di dalam #sea-root ░░░░░░░░░░░ -->
+<style>
+/* Reset hanya di dalam widget, tidak bocor keluar */
+#sea-root, #sea-root * { box-sizing: border-box; }
+#sea-root button { cursor: pointer; }
+#sea-root a { text-decoration: none; }
+#sea-root img { display: block; }
+
+/* ── Variables (palet hijau Asia Tenggara) ── */
+#sea-root {
+  --sr-deep:     #2E4A30;   /* hijau gelap — aktif, accent, CTA  */
+  --sr-deepHov:  #243a26;   /* hijau lebih gelap — hover CTA     */
+  --sr-mid:      #4E7A52;   /* hijau sedang — hover negara       */
+  --sr-soft:     #8FAF88;   /* hijau muda — negara non-aktif     */
+  --sr-ocean:    #e8efe1;   /* lautan / kanvas pucat             */
+  --sr-oceanLn:  #cfdcc6;   /* garis kontur lembut               */
+  --sr-border:   #ffffff;
+  --sr-light:    #f1f5ec;
+  --sr-cream:    #f7f4ef;
+  --sr-muted:    #7a8273;
+  --sr-text:     #243024;
+  --sr-radius:   20px;
+  --sr-shadow:   0 20px 70px rgba(40,60,40,0.13);
+}
+
+/* ── Outer wrapper ── */
+#sea-root {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1;
+}
+
+/* ── Widget shell — flat, tanpa card ── */
+#sea-root .sr-widget {
+  display: flex;
+  width: 100%;
+  min-height: 1200px;
+  position: relative;
+  background: transparent;
+  align-items: stretch;
+}
+
+/* ════════════════════════
+   LEFT — MAP PANEL
+════════════════════════ */
+#sea-root .sr-map-panel {
+  flex: 5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  overflow: visible;
+  min-height: 1200px;
+}
+
+#sea-root .sr-map-header {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 5;
+}
+
+#sea-root .sr-map-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--sr-deep);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0 0 5px;
+}
+
+#sea-root .sr-map-hint {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--sr-muted);
+  font-weight: 400;
+}
+
+/* D3 container fills the whole left panel */
+#sea-root #sr-d3 {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+#sea-root #sr-d3 svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Map elements */
+#sea-root .sr-bg-country {
+  fill: #ececec;
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  pointer-events: none;
+}
+
+#sea-root .sr-sea-country {
+  fill: var(--sr-soft);
+  stroke: var(--sr-border);
+  stroke-width: 1;
+  stroke-linejoin: round;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+#sea-root .sr-sea-country:hover {
+  fill: var(--sr-mid);
+}
+
+#sea-root .sr-sea-country.sr-active {
+  fill: var(--sr-deep);
+}
+
+/* Label negara — pakai SVG text attributes untuk default,
+   class ini hanya untuk override saat negara aktif */
+#sea-root .sr-clabel {
+  pointer-events: none;
+  user-select: none;
+  transition: fill 0.18s ease;
+}
+
+#sea-root .sr-clabel.sr-active {
+  fill: #ffffff !important;
+  stroke: rgba(20,40,20,0.7) !important;
+}
+
+/* Tooltip */
+#sea-root .sr-tooltip {
+  position: absolute;
+  z-index: 20;
+  background: rgba(46,74,48,0.94);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+
+/* ════════════════════════
+   RIGHT — INFO PANEL (transparan, flush)
+════════════════════════ */
+#sea-root .sr-info-panel {
+  flex: 0 0 460px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+  position: relative;
+  border-left: none;
+  padding: 28px 36px 24px 16px;
+}
+
+/* Default (no country selected) */
+#sea-root .sr-default {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+  text-align: center;
+}
+
+#sea-root .sr-globe {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d8e8d2, #b6cdb0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 22px;
+  box-shadow: 0 8px 28px rgba(46,74,48,0.20);
+}
+
+#sea-root .sr-default h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: #1a2540;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+#sea-root .sr-default p {
+  font-size: 12.5px;
+  color: #7e7870;
+  line-height: 1.78;
+  max-width: 220px;
+  margin: 0;
+}
+
+#sea-root .sr-quickpick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+#sea-root .sr-qbtn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  background: var(--sr-light);
+  color: var(--sr-deep);
+  border: 1px solid #c5d6c0;
+  padding: 4px 11px;
+  border-radius: 20px;
+  transition: all 0.16s;
+}
+
+#sea-root .sr-qbtn:hover {
+  background: var(--sr-deep);
+  color: #fff;
+  border-color: var(--sr-deep);
+}
+
+/* Detail panel */
+#sea-root .sr-detail {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+}
+
+#sea-root .sr-detail.sr-vis {
+  display: flex;
+  animation: sr-slide 0.3s cubic-bezier(0.25,0.8,0.25,1);
+}
+
+@keyframes sr-slide {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Photo */
+#sea-root .sr-photo {
+  position: relative;
+  height: 260px;
+  flex-shrink: 0;
+  overflow: visible;
+  background: transparent;
+  border-radius: 18px;
+  margin-bottom: 26px;
+}
+
+#sea-root .sr-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: opacity 0.28s ease, transform 0.45s ease;
+}
+
+#sea-root .sr-photo img.sr-fading {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+#sea-root .sr-photo-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(20,30,20,0.18) 100%);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+#sea-root .sr-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 30px; height: 30px;
+  background: rgba(255,255,255,0.94);
+  border: none; border-radius: 50%;
+  font-size: 13px; color: var(--sr-deep);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s; z-index: 6;
+  box-shadow: 0 2px 10px rgba(40,60,40,0.18);
+}
+
+#sea-root .sr-close:hover { background: #fff; transform: scale(1.1); }
+
+/* Floating circular nav buttons — krem, melayang setengah keluar di tepi gambar */
+#sea-root .sr-pnav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px;
+  background: #fbf2e3;
+  border: none; border-radius: 50%;
+  color: var(--sr-deep);
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; z-index: 6;
+  box-shadow: 0 6px 20px rgba(40,60,40,0.18);
+}
+
+#sea-root .sr-pnav:hover { background: #fff; transform: translateY(-50%) scale(1.08); }
+#sea-root .sr-pnav.prev { left: -23px; }
+#sea-root .sr-pnav.next { right: -23px; }
+
+#sea-root .sr-pcounter {
+  position: absolute; bottom: 12px; right: 14px;
+  background: rgba(40,60,40,0.5);
+  color: #fff; font-size: 10px;
+  padding: 3px 9px; border-radius: 12px; z-index: 6;
+}
+
+/* Content body — no padding card, flush */
+#sea-root .sr-body {
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+#sea-root .sr-chead {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 4px;
+}
+
+#sea-root .sr-flag {
+  width: 36px; height: 24px;
+  border-radius: 3px; object-fit: cover;
+  box-shadow: 0 1px 4px rgba(40,60,40,0.22);
+  flex-shrink: 0;
+}
+
+#sea-root .sr-cname {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px; font-weight: 700;
+  color: var(--sr-deep); line-height: 1.05;
+}
+
+#sea-root .sr-ctag {
+  font-size: 10.5px;
+  color: var(--sr-muted);
+  text-transform: uppercase;
+  letter-spacing: 2.2px;
+  margin-bottom: 14px;
+}
+
+#sea-root .sr-cdesc {
+  font-size: 14px;
+  color: #4a4a4a;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+#sea-root .sr-dests {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 22px;
+}
+
+#sea-root .sr-dtag {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  background: #e8efe2;
+  color: var(--sr-deep);
+  border: 1px solid #c5d6c0;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-weight: 500;
+  transition: all 0.16s;
+}
+
+#sea-root .sr-dtag:hover {
+  background: var(--sr-deep);
+  color: #fff;
+  border-color: var(--sr-deep);
+}
+
+#sea-root .sr-cta {
+  display: block; width: 100%;
+  padding: 16px 20px;
+  background: var(--sr-deep);
+  color: #fff;
+  text-align: center;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600; font-size: 15px;
+  letter-spacing: 0.4px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 18px rgba(46,74,48,0.28);
+  flex-shrink: 0;
+}
+
+#sea-root .sr-cta:hover {
+  background: var(--sr-deepHov);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(46,74,48,0.40);
+  color: #fff;
+}
+
+/* Pagination dots — flush, transparent backdrop */
+#sea-root .sr-pag {
+  display: flex; justify-content: center; gap: 8px;
+  padding: 22px 0 6px;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+#sea-root .sr-pagdot {
+  width: 9px; height: 9px;
+  border-radius: 50%; border: none;
+  background: #d4dcd0;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+#sea-root .sr-pagdot:hover { background: var(--sr-soft); }
+
+#sea-root .sr-pagdot.on {
+  background: var(--sr-deep);
+  width: 9px;
+  border-radius: 50%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 980px) {
+  #sea-root .sr-widget { flex-direction: column; min-height: auto; }
+  #sea-root .sr-map-panel { min-height: 380px; flex: none; }
+  #sea-root .sr-info-panel { flex: none; padding: 24px 20px; }
+  #sea-root .sr-photo { height: 220px; }
+  #sea-root .sr-pnav.prev { left: -18px; }
+  #sea-root .sr-pnav.next { right: -18px; }
+}
+
+@media (max-width: 480px) {
+  #sea-root .sr-map-panel { min-height: 300px; }
+  #sea-root .sr-cname { font-size: 26px; }
+  #sea-root .sr-pnav { width: 38px; height: 38px; }
+  #sea-root .sr-pnav.prev { left: -10px; }
+  #sea-root .sr-pnav.next { right: -10px; }
+}
+</style>
+
+<!-- ░░░░░░░░░░░ HTML ░░░░░░░░░░░ -->
+<div id="sea-root">
+<div class="sr-widget" id="sr-widget">
+
+  <!-- ── LEFT: Map ── -->
+  <div class="sr-map-panel" id="sr-map-panel">
+    <div class="sr-map-header">
+      <div class="sr-map-hint">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+          <circle cx="12" cy="10" r="3"/>
+        </svg>
+        Klik negara untuk melihat destinasi wisata
+      </div>
+    </div>
+    <div id="sr-d3"></div>
+    <div class="sr-tooltip" id="sr-tooltip"></div>
+  </div>
+
+  <!-- ── RIGHT: Info ── -->
+  <div class="sr-info-panel">
+
+    <!-- Default -->
+    <div class="sr-default" id="sr-default">
+      <div class="sr-globe">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2E4A30" stroke-width="1.4">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+      </div>
+      <h3>Jelajahi Asia<br>Tenggara</h3>
+      <p>Pilih negara pada peta untuk melihat destinasi wisata terpopuler.</p>
+      <div class="sr-quickpick" id="sr-quickpick"></div>
+    </div>
+
+    <!-- Detail -->
+    <div class="sr-detail" id="sr-detail">
+      <div class="sr-photo">
+        <img id="sr-img" src="" alt="">
+        <div class="sr-photo-grad"></div>
+        <button class="sr-close" id="sr-close" aria-label="Tutup">✕</button>
+        <button class="sr-pnav prev" id="sr-prev" aria-label="Sebelumnya">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="sr-pnav next" id="sr-next" aria-label="Berikutnya">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <span class="sr-pcounter" id="sr-pcounter">1 / 3</span>
+      </div>
+
+      <div class="sr-body">
+        <div class="sr-chead">
+          <img class="sr-flag" id="sr-flag" src="" alt="">
+          <span class="sr-cname" id="sr-cname"></span>
+        </div>
+        <div class="sr-ctag" id="sr-ctag"></div>
+        <p class="sr-cdesc" id="sr-cdesc"></p>
+        <div class="sr-dests" id="sr-dests"></div>
+        <a href="#" class="sr-cta" id="sr-cta">Temukan Lebih Banyak →</a>
+      </div>
+
+      <div class="sr-pag" id="sr-pag"></div>
+    </div>
+
+  </div>
+</div>
+</div>
+<!-- end #sea-root -->
+
+<!-- Scripts — load setelah HTML -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+
+<script>
+(function(){
+'use strict';
+
+/* ══════════════════════════════════════════
+   COUNTRY DATA
+══════════════════════════════════════════ */
+const DATA = {
+  ID:{name:'Indonesia',tag:'17.000+ Pulau Keajaiban',flag:'https://flagcdn.com/w80/id.png',cta:'#indonesia',
+    desc:'Surga tropis dengan gunung berapi megah, budaya Bali yang kaya, Raja Ampat yang eksotis, dan keramahan yang tak tertandingi dari Sabang sampai Merauke.',
+    img:['https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&q=80','https://images.unsplash.com/photo-1555400038-63f5ba517a47?w=800&q=80','https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=800&q=80'],
+    dest:['Bali','Raja Ampat','Yogyakarta','Lombok','Labuan Bajo','Danau Toba']},
+  TH:{name:'Thailand',tag:'Negeri Senyum & Kuil Emas',flag:'https://flagcdn.com/w80/th.png',cta:'#thailand',
+    desc:'Kuil megah berkilau emas, pantai kristal Phuket, kuliner jalanan yang memanjakan lidah, dan nightlife Bangkok yang tak pernah tidur.',
+    img:['https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800&q=80','https://images.unsplash.com/photo-1541959833400-049d37f98ccd?w=800&q=80','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'],
+    dest:['Bangkok','Phuket','Chiang Mai','Krabi','Koh Samui','Ayutthaya']},
+  VN:{name:'Vietnam',tag:'Naga Asia yang Memukau',flag:'https://flagcdn.com/w80/vn.png',cta:'#vietnam',
+    desc:'Ha Long Bay yang mistis, lorong kota tua Hoi An, kereta api tepi tebing, dan pho yang mengepul hangat menyambut setiap langkah.',
+    img:['https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80','https://images.unsplash.com/photo-1557750255-c76072a7aad1?w=800&q=80','https://images.unsplash.com/photo-1580567591029-ab7b5eac01dc?w=800&q=80'],
+    dest:['Ha Long Bay','Hoi An','Hanoi','Ho Chi Minh','Sa Pa','Hue']},
+  MY:{name:'Malaysia',tag:'Asia yang Sesungguhnya',flag:'https://flagcdn.com/w80/my.png',cta:'#malaysia',
+    desc:'Menara kembar Petronas, hutan hujan Borneo tertua di dunia, pantai Langkawi, dan perpaduan budaya Melayu-Tionghoa-India yang harmonis.',
+    img:['https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80','https://images.unsplash.com/photo-1549180030-48bf079fb38a?w=800&q=80','https://images.unsplash.com/photo-1516939884455-1445c8652f83?w=800&q=80'],
+    dest:['Kuala Lumpur','Langkawi','Penang','Sabah','Malaka','Putrajaya']},
+  PH:{name:'Philippines',tag:'7.641 Pulau Petualangan',flag:'https://flagcdn.com/w80/ph.png',cta:'#philippines',
+    desc:'Laguna tersembunyi El Nido, Chocolate Hills Bohol, teras sawah Batad, dan kehangatan rakyat Filipina yang tak terlupakan.',
+    img:['https://images.unsplash.com/photo-1537621208049-f2af1d09c0ac?w=800&q=80','https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?w=800&q=80','https://images.unsplash.com/photo-1494451930944-8998d6b63ac9?w=800&q=80'],
+    dest:['El Nido','Boracay','Bohol','Siargao','Cebu','Palawan']},
+  SG:{name:'Singapore',tag:'Kota Singa Futuristik',flag:'https://flagcdn.com/w80/sg.png',cta:'#singapore',
+    desc:'Gardens by the Bay, Marina Bay Sands, Little India, Chinatown — semua tersaji dalam satu kota kosmopolitan berkelas dunia.',
+    img:['https://images.unsplash.com/photo-1508964942454-1a56651d54ac?w=800&q=80','https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80','https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&q=80'],
+    dest:['Marina Bay','Gardens by Bay','Sentosa','Orchard Road','Chinatown','Clarke Quay']},
+  KH:{name:'Cambodia',tag:'Keajaiban Khmer Kuno',flag:'https://flagcdn.com/w80/kh.png',cta:'#cambodia',
+    desc:'Angkor Wat yang agung, senyum Bayon yang misterius, danau Tonle Sap yang berubah musim, dan jiwa Khmer yang kembali bersinar.',
+    img:['https://images.unsplash.com/photo-1508159452718-d22f6734a236?w=800&q=80','https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800&q=80','https://images.unsplash.com/photo-1534050359320-02900022671e?w=800&q=80'],
+    dest:['Angkor Wat','Siem Reap','Phnom Penh','Sihanoukville','Koh Rong','Battambang']},
+  LA:{name:'Laos',tag:'Permata Tersembunyi Mekong',flag:'https://flagcdn.com/w80/la.png',cta:'#laos',
+    desc:'Luang Prabang bercahaya saat fajar, sungai Mekong mengalir tenang, air terjun Kuang Si biru toska, dan keheningan yang semakin langka.',
+    img:['https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80','https://images.unsplash.com/photo-1565967511849-76a60a516170?w=800&q=80','https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=80'],
+    dest:['Luang Prabang','Vang Vieng','Vientiane','Kuang Si','4000 Islands','Plain of Jars']},
+  MM:{name:'Myanmar',tag:'Pagoda Emas & Jiwa Damai',flag:'https://flagcdn.com/w80/mm.png',cta:'#myanmar',
+    desc:'Ribuan pagoda Bagan di padang pasir, danau Inle yang mengapung, Shwedagon bersinar emas — Myanmar adalah perjalanan melampaui waktu.',
+    img:['https://images.unsplash.com/photo-1536940385103-c729049165e6?w=800&q=80','https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?w=800&q=80','https://images.unsplash.com/photo-1516563650612-29e5afb5a073?w=800&q=80'],
+    dest:['Bagan','Inle Lake','Mandalay','Rangoon','Ngapali Beach','Kyaiktiyo']},
+  BN:{name:'Brunei',tag:'Sultanat Kaya yang Tenang',flag:'https://flagcdn.com/w80/bn.png',cta:'#brunei',
+    desc:'Masjid Omar Ali Saifuddien memantul di atas air, hutan hujan primer yang utuh, dan kedamaian kota kecil yang jarang disentuh wisatawan massal.',
+    img:['https://images.unsplash.com/photo-1584986154522-a27c7bc36a93?w=800&q=80','https://images.unsplash.com/photo-1565017228011-47f50a9ed7a0?w=800&q=80','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80'],
+    dest:['Bandar Seri Begawan','Kampong Ayer','Ulu Temburong','Jerudong','Tasek Merimbun']},
+  TL:{name:'Timor-Leste',tag:'Negara Muda, Alam Liar',flag:'https://flagcdn.com/w80/tl.png',cta:'#timorleste',
+    desc:'Diving kelas dunia di Atauro Island, pantai perawan yang belum terjamah, dan semangat rakyat Timor yang teguh penuh kedamaian.',
+    img:['https://images.unsplash.com/photo-1516214104703-d2c9ed6a1c56?w=800&q=80','https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80','https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80'],
+    dest:['Dili','Atauro Island','Com','Baucau','Jaco Island','Cristo Rei']},
+};
+
+// ISO numeric (padded 3 chars) → ISO alpha-2
+const N2A = {
+  '360':'ID','764':'TH','704':'VN','458':'MY','608':'PH',
+  '702':'SG','116':'KH','418':'LA','104':'MM','096':'BN','626':'TL'
+};
+
+const KEYS = Object.keys(DATA);
+
+/* ── Quick-pick buttons ── */
+const qpEl = document.getElementById('sr-quickpick');
+KEYS.forEach(k => {
+  const b = document.createElement('button');
+  b.className = 'sr-qbtn';
+  b.textContent = DATA[k].name;
+  b.onclick = () => pick(k);
+  qpEl.appendChild(b);
+});
+
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let sel = null, imgI = 0;
+
+/* ══════════════════════════════════════════
+   D3 MAP  
+   Fit projection tightly to SEA bounding box
+   Lon: 92–142  Lat: -12–22
+══════════════════════════════════════════ */
+const mapEl   = document.getElementById('sr-d3');
+const tipEl   = document.getElementById('sr-tooltip');
+const panelEl = document.getElementById('sr-map-panel');
+
+// Responsive dimensions — recalc on load
+function getWH() {
+  return { W: panelEl.clientWidth || 700, H: panelEl.clientHeight || 600 };
+}
+
+let { W, H } = getWH();
+
+const svgEl = d3.select('#sr-d3')
+  .append('svg')
+  .attr('viewBox', `0 0 ${W} ${H}`)
+  .attr('preserveAspectRatio','xMidYMid meet');
+
+// Tidak ada ocean rectangle — biarkan transparan supaya nge-flat ke halaman.
+
+// Bounding box ultra-ketat — hanya Asia Tenggara
+// Bounding box dioptimasi untuk panel tinggi:
+// • Horizontal ketat di SEA (94°-141°) → negara dirender besar
+// • Vertikal diextend (-18° ke 30°) → mengisi panel tinggi tanpa whitespace,
+//   sliver Cina di atas & ujung Australia di bawah jadi konteks
+const SEA_BOX = { type:'Feature', geometry:{ type:'Polygon', coordinates:[[[94,-18],[141,-18],[141,30],[94,30],[94,-18]]] }};
+
+// Pakai fitSize agar peta SELALU mengisi seluruh dimensi panel — tidak ada ruang kosong
+const projection = d3.geoMercator()
+  .fitSize([W, H], SEA_BOX);
+
+const geoPath = d3.geoPath().projection(projection);
+const gMap = svgEl.append('g');
+
+/* Tidak pakai graticule — desain bersih flat */
+
+/* ── Load world TopoJSON ── */
+const TOPO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+
+d3.json(TOPO_URL)
+  .then(world => {
+    const features = topojson.feature(world, world.objects.countries).features;
+    buildMap(features);
+  })
+  .catch(() => {
+    document.getElementById('sr-d3').innerHTML =
+      '<p style="padding:30px;color:#555;font-size:13px;font-family:sans-serif">Peta gagal dimuat. Gunakan tombol negara di panel kanan.</p>';
+  });
+
+/* ── Render map paths ── */
+function buildMap(features) {
+
+  // Negara non-ASEAN — abu-abu pucat sebagai konteks (tidak interaktif)
+  gMap.selectAll('path.sr-bg')
+    .data(features.filter(f => !N2A[pad(f.id)]))
+    .enter().append('path')
+    .attr('class','sr-bg-country')
+    .attr('d', geoPath);
+
+  // Negara Asia Tenggara — fokus utama, berwarna hijau
+  const seaF = features.filter(f => N2A[pad(f.id)]);
+
+  // Soft drop-shadow halus di bawah tiap negara ASEAN
+  gMap.selectAll('path.sr-shadow')
+    .data(seaF)
+    .enter().append('path')
+    .attr('d', geoPath)
+    .attr('fill','rgba(46,74,48,0.14)')
+    .attr('stroke','none')
+    .attr('transform','translate(2,3)');
+
+  // SEA country fills
+  gMap.selectAll('path.sr-sea-country')
+    .data(seaF)
+    .enter().append('path')
+    .attr('class', d => `sr-sea-country iso-${N2A[pad(d.id)]}`)
+    .attr('data-iso', d => N2A[pad(d.id)])
+    .attr('d', geoPath)
+    .on('mouseenter', function(ev, d){
+      const iso = N2A[pad(d.id)];
+      if (!DATA[iso]) return;
+      if (iso !== sel) d3.select(this).attr('fill','#4E7A52');
+      tipEl.textContent = DATA[iso].name;
+      tipEl.style.opacity = '1';
+    })
+    .on('mousemove', function(ev){
+      const r = panelEl.getBoundingClientRect();
+      tipEl.style.left = (ev.clientX - r.left + 14) + 'px';
+      tipEl.style.top  = (ev.clientY - r.top  - 38) + 'px';
+    })
+    .on('mouseleave', function(ev, d){
+      const iso = N2A[pad(d.id)];
+      d3.select(this).attr('fill', iso === sel ? '#2E4A30' : '#8FAF88');
+      tipEl.style.opacity = '0';
+    })
+    .on('click', function(ev, d){
+      const iso = N2A[pad(d.id)];
+      if (DATA[iso]) pick(iso);
+    });
+
+  // Posisi label dalam koordinat GEOGRAFIS [lon, lat] — robust terhadap zoom
+  // Disesuaikan persis dengan referensi visual (bukan centroid otomatis)
+  const labelGeo = {
+    MM: [96.5, 21.5],   // Myanmar — tengah-utara
+    TH: [100, 18.5],    // Thailand — utara (Chiang Mai region)
+    LA: [102.5, 20.5],  // Laos — utara dekat Vientiane
+    VN: [106, 21],      // Vietnam — Hanoi area
+    KH: [105, 12.7],    // Cambodia — tengah
+    MY: [101.5, 4.5],   // Malaysia — Semenanjung (bukan Borneo)
+    SG: [101, 1.4],     // Singapore — digeser ke kiri di atas Riau
+    PH: [123, 13.5],    // Philippines — Luzon/Visayas area
+    ID: [109, -8],      // Indonesia — di Jawa
+    BN: [116, 6],       // Brunei — offset ke kanan biar tidak overlap Borneo
+    TL: [127.5, -10]    // Timor-Leste
+  };
+
+  Object.entries(labelGeo).forEach(([iso, geoCoord]) => {
+    if (!DATA[iso]) return;
+    const projected = projection(geoCoord);
+    if (!projected || isNaN(projected[0])) return;
+    const [px, py] = projected;
+
+    const isSmall = (iso === 'SG' || iso === 'BN' || iso === 'TL');
+    const lbl = iso === 'BN' ? 'Brunei' : DATA[iso].name;
+
+    svgEl.append('text')
+      .attr('class', 'sr-clabel')
+      .attr('data-iso', iso)
+      .attr('x', px).attr('y', py)
+      .attr('text-anchor','middle')
+      .attr('dominant-baseline','central')
+      .attr('font-family','\'DM Sans\',sans-serif')
+      .attr('font-size', isSmall ? '13' : '15')
+      .attr('font-weight','700')
+      .attr('fill','#1a201a')
+      .attr('paint-order','stroke')
+      .attr('stroke','#ffffff')
+      .attr('stroke-width','4')
+      .attr('stroke-linejoin','round')
+      .attr('pointer-events','none')
+      .attr('user-select','none')
+      .text(lbl);
+  });
+}
+
+function pad(id) { return String(id).padStart(3,'0'); }
+
+/* ══════════════════════════════════════════
+   SELECT COUNTRY
+══════════════════════════════════════════ */
+function pick(iso) {
+  if (!DATA[iso]) return;
+  sel  = iso;
+  imgI = 0;
+
+  // Map colors
+  d3.selectAll('.sr-sea-country').each(function(){
+    d3.select(this).attr('fill', d3.select(this).attr('data-iso') === iso ? '#2E4A30' : '#8FAF88');
+  });
+  d3.selectAll('.sr-sea-country').classed('sr-active', function(){
+    return d3.select(this).attr('data-iso') === iso;
+  });
+
+  // Label colors — label negara aktif jadi putih (terbaca di hijau gelap)
+  d3.selectAll('.sr-clabel').classed('sr-active', function(){
+    return d3.select(this).attr('data-iso') === iso;
+  });
+
+  // Fill panel
+  const d = DATA[iso];
+  document.getElementById('sr-img').src  = d.img[0];
+  document.getElementById('sr-img').alt  = d.name;
+  document.getElementById('sr-flag').src = d.flag;
+  document.getElementById('sr-flag').alt = d.name;
+  document.getElementById('sr-cname').textContent = d.name;
+  document.getElementById('sr-ctag').textContent  = d.tag;
+  document.getElementById('sr-cdesc').textContent = d.desc;
+  document.getElementById('sr-pcounter').textContent = `1 / ${d.img.length}`;
+  document.getElementById('sr-cta').href = d.cta;
+  document.getElementById('sr-dests').innerHTML = d.dest
+    .map(x => `<span class="sr-dtag">📍 ${x}</span>`).join('');
+
+  // Pagination
+  const pag = document.getElementById('sr-pag');
+  pag.innerHTML = KEYS.map(k =>
+    `<button class="sr-pagdot${k===iso?' on':''}" data-k="${k}" title="${DATA[k].name}"></button>`
+  ).join('');
+  pag.querySelectorAll('.sr-pagdot').forEach(b => b.onclick = () => pick(b.dataset.k));
+
+  // Switch panels
+  document.getElementById('sr-default').style.display = 'none';
+  const det = document.getElementById('sr-detail');
+  det.classList.remove('sr-vis');
+  void det.offsetWidth;
+  det.classList.add('sr-vis');
+}
+
+function clear() {
+  sel = null;
+  d3.selectAll('.sr-sea-country').attr('fill','#8FAF88').classed('sr-active', false);
+  d3.selectAll('.sr-clabel').classed('sr-active', false);
+  document.getElementById('sr-detail').classList.remove('sr-vis');
+  document.getElementById('sr-default').style.display = '';
+}
+
+/* ── Image nav ── */
+function goImg(delta){
+  if (!sel) return;
+  const imgs = DATA[sel].img;
+  imgI = (imgI + delta + imgs.length) % imgs.length;
+  const el = document.getElementById('sr-img');
+  el.classList.add('sr-fading');
+  setTimeout(() => {
+    el.src = imgs[imgI];
+    el.classList.remove('sr-fading');
+  }, 220);
+  document.getElementById('sr-pcounter').textContent = `${imgI+1} / ${imgs.length}`;
+}
+
+document.getElementById('sr-prev').onclick  = () => goImg(-1);
+document.getElementById('sr-next').onclick  = () => goImg(1);
+document.getElementById('sr-close').onclick = clear;
+
+// Boot with Indonesia selected
+setTimeout(() => pick('ID'), 600);
+
+})();
+</script>
