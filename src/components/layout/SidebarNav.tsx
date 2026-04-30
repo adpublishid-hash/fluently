@@ -1,0 +1,186 @@
+import { motion } from 'framer-motion';
+import { BookOpen, Gamepad2, FileText, MessageCircle, User, Trophy, LogOut, Flame, Zap } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { mockUser } from '../../data/mockData';
+import { useLanguage } from '../../i18n/LanguageContext';
+import type { TranslationKey } from '../../i18n/translations';
+import type { TabType } from '../../types';
+
+const tabs: { id: TabType; labelKey: TranslationKey; icon: React.ElementType; path: string; accent: string }[] = [
+  { id: 'modul',   labelKey: 'nav.modul',   icon: BookOpen,      path: '/modul',   accent: '#4FA3D1' },
+  { id: 'game',    labelKey: 'nav.game',     icon: Gamepad2,      path: '/game',    accent: '#6366F1' },
+  { id: 'latihan', labelKey: 'nav.latihan',  icon: FileText,      path: '/latihan', accent: '#F59E0B' },
+  { id: 'chat',    labelKey: 'nav.chatAi',   icon: MessageCircle, path: '/chat',    accent: '#3B82F6' },
+  { id: 'profile', labelKey: 'nav.profile',  icon: User,          path: '/profile', accent: '#EC4899' },
+];
+
+function XpProgressBar() {
+  const progress = (mockUser.xp / 3000) * 100;
+  return (
+    <div className="px-2">
+      <div className="flex items-center justify-between text-[10px] mb-1.5">
+        <span className="font-semibold text-text-secondary">Lv.{mockUser.level}</span>
+        <span className="font-bold text-primary">{mockUser.xp} / 3,000</span>
+      </div>
+      <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+        <motion.div
+          className="h-full rounded-full"
+          style={{ background: 'linear-gradient(90deg, #4FA3D1, #1E6F9F)' }}
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
+  const { t } = useLanguage();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.path))?.id || 'modul';
+
+  return (
+    <aside className="hidden md:flex flex-col w-[260px] h-screen fixed left-0 top-0 bg-white border-r border-gray-100 z-40 py-6 px-4">
+      {/* Gradient right-edge accent */}
+      <div className="absolute top-0 right-0 w-[1px] h-full bg-gradient-to-b from-primary/20 via-transparent to-primary/20" />
+
+      {/* Logo */}
+      <div className="flex items-center gap-3 mb-6 px-3">
+        <img src="/assets/Logo-fluently.png" alt="Fluently" className="h-10 w-auto object-contain" />
+        <span className="text-xl font-extrabold text-text-primary tracking-tight">Fluently</span>
+      </div>
+
+      {/* User Widget */}
+      <div className="mx-1 mb-6 bg-primary/5 rounded-2xl p-3.5 border border-primary/10">
+        <div className="flex items-center gap-3 mb-3">
+          <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/30 flex-shrink-0">
+            <img src={mockUser.avatarUrl} alt={mockUser.name} className="w-full h-full object-cover" />
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-bold text-text-primary truncate">{mockUser.name}</p>
+            <div className="flex items-center gap-2 mt-0.5">
+              <div className="flex items-center gap-1 bg-red-50 rounded-full px-1.5 py-0.5">
+                <Flame size={11} className="text-[#FF6B6B]" />
+                <span className="text-[10px] font-bold text-[#FF6B6B]">{mockUser.streak}</span>
+              </div>
+              <div className="flex items-center gap-1 bg-amber-50 rounded-full px-1.5 py-0.5">
+                <Zap size={11} className="text-[#F59E0B]" />
+                <span className="text-[10px] font-bold text-[#F59E0B]">{mockUser.xp}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <XpProgressBar />
+      </div>
+
+      {/* Main Navigation */}
+      <nav className="flex-1 space-y-0.5 px-1">
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.id;
+          const Icon = tab.icon;
+          return (
+            <motion.button
+              key={tab.id}
+              onClick={() => navigate(tab.path)}
+              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
+                isActive ? 'bg-gray-50' : 'hover:bg-gray-50/70'
+              }`}
+              whileHover={{ x: isActive ? 0 : 2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Icon box */}
+              <motion.div
+                animate={{
+                  backgroundColor: isActive ? `${tab.accent}18` : 'rgba(243,244,246,0.8)',
+                  scale: isActive ? 1 : 0.95,
+                }}
+                transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+              >
+                <Icon
+                  size={18}
+                  strokeWidth={isActive ? 2.5 : 1.8}
+                  style={{ color: isActive ? tab.accent : '#9CA3AF' }}
+                />
+              </motion.div>
+
+              <span
+                className={`text-[13.5px] tracking-tight ${
+                  isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'
+                }`}
+              >
+                {t(tab.labelKey)}
+              </span>
+
+              {/* Active right bar */}
+              {isActive && (
+                <motion.div
+                  layoutId="sidebarBar"
+                  className="ml-auto w-1 h-5 rounded-full"
+                  style={{ backgroundColor: tab.accent }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                />
+              )}
+            </motion.button>
+          );
+        })}
+
+        {/* Divider */}
+        <div className="h-px bg-gray-100 mx-2 my-2" />
+
+        {/* Leaderboard */}
+        <motion.button
+          onClick={() => navigate('/rank')}
+          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
+            location.pathname === '/rank' ? 'bg-amber-50/80' : 'hover:bg-gray-50/70'
+          }`}
+          whileHover={{ x: 2 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+            style={{
+              backgroundColor: location.pathname === '/rank' ? 'rgba(245,158,11,0.12)' : 'rgba(243,244,246,0.8)',
+            }}
+          >
+            <Trophy
+              size={18}
+              strokeWidth={location.pathname === '/rank' ? 2.5 : 1.8}
+              style={{ color: location.pathname === '/rank' ? '#F59E0B' : '#9CA3AF' }}
+            />
+          </div>
+          <span
+            className={`text-[13.5px] tracking-tight ${
+              location.pathname === '/rank'
+                ? 'font-bold text-amber-600'
+                : 'font-normal text-text-secondary'
+            }`}
+          >
+            {t('nav.leaderboard')}
+          </span>
+        </motion.button>
+      </nav>
+
+      {/* Logout */}
+      <div className="px-1 pt-4 border-t border-gray-100">
+        {onLogout && (
+          <motion.button
+            onClick={onLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left hover:bg-red-50/70 transition-colors cursor-pointer group"
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className="w-9 h-9 rounded-xl bg-red-50/80 group-hover:bg-red-100/80 flex items-center justify-center shrink-0 transition-colors">
+              <LogOut size={18} strokeWidth={1.8} className="text-red-400 group-hover:text-red-500" />
+            </div>
+            <span className="text-[13.5px] font-normal text-red-400 group-hover:text-red-500 tracking-tight transition-colors">
+              {t('nav.logOut')}
+            </span>
+          </motion.button>
+        )}
+      </div>
+    </aside>
+  );
+}

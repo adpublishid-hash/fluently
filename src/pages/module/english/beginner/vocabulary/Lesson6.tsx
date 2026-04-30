@@ -1,0 +1,274 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Volume2, PlayCircle, Lightbulb, Sparkles, Info, CheckCircle2, XCircle, MessageSquare, BookOpen, PenTool, Mic, ChevronLeft, MoreHorizontal, BarChart3, Flame, Hand, History, Home, Star, TrendingUp, Trophy, User } from 'lucide-react';
+import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
+import { QuizSection } from './QuizSection';
+import { LESSON_EXERCISES } from './exercises';
+import VocabWordList from './VocabWordList';
+import { playAudio } from '../../../../../services/ttsService';
+
+
+/* ─── Vocabulary Completion Helpers ─── */
+const VOCAB_STORAGE_KEY = 'talky_beginner_vocabulary_completed';
+function getCompletedVocabLessons(): number[] {
+  try { return JSON.parse(localStorage.getItem(VOCAB_STORAGE_KEY) || '[]'); } catch { return []; }
+}
+function markVocabComplete(lessonId: number) {
+  const done = getCompletedVocabLessons();
+  if (!done.includes(lessonId)) localStorage.setItem(VOCAB_STORAGE_KEY, JSON.stringify([...done, lessonId]));
+}
+
+
+
+// Vocabulary about Family and People
+const VOCAB_LIST = [
+    { word: "Family", ipa: "/ˈfæməli/", meaning: "Keluarga" },
+    { word: "Parents", ipa: "/ˈpɛrənts/", meaning: "Orang tua" },
+    { word: "Father", ipa: "/ˈfɑːðər/", meaning: "Ayah" },
+    { word: "Mother", ipa: "/ˈmʌðər/", meaning: "Ibu" },
+    { word: "Son", ipa: "/sʌn/", meaning: "Anak laki-laki" },
+    { word: "Daughter", ipa: "/ˈdɔːtər/", meaning: "Anak perempuan" },
+    { word: "Brother", ipa: "/ˈbrʌðər/", meaning: "Saudara laki-laki" },
+    { word: "Sister", ipa: "/ˈsɪstər/", meaning: "Saudara perempuan" },
+    { word: "Grandfather", ipa: "/ˈɡrændˌfɑːðər/", meaning: "Kakek" },
+    { word: "Grandmother", ipa: "/ˈɡrændˌmʌðər/", meaning: "Nenek" },
+    { word: "Uncle", ipa: "/ˈʌŋkəl/", meaning: "Paman / Om" },
+    { word: "Aunt", ipa: "/ænt/", meaning: "Bibi / Tante" },
+    { word: "Cousin", ipa: "/ˈkʌzən/", meaning: "Sepupu" },
+    { word: "Nephew", ipa: "/ˈnɛfjuː/", meaning: "Keponakan laki-laki" },
+    { word: "Niece", ipa: "/niːs/", meaning: "Keponakan perempuan" },
+    { word: "Husband", ipa: "/ˈhʌzbənd/", meaning: "Suami" },
+    { word: "Wife", ipa: "/waɪf/", meaning: "Istri" },
+    { word: "Child", ipa: "/tʃaɪld/", meaning: "Anak (tunggal)" },
+    { word: "Children", ipa: "/ˈtʃɪldrən/", meaning: "Anak-anak (jamak)" },
+    { word: "Baby", ipa: "/ˈbeɪbi/", meaning: "Bayi" },
+    { word: "Toddler", ipa: "/ˈtɒdlər/", meaning: "Balita" },
+    { word: "Teenager", ipa: "/ˈtiːnˌeɪdʒər/", meaning: "Remaja" },
+    { word: "Adult", ipa: "/əˈdʌlt/", meaning: "Orang dewasa" },
+    { word: "Man", ipa: "/mæn/", meaning: "Pria" },
+    { word: "Woman", ipa: "/ˈwʊmən/", meaning: "Wanita" },
+    { word: "Friend", ipa: "/frɛnd/", meaning: "Teman" },
+    { word: "Neighbor", ipa: "/ˈneɪbər/", meaning: "Tetangga" },
+    { word: "Colleague", ipa: "/ˈkɒliːɡ/", meaning: "Rekan kerja" },
+    { word: "Relative", ipa: "/ˈrɛlətɪv/", meaning: "Kerabat / Saudara jauh" },
+    { word: "Twins", ipa: "/twɪnz/", meaning: "Kembar" },
+];
+
+const PHRASES_DATA = [
+    { en: "Do you have any brothers or sisters?", id: "Apakah kamu punya saudara?" },
+    { en: "I have a big family.", id: "Saya punya keluarga besar." },
+    { en: "This is my mother, Sarah.", id: "Ini ibu saya, Sarah." },
+    { en: "He is my older brother.", id: "Dia kakak laki-laki saya." },
+    { en: "She is married with two children.", id: "Dia sudah menikah dan punya dua anak." }
+];
+
+const Lesson6: React.FC = () => {
+  const navigate = useNavigate();
+  const nextLessonPath = '/modul/english/beginner/vocabulary/lesson-7';
+  const [isCompleted, setIsCompleted] = React.useState(() => getCompletedVocabLessons().includes(6));
+  const [showVocabModal, setShowVocabModal] = React.useState(false);
+  const handleSelesai = () => { markVocabComplete(6); setIsCompleted(true); setShowVocabModal(true); };
+
+        // Quiz state removed
+
+    // --- Audio Handler ---
+    const handlePlayAudio = (text: string) => { playAudio(text, 0.9); };
+
+  const vocabModal = showVocabModal ? (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-6" style={{ backgroundColor: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(4px)' }} onClick={() => setShowVocabModal(false)}>
+      <div className="relative bg-white rounded-3xl p-8 max-w-xs w-full text-center shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: 'linear-gradient(135deg, #3498DB, #3498DB99)' }}><span style={{ fontSize: 36 }}>🏆</span></div>
+        <h2 className="text-xl font-extrabold text-[#1A1A2E] mb-1">Lesson Selesai! 🎉</h2>
+        <p className="text-[13px] text-gray-500 mb-5">Kamu telah menyelesaikan <b>Vocabulary Lesson 6</b>. Terus semangat!</p>
+        <div className="flex justify-center gap-2 mb-6"><span style={{ fontSize: 26 }}>⭐</span><span style={{ fontSize: 26 }}>⭐</span><span style={{ fontSize: 26 }}>⭐</span></div>
+        <div className="flex gap-3">
+          <button onClick={() => { setShowVocabModal(false); navigate('/modul/english/beginner/vocabulary/lesson-7'); }} className="flex-1 py-3 rounded-xl font-bold text-white shadow-lg" style={{ background: 'linear-gradient(135deg, #3498DB, #3498DBbb)' }}>Next ›</button>
+          <button onClick={() => { setShowVocabModal(false); navigate(-1); }} className="flex-1 py-3 rounded-xl font-bold bg-gray-100 text-gray-700">Kembali</button>
+        </div>
+      </div>
+    </div>
+  ) : null;
+
+    return (
+    <>
+    {vocabModal}
+        <LessonShell
+            title="Family & People"
+            subtitle="Vocabulary • Pelajaran 6"
+            accentColor="#3498DB"
+            nextLesson={'/modul/english/beginner/vocabulary/lesson-7'}
+            tabs={[
+                { id: 'learn', label: 'Pelajari', icon: <BookOpen size={14} /> },
+                { id: 'practice', label: 'Latihan', icon: <PenTool size={14} /> }
+            ].filter(Boolean)}
+            footer={() => (
+                <button
+                    onClick={isCompleted ? () => navigate(-1) : handleSelesai}
+                    className="w-full py-3.5 rounded-xl font-bold text-white flex items-center justify-center gap-2 shadow-lg transition-all hover:opacity-90 active:scale-[0.98]"
+                    style={{ background: isCompleted ? 'linear-gradient(135deg, #4FA3D1, #1E6F9F)' : 'linear-gradient(135deg, #3498DB, #3498DBcc)' }}
+                >
+                    <CheckCircle2 size={18} />
+                    {isCompleted ? 'Sudah Selesai \u2713' : 'Selesai'}
+                </button>
+            )}
+        >
+            {(tabId) => tabId === 'learn' ? (
+                <div className="space-y-6">
+                    {/* Section 1: Intro */}
+                            <motion.section custom={0} variants={sectionVariants} initial="hidden" animate="visible" className="bg-white rounded-2xl p-6 shadow-[var(--shadow-card)] border border-[var(--color-border)]">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <div className="bg-gray-50 p-2 rounded-lg text-[var(--color-primary)]">
+                                        <User size={20} />
+                                    </div>
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Talking About Family</h2>
+                                </div>
+                                <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">
+                                    Keluarga adalah topik percakapan yang hangat. Pelajaran ini mencakup nama-nama anggota keluarga inti, keluarga besar, dan orang-orang di sekitar kita.
+                                </p>
+                            </motion.section>
+
+                            {/* Section 2: Core Vocabulary */}
+                            <motion.section custom={1} variants={sectionVariants} initial="hidden" animate="visible" className="bg-white rounded-2xl p-6 shadow-[var(--shadow-card)] border border-[var(--color-border)]">
+                                <div className="flex items-center justify-between mb-6">
+                                    <div className="flex items-center gap-3">
+                                        <div className="bg-orange-50 p-2 rounded-lg text-orange-600">
+                                            <BookOpen size={20} />
+                                        </div>
+                                        <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Core Vocabulary</h2>
+                                    </div>
+                                    <span className="text-xs font-bold bg-gray-100 text-[var(--color-text-muted)] px-2 py-1 rounded-md">{VOCAB_LIST.length} Words</span>
+                                </div>
+
+                                
+                                <VocabWordList items={VOCAB_LIST} accentColor="#3498DB" />
+                            </motion.section>
+
+                            {/* Section 3: Sentence Patterns */}
+                            <motion.section custom={2} variants={sectionVariants} initial="hidden" animate="visible" className="bg-white rounded-2xl p-6 shadow-[var(--shadow-card)] border border-[var(--color-border)]">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="bg-indigo-50 p-2 rounded-lg text-indigo-600">
+                                        <Info size={20} />
+                                    </div>
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Common Phrases</h2>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {PHRASES_DATA.map((phrase, idx) => (
+                                        <div key={idx} className="bg-[var(--color-background)] rounded-xl p-4 border border-[var(--color-border)] relative group hover:border-[var(--color-border)] transition-colors">
+                                            <p className="font-bold text-[var(--color-text-primary)] mb-1">{phrase.en}</p>
+                                            <p className="text-xs text-[var(--color-text-muted)]">{phrase.id}</p>
+                                            <button
+                                                onClick={() => handlePlayAudio(phrase.en)}
+                                                className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-[var(--color-text-muted)] border border-[var(--color-border)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:text-[var(--color-primary)] hover:border-[var(--color-border)]"
+                                            >
+                                                <Volume2 size={16} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.section>
+
+                            {/* Section 4: Practice Exercises */}
+                            {/* Practice moved to tab 2 */}
+
+                            {/* Section 5: Common Mistakes */}
+                            <motion.section custom={3} variants={sectionVariants} initial="hidden" animate="visible" className="bg-orange-50 rounded-2xl p-6 shadow-[var(--shadow-card)] border border-orange-100">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="bg-white p-2 rounded-lg text-orange-500 shadow-[var(--shadow-card)]">
+                                        <Info size={20} />
+                                    </div>
+                                    <h2 className="text-lg font-bold text-orange-900">Watch Out!</h2>
+                                </div>
+
+                                <div className="space-y-4 bg-white/60 p-4 rounded-xl">
+                                    <div className="flex items-start gap-3">
+                                        <XCircle size={20} />
+                                        <div>
+                                            <p className="font-bold text-[var(--color-text-primary)] text-sm mb-1 line-through decoration-red-500 decoration-2">I have two childs.</p>
+                                            <p className="text-[var(--color-text-muted)] text-xs">"Child" is irregular plural.</p>
+                                        </div>
+                                    </div>
+                                    <div className="w-full h-px bg-orange-200/50"></div>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle2 size={20} />
+                                        <div>
+                                            <p className="font-bold text-[var(--color-text-primary)] text-sm mb-1">I have two children.</p>
+                                            <p className="text-[var(--color-text-muted)] text-xs">1 Child &rarr; 2 Children (not Childs).</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.section>
+
+                            {/* Section 6: Sample Dialogue */}
+                            <motion.section custom={4} variants={sectionVariants} initial="hidden" animate="visible" className="bg-white rounded-2xl p-6 shadow-[var(--shadow-card)] border border-[var(--color-border)]">
+                                <div className="flex items-center gap-3 mb-6">
+                                    <div className="bg-blue-50 p-2 rounded-lg text-blue-600">
+                                        <MoreHorizontal size={20} />
+                                    </div>
+                                    <h2 className="text-lg font-bold text-[var(--color-text-primary)]">Dialogue: Introduction</h2>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <div className="flex justify-start">
+                                        <div className="bg-gray-100 text-[var(--color-text-primary)] px-4 py-3 rounded-2xl rounded-tl-sm max-w-[80%] text-sm">
+                                            Is this a photo of your family?
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-end">
+                                        <div className="bg-[var(--color-primary)] text-white px-4 py-3 rounded-2xl rounded-tr-sm max-w-[80%] text-sm">
+                                            Yes. This is my father, and this is my mother.
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-start">
+                                        <div className="bg-gray-100 text-[var(--color-text-primary)] px-4 py-3 rounded-2xl rounded-tl-sm max-w-[80%] text-sm">
+                                            Who is this girl?
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-end">
+                                        <div className="bg-[var(--color-primary)] text-white px-4 py-3 rounded-2xl rounded-tr-sm max-w-[80%] text-sm">
+                                            That is my younger sister. She is a student.
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-start">
+                                        <div className="bg-gray-100 text-[var(--color-text-primary)] px-4 py-3 rounded-2xl rounded-tl-sm max-w-[80%] text-sm">
+                                            You have a nice family.
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.section>
+
+                            {/* Section 7: Pro Tip */}
+                            <div className="bg-indigo-600 rounded-2xl p-6 shadow-lg shadow-indigo-600/20 text-white relative overflow-hidden">
+                                <div className="absolute top-0 right-0 p-8 opacity-10">
+                                    <Sparkles size={128} />
+                                </div>
+                                <div className="relative z-10">
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <Lightbulb size={24} className="text-yellow-300" />
+                                        <h3 className="font-bold text-lg">Pro Tip: Older vs Bigger</h3>
+                                    </div>
+                                    <p className="text-indigo-100 text-sm leading-relaxed">
+                                        Untuk menyebut "Kakak", gunakan <span className="font-bold text-white">Older brother/sister</span> atau "Big brother/sister". <br />
+                                        Untuk "Adik", gunakan <span className="font-bold text-white">Younger brother/sister</span> atau "Little brother/sister".
+                                    </p>
+                                </div>
+                            </div>
+                </div>
+            ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+                >
+                    <div className="">
+                            <QuizSection questions={LESSON_EXERCISES[6]} />
+                        </div>
+                </motion.div>
+            )}
+        </LessonShell>
+    </>
+  );
+};
+
+export default Lesson6;
