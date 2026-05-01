@@ -11,6 +11,22 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+server/data
+.npm-cache
+Microsoft
+
+# Local patch/helper scratch files
+/*_tmp.txt
+/temp.js
+/patch_*.cjs
+/patch_*.js
+/fix_*.cjs
+/enhance_vocab_ui.cjs
+/adapt_lessons*.ps1
+/clean_interfaces.ps1
+/speaking_topics.txt
+/topics.txt
 
 
 # Editor directories and files
