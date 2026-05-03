@@ -1,0 +1,475 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import {
+  Volume2, PlayCircle, Lightbulb, Sparkles, Info, CheckCircle2, XCircle, MessageSquare, BookOpen, PenTool, Trophy, Star, TrendingUp
+} from 'lucide-react';
+import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
+import { playAudio } from '../../../../../services/ttsService';
+import { useNavigate } from 'react-router-dom';
+import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
+import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
+
+const PASSIVE_RULES = [
+  {
+    title: "Kalimat Aktif",
+    desc: "Subjek melakukan aksi.",
+    formula: "Subjek + Kata Kerja + Objek",
+    example: "The chef cooks the food.",
+    color: "bg-blue-50 text-blue-700 border-blue-200",
+    icon: "👨‍🍳"
+  },
+  {
+    title: "Kalimat Pasif",
+    desc: "Objek menerima aksi. Penting ketika 'pelaku' tidak diketahui atau tidak penting.",
+    formula: "Objek + To Be + Past Participle (V3)",
+    example: "The food is cooked (by the chef).",
+    color: "bg-purple-50 text-purple-700 border-purple-200",
+    icon: "🍲"
+  }
+];
+
+const TENSE_RULES = [
+  {
+    tense: "Present Simple",
+    active: "Clean / Cleans",
+    passive: "am / is / are + Cleaned",
+    ex: "The room is cleaned every day."
+  },
+  {
+    tense: "Past Simple",
+    active: "Cleaned",
+    passive: "was / were + Cleaned",
+    ex: "The room was cleaned yesterday."
+  }
+];
+
+const EXAMPLE_SENTENCES = [
+  { type: "Present (+)", en: "English is spoken here.", id: "Bahasa Inggris digunakan di sini.", icon: "🗣️" },
+  { type: "Present (+)", en: "The room is cleaned every day.", id: "Kamar itu dibersihkan setiap hari.", icon: "🧹" },
+  { type: "Past (+)", en: "The letter was written yesterday.", id: "Surat itu ditulis kemarin.", icon: "✉️" },
+  { type: "Past (+)", en: "My car was repaired last week.", id: "Mobil saya diperbaiki minggu lalu.", icon: "🚗" },
+  { type: "Present (+)", en: "Lunch is served at 12:00.", id: "Makan siang disajikan jam 12:00.", icon: "🍽️" },
+  { type: "Past (+)", en: "This house was built in 1990.", id: "Rumah ini dibangun tahun 1990.", icon: "🏠" },
+  { type: "Past (Jamak)", en: "The windows were broken.", id: "Jendela-jendelanya rusak (dipecahkan).", icon: "🪟" },
+  { type: "Present (+)", en: "Paper is made from wood.", id: "Kertas dibuat dari kayu.", icon: "🌲" },
+  { type: "Past (+)", en: "My phone was stolen.", id: "HP saya dicuri.", icon: "📱" },
+  { type: "Present (+)", en: "These shoes are made in Italy.", id: "Sepatu ini dibuat di Italia.", icon: "👞" },
+  { type: "Past (+)", en: "The book was read by him.", id: "Buku itu dibaca olehnya.", icon: "📖" },
+  { type: "Present (+)", en: "Emails are sent instantly.", id: "Email dikirim secara instan.", icon: "📧" },
+  { type: "Past (+)", en: "The cake was eaten.", id: "Kuenya sudah dimakan.", icon: "🍰" },
+  { type: "Present (+)", en: "Homework is done after school.", id: "PR dikerjakan sepulang sekolah.", icon: "📝" },
+  { type: "Past (Jamak)", en: "The keys were lost.", id: "Kunci-kuncinya hilang.", icon: "🔑" },
+  { type: "Present (?)", en: "Is the shop closed?", id: "Apakah tokonya tutup (ditutup)?", icon: "🏪" },
+  { type: "Past (?)", en: "Was the work finished?", id: "Apakah pekerjaannya sudah diselesaikan?", icon: "✅" },
+  { type: "Present (-)", en: "They aren't invited.", id: "Mereka tidak diundang.", icon: "📩" },
+  { type: "Past (-)", en: "It wasn't broken.", id: "Itu tidak rusak.", icon: "🛠️" },
+  { type: "Present (+)", en: "Football is played everywhere.", id: "Sepak bola dimainkan di mana-mana.", icon: "⚽" }
+];
+
+const QUIZ_QUESTIONS = [
+{
+    id: 1,
+    question: "This book ___ written by JK Rowling.",
+    options: ['is', 'was', 'were'],
+    answer: 'was',
+    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
+  },
+  {
+    id: 2,
+    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
+    options: ['is', 'are', 'was'],
+    answer: 'is',
+    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
+  },
+  {
+    id: 3,
+    question: "The photos ___ taken yesterday.",
+    options: ['was', 'were', 'is'],
+    answer: 'were',
+    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
+  },
+  {
+    id: 4,
+    question: "This car is ___ in Japan.",
+    options: ['make', 'made', 'making'],
+    answer: 'made',
+    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
+  },
+  {
+    id: 5,
+    question: "Choose the Passive sentence:",
+    options: ['He eats the apple.', 'The apple is eaten.', 'He is eating.'],
+    answer: 'The apple is eaten.',
+    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
+  },
+  {
+    id: 6,
+    question: "This book ___ written by JK Rowling.",
+    options: ["is","was","were"],
+    answer: "was",
+    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
+  },
+  {
+    id: 7,
+    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
+    options: ["is","are","was"],
+    answer: "is",
+    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
+  },
+  {
+    id: 8,
+    question: "The photos ___ taken last night.",
+    options: ["was","were","is"],
+    answer: "were",
+    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
+  },
+  {
+    id: 9,
+    question: "This bike is ___ in Japan.",
+    options: ["make","made","making"],
+    answer: "made",
+    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
+  },
+  {
+    id: 10,
+    question: "Choose the Passive sentence:",
+    options: ["My father eats the orange.","The orange is eaten.","My father is eating."],
+    answer: "The orange is eaten.",
+    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
+  },
+  {
+    id: 11,
+    question: "This book ___ written by JK Rowling.",
+    options: ["is","was","were"],
+    answer: "was",
+    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
+  },
+  {
+    id: 12,
+    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
+    options: ["is","are","was"],
+    answer: "is",
+    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
+  },
+  {
+    id: 13,
+    question: "The photos ___ taken this morning.",
+    options: ["was","were","is"],
+    answer: "were",
+    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
+  },
+  {
+    id: 14,
+    question: "This car is ___ in Japan.",
+    options: ["make","made","making"],
+    answer: "made",
+    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
+  },
+  {
+    id: 15,
+    question: "Choose the Passive sentence:",
+    options: ["He eats the peach.","The peach is eaten.","He is eating."],
+    answer: "The peach is eaten.",
+    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
+  },
+  {
+    id: 16,
+    question: "This book ___ written by JK Rowling.",
+    options: ["is","was","were"],
+    answer: "was",
+    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
+  },
+  {
+    id: 17,
+    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
+    options: ["is","are","was"],
+    answer: "is",
+    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
+  },
+  {
+    id: 18,
+    question: "The photos ___ taken yesterday.",
+    options: ["was","were","is"],
+    answer: "were",
+    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
+  },
+  {
+    id: 19,
+    question: "This bus is ___ in Japan.",
+    options: ["make","made","making"],
+    answer: "made",
+    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
+  },
+  {
+    id: 20,
+    question: "Choose the Passive sentence:",
+    options: ["My father eats the apple.","The apple is eaten.","My father is eating."],
+    answer: "The apple is eaten.",
+    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
+  }
+];
+
+const ElemGrammarLesson14: React.FC = () => {
+  const navigate = useNavigate();
+  const { isCompleted, showCompleteModal, setShowCompleteModal, handleSelesai } = useLessonCompletion('elementary_grammar', 14);
+  const nextLessonPath = '/modul/english/elementary/grammar/lesson-15';
+  // Quiz State
+  const [quizStep, setQuizStep] = useState(0);
+  const [quizScore, setQuizScore] = useState(0);
+  const [showResult, setShowResult] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [isAnswerChecked, setIsAnswerChecked] = useState(false);
+
+  // Audio Handler
+  const playSound = (text: string) => { playAudio(text, 0.9); };
+
+  // Quiz Handlers
+  const handleCheckQuiz = (option: string) => {
+    if (isAnswerChecked) return;
+    setSelectedOption(option);
+    setIsAnswerChecked(true);
+    if (option === QUIZ_QUESTIONS[quizStep].answer) {
+      setQuizScore(prev => prev + 1);
+      playSound("Correct!");
+    } else {
+      playSound("Incorrect.");
+    }
+  };
+
+  const nextQuizQuestion = () => {
+    if (quizStep < QUIZ_QUESTIONS.length - 1) {
+      setQuizStep(prev => prev + 1);
+      setSelectedOption(null);
+      setIsAnswerChecked(false);
+    } else {
+      setShowResult(true);
+    }
+  };
+
+  const restartQuiz = () => {
+    setQuizStep(0);
+    setQuizScore(0);
+    setShowResult(false);
+    setSelectedOption(null);
+    setIsAnswerChecked(false);
+  };
+
+  return (
+        <>
+          <LessonCompleteModal
+      show={showCompleteModal}
+      onClose={() => setShowCompleteModal(false)}
+      lessonLabel={"Elementary Grammar Lesson 14"}
+      accentColor={"#8E44AD"}
+      nextLessonPath={nextLessonPath}
+      onNext={nextLessonPath ? () => { setShowCompleteModal(false); navigate(nextLessonPath); } : undefined}
+      onBack={() => { setShowCompleteModal(false); navigate(-1); }}
+    />
+        <LessonShell
+            title="Kalimat Pasif (Passive Voice)"
+            subtitle="Grammar • Pelajaran 14"
+            accentColor="#8E44AD"
+            nextLesson={nextLessonPath}
+            tabs={[{ id: 'learn', label: 'Pelajari', icon: <BookOpen size={14} /> }, { id: 'examples', label: 'Contoh', icon: <Volume2 size={14} /> }, { id: 'practice', label: 'Latihan', icon: <PenTool size={14} /> }]}
+            footer={() => (
+                <button
+                    onClick={isCompleted ? () => navigate(-1) : handleSelesai}
+                    className="w-full py-3.5 rounded-xl font-bold text-white flex items-center justify-center gap-2 shadow-lg transition-all hover:opacity-90 active:scale-[0.98]"
+                    style={{ background: isCompleted ? 'linear-gradient(135deg, #4FA3D1, #1E6F9F)' : 'linear-gradient(135deg, #8E44AD, #8E44ADcc)' }}
+                >
+                    <CheckCircle2 size={18} />
+                    {isCompleted ? 'Sudah Selesai ✓' : 'Selesai'}
+                </button>
+            )}
+        >
+            {(tabId) => tabId === 'learn' ? (
+        <div className="space-y-8 animate-fade-in">
+{/* Intro */}
+              <motion.section
+                      custom={0}
+                      variants={sectionVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 shadow-lg text-white relative overflow-hidden mb-6">
+                <div className="absolute top-0 right-0 p-4 opacity-20">
+                  <TrendingUp className="w-24 h-24" />
+                </div>
+                <div className="relative z-10">
+                  <h2 className="text-xl font-bold mb-2">Subjek vs Objek</h2>
+                  <p className="text-indigo-100 text-sm leading-relaxed">
+                    Dalam kalimat <b>Aktif</b>, subjek melakukan aksi.<br />
+                    Dalam kalimat <b>Pasif</b>, subjek menerima aksi (terjadi pada mereka).
+                  </p>
+                </div>
+              </motion.section>
+
+              {/* Rules List */}
+              <div className="grid gap-4 mb-6">
+                {PASSIVE_RULES.map((rule, idx) => (
+                  <div key={idx} className={`bg-white rounded-2xl border p-5 shadow-[var(--shadow-card)] ${rule.color.replace('bg-', 'border-').split(' ')[2]} relative`}>
+                    <div className="flex justify-between items-start mb-2">
+                      <div>
+                        <h3 className={`text-xl font-bold ${rule.color.split(' ')[1]}`}>{rule.title}</h3>
+                      </div>
+                      <span className="text-3xl">{rule.icon}</span>
+                    </div>
+                    <p className="text-sm text-[var(--color-text-secondary)] mb-3">{rule.desc}</p>
+
+                    <div className="bg-white/60 p-3 rounded-lg border border-[var(--color-border)]/50 mb-2">
+                      <p className="text-xs text-[var(--color-text-muted)] font-bold uppercase mb-1">Formula</p>
+                      <p className="text-sm font-mono text-[var(--color-text-primary)]">{rule.formula}</p>
+                    </div>
+                    <p className="text-sm font-medium text-[var(--color-text-primary)] italic">"{rule.example}"</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Tense Table */}
+              <div className="bg-white rounded-2xl border border-[var(--color-border)] overflow-hidden shadow-[var(--shadow-card)]">
+                <div className="bg-[var(--color-background)] px-4 py-3 border-b border-[var(--color-border)]">
+                  <h3 className="font-bold text-[var(--color-text-primary)]">Perubahan Tense</h3>
+                </div>
+                <div className="divide-y divide-gray-100">
+                  {TENSE_RULES.map((t, i) => (
+                    <div key={i} className="p-4">
+                      <div className="flex justify-between mb-2">
+                        <span className="font-bold text-indigo-600">{t.tense}</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 text-xs">
+                        <div>
+                          <span className="block text-[var(--color-text-muted)] uppercase font-bold mb-1">Aktif</span>
+                          <span className="text-[var(--color-text-primary)]">{t.active}</span>
+                        </div>
+                        <div>
+                          <span className="block text-[var(--color-text-muted)] uppercase font-bold mb-1">Pasif</span>
+                          <span className="text-[var(--color-text-primary)] font-bold bg-yellow-100 px-1 rounded">{t.passive}</span>
+                        </div>
+                      </div>
+                      <p className="text-xs text-[var(--color-text-muted)] italic mt-2">Cth: {t.ex}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+
+        </div>
+      ) : tabId === 'examples' ? (
+        <div className="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth relative">
+          <div className="p-4 md:p-8 space-y-8 pb-24 animate-fade-in">
+            <div className="space-y-8 w-full max-w-2xl mx-auto">
+<div className="max-w-xl mx-auto">
+              <div className="bg-white rounded-[2rem] border border-[var(--color-border)] shadow-[var(--shadow-card)] overflow-hidden">
+                <div className="bg-indigo-50 px-6 py-4 border-b border-indigo-100">
+                  <h3 className="font-bold text-indigo-800 flex items-center gap-2">
+                    <BookOpen size={20} />
+                    20 Contoh
+                  </h3>
+                  <p className="text-xs text-indigo-600 mt-1">Ketuk untuk mendengarkan.</p>
+                </div>
+                <div className="divide-y divide-gray-100">
+                  {EXAMPLE_SENTENCES.map((item, idx) => (
+                    <div key={idx} className="p-4 hover:bg-[var(--color-background)] transition-colors flex items-center justify-between group">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase ${item.type.includes("Past") ? "bg-orange-100 text-orange-600" :
+                            "bg-blue-100 text-blue-600"
+                            }`}>
+                            {item.type}
+                          </span>
+                        </div>
+                        <p className="text-sm font-bold text-[var(--color-text-primary)] mb-1 flex items-center gap-2">
+                          <span>{item.icon}</span> {item.en}
+                        </p>
+                        <p className="text-xs text-[var(--color-text-muted)] italic">{item.id}</p>
+                      </div>
+                      <button
+                        onClick={() => playSound(item.en)}
+                        className="w-8 h-8 rounded-full bg-white border border-[var(--color-border)] text-[var(--color-text-muted)] flex items-center justify-center hover:border-indigo-300 hover:text-indigo-600 transition-all"
+                      >
+                        <Volume2 size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+        
+</div>
+          </div>
+        </div>
+      ) : tabId === 'practice' ? (
+        <div className="animate-fade-in">
+          <div className="max-w-xl mx-auto">
+              {!showResult ? (
+                <div className="bg-white rounded-2xl p-6 shadow-lg border border-indigo-100">
+                  <div className="flex justify-between items-center mb-6">
+                    <span className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider">Pertanyaan {quizStep + 1} dari {QUIZ_QUESTIONS.length}</span>
+                    <span className="text-xs font-bold bg-indigo-50 text-indigo-600 px-2 py-1 rounded">Skor: {quizScore}</span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-6">
+                    {QUIZ_QUESTIONS[quizStep].question}
+                  </h3>
+
+                  <div className="space-y-3">
+                    {QUIZ_QUESTIONS[quizStep].options.map((option, idx) => {
+                      let btnClass = "border-[var(--color-border)] hover:border-indigo-300 hover:bg-[var(--color-background)]";
+                      if (isAnswerChecked) {
+                        if (option === QUIZ_QUESTIONS[quizStep].answer) btnClass = "bg-green-50 border-sky-500 text-green-700";
+                        else if (option === selectedOption) btnClass = "bg-red-50 border-red-500 text-red-700";
+                        else btnClass = "opacity-50 border-[var(--color-border)]";
+                      }
+
+                      return (
+                        <button
+                          key={idx}
+                          onClick={() => handleCheckQuiz(option)}
+                          disabled={isAnswerChecked}
+                          className={`w-full p-4 rounded-xl border text-left font-medium transition-all flex items-center justify-between ${btnClass}`}
+                        >
+                          <span>{option}</span>
+                          {isAnswerChecked && option === QUIZ_QUESTIONS[quizStep].answer && <CheckCircle2 size={20} />}
+                          {isAnswerChecked && option === selectedOption && option !== QUIZ_QUESTIONS[quizStep].answer && <XCircle size={20} />}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {isAnswerChecked && (
+                    <div className="mt-6">
+                      <div className={`p-3 rounded-lg text-sm mb-4 ${selectedOption === QUIZ_QUESTIONS[quizStep].answer ? 'bg-green-50 text-green-800' : 'bg-orange-50 text-orange-800'}`}>
+                        {QUIZ_QUESTIONS[quizStep].explanation}
+                      </div>
+                      <button
+                        onClick={nextQuizQuestion}
+                        className="w-full py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg"
+                      >
+                        {quizStep < QUIZ_QUESTIONS.length - 1 ? "Pertanyaan Berikutnya" : "Lihat Hasil"}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4 text-yellow-500">
+                    <Trophy className="w-10 h-10" />
+                  </div>
+                  <h2 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">Kuis Selesai!</h2>
+                  <p className="text-[var(--color-text-muted)] mb-6">Kamu mendapatkan skor {quizScore} dari {QUIZ_QUESTIONS.length}</p>
+                  <button
+                    onClick={restartQuiz}
+                    className="px-8 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200"
+                  >
+                    Coba Lagi
+                  </button>
+                </div>
+              )}
+            </div>
+        </div>
+      ) : null}
+    </LessonShell>
+    </>
+  );
+};
+
+export default ElemGrammarLesson14;

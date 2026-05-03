@@ -1,0 +1,14 @@
+﻿import SourceLesson from '../../../../ai-kamus/arabic/pemula/pronunciation/Lesson9';
+import ArabicStaticLessonShell from '../../ArabicStaticLessonShell';
+
+export default function ArabicBeginnerPronunciationLesson9() {
+  return (
+    <ArabicStaticLessonShell
+      levelId="pemula"
+      routeLevelId="beginner"
+      skillId="pronunciation"
+      lessonId={9}
+      LessonComponent={SourceLesson}
+    />
+  );
+}
