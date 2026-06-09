@@ -1,53 +1,111 @@
 /**
- * Shared TTS Service — Bring Your Own Key (BYOK)
- * Accessible from anywhere in the app.
- * Uses OpenAI Text-to-Speech API with user-provided API key.
+ * Shared AI voice service.
+ * AI Chat uses the default Gemini Flash key through the backend.
+ * A personal browser key is optional for direct Gemini TTS playback.
  */
 
-export const TTS_API_KEY_STORAGE = 'talky_openai_api_key';
+import {
+  getChatAiApiKey,
+  getMaskedChatAiKey,
+  saveChatAiApiKey,
+  removeChatAiApiKey,
+} from './aiKeyService';
+
+export const TTS_API_KEY_STORAGE = 'fluently_ai_chat_api_key';
+const LEGACY_TTS_KEY_STORAGE = 'talky_legacy_tts_api_key';
 export const TTS_PREFERRED_VOICE_STORAGE = 'talky_tts_preferred_voice';
 export const TTS_PREFERRED_MODEL_STORAGE = 'talky_tts_preferred_model';
 
-export const TTS_VOICES = ['alloy', 'echo', 'fable', 'nova', 'onyx', 'shimmer'] as const;
-export const TTS_MODELS = ['tts-1', 'tts-1-hd'] as const;
+export const TTS_VOICES = ['Kore', 'Puck', 'Charon', 'Zephyr', 'Aoede', 'Fenrir'] as const;
+export const TTS_MODELS = ['gemini-2.5-flash-preview-tts'] as const;
 export type TTSVoice = typeof TTS_VOICES[number];
 export type TTSModel = typeof TTS_MODELS[number];
 
+const VOICE_ALIASES: Record<string, TTSVoice> = {
+  alloy: 'Kore',
+  echo: 'Charon',
+  fable: 'Puck',
+  nova: 'Zephyr',
+  onyx: 'Fenrir',
+  shimmer: 'Aoede',
+};
+
+function normalizeVoice(value: string | null): TTSVoice {
+  if (!value) return 'Kore';
+  if ((TTS_VOICES as readonly string[]).includes(value)) return value as TTSVoice;
+  return VOICE_ALIASES[value.toLowerCase()] || 'Kore';
+}
+
+function normalizeModel(value: string | null): TTSModel {
+  if (!value) return 'gemini-2.5-flash-preview-tts';
+  if ((TTS_MODELS as readonly string[]).includes(value)) return value as TTSModel;
+  return 'gemini-2.5-flash-preview-tts';
+}
+
 // ─── Key Management ────────────────────────────────────────────────────────────
 export function getApiKey(): string | null {
-  return localStorage.getItem(TTS_API_KEY_STORAGE);
+  return getChatAiApiKey();
 }
+
 export function saveApiKey(key: string): void {
-  localStorage.setItem(TTS_API_KEY_STORAGE, key.trim());
+  saveChatAiApiKey(key);
+  localStorage.removeItem(LEGACY_TTS_KEY_STORAGE);
 }
+
 export function removeApiKey(): void {
-  localStorage.removeItem(TTS_API_KEY_STORAGE);
+  removeChatAiApiKey();
+  localStorage.removeItem(LEGACY_TTS_KEY_STORAGE);
 }
+
 export function hasApiKey(): boolean {
-  const k = getApiKey();
-  return !!k && k.startsWith('sk-');
+  return true;
 }
+
 export function getMaskedKey(): string {
-  const k = getApiKey();
-  return k ? `sk-...${k.slice(-6)}` : '';
+  return getChatAiApiKey() ? getMaskedChatAiKey() : 'Default Gemini Flash aktif';
+}
+
+function speakWithBrowserVoice(
+  text: string,
+  onStart?: () => void,
+  onEnd?: () => void,
+  onError?: (err: string) => void,
+) {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+    onError?.('AI Voice belum tersedia di browser ini.');
+    return;
+  }
+  stopCurrentAudio();
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.92;
+  utterance.pitch = 1;
+  utterance.onstart = () => onStart?.();
+  utterance.onend = () => onEnd?.();
+  utterance.onerror = () => onError?.('Voice playback gagal.');
+  window.speechSynthesis.speak(utterance);
 }
 
 // ─── Preferences ──────────────────────────────────────────────────────────────
 export function getPreferredVoice(): TTSVoice {
-  return (localStorage.getItem(TTS_PREFERRED_VOICE_STORAGE) as TTSVoice) ?? 'nova';
+  return normalizeVoice(localStorage.getItem(TTS_PREFERRED_VOICE_STORAGE));
 }
+
 export function setPreferredVoice(v: TTSVoice): void {
-  localStorage.setItem(TTS_PREFERRED_VOICE_STORAGE, v);
+  localStorage.setItem(TTS_PREFERRED_VOICE_STORAGE, normalizeVoice(v));
 }
+
 export function getPreferredModel(): TTSModel {
-  return (localStorage.getItem(TTS_PREFERRED_MODEL_STORAGE) as TTSModel) ?? 'tts-1';
+  return normalizeModel(localStorage.getItem(TTS_PREFERRED_MODEL_STORAGE));
 }
+
 export function setPreferredModel(m: TTSModel): void {
-  localStorage.setItem(TTS_PREFERRED_MODEL_STORAGE, m);
+  localStorage.setItem(TTS_PREFERRED_MODEL_STORAGE, normalizeModel(m));
 }
 
 // ─── Speaker voice mapping ────────────────────────────────────────────────────
-const SPEAKER_VOICES: TTSVoice[] = ['nova', 'onyx', 'shimmer', 'echo', 'alloy', 'fable'];
+const SPEAKER_VOICES: TTSVoice[] = ['Zephyr', 'Charon', 'Aoede', 'Puck', 'Kore', 'Fenrir'];
 export function getSpeakerVoice(idx: number): TTSVoice {
   return SPEAKER_VOICES[idx % SPEAKER_VOICES.length];
 }
@@ -64,6 +122,45 @@ export function stopCurrentAudio() {
   }
 }
 
+function base64ToBytes(base64: string) {
+  const binary = atob(base64);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) {
+    bytes[index] = binary.charCodeAt(index);
+  }
+  return bytes;
+}
+
+function pcmToWavBlob(pcm: Uint8Array, sampleRate = 24000, channels = 1, bitsPerSample = 16) {
+  const blockAlign = channels * bitsPerSample / 8;
+  const byteRate = sampleRate * blockAlign;
+  const dataSize = pcm.byteLength;
+  const buffer = new ArrayBuffer(44 + dataSize);
+  const view = new DataView(buffer);
+  const writeString = (offset: number, value: string) => {
+    for (let index = 0; index < value.length; index += 1) {
+      view.setUint8(offset + index, value.charCodeAt(index));
+    }
+  };
+
+  writeString(0, 'RIFF');
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(8, 'WAVE');
+  writeString(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, channels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, byteRate, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, bitsPerSample, true);
+  writeString(36, 'data');
+  view.setUint32(40, dataSize, true);
+  new Uint8Array(buffer, 44).set(pcm);
+
+  return new Blob([buffer], { type: 'audio/wav' });
+}
+
 export async function speakText(
   text: string,
   voice?: TTSVoice,
@@ -72,12 +169,16 @@ export async function speakText(
   onError?: (err: string) => void,
 ): Promise<void> {
   const apiKey = getApiKey();
-  if (!apiKey) { onError?.('No API key configured.'); return; }
+  if (!apiKey) {
+    speakWithBrowserVoice(text, onStart, onEnd, onError);
+    return;
+  }
 
   stopCurrentAudio();
-  const usedVoice = voice ?? getPreferredVoice();
+  const usedVoice = normalizeVoice(voice ?? getPreferredVoice());
   const usedModel = getPreferredModel();
-  const cacheKey = `${usedModel}::${usedVoice}::${text}`;
+  const trimmedText = text.trim().slice(0, 1200);
+  const cacheKey = `${usedModel}::${usedVoice}::${trimmedText}`;
 
   try {
     onStart?.();
@@ -86,21 +187,40 @@ export async function speakText(
       currentAudio = audio;
       audio.onended = () => { currentAudio = null; onEnd?.(); };
       audio.onerror = () => { currentAudio = null; onError?.('Playback failed'); };
-      audio.play();
+      void audio.play();
       return;
     }
 
-    const res = await fetch('https://api.openai.com/v1/audio/speech', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: usedModel, input: text, voice: usedVoice, response_format: 'mp3' }),
-    });
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(usedModel)}:generateContent?key=${encodeURIComponent(apiKey)}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: `Say clearly and naturally: ${trimmedText}` }] }],
+          generationConfig: {
+            responseModalities: ['AUDIO'],
+            speechConfig: {
+              voiceConfig: {
+                prebuiltVoiceConfig: { voiceName: usedVoice },
+              },
+            },
+          },
+        }),
+      },
+    );
 
-    if (res.status === 401) { onError?.('Invalid API key. Please check your key.'); return; }
-    if (res.status === 429) { onError?.('Rate limit exceeded. Please wait.'); return; }
-    if (!res.ok) { onError?.(`API error ${res.status}`); return; }
+    const data = await response.json().catch(() => null);
+    if (response.status === 400) { onError?.('Gemini TTS request tidak valid. Cek model/voice.'); return; }
+    if (response.status === 401 || response.status === 403) { onError?.('Gemini API key tidak valid atau belum aktif.'); return; }
+    if (response.status === 429) { onError?.('Kuota Gemini sedang penuh. Coba lagi sebentar.'); return; }
+    if (!response.ok) { onError?.(`Gemini TTS error ${response.status}`); return; }
 
-    const blob = new Blob([await res.arrayBuffer()], { type: 'audio/mpeg' });
+    const audioBase64 = data?.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data
+      || data?.candidates?.[0]?.content?.parts?.[0]?.inline_data?.data;
+    if (!audioBase64) { onError?.('Gemini tidak mengembalikan audio.'); return; }
+
+    const blob = pcmToWavBlob(base64ToBytes(audioBase64));
     const url = URL.createObjectURL(blob);
     audioCache.set(cacheKey, url);
 
@@ -108,28 +228,19 @@ export async function speakText(
     currentAudio = audio;
     audio.onended = () => { currentAudio = null; onEnd?.(); };
     audio.onerror = () => { currentAudio = null; onError?.('Playback failed'); };
-    audio.play();
-  } catch (e) {
+    void audio.play();
+  } catch (error) {
     currentAudio = null;
-    onError?.(e instanceof Error ? e.message : 'Unknown error');
+    onError?.(error instanceof Error ? error.message : 'Unknown Gemini TTS error');
   }
 }
 
-// Notify listeners (e.g. global toast) about TTS issues so we never fall back
-// to the browser's voice. Lessons must use the user's BYOK AI TTS.
 function notify(message: string, variant: 'warn' | 'error' = 'warn') {
   if (typeof window === 'undefined') return;
   window.dispatchEvent(new CustomEvent('tts:notify', { detail: { message, variant } }));
 }
 
-// Unified TTS entry point for lessons. Uses AI TTS (BYOK) only — if no key is
-// configured or the request fails, surfaces a toast prompting the user to open
-// Profile settings instead of silently using the browser voice.
 export function playAudio(text: string, _rate = 0.9): void {
   if (!text) return;
-  if (!hasApiKey()) {
-    notify('Aktifkan AI Voice — setup API key di Profile untuk mendengar audio.', 'warn');
-    return;
-  }
-  speakText(text, undefined, undefined, undefined, (err) => notify(err || 'AI Voice gagal diputar.', 'error'));
+  void speakText(text, undefined, undefined, undefined, (err) => notify(err || 'Gemini AI Voice gagal diputar.', 'error'));
 }

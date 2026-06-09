@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, Shield, QrCode, Copy, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useState, useMemo, useEffect } from 'react';
 import PageContainer from '../../components/layout/PageContainer';
@@ -9,6 +9,16 @@ import { formatRupiah } from '../../data/shopData';
 import { useAuth } from '../../auth/AuthContext';
 
 const FALLBACK_QRIS = 'https://adpublish.id/wp-content/uploads/2026/03/QRStatis-indigit.jpg';
+const FALLBACK_CONFIRM_WA = '6285169167464';
+
+const normalizeWhatsApp = (value?: string | null) => {
+  const digits = String(value || '').replace(/\D/g, '');
+  if (!digits) return FALLBACK_CONFIRM_WA;
+  if (digits.startsWith('62')) return digits;
+  if (digits.startsWith('0')) return `62${digits.slice(1)}`;
+  if (digits.startsWith('8')) return `62${digits}`;
+  return digits.length >= 10 ? digits : FALLBACK_CONFIRM_WA;
+};
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
@@ -16,17 +26,22 @@ export default function CheckoutPage() {
     items, address, shippingMethod, subtotal, rawSubtotal, memberDiscount,
     products, getProductDiscountPercent, getCartItemUnitPrice, getCartItemBasePrice, getCartItemVariantName,
   } = useCart();
-  const { user } = useAuth();
+  const { authHeaders } = useAuth();
 
   const [agreed, setAgreed] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [qrisImage, setQrisImage] = useState(FALLBACK_QRIS);
-  const [copied, setCopied] = useState(false);
+  const [confirmWhatsApp, setConfirmWhatsApp] = useState(FALLBACK_CONFIRM_WA);
+  const [checkoutError, setCheckoutError] = useState('');
+  const [uniqueCode] = useState(() => 100 + Math.floor(Math.random() * 900));
 
   useEffect(() => {
     fetch('/api/shop/settings')
       .then(r => r.json())
-      .then(data => { if (data.qrisImage) setQrisImage(data.qrisImage); })
+      .then(data => {
+        if (data.qrisImage) setQrisImage(data.qrisImage);
+        setConfirmWhatsApp(normalizeWhatsApp(data.confirmWhatsApp || data.sender?.phone));
+      })
       .catch(() => { /* keep fallback */ });
   }, []);
 
@@ -38,7 +53,7 @@ export default function CheckoutPage() {
   );
 
   const shippingCost = shippingMethod?.cost ?? 0;
-  const total = subtotal + shippingCost;
+  const total = subtotal + shippingCost + uniqueCode;
 
   if (!address || !shippingMethod) {
     return (
@@ -51,17 +66,10 @@ export default function CheckoutPage() {
     );
   }
 
-  const handleCopyTotal = async () => {
-    try {
-      await navigator.clipboard.writeText(String(total));
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch { /* ignore */ }
-  };
-
   const handlePay = async () => {
     if (!agreed) return;
     setProcessing(true);
+    setCheckoutError('');
     try {
       const orderItems = lineItems.map(({ item, product }) => ({
         productId: product.id,
@@ -75,28 +83,30 @@ export default function CheckoutPage() {
       }));
       const res = await fetch('/api/shop/orders', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...authHeaders() },
         body: JSON.stringify({
-          userId: user?.id,
           customerEmail: address.email,
           customerName: address.fullName,
           items: orderItems,
           shippingAddress: address,
           shippingMethod,
           paymentMethod: 'qris',
-          subtotal,
-          shippingCost,
-          paymentFee: 0,
+          paymentFee: uniqueCode,
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (res.ok && data.order?.id) {
-        localStorage.setItem('fluently_last_order_id', data.order.id);
-      }
-    } catch {
-      /* Checkout still completes locally if backend is temporarily unavailable. */
-    } finally {
-      setTimeout(() => navigate('/shop/order-success'), 600);
+      if (!res.ok || !data.order?.id) throw new Error(data.error || 'Gagal membuat order');
+      const orderSnapshot = {
+        ...data.order,
+        qrisImage,
+        confirmWhatsApp,
+      };
+      localStorage.setItem('fluently_last_order_id', data.order.id);
+      localStorage.setItem('fluently_last_order', JSON.stringify(orderSnapshot));
+      setTimeout(() => navigate('/shop/order-success'), 450);
+    } catch (err) {
+      setCheckoutError(err instanceof Error ? err.message : 'Order belum berhasil dibuat. Silakan coba lagi.');
+      setProcessing(false);
     }
   };
 
@@ -171,37 +181,10 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            {/* QRIS payment */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-4" style={{ boxShadow: '0 2px 10px rgba(0,0,0,0.04)' }}>
-              <div className="flex items-center gap-2 mb-3">
-                <QrCode size={16} className="text-primary" />
-                <h3 className="font-extrabold text-[13px] text-text-primary">Pembayaran QRIS</h3>
-              </div>
-              <p className="text-[12px] text-text-muted mb-3">Scan QR di bawah dengan aplikasi mobile banking, GoPay, OVO, DANA, ShopeePay, atau e-wallet lain yang mendukung QRIS.</p>
-              <div className="bg-gradient-to-br from-sky-50 to-white border border-sky-100 rounded-2xl p-4 flex flex-col items-center">
-                <img src={qrisImage} alt="QRIS Pembayaran" className="w-full max-w-[280px] rounded-xl shadow-sm" />
-                <div className="mt-4 flex items-center gap-2">
-                  <span className="text-[12px] text-text-muted">Bayar tepat:</span>
-                  <span className="text-[15px] font-black text-primary-dark">{formatRupiah(total)}</span>
-                  <button
-                    type="button"
-                    onClick={handleCopyTotal}
-                    className="ml-1 inline-flex items-center gap-1 px-2 py-1 rounded-md bg-white border border-gray-200 text-[10.5px] font-bold text-text-secondary hover:bg-gray-50 cursor-pointer"
-                  >
-                    {copied ? <CheckCircle2 size={11} className="text-emerald-600" /> : <Copy size={11} />}
-                    {copied ? 'Disalin' : 'Salin'}
-                  </button>
-                </div>
-                <p className="mt-3 text-[11px] text-text-muted text-center max-w-xs">
-                  Setelah membayar, klik tombol "Saya Sudah Bayar" di kanan. Admin akan memverifikasi & mengonfirmasi pesanan via email.
-                </p>
-              </div>
-            </div>
-
             <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3 flex items-start gap-2.5">
               <Shield size={16} className="text-emerald-600 shrink-0 mt-0.5" />
               <p className="text-[11.5px] text-emerald-800 leading-relaxed">
-                <span className="font-extrabold">Pembayaran aman.</span> QRIS terhubung langsung ke rekening merchant. Email rincian order akan dikirim setelah Anda klik "Saya Sudah Bayar".
+                <span className="font-extrabold">Checkout aman.</span> Klik Checkout Sekarang untuk membuat order dan melanjutkan instruksi pembayaran.
               </p>
             </div>
           </div>
@@ -217,6 +200,7 @@ export default function CheckoutPage() {
               )}
               <Row label="Subtotal" value={formatRupiah(subtotal)} />
               <Row label="Shipping" value={shippingCost === 0 ? 'FREE' : formatRupiah(shippingCost)} />
+              <Row label="Kode unik" value={formatRupiah(uniqueCode)} />
               <div className="h-px bg-gray-100 my-2" />
               <div className="flex items-center justify-between">
                 <span className="text-[13px] font-extrabold text-text-primary">Grand Total</span>
@@ -234,6 +218,12 @@ export default function CheckoutPage() {
                   Saya menyetujui <span className="font-bold text-primary">Syarat Layanan</span> dan <span className="font-bold text-primary">Kebijakan Refund</span>.
                 </span>
               </label>
+
+              {checkoutError && (
+                <div className="mt-3 rounded-xl border border-red-100 bg-red-50 px-3 py-2 text-[11px] font-bold leading-relaxed text-red-600">
+                  {checkoutError}
+                </div>
+              )}
 
               <button
                 onClick={handlePay}
@@ -255,7 +245,7 @@ export default function CheckoutPage() {
                     Processing...
                   </>
                 ) : (
-                  <>Saya Sudah Bayar · {formatRupiah(total)}</>
+                  <>Checkout Sekarang · {formatRupiah(total)}</>
                 )}
               </button>
             </div>

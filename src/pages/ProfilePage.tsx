@@ -1,16 +1,10 @@
 import { motion } from 'framer-motion';
-import { Settings, ChevronRight, BookOpen, Flame, Trophy, Zap, Star, Bell, Globe, LogOut, Shield, HelpCircle, Activity, KeyRound, Volume2, CheckCircle2, XCircle, Eye, EyeOff, Cpu, Pencil, Mail, UserRound, Upload, Image as ImageIcon, Link2, Sparkles, Trash2, Camera } from 'lucide-react';
+import { Settings, ChevronRight, BookOpen, Flame, Trophy, Zap, Star, Bell, Globe, LogOut, Shield, HelpCircle, Activity, CheckCircle2, XCircle, Pencil, Mail, UserRound, Upload, Image as ImageIcon, Link2, Sparkles, Trash2, Camera, MessageSquare, Send, Bug, LifeBuoy } from 'lucide-react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PageContainer from '../components/layout/PageContainer';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useAuth } from '../auth/AuthContext';
 import { getTargetLanguageLabel, targetLanguageOptions, type TargetLanguage } from '../features/chat/targetLanguage';
-import {
-  getApiKey, saveApiKey, removeApiKey, hasApiKey, getMaskedKey,
-  getPreferredVoice, setPreferredVoice, getPreferredModel, setPreferredModel,
-  speakText, TTS_VOICES, TTS_MODELS,
-} from '../services/ttsService';
-import type { TTSVoice, TTSModel } from '../services/ttsService';
 
 // Local-only preferences (notifications/privacy/rating). Profile fields (displayName/avatarUrl)
 // now live on the server and are read/written via AuthContext.updateProfile.
@@ -25,8 +19,11 @@ type LocalPrefs = {
 };
 
 type ProfilePanel = 'edit-profile' | 'language' | 'target-language' | 'notifications' | 'privacy' | 'rate' | 'help' | null;
+type SupportCategory = 'support' | 'bug' | 'feedback' | 'billing';
+type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 const LOCAL_PREFS_KEY = 'fluently_profile_prefs_v2';
+const SUPPORT_EMAIL = 'support@fluently.id';
 
 const defaultLocalPrefs: LocalPrefs = {
   emailDigest: true,
@@ -50,6 +47,78 @@ const loadLocalPrefs = (): LocalPrefs => {
 const saveLocalPrefs = (prefs: LocalPrefs) => {
   localStorage.setItem(LOCAL_PREFS_KEY, JSON.stringify(prefs));
 };
+
+const supportCategories: { value: SupportCategory; label: string; icon: React.ElementType }[] = [
+  { value: 'support', label: 'Support', icon: LifeBuoy },
+  { value: 'bug', label: 'Bug', icon: Bug },
+  { value: 'feedback', label: 'Feedback', icon: MessageSquare },
+  { value: 'billing', label: 'Billing', icon: Mail },
+];
+
+function countStoredLearningProgress() {
+  let lessons = 0;
+  let sources = 0;
+  try {
+    for (let i = 0; i < localStorage.length; i += 1) {
+      const key = localStorage.key(i) || '';
+      if (!key.startsWith('talky_') || !key.endsWith('_completed')) continue;
+      const value = JSON.parse(localStorage.getItem(key) || '[]');
+      if (Array.isArray(value)) {
+        lessons += value.length;
+        if (value.length) sources += 1;
+      }
+    }
+    const gameStats = JSON.parse(localStorage.getItem('talky_game_stats') || '{}');
+    lessons += Number(gameStats.completed || 0);
+  } catch {
+    // Keep profile resilient if a localStorage key contains stale data.
+  }
+  return { lessons, sources };
+}
+
+function buildActivityGrid(streak: number, xp: number, completedLessons: number) {
+  const base = Math.max(1, Math.ceil((xp / 900) + (completedLessons / 8)));
+  const activeDays = Math.min(14, Math.max(streak, completedLessons ? Math.min(10, completedLessons) : 0));
+  const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+
+  return Array.from({ length: 2 }, (_, weekIndex) => (
+    Array.from({ length: 7 }, (_, dayIndex) => {
+      const absolute = weekIndex * 7 + dayIndex;
+      const distanceFromToday = 13 - absolute + todayIndex - 6;
+      const isActive = distanceFromToday >= 0 && distanceFromToday < activeDays;
+      if (!isActive) return 0;
+      return Math.min(5, Math.max(1, ((base + weekIndex + dayIndex) % 5) + 1));
+    })
+  ));
+}
+
+function buildSupportMailto({
+  category,
+  subject,
+  message,
+  name,
+  email,
+  rating,
+}: {
+  category: SupportCategory;
+  subject: string;
+  message: string;
+  name: string;
+  email: string;
+  rating?: number;
+}) {
+  const mailSubject = `[Fluently ${category}] ${subject || 'Support request'}`;
+  const body = [
+    `Name: ${name || '-'}`,
+    `Email: ${email || '-'}`,
+    rating ? `Rating: ${rating}/5` : '',
+    `Category: ${category}`,
+    '',
+    message,
+  ].filter(Boolean).join('\n');
+
+  return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(body)}`;
+}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Subcomponents
@@ -153,7 +222,7 @@ async function fileToCompressedDataURL(file: File, size = MAX_AVATAR_DIMENSION):
 }
 
 const AVATAR_PRESETS: { label: string; style: string; seeds: string[] }[] = [
-  { label: 'Avataaars', style: 'avataaars', seeds: ['Karina', 'Aiden', 'Mia', 'Leo', 'Nova', 'Theo'] },
+  { label: 'Avataaars', style: 'avataaars', seeds: ['Aiden', 'Mia', 'Leo', 'Nova', 'Theo', 'Sky'] },
   { label: 'Bottts', style: 'bottts', seeds: ['Pixel', 'Robo', 'Spark', 'Circuit'] },
   { label: 'Lorelei', style: 'lorelei', seeds: ['Hana', 'Yumi', 'Sora', 'Aki'] },
   { label: 'Notionists', style: 'notionists', seeds: ['Andi', 'Budi', 'Citra', 'Dewi'] },
@@ -175,6 +244,7 @@ function AvatarEditor({
   onChange: (next: string) => void;
   fallback: string;
 }) {
+  const { t } = useLanguage();
   const [tab, setTab] = useState<AvatarTab>('upload');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
@@ -229,7 +299,7 @@ function AvatarEditor({
           </button>
         </div>
         <div className="min-w-0 flex-1">
-          <p className="font-black text-text-primary truncate">{displayName || 'Display Name'}</p>
+          <p className="font-black text-text-primary truncate">{displayName || t('profile.displayName')}</p>
           <p className="text-xs font-semibold text-text-muted mt-0.5">
             {isUploaded ? 'Foto custom (tersimpan di perangkat)' : 'Avatar generator'}
           </p>
@@ -467,205 +537,79 @@ function ProgressList({ total, completed }: { total: number, completed: number }
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// BYOK Panel — full section for Profile page
-// ─────────────────────────────────────────────────────────────────────────────
+function ActivityHeatmapCard({ streak, xp }: { streak: number; xp: number }) {
+  const [summary, setSummary] = useState(() => countStoredLearningProgress());
+  const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const grid = buildActivityGrid(streak, xp, summary.lessons);
 
-function BYOKPanel() {
-  const [keyInput, setKeyInput] = useState('');
-  const [showKey, setShowKey] = useState(false);
-  const [keyStatus, setKeyStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
-  const [errMsg, setErrMsg] = useState('');
-  const [currentKey, setCurrentKey] = useState<string | null>(null);
-  const [voice, setVoice] = useState<TTSVoice>(getPreferredVoice());
-  const [model, setModel] = useState<TTSModel>(getPreferredModel());
-  const [testState, setTestState] = useState<'idle' | 'loading' | 'playing'>('idle');
-  const [testErr, setTestErr] = useState('');
+  useEffect(() => {
+    const refresh = () => setSummary(countStoredLearningProgress());
+    window.addEventListener('storage', refresh);
+    window.addEventListener('focus', refresh);
+    return () => {
+      window.removeEventListener('storage', refresh);
+      window.removeEventListener('focus', refresh);
+    };
+  }, []);
 
-  useEffect(() => { setCurrentKey(getApiKey()); }, []);
-
-  const handleSave = () => {
-    const k = keyInput.trim();
-    if (!k) { setErrMsg('API key tidak boleh kosong.'); setKeyStatus('error'); return; }
-    if (!k.startsWith('sk-')) { setErrMsg('OpenAI API key harus dimulai dengan "sk-".'); setKeyStatus('error'); return; }
-    setKeyStatus('saving');
-    saveApiKey(k);
-    setCurrentKey(k);
-    setKeyInput('');
-    setErrMsg('');
-    setKeyStatus('saved');
-    setTimeout(() => setKeyStatus('idle'), 2000);
-  };
-
-  const handleDelete = () => { removeApiKey(); setCurrentKey(null); setKeyStatus('idle'); };
-
-  const handleVoiceChange = (v: TTSVoice) => { setVoice(v); setPreferredVoice(v); };
-  const handleModelChange = (m: TTSModel) => { setModel(m); setPreferredModel(m); };
-
-  const handleTest = async () => {
-    if (!hasApiKey()) return;
-    setTestErr('');
-    setTestState('loading');
-    await speakText(
-      'Hello! This is Fluently speaking. Your API key is working perfectly!',
-      voice,
-      () => setTestState('loading'),
-      () => setTestState('idle'),
-      (e) => { setTestState('idle'); setTestErr(e); setTimeout(() => setTestErr(''), 4000); }
-    );
-    setTestState('playing');
-  };
-
-  const voiceDescriptions: Record<TTSVoice, string> = {
-    alloy: 'Netral & ramah', echo: 'Pria - alami', fable: 'Ekspresif & hangat',
-    nova: 'Wanita - hangat', onyx: 'Pria - dalam', shimmer: 'Wanita - lembut',
+  const getColor = (levelValue: number) => {
+    if (levelValue === 0) return '#F3F4F6';
+    if (levelValue === 1) return '#BBF7D0';
+    if (levelValue === 2) return '#86EFAC';
+    if (levelValue === 3) return '#4ADE80';
+    if (levelValue === 4) return '#22C55E';
+    return '#16A34A';
   };
 
   return (
-    <motion.div className="rounded-3xl overflow-hidden border border-purple-100 shadow-sm bg-white"
-      initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-violet-600 px-6 py-5 flex items-center gap-4">
-        <div className="w-11 h-11 bg-white/20 rounded-2xl flex items-center justify-center shrink-0">
-          <KeyRound size={22} className="text-white" />
+    <div className="bg-white rounded-3xl p-5 desktop-card border-none">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <Activity size={18} className="text-emerald-500" />
+          <h3 className="text-base font-extrabold text-text-primary">Activity</h3>
         </div>
-        <div className="flex-1">
-          <h3 className="font-extrabold text-white text-base">AI Text-to-Speech (BYOK)</h3>
-          <p className="text-purple-200 text-xs mt-0.5">Bring Your Own Key — gunakan API key OpenAI milikmu sendiri</p>
-        </div>
-        <div className={`px-3 py-1.5 rounded-full text-xs font-extrabold flex items-center gap-1.5 ${currentKey ? 'bg-green-400/20 text-green-100' : 'bg-red-400/20 text-red-100'}`}>
-          {currentKey ? <><CheckCircle2 size={12} /> Aktif</> : <><XCircle size={12} /> Belum Setup</>}
+        <div className="flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1">
+          <Flame size={14} className="text-amber-500" />
+          <span className="text-xs font-black text-amber-600">{streak}</span>
         </div>
       </div>
 
-      <div className="p-6 space-y-6">
-
-        {/* Info */}
-        <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4">
-          <p className="text-xs font-extrabold text-blue-800 mb-2">ℹ️ Cara Mendapatkan API Key Gratis</p>
-          <ol className="text-xs text-blue-700 space-y-1.5 list-decimal list-inside">
-            <li>Buka <span className="font-bold">platform.openai.com</span> dan login / daftar</li>
-            <li>Klik menu <span className="font-bold">API Keys</span> di sidebar kiri</li>
-            <li>Klik tombol <span className="font-bold">+ Create new secret key</span></li>
-            <li>Salin key-nya dan tempel di bawah</li>
-          </ol>
-          <div className="mt-3 bg-blue-100/60 rounded-xl px-3 py-2 text-[10px] text-blue-600">
-            🔒 API key disimpan hanya di browser kamu (<span className="font-bold">localStorage</span>). Fluently <span className="font-bold">tidak pernah</span> menyimpan atau mengirim key-mu ke server kami.
-          </div>
-        </div>
-
-        {/* Current Key Status */}
-        {currentKey && (
-          <div className="bg-green-50 border border-sky-200 rounded-2xl px-4 py-3.5 flex items-center gap-3">
-            <div className="w-9 h-9 bg-green-100 rounded-xl flex items-center justify-center shrink-0">
-              <CheckCircle2 size={18} className="text-green-600" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-xs font-extrabold text-green-800">API Key Tersimpan</p>
-              <p className="text-xs font-mono text-green-600 mt-0.5">{getMaskedKey()}</p>
-            </div>
-            <button onClick={handleDelete} className="text-xs font-bold text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-xl transition-all">
-              Hapus
-            </button>
-          </div>
-        )}
-
-        {/* Key Input */}
-        <div className="space-y-3">
-          <label className="text-sm font-extrabold text-slate-700">
-            {currentKey ? '🔄 Ganti API Key' : '🔑 Masukkan OpenAI API Key'}
-          </label>
-          <div className="flex gap-2">
-            <div className="flex-1 relative">
-              <input
-                type={showKey ? 'text' : 'password'}
-                value={keyInput}
-                onChange={e => { setKeyInput(e.target.value); setErrMsg(''); setKeyStatus('idle'); }}
-                onKeyDown={e => e.key === 'Enter' && handleSave()}
-                placeholder="sk-proj-..."
-                className="w-full pl-4 pr-10 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 outline-none text-sm font-mono transition-colors"
+      <div className="mb-2 grid grid-cols-7 gap-2">
+        {days.map((day, index) => (
+          <span key={`${day}-${index}`} className="text-center text-[11px] font-black text-text-muted">
+            {day}
+          </span>
+        ))}
+      </div>
+      <div className="space-y-2">
+        {grid.map((week, weekIndex) => (
+          <div key={weekIndex} className="grid grid-cols-7 gap-2">
+            {week.map((levelValue, dayIndex) => (
+              <motion.div
+                key={`${weekIndex}-${dayIndex}`}
+                title={levelValue ? `${levelValue} activity points` : 'No activity'}
+                className="aspect-square rounded-xl"
+                style={{ backgroundColor: getColor(levelValue) }}
+                initial={{ scale: 0.75, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: (weekIndex * 7 + dayIndex) * 0.025 }}
               />
-              <button onClick={() => setShowKey(!showKey)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
-                {showKey ? <EyeOff size={16} /> : <Eye size={16} />}
-              </button>
-            </div>
-            <button onClick={handleSave} disabled={!keyInput.trim()}
-              className={`px-5 py-3 rounded-xl font-bold text-sm transition-all disabled:opacity-40 text-white min-w-[90px] ${keyStatus === 'saved' ? 'bg-green-500' : 'bg-purple-600 hover:bg-purple-700'}`}>
-              {keyStatus === 'saving' ? '...' : keyStatus === 'saved' ? '✅ Saved' : 'Simpan'}
-            </button>
+            ))}
           </div>
-          {(errMsg || keyStatus === 'error') && <p className="text-xs text-red-500 font-semibold">{errMsg || 'Terjadi kesalahan.'}</p>}
-        </div>
-
-        {/* Voice & Model Settings */}
-        <div className="space-y-4">
-          <p className="text-sm font-extrabold text-slate-700 flex items-center gap-2"><Volume2 size={16} className="text-purple-500" /> Preferensi Suara AI</p>
-
-          {/* Model */}
-          <div>
-            <p className="text-xs font-bold text-slate-500 mb-2 flex items-center gap-1.5"><Cpu size={12} /> Model TTS</p>
-            <div className="grid grid-cols-2 gap-2">
-              {TTS_MODELS.map(m => (
-                <button key={m} onClick={() => handleModelChange(m)}
-                  className={`py-2.5 rounded-xl border-2 text-sm font-bold transition-all ${model === m ? 'border-purple-400 bg-purple-50 text-purple-700' : 'border-slate-200 text-slate-600 hover:border-purple-200'}`}>
-                  {m}
-                  {m === 'tts-1-hd' && <span className="ml-1 text-[10px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded-full">HD</span>}
-                </button>
-              ))}
-            </div>
-            <p className="text-[10px] text-slate-400 mt-1">tts-1 lebih cepat, tts-1-hd kualitas lebih tinggi (biaya lebih besar)</p>
-          </div>
-
-          {/* Voices */}
-          <div>
-            <p className="text-xs font-bold text-slate-500 mb-2">Pilih Suara</p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-              {TTS_VOICES.map(v => (
-                <button key={v} onClick={() => handleVoiceChange(v)}
-                  className={`py-2.5 px-3 rounded-xl border-2 text-left transition-all ${voice === v ? 'border-purple-400 bg-purple-50' : 'border-slate-200 hover:border-purple-200'}`}>
-                  <p className={`text-sm font-extrabold capitalize ${voice === v ? 'text-purple-700' : 'text-slate-700'}`}>{v}</p>
-                  <p className="text-[10px] text-slate-400 mt-0.5">{voiceDescriptions[v]}</p>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Test Button */}
-          <div className="flex items-center gap-3">
-            <button onClick={handleTest} disabled={!currentKey || testState === 'loading'}
-              className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all ${currentKey ? 'bg-purple-500 hover:bg-purple-600 text-white' : 'bg-slate-100 text-slate-400 cursor-not-allowed'} ${testState === 'playing' ? 'animate-pulse' : ''}`}>
-              <Volume2 size={16} />
-              {testState === 'loading' ? 'Memuat...' : testState === 'playing' ? 'Memutar...' : 'Test Suara'}
-            </button>
-            {testErr && <p className="text-xs text-red-500 font-semibold">{testErr}</p>}
-            {!currentKey && <p className="text-xs text-slate-400">Simpan API key terlebih dahulu</p>}
-          </div>
-        </div>
-
-        {/* Usage Info */}
-        <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4">
-          <p className="text-xs font-extrabold text-amber-800 mb-2">💡 Informasi Penggunaan & Biaya</p>
-          <div className="text-xs text-amber-700 space-y-1.5">
-            <p>• <span className="font-bold">tts-1</span>: ~$0.015 per 1.000 karakter</p>
-            <p>• <span className="font-bold">tts-1-hd</span>: ~$0.030 per 1.000 karakter</p>
-            <p>• Satu kalimat dialog ≈ 100–200 karakter ≈ $0.001–0.003</p>
-            <p>• Audio di-cache di browser → tidak duplikat biaya untuk teks yang sama</p>
-          </div>
-        </div>
-
-        {/* Where used */}
-        <div className="bg-purple-50 border border-purple-100 rounded-2xl p-4">
-          <p className="text-xs font-extrabold text-purple-800 mb-2">🎧 Fitur yang menggunakan TTS</p>
-          <div className="text-xs text-purple-700 space-y-1">
-            <p>• <span className="font-bold">Modul Listening Beginner</span> — tombol ▶ di setiap baris dialogue</p>
-            <p>• <span className="font-bold">Play All</span> — putar seluruh percakapan secara berurutan</p>
-            <p className="text-purple-400 mt-2">Lebih banyak modul akan didukung TTS ke depannya</p>
-          </div>
-        </div>
-
+        ))}
       </div>
-    </motion.div>
+
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="rounded-2xl bg-emerald-50 p-3">
+          <p className="text-[10px] font-black uppercase tracking-wider text-emerald-600">Lessons</p>
+          <p className="mt-1 text-xl font-black text-emerald-700">{summary.lessons}</p>
+        </div>
+        <div className="rounded-2xl bg-sky-50 p-3">
+          <p className="text-[10px] font-black uppercase tracking-wider text-sky-600">Modules</p>
+          <p className="mt-1 text-xl font-black text-sky-700">{summary.sources}</p>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -675,12 +619,21 @@ function BYOKPanel() {
 
 export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   const { t, language, setLanguage } = useLanguage();
-  const { user, updatePersona, updateProfile } = useAuth();
-  const [showBYOK, setShowBYOK] = useState(false);
+  const { user, updatePersona, updateProfile, changePassword, authHeaders } = useAuth();
   const [savingLanguage, setSavingLanguage] = useState(false);
   const [savingProfile, setSavingProfile] = useState(false);
   const [activePanel, setActivePanel] = useState<ProfilePanel>(null);
   const [localPrefs, setLocalPrefs] = useState<LocalPrefs>(() => loadLocalPrefs());
+  const [supportDraft, setSupportDraft] = useState({
+    category: 'support' as SupportCategory,
+    subject: '',
+    message: '',
+  });
+  const [supportStatus, setSupportStatus] = useState<SendStatus>('idle');
+  const [supportError, setSupportError] = useState('');
+  const [ratingMessage, setRatingMessage] = useState('');
+  const [ratingStatus, setRatingStatus] = useState<SendStatus>('idle');
+  const [ratingError, setRatingError] = useState('');
 
   const displayName = user?.displayName || user?.name || 'Learner';
   const avatarUrl = user?.avatarUrl
@@ -691,6 +644,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   const xpInLevel = xp % 3000;
 
   const [profileDraft, setProfileDraft] = useState({ displayName, avatarUrl });
+  const [passwordDraft, setPasswordDraft] = useState({ current: '', next: '', confirm: '' });
   const [profileError, setProfileError] = useState('');
   const [profileSaved, setProfileSaved] = useState(false);
 
@@ -707,6 +661,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   useEffect(() => {
     if (activePanel === 'edit-profile') {
       setProfileDraft({ displayName, avatarUrl });
+      setPasswordDraft({ current: '', next: '', confirm: '' });
       setProfileError('');
       setProfileSaved(false);
     }
@@ -714,6 +669,93 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
 
   const updateLocalPrefs = (patch: Partial<LocalPrefs>) => {
     setLocalPrefs((current) => ({ ...current, ...patch }));
+  };
+
+  const sendSupportFeedback = async ({
+    category,
+    subject,
+    message,
+    rating,
+  }: {
+    category: SupportCategory;
+    subject: string;
+    message: string;
+    rating?: number;
+  }) => {
+    const response = await fetch('/api/support/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...authHeaders() },
+      body: JSON.stringify({
+        category,
+        subject,
+        message,
+        rating,
+        page: window.location.pathname,
+      }),
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || 'Gagal mengirim pesan');
+    return data;
+  };
+
+  const openSupportEmail = (draft = supportDraft, rating?: number) => {
+    window.location.href = buildSupportMailto({
+      category: draft.category,
+      subject: draft.subject,
+      message: draft.message || ratingMessage || 'Saya ingin memberi masukan untuk Fluently.',
+      name: displayName,
+      email: user?.email || '',
+      rating,
+    });
+  };
+
+  const submitSupport = async () => {
+    const message = supportDraft.message.trim();
+    if (message.length < 5) {
+      setSupportStatus('error');
+      setSupportError('Tulis pesan minimal 5 karakter.');
+      return;
+    }
+
+    setSupportStatus('sending');
+    setSupportError('');
+    try {
+      await sendSupportFeedback({
+        ...supportDraft,
+        subject: supportDraft.subject.trim() || 'Support request',
+        message,
+      });
+      setSupportStatus('sent');
+      setSupportDraft((current) => ({ ...current, subject: '', message: '' }));
+    } catch (err) {
+      setSupportStatus('error');
+      setSupportError(err instanceof Error ? err.message : 'Gagal mengirim pesan.');
+    }
+  };
+
+  const submitRatingFeedback = async () => {
+    if (!localPrefs.rating) {
+      setRatingStatus('error');
+      setRatingError('Pilih rating dulu.');
+      return;
+    }
+
+    const message = ratingMessage.trim() || `Rating ${localPrefs.rating}/5 tanpa catatan tambahan.`;
+    setRatingStatus('sending');
+    setRatingError('');
+    try {
+      await sendSupportFeedback({
+        category: 'feedback',
+        subject: `Rating ${localPrefs.rating}/5`,
+        message,
+        rating: localPrefs.rating,
+      });
+      setRatingStatus('sent');
+      setRatingMessage('');
+    } catch (err) {
+      setRatingStatus('error');
+      setRatingError(err instanceof Error ? err.message : 'Gagal mengirim feedback.');
+    }
   };
 
   const saveProfileDraft = async () => {
@@ -724,14 +766,42 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
       || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(nextName)}&backgroundColor=b6e3f4`;
 
     setProfileError('');
+    const wantsPasswordChange = passwordDraft.current || passwordDraft.next || passwordDraft.confirm;
+    if (wantsPasswordChange) {
+      if (!passwordDraft.current || !passwordDraft.next || !passwordDraft.confirm) {
+        setProfileError('Lengkapi password lama, password baru, dan konfirmasi password.');
+        return;
+      }
+      if (passwordDraft.next.length < 8) {
+        setProfileError('Password baru minimal 8 karakter.');
+        return;
+      }
+      if (passwordDraft.next !== passwordDraft.confirm) {
+        setProfileError('Konfirmasi password baru belum sama.');
+        return;
+      }
+    }
+
     setSavingProfile(true);
     const result = await updateProfile({ displayName: nextName, avatarUrl: nextAvatar });
-    setSavingProfile(false);
 
     if (!result.success) {
+      setSavingProfile(false);
       setProfileError(result.error || 'Gagal menyimpan profile');
       return;
     }
+
+    if (wantsPasswordChange) {
+      const passwordResult = await changePassword(passwordDraft.current, passwordDraft.next);
+      if (!passwordResult.success) {
+        setSavingProfile(false);
+        setProfileError(passwordResult.error || 'Gagal mengganti password');
+        return;
+      }
+      setPasswordDraft({ current: '', next: '', confirm: '' });
+    }
+
+    setSavingProfile(false);
     setProfileSaved(true);
     setTimeout(() => {
       setProfileSaved(false);
@@ -747,14 +817,14 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   };
 
   const achievements = [
-    { emoji: '🔥', label: t('achievement.7DayStreak'), unlocked: true, progress: 100, requirement: '12 hari aktif berturut-turut' },
-    { emoji: '📚', label: t('achievement.bookworm'), unlocked: true, progress: 100, requirement: 'Selesaikan 3 materi belajar' },
-    { emoji: '⭐', label: t('achievement.starStudent'), unlocked: true, progress: 100, requirement: 'Raih 2.000+ XP belajar' },
-    { emoji: '🏆', label: t('achievement.top10'), unlocked: true, progress: 100, requirement: 'Masuk peringkat 10 besar' },
-    { emoji: '💎', label: t('achievement.diamond'), unlocked: false, progress: 62, requirement: 'Kumpulkan 5.000 XP total' },
-    { emoji: '🚀', label: t('achievement.speedLearner'), unlocked: false, progress: 45, requirement: 'Selesaikan 5 latihan cepat' },
-    { emoji: '🎯', label: t('achievement.perfectScore'), unlocked: false, progress: 70, requirement: 'Dapatkan skor 100% di quiz' },
-    { emoji: '👑', label: t('achievement.master'), unlocked: false, progress: 28, requirement: 'Tamatkan semua skill utama' },
+    { emoji: '🔥', label: t('achievement.7DayStreak'),  unlocked: false, progress: 0, requirement: '7 hari aktif berturut-turut' },
+    { emoji: '📚', label: t('achievement.bookworm'),    unlocked: false, progress: 0, requirement: 'Selesaikan 3 materi belajar' },
+    { emoji: '⭐', label: t('achievement.starStudent'), unlocked: false, progress: 0, requirement: 'Raih 2.000+ XP belajar' },
+    { emoji: '🏆', label: t('achievement.top10'),       unlocked: false, progress: 0, requirement: 'Masuk peringkat 10 besar' },
+    { emoji: '💎', label: t('achievement.diamond'),     unlocked: false, progress: 0, requirement: 'Kumpulkan 5.000 XP total' },
+    { emoji: '🚀', label: t('achievement.speedLearner'),unlocked: false, progress: 0, requirement: 'Selesaikan 5 latihan cepat' },
+    { emoji: '🎯', label: t('achievement.perfectScore'),unlocked: false, progress: 0, requirement: 'Dapatkan skor 100% di quiz' },
+    { emoji: '👑', label: t('achievement.master'),      unlocked: false, progress: 0, requirement: 'Tamatkan semua skill utama' },
   ];
 
   return (
@@ -853,32 +923,6 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             </div>
           </div>
 
-          {/* BYOK Section (inline on mobile + wide screens) */}
-          <div className="px-5 md:px-0">
-            {showBYOK
-              ? <BYOKPanel />
-              : (
-                <motion.button onClick={() => setShowBYOK(true)} whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-violet-50 border-2 border-purple-100 rounded-[28px] text-left shadow-sm hover:shadow-md transition-all"
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                  <div className="w-12 h-12 bg-purple-500 rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
-                    <KeyRound size={22} className="text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <p className="font-extrabold text-slate-800 text-[15px]">AI Text-to-Speech (BYOK)</p>
-                    <p className="text-xs text-slate-500 mt-0.5">
-                      {hasApiKey()
-                        ? `✅ Aktif — ${getMaskedKey()} · Ketuk untuk atur preferensi`
-                        : '🔑 Belum setup — Tambahkan OpenAI API key untuk fitur audio AI'}
-                    </p>
-                  </div>
-                  <div className={`w-3 h-3 rounded-full shrink-0 ${hasApiKey() ? 'bg-green-400 shadow-sky-300 shadow-sm' : 'bg-red-400 shadow-red-300 shadow-sm'}`} />
-                  <ChevronRight size={20} className="text-purple-400 shrink-0" />
-                </motion.button>
-              )
-            }
-          </div>
-
         </div>
 
         {/* Right Sidebar */}
@@ -888,30 +932,21 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             <ProgressList total={totalCourses} completed={completedCourses} />
           </div>
 
+          <ActivityHeatmapCard streak={streak} xp={xp} />
+
           {/* Settings Menu */}
           <div className="bg-white rounded-3xl overflow-hidden desktop-card border-none">
             <div className="px-5 py-4 border-b border-gray-50 bg-gradient-to-r from-gray-50 to-white">
               <h3 className="font-extrabold text-lg text-text-primary">{t('profile.settings')}</h3>
             </div>
             <div className="divide-y divide-gray-50">
-              <MenuItem icon={UserRound} label="Edit Profile" value={displayName} color="#4FA3D1" onClick={() => setActivePanel('edit-profile')} />
+              <MenuItem icon={UserRound} label={t('profile.editProfile')} value={displayName} color="#4FA3D1" onClick={() => setActivePanel('edit-profile')} />
               <MenuItem icon={Globe} label={t('profile.language')} value={language === 'id' ? 'Indonesia' : 'English'} color="#3498DB" onClick={() => setActivePanel('language')} />
               <MenuItem icon={BookOpen} label="Bahasa dipelajari" value={targetLanguageLabel} color="#0F766E" onClick={() => setActivePanel('target-language')} />
-              <MenuItem icon={Bell} label={t('profile.notifications')} value={localPrefs.pushReminder ? 'On' : 'Off'} color="#F39C12" onClick={() => setActivePanel('notifications')} />
-              <MenuItem icon={Shield} label={t('profile.privacy')} value={localPrefs.profilePublic ? 'Public' : 'Private'} color="#4FA3D1" onClick={() => setActivePanel('privacy')} />
-              {/* BYOK shortcut in sidebar */}
-              <MenuItem
-                icon={KeyRound}
-                label="API Key (TTS)"
-                color="#8E44AD"
-                onClick={() => setShowBYOK(true)}
-                badge={
-                  <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full mr-2 ${hasApiKey() ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
-                    {hasApiKey() ? '✓ Aktif' : '! Setup'}
-                  </span>
-                }
-              />
+              <MenuItem icon={Bell} label={t('profile.notifications')} value={localPrefs.pushReminder ? t('profile.notificationsOn') : t('profile.notificationsOff')} color="#F39C12" onClick={() => setActivePanel('notifications')} />
+              <MenuItem icon={Shield} label={t('profile.privacy')} value={localPrefs.profilePublic ? t('profile.privacyPublic') : t('profile.privacyPrivate')} color="#4FA3D1" onClick={() => setActivePanel('privacy')} />
               <MenuItem icon={Star} label={t('profile.rateUs')} value={localPrefs.rating ? `${localPrefs.rating}/5` : undefined} color="#FFD700" onClick={() => setActivePanel('rate')} />
+              <MenuItem icon={MessageSquare} label="Support & Feedback" value={SUPPORT_EMAIL} color="#10B981" onClick={() => setActivePanel('help')} />
               <MenuItem icon={HelpCircle} label={t('profile.helpCenter')} color="#9B59B6" onClick={() => setActivePanel('help')} />
               <div className="p-2">
                 <button onClick={onLogout} className="w-full mt-2 bg-red-50 text-red-600 hover:bg-red-100 font-bold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer">
@@ -930,7 +965,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
       </div>
 
       {activePanel === 'edit-profile' && (
-        <ProfileModal title="Edit Profile" onClose={() => { setProfileSaved(false); setActivePanel(null); }}>
+        <ProfileModal title={t('profile.editProfile')} onClose={() => { setProfileSaved(false); setActivePanel(null); }}>
           <div className="space-y-5">
             <div className="flex items-center gap-2 rounded-2xl bg-primary/5 px-4 py-2.5 text-[11px] font-semibold text-primary">
               <Mail size={12} /> {user?.email || ''}
@@ -944,7 +979,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             />
 
             <label className="block">
-              <span className="mb-1 block text-xs font-black uppercase tracking-wider text-text-muted">Display Name</span>
+              <span className="mb-1 block text-xs font-black uppercase tracking-wider text-text-muted">{t('profile.displayName')}</span>
               <input
                 value={profileDraft.displayName}
                 onChange={(event) => setProfileDraft((current) => ({ ...current, displayName: event.target.value }))}
@@ -953,6 +988,56 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
               />
               <p className="mt-1 text-[11px] font-semibold text-text-muted">{profileDraft.displayName.length}/40 karakter</p>
             </label>
+
+            <div className="rounded-3xl border border-gray-100 bg-gray-50 p-4">
+              <div className="mb-3 flex items-center gap-2">
+                <div className="grid h-9 w-9 place-items-center rounded-2xl bg-white text-primary shadow-sm">
+                  <Shield size={16} />
+                </div>
+                <div>
+                  <p className="text-sm font-black text-text-primary">Ganti Password</p>
+                  <p className="text-[11px] font-semibold text-text-muted">Kosongkan jika tidak ingin mengubah password.</p>
+                </div>
+              </div>
+
+              <div className="grid gap-3">
+                <label className="block">
+                  <span className="mb-1 block text-[10px] font-black uppercase tracking-wider text-text-muted">Password Lama</span>
+                  <input
+                    type="password"
+                    value={passwordDraft.current}
+                    onChange={(event) => setPasswordDraft((current) => ({ ...current, current: event.target.value }))}
+                    autoComplete="current-password"
+                    placeholder="Masukkan password lama"
+                    className="h-11 w-full rounded-2xl border border-gray-200 bg-white px-4 text-sm font-bold outline-none focus:border-primary"
+                  />
+                </label>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="block">
+                    <span className="mb-1 block text-[10px] font-black uppercase tracking-wider text-text-muted">Password Baru</span>
+                    <input
+                      type="password"
+                      value={passwordDraft.next}
+                      onChange={(event) => setPasswordDraft((current) => ({ ...current, next: event.target.value }))}
+                      autoComplete="new-password"
+                      placeholder="Minimal 8 karakter"
+                      className="h-11 w-full rounded-2xl border border-gray-200 bg-white px-4 text-sm font-bold outline-none focus:border-primary"
+                    />
+                  </label>
+                  <label className="block">
+                    <span className="mb-1 block text-[10px] font-black uppercase tracking-wider text-text-muted">Konfirmasi</span>
+                    <input
+                      type="password"
+                      value={passwordDraft.confirm}
+                      onChange={(event) => setPasswordDraft((current) => ({ ...current, confirm: event.target.value }))}
+                      autoComplete="new-password"
+                      placeholder="Ulangi password baru"
+                      className="h-11 w-full rounded-2xl border border-gray-200 bg-white px-4 text-sm font-bold outline-none focus:border-primary"
+                    />
+                  </label>
+                </div>
+              </div>
+            </div>
 
             {profileError && (
               <div className="flex items-start gap-2 rounded-xl bg-red-50 px-3 py-2 text-xs font-bold text-red-600">
@@ -968,21 +1053,21 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
               } disabled:opacity-80`}
             >
               {savingProfile ? (
-                <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" /> Menyimpan...</>
+                <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" /> {t('profile.saving')}</>
               ) : profileSaved ? (
-                <><CheckCircle2 size={16} /> Tersimpan</>
-              ) : 'Save Profile'}
+                <><CheckCircle2 size={16} /> {t('profile.saved')}</>
+              ) : t('profile.saveProfile')}
             </button>
           </div>
         </ProfileModal>
       )}
 
       {activePanel === 'language' && (
-        <ProfileModal title="App Language" onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.appLanguage')} onClose={() => setActivePanel(null)}>
           <div className="grid gap-3">
             {[
-              { value: 'en' as const, label: 'English', sub: 'Use English interface' },
-              { value: 'id' as const, label: 'Indonesia', sub: 'Gunakan tampilan Bahasa Indonesia' },
+              { value: 'en' as const, label: 'English', sub: t('profile.useEnglishInterface') },
+              { value: 'id' as const, label: 'Indonesia', sub: t('profile.useIndonesianInterface') },
             ].map((item) => (
               <button
                 key={item.value}
@@ -1003,7 +1088,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
       )}
 
       {activePanel === 'target-language' && (
-        <ProfileModal title="Bahasa yang Dipelajari" onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.learningLanguage')} onClose={() => setActivePanel(null)}>
           <div className="grid grid-cols-2 gap-3">
             {targetLanguageOptions.map((item) => (
               <button
@@ -1017,7 +1102,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
               </button>
             ))}
           </div>
-          {savingLanguage && <p className="mt-3 text-xs font-semibold text-text-muted">Menyimpan pilihan...</p>}
+          {savingLanguage && <p className="mt-3 text-xs font-semibold text-text-muted">{t('profile.savingChoice')}</p>}
         </ProfileModal>
       )}
 
@@ -1027,6 +1112,23 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             <ToggleRow label="Daily reminder" description="Ingatkan jadwal belajar harian." checked={localPrefs.pushReminder} onChange={(checked) => updateLocalPrefs({ pushReminder: checked })} />
             <ToggleRow label="Streak warning" description="Beri peringatan sebelum streak putus." checked={localPrefs.streakReminder} onChange={(checked) => updateLocalPrefs({ streakReminder: checked })} />
             <ToggleRow label="Weekly digest" description="Kirim ringkasan progres mingguan." checked={localPrefs.emailDigest} onChange={(checked) => updateLocalPrefs({ emailDigest: checked })} />
+            <button
+              type="button"
+              onClick={() => {
+                if (!('Notification' in window)) {
+                  globalThis.alert(language === 'id' ? 'Browser ini belum mendukung notifikasi.' : 'This browser does not support notifications.');
+                  return;
+                }
+                Notification.requestPermission().then((permission) => {
+                  if (permission === 'granted') {
+                    new Notification('Fluently reminder', { body: 'Notification aktif. Saatnya lanjut belajar!' });
+                  }
+                });
+              }}
+              className="flex h-11 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-black text-white hover:bg-primary-dark"
+            >
+              <Bell size={16} /> Test browser notification
+            </button>
           </div>
         </ProfileModal>
       )}
@@ -1037,6 +1139,12 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             <ToggleRow label="Public profile" description="Izinkan learner lain melihat profil kamu." checked={localPrefs.profilePublic} onChange={(checked) => updateLocalPrefs({ profilePublic: checked })} />
             <ToggleRow label="Show on leaderboard" description="Tampilkan namamu di papan peringkat." checked={localPrefs.showLeaderboard} onChange={(checked) => updateLocalPrefs({ showLeaderboard: checked })} />
             <ToggleRow label="Share progress" description="Izinkan badge/progres tampil di komunitas." checked={localPrefs.shareProgress} onChange={(checked) => updateLocalPrefs({ shareProgress: checked })} />
+            <a
+              href="https://fluently.id/privacy.html"
+              className="flex h-11 w-full items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white text-sm font-black text-text-secondary hover:border-primary hover:text-primary"
+            >
+              <Shield size={16} /> Open privacy policy
+            </a>
           </div>
         </ProfileModal>
       )}
@@ -1047,22 +1155,155 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             <p className="text-sm font-semibold text-text-secondary">Bagaimana pengalaman belajarmu sejauh ini?</p>
             <div className="mt-5 flex justify-center gap-2">
               {[1, 2, 3, 4, 5].map((score) => (
-                <button key={score} onClick={() => updateLocalPrefs({ rating: score })} className="text-4xl transition-transform hover:scale-110">
+                <button
+                  key={score}
+                  onClick={() => { updateLocalPrefs({ rating: score }); setRatingStatus('idle'); setRatingError(''); }}
+                  className="text-4xl transition-transform hover:scale-110"
+                  aria-label={`Rate ${score} stars`}
+                >
                   <Star className={score <= localPrefs.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'} size={38} />
                 </button>
               ))}
             </div>
             <p className="mt-4 text-sm font-black text-text-primary">{localPrefs.rating ? `Thanks! ${localPrefs.rating}/5 saved.` : 'Tap a star to rate.'}</p>
+
+            <textarea
+              value={ratingMessage}
+              onChange={(event) => { setRatingMessage(event.target.value); setRatingStatus('idle'); setRatingError(''); }}
+              rows={4}
+              placeholder="Ceritakan apa yang sudah bagus atau perlu diperbaiki..."
+              className="mt-5 w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-left text-sm font-semibold text-text-primary outline-none transition focus:border-primary focus:bg-white"
+              maxLength={1200}
+            />
+            <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+              <button
+                onClick={() => { void submitRatingFeedback(); }}
+                disabled={ratingStatus === 'sending' || !localPrefs.rating}
+                className={`flex h-11 flex-1 items-center justify-center gap-2 rounded-2xl text-sm font-black text-white transition ${
+                  ratingStatus === 'sent' ? 'bg-emerald-500' : 'bg-primary hover:bg-primary-dark'
+                } disabled:opacity-50`}
+              >
+                {ratingStatus === 'sending' ? (
+                  <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" /> Mengirim...</>
+                ) : ratingStatus === 'sent' ? (
+                  <><CheckCircle2 size={16} /> Terkirim</>
+                ) : (
+                  <><Send size={16} /> Send feedback</>
+                )}
+              </button>
+              <a
+                href={buildSupportMailto({
+                  category: 'feedback',
+                  subject: localPrefs.rating ? `Rating ${localPrefs.rating}/5` : 'Fluently feedback',
+                  message: ratingMessage || 'Saya ingin memberi masukan untuk Fluently.',
+                  name: displayName,
+                  email: user?.email || '',
+                  rating: localPrefs.rating || undefined,
+                })}
+                className="flex h-11 flex-1 items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white text-sm font-black text-text-secondary hover:border-primary hover:text-primary"
+              >
+                <Mail size={16} /> Email support
+              </a>
+            </div>
+            {ratingError && <p className="mt-3 text-xs font-bold text-red-500">{ratingError}</p>}
+            <p className="mt-3 text-[11px] font-semibold text-text-muted">
+              Feedback dikirim ke {SUPPORT_EMAIL}. Jika server email belum aktif, gunakan tombol Email support.
+            </p>
           </div>
         </ProfileModal>
       )}
 
       {activePanel === 'help' && (
         <ProfileModal title="Help Center" onClose={() => setActivePanel(null)}>
-          <div className="space-y-3">
+          <div className="space-y-4">
+            <div className="rounded-3xl border border-primary/10 bg-primary/5 p-4">
+              <div className="flex items-start gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-primary text-white">
+                  <LifeBuoy size={19} />
+                </div>
+                <div>
+                  <p className="font-black text-text-primary">Support & Feedback</p>
+                  <p className="mt-1 text-sm font-semibold leading-relaxed text-text-secondary">
+                    Kirim bug, pertanyaan, billing issue, atau ide produk langsung ke {SUPPORT_EMAIL}.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-gray-100 bg-white p-4 shadow-sm">
+              <div className="grid grid-cols-2 gap-2">
+                {supportCategories.map(({ value, label, icon: Icon }) => (
+                  <button
+                    key={value}
+                    type="button"
+                    onClick={() => { setSupportDraft((current) => ({ ...current, category: value })); setSupportStatus('idle'); setSupportError(''); }}
+                    className={`flex items-center justify-center gap-2 rounded-2xl border-2 px-3 py-2.5 text-xs font-black transition ${
+                      supportDraft.category === value
+                        ? 'border-primary bg-primary/10 text-primary'
+                        : 'border-gray-100 bg-gray-50 text-text-secondary hover:border-primary/30'
+                    }`}
+                  >
+                    <Icon size={14} /> {label}
+                  </button>
+                ))}
+              </div>
+
+              <input
+                value={supportDraft.subject}
+                onChange={(event) => { setSupportDraft((current) => ({ ...current, subject: event.target.value })); setSupportStatus('idle'); setSupportError(''); }}
+                placeholder="Subject"
+                maxLength={120}
+                className="mt-3 h-12 w-full rounded-2xl border border-gray-200 bg-gray-50 px-4 text-sm font-bold text-text-primary outline-none focus:border-primary focus:bg-white"
+              />
+              <textarea
+                value={supportDraft.message}
+                onChange={(event) => { setSupportDraft((current) => ({ ...current, message: event.target.value })); setSupportStatus('idle'); setSupportError(''); }}
+                rows={5}
+                placeholder="Tulis pesanmu di sini..."
+                maxLength={4000}
+                className="mt-3 w-full resize-none rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-semibold text-text-primary outline-none focus:border-primary focus:bg-white"
+              />
+
+              <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                <button
+                  onClick={() => { void submitSupport(); }}
+                  disabled={supportStatus === 'sending'}
+                  className={`flex h-11 flex-1 items-center justify-center gap-2 rounded-2xl text-sm font-black text-white transition ${
+                    supportStatus === 'sent' ? 'bg-emerald-500' : 'bg-primary hover:bg-primary-dark'
+                  } disabled:opacity-70`}
+                >
+                  {supportStatus === 'sending' ? (
+                    <><span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" /> Mengirim...</>
+                  ) : supportStatus === 'sent' ? (
+                    <><CheckCircle2 size={16} /> Terkirim</>
+                  ) : (
+                    <><Send size={16} /> Send to support</>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => openSupportEmail()}
+                  className="flex h-11 flex-1 items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white text-sm font-black text-text-secondary hover:border-primary hover:text-primary"
+                >
+                  <Mail size={16} /> Open email app
+                </button>
+              </div>
+
+              {supportStatus === 'sent' && (
+                <p className="mt-3 rounded-xl bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-700">
+                  Pesan terkirim ke {SUPPORT_EMAIL}. Terima kasih sudah bantu improve Fluently.
+                </p>
+              )}
+              {supportError && (
+                <p className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-xs font-bold text-red-600">
+                  {supportError}. Kamu tetap bisa pakai Open email app.
+                </p>
+              )}
+            </div>
+
             {[
               ['Bagaimana mengganti bahasa modul?', 'Buka Bahasa yang dipelajari, pilih bahasa baru, lalu halaman Modul akan mengikuti pilihan itu.'],
-              ['Kenapa AI voice butuh API key?', 'Fitur TTS memakai BYOK agar key dan biaya OpenAI tetap berada di sisi pengguna.'],
+              ['Apakah perlu API key sendiri?', 'Tidak. Semua fitur AI memakai default key Kie dari Fluently lewat backend.'],
               ['Di mana data profile disimpan?', 'Preferensi profile disimpan lokal di browser ini. Data akun utama tetap memakai session login.'],
             ].map(([q, a]) => (
               <div key={q} className="rounded-2xl bg-gray-50 p-4">

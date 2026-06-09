@@ -1,6 +1,6 @@
 /**
- * TTSKeyManager — BYOK (Bring Your Own Key) component for OpenAI API Key.
- * Floating button + modal dialog for setting up the user's API key.
+ * TTSKeyManager — optional personal Gemini key preferences.
+ * AI Chat uses the default backend key; this modal is only for optional voice setup.
  */
 import React, { useState, useEffect } from 'react';
 import { getApiKey, saveApiKey, removeApiKey, hasApiKey } from '../../../../../services/ttsService';
@@ -21,12 +21,11 @@ export function TTSKeyManager({ forceOpen = false, onClose }: Props) {
   useEffect(() => { setIsOpen(forceOpen); }, [forceOpen]);
 
   const existingKey = getApiKey();
-  const masked = existingKey ? `sk-...${existingKey.slice(-6)}` : '';
+  const masked = existingKey ? `...${existingKey.slice(-6)}` : '';
 
   const handleSave = () => {
     const trimmed = keyValue.trim();
     if (!trimmed) { setError('API key tidak boleh kosong.'); return; }
-    if (!trimmed.startsWith('sk-')) { setError('API key OpenAI harus dimulai dengan "sk-".'); return; }
     saveApiKey(trimmed);
     setError('');
     setSaved(true);
@@ -43,7 +42,7 @@ export function TTSKeyManager({ forceOpen = false, onClose }: Props) {
       {/* Floating FAB */}
       <button
         onClick={() => setIsOpen(true)}
-        title="Kelola API Key (TTS)"
+        title="Kelola Gemini API Key"
         className="fixed bottom-24 right-4 z-40 w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110 active:scale-95"
         style={{ background: hasApiKey() ? 'linear-gradient(135deg,#8E44AD,#6C3483)' : 'linear-gradient(135deg,#E74C3C,#C0392B)' }}
       >
@@ -68,8 +67,8 @@ export function TTSKeyManager({ forceOpen = false, onClose }: Props) {
                   <span className="text-xl">🔑</span>
                 </div>
                 <div>
-                  <h2 className="font-extrabold text-lg">OpenAI API Key</h2>
-                  <p className="text-xs text-purple-200">Sistem BYOK — Pakai kunci milikmu sendiri</p>
+                  <h2 className="font-extrabold text-lg">Gemini AI Voice</h2>
+                  <p className="text-xs text-purple-200">Default AI aktif — key pribadi opsional</p>
                 </div>
                 <button onClick={close} className="ml-auto w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30">
                   <span className="text-white text-sm">✕</span>
@@ -80,14 +79,10 @@ export function TTSKeyManager({ forceOpen = false, onClose }: Props) {
             <div className="px-6 py-5 space-y-4">
               {/* Info box */}
               <div className="bg-blue-50 border border-blue-100 rounded-2xl p-3.5">
-                <p className="text-xs font-bold text-blue-800 mb-1">ℹ️ Cara Mendapatkan API Key</p>
-                <ol className="text-xs text-blue-700 space-y-1 list-decimal list-inside">
-                  <li>Buka <span className="font-bold">platform.openai.com</span></li>
-                  <li>Login dan buka menu <span className="font-bold">API Keys</span></li>
-                  <li>Klik <span className="font-bold">Create new secret key</span></li>
-                  <li>Salin dan tempel di bawah ini</li>
-                </ol>
-                <p className="text-[10px] text-blue-500 mt-2">💡 Key kamu disimpan di browser (localStorage) dan <b>tidak pernah dikirim ke server kami</b>.</p>
+                <p className="text-xs font-bold text-blue-800 mb-1">ℹ️ AI sudah aktif</p>
+                <p className="text-xs text-blue-700 leading-relaxed">
+                  Chat memakai default Gemini Flash 2.5 dari Fluently. Key pribadi di sini hanya opsional untuk eksperimen voice langsung dari browser.
+                </p>
               </div>
 
               {/* Current key status */}
@@ -113,7 +108,7 @@ export function TTSKeyManager({ forceOpen = false, onClose }: Props) {
                       value={keyValue}
                       onChange={e => { setKeyValue(e.target.value); setError(''); }}
                       onKeyDown={e => e.key === 'Enter' && handleSave()}
-                      placeholder="sk-..."
+                      placeholder="Gemini API key..."
                       className="w-full px-4 py-3 rounded-xl border-2 border-slate-200 focus:border-purple-400 outline-none text-sm font-mono pr-10"
                     />
                     <button
@@ -132,10 +127,10 @@ export function TTSKeyManager({ forceOpen = false, onClose }: Props) {
                 <p className="text-xs font-bold text-purple-800 mb-1">🤖 Model yang Digunakan</p>
                 <div className="grid grid-cols-2 gap-1.5">
                   {[
-                    { name: 'Model', val: 'tts-1' },
-                    { name: 'Format', val: 'MP3' },
+                    { name: 'Model', val: 'gemini-2.5-flash-preview-tts' },
+                    { name: 'Format', val: 'WAV' },
                     { name: 'Bahasa', val: 'English' },
-                    { name: 'Suara', val: 'nova / onyx / dll' },
+                    { name: 'Suara', val: 'Kore / Puck / dll' },
                   ].map(i => (
                     <div key={i.name} className="text-[10px] text-purple-700">
                       <span className="text-purple-400">{i.name}: </span>
@@ -177,7 +172,7 @@ export function TTSNoBanner({ onSetupClick }: { onSetupClick: () => void }) {
       <span className="text-2xl shrink-0">🔑</span>
       <div className="flex-1 min-w-0">
         <p className="text-xs font-extrabold text-amber-800">Aktifkan Tombol Play</p>
-        <p className="text-xs text-amber-600">Tambahkan OpenAI API key-mu untuk mendengar audio AI</p>
+        <p className="text-xs text-amber-600">Tambahkan Gemini API key-mu untuk mendengar audio AI</p>
       </div>
       <div className="flex gap-2 shrink-0">
         <button onClick={() => setDismissed(true)} className="text-xs text-amber-400 hover:text-amber-600">✕</button>

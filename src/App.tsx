@@ -101,19 +101,28 @@ const GamePlayPage = lazy(() => import('./pages/game/GamePlayPage'));
 const LatihanPage = lazy(() => import('./pages/latihan/LatihanPage'));
 const LatihanSkillPage = lazy(() => import('./pages/latihan/LatihanSkillPage'));
 
+// Ujian pages
+const EnglishExamPage = lazy(() => import('./pages/ujian/english/EnglishExamPage'));
+const EnglishToefl1Page = lazy(() => import('./pages/ujian/english/toefl/toefl1'));
+
 // Chat pages — lazy, ChatPage pulls TTS service + scenario data
 const ChatAIPage = lazy(() => import('./pages/chat/ChatAIPage'));
 const ChatModePage = lazy(() => import('./pages/chat/ChatModePage'));
 const ChatPage = lazy(() => import('./pages/ChatPage'));
 
 // Other pages (root level — heavy ones lazy-loaded)
-const RankPage = lazy(() => import('./pages/RankPage'));
-const ProfilePage = lazy(() => import('./pages/ProfilePage'));
-const UpgradePage = lazy(() => import('./pages/UpgradePage'));
+const RankPage       = lazy(() => import('./pages/RankPage'));
+const ProfilePage    = lazy(() => import('./pages/ProfilePage'));
+const UpgradePage    = lazy(() => import('./pages/UpgradePage'));
+const AnalyticsPage  = lazy(() => import('./pages/AnalyticsPage'));
+const GoalsPage      = lazy(() => import('./pages/GoalsPage'));
+const NotesPage      = lazy(() => import('./pages/NotesPage'));
+const IELTSPage      = lazy(() => import('./pages/ielts/IELTSPage'));
 import ComingSoonPage from './pages/ComingSoonPage';
 import { getPremiumBlock } from './utils/accessControl';
 
 import TTSNotice from './components/shared/TTSNotice';
+import GlobalFocusTimer from './components/shared/GlobalFocusTimer';
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
@@ -163,6 +172,16 @@ function AppContent() {
     setAuthView('login');
     navigate('/modul');
   };
+
+  if (location.pathname === '/terms') {
+    window.location.replace('https://fluently.id/terms.html');
+    return null;
+  }
+
+  if (location.pathname === '/privacy-policy') {
+    window.location.replace('https://fluently.id/privacy.html');
+    return null;
+  }
 
   /* â”€â”€ Not authenticated â”€â”€ */
   if (!isAuthenticated) {
@@ -230,10 +249,12 @@ function AppContent() {
   const isChatSessionPage =
     location.pathname.split('/').filter(Boolean).length >= 3 &&
     location.pathname.startsWith('/chat/');
+  const isExamPage = location.pathname.startsWith('/ujian/');
 
   const isDeepPage = location.pathname.includes('/lesson-') ||
                      location.pathname.includes('/play') ||
                      location.pathname.includes('/start') ||
+                     isExamPage ||
                      isChatSessionPage ||
                      isShopCheckoutFlow;
 
@@ -249,15 +270,15 @@ function AppContent() {
   const premiumBlock = getPremiumBlock(location.pathname, location.search, user);
 
   return (
-    <div className="relative min-h-screen bg-transparent md:pl-[260px]">
+    <div className={`relative min-h-screen bg-transparent ${isExamPage ? '' : 'md:pl-[260px]'}`}>
       <TTSNotice />
       {/* Left sidebar: always visible on desktop, hidden on mobile for deep pages */}
-      <div className={isDeepPage ? 'hidden md:block' : ''}>
+      <div className={isExamPage ? 'hidden' : isDeepPage ? 'hidden md:block' : ''}>
         <SidebarNav onLogout={handleLogout} />
       </div>
 
       <div className="flex justify-center w-full">
-        <div className="w-full max-w-[430px] md:max-w-none xl:max-w-[1080px] md:px-8 xl:px-12 flex gap-8">
+        <div className={`w-full flex gap-8 ${isExamPage ? 'max-w-none px-0' : 'max-w-[430px] md:max-w-none xl:max-w-[1080px] md:px-8 xl:px-12'}`}>
           {/* â”€â”€ Center main column â”€â”€ */}
           <div className="flex-1 min-w-0">
             <AnimatePresence mode="wait">
@@ -267,7 +288,7 @@ function AppContent() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.98, y: -10 }}
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="md:pt-8"
+                className={isExamPage ? '' : 'md:pt-8'}
               >
                 {premiumBlock ? (
                   <Suspense fallback={<ShopFallback />}>
@@ -690,6 +711,11 @@ function AppContent() {
                   <Route path="/latihan/:levelId/:skillId" element={<LatihanSkillPage />} />
                   <Route path="/latihan/:levelId/:skillId/start" element={<ComingSoonPage />} />
 
+                  {/* UJIAN */}
+                  <Route path="/ujian/english" element={<EnglishExamPage />} />
+                  <Route path="/ujian/english/toefl/toefl1" element={<EnglishToefl1Page />} />
+                  <Route path="/ujian/english/toefl1" element={<Navigate to="/ujian/english/toefl/toefl1" replace />} />
+
                   {/* â•â•â•â•â•â•â• CHAT AI â•â•â•â•â•â•â• */}
                   <Route path="/chat" element={<ChatAIPage />} />
                   <Route path="/chat/:modeId" element={<ChatModePage />} />
@@ -708,9 +734,13 @@ function AppContent() {
                   <Route path="/admin" element={<Suspense fallback={<ShopFallback />}><AdminPage /></Suspense>} />
 
                   {/* â•â•â•â•â•â•â• OTHER â•â•â•â•â•â•â• */}
-                  <Route path="/rank" element={<RankPage />} />
-                  <Route path="/profile" element={<ProfilePage onLogout={handleLogout} />} />
-                  <Route path="/upgrade" element={<UpgradePage />} />
+                  <Route path="/rank"      element={<RankPage />} />
+                  <Route path="/profile"   element={<ProfilePage onLogout={handleLogout} />} />
+                  <Route path="/upgrade"   element={<UpgradePage />} />
+                  <Route path="/analytics" element={<AnalyticsPage />} />
+                  <Route path="/goals"     element={<GoalsPage />} />
+                  <Route path="/notes"     element={<NotesPage />} />
+                  <Route path="/ielts"     element={<IELTSPage />} />
 
                   {/* Default redirect */}
                   <Route path="*" element={<Navigate to="/modul" replace />} />
@@ -1231,6 +1261,7 @@ function AppContent() {
       <div className={isDeepPage ? 'hidden' : ''}>
         <BottomNav onLogout={handleLogout} />
       </div>
+      {!isShopCheckoutFlow && <GlobalFocusTimer />}
     </div>
   );
 }

@@ -1,9 +1,12 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { Lock } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { PageHeader, NavCard } from '../../components/shared/NavComponents';
 import { chatAIModes } from '../../data/mockData';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
+import { useAuth } from '../../auth/AuthContext';
+import { getFreeChatLevelBlockMessage, isFreeAiChatUser, isFreeChatLevelAllowed } from '../../features/chat/freeChatLimits';
 
 const cefrChatLevels = [
   { id: 'a1', label: 'A1', sublabel: 'Beginner', color: '#7EC3E6', bgColor: '#EAF7FC', icon: 'A1' },
@@ -16,9 +19,11 @@ const cefrChatLevels = [
 
 export default function ChatModePage() {
   const { t } = useLanguage();
+  const { user } = useAuth();
   const { modeId } = useParams<{ modeId: string }>();
   const navigate = useNavigate();
   const mode = chatAIModes.find((m) => m.id === modeId);
+  const isFreeUser = isFreeAiChatUser(user);
 
   if (!mode) return null;
 
@@ -43,19 +48,34 @@ export default function ChatModePage() {
           <p className="text-[13px] text-[#6B7280] mb-5">{t('chatAi.levelSub')}</p>
 
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            {cefrChatLevels.map((level, i) => (
-              <NavCard
-                key={level.id}
-                icon={level.icon}
-                label={level.label}
-                sublabel={level.sublabel}
-                color={level.color}
-                bgColor={level.bgColor}
-                onClick={() => navigate(`/chat/${modeId}/${level.id}`)}
-                delay={0.06 * i}
-              />
-            ))}
+            {cefrChatLevels.map((level, i) => {
+              const locked = isFreeUser && !isFreeChatLevelAllowed(level.id);
+              return (
+                <div key={level.id} className="relative">
+                  <NavCard
+                    icon={level.icon}
+                    label={level.label}
+                    sublabel={locked ? 'Pro level' : level.sublabel}
+                    color={locked ? '#CBD5E1' : level.color}
+                    bgColor={locked ? '#F8FAFC' : level.bgColor}
+                    onClick={() => locked ? navigate('/upgrade') : navigate(`/chat/${modeId}/${level.id}`)}
+                    delay={0.06 * i}
+                  />
+                  {locked && (
+                    <div className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-1 text-[10px] font-black uppercase tracking-wide text-amber-600">
+                      <Lock size={11} />
+                      Pro
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
+          {isFreeUser && (
+            <p className="mt-4 rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3 text-xs font-bold leading-relaxed text-sky-700">
+              {getFreeChatLevelBlockMessage('B1')} Free user juga hanya bisa generate 1 topik AI Chat per hari.
+            </p>
+          )}
         </div>
       </div>
     </PageContainer>

@@ -30,7 +30,7 @@ const baseSkill = {
   pronunciation: { icon: '/assets/icons/new/17. Learning Method.png', color: '#E83E8C', bgColor: '#FDEDF4' },
 } satisfies Record<SkillType, { icon: string; color: string; bgColor: string }>;
 
-function skill(id: SkillType, label: string, sublabel: string, progress: number): LevelSkill {
+function skill(id: SkillType, label: string, sublabel: string, progress = 0): LevelSkill {
   return { id, label, sublabel, progress, ...baseSkill[id] };
 }
 
@@ -43,13 +43,13 @@ export const englishLevelContent: Record<string, LevelContent> = {
     badgeColor: '#7EC3E6',
     skillsIntro: 'Start with short, controlled language you can use immediately.',
     skills: [
-      skill('speaking', 'Speaking', 'Greet, introduce yourself, ask simple questions', 40),
-      skill('listening', 'Listening', 'Catch slow speech, names, numbers, and key words', 27),
-      skill('reading', 'Reading', 'Understand signs, short messages, and simple forms', 50),
-      skill('writing', 'Writing', 'Write basic sentences, profiles, and short notes', 17),
-      skill('grammar', 'Grammar', 'Be, have, present simple, articles, and basic word order', 33),
-      skill('vocabulary', 'Vocabulary', 'Core daily words for people, places, food, and routines', 60),
-      skill('pronunciation', 'Pronunciation', 'Clear alphabet sounds, word stress, and simple intonation', 33),
+      skill('speaking', 'Speaking', 'Greet, introduce yourself, ask simple questions'),
+      skill('listening', 'Listening', 'Catch slow speech, names, numbers, and key words'),
+      skill('reading', 'Reading', 'Understand signs, short messages, and simple forms'),
+      skill('writing', 'Writing', 'Write basic sentences, profiles, and short notes'),
+      skill('grammar', 'Grammar', 'Be, have, present simple, articles, and basic word order'),
+      skill('vocabulary', 'Vocabulary', 'Core daily words for people, places, food, and routines'),
+      skill('pronunciation', 'Pronunciation', 'Clear alphabet sounds, word stress, and simple intonation'),
     ],
   },
   elementary: {
@@ -60,13 +60,13 @@ export const englishLevelContent: Record<string, LevelContent> = {
     badgeColor: '#4FA3D1',
     skillsIntro: 'Move from single sentences into connected everyday communication.',
     skills: [
-      skill('speaking', 'Speaking', 'Handle routine conversations about work, travel, and shopping', 28),
-      skill('listening', 'Listening', 'Follow short dialogues and public announcements', 20),
-      skill('reading', 'Reading', 'Read short emails, menus, notices, and simple stories', 35),
-      skill('writing', 'Writing', 'Write connected messages, invitations, and descriptions', 18),
-      skill('grammar', 'Grammar', 'Past simple, future plans, comparatives, modals, and questions', 25),
-      skill('vocabulary', 'Vocabulary', 'Everyday topics: health, transport, hobbies, and services', 32),
-      skill('pronunciation', 'Pronunciation', 'Sentence stress, endings, and clearer connected speech', 20),
+      skill('speaking', 'Speaking', 'Handle routine conversations about work, travel, and shopping'),
+      skill('listening', 'Listening', 'Follow short dialogues and public announcements'),
+      skill('reading', 'Reading', 'Read short emails, menus, notices, and simple stories'),
+      skill('writing', 'Writing', 'Write connected messages, invitations, and descriptions'),
+      skill('grammar', 'Grammar', 'Past simple, future plans, comparatives, modals, and questions'),
+      skill('vocabulary', 'Vocabulary', 'Everyday topics: health, transport, hobbies, and services'),
+      skill('pronunciation', 'Pronunciation', 'Sentence stress, endings, and clearer connected speech'),
     ],
   },
   intermediate: {
@@ -77,13 +77,13 @@ export const englishLevelContent: Record<string, LevelContent> = {
     badgeColor: '#3498DB',
     skillsIntro: 'Practice longer answers, clearer structure, and more flexible language.',
     skills: [
-      skill('speaking', 'Speaking', 'Explain opinions, experiences, goals, and simple arguments', 12),
-      skill('listening', 'Listening', 'Understand main points in conversations, podcasts, and lessons', 8),
-      skill('reading', 'Reading', 'Read articles, instructions, and personal narratives', 15),
-      skill('writing', 'Writing', 'Write paragraphs, emails, reviews, and short reports', 5),
-      skill('grammar', 'Grammar', 'Present perfect, conditionals, passive basics, and relative clauses', 10),
-      skill('vocabulary', 'Vocabulary', 'Topic vocabulary for work, media, travel, and relationships', 18),
-      skill('pronunciation', 'Pronunciation', 'Connected speech, rhythm, linking, and natural stress', 10),
+      skill('speaking', 'Speaking', 'Explain opinions, experiences, goals, and simple arguments'),
+      skill('listening', 'Listening', 'Understand main points in conversations, podcasts, and lessons'),
+      skill('reading', 'Reading', 'Read articles, instructions, and personal narratives'),
+      skill('writing', 'Writing', 'Write paragraphs, emails, reviews, and short reports'),
+      skill('grammar', 'Grammar', 'Present perfect, conditionals, passive basics, and relative clauses'),
+      skill('vocabulary', 'Vocabulary', 'Topic vocabulary for work, media, travel, and relationships'),
+      skill('pronunciation', 'Pronunciation', 'Connected speech, rhythm, linking, and natural stress'),
     ],
   },
   'upper-intermediate': {

@@ -31,7 +31,7 @@ export function ChatInputBar({
   const isTextareaDisabled = !chatStarted || sessionEnded || inputDisabled;
 
   return (
-    <div className="bg-white border-t border-gray-100 px-4 pt-3 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+5rem))] md:pb-4 shrink-0 z-10">
+    <div className="bg-white border-t border-gray-100 px-3 sm:px-4 pt-3 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.75rem))] md:pb-4 shrink-0 z-10">
       <div className="w-full max-w-5xl mx-auto flex items-end gap-2.5">
         <motion.button
           whileTap={{ scale: 0.92 }}

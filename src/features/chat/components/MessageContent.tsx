@@ -145,7 +145,51 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
 
   return (
     <div className="my-3 overflow-hidden rounded-2xl border border-gray-200 bg-white">
-      <div className="w-full overflow-hidden">
+      <div className="divide-y divide-gray-100 md:hidden">
+        {rows.map((row, index) => (
+          <div key={`${row.word}-${index}-mobile`} className="p-3">
+            <div className="mb-2 flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="break-words text-[14px] font-black leading-snug text-text-primary">
+                  <span className="text-text-secondary">{index + 1}.</span> {row.word}
+                </p>
+                <p className="mt-1 break-words text-[12px] font-semibold text-text-secondary">{row.phonetic}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => playAudio(row.word)}
+                title="Click to listen (Profile AI Voice)"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-500 ring-1 ring-blue-100 transition hover:bg-blue-500 hover:text-white"
+                aria-label={`Play vocabulary ${row.word}`}
+              >
+                <Volume2 size={16} />
+              </button>
+            </div>
+            <div className="mb-2 flex flex-wrap items-center gap-2">
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-bold text-text-secondary">
+                {row.meaning}
+              </span>
+              <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-bold text-primary">
+                {row.pos}
+              </span>
+            </div>
+            <div className="flex items-start gap-2 rounded-xl bg-blue-50/70 p-2.5 text-[12.5px] leading-relaxed text-text-secondary">
+              <span className="min-w-0 flex-1 break-words">{row.example}</span>
+              <button
+                type="button"
+                onClick={() => playAudio(row.example)}
+                title="Click to listen (Profile AI Voice)"
+                className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-blue-500 shadow-sm ring-1 ring-blue-100 transition hover:bg-blue-500 hover:text-white"
+                aria-label={`Play example for ${row.word}`}
+              >
+                <Volume2 size={14} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="hidden w-full overflow-hidden md:block">
         <table className="w-full table-fixed border-collapse text-left text-[11px] md:text-[12px]">
           <thead className="bg-slate-50 text-text-secondary">
             <tr>

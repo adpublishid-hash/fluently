@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  X, ShoppingBag, BarChart3, Bell, Target, NotebookPen, Award,
+  X, ShoppingBag, BarChart3, BookOpen, Target, NotebookPen, GraduationCap,
   Trophy, Sparkles, Settings, FileText, User, LogOut, ChevronRight, Shield,
 } from 'lucide-react';
 import { useCart } from '../../shop/CartContext';
@@ -57,12 +57,12 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
     ...(isAdmin ? [{ id: 'admin', label: 'Admin', icon: Shield, color: '#0891B2', bgColor: '#E0F2FE', path: '/admin' }] : []),
     { id: 'practice',      label: 'Practice',      icon: FileText,     color: '#F59E0B', bgColor: '#FEF9E7', path: '/latihan' },
     { id: 'leaderboard',   label: 'Leaderboard',   icon: Trophy,       color: '#F39C12', bgColor: '#FEF3C7', path: '/rank' },
-    { id: 'notifications', label: 'Notifications', icon: Bell,         color: '#3498DB', bgColor: '#EBF5FB', path: '/notifications' },
-    { id: 'goals',         label: 'Goals',         icon: Target,       color: '#E74C3C', bgColor: '#FDEDEC', path: '/goals' },
-    { id: 'notes',         label: 'Notes',         icon: NotebookPen,  color: '#4FA3D1', bgColor: '#EAF7FC', path: '/notes' },
-    { id: 'badges',        label: 'Badges',        icon: Award,        color: '#9B59B6', bgColor: '#F4ECF7', path: '/badges' },
-    { id: 'analytics',     label: 'Analytics',     icon: BarChart3,    color: '#2980B9', bgColor: '#D6EAF8', path: '/analytics' },
-    { id: 'settings',      label: 'Settings',      icon: Settings,     color: '#6B7280', bgColor: '#F3F4F6', path: '/settings' },
+    { id: 'ielts',         label: 'IELTS Prep',    icon: BookOpen,        color: '#7C3AED', bgColor: '#F5F3FF', path: '/ielts' },
+    { id: 'goals',         label: 'Goals',         icon: Target,          color: '#E74C3C', bgColor: '#FDEDEC', path: '/goals' },
+    { id: 'notes',         label: 'Notes',         icon: NotebookPen,     color: '#4FA3D1', bgColor: '#EAF7FC', path: '/notes' },
+    { id: 'exam',          label: 'Exam',          icon: GraduationCap,   color: '#9B59B6', bgColor: '#F4ECF7', path: '/ujian/english' },
+    { id: 'analytics',     label: 'Analytics',     icon: BarChart3,       color: '#2980B9', bgColor: '#D6EAF8', path: '/analytics' },
+    { id: 'settings',      label: 'Settings',      icon: Settings,        color: '#6B7280', bgColor: '#F3F4F6', path: '/profile' },
   ];
 
   const handleNav = (path: string) => {

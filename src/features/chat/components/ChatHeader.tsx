@@ -19,7 +19,7 @@ export function ChatHeader({
   onEndSession,
 }: ChatHeaderProps) {
   return (
-    <div className="bg-white border-b border-gray-100 px-5 pt-12 md:pt-4 pb-3.5 z-10 sticky top-0">
+    <div className="bg-white border-b border-gray-100 px-3 sm:px-5 pt-[max(0.75rem,env(safe-area-inset-top))] md:pt-4 pb-3.5 z-10 sticky top-0">
       <div className="w-full max-w-5xl mx-auto flex items-center justify-between">
         <div className="flex min-w-0 items-center gap-2 md:gap-3">
           <button

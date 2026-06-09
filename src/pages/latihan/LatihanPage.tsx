@@ -49,12 +49,12 @@ const defaultStats: GameStats = {
 };
 
 const practiceSkillCards = [
-  { id: 'vocabulary', title: 'Vocabulary', detail: 'Flashcard dan review kata.', icon: BookOpen, color: '#2563EB', bg: '#DBEAFE', route: '/latihan/vocabulary', progress: 72 },
-  { id: 'grammar', title: 'Grammar', detail: 'Tense dan sentence pattern.', icon: Brain, color: '#7C3AED', bg: '#EDE9FE', route: '/latihan/grammar', progress: 54 },
-  { id: 'listening', title: 'Listening', detail: 'Audio choice dan dictation.', icon: Headphones, color: '#0891B2', bg: '#CFFAFE', route: '/latihan/listening', progress: 46 },
-  { id: 'speaking', title: 'Speaking', detail: 'Pronunciation dan response.', icon: Mic, color: '#DB2777', bg: '#FCE7F3', route: '/latihan/speaking', progress: 38 },
-  { id: 'writing', title: 'Writing', detail: 'Sentence fix dan email polish.', icon: PenLine, color: '#EA580C', bg: '#FFEDD5', route: '/latihan/writing', progress: 31 },
-  { id: 'reading', title: 'Reading', detail: 'Short passage dan inference.', icon: FileText, color: '#16A34A', bg: '#DCFCE7', route: '/latihan/reading', progress: 60 },
+  { id: 'vocabulary', title: 'Vocabulary', detail: 'Flashcard dan review kata.', icon: BookOpen, color: '#2563EB', bg: '#DBEAFE', route: '/latihan/vocabulary', progress: 0 },
+  { id: 'grammar', title: 'Grammar', detail: 'Tense dan sentence pattern.', icon: Brain, color: '#7C3AED', bg: '#EDE9FE', route: '/latihan/grammar', progress: 0 },
+  { id: 'listening', title: 'Listening', detail: 'Audio choice dan dictation.', icon: Headphones, color: '#0891B2', bg: '#CFFAFE', route: '/latihan/listening', progress: 0 },
+  { id: 'speaking', title: 'Speaking', detail: 'Pronunciation dan response.', icon: Mic, color: '#DB2777', bg: '#FCE7F3', route: '/latihan/speaking', progress: 0 },
+  { id: 'writing', title: 'Writing', detail: 'Sentence fix dan email polish.', icon: PenLine, color: '#EA580C', bg: '#FFEDD5', route: '/latihan/writing', progress: 0 },
+  { id: 'reading', title: 'Reading', detail: 'Short passage dan inference.', icon: FileText, color: '#16A34A', bg: '#DCFCE7', route: '/latihan/reading', progress: 0 },
 ];
 
 function readGameStats(): GameStats {
@@ -104,7 +104,7 @@ export default function LatihanPage() {
   const totalSkillDays = skills.reduce((sum, skill) => sum + skill.totalDays, 0);
   const completedSkillDays = skills.reduce((sum, skill) => sum + skill.completedDays, 0);
   const moduleProgress = Math.round((completedSkillDays / totalSkillDays) * 100);
-  const dailyProgress = Math.min(100, Math.round(((gameStats.completed || 0) % 6) / 6 * 100) + 34);
+  const dailyProgress = Math.min(100, Math.round(((gameStats.completed || 0) % 6) / 6 * 100));
   const sessionRouteLabel = sessionMinutes === 5 ? 'Word Match' : sessionMinutes === 15 ? 'Response Builder' : 'Listen & Tap';
   const getSkillProgress = (skillId: string, fallback: number) => {
     const attempts = practiceHistory.filter((attempt) => attempt.skillId === skillId).slice(0, 5);

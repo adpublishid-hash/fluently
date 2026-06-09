@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState, useCallback } 
 import type { ReactNode } from 'react';
 import type { CartItem, ShippingAddress, ShippingOption } from '../types/shop';
 import type { Product } from '../types/shop';
-import { products as productCatalog, shippingOptions } from '../data/shopData';
+import { shippingOptions } from '../data/shopData';
 import { useAuth } from '../auth/AuthContext';
 
 const STORAGE_KEY = 'fluently_cart_v1';
@@ -57,7 +57,7 @@ const findVariant = (product: Product, variantId?: string) =>
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth();
-  const [products, setProducts] = useState<Product[]>(productCatalog);
+  const [products, setProducts] = useState<Product[]>([]);
   const [items, setItems] = useState<CartItem[]>(() => loadJSON<CartItem[]>(STORAGE_KEY) ?? []);
   const [address, setAddressState] = useState<ShippingAddress | null>(() => loadJSON<ShippingAddress>(ADDRESS_KEY));
   const [shippingMethod, setShippingMethodState] = useState<ShippingOption | null>(() => {
@@ -75,18 +75,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
     fetch('/api/shop/products')
       .then((res) => res.ok ? res.json() : Promise.reject())
       .then((data) => {
-        if (!cancelled && Array.isArray(data.products) && data.products.length > 0) {
+        if (!cancelled && Array.isArray(data.products)) {
           setProducts(data.products);
         }
       })
       .catch(() => {
-        if (!cancelled) setProducts(productCatalog);
+        if (!cancelled) setProducts([]);
       });
 
     return () => {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    setItems((current) => {
+      const productIds = new Set(products.map((product) => product.id));
+      const next = current.filter((item) => productIds.has(item.productId));
+      return next.length === current.length ? current : next;
+    });
+  }, [products]);
 
   useEffect(() => {
     if (!address) return;

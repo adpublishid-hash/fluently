@@ -57,7 +57,7 @@ export function ChatMessageList({
 }: ChatMessageListProps) {
   return (
     <div className="flex-1 overflow-y-auto">
-      <div className="w-full max-w-5xl mx-auto px-4 md:px-6 py-5">
+      <div className="w-full max-w-5xl mx-auto px-2.5 sm:px-4 md:px-6 py-4 md:py-5">
         <AnimatePresence>
           {!isGuidedMode && messages.length <= 3 && (
             <motion.div
@@ -118,9 +118,9 @@ export function ChatMessageList({
                         <span className="text-[14px]">🐻</span>
                       </div>
                     )}
-                    <div className={`flex flex-col ${msg.isAi ? 'items-start' : 'items-end'} gap-1 ${isGuidedMode && msg.isAi ? 'max-w-[96%] md:max-w-[92%]' : 'max-w-[82%] md:max-w-[68%]'}`}>
+                    <div className={`flex flex-col ${msg.isAi ? 'items-start' : 'items-end'} gap-1 ${isGuidedMode && msg.isAi ? 'max-w-[calc(100%-2.5rem)] md:max-w-[92%]' : 'max-w-[86%] md:max-w-[68%]'}`}>
                       <div
-                        className={`px-4 py-3 text-[13.5px] md:text-[14px] leading-relaxed whitespace-pre-line ${
+                        className={`px-3 py-3 sm:px-4 text-[13.5px] md:text-[14px] leading-relaxed whitespace-pre-line ${
                           msg.isAi
                             ? 'bg-white text-text-primary rounded-2xl rounded-tl-sm border border-gray-100 shadow-sm'
                             : 'bg-primary text-white rounded-2xl rounded-tr-sm shadow-sm'

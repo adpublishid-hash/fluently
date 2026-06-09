@@ -1,9 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, Mail, Check, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { ChevronLeft, Mail, Check, Eye, EyeOff, AlertCircle, Download, Globe2, Share2, Smartphone, X } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import type { Language } from '../i18n/translations';
 import type { UserPersona } from '../auth/AuthContext';
+import GoogleAuthButton from '../auth/GoogleAuthButton';
 
 interface OnboardingPageProps {
   onComplete: (persona?: UserPersona) => void | Promise<void>;
@@ -15,6 +16,11 @@ interface OnboardingPageProps {
 /* ──────────────── constants ──────────────── */
 
 const TOTAL_SURVEY_STEPS = 10; // steps 5-14 (after signup)
+
+type BeforeInstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+};
 
 const AGE_RANGES = ['16-17', '19-24', '25-34', '35-44', '45-60', '65+'];
 
@@ -141,6 +147,138 @@ function ContinueButton({ onClick, disabled = false, label }: { onClick: () => v
   );
 }
 
+function isPwaStandalone() {
+  return window.matchMedia?.('(display-mode: standalone)').matches || Boolean((window.navigator as Navigator & { standalone?: boolean }).standalone);
+}
+
+function isMobileDevice() {
+  return window.matchMedia?.('(max-width: 767px), (pointer: coarse)').matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
+function isIosDevice() {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+function PwaInstallPrompt({
+  canInstall,
+  isIos,
+  showGuide,
+  onInstall,
+  onContinue,
+  onShowGuide,
+}: {
+  canInstall: boolean;
+  isIos: boolean;
+  showGuide: boolean;
+  onInstall: () => void;
+  onContinue: () => void;
+  onShowGuide: () => void;
+}) {
+  const installButtonLabel = canInstall ? 'Install Sekarang' : isIos ? 'Install Sekarang' : 'Lihat Panduan Install';
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[200] flex items-end justify-center bg-[#061826]/45 px-4 pb-[max(18px,env(safe-area-inset-bottom))] pt-6 backdrop-blur-sm md:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="pwa-install-title"
+      onClick={(event) => event.stopPropagation()}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div
+        className="w-full max-w-[390px] overflow-hidden rounded-[28px] border border-white/70 bg-white shadow-2xl"
+        initial={{ y: 36, scale: 0.96 }}
+        animate={{ y: 0, scale: 1 }}
+        exit={{ y: 24, scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 260, damping: 24 }}
+      >
+        <div className="relative bg-gradient-to-br from-[#1A6FA8] via-[#2F86B5] to-[#4FA3D1] px-6 pb-6 pt-7 text-white">
+          <button
+            type="button"
+            onClick={onContinue}
+            className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+            aria-label="Tutup popup install"
+          >
+            <X size={18} />
+          </button>
+          <div className="flex items-center gap-4">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white p-2 shadow-xl">
+              <img src="/assets/Logo-fluently.png" alt="Fluently" className="h-full w-full object-contain" />
+            </div>
+            <div className="min-w-0 pr-7">
+              <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/65">Install App</p>
+              <h2 id="pwa-install-title" className="mt-1 text-[23px] font-black leading-tight">
+                Buka Fluently lebih cepat
+              </h2>
+            </div>
+          </div>
+          <div className="mt-5 grid grid-cols-3 gap-2 text-center">
+            {[
+              ['Offline ready', 'Cache dasar'],
+              ['Full screen', 'Tanpa tab'],
+              ['One tap', 'Dari device'],
+            ].map(([title, desc]) => (
+              <div key={title} className="rounded-2xl border border-white/15 bg-white/12 px-2 py-2.5">
+                <p className="text-[11px] font-black leading-tight">{title}</p>
+                <p className="mt-0.5 text-[9px] font-bold text-white/60">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="px-5 py-5">
+          {isIos && !canInstall ? (
+            <div className="mb-4 rounded-2xl border border-[#D7ECF8] bg-[#F3FAFE] px-4 py-3">
+              <div className="flex items-start gap-3">
+                <Share2 size={18} className="mt-0.5 shrink-0 text-[#2F86B5]" />
+                <p className="text-[12px] font-bold leading-relaxed text-[#496173]">
+                  iPhone/iPad belum mengizinkan install otomatis dari tombol web. Tap tombol di bawah untuk melihat langkah install dari Safari.
+                </p>
+              </div>
+              {showGuide && (
+                <div className="mt-3 rounded-xl bg-white px-3 py-3 text-[12px] font-bold leading-relaxed text-[#496173]">
+                  <p className="text-[#1A1A2E]">Cara install di iPhone/iPad:</p>
+                  <ol className="mt-2 list-decimal space-y-1 pl-5">
+                    <li>Buka Fluently lewat Safari.</li>
+                    <li>Tap ikon Share.</li>
+                    <li>Pilih <span className="text-[#1A1A2E]">Add to Home Screen</span>.</li>
+                    <li>Tap <span className="text-[#1A1A2E]">Add</span>.</li>
+                  </ol>
+                </div>
+              )}
+            </div>
+          ) : (
+            <p className="mb-4 text-center text-[13px] font-semibold leading-relaxed text-[#667085]">
+              Install Fluently ke device supaya belajar terasa seperti aplikasi native, tetap ringan, dan mudah dibuka kapan saja.
+            </p>
+          )}
+
+          <div className="grid gap-3">
+            <button
+              type="button"
+              onClick={canInstall ? onInstall : isIos ? onShowGuide : onInstall}
+              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#1E6F9F] px-4 py-4 text-[15px] font-black text-white shadow-lg shadow-[#1E6F9F]/25 transition active:scale-[0.98]"
+            >
+              {canInstall ? <Download size={19} /> : <Smartphone size={19} />}
+              {installButtonLabel}
+            </button>
+            <button
+              type="button"
+              onClick={onContinue}
+              className="flex w-full items-center justify-center gap-2 rounded-2xl border border-[#E5E7EB] bg-white px-4 py-3.5 text-[14px] font-black text-[#667085] transition active:scale-[0.98]"
+            >
+              <Globe2 size={18} />
+              Lanjut versi Web
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 function SurveyHeader({ onBack, step }: { onBack: () => void; step: number }) {
   return (
     <div className="flex items-center gap-4 px-6 md:px-8 pt-6 md:pt-8 pb-2">
@@ -154,6 +292,8 @@ function SurveyHeader({ onBack, step }: { onBack: () => void; step: number }) {
 
 /** Left branding panel for split-screen desktop layouts */
 function DesktopBrandPanel({ gradient, mascotSrc, mascotAlt }: { gradient: string; mascotSrc?: string; mascotAlt?: string }) {
+  const { t } = useLanguage();
+
   return (
     <div className="hidden md:flex flex-col items-center justify-center w-[45%] lg:w-[50%] relative overflow-hidden" style={{ background: gradient }}>
       {/* Decorative blobs */}
@@ -188,14 +328,24 @@ function DesktopBrandPanel({ gradient, mascotSrc, mascotAlt }: { gradient: strin
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7 }}
       >
-        Learn languages fluently with AI-powered conversations
+        {t('welcome.brandTagline')}
       </motion.p>
     </div>
   );
 }
 
+/* Mascot images for survey screens */
+const MASCOT = {
+  desk:    '/assets/mascot/bear1ae6b0cad-ea07-469f-baa3-c9cdfcbc5546.png',
+  game:    '/assets/mascot/bear254c1cefd-3b21-4087-a7ac-b6803edd2b3c.png',
+  chill:   '/assets/mascot/ChatGPT-Image-2-Mei-2026-11.57.34-Diedit.png',
+  books:   '/assets/mascot/Desain%20tanpa%20judul%20-%202026-05-02T141724.252.png',
+} as const;
+
 /** Wrapper for survey steps on desktop — centered card with max-width */
 function SurveyDesktopWrapper({ children, bgImage }: { children: React.ReactNode; bgImage?: string }) {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen md:flex">
       {/* Desktop left panel */}
@@ -225,7 +375,7 @@ function SurveyDesktopWrapper({ children, bgImage }: { children: React.ReactNode
         )}
 
         <motion.p className="mt-8 text-white/80 text-lg font-semibold text-center max-w-xs" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
-          Learn languages fluently with AI-powered conversations
+          {t('welcome.brandTagline')}
         </motion.p>
       </div>
 
@@ -277,14 +427,13 @@ function LanguageSwitcher() {
 
 /* ──────────────── SCREEN 1: Welcome ──────────────── */
 
-const FEATURES = [
-  { icon: '🤖', label: 'AI Conversations', desc: 'Practice with real-time AI tutor' },
-  { icon: '🌍', label: '4 Languages', desc: 'English · Arabic · Mandarin · Japanese' },
-  { icon: '🏆', label: '50K+ Learners', desc: 'Trusted by learners worldwide' },
-];
-
 function WelcomeSlide() {
   const { t } = useLanguage();
+  const features = [
+    { icon: '🤖', label: t('welcome.featureAi'), desc: t('welcome.featureAiSub') },
+    { icon: '🌍', label: t('welcome.featureLanguages'), desc: t('welcome.featureLanguagesSub') },
+    { icon: '🏆', label: t('welcome.featureProgress'), desc: t('welcome.featureProgressSub') },
+  ];
 
   return (
     <div className="flex min-h-screen" style={{ background: 'linear-gradient(160deg, #1A6FA8 0%, #2F86B5 40%, #4FA3D1 100%)' }}>
@@ -319,7 +468,7 @@ function WelcomeSlide() {
             className="text-white/70 text-[13px] font-semibold tracking-widest uppercase mb-1"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
           >
-            Welcome to
+            {t('welcome.welcomeTo')}
           </motion.p>
           <motion.h1
             className="text-white text-[42px] font-extrabold tracking-tight leading-none mb-2"
@@ -340,7 +489,7 @@ function WelcomeSlide() {
           className="w-full space-y-3 mt-2"
           initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}
         >
-          {FEATURES.map((f, i) => (
+          {features.map((f, i) => (
             <motion.div
               key={f.label}
               className="flex items-center gap-4 bg-white/12 backdrop-blur-sm rounded-2xl px-4 py-3.5 border border-white/20"
@@ -368,7 +517,7 @@ function WelcomeSlide() {
             <div className="w-2 h-2 rounded-full bg-white/35" />
             <div className="w-2 h-2 rounded-full bg-white/35" />
           </div>
-          <p className="text-white/45 text-[11px] font-medium tracking-wide">Tap anywhere to continue</p>
+          <p className="text-white/45 text-[11px] font-medium tracking-wide">{t('welcome.tapToContinue')}</p>
         </motion.div>
       </div>
     </div>
@@ -377,20 +526,19 @@ function WelcomeSlide() {
 
 /* ──────────────── SCREEN 2: Goals ──────────────── */
 
-const GOAL_FEATURES = [
-  { icon: '💬', title: 'AI-Powered Chat', desc: 'Practice real conversations with smart AI feedback' },
-  { icon: '📈', title: 'Track Progress', desc: 'XP, streaks, and level system keep you motivated' },
-  { icon: '🎯', title: 'Personalized Path', desc: 'Lessons tailored to your goals and level' },
-];
-
 const STATS = [
-  { value: '50K+', label: 'Learners' },
+  { value: 'AI', label: 'Tutor' },
   { value: '4', label: 'Languages' },
-  { value: '4.9★', label: 'Rating' },
+  { value: '24/7', label: 'Practice' },
 ];
 
 function GoalsSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn: () => void }) {
   const { t } = useLanguage();
+  const goalFeatures = [
+    { icon: '💬', title: t('goals.featureAi'), desc: t('goals.featureAiSub') },
+    { icon: '📈', title: t('goals.featureProgress'), desc: t('goals.featureProgressSub') },
+    { icon: '🎯', title: t('goals.featurePersonalized'), desc: t('goals.featurePersonalizedSub') },
+  ];
   return (
     <div className="flex min-h-screen">
       {/* Desktop brand panel */}
@@ -466,7 +614,7 @@ function GoalsSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn: () => 
               className="space-y-3 mb-6"
               initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
             >
-              {GOAL_FEATURES.map((f) => (
+              {goalFeatures.map((f) => (
                 <div key={f.title} className="flex items-center gap-3 bg-gray-50 rounded-2xl px-4 py-3 border border-gray-100">
                   <span className="text-xl shrink-0">{f.icon}</span>
                   <div>
@@ -492,7 +640,7 @@ function GoalsSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn: () => 
 
             <ContinueButton onClick={(e?: React.MouseEvent) => { e?.stopPropagation(); onNext(); }} label={t('goals.getStarted')} />
             <p className="text-center mt-4 text-[13px] text-[#6B7280]">
-              Already have an account?{' '}
+              {t('goals.alreadyHaveAccount')}{' '}
               <button
                 onClick={(e) => { e.stopPropagation(); onSignIn(); }}
                 className="font-extrabold text-primary cursor-pointer hover:underline"
@@ -534,7 +682,7 @@ function StartLearningSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn
   const [toast, setToast] = useState<string | null>(null);
 
   const showComingSoon = (name: string) => {
-    setToast(`${name} login coming soon!`);
+    setToast(`${name} ${t('auth.loginComingSoon')}`);
     setTimeout(() => setToast(null), 2200);
   };
 
@@ -580,7 +728,7 @@ function StartLearningSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
             >
               <h2 className="text-[23px] font-extrabold text-[#1A1A2E] leading-tight mb-1">
-                Join 50,000+ Learners 🌟
+                Start Your Fluency Journey 🌟
               </h2>
               <p className="text-[13px] text-[#9CA3AF] font-medium">Create your free account in seconds</p>
             </motion.div>
@@ -590,18 +738,7 @@ function StartLearningSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn
               className="mb-4"
               initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
             >
-              <button
-                onClick={(e) => { e.stopPropagation(); showComingSoon('Google'); }}
-                className="w-full flex items-center justify-center gap-2.5 py-3.5 rounded-2xl border-2 border-gray-200 bg-white text-[13.5px] font-bold text-[#1A1A2E] hover:bg-gray-50 active:scale-95 transition-all cursor-pointer shadow-sm"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Continue with Google
-              </button>
+              <GoogleAuthButton mode="register" onSuccess={() => {}} />
             </motion.div>
 
             {/* Divider */}
@@ -651,9 +788,9 @@ function StartLearningSlide({ onNext, onSignIn }: { onNext: () => void; onSignIn
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8 }}
             >
               {t('startLearning.terms')}{' '}
-              <span className="underline cursor-pointer text-[#9CA3AF]">{t('startLearning.termsLink')}</span>{' '}
+              <a href="https://fluently.id/terms.html" className="underline underline-offset-2 text-[#9CA3AF] hover:text-primary">{t('startLearning.termsLink')}</a>{' '}
               {t('startLearning.privacyIntro')}{' '}
-              <span className="underline cursor-pointer text-[#9CA3AF]">{t('startLearning.privacyLink')}</span>.
+              <a href="https://fluently.id/privacy.html" className="underline underline-offset-2 text-[#9CA3AF] hover:text-primary">{t('startLearning.privacyLink')}</a>.
             </motion.p>
 
             {/* Dot indicators */}
@@ -750,7 +887,7 @@ function SignUpSlide({ data, setData, onNext, onBack }: {
   };
 
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.chill}>
       <div className="flex flex-col min-h-screen md:min-h-0 bg-gradient-to-b from-white to-[#F0FDF4] md:bg-none">
         <div className="px-5 pt-6 pb-2 md:hidden">
           <BackButton onClick={onBack} />
@@ -894,7 +1031,10 @@ function SignUpSlide({ data, setData, onNext, onBack }: {
           className="text-center mt-3 text-[11px] text-[#9CA3AF] leading-relaxed"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
         >
-          {t('startLearning.terms')} <span className="underline cursor-pointer">{t('startLearning.termsLink')}</span> {t('startLearning.privacyIntro')}<br /><span className="underline cursor-pointer">{t('startLearning.privacyLink')}</span>.
+          {t('startLearning.terms')}{' '}
+          <a href="https://fluently.id/terms.html" className="underline underline-offset-2 hover:text-[#7EC3E6]">{t('startLearning.termsLink')}</a>{' '}
+          {t('startLearning.privacyIntro')}<br />
+          <a href="https://fluently.id/privacy.html" className="underline underline-offset-2 hover:text-[#7EC3E6]">{t('startLearning.privacyLink')}</a>.
         </motion.p>
       </div>
     </div>
@@ -935,7 +1075,7 @@ function WelcomeUserSlide({ name, onNext }: { name: string; onNext: () => void }
         >
           <div className="md:max-w-md md:w-full">
             <h2 className="text-[22px] md:text-3xl font-extrabold text-[#1A1A2E] text-center mb-3">
-              {t('welcomeUser.title')} {name || 'Karina'}
+              {t('welcomeUser.title')} {name || 'Learner'}
             </h2>
             <p className="text-sm md:text-base text-[#6B7280] text-center mb-8 leading-relaxed">
               {t('welcomeUser.subtitle')}
@@ -953,7 +1093,7 @@ function WelcomeUserSlide({ name, onNext }: { name: string; onNext: () => void }
 function AgeRangeSlide({ value, setValue, onNext, onBack }: { value: string; setValue: (v: string) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useLanguage();
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.chill}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={1} />
       <div className="flex-1 px-8 pt-6">
@@ -995,10 +1135,9 @@ function GenderSlide({ value, setValue, onNext, onBack }: { value: string; setVa
   const genderOptions = [
     { key: 'Male', label: t('gender.male') },
     { key: 'Female', label: t('gender.female') },
-    { key: 'Non-binary', label: t('gender.nonBinary') },
   ];
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.chill}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={2} />
       <div className="flex-1 px-8 pt-4">
@@ -1038,7 +1177,7 @@ function GenderSlide({ value, setValue, onNext, onBack }: { value: string; setVa
 function LanguageSlide({ value, setValue, onNext, onBack }: { value: string; setValue: (v: string) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useLanguage();
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.books}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={3} />
       <div className="flex-1 px-8 pt-6">
@@ -1080,7 +1219,7 @@ function LevelSlide({ language, value, setValue, onNext, onBack }: { language: s
   const levels = LEVELS_BY_LANGUAGE[language] || LEVELS_BY_LANGUAGE.English;
   const languageLabel = TARGET_LANGUAGES.find((lang) => lang.name === language)?.label || 'Bahasa Inggris';
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.desk}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={4} />
       <div className="flex-1 px-8 pt-6">
@@ -1139,7 +1278,7 @@ function WhyLearningSlide({ value, setValue, onNext, onBack }: { value: string; 
     { icon: '•••', key: 'Other', label: t('whyLearning.other') },
   ];
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.desk}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={5} />
       <div className="flex-1 px-8 pt-6">
@@ -1196,7 +1335,7 @@ function SpecificGoalsSlide({ values, toggle, onNext, onBack }: { values: string
     { key: 'Ask for directions', label: t('specificGoals.askDirections') },
   ];
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.books}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={6} />
       <div className="flex-1 px-8 pt-4 overflow-auto">
@@ -1254,7 +1393,7 @@ const INTEREST_KEYS = [
 function InterestsSlide({ values, toggle, onNext, onBack }: { values: string[]; toggle: (v: string) => void; onNext: () => void; onBack: () => void }) {
   const { t } = useLanguage();
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.game}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={7} />
       <div className="flex-1 px-8 pt-4 overflow-auto">
@@ -1322,7 +1461,7 @@ function GreatNewsSlide({ name, onNext }: { name: string; onNext: () => void }) 
         >
           <div className="md:max-w-md md:w-full">
             <motion.h2 className="text-[24px] md:text-3xl font-extrabold text-[#1A1A2E] text-center mb-3" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}>
-              {t('greatNews.title')} {name || 'Karina'} 🎉
+              {t('greatNews.title')} {name || 'Learner'} 🎉
             </motion.h2>
             <motion.p className="text-sm md:text-base text-[#6B7280] text-center mb-8 leading-relaxed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.65 }}>
               {t('greatNews.subtitle')}
@@ -1345,7 +1484,7 @@ function StudyDurationSlide({ value, setValue, onNext, onBack }: { value: string
     { key: '30 min / day', label: t('studyDuration.30min') },
   ];
   return (
-    <SurveyDesktopWrapper>
+    <SurveyDesktopWrapper bgImage={MASCOT.desk}>
     <div className="flex flex-col min-h-screen md:min-h-0 bg-white">
       <SurveyHeader onBack={onBack} step={9} />
       <div className="flex-1 px-8 pt-4 relative">
@@ -1411,7 +1550,7 @@ function AllSetSlide({ name, onComplete }: { name: string; onComplete: () => voi
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 100 }}
           >
-            <h2 className="text-[26px] md:text-3xl font-extrabold text-[#1A1A2E] mb-2">{t('allSet.title')} {name || 'Karina'}! 🎉</h2>
+            <h2 className="text-[26px] md:text-3xl font-extrabold text-[#1A1A2E] mb-2">{t('allSet.title')} {name || 'Learner'}! 🎉</h2>
             <p className="text-[15px] md:text-base text-[#4A4A4A]/80 mb-8">{t('allSet.subtitle')}</p>
             <ContinueButton onClick={onComplete} label={t('allSet.letsGo')} />
           </motion.div>
@@ -1428,6 +1567,10 @@ function AllSetSlide({ name, onComplete }: { name: string; onComplete: () => voi
 export default function OnboardingPage({ onComplete, onSignIn, introOnly, surveyOnly }: OnboardingPageProps) {
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [deferredInstallPrompt, setDeferredInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isIosPwaFallback, setIsIosPwaFallback] = useState(false);
+  const [showIosInstallGuide, setShowIosInstallGuide] = useState(false);
 
   // Form state (only used in full mode)
   const [signUpData, setSignUpData] = useState<SignUpData>({ name: '', email: '', password: '', confirmPassword: '' });
@@ -1452,6 +1595,46 @@ export default function OnboardingPage({ onComplete, onSignIn, introOnly, survey
   useEffect(() => {
     setLevel('');
   }, [language]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const dismissedThisSession = sessionStorage.getItem('fluently_pwa_prompt_dismissed') === 'true';
+    const isIos = isIosDevice();
+    const shouldOfferInstall = isMobileDevice() && !isPwaStandalone() && !dismissedThisSession && !surveyOnly;
+    if (!shouldOfferInstall) return;
+
+    setIsIosPwaFallback(isIos);
+
+    const showTimer = isIos
+      ? window.setTimeout(() => {
+          setShowInstallPrompt(true);
+        }, 900)
+      : undefined;
+
+    const handleBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      setDeferredInstallPrompt(event as BeforeInstallPromptEvent);
+      setIsIosPwaFallback(false);
+      setShowIosInstallGuide(false);
+      setShowInstallPrompt(true);
+    };
+
+    const handleInstalled = () => {
+      sessionStorage.setItem('fluently_pwa_prompt_dismissed', 'true');
+      setShowInstallPrompt(false);
+      setShowIosInstallGuide(false);
+      setDeferredInstallPrompt(null);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleInstalled);
+
+    return () => {
+      if (showTimer) window.clearTimeout(showTimer);
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleInstalled);
+    };
+  }, [surveyOnly]);
 
   const buildPersona = useCallback((): UserPersona => ({
     ageRange: age,
@@ -1535,6 +1718,35 @@ export default function OnboardingPage({ onComplete, onSignIn, introOnly, survey
 
   const handleSignIn = () => onSignIn?.();
 
+  const dismissInstallPrompt = useCallback(() => {
+    sessionStorage.setItem('fluently_pwa_prompt_dismissed', 'true');
+    setShowInstallPrompt(false);
+    setShowIosInstallGuide(false);
+  }, []);
+
+  const installPwa = useCallback(async () => {
+    if (!deferredInstallPrompt) {
+      if (isIosPwaFallback) {
+        setShowIosInstallGuide(true);
+        return;
+      }
+      dismissInstallPrompt();
+      return;
+    }
+
+    try {
+      await deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice;
+      if (choice.outcome === 'accepted') {
+        sessionStorage.setItem('fluently_pwa_prompt_dismissed', 'true');
+      }
+    } finally {
+      setDeferredInstallPrompt(null);
+      setShowInstallPrompt(false);
+      setShowIosInstallGuide(false);
+    }
+  }, [deferredInstallPrompt, dismissInstallPrompt, isIosPwaFallback]);
+
   if (introOnly) {
     // Only show: Welcome → Goals → StartLearning
     slides = {
@@ -1605,6 +1817,18 @@ export default function OnboardingPage({ onComplete, onSignIn, introOnly, survey
         >
           {slides[step]}
         </motion.div>
+      </AnimatePresence>
+      <AnimatePresence>
+        {showInstallPrompt && step === 0 && (
+          <PwaInstallPrompt
+            canInstall={Boolean(deferredInstallPrompt)}
+            isIos={isIosPwaFallback}
+            showGuide={showIosInstallGuide}
+            onInstall={installPwa}
+            onContinue={dismissInstallPrompt}
+            onShowGuide={() => setShowIosInstallGuide(true)}
+          />
+        )}
       </AnimatePresence>
     </div>
   );

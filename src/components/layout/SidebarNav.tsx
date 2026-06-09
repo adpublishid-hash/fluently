@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BookOpen, Gamepad2, FileText, MessageCircle, ShoppingBag, User, Trophy, LogOut, Flame, Zap, Shield } from 'lucide-react';
+import { BookOpen, Gamepad2, FileText, MessageCircle, ShoppingBag, User, LogOut, Flame, Zap, Shield, BarChart3, Target, NotebookPen, GraduationCap } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
@@ -13,11 +13,9 @@ const fallbackAvatar = (name: string) =>
 
 const tabs: { id: TabType; labelKey: TranslationKey; icon: React.ElementType; path: string; accent: string }[] = [
   { id: 'modul',   labelKey: 'nav.modul',   icon: BookOpen,      path: '/modul',   accent: '#4FA3D1' },
-  { id: 'game',    labelKey: 'nav.game',     icon: Gamepad2,      path: '/game',    accent: '#6366F1' },
   { id: 'latihan', labelKey: 'nav.latihan',  icon: FileText,      path: '/latihan', accent: '#F59E0B' },
   { id: 'chat',    labelKey: 'nav.chatAi',   icon: MessageCircle, path: '/chat',    accent: '#3B82F6' },
-  { id: 'shop',    labelKey: 'nav.shop',     icon: ShoppingBag,   path: '/shop',    accent: '#10B981' },
-  { id: 'profile', labelKey: 'nav.profile',  icon: User,          path: '/profile', accent: '#EC4899' },
+  { id: 'game',    labelKey: 'nav.game',     icon: Gamepad2,      path: '/game',    accent: '#6366F1' },
 ];
 
 function XpProgressBar({ xp, level }: { xp: number; level: number }) {
@@ -61,6 +59,24 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
     : tabs;
   const resolvedActiveTab = location.pathname.startsWith('/admin') ? 'admin' : activeTab;
 
+  const isPathActive = (path: string) =>
+    location.pathname === path || location.pathname.startsWith(path + '/');
+
+  type ExtraItem = { label: string; icon: React.ElementType; path: string; accent: string; bg: string };
+  const prepItems: ExtraItem[] = [
+    { label: 'IELTS Prep', icon: BookOpen,      path: '/ielts',         accent: '#7C3AED', bg: 'rgba(124,58,237,0.10)' },
+    { label: 'Exam',       icon: GraduationCap, path: '/ujian/english', accent: '#9B59B6', bg: 'rgba(155,89,182,0.10)' },
+  ];
+  const toolItems: ExtraItem[] = [
+    { label: 'Analytics', icon: BarChart3,   path: '/analytics', accent: '#2980B9', bg: 'rgba(41,128,185,0.10)'  },
+    { label: 'Goals',     icon: Target,      path: '/goals',     accent: '#E74C3C', bg: 'rgba(231,76,60,0.10)'   },
+    { label: 'Notes',     icon: NotebookPen, path: '/notes',     accent: '#4FA3D1', bg: 'rgba(79,163,209,0.10)'  },
+  ];
+  const accountItems: ExtraItem[] = [
+    { label: 'Shop',    icon: ShoppingBag, path: '/shop',    accent: '#10B981', bg: 'rgba(16,185,129,0.10)' },
+    { label: 'Profile', icon: User,        path: '/profile', accent: '#EC4899', bg: 'rgba(236,72,153,0.10)' },
+  ];
+
   return (
     <aside className="hidden md:flex flex-col w-[260px] h-screen fixed left-0 top-0 bg-white border-r border-gray-100 z-40 py-6 px-4">
       {/* Gradient right-edge accent */}
@@ -95,98 +111,126 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
         <XpProgressBar xp={xp} level={level} />
       </div>
 
-      {/* Main Navigation */}
-      <nav className="flex-1 space-y-0.5 px-1">
-        {navTabs.map((tab) => {
-          const isActive = resolvedActiveTab === tab.id;
-          const Icon = tab.icon;
-          return (
-            <motion.button
-              key={tab.id}
-              onClick={() => navigate(tab.path)}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
-                isActive ? 'bg-gray-50' : 'hover:bg-gray-50/70'
-              }`}
-              whileHover={{ x: isActive ? 0 : 2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {/* Icon box */}
-              <motion.div
-                animate={{
-                  backgroundColor: isActive ? `${tab.accent}18` : 'rgba(243,244,246,0.8)',
-                  scale: isActive ? 1 : 0.95,
-                }}
-                transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-                className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-              >
-                <Icon
-                  size={18}
-                  strokeWidth={isActive ? 2.5 : 1.8}
-                  style={{ color: isActive ? tab.accent : '#9CA3AF' }}
-                />
-              </motion.div>
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto px-1 scrollbar-none">
 
-              <span
-                className={`text-[13.5px] tracking-tight ${
-                  isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'
+        {/* ── Learn ── */}
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Learn</p>
+        <div className="space-y-0.5">
+          {navTabs.map((tab) => {
+            const isActive = resolvedActiveTab === tab.id;
+            const Icon = tab.icon;
+            return (
+              <motion.button
+                key={tab.id}
+                onClick={() => navigate(tab.path)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
+                  isActive ? 'bg-gray-50' : 'hover:bg-gray-50/70'
                 }`}
+                whileHover={{ x: isActive ? 0 : 2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                {tab.id === 'admin' ? 'Admin' : t(tab.labelKey)}
-              </span>
-
-              {tab.id === 'shop' && itemCount > 0 && (
-                <span className={`min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-extrabold flex items-center justify-center ${isActive ? '' : 'ml-auto'}`}>
-                  {itemCount > 99 ? '99+' : itemCount}
-                </span>
-              )}
-
-              {/* Active right bar */}
-              {isActive && (
                 <motion.div
-                  layoutId="sidebarBar"
-                  className="ml-auto w-1 h-5 rounded-full"
-                  style={{ backgroundColor: tab.accent }}
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-            </motion.button>
-          );
-        })}
+                  animate={{
+                    backgroundColor: isActive ? `${tab.accent}18` : 'rgba(243,244,246,0.8)',
+                    scale: isActive ? 1 : 0.95,
+                  }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                >
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? tab.accent : '#9CA3AF' }} />
+                </motion.div>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>
+                  {tab.id === 'admin' ? 'Admin' : t(tab.labelKey)}
+                </span>
+                {isActive && (
+                  <motion.div layoutId="sidebarBar" className="ml-auto w-1 h-5 rounded-full"
+                    style={{ backgroundColor: tab.accent }}
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }} />
+                )}
+              </motion.button>
+            );
+          })}
+        </div>
 
-        {/* Divider */}
-        <div className="h-px bg-gray-100 mx-2 my-2" />
+        {/* ── Test Prep ── */}
+        <div className="h-px bg-gray-100 mx-2 mt-3 mb-2" />
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Test Prep</p>
+        <div className="space-y-0.5">
+          {prepItems.map(item => {
+            const Icon = item.icon;
+            const isActive = isPathActive(item.path);
+            return (
+              <motion.button key={item.path} onClick={() => navigate(item.path)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${isActive ? 'bg-gray-50' : 'hover:bg-gray-50/70'}`}
+                whileHover={{ x: isActive ? 0 : 2 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  animate={{ backgroundColor: isActive ? item.bg : 'rgba(243,244,246,0.8)', scale: isActive ? 1 : 0.95 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? item.accent : '#9CA3AF' }} />
+                </motion.div>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{item.label}</span>
+                {isActive && <div className="ml-auto w-1 h-5 rounded-full" style={{ backgroundColor: item.accent }} />}
+              </motion.button>
+            );
+          })}
+        </div>
 
-        {/* Leaderboard */}
-        <motion.button
-          onClick={() => navigate('/rank')}
-          className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${
-            location.pathname === '/rank' ? 'bg-amber-50/80' : 'hover:bg-gray-50/70'
-          }`}
-          whileHover={{ x: 2 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <div
-            className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
-            style={{
-              backgroundColor: location.pathname === '/rank' ? 'rgba(245,158,11,0.12)' : 'rgba(243,244,246,0.8)',
-            }}
-          >
-            <Trophy
-              size={18}
-              strokeWidth={location.pathname === '/rank' ? 2.5 : 1.8}
-              style={{ color: location.pathname === '/rank' ? '#F59E0B' : '#9CA3AF' }}
-            />
-          </div>
-          <span
-            className={`text-[13.5px] tracking-tight ${
-              location.pathname === '/rank'
-                ? 'font-bold text-amber-600'
-                : 'font-normal text-text-secondary'
-            }`}
-          >
-            {t('nav.leaderboard')}
-          </span>
-        </motion.button>
+        {/* ── Tools ── */}
+        <div className="h-px bg-gray-100 mx-2 mt-3 mb-2" />
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Tools</p>
+        <div className="space-y-0.5">
+          {toolItems.map(item => {
+            const Icon = item.icon;
+            const isActive = isPathActive(item.path);
+            return (
+              <motion.button key={item.path} onClick={() => navigate(item.path)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${isActive ? 'bg-gray-50' : 'hover:bg-gray-50/70'}`}
+                whileHover={{ x: isActive ? 0 : 2 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  animate={{ backgroundColor: isActive ? item.bg : 'rgba(243,244,246,0.8)', scale: isActive ? 1 : 0.95 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? item.accent : '#9CA3AF' }} />
+                </motion.div>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{item.label}</span>
+                {isActive && <div className="ml-auto w-1 h-5 rounded-full" style={{ backgroundColor: item.accent }} />}
+              </motion.button>
+            );
+          })}
+        </div>
+
+        {/* ── Account ── */}
+        <div className="h-px bg-gray-100 mx-2 mt-3 mb-2" />
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Account</p>
+        <div className="space-y-0.5">
+          {accountItems.map(item => {
+            const Icon = item.icon;
+            const isActive = isPathActive(item.path);
+            return (
+              <motion.button key={item.path} onClick={() => navigate(item.path)}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all cursor-pointer ${isActive ? 'bg-gray-50' : 'hover:bg-gray-50/70'}`}
+                whileHover={{ x: isActive ? 0 : 2 }} whileTap={{ scale: 0.98 }}>
+                <motion.div
+                  animate={{ backgroundColor: isActive ? item.bg : 'rgba(243,244,246,0.8)', scale: isActive ? 1 : 0.95 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                  className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? item.accent : '#9CA3AF' }} />
+                </motion.div>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{item.label}</span>
+                {item.path === '/shop' && itemCount > 0 && (
+                  <span className="ml-auto min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-extrabold flex items-center justify-center">
+                    {itemCount > 99 ? '99+' : itemCount}
+                  </span>
+                )}
+                {isActive && !( item.path === '/shop' && itemCount > 0) && <div className="ml-auto w-1 h-5 rounded-full" style={{ backgroundColor: item.accent }} />}
+              </motion.button>
+            );
+          })}
+        </div>
+
+        <div className="h-4" />{/* bottom spacing */}
       </nav>
 
       {/* Logout */}

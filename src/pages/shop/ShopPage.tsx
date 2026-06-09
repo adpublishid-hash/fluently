@@ -49,9 +49,9 @@ export default function ShopPage() {
       default:           result = [...result].sort((a, b) => b.reviewCount - a.reviewCount);
     }
     return result;
-  }, [type, category, deferredSearch, sort]);
+  }, [products, type, category, deferredSearch, sort]);
 
-  const featured = useMemo(() => products.filter(p => p.bestseller).slice(0, 3), []);
+  const featured = useMemo(() => products.filter(p => p.bestseller).slice(0, 3), [products]);
 
   return (
     <PageContainer>

@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 import type { ChatMessage } from '../../../types';
 import type { VocabularyStage } from '../english';
+import type { PronunciationSentenceRow } from '../types';
 import type { TargetLanguage } from '../targetLanguage';
 
 export type SendAiReply = (text: string, delay?: number) => void;
@@ -9,6 +10,8 @@ export type FlowRuntime = {
   studentName: string;
   selectedTopic: string;
   completedPracticeWords: string[];
+  generatedVocabularyWords: string[];
+  generatedPronunciationRows: PronunciationSentenceRow[];
   vocabularyPracticeOffset: number;
   pronunciationTurn: number;
   levelId?: string;
@@ -17,6 +20,8 @@ export type FlowRuntime = {
   setStudentName: (name: string) => void;
   setSelectedTopic: (topic: string) => void;
   setCompletedPracticeWords: (words: string[]) => void;
+  setGeneratedVocabularyWords: (words: string[]) => void;
+  setGeneratedPronunciationRows: (rows: PronunciationSentenceRow[]) => void;
   setVocabularyPracticeOffset: (offset: number) => void;
   setPronunciationTurn: (turn: number) => void;
   setVocabStage: (stage: VocabularyStage) => void;
@@ -31,6 +36,8 @@ export type TopicRuntime = Pick<
   | 'setMessages'
   | 'setSelectedTopic'
   | 'setCompletedPracticeWords'
+  | 'setGeneratedVocabularyWords'
+  | 'setGeneratedPronunciationRows'
   | 'setVocabularyPracticeOffset'
   | 'setPronunciationTurn'
   | 'setVocabStage'

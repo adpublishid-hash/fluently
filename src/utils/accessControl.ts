@@ -1,13 +1,28 @@
 export type UserPlan = 'free' | 'pro' | 'lifetime';
 
 type PlanUser = {
+  email?: string;
   plan?: UserPlan;
   planExpiresAt?: string | null;
   role?: string;
 } | null;
 
+export const ADMIN_EMAIL = 'wahib.chelsea@gmail.com';
+
+export type PremiumFeature =
+  | 'module'
+  | 'practice'
+  | 'game'
+  | 'chat'
+  | 'ielts'
+  | 'exam'
+  | 'goals'
+  | 'notes'
+  | 'analytics'
+  | 'admin';
+
 export type PremiumBlock = {
-  feature: 'module' | 'practice' | 'game' | 'chat';
+  feature: PremiumFeature;
   title: string;
   reason: string;
 };
@@ -15,12 +30,14 @@ export type PremiumBlock = {
 export const FREE_LIMITS = {
   moduleLessons: 5,
   practiceTopics: 3,
-  gameModes: 3,
-  chatTopics: 3,
+  gameModes: 5,
+  chatTopics: 1,
+  goals: 2,
+  notes: 5,
 };
 
-export const FREE_GAME_MODE_IDS = ['word-match', 'letter-quest', 'sentence-builder'];
-export const FREE_CHAT_SCENARIO_IDS = ['a1', 'a2', 'b1'];
+export const FREE_GAME_MODE_IDS = ['word-match', 'letter-quest', 'sentence-builder', 'tense-master', 'verb-forms'];
+export const FREE_CHAT_SCENARIO_IDS = ['a1', 'a2'];
 
 export const FREE_PRACTICE_TOPIC_IDS: Record<string, string[]> = {
   vocabulary: ['general', 'business-office', 'travel-tourism'],
@@ -31,9 +48,13 @@ export const FREE_PRACTICE_TOPIC_IDS: Record<string, string[]> = {
   reading: ['daily-life', 'school-notice', 'travel-blog'],
 };
 
+export function isAdminEmail(user: PlanUser) {
+  return (user?.email ?? '').trim().toLowerCase() === ADMIN_EMAIL;
+}
+
 export function getEffectivePlan(user: PlanUser): UserPlan {
   if (!user) return 'free';
-  if (user.role === 'admin' || user.plan === 'lifetime') return 'lifetime';
+  if (isAdminEmail(user) || user.plan === 'lifetime') return 'lifetime';
   if (user.plan === 'pro') {
     if (!user.planExpiresAt) return 'pro';
     return new Date(user.planExpiresAt).getTime() > Date.now() ? 'pro' : 'free';
@@ -54,7 +75,39 @@ function getPracticeSkill(pathname: string) {
 }
 
 export function getPremiumBlock(pathname: string, search: string, user: PlanUser): PremiumBlock | null {
+  if (pathname.startsWith('/admin') && !isAdminEmail(user)) {
+    return {
+      feature: 'admin',
+      title: 'Akses admin dibatasi',
+      reason: `Admin hanya bisa diakses oleh ${ADMIN_EMAIL}.`,
+    };
+  }
+
   if (hasFullAccess(user) || pathname === '/upgrade') return null;
+
+  if (pathname.startsWith('/ielts')) {
+    return {
+      feature: 'ielts',
+      title: 'IELTS hanya untuk Pro',
+      reason: 'Free member bisa belajar modul inti dulu. IELTS Prep terbuka untuk member Pro dan Lifetime.',
+    };
+  }
+
+  if (pathname.startsWith('/ujian')) {
+    return {
+      feature: 'exam',
+      title: 'Exam premium terkunci',
+      reason: 'TOEFL, IELTS, dan exam mode hanya tersedia untuk member Pro dan Lifetime.',
+    };
+  }
+
+  if (pathname.startsWith('/analytics')) {
+    return {
+      feature: 'analytics',
+      title: 'Analytics hanya untuk Pro',
+      reason: 'Upgrade untuk membuka analisis progres, performa skill, dan insight belajar lengkap.',
+    };
+  }
 
   const lessonMatch = pathname.match(/\/lesson-(\d+)(?:\/)?$/);
   if (pathname.startsWith('/modul/') && lessonMatch && Number(lessonMatch[1]) > FREE_LIMITS.moduleLessons) {
@@ -98,8 +151,8 @@ export function getPremiumBlock(pathname: string, search: string, user: PlanUser
     if (scenarioId && !FREE_CHAT_SCENARIO_IDS.includes(scenarioId)) {
       return {
         feature: 'chat',
-        title: 'Topik AI Chat premium',
-        reason: `Free member hanya bisa membuka ${FREE_LIMITS.chatTopics} topik AI Chat pertama.`,
+        title: 'Level AI Chat premium',
+        reason: 'Free member hanya bisa memakai AI Chat di A1 Beginner dan A2 Elementary. Upgrade Pro untuk membuka B1 sampai C2.',
       };
     }
   }

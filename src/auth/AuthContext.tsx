@@ -6,6 +6,7 @@ interface User {
   displayName: string;
   avatarUrl: string;
   email: string;
+  phone: string;
   xp: number;
   streak: number;
   level: number;
@@ -33,11 +34,13 @@ interface AuthContextType {
   token: string | null;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
-  register: (name: string, email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  register: (name: string, email: string, password: string, phone?: string) => Promise<{ success: boolean; error?: string }>;
+  loginWithGoogle: (credential: string) => Promise<{ success: boolean; error?: string; isNewUser?: boolean }>;
   logout: () => void;
   completeOnboarding: (persona: UserPersona) => Promise<{ success: boolean; error?: string }>;
   updatePersona: (personaPatch: Partial<UserPersona>) => Promise<{ success: boolean; error?: string }>;
   updateProfile: (patch: { displayName?: string; avatarUrl?: string }) => Promise<{ success: boolean; error?: string }>;
+  changePassword: (currentPassword: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
   requestPasswordReset: (email: string) => Promise<{ success: boolean; error?: string }>;
   confirmPasswordReset: (token: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
   userExists: (email: string) => Promise<boolean>;
@@ -51,21 +54,25 @@ const AuthContext = createContext<AuthContextType | null>(null);
 const API = '/api';
 const SESSION_KEY = 'talky_session';
 const TOKEN_KEY = 'talky_token';
+const ADMIN_EMAIL = 'wahib.chelsea@gmail.com';
 
 function normalizeUser(data: any): User {
   const name = data.name ?? 'Learner';
+  const email = data.email ?? '';
+  const isAdminEmail = email.trim().toLowerCase() === ADMIN_EMAIL;
   return {
     id: Number(data.id ?? 0),
     name,
     displayName: data.displayName ?? data.display_name ?? name,
     avatarUrl: data.avatarUrl ?? data.avatar_url ?? '',
-    email: data.email ?? '',
+    email,
+    phone: data.phone ?? '',
     xp: Number(data.xp ?? 0),
     streak: Number(data.streak ?? 0),
     level: Number(data.level ?? 1),
     onboardingCompleted: Boolean(data.onboardingCompleted ?? data.onboarding_completed),
     persona: data.persona ?? null,
-    role: data.role === 'admin' ? 'admin' : 'user',
+    role: isAdminEmail ? 'admin' : 'user',
     plan: ['free', 'pro', 'lifetime'].includes(data.plan) ? data.plan : 'free',
     planExpiresAt: data.planExpiresAt ?? data.plan_expires_at ?? null,
     status: data.status === 'suspended' ? 'suspended' : 'active',
@@ -152,12 +159,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [persistSession]);
 
-  const register = useCallback(async (name: string, email: string, password: string): Promise<{ success: boolean; error?: string }> => {
+  const register = useCallback(async (name: string, email: string, password: string, phone = ''): Promise<{ success: boolean; error?: string }> => {
     try {
       const res = await fetch(`${API}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, phone }),
       });
       const data = await res.json();
       if (!res.ok) return { success: false, error: data.error };
@@ -167,6 +174,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { success: false, error: 'Server tidak dapat dihubungi' };
     }
   }, [persistSession]);
+
+  const loginWithGoogle = useCallback(async (credential: string): Promise<{ success: boolean; error?: string; isNewUser?: boolean }> => {
+    try {
+      const res = await fetch(`${API}/auth/google`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ credential }),
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, error: data.error };
+      persistSession(normalizeUser(data.user), data.token);
+      localStorage.setItem('talky_has_visited', 'true');
+      return { success: true, isNewUser: Boolean(data.isNewUser) };
+    } catch {
+      return { success: false, error: 'Server tidak dapat dihubungi' };
+    }
+  }, [persistSession]);
+
+  useEffect(() => {
+    if (token) return;
+    const hash = window.location.hash || '';
+    if (!hash.includes('id_token=')) return;
+    const params = new URLSearchParams(hash.replace(/^#/, ''));
+    const idToken = params.get('id_token');
+    if (!idToken) return;
+
+    window.history.replaceState({}, document.title, `${window.location.pathname}${window.location.search}`);
+    void loginWithGoogle(idToken);
+  }, [loginWithGoogle, token]);
 
   const completeOnboarding = useCallback(async (persona: UserPersona): Promise<{ success: boolean; error?: string }> => {
     if (!user || !token) return { success: false, error: 'User session not found' };
@@ -244,6 +280,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { success: false, error: 'Server tidak dapat dihubungi' };
     }
   }, [user, token, persistSession]);
+
+  const changePassword = useCallback(async (currentPassword: string, newPassword: string): Promise<{ success: boolean; error?: string }> => {
+    if (!user || !token) return { success: false, error: 'User session not found' };
+
+    try {
+      const res = await fetch(`${API}/users/password`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
+      const data = await res.json();
+      if (!res.ok) return { success: false, error: data.error };
+      return { success: true };
+    } catch {
+      return { success: false, error: 'Server tidak dapat dihubungi' };
+    }
+  }, [user, token]);
 
   const requestPasswordReset = useCallback(async (email: string): Promise<{ success: boolean; error?: string }> => {
     try {
@@ -323,8 +376,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   return (
     <AuthContext.Provider value={{
       user, token, isAuthenticated,
-      login, register, logout,
+      login, register, loginWithGoogle, logout,
       completeOnboarding, updatePersona, updateProfile,
+      changePassword,
       requestPasswordReset, confirmPasswordReset,
       userExists, upgradePlan, awardXp, authHeaders,
     }}>

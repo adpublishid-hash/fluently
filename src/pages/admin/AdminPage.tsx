@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Boxes, CheckCircle2, Crown, MapPin, Package, RefreshCw, Settings as SettingsIcon, Shield, ShoppingBag, UserCog, Users } from 'lucide-react';
+import { Boxes, CheckCircle2, Crown, MapPin, Package, RefreshCw, Settings as SettingsIcon, Shield, ShoppingBag, Trash2, UserCog, Users } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { useAuth } from '../../auth/AuthContext';
 import { formatRupiah } from '../../data/shopData';
@@ -354,6 +354,34 @@ export default function AdminPage() {
       setProducts((current) => current.map((item) => item.id === product.id ? data.product : item));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Update produk gagal');
+    } finally {
+      setSavingId(null);
+    }
+  };
+
+  const deleteProduct = async (product: AdminProduct) => {
+    if (!user) return;
+    const confirmed = window.confirm(`Hapus produk "${product.title}" dari katalog?`);
+    if (!confirmed) return;
+
+    setSavingId(product.id);
+    try {
+      const res = await fetch(`/api/admin/shop/products/${encodeURIComponent(product.id)}`, {
+        method: 'DELETE',
+        headers: adminHeaders(token),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Hapus produk gagal');
+
+      setProducts((current) => current.filter((item) => item.id !== product.id));
+      setEditingProductId((current) => current === product.id ? null : current);
+      setProductDraft((current) => {
+        const next = { ...current };
+        delete next[product.id];
+        return next;
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Hapus produk gagal');
     } finally {
       setSavingId(null);
     }
@@ -871,7 +899,7 @@ export default function AdminPage() {
 
                       return (
                       <div key={product.id} className="p-4">
-                        <div className="grid gap-3 md:grid-cols-[1fr_120px_90px_120px_110px] md:items-center">
+                        <div className="grid gap-3 md:grid-cols-[1fr_120px_90px_120px_150px] md:items-center">
                         <div>
                           <div className="flex flex-wrap items-center gap-2">
                             <p className="font-black text-[#0F172A]">{product.title}</p>
@@ -901,13 +929,25 @@ export default function AdminPage() {
                         >
                           {product.active ? 'Active' : 'Hidden'}
                         </button>
-                        <button
-                          type="button"
-                          onClick={() => editing ? setEditingProductId(null) : startEditProduct(product)}
-                          className="h-9 rounded-[6px] border border-[#CBD5E1] px-3 text-xs font-black text-[#0F172A] hover:bg-gray-50"
-                        >
-                          {editing ? 'Close' : 'Edit'}
-                        </button>
+                        <div className="flex gap-2">
+                          <button
+                            type="button"
+                            onClick={() => editing ? setEditingProductId(null) : startEditProduct(product)}
+                            className="h-9 flex-1 rounded-[6px] border border-[#CBD5E1] px-3 text-xs font-black text-[#0F172A] hover:bg-gray-50"
+                          >
+                            {editing ? 'Close' : 'Edit'}
+                          </button>
+                          <button
+                            type="button"
+                            disabled={savingId === product.id}
+                            onClick={() => deleteProduct(product)}
+                            className="inline-flex h-9 w-9 items-center justify-center rounded-[6px] border border-red-200 text-red-600 transition hover:bg-red-50 disabled:opacity-50"
+                            aria-label={`Delete ${product.title}`}
+                            title="Delete product"
+                          >
+                            <Trash2 size={15} />
+                          </button>
+                        </div>
                         </div>
 
                         {editing && (

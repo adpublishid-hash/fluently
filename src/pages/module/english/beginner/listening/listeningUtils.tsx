@@ -1,7 +1,7 @@
 /**
  * Shared utilities for Beginner Listening module.
  * Simulates listening exercises via interactive dialogue + quiz.
- * Supports AI Text-to-Speech via BYOK (OpenAI API).
+ * Supports AI Text-to-Speech with the shared Fluently AI voice service.
  */
 import React, { useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -219,7 +219,7 @@ export function DialoguePlayer({ title, lines }: { title: string; lines: Dialogu
           <span className="text-base">🔑</span>
           <div className="flex-1">
             <p className="text-xs font-bold text-amber-800">API Key belum diset</p>
-            <p className="text-[10px] text-amber-600">Setup OpenAI API key di halaman Profile → API Key</p>
+            <p className="text-[10px] text-amber-600">AI Voice default aktif. Buka Profile untuk preferensi suara.</p>
           </div>
           <button onClick={() => navigate('/profile')} className="text-xs font-extrabold text-amber-700 underline shrink-0">
             Ke Profile

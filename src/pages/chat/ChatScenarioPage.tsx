@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronRight, MessageCircle } from 'lucide-react';
+import { ChevronRight, Lock, MessageCircle } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { PageHeader } from '../../components/shared/NavComponents';
 import { chatAIModes } from '../../data/mockData';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
+import { useAuth } from '../../auth/AuthContext';
+import { getFreeChatLevelBlockMessage, isFreeAiChatUser, isFreeChatLevelAllowed } from '../../features/chat/freeChatLimits';
 
 const cefrChatLevels = [
   { id: 'a1', label: 'A1', sublabel: 'Beginner', color: '#7EC3E6', bgColor: '#EAF7FC' },
@@ -18,10 +20,12 @@ const cefrChatLevels = [
 
 export default function ChatScenarioPage() {
   const { t } = useLanguage();
+  const { user } = useAuth();
   const { modeId, scenarioId: levelId } = useParams<{ modeId: string; scenarioId: string }>();
   const navigate = useNavigate();
   const mode = chatAIModes.find((m) => m.id === modeId);
   const level = cefrChatLevels.find((item) => item.id === levelId);
+  const locked = isFreeAiChatUser(user) && !isFreeChatLevelAllowed(levelId);
 
   if (!mode || !level) return null;
 
@@ -61,7 +65,7 @@ export default function ChatScenarioPage() {
           transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
           whileHover={{ y: -3, boxShadow: `0 10px 28px ${level.color}20` }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => navigate(`/chat/${modeId}/${levelId}/start`)}
+          onClick={() => locked ? navigate('/upgrade') : navigate(`/chat/${modeId}/${levelId}/start`)}
         >
           <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ backgroundColor: level.color }} />
 
@@ -74,14 +78,14 @@ export default function ChatScenarioPage() {
             </div>
             <div className="flex-1 min-w-0">
               <h2 className="font-extrabold text-[16px] text-text-primary">{t('chatAi.levelTitle')}: {level.label}</h2>
-              <p className="text-[13px] text-text-muted mt-0.5">{level.sublabel}</p>
+              <p className="text-[13px] text-text-muted mt-0.5">{locked ? getFreeChatLevelBlockMessage(level.id) : level.sublabel}</p>
             </div>
             <div
               className="flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-white text-[13px] font-bold transition-all sm:w-auto"
               style={{ backgroundColor: level.color }}
             >
-              <MessageCircle size={15} />
-              <span>{t('common.start')}</span>
+              {locked ? <Lock size={15} /> : <MessageCircle size={15} />}
+              <span>{locked ? 'Upgrade Pro' : t('common.start')}</span>
               <ChevronRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </div>
           </div>

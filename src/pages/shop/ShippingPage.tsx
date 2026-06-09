@@ -7,6 +7,7 @@ import { useCart } from '../../shop/CartContext';
 import { formatRupiah } from '../../data/shopData';
 import type { ShippingAddress, ShippingOption } from '../../types/shop';
 import { isPhysicalProduct } from '../../types/shop';
+import { useAuth } from '../../auth/AuthContext';
 
 type DestinationRow = {
   id: number;
@@ -37,25 +38,36 @@ const COURIERS: { id: string; label: string }[] = [
 
 export default function ShippingPage() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const {
     items, address, setAddress, shippingMethod, setShippingMethod,
     subtotal, rawSubtotal, memberDiscount, products,
   } = useCart();
 
-  const [form, setForm] = useState<ShippingAddress>(address ?? {
-    fullName: '',
-    phone: '',
-    email: '',
-    province: '',
-    city: '',
-    district: '',
-    postalCode: '',
-    address: '',
-    notes: '',
-    provinceId: '',
-    cityId: '',
-    districtId: '',
-  });
+  const [form, setForm] = useState<ShippingAddress>(() => ({
+    fullName: address?.fullName || user?.displayName || user?.name || '',
+    phone: address?.phone || user?.phone || '',
+    email: address?.email || user?.email || '',
+    province: address?.province || '',
+    city: address?.city || '',
+    district: address?.district || '',
+    postalCode: address?.postalCode || '',
+    address: address?.address || '',
+    notes: address?.notes || '',
+    provinceId: address?.provinceId || '',
+    cityId: address?.cityId || '',
+    districtId: address?.districtId || '',
+  }));
+
+  useEffect(() => {
+    setForm((current) => ({
+      ...current,
+      fullName: current.fullName || user?.displayName || user?.name || '',
+      phone: current.phone || user?.phone || '',
+      email: current.email || user?.email || '',
+    }));
+  }, [user?.displayName, user?.email, user?.name, user?.phone]);
+
   const [errors, setErrors] = useState<Partial<Record<keyof ShippingAddress, string>>>({});
 
   const hasPhysical = useMemo(
@@ -257,7 +269,7 @@ export default function ShippingPage() {
                 <input
                   value={form.fullName}
                   onChange={e => update('fullName', e.target.value)}
-                  placeholder="Karina Saputra"
+                  placeholder="Nama lengkap penerima"
                   className="w-full bg-transparent outline-none text-[13px] text-text-primary placeholder:text-text-muted"
                 />
               </Field>

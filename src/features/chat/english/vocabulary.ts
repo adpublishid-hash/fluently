@@ -21,11 +21,13 @@ const getVocabularyPart = (word: string, index: number) =>
 
 const getExampleSentence = (word: string, topic: string, pos: string) => {
   if (vocabularyExamples[word]) return vocabularyExamples[word];
-  if (pos === 'verb') return `I want to ${word} better in English.`;
-  if (pos === 'adjective') return `This is a ${word} example for ${topic}.`;
-  if (pos === 'adverb') return `I ${word} practice English after class.`;
-  if (pos === 'phrase') return `"${word}" is useful in casual English.`;
-  return `We talked about ${word} in today's ${topic} lesson.`;
+
+  const cleanTopic = topic.replace(/\s+/g, ' ').trim();
+  if (pos === 'verb') return `I can use "${word}" when I talk about ${cleanTopic}.`;
+  if (pos === 'adjective') return `"${word}" helps describe something in a ${cleanTopic} conversation.`;
+  if (pos === 'adverb') return `I can add "${word}" to make my sentence clearer.`;
+  if (pos === 'phrase') return `"${word}" is a useful phrase for ${cleanTopic}.`;
+  return `The word "${word}" is useful when we talk about ${cleanTopic}.`;
 };
 
 const normalizeLevel = (levelId?: string) => {
@@ -57,7 +59,7 @@ const makePhonetic = (word: string) => {
     return `/${parts.map((part) => stripPhoneticSlashes(vocabularyPhonetics[part])).join(' ')}/`;
   }
 
-  return '/IPA unavailable/';
+  return '/listen with AI voice/';
 };
 
 function buildVocabularyRows(topicInput: string, levelId?: string): VocabularyRow[] {
@@ -103,7 +105,10 @@ const getVocabularyPracticeWords = (topic: string, levelId?: string, offset = 0)
 
 const getWordsUsedInAnswer = (answer: string, words: string[]) => {
   const text = answer.toLowerCase();
-  return words.filter((word) => text.includes(word.toLowerCase()));
+  return words.filter((word) => {
+    const normalized = word.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(^|[^a-z])${normalized}([^a-z]|$)`, 'i').test(text);
+  });
 };
 
 const buildPracticeWordList = (words: string[], startIndex = 0) =>
@@ -121,17 +126,29 @@ TOPIC_SELECT`;
 
 const buildVocabularyPrompt = (name: string, topic: string, levelId?: string) => `Siap, ${name}! Kita pakai topik "${topic}" di level CEFR ${getLevelLabel(levelId)}.
 
-Aku kasih 30 vocabulary yang sudah disesuaikan dengan level CEFR ${getLevelLabel(levelId)} dulu ya:
+Aku kasih 30 vocabulary yang sudah disesuaikan dengan level CEFR ${getLevelLabel(levelId)} dulu ya. Aku buat tabelnya ringkas, tapi isinya tetap lengkap:
+- English: kata/frasa utama yang perlu kamu tahu.
+- IPA: simbol bunyi supaya kamu tahu cara bacanya.
+- Indonesian: arti cepat dalam bahasa Indonesia.
+- Part: jenis kata atau frasa.
+- Example: contoh kalimat natural yang bisa langsung kamu tiru.
+
+Tips kecil: klik tombol speaker di kata atau contoh kalimat untuk dengar native AI voice. Jangan hafalkan semuanya sekaligus; kita pakai 3 kata dulu per chat biar belajarnya terasa ringan tapi tetap naik level.
 
 ${buildVocabularyTable(topic, levelId)}
 
-Bagaimana, ${name}? Sudah lumayan banyak ya kata baru yang bisa kita pelajari!
+Bagaimana, ${name}? Sudah lumayan banyak ya kata baru yang bisa kita pelajari, tapi santai saja. Aku akan bantu pelan-pelan sampai kamu bisa pakai semuanya dalam kalimat.
 
-Sekarang, yuk kita coba pakai beberapa kata ini dalam kalimat. Saya mau ${name} membuat 3 kalimat menggunakan kata-kata berikut:
+Sekarang kita mulai batch pertama. Buat 3 kalimat sederhana menggunakan kata-kata berikut:
 
 ${buildPracticeWordList(getVocabularyPracticeWords(topic, levelId))}
 
-Jangan ragu untuk berkreasi ya. Saya tunggu kalimat-kalimat buatan ${name}. Semangat! 💪`;
+Contoh gaya jawaban:
+1. My name is Karina.
+2. I live in Jakarta.
+3. My friend is kind.
+
+Kalimatmu tidak harus sempurna dulu. Tulis saja, nanti aku koreksi dengan friendly dan kasih versi yang lebih natural. 💪`;
 
 const buildSentenceFeedback = (
   name: string,

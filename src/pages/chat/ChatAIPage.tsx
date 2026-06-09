@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MessageCircle, Search, Sparkles, Zap, Flame, ChevronRight, ArrowRight } from 'lucide-react';
+import { KeyRound, Lock, MessageCircle, Search, Sparkles, Zap, Flame, ChevronRight, ArrowRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import PageContainer from '../../components/layout/PageContainer';
 import { chatAIModes } from '../../data/mockData';
@@ -9,18 +9,9 @@ import { formatRecentChatTime, getRecentChatRoute, getRecentChatSessions } from 
 import { getTargetLanguageLabel } from '../../features/chat/targetLanguage';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
+import { hasUsableChatAiAccess } from '../../services/aiKeyService';
 
-const heroStats = [
-  { id: 'energy',  icon: Zap,      label: 'AI Energy',  value: 'Unlimited' },
-  { id: 'streak',  icon: Flame,    label: 'Streak',     value: '7 days'    },
-  { id: 'session', icon: Sparkles, label: 'Sessions',   value: '12 done'   },
-];
-
-const fallbackRecentChats = [
-  { id: 1, title: 'Business Vocabulary', mode: 'Vocabulary', modeId: 'vocabulary', time: '2h ago', color: '#2980B9' },
-  { id: 2, title: 'Clearer Pronunciation', mode: 'Pronunciation', modeId: 'pronunciation', time: 'Yesterday', color: '#E83E8C' },
-  { id: 3, title: 'Past Tense Grammar', mode: 'Grammar', modeId: 'grammar', time: '2d ago', color: '#8E44AD' },
-];
+const fallbackRecentChats: { id: number; title: string; mode: string; modeId: string; time: string; color: string }[] = [];
 
 export default function ChatAIPage() {
   const { t } = useLanguage();
@@ -28,18 +19,27 @@ export default function ChatAIPage() {
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [recentChats, setRecentChats] = useState(() => getRecentChatSessions());
+  const [hasAiAccess, setHasAiAccess] = useState(() => hasUsableChatAiAccess(user?.plan));
   const targetLanguageLabel = getTargetLanguageLabel(user?.persona?.targetLanguage);
 
   useEffect(() => {
     const refreshRecentChats = () => setRecentChats(getRecentChatSessions());
+    const refreshGeminiKey = () => setHasAiAccess(hasUsableChatAiAccess(user?.plan));
     refreshRecentChats();
+    refreshGeminiKey();
     window.addEventListener('storage', refreshRecentChats);
+    window.addEventListener('storage', refreshGeminiKey);
     window.addEventListener('focus', refreshRecentChats);
+    window.addEventListener('focus', refreshGeminiKey);
     return () => {
       window.removeEventListener('storage', refreshRecentChats);
+      window.removeEventListener('storage', refreshGeminiKey);
       window.removeEventListener('focus', refreshRecentChats);
+      window.removeEventListener('focus', refreshGeminiKey);
     };
-  }, []);
+  }, [user?.plan]);
+
+  const goToGeminiSetup = () => navigate('/profile');
 
   const filteredModes = chatAIModes.filter(mode => {
     if (!search.trim()) return true;
@@ -116,7 +116,11 @@ export default function ChatAIPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            {heroStats.map((stat) => {
+            {[
+              { id: 'energy',  icon: Zap,      label: 'AI Energy',  value: user?.plan === 'free' ? 'Daily quota' : 'Unlimited' },
+              { id: 'streak',  icon: Flame,    label: 'Streak',     value: `${user?.streak ?? 0} days` },
+              { id: 'session', icon: Sparkles, label: 'Sessions',   value: `${recentChats.length} done` },
+            ].map((stat) => {
               const Icon = stat.icon;
               return (
                 <div
@@ -170,6 +174,36 @@ export default function ChatAIPage() {
           <span className="text-[11px] font-bold text-text-muted">{filteredModes.length} focus</span>
         </div>
 
+        {!hasAiAccess && (
+          <motion.div
+            className="mx-5 md:mx-0 mb-4 rounded-2xl border border-amber-200 bg-amber-50 p-4"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-amber-100 text-amber-700">
+                  <KeyRound size={18} />
+                </div>
+                <div>
+                  <p className="text-sm font-black text-amber-900">Gemini AI belum aktif</p>
+                  <p className="mt-1 text-xs font-semibold leading-relaxed text-amber-700">
+                    AI Chat memakai default Gemini Flash 2.5 dari Fluently. Coba refresh halaman atau cek Profile jika akses belum aktif.
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={goToGeminiSetup}
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-amber-500 px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-amber-600"
+              >
+                Setup di Profile
+                <ArrowRight size={14} />
+              </button>
+            </div>
+          </motion.div>
+        )}
+
         <div className="px-5 md:px-0">
           {filteredModes.length === 0 ? (
             <div className="bg-white rounded-2xl border border-gray-100 py-12 text-center">
@@ -185,8 +219,9 @@ export default function ChatAIPage() {
                   sublabel={t(mode.sublabelKey as TranslationKey)}
                   color={mode.color}
                   bgColor={mode.bgColor}
-                  onClick={() => navigate(`/chat/${mode.id}`)}
+                  onClick={() => hasAiAccess ? navigate(`/chat/${mode.id}`) : goToGeminiSetup()}
                   delay={0.05 * i}
+                  disabled={!hasAiAccess}
                 />
               ))}
             </div>
@@ -219,7 +254,8 @@ export default function ChatAIPage() {
                   transition={{ delay: 0.05 * i + 0.4 }}
                   whileHover={{ y: -2, boxShadow: `0 8px 22px ${chat.color}1a` }}
                   whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate(route)}
+                  onClick={() => hasAiAccess ? navigate(route) : goToGeminiSetup()}
+                  disabled={!hasAiAccess}
                 >
                   <div
                     className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
@@ -239,7 +275,11 @@ export default function ChatAIPage() {
                       <span className="text-[10px] text-text-muted">{time}</span>
                     </div>
                   </div>
-                  <ArrowRight size={14} className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+                  {hasAiAccess ? (
+                    <ArrowRight size={14} className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+                  ) : (
+                    <Lock size={14} className="text-amber-400 shrink-0" />
+                  )}
                 </motion.button>
                 );
               })}
@@ -253,7 +293,7 @@ export default function ChatAIPage() {
 
 /* ── Enhanced mode card with badge support ── */
 function ModeCard({
-  icon, label, sublabel, color, bgColor, onClick, delay = 0, isPopular, isNew,
+  icon, label, sublabel, color, bgColor, onClick, delay = 0, isPopular, isNew, disabled = false,
 }: {
   icon: string;
   label: string;
@@ -264,26 +304,33 @@ function ModeCard({
   delay?: number;
   isPopular?: boolean;
   isNew?: boolean;
+  disabled?: boolean;
 }) {
   const [iconFailed, setIconFailed] = useState(false);
 
   return (
     <motion.button
-      className="w-full bg-white rounded-2xl p-5 text-left cursor-pointer border border-gray-100 relative overflow-hidden group"
+      className={`w-full rounded-2xl border border-gray-100 bg-white p-5 text-left relative overflow-hidden group ${disabled ? 'cursor-not-allowed opacity-60 grayscale-[0.25]' : 'cursor-pointer'}`}
       style={{ boxShadow: '0 2px 12px rgba(0,0,0,0.04)' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.4, type: 'spring', stiffness: 200 }}
-      whileHover={{ y: -3, boxShadow: `0 10px 28px ${color}22` }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={disabled ? undefined : { y: -3, boxShadow: `0 10px 28px ${color}22` }}
+      whileTap={disabled ? undefined : { scale: 0.97 }}
       onClick={onClick}
+      aria-disabled={disabled}
     >
       {/* Accent stripe */}
       <div className="absolute top-0 left-0 w-1 h-full rounded-r-full" style={{ backgroundColor: color }} />
 
       {/* Top-right badge */}
-      {(isPopular || isNew) && (
+      {(disabled || isPopular || isNew) && (
         <div className="absolute top-3 right-3">
+          {disabled && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-amber-600">
+              <Lock size={10} /> Setup Key
+            </span>
+          )}
           {isPopular && (
             <span
               className="text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider"
@@ -315,7 +362,11 @@ function ModeCard({
           <h3 className="font-extrabold text-[15px] text-text-primary truncate">{label}</h3>
           <p className="text-[12px] text-text-muted font-medium mt-0.5 line-clamp-2 leading-snug">{sublabel}</p>
         </div>
-        <ChevronRight size={18} className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+        {disabled ? (
+          <Lock size={18} className="text-amber-400 shrink-0" />
+        ) : (
+          <ChevronRight size={18} className="text-gray-300 group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+        )}
       </div>
     </motion.button>
   );

@@ -4,19 +4,19 @@ export const translations = {
   // ──────────── Onboarding ────────────
   'welcome.title': {
     en: 'Welcome to Fluently',
-    id: 'Selamat Datang di Fluently',
+    id: 'Selamat datang di Fluently',
   },
   'welcome.chooseLanguage': {
     en: 'Choose Language',
-    id: 'Pilih Bahasa',
+    id: 'Pilih bahasa',
   },
   'goals.title': {
     en: 'Achieve Your Language Goals\nwith Fluently AI',
     id: 'Raih Tujuan Bahasamu\ndengan Fluently AI',
   },
   'goals.subtitle': {
-    en: 'For travel, career, or personal growth.',
-    id: 'Untuk perjalanan, karier, atau pengembangan diri.',
+    en: 'For travel, career, school, and everyday confidence.',
+    id: 'Untuk perjalanan, karier, sekolah, dan percaya diri sehari-hari.',
   },
   'goals.getStarted': {
     en: 'Get Started',
@@ -25,6 +25,70 @@ export const translations = {
   'goals.signIn': {
     en: 'Sign In',
     id: 'Masuk',
+  },
+  'goals.alreadyHaveAccount': {
+    en: 'Already have an account?',
+    id: 'Sudah punya akun?',
+  },
+  'welcome.brandTagline': {
+    en: 'Learn languages fluently with AI-powered conversations',
+    id: 'Belajar bahasa lebih lancar dengan percakapan AI',
+  },
+  'welcome.welcomeTo': {
+    en: 'Welcome to',
+    id: 'Selamat datang di',
+  },
+  'welcome.tapToContinue': {
+    en: 'Tap anywhere to continue',
+    id: 'Ketuk di mana saja untuk lanjut',
+  },
+  'welcome.featureAi': {
+    en: 'AI Conversations',
+    id: 'Percakapan AI',
+  },
+  'welcome.featureAiSub': {
+    en: 'Practice with a real-time AI tutor',
+    id: 'Latihan dengan tutor AI secara real time',
+  },
+  'welcome.featureLanguages': {
+    en: '4 Languages',
+    id: '4 Bahasa',
+  },
+  'welcome.featureLanguagesSub': {
+    en: 'English · Arabic · Mandarin · Japanese',
+    id: 'Inggris · Arab · Mandarin · Jepang',
+  },
+  'welcome.featureProgress': {
+    en: 'Progress Tracking',
+    id: 'Pelacakan Progres',
+  },
+  'welcome.featureProgressSub': {
+    en: 'Build habits with XP, levels, and streaks',
+    id: 'Bangun kebiasaan dengan XP, level, dan streak',
+  },
+  'goals.featureAi': {
+    en: 'AI-Powered Chat',
+    id: 'Chat Berbasis AI',
+  },
+  'goals.featureAiSub': {
+    en: 'Practice real conversations with smart AI feedback',
+    id: 'Latihan percakapan nyata dengan feedback AI yang cerdas',
+  },
+  'goals.featureProgress': {
+    en: 'Track Progress',
+    id: 'Pantau Progres',
+  },
+  'goals.featureProgressSub': {
+    en: 'XP, streaks, and levels keep you motivated',
+    id: 'XP, streak, dan level membantumu tetap semangat',
+  },
+  'goals.featurePersonalized': {
+    en: 'Personalized Path',
+    id: 'Jalur Belajar Personal',
+  },
+  'goals.featurePersonalizedSub': {
+    en: 'Lessons tailored to your goals and level',
+    id: 'Materi disesuaikan dengan tujuan dan levelmu',
   },
   'startLearning.title': {
     en: "It's time to\nstart learning!",
@@ -98,6 +162,10 @@ export const translations = {
     en: 'Already have an account?',
     id: 'Sudah punya akun?',
   },
+  'auth.loginComingSoon': {
+    en: 'login is coming soon!',
+    id: 'login segera hadir!',
+  },
   'signUp.errorNameRequired': {
     en: 'Name is required',
     id: 'Nama wajib diisi',
@@ -136,11 +204,11 @@ export const translations = {
   },
   'welcomeUser.title': {
     en: 'Welcome,',
-    id: 'Selamat Datang,',
+    id: 'Selamat datang,',
   },
   'welcomeUser.subtitle': {
-    en: "I'm Polly, your friendly AI tutor. Why don't you tell me a bit about yourself?",
-    id: 'Saya Polly, tutor AI kamu. Ceritakan sedikit tentang dirimu, yuk!',
+    en: "I'm Fluently AI, your friendly tutor. Tell me a little about yourself.",
+    id: 'Aku Fluently AI, tutor ramahmu. Ceritakan sedikit tentang dirimu, yuk.',
   },
   'ageRange.title': {
     en: "What's your age range?",
@@ -151,8 +219,8 @@ export const translations = {
     id: 'Ini akan membantu saya membandingkan hasilmu dengan teman sebaya.',
   },
   'gender.title': {
-    en: 'How do you identify?',
-    id: 'Apa jenis kelaminmu?',
+    en: 'How would you like us to personalize your experience?',
+    id: 'Bagaimana kamu ingin pengalaman belajarmu dipersonalisasi?',
   },
   'gender.male': {
     en: 'Male',
@@ -232,8 +300,8 @@ export const translations = {
   'specificGoals.tellJoke': { en: 'Tell a joke', id: 'Menceritakan lelucon' },
   'specificGoals.askDirections': { en: 'Ask for directions', id: 'Bertanya arah' },
   'interests.title': {
-    en: 'What interest you?',
-    id: 'Apa yang menarik bagimu?',
+    en: 'What interests you?',
+    id: 'Apa yang menarik untukmu?',
   },
   'interests.subtitle': {
     en: 'Choose as many as you like',
@@ -267,8 +335,8 @@ export const translations = {
     id: 'Kabar baik,',
   },
   'greatNews.subtitle': {
-    en: "I've successfully taught 300,000 learners with similar English goals. You're in good hands!",
-    id: 'Saya telah berhasil mengajar 300.000 pelajar dengan tujuan bahasa Inggris serupa. Kamu di tangan yang tepat!',
+    en: "We've helped learners with goals like yours. You're in good hands!",
+    id: 'Kami sudah membantu banyak pelajar dengan tujuan seperti kamu. Kamu berada di tempat yang tepat!',
   },
   'studyDuration.title': {
     en: 'How long should we study together each day?',
@@ -309,7 +377,7 @@ export const translations = {
   'courses.familyFriends': { en: 'Family / Friends', id: 'Keluarga / Teman' },
   'courses.travel': { en: 'Travel', id: 'Perjalanan' },
   'courses.personalInterest': { en: 'Personal Interest', id: 'Minat Pribadi' },
-  'courses.recommendedForYou': { en: 'Recommended for You', id: 'Rekomendasi Untukmu' },
+  'courses.recommendedForYou': { en: 'Recommended for You', id: 'Rekomendasi untukmu' },
   'courses.curatedBased': {
     en: 'Curated based on your level and interests',
     id: 'Dipilih berdasarkan level dan minatmu',
@@ -317,10 +385,10 @@ export const translations = {
   'courses.allLevels': { en: 'All levels', id: 'Semua level' },
   'courses.workFluency': { en: 'Work Fluency', id: 'Kefasihan Kerja' },
   'courses.complete10': {
-    en: 'Complete 10 Courses and get a special bonus from Fluently AI!',
-    id: 'Selesaikan 10 Kursus dan dapatkan bonus spesial dari Fluently AI!',
+    en: 'Complete 10 courses and get a special bonus from Fluently AI!',
+    id: 'Selesaikan 10 kursus dan dapatkan bonus spesial dari Fluently AI!',
   },
-  'courses.miniGames': { en: 'Mini Games Zone', id: 'Zone Mini Games' },
+  'courses.miniGames': { en: 'Mini Games Zone', id: 'Zona Mini Game' },
   'courses.learnFun': { en: 'Learn with fun word games!', id: 'Belajar dengan permainan kata yang seru!' },
   'courses.courseCollections': { en: 'Course Collections', id: 'Koleksi Kursus' },
   'courses.seeAll': { en: 'See All', id: 'Lihat Semua' },
@@ -330,8 +398,8 @@ export const translations = {
   'courses.activity': { en: 'Activity', id: 'Aktivitas' },
   'courses.courses': { en: 'Courses', id: 'Kursus' },
   'courses.continueLessons': {
-    en: 'Continue your lessons\nwith excited.',
-    id: 'Lanjutkan pelajaran\ndengan semangat.',
+    en: 'Continue your lessons\nwith confidence.',
+    id: 'Lanjutkan pelajaranmu\ndengan percaya diri.',
   },
   'courses.forYou': { en: 'For you', id: 'Untukmu' },
   'courses.basedOnLevel': {
@@ -365,7 +433,7 @@ export const translations = {
 
   // ──────────── Chat Page ────────────
   'chat.assistant': { en: 'Fluently Assistant', id: 'Asisten Fluently' },
-  'chat.trainedOn': { en: 'Trained on latest Cambridge English', id: 'Dilatih dengan Cambridge English terbaru' },
+  'chat.trainedOn': { en: 'Built for guided language practice', id: 'Dirancang untuk latihan bahasa terpandu' },
   'chat.practiceConversation': { en: 'Practice Conversation', id: 'Latihan Percakapan' },
   'chat.grammarHelp': { en: 'Grammar Help', id: 'Bantuan Grammar' },
   'chat.vocabularyQuiz': { en: 'Vocabulary Quiz', id: 'Kuis Kosakata' },
@@ -373,10 +441,10 @@ export const translations = {
   'chat.learningTopics': { en: 'Learning Topics', id: 'Topik Belajar' },
   'chat.recentSessions': { en: 'Recent Sessions', id: 'Sesi Terakhir' },
   'chat.today': { en: 'Today', id: 'Hari Ini' },
-  'chat.placeholder': { en: 'Ask anything or practice here...', id: 'Tanya apapun atau latihan di sini...' },
+  'chat.placeholder': { en: 'Ask anything or practice here...', id: 'Tanya apa saja atau latihan di sini...' },
   'chat.disclaimer': {
-    en: 'Fluently AI can make mistakes. Consider verifying translation.',
-    id: 'Fluently AI bisa membuat kesalahan. Pertimbangkan untuk memverifikasi terjemahan.',
+    en: 'Fluently AI can make mistakes. Always verify important translations.',
+    id: 'Fluently AI bisa membuat kesalahan. Selalu cek ulang terjemahan penting.',
   },
 
   // ──────────── Rank Page ────────────
@@ -384,6 +452,7 @@ export const translations = {
   'rank.competeWorldwide': { en: 'Compete with learners worldwide!', id: 'Bersaing dengan pelajar di seluruh dunia!' },
   'rank.thisWeek': { en: 'This Week', id: 'Minggu Ini' },
   'rank.thisMonth': { en: 'This Month', id: 'Bulan Ini' },
+  'rank.monthlyMomentum': { en: 'Monthly Momentum', id: 'Momentum Bulanan' },
   'rank.you': { en: 'YOU', id: 'KAMU' },
   'rank.yourRank': { en: 'Your Rank', id: 'Peringkatmu' },
   'rank.diamondLeague': { en: 'Diamond League', id: 'Liga Berlian' },
@@ -399,7 +468,7 @@ export const translations = {
   'profile.totalXP': { en: 'Total XP', id: 'Total XP' },
   'profile.dayStreak': { en: 'Day Streak', id: 'Hari Beruntun' },
   'profile.globalRank': { en: 'Global Rank', id: 'Peringkat Global' },
-  'profile.yourBadges': { en: 'Your Badges', id: 'Lencana Kamu' },
+  'profile.yourBadges': { en: 'Your Badges', id: 'Lencanamu' },
   'profile.unlocked': { en: 'Unlocked', id: 'Terbuka' },
   'profile.learningStats': { en: 'Learning Stats', id: 'Statistik Belajar' },
   'profile.overallProgress': { en: 'Overall Progress', id: 'Progres Keseluruhan' },
@@ -407,7 +476,17 @@ export const translations = {
   'profile.completed': { en: 'Completed', id: 'Selesai' },
   'profile.timeSpent': { en: 'Time Spent', id: 'Waktu Dihabiskan' },
   'profile.settings': { en: 'Settings', id: 'Pengaturan' },
+  'profile.editProfile': { en: 'Edit Profile', id: 'Edit Profil' },
+  'profile.displayName': { en: 'Display Name', id: 'Nama Tampilan' },
+  'profile.saveProfile': { en: 'Save Profile', id: 'Simpan Profil' },
+  'profile.saving': { en: 'Saving...', id: 'Menyimpan...' },
+  'profile.saved': { en: 'Saved', id: 'Tersimpan' },
   'profile.language': { en: 'Language', id: 'Bahasa' },
+  'profile.appLanguage': { en: 'App Language', id: 'Bahasa Aplikasi' },
+  'profile.useEnglishInterface': { en: 'Use English interface', id: 'Gunakan tampilan Bahasa Inggris' },
+  'profile.useIndonesianInterface': { en: 'Use Indonesian interface', id: 'Gunakan tampilan Bahasa Indonesia' },
+  'profile.learningLanguage': { en: 'Learning Language', id: 'Bahasa yang Dipelajari' },
+  'profile.savingChoice': { en: 'Saving your choice...', id: 'Menyimpan pilihan...' },
   'profile.notifications': { en: 'Notifications', id: 'Notifikasi' },
   'profile.privacy': { en: 'Privacy', id: 'Privasi' },
   'profile.rateUs': { en: 'Rate Us', id: 'Beri Penilaian' },
@@ -418,10 +497,17 @@ export const translations = {
   'profile.levelProgress': { en: 'Level', id: 'Level' },
   'profile.streak': { en: 'streak', id: 'beruntun' },
   'profile.dayStreakLabel': { en: 'day streak', id: 'hari beruntun' },
+  'profile.planFree': { en: 'Free Plan', id: 'Paket Free' },
+  'profile.planPro': { en: 'Pro Plan', id: 'Paket Pro' },
+  'profile.planLifetime': { en: 'Lifetime Plan', id: 'Paket Lifetime' },
+  'profile.notificationsOn': { en: 'On', id: 'Aktif' },
+  'profile.notificationsOff': { en: 'Off', id: 'Nonaktif' },
+  'profile.privacyPublic': { en: 'Public', id: 'Publik' },
+  'profile.privacyPrivate': { en: 'Private', id: 'Privat' },
 
   // Achievements
   'achievement.7DayStreak': { en: '7-Day Streak', id: '7 Hari Beruntun' },
-  'achievement.bookworm': { en: 'Bookworm', id: 'Kutu Buku' },
+  'achievement.bookworm': { en: 'Bookworm', id: 'Rajin Membaca' },
   'achievement.starStudent': { en: 'Star Student', id: 'Siswa Bintang' },
   'achievement.top10': { en: 'Top 10', id: 'Top 10' },
   'achievement.diamond': { en: 'Diamond', id: 'Berlian' },
@@ -582,7 +668,7 @@ export const translations = {
   'gameDifficulty.hardSub': { en: 'C1 – C2', id: 'C1 – C2' },
 
   // ──────────── Latihan (Practice) Page ────────────
-  'latihan.title': { en: 'Practice', id: 'Latihan Soal' },
+  'latihan.title': { en: 'Practice', id: 'Latihan' },
   'latihan.subtitle': { en: 'Sharpen your skills with exercises', id: 'Asah kemampuanmu dengan latihan' },
   'latihan.skillsTitle': { en: 'Skills', id: 'Kemampuan' },
   'latihan.questionTypes': { en: 'Question Types', id: 'Tipe Soal' },
@@ -649,13 +735,20 @@ export const translations = {
   // ──────────── Shared ────────────
   'common.back': { en: 'Back', id: 'Kembali' },
   'common.comingSoon': { en: 'Coming Soon', id: 'Segera Hadir' },
-  'common.comingSoonDesc': { en: 'This feature is being built with love. Stay tuned!', id: 'Fitur ini sedang dibangun dengan penuh cinta. Nantikan ya!' },
+  'common.comingSoonDesc': { en: 'This feature is being prepared. Stay tuned!', id: 'Fitur ini sedang disiapkan. Nantikan ya!' },
   'common.startLearning': { en: 'Start Learning', id: 'Mulai Belajar' },
   'common.play': { en: 'Play', id: 'Main' },
   'common.start': { en: 'Start', id: 'Mulai' },
   'common.completed': { en: 'Completed', id: 'Selesai' },
   'common.locked': { en: 'Locked', id: 'Terkunci' },
   'common.available': { en: 'Available', id: 'Tersedia' },
+  'common.save': { en: 'Save', id: 'Simpan' },
+  'common.cancel': { en: 'Cancel', id: 'Batal' },
+  'common.close': { en: 'Close', id: 'Tutup' },
+  'common.viewAll': { en: 'View all', id: 'Lihat semua' },
+  'common.loading': { en: 'Loading...', id: 'Memuat...' },
+  'common.error': { en: 'Something went wrong', id: 'Terjadi kesalahan' },
+  'common.retry': { en: 'Try again', id: 'Coba lagi' },
 } as const;
 
 export type TranslationKey = keyof typeof translations;

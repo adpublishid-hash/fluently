@@ -6,6 +6,7 @@ import type { ChatMessage } from '../../../types';
 import { useAuth } from '../../../auth/AuthContext';
 import { buildSessionReport } from '../english';
 import type { ReportContext, VocabularyStage } from '../english';
+import type { PronunciationSentenceRow } from '../types';
 import {
   handleGrammarAnswer,
   handlePronunciationAnswer,
@@ -33,6 +34,11 @@ import { normalizeTargetLanguage } from '../targetLanguage';
 import { getSpeechRecognitionLanguage } from '../targetLanguage';
 import { buildLocalizedReport } from '../languageAdapters';
 import { saveRecentChatSession } from '../recentSessions';
+import {
+  canUseFreeChatTopic,
+  getFreeChatTopicBlockMessage,
+  recordFreeChatTopic,
+} from '../freeChatLimits';
 import { useAiReplyQueue } from './useAiReplyQueue';
 
 interface UseChatSessionArgs {
@@ -73,6 +79,16 @@ const getSpeechRecognition = (): SpeechRecognitionConstructor | null => {
   return speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition || null;
 };
 
+const wantsTopicPicker = (text: string) => {
+  const normalized = text.toLowerCase().trim();
+  return (
+    normalized === 'topik' ||
+    normalized.includes('pilih topik') ||
+    normalized.includes('ganti topik') ||
+    normalized.includes('topik baru')
+  );
+};
+
 export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs) => {
   const { user, awardXp } = useAuth();
   const targetLanguage = normalizeTargetLanguage(user?.persona?.targetLanguage);
@@ -85,6 +101,8 @@ export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs
   const [studentName, setStudentName] = useState('');
   const [selectedTopic, setSelectedTopic] = useState('');
   const [completedPracticeWords, setCompletedPracticeWords] = useState<string[]>([]);
+  const [generatedVocabularyWords, setGeneratedVocabularyWords] = useState<string[]>([]);
+  const [generatedPronunciationRows, setGeneratedPronunciationRows] = useState<PronunciationSentenceRow[]>([]);
   const [vocabularyPracticeOffset, setVocabularyPracticeOffset] = useState(0);
   const [pronunciationTurn, setPronunciationTurn] = useState(0);
   const [sessionEnded, setSessionEnded] = useState(false);
@@ -97,6 +115,8 @@ export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs
     studentName,
     selectedTopic,
     completedPracticeWords,
+    generatedVocabularyWords,
+    generatedPronunciationRows,
     vocabularyPracticeOffset,
     pronunciationTurn,
     levelId,
@@ -105,10 +125,21 @@ export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs
     setStudentName,
     setSelectedTopic,
     setCompletedPracticeWords,
+    setGeneratedVocabularyWords,
+    setGeneratedPronunciationRows,
     setVocabularyPracticeOffset,
     setPronunciationTurn,
     setVocabStage,
     sendAiReply,
+  };
+
+  const guardFreeTopicLimit = (topic: string) => {
+    if (!canUseFreeChatTopic(user, topic)) {
+      sendAiReply(getFreeChatTopicBlockMessage(user, topic), 700);
+      return false;
+    }
+    recordFreeChatTopic(user, modeId, topic, levelId);
+    return true;
   };
 
   useEffect(() => {
@@ -132,6 +163,10 @@ export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs
     setMessages(prev => [...prev, createUserMessage(trimmedText)]);
     setInput('');
     resetTextarea();
+
+    if (isGuidedMode && vocabStage === 'ask-topic' && !wantsTopicPicker(trimmedText)) {
+      if (!guardFreeTopicLimit(trimmedText)) return;
+    }
 
     if (isVocabularyMode) {
       handleVocabularyAnswer(trimmedText, vocabStage, flowRuntime);
@@ -243,6 +278,8 @@ export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs
     setStudentName('');
     setSelectedTopic('');
     setCompletedPracticeWords([]);
+    setGeneratedVocabularyWords([]);
+    setGeneratedPronunciationRows([]);
     setVocabularyPracticeOffset(0);
     setPronunciationTurn(0);
     setSessionEnded(false);
@@ -252,31 +289,37 @@ export const useChatSession = ({ modeId, levelId, navigate }: UseChatSessionArgs
 
   const handleTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
+    if (topicValue !== 'custom-topic' && !guardFreeTopicLimit(topicValue)) return;
     selectVocabularyTopic(topicValue, flowRuntime);
   };
 
   const handleGrammarTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
+    if (topicValue !== 'custom-topic' && !guardFreeTopicLimit(topicValue)) return;
     selectGrammarTopic(topicValue, flowRuntime);
   };
 
   const handlePronunciationTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
+    if (topicValue !== 'custom-topic' && !guardFreeTopicLimit(topicValue)) return;
     selectPronunciationTopic(topicValue, flowRuntime);
   };
 
   const handleSpeakingTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
+    if (topicValue !== 'custom-topic' && !guardFreeTopicLimit(topicValue)) return;
     selectSpeakingTopic(topicValue, flowRuntime);
   };
 
   const handleReadingTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
+    if (topicValue !== 'custom-topic' && !guardFreeTopicLimit(topicValue)) return;
     selectReadingTopic(topicValue, flowRuntime);
   };
 
   const handleWritingTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
+    if (topicValue !== 'custom-topic' && !guardFreeTopicLimit(topicValue)) return;
     selectWritingTopic(topicValue, flowRuntime);
   };
 

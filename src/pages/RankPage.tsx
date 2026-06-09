@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Flame, TrendingUp, Crown, Medal, BarChart3, Target, Users, Award, ChevronUp } from 'lucide-react';
+import { Flame, TrendingUp, Crown, Medal, BarChart3, Target, Trophy } from 'lucide-react';
 import PageContainer from '../components/layout/PageContainer';
 import { mockLeaderboard } from '../data/mockData';
 import { useState } from 'react';
@@ -66,10 +66,11 @@ function StatPanel({ period }: { period: 'weekly' | 'monthly' }) {
   const { user } = useAuth();
   const userXp = user?.xp ?? 0;
   const userAvatarUrl = user?.avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user?.displayName || user?.name || 'Learner')}&backgroundColor=b6e3f4`;
-  const weeklyBars = [40, 62, 46, 78, 58, 90, 72];
-  const weeklyXp = [240, 380, 280, 520, 350, 430, 250];
-  const targetToTop5 = Math.max(0, mockLeaderboard[4].user.xp - userXp + 1);
-  const top5Progress = Math.min(100, Math.round((userXp / mockLeaderboard[4].user.xp) * 100));
+  const weeklyBars = [0, 0, 0, 0, 0, 0, 0];
+  const weeklyXp   = [0, 0, 0, 0, 0, 0, 0];
+  const top5Xp = mockLeaderboard[4]?.user.xp ?? 0;
+  const targetToTop5 = Math.max(0, top5Xp - userXp + 1);
+  const top5Progress = top5Xp > 0 ? Math.min(100, Math.round((userXp / top5Xp) * 100)) : 0;
 
   return (
     <div className="hidden lg:block w-[320px] flex-shrink-0 space-y-6">
@@ -116,7 +117,7 @@ function StatPanel({ period }: { period: 'weekly' | 'monthly' }) {
 
       <div className="desktop-card p-6 overflow-hidden">
         <h3 className="font-extrabold text-lg text-text-primary mb-1 flex items-center gap-2">
-          <BarChart3 size={20} className="text-blue-500" /> {period === 'weekly' ? t('rank.weeklyProgress') : 'Monthly Momentum'}
+          <BarChart3 size={20} className="text-blue-500" /> {period === 'weekly' ? t('rank.weeklyProgress') : t('rank.monthlyMomentum')}
         </h3>
         <p className="mb-4 text-xs font-semibold text-text-muted">XP activity across the selected period.</p>
         <div className="h-44 flex items-end justify-between gap-2 rounded-2xl bg-gray-50 px-4 pb-4 pt-5">
@@ -168,7 +169,6 @@ export default function RankPage() {
   const top3 = visibleLeaderboard.slice(0, 3);
   const rest = visibleLeaderboard.slice(3);
   const maxXp = top3[0]?.user.xp || 1;
-  const totalPlayers = 12840;
   const userEntry = visibleLeaderboard.find((entry) => entry.isCurrentUser);
 
   return (
@@ -202,24 +202,16 @@ export default function RankPage() {
             </div>
           </div>
 
-          <div className="mx-5 mb-6 grid grid-cols-3 gap-3 md:mx-0">
-            <div className="rounded-2xl border border-primary/10 bg-primary/5 p-4">
-              <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-primary shadow-sm"><Users size={18} /></div>
-              <p className="text-lg font-black text-text-primary">{totalPlayers.toLocaleString()}</p>
-              <p className="text-[11px] font-bold text-text-muted">Learners</p>
+          {visibleLeaderboard.length === 0 ? (
+            <div className="mx-5 md:mx-0 rounded-[26px] border border-dashed border-gray-200 bg-white p-10 text-center">
+              <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50">
+                <Trophy size={24} className="text-gray-300" />
+              </div>
+              <p className="font-bold text-text-secondary">Leaderboard belum tersedia</p>
+              <p className="mt-1 text-sm text-text-muted">Mulai belajar untuk muncul di papan peringkat.</p>
             </div>
-            <div className="rounded-2xl border border-amber-100 bg-amber-50 p-4">
-              <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-amber-500 shadow-sm"><Award size={18} /></div>
-              <p className="text-lg font-black text-text-primary">Diamond</p>
-              <p className="text-[11px] font-bold text-text-muted">League</p>
-            </div>
-            <div className="rounded-2xl border border-emerald-100 bg-emerald-50 p-4">
-              <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-xl bg-white text-emerald-500 shadow-sm"><ChevronUp size={18} /></div>
-              <p className="text-lg font-black text-text-primary">+3</p>
-              <p className="text-[11px] font-bold text-text-muted">Ranks</p>
-            </div>
-          </div>
-
+          ) : (
+          <>
           {/* Podium */}
           <div className="mx-5 mb-6 rounded-[30px] border border-primary/10 bg-gradient-to-b from-sky-50 to-white px-4 pt-6 shadow-sm md:mx-0 md:px-8">
             <div className="mb-5 flex items-center justify-between gap-3">
@@ -285,6 +277,8 @@ export default function RankPage() {
               </motion.div>
             ))}
           </div>
+          </>
+          )}
 
           {/* Mobile Your Stats (hidden on LG where sidebar exists) */}
           <motion.div

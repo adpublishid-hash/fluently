@@ -1,24 +1,25 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Clock, Flame, Trophy } from 'lucide-react';
 import { mockLeaderboard } from '../../data/mockData';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { formatRecentChatTime, getRecentChatRoute, getRecentChatSessions } from '../../features/chat/recentSessions';
 import { useAuth } from '../../auth/AuthContext';
+import { FOCUS_SESSION_EVENT, getFocusSessions, getTodayFocusMinutes, type FocusSession } from '../../utils/focusTimer';
 
-const chatHistory = [
-  { id: 1, title: 'Business Meeting Phrases', time: 'Today', mode: 'Free Chat', modeId: 'vocabulary' },
-  { id: 2, title: 'Ordering Coffee Practice', time: 'Yesterday', mode: 'Speaking', modeId: 'speaking' },
-  { id: 3, title: 'Past Tense Corrections', time: '2 days ago', mode: 'Grammar', modeId: 'grammar' },
-  { id: 4, title: 'Travel Vocabulary Quiz', time: 'Last week', mode: 'Vocabulary', modeId: 'vocabulary' },
-];
+const chatHistory: { id: number; title: string; time: string; mode: string; modeId: string }[] = [];
 
 /* ──────────────────────────────────────────────
    Today's Goal Widget
    ────────────────────────────────────────────── */
 
+const DAILY_XP_GOAL = 50;
+
 function TodaysGoal() {
-  const currentXP = 42;
-  const goalXP = 50;
+  const { user } = useAuth();
+  const totalXP = user?.xp ?? 0;
+  const currentXP = totalXP % DAILY_XP_GOAL; // resets each goal cycle
+  const goalXP = DAILY_XP_GOAL;
   const progress = (currentXP / goalXP) * 100;
   const size = 100;
   const stroke = 8;
@@ -67,7 +68,7 @@ function TodaysGoal() {
           <p className="text-[18px] font-extrabold text-[#1A1A2E] tracking-tight">
             {currentXP} / {goalXP} <span className="text-[13px] font-bold text-[#4FA3D1]">XP</span>
           </p>
-          <p className="text-[11px] text-[#9CA3AF] font-normal mt-0.5">Almost there!</p>
+          <p className="text-[11px] text-[#9CA3AF] font-normal mt-0.5">{currentXP >= goalXP ? 'Goal complete!' : 'Keep going'}</p>
         </div>
       </div>
     </div>
@@ -106,6 +107,9 @@ function TopLearners() {
       </div>
 
       <div className="space-y-3">
+        {top3.length === 0 && (
+          <p className="text-[11px] text-[#9CA3AF] py-2">Belum ada peringkat. Mulai belajar!</p>
+        )}
         {top3.map((entry) => (
           <motion.div
             key={entry.rank}
@@ -158,12 +162,40 @@ function ActivityHeatmap() {
   const { user } = useAuth();
   const streak = user?.streak ?? 0;
   const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const [focusSessions, setFocusSessions] = useState<FocusSession[]>(getFocusSessions);
+  const todayFocus = getTodayFocusMinutes(focusSessions);
 
-  // Generate 2 weeks of mock activity (14 cells)
-  const activityData = [
-    [3, 4, 5, 2, 4, 0, 1],
-    [5, 3, 2, 4, 0, 3, 4],
-  ];
+  useEffect(() => {
+    const refresh = () => setFocusSessions(getFocusSessions());
+    window.addEventListener(FOCUS_SESSION_EVENT, refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener(FOCUS_SESSION_EVENT, refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
+
+  const activityData = [0, 1].map((weekOffset) => (
+    days.map((_, dayIndex) => {
+      const target = new Date();
+      const daysBack = (1 - weekOffset) * 7 + (6 - dayIndex);
+      target.setDate(target.getDate() - daysBack);
+      target.setHours(0, 0, 0, 0);
+      const start = target.getTime();
+      const end = start + 24 * 60 * 60 * 1000;
+      const minutes = focusSessions
+        .filter((session) => {
+          const time = new Date(session.completedAt).getTime();
+          return time >= start && time < end;
+        })
+        .reduce((sum, session) => sum + session.minutes, 0);
+      if (minutes >= 50) return 4;
+      if (minutes >= 25) return 3;
+      if (minutes >= 10) return 2;
+      if (minutes > 0) return 1;
+      return 0;
+    })
+  ));
 
   const getColor = (level: number) => {
     if (level === 0) return '#F3F4F6';
@@ -183,7 +215,7 @@ function ActivityHeatmap() {
         </div>
         <div className="flex items-center gap-1 bg-[#FEF3C7] rounded-full px-2 py-0.5">
           <Flame size={12} className="text-[#F59E0B]" />
-          <span className="text-[10px] font-bold text-[#F59E0B]">{streak}</span>
+          <span className="text-[10px] font-bold text-[#F59E0B]">{todayFocus || streak}</span>
         </div>
       </div>
 

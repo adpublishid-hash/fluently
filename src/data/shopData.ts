@@ -85,7 +85,7 @@ export const products: Product[] = [
     type: 'ecourse',
     category: 'intermediate',
     title: 'Speak English Fluently in 60 Days',
-    author: 'Karina Liu',
+    author: 'Talky Editorial Team',
     description:
       'Daily speaking drills, pronunciation labs, and AI-powered feedback. Build confidence with real conversation scenarios.',
     cover: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=70&auto=format',
