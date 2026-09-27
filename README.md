@@ -2,13 +2,19 @@
 
 ## Local validation
 
-Run these before deploying:
+Run these before deploying (CI runs the same checks on every pull request):
 
 ```bash
 npm run typecheck
 npm run lint
+npm test                 # Vitest: content audit gate, quiz/SRS/game/progress unit tests
 npm run build
+npm --prefix server test # node:test for the server XP policy
+npm run content:audit    # per language/level report: invalid questions, duplicates, answer bias
 ```
+
+With the API running against Postgres, `npm --prefix server run smoke` exercises
+registration, XP rules and progress sync end to end.
 
 Frontend output is generated in `dist/`. The API server is in `server/` and starts with:
 
@@ -27,6 +33,9 @@ Copy `server/.env.example` to your hosting provider's environment variables and 
 - `QRIS_IMAGE_URL`: public QRIS image URL.
 - `SMTP_*`: email sending credentials.
 - `ONESENDER_*`: WhatsApp notification credentials.
+- `JWT_SECRET`: long random secret for session tokens.
+- `FREE_GEMINI_API_KEY` / `GEMINI_API_KEY`, `GEMINI_MODEL`, `AI_ALLOWED_MODELS`: AI features (disabled when unset).
+- `DAILY_XP_CAP`: maximum XP a user can earn per UTC day (default 3000).
 
 Do not commit real `.env` values or API keys.
 
