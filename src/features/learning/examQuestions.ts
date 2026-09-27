@@ -1,7 +1,7 @@
 import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, type ChoiceQuestion } from '../../utils/quiz';
 import { getLevelCloze, getLevelPatterns, getLevelSentences, getLevelWords, type StudyLanguage } from './studyBank';
 
-export type ExamSection = 'Kosakata' | 'Membaca' | 'Tata bahasa';
+export type ExamSection = 'Kosakata' | 'Membaca' | 'Tata bahasa' | 'Menyimak';
 export type ExamQuestion = ChoiceQuestion & { section: ExamSection; level: string };
 export type ExamPlan = { vocabulary: number; reading: number; grammar: number };
 
