@@ -7,6 +7,8 @@ import { useAuth } from '../../auth/AuthContext';
 import { getRubricLevels, isRubricLanguage, rubricCriteria, rubricLevelId, type RubricLanguage, type RubricSkill } from '../../features/rubrics';
 import { studyLanguageFor, studyLanguageLabel, studyLevelIndex, getStudyLevels, studySpeechLang } from '../../features/learning/studyLanguages';
 import { speak } from '../../utils/speech';
+import { aiFetch } from '../../services/aiClient';
+import AiQuotaBadge from '../../components/shared/AiQuotaBadge';
 
 type Assessment = {
   scores: Record<string, number>;
@@ -40,7 +42,7 @@ export default function AssessmentPage() {
   const navigate = useNavigate();
   const params = useParams();
   const [search] = useSearchParams();
-  const { user, authHeaders, awardXp } = useAuth();
+  const { user, awardXp } = useAuth();
   const preferred = studyLanguageFor(user?.persona?.targetLanguage);
   const language: RubricLanguage = isRubricLanguage(params.language) ? params.language : preferred;
   const levels = getRubricLevels(language);
@@ -96,11 +98,7 @@ export default function AssessmentPage() {
     setResult(null);
     setXpNote('');
     try {
-      const response = await fetch('/api/ai/assess', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', ...authHeaders() },
-        body: JSON.stringify({ language, levelId: level.id, skill, answer }),
-      });
+      const response = await aiFetch('/api/ai/assess', { language, levelId: level.id, skill, answer });
       const data = await response.json().catch(() => null);
       if (!response.ok || !data?.scores) throw new Error(data?.error || 'Penilaian AI belum tersedia. Coba lagi nanti.');
       setResult(data as Assessment);
@@ -121,6 +119,7 @@ export default function AssessmentPage() {
     <PageContainer>
       <div className="mx-auto max-w-2xl space-y-4 px-5 pb-28 md:px-0 md:pb-10">
         <PageHeader title="Penilaian AI" subtitle={`${studyLanguageLabel[language]} · rubrik per level`} onBack={() => navigate(-1)} />
+        <AiQuotaBadge />
 
         <section className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
           <div className="grid grid-cols-2 gap-2">

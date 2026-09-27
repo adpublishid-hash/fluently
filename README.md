@@ -52,7 +52,10 @@ Copy `server/.env.example` to your hosting provider's environment variables and 
 - `SMTP_*`: email sending credentials.
 - `ONESENDER_*`: WhatsApp notification credentials.
 - `JWT_SECRET`: long random secret for session tokens.
-- `FREE_GEMINI_API_KEY` / `GEMINI_API_KEY`, `GEMINI_MODEL`, `AI_ALLOWED_MODELS`: AI features (disabled when unset).
+- `KIE_API_KEY`, `KIE_MODEL` (default `gemini-3-8-flash`), `KIE_BASE_URL`: server-paid AI via Kie AI.
+- `AI_DAILY_QUOTA_FREE` / `_PRO` / `_LIFETIME`: AI requests per user per day on the server key (reset 00:00 WIB).
+  When the quota is used up, learners can add their own free Google AI Studio key in the app; it is sent per
+  request (`X-Gemini-Key`), used with `BYOK_GEMINI_MODEL`, and never stored on the server.
 - `DAILY_XP_CAP`: maximum XP a user can earn per UTC day (default 3000).
 
 Do not commit real `.env` values or API keys.

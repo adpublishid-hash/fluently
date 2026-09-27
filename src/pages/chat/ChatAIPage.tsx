@@ -11,6 +11,7 @@ import { getLocalizedModeCopy } from '../../features/chat/languageAdapters';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
 import { hasUsableChatAiAccess } from '../../services/aiKeyService';
+import AiQuotaBadge from '../../components/shared/AiQuotaBadge';
 
 const fallbackRecentChats: { id: number; title: string; mode: string; modeId: string; time: string; color: string }[] = [];
 
@@ -169,6 +170,8 @@ export default function ChatAIPage() {
             })}
           </motion.div>
         </motion.div>
+
+        <AiQuotaBadge className="mx-5 mt-4 md:mx-0" />
 
         {isArabicChat && (
           <motion.section

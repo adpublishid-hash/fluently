@@ -1,4 +1,4 @@
-import { getAuthHeaders, getChatAiModel, getRequestChatAiApiKey, getCurrentUserPlan } from '../../../services/aiKeyService';
+import { aiFetch } from '../../../services/aiClient';
 
 export type VocabularyCorrectionResult = {
   feedback: string;
@@ -41,15 +41,8 @@ export async function requestVocabularyLesson({
   topic,
   levelId,
 }: VocabularyLessonRequest): Promise<VocabularyLessonResult | null> {
-  const plan = getCurrentUserPlan();
-  const apiKey = getRequestChatAiApiKey(plan);
-
   try {
-    const response = await fetch('/api/ai/vocabulary-lesson', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
-      body: JSON.stringify({ name, topic, levelId, apiKey, model: getChatAiModel(), plan }),
-    });
+    const response = await aiFetch('/api/ai/vocabulary-lesson', { name, topic, levelId });
 
     if (!response.ok) return null;
     const data = await response.json();
@@ -111,15 +104,8 @@ export async function requestVocabularyCorrection({
   topic,
   levelId,
 }: VocabularyCorrectionRequest): Promise<VocabularyCorrectionResult | null> {
-  const plan = getCurrentUserPlan();
-  const apiKey = getRequestChatAiApiKey(plan);
-
   try {
-    const response = await fetch('/api/ai/vocabulary-correction', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
-      body: JSON.stringify({ name, answer, targetWords, topic, levelId, apiKey, model: getChatAiModel(), plan }),
-    });
+    const response = await aiFetch('/api/ai/vocabulary-correction', { name, answer, targetWords, topic, levelId });
 
     if (!response.ok) return null;
     const data = await response.json();

@@ -112,6 +112,16 @@ async function ensureSchema() {
   await pool.query('create unique index if not exists ai_chat_daily_topics_user_date_uidx on ai_chat_daily_topics (user_key, topic_date)');
 
   await pool.query(`
+    create table if not exists ai_usage_daily (
+      user_id integer not null references users(id) on delete cascade,
+      usage_date text not null,
+      used integer not null default 0,
+      updated_at timestamptz not null default now(),
+      primary key (user_id, usage_date)
+    )
+  `);
+
+  await pool.query(`
     create table if not exists xp_events (
       id bigserial primary key,
       user_id integer not null references users(id) on delete cascade,

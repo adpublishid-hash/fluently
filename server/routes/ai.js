@@ -1,15 +1,12 @@
-const { FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_GEMINI_BASE_URL } = require('../config');
+const { BYOK_GEMINI_MODEL, FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_API_KEY, KIE_GEMINI_BASE_URL, KIE_MODEL } = require('../config');
 const { pool } = require('../db');
 const { getServerEffectivePlan } = require('../lib/domain');
 const { requireAuth } = require('../middleware/auth');
 const { aiLimiter } = require('../middleware/rateLimits');
 const { buildAssessmentPrompt, findRubric, normalizeAssessment } = require('../lib/rubricAssessment');
+const { callGoogle, callKie, isStudioKey, verifyStudioKey } = require('../lib/aiProvider');
+const { consumeQuota, getQuota, refundQuota } = require('../lib/aiQuota');
 
-const ALLOWED_AI_MODELS = new Set(
-  [GEMINI_MODEL, 'gemini-2.5-flash', 'gemini-2.5-flash-lite', ...(process.env.AI_ALLOWED_MODELS || '').split(',')]
-    .map((item) => item.trim())
-    .filter(Boolean),
-);
 
 module.exports = function register(app) {
   function todayJakartaKey() {
@@ -101,61 +98,95 @@ module.exports = function register(app) {
     }
   }
 
-  function resolveAiAccess(req, res) {
-    // Only allow known models so clients cannot switch the shared key to a pricier one.
-    const requestedModel = String(req.body?.model || GEMINI_MODEL).trim();
-    const model = ALLOWED_AI_MODELS.has(requestedModel) ? requestedModel : GEMINI_MODEL;
+  // Server key: Kie AI unless a plain Google key is configured instead.
+  function serverProvider() {
+    if (KIE_API_KEY) return { provider: 'kie', apiKey: KIE_API_KEY, model: KIE_MODEL };
     const apiKey = FREE_GEMINI_API_KEY || GEMINI_API_KEY;
+    if (!apiKey) return null;
+    const kie = String(process.env.GEMINI_PROVIDER || '').toLowerCase() === 'kie' || /^[a-f0-9]{32}$/i.test(apiKey.trim());
+    return kie ? { provider: 'kie', apiKey, model: KIE_MODEL } : { provider: 'google', apiKey, model: GEMINI_MODEL };
+  }
 
-    if (!apiKey) {
-      res.status(503).json({ error: 'Default Gemini API key is not configured.' });
+  function userStudioKey(req) {
+    const key = String(req.get('x-gemini-key') || '').trim();
+    return isStudioKey(key) ? key : null;
+  }
+
+  /**
+   * Picks who pays for this request: the server key while the learner's daily
+   * quota lasts, then the learner's own AI Studio key (X-Gemini-Key header).
+   * Responds and returns null when neither is available.
+   */
+  async function resolveAiAccess(req, res) {
+    const server = serverProvider();
+    const plan = getServerEffectivePlan(req.user);
+    if (server && req.user?.id) {
+      const used = await consumeQuota(pool, req.user.id, plan);
+      if (used !== null) {
+        return { ...server, source: 'quota', refund: () => refundQuota(pool, req.user.id) };
+      }
+    }
+    const ownKey = userStudioKey(req);
+    if (ownKey) return { provider: 'google', apiKey: ownKey, model: BYOK_GEMINI_MODEL, source: 'byok' };
+
+    if (!server) {
+      res.status(503).json({ error: 'AI server belum dikonfigurasi. Masukkan API key Google AI Studio kamu.', code: 'AI_KEY_REQUIRED' });
       return null;
     }
-
-    return { apiKey, model, plan: 'default' };
-  }
-
-  function shouldUseKieGemini(apiKey) {
-    const provider = String(process.env.GEMINI_PROVIDER || '').toLowerCase();
-    return provider === 'kie' || /^[a-f0-9]{32}$/i.test(String(apiKey || '').trim());
-  }
-
-  async function callGeminiJson({ apiKey, model, prompt, temperature, maxOutputTokens }) {
-    if (shouldUseKieGemini(apiKey)) {
-      const res = await fetch(`${KIE_GEMINI_BASE_URL.replace(/\/$/, '')}/gemini-2.5-flash/v1/chat/completions`, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: model || 'gemini-2.5-flash',
-          messages: [{ role: 'user', content: prompt }],
-          temperature,
-          max_tokens: maxOutputTokens,
-        }),
-      });
-      const data = await res.json().catch(() => null);
-      const text = data?.choices?.[0]?.message?.content || '';
-      return { ok: res.ok, status: res.status, data, text };
-    }
-
-    const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature,
-          maxOutputTokens,
-          responseMimeType: 'application/json',
-        },
-      }),
+    const quota = await getQuota(pool, req.user.id, plan);
+    res.status(429).json({
+      error: `Kuota AI harian kamu (${quota.limit}x) sudah habis. Masukkan API key gratis dari Google AI Studio untuk lanjut, atau tunggu reset jam 00.00 WIB.`,
+      code: 'AI_QUOTA_EXCEEDED',
+      quota,
     });
-    const data = await res.json().catch(() => null);
-    const text = data?.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('\n') || '';
-    return { ok: res.ok, status: res.status, data, text };
+    return null;
   }
+
+  /** Calls the chosen provider; failed server-quota calls are refunded. */
+  async function callAiJson(access, { prompt, temperature, maxOutputTokens }) {
+    const call = access.provider === 'kie'
+      ? () => callKie({ apiKey: access.apiKey, baseUrl: KIE_GEMINI_BASE_URL, model: access.model, prompt, temperature, maxOutputTokens })
+      : () => callGoogle({ apiKey: access.apiKey, model: access.model, prompt, temperature, maxOutputTokens });
+    try {
+      const result = await call();
+      if (!result.ok && access.refund) await access.refund().catch(() => undefined);
+      return result;
+    } catch (err) {
+      if (access.refund) await access.refund().catch(() => undefined);
+      throw err;
+    }
+  }
+
+  /** Error response for a failed provider call; BYOK problems get their own codes. */
+  function sendAiFailure(res, access, result, message) {
+    if (access.source === 'byok' && [400, 401, 403].includes(result.status)) {
+      return res.status(400).json({ error: 'API key Google AI Studio kamu ditolak. Periksa atau ganti key-nya.', code: 'BYOK_INVALID' });
+    }
+    if (access.source === 'byok' && result.status === 429) {
+      return res.status(429).json({ error: 'Batas gratis Google AI Studio kamu sedang penuh. Coba lagi beberapa menit lagi.', code: 'BYOK_RATE_LIMITED' });
+    }
+    return res.status(502).json({ error: message });
+  }
+
+  app.get('/api/ai/quota', requireAuth, async (req, res) => {
+    const quota = await getQuota(pool, req.user.id, getServerEffectivePlan(req.user));
+    res.json({ ...quota, serverConfigured: Boolean(serverProvider()) });
+  });
+
+  // Validates a learner's AI Studio key before the client saves it. The key is not stored.
+  app.post('/api/ai/byok/verify', aiLimiter, requireAuth, async (req, res) => {
+    const key = String(req.body?.key || '').trim();
+    try {
+      const result = await verifyStudioKey(key);
+      if (result.ok) return res.json({ ok: true, model: BYOK_GEMINI_MODEL });
+      const error = result.reason === 'format'
+        ? 'Format key tidak valid. Key Google AI Studio diawali "AIza" dan panjangnya 39 karakter.'
+        : result.reason === 'rate_limited' ? 'Key valid tapi sedang terkena batas. Coba lagi sebentar.' : 'Key ditolak oleh Google. Pastikan key aktif di AI Studio.';
+      return res.status(400).json({ ok: false, error });
+    } catch {
+      return res.status(502).json({ ok: false, error: 'Tidak bisa menghubungi Google AI Studio.' });
+    }
+  });
 
   // ── AI correction ────────────────────────────────────────
   app.post('/api/ai/vocabulary-lesson', aiLimiter, requireAuth, async (req, res) => {
@@ -165,9 +196,9 @@ module.exports = function register(app) {
     const allowed = await enforceFreeAiChatTopicLimit(req, res, { topic, levelId, mode: 'vocabulary' });
     if (!allowed) return;
 
-    const access = resolveAiAccess(req, res);
+    const access = await resolveAiAccess(req, res);
     if (!access) return;
-    const { apiKey, model } = access;
+    const { model } = access;
 
     const prompt = `You are Fluently AI, an expert English vocabulary curriculum designer for Indonesian learners.
 
@@ -208,10 +239,10 @@ module.exports = function register(app) {
   }`;
 
     try {
-      const geminiData = await callGeminiJson({ apiKey, model, prompt, temperature: 0.35, maxOutputTokens: 5000 });
+      const geminiData = await callAiJson(access, { prompt, temperature: 0.35, maxOutputTokens: 5000 });
       if (!geminiData.ok) {
         console.error('[gemini] vocabulary lesson failed:', geminiData.status, geminiData.data);
-        return res.status(502).json({ error: 'AI vocabulary generation failed.' });
+        return sendAiFailure(res, access, geminiData, 'AI vocabulary generation failed.');
       }
 
       const parsed = extractJsonObject(geminiData.text);
@@ -228,6 +259,7 @@ module.exports = function register(app) {
         .slice(0, 30);
 
       if (cleanRows.length < 20) {
+        await access.refund?.();
         return res.status(502).json({ error: 'AI vocabulary generation returned insufficient rows.' });
       }
 
@@ -245,9 +277,9 @@ module.exports = function register(app) {
     const allowed = await enforceFreeAiChatTopicLimit(req, res, { topic, levelId, mode: 'pronunciation' });
     if (!allowed) return;
 
-    const access = resolveAiAccess(req, res);
+    const access = await resolveAiAccess(req, res);
     if (!access) return;
-    const { apiKey, model } = access;
+    const { model } = access;
 
     const prompt = `You are Fluently AI, an expert English pronunciation coach for Indonesian learners.
 
@@ -285,10 +317,10 @@ module.exports = function register(app) {
   }`;
 
     try {
-      const geminiData = await callGeminiJson({ apiKey, model, prompt, temperature: 0.35, maxOutputTokens: 4200 });
+      const geminiData = await callAiJson(access, { prompt, temperature: 0.35, maxOutputTokens: 4200 });
       if (!geminiData.ok) {
         console.error('[gemini] pronunciation lesson failed:', geminiData.status, geminiData.data);
-        return res.status(502).json({ error: 'AI pronunciation generation failed.' });
+        return sendAiFailure(res, access, geminiData, 'AI pronunciation generation failed.');
       }
 
       const parsed = extractJsonObject(geminiData.text);
@@ -304,6 +336,7 @@ module.exports = function register(app) {
         .slice(0, 15);
 
       if (cleanRows.length < 12) {
+        await access.refund?.();
         return res.status(502).json({ error: 'AI pronunciation generation returned insufficient rows.' });
       }
 
@@ -315,9 +348,6 @@ module.exports = function register(app) {
   });
 
   app.post('/api/ai/pronunciation-feedback', aiLimiter, requireAuth, async (req, res) => {
-    const access = resolveAiAccess(req, res);
-    if (!access) return;
-    const { apiKey, model } = access;
 
     const name = String(req.body?.name || 'teman').trim().slice(0, 40);
     const answer = String(req.body?.answer || '').trim().slice(0, 2000);
@@ -338,6 +368,10 @@ module.exports = function register(app) {
     if (!answer || sentences.length === 0) {
       return res.status(400).json({ error: 'answer and sentences are required.' });
     }
+
+    const access = await resolveAiAccess(req, res);
+    if (!access) return;
+    const { model } = access;
 
     const prompt = `You are Fluently AI, a warm but strict English pronunciation coach for Indonesian learners.
 
@@ -365,14 +399,15 @@ module.exports = function register(app) {
   }`;
 
     try {
-      const geminiData = await callGeminiJson({ apiKey, model, prompt, temperature: 0.25, maxOutputTokens: 1000 });
+      const geminiData = await callAiJson(access, { prompt, temperature: 0.25, maxOutputTokens: 1000 });
       if (!geminiData.ok) {
         console.error('[gemini] pronunciation feedback failed:', geminiData.status, geminiData.data);
-        return res.status(502).json({ error: 'AI pronunciation feedback failed.' });
+        return sendAiFailure(res, access, geminiData, 'AI pronunciation feedback failed.');
       }
 
       const parsed = extractJsonObject(geminiData.text);
       if (!parsed || typeof parsed.feedback !== 'string') {
+        await access.refund?.();
         return res.status(502).json({ error: 'AI pronunciation feedback returned invalid format.' });
       }
 
@@ -394,19 +429,22 @@ module.exports = function register(app) {
     if (!found) return res.status(400).json({ error: 'language, levelId atau skill tidak dikenal.' });
     if (answer.length < 5) return res.status(400).json({ error: 'Jawaban terlalu pendek untuk dinilai.' });
 
-    const access = resolveAiAccess(req, res);
+    const access = await resolveAiAccess(req, res);
     if (!access) return;
-    const { apiKey, model } = access;
+    const { model } = access;
     const prompt = buildAssessmentPrompt({ language, skill, task, answer, ...found });
 
     try {
-      const geminiData = await callGeminiJson({ apiKey, model, prompt, temperature: 0.2, maxOutputTokens: 2000 });
+      const geminiData = await callAiJson(access, { prompt, temperature: 0.2, maxOutputTokens: 2000 });
       if (!geminiData.ok) {
         console.error('[gemini] assessment failed:', geminiData.status, geminiData.data);
-        return res.status(502).json({ error: 'Penilaian AI gagal.' });
+        return sendAiFailure(res, access, geminiData, 'Penilaian AI gagal.');
       }
       const result = normalizeAssessment(extractJsonObject(geminiData.text), found.criteria);
-      if (!result) return res.status(502).json({ error: 'Penilaian AI mengembalikan format tidak valid.' });
+      if (!result) {
+        await access.refund?.();
+        return res.status(502).json({ error: 'Penilaian AI mengembalikan format tidak valid.' });
+      }
       return res.json({ model, ...result });
     } catch (err) {
       console.error('[gemini] assessment error:', err.message);
@@ -415,9 +453,6 @@ module.exports = function register(app) {
   });
 
   app.post('/api/ai/vocabulary-correction', aiLimiter, requireAuth, async (req, res) => {
-    const access = resolveAiAccess(req, res);
-    if (!access) return;
-    const { apiKey, model } = access;
 
     const name = String(req.body?.name || 'teman').trim().slice(0, 40);
     const answer = String(req.body?.answer || '').trim().slice(0, 2000);
@@ -430,6 +465,10 @@ module.exports = function register(app) {
     if (!answer || targetWords.length === 0) {
       return res.status(400).json({ error: 'answer and targetWords are required.' });
     }
+
+    const access = await resolveAiAccess(req, res);
+    if (!access) return;
+    const { model } = access;
 
     const prompt = `You are Fluently AI, a friendly English vocabulary tutor for Indonesian learners.
 
@@ -457,14 +496,15 @@ module.exports = function register(app) {
   }`;
 
     try {
-      const geminiData = await callGeminiJson({ apiKey, model, prompt, temperature: 0.25, maxOutputTokens: 900 });
+      const geminiData = await callAiJson(access, { prompt, temperature: 0.25, maxOutputTokens: 900 });
       if (!geminiData.ok) {
         console.error('[gemini] vocabulary correction failed:', geminiData.status, geminiData.data);
-        return res.status(502).json({ error: 'AI correction failed.' });
+        return sendAiFailure(res, access, geminiData, 'AI correction failed.');
       }
 
       const parsed = extractJsonObject(geminiData.text);
       if (!parsed || typeof parsed.feedback !== 'string' || !Array.isArray(parsed.completedWords)) {
+        await access.refund?.();
         return res.status(502).json({ error: 'AI correction returned invalid format.' });
       }
 

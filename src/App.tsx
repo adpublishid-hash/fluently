@@ -577,6 +577,7 @@ import ComingSoonPage from './pages/ComingSoonPage';
 import { getPremiumBlock } from './utils/accessControl';
 
 import TTSNotice from './components/shared/TTSNotice';
+import AiKeyPrompt from './components/shared/AiKeyPrompt';
 import GlobalFocusTimer from './components/shared/GlobalFocusTimer';
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
@@ -731,6 +732,7 @@ function AppContent() {
   return (
     <div className={`relative min-h-screen bg-transparent ${isExamPage ? '' : 'md:pl-[260px]'}`}>
       <TTSNotice />
+      <AiKeyPrompt />
       {/* Left sidebar: always visible on desktop, hidden on mobile for deep pages */}
       <div className={isExamPage ? 'hidden' : isDeepPage ? 'hidden md:block' : ''}>
         <SidebarNav onLogout={handleLogout} />

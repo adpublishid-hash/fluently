@@ -55,7 +55,12 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_K
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 // Never commit a default key: an unset key disables AI features with a 503.
 const FREE_GEMINI_API_KEY = process.env.FREE_GEMINI_API_KEY || '';
-const KIE_GEMINI_BASE_URL = process.env.KIE_GEMINI_BASE_URL || 'https://api.kie.ai';
+const KIE_GEMINI_BASE_URL = process.env.KIE_BASE_URL || process.env.KIE_GEMINI_BASE_URL || 'https://api.kie.ai';
+// Server-paid AI goes to Kie AI; the model slug is part of the endpoint path.
+const KIE_API_KEY = process.env.KIE_API_KEY || '';
+const KIE_MODEL = process.env.KIE_MODEL || 'gemini-3-8-flash';
+// Model used with a learner's own Google AI Studio key (free tier friendly).
+const BYOK_GEMINI_MODEL = process.env.BYOK_GEMINI_MODEL || 'gemini-2.5-flash';
 const FREE_AI_CHAT_LEVELS = new Set(['A1', 'A2']);
 
 // ── OneSender (WhatsApp) ──────────────────────────────────
@@ -97,6 +102,9 @@ module.exports = {
   GEMINI_MODEL,
   FREE_GEMINI_API_KEY,
   KIE_GEMINI_BASE_URL,
+  KIE_API_KEY,
+  KIE_MODEL,
+  BYOK_GEMINI_MODEL,
   FREE_AI_CHAT_LEVELS,
   ONESENDER_URL,
   ONESENDER_KEY,
