@@ -14,7 +14,6 @@ export default defineConfig([
     '*.js',
     '*.ps1',
     'scripts',
-    'src/pages/ai-kamus',
   ]),
   {
     files: ['**/*.{ts,tsx}'],

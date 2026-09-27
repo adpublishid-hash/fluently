@@ -1,5 +1,6 @@
 import type { ArabicSkillId } from '../arabicModuleData';
 import { hashSeed, shuffleQuestionOptions } from '../../../../utils/quiz';
+import { getFoundationLesson, getFoundationTopic } from '../foundation/arabicFoundationLessons';
 
 export type GeneratedArabicContentLevel = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate' | 'advanced' | 'proficiency' | 'mastery' | 'scholar';
 
@@ -17,44 +18,6 @@ export type GeneratedArabicLesson = {
   practice: Array<{ question: string; options: string[]; answer: string }>;
   task: string;
 };
-
-const beginnerQiraahTopics = [
-  'Huruf dan kata pendek', 'Salam tertulis', 'Nama dan asal', 'Keluarga', 'Sekolah', 'Rumah', 'Waktu harian', 'Angka 1-20', 'Warna dan benda', 'Makanan sederhana',
-  'Pasar kecil', 'Masjid dan tempat umum', 'Cuaca', 'Hobi', 'Transportasi', 'Arah sederhana', 'Kesehatan dasar', 'Pekerjaan', 'Undangan pendek', 'Cerita mini',
-];
-
-const beginnerKitabahTopics = [
-  'Menulis huruf sambung', 'Menyalin kata berharakat', 'Menulis salam', 'Menulis identitas diri', 'Jumlah ismiyyah sederhana', 'Kata tunjuk', 'Dhamir dasar', 'Benda di kelas', 'Keluarga saya', 'Rutinitas pagi',
-  'Kalimat tanya', 'Jawaban ya/tidak', 'Preposisi dasar', 'Deskripsi warna', 'Angka dalam kalimat', 'Pesan pendek', 'Paragraf 3 kalimat', 'Dialog mini', 'Kartu perkenalan', 'Review tulisan pemula',
-];
-
-const beginnerIstimaTopics = [
-  'Membedakan bunyi pendek', 'Salam dan respons', 'Nama orang', 'Asal negara', 'Kata kelas', 'Kata rumah', 'Angka terdengar', 'Warna terdengar', 'Instruksi kelas', 'Makanan dan minuman',
-  'Pertanyaan apa kabar', 'Jam sederhana', 'Lokasi benda', 'Keluarga terdengar', 'Hobi terdengar', 'Arah sederhana', 'Dialog pasar', 'Dialog sekolah', 'Pengumuman pendek', 'Cerita audio mini',
-];
-
-const elementaryQiraahTopics = [
-  'Paragraf perkenalan', 'Kegiatan harian', 'Keluarga dan profesi', 'Sekolah dan jadwal', 'Rumah dan lingkungan', 'Berbelanja', 'Makanan dan restoran', 'Perjalanan kota', 'Arah dan lokasi', 'Kesehatan ringan',
-  'Hobi dan kebiasaan', 'Cuaca dan musim', 'Undangan dan janji', 'Cerita masa lalu sederhana', 'Rencana besok', 'Deskripsi orang', 'Tempat umum', 'Pesan singkat', 'Cerita pengalaman', 'Review bacaan A2',
-];
-
-const elementaryKitabahTopics = [
-  'Paragraf identitas diri', 'Rutinitas harian', 'Email sederhana', 'Deskripsi keluarga', 'Deskripsi rumah', 'Menulis jadwal', 'Catatan belanja', 'Dialog tertulis', 'Instruksi arah', 'Pesan permintaan maaf',
-  'Kalimat lampau sederhana', 'Kalimat rencana', 'Menghubungkan kalimat', 'Deskripsi tempat', 'Pendapat sederhana', 'Cerita 5 kalimat', 'Formulir data diri', 'Undangan pendek', 'Balasan pesan', 'Portfolio tulisan A2',
-];
-
-const elementaryIstimaTopics = [
-  'Dialog perkenalan panjang', 'Rutinitas harian', 'Instruksi kelas', 'Percakapan keluarga', 'Dialog sekolah', 'Dialog rumah', 'Belanja sederhana', 'Pesanan restoran', 'Arah jalan', 'Janji bertemu',
-  'Cuaca harian', 'Hobi dan waktu luang', 'Pengumuman pendek', 'Cerita lampau sederhana', 'Rencana akhir pekan', 'Deskripsi orang', 'Lokasi tempat umum', 'Pesan suara pendek', 'Wawancara mini', 'Review listening A2',
-];
-
-const baseExamples = [
-  { arabic: 'هٰذَا كِتَابٌ.', transliteration: 'Hadha kitabun.', meaning: 'Ini sebuah buku.' },
-  { arabic: 'أَنَا مِنْ إِنْدُونِيسِيَا.', transliteration: 'Ana min Indunisiya.', meaning: 'Saya dari Indonesia.' },
-  { arabic: 'أَيْنَ الْقَلَمُ؟', transliteration: 'Ayna al-qalamu?', meaning: 'Di mana pulpen itu?' },
-  { arabic: 'الْبَيْتُ كَبِيرٌ.', transliteration: 'Al-baytu kabirun.', meaning: 'Rumah itu besar.' },
-  { arabic: 'أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ.', transliteration: 'Uhibbu al-lughata al-arabiyyah.', meaning: 'Saya suka bahasa Arab.' },
-];
 
 const intermediateTopics: Record<ArabicSkillId, string[]> = {
   kalam: [
@@ -519,36 +482,6 @@ const intermediatePatterns: Record<ArabicSkillId, GeneratedArabicLesson['pattern
     { label: 'Qalqalah', arabic: 'قَلْبٌ - يَكْتُبْ', transliteration: 'Qalbun - yaktub.', meaning: 'Pantulkan huruf qalqalah saat sukun/waqaf.' },
   ],
 };
-
-function makePractice(topic: string, lesson: number) {
-  return [
-    {
-      question: `Pilih arti paling tepat untuk kalimat lesson ${lesson}.`,
-      options: ['Ini sebuah buku.', 'Saya pergi ke pasar.', 'Dia sedang tidur.'],
-      answer: 'Ini sebuah buku.',
-    },
-    {
-      question: 'Kata tanya untuk "di mana" dalam bahasa Arab adalah...',
-      options: ['أَيْنَ', 'مَنْ', 'مَتَى'],
-      answer: 'أَيْنَ',
-    },
-    {
-      question: `Topik utama lesson ini adalah ${topic}. Apa strategi belajarnya?`,
-      options: ['Baca/dengar perlahan lalu ulangi', 'Lewati harakat', 'Hafalkan tanpa contoh'],
-      answer: 'Baca/dengar perlahan lalu ulangi',
-    },
-    {
-      question: 'Kalimat "Ana min Indonesia" berarti...',
-      options: ['Saya dari Indonesia.', 'Saya guru.', 'Saya di rumah.'],
-      answer: 'Saya dari Indonesia.',
-    },
-    {
-      question: 'Tanda baca Arab untuk pertanyaan biasanya dipahami dari...',
-      options: ['Kata tanya dan intonasi', 'Warna huruf', 'Jumlah titik saja'],
-      answer: 'Kata tanya dan intonasi',
-    },
-  ];
-}
 
 function makeIntermediatePractice(skillId: ArabicSkillId, topic: string, lesson: number): GeneratedArabicLesson['practice'] {
   const base = [
@@ -1790,11 +1723,7 @@ export function getArabicLessonPreview(skillId: ArabicSkillId, lesson: number, l
   if (level === 'upper-intermediate') return upperIntermediateTopics[skillId][safeLesson - 1] ?? `Review ${skillId} B2`;
   if (level === 'intermediate') return intermediateTopics[skillId][safeLesson - 1] ?? `Review ${skillId} B1`;
 
-  const topics = level === 'elementary'
-    ? skillId === 'qiraah' ? elementaryQiraahTopics : skillId === 'kitabah' ? elementaryKitabahTopics : elementaryIstimaTopics
-    : skillId === 'qiraah' ? beginnerQiraahTopics : skillId === 'kitabah' ? beginnerKitabahTopics : beginnerIstimaTopics;
-
-  return topics[safeLesson - 1] ?? `Lesson ${safeLesson}`;
+  return getFoundationTopic(level === 'elementary' ? 'elementary' : 'beginner', skillId, lesson);
 }
 
 export function getGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel = 'beginner'): GeneratedArabicLesson {
@@ -1933,46 +1862,7 @@ function buildGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, leve
     };
   }
 
-  const topics = level === 'elementary'
-    ? skillId === 'qiraah' ? elementaryQiraahTopics : skillId === 'kitabah' ? elementaryKitabahTopics : elementaryIstimaTopics
-    : skillId === 'qiraah' ? beginnerQiraahTopics : skillId === 'kitabah' ? beginnerKitabahTopics : beginnerIstimaTopics;
-  const topic = topics[safeLesson - 1];
-  const levelTitle = level === 'elementary' ? 'Elementary' : 'Beginner';
-
-  if (skillId === 'qiraah') {
-    return {
-      skillId,
-      title: `Qira'ah ${levelTitle} - Lesson ${safeLesson}`,
-      subtitle: topic,
-      objective: `Membaca teks Arab ${level === 'elementary' ? 'A2' : 'pemula'} tentang ${topic.toLowerCase()} dengan memahami kata kunci, struktur kalimat, dan makna umum.`,
-      focus: ['Kenali kata kunci sebelum membaca teks', 'Baca dari kanan ke kiri dengan jeda alami', 'Cocokkan kalimat Arab dengan arti Indonesia', 'Ulangi teks pendek sampai lancar'],
-      examples: baseExamples,
-      practice: makePractice(topic, safeLesson),
-      task: 'Baca 5 kalimat Arab dengan suara pelan, tandai kata yang sudah dikenal, lalu tulis arti umum tiap kalimat.',
-    };
-  }
-
-  if (skillId === 'kitabah') {
-    return {
-      skillId,
-      title: `Kitabah ${levelTitle} - Lesson ${safeLesson}`,
-      subtitle: topic,
-      objective: `Menulis ${level === 'elementary' ? 'kalimat dan paragraf pendek' : 'kata dan kalimat dasar'} tentang ${topic.toLowerCase()} dengan bentuk huruf, urutan kata, dan harakat yang rapi.`,
-      focus: ['Salin contoh Arab dengan arah kanan ke kiri', 'Perhatikan huruf awal, tengah, akhir', 'Gunakan spasi antar kata', 'Tulis ulang tanpa melihat contoh'],
-      examples: baseExamples,
-      practice: makePractice(topic, safeLesson),
-      task: 'Tulis 5 kalimat pendek Arab, beri transliterasi, lalu cek posisi huruf sambung dan harakatnya.',
-    };
-  }
-
-  return {
-    skillId,
-    title: `Istima' ${levelTitle} - Lesson ${safeLesson}`,
-    subtitle: topic,
-    objective: `Melatih pendengaran Arabic ${level === 'elementary' ? 'A2' : 'pemula'} untuk mengenali bunyi, kata kunci, dan maksud umum dari audio tentang ${topic.toLowerCase()}.`,
-    focus: ['Dengarkan tanpa membaca teks', 'Dengarkan ulang sambil melihat teks Arab', 'Tirukan intonasi dan panjang pendek bunyi', 'Catat 3 kata yang terdengar jelas'],
-    examples: baseExamples,
-    practice: makePractice(topic, safeLesson),
-    task: 'Putar TTS contoh Arab, ulangi 3 kali, lalu jawab makna kalimat tanpa melihat terjemahan.',
-  };
+  // Pemula and elementary lessons come from the authored foundation banks
+  // (per-lesson vocabulary, sentences, nahwu points and makharij drills).
+  return getFoundationLesson(skillId, lesson, level === 'elementary' ? 'elementary' : 'beginner');
 }

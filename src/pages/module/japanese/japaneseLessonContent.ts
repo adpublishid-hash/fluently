@@ -216,6 +216,20 @@ function getGrammarPoint(level: JapaneseLevelId, lessonId: number): JapaneseGram
   };
 }
 
+const topicWords = (text: string) => text.toLowerCase().split(/[^a-z]+/).filter((word) => word.length > 3);
+
+/**
+ * Vocabulary lesson n uses theme n. Other skills use the vocabulary theme whose
+ * title shares a keyword with the lesson topic, falling back to lesson order.
+ */
+function vocabularyThemeFor(level: JapaneseLevelId, skill: JapaneseSkillId, lessonId: number, topic: string): number {
+  if (skill === 'vocabulary') return lessonId;
+  const keywords = topicWords(topic);
+  const themes = levelTopics[level].vocabulary;
+  const match = themes.findIndex((theme, index) => index < themes.length - 1 && topicWords(theme).some((word) => keywords.includes(word)));
+  return match >= 0 ? match + 1 : lessonId;
+}
+
 function buildDialogue(point: JapaneseGrammarPoint, word: JapaneseWord): JapaneseLesson['dialogue'] {
   const [first, second] = point.examples;
   return [
@@ -289,7 +303,7 @@ export function getJapaneseLesson(skill: JapaneseSkillId, lessonId: number, leve
   const levelInfo = japaneseLevels[level];
   const title = `${levelInfo.badge} ${skillTitle[skill]}: ${topic}`;
   const point = getGrammarPoint(level, lessonId);
-  const words = getJapaneseVocabularySet(level, lessonId);
+  const words = getJapaneseVocabularySet(level, vocabularyThemeFor(level, skill, lessonId, topic));
   const signature = levelPattern[level][(lessonId - 1) % levelPattern[level].length];
   const [first, second] = point.examples;
 

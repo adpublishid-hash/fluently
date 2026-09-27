@@ -21,6 +21,11 @@ export type LevelAudit = {
   uniqueQuestionRatio: number;
 };
 
+// Option order is shuffled per lesson, so compare questions with sorted options.
+function practiceKey(practice: AuditQuestion[]) {
+  return practice.map((item) => [item.question, item.answer, [...item.options].sort()]);
+}
+
 function arabicContentLevel(level: ArabicLevelId): GeneratedArabicContentLevel {
   return level === 'pemula' ? 'beginner' : level;
 }
@@ -37,7 +42,7 @@ export function collectLessons(): Array<{ language: string; level: string; lesso
           key: `${skill}/${lesson}`,
           title: data.title,
           practice: data.practice,
-          fingerprint: JSON.stringify([data.title, data.vocabulary, data.examples, data.practice]),
+          fingerprint: JSON.stringify([data.title, data.vocabulary, data.examples, practiceKey(data.practice)]),
         });
       }
     });
@@ -53,7 +58,7 @@ export function collectLessons(): Array<{ language: string; level: string; lesso
           key: `${skill}/${lesson}`,
           title: data.title,
           practice: data.practice,
-          fingerprint: JSON.stringify([data.title, data.subtitle, data.vocabulary, data.examples, data.practice]),
+          fingerprint: JSON.stringify([data.title, data.subtitle, data.vocabulary, data.examples, practiceKey(data.practice)]),
         });
       }
     });
@@ -69,7 +74,7 @@ export function collectLessons(): Array<{ language: string; level: string; lesso
           key: `${skill}/${lesson}`,
           title: data.title,
           practice: data.practice,
-          fingerprint: JSON.stringify([data.title, data.subtitle, data.vocabulary, data.examples, data.practice]),
+          fingerprint: JSON.stringify([data.title, data.subtitle, data.vocabulary, data.examples, practiceKey(data.practice)]),
         });
       }
     });
