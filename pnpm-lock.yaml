@@ -11,6 +11,9 @@ importers:
       framer-motion:
         specifier: ^12.38.0
         version: 12.40.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
+      hanzi-writer:
+        specifier: ^3.7.3
+        version: 3.7.3
       jspdf:
         specifier: ^4.2.1
         version: 4.2.1
@@ -1163,6 +1166,9 @@ packages:
   globals@17.6.0:
     resolution: {integrity: sha512-sepffkT8stwnIYbsMBpoCHJuJM5l98FUF2AnE07hfvE0m/qp3R586hw4jF4uadbhvg1ooIdzuu7CsfD2jzCaNA==}
     engines: {node: '>=18'}
+
+  hanzi-writer@3.7.3:
+    resolution: {integrity: sha512-fdOFrb1cXWL/pV/oplJkcdziCvjJzhhf+qoIBm5IpVGxPBZEu4eLB6ZG5RJDbKXyNbNlyx8oIpa3XrcUBcSXpg==}
 
   has-flag@4.0.0:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
@@ -2891,6 +2897,8 @@ snapshots:
   globals@14.0.0: {}
 
   globals@17.6.0: {}
+
+  hanzi-writer@3.7.3: {}
 
   has-flag@4.0.0: {}
 

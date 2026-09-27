@@ -5,6 +5,7 @@ import { getMandarinLesson } from './mandarinLessonContent';
 import { isMandarinSkill, mandarinLessonCounts, mandarinLevels, mandarinSkills, normalizeMandarinLevel, type MandarinSkillId } from './mandarinModuleData';
 import { useAuth } from '../../../auth/AuthContext';
 import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
+import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
@@ -186,6 +187,9 @@ export default function MandarinLessonPage() {
               ))}
             </div>
           </div>
+          {(skillId === 'writing' || skillId === 'vocabulary' || skillId === 'reading') && (
+            <StrokeOrderPanel text={lesson.vocabulary.map((word) => word.hanzi).join('')} color={skill.color} lang="zh-CN" />
+          )}
         </section>
 
         <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">

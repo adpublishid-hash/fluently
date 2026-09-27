@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
+    "hanzi-writer": "^3.7.3",
     "jspdf": "^4.2.1",
     "lucide-react": "^1.7.0",
     "motion-dom": "^12.38.0",
