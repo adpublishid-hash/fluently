@@ -294,6 +294,10 @@ function buildSkillExplanation(skill: JapaneseSkillId, topic: string, level: Jap
   return map[skill];
 }
 
+export function getJapaneseTopicList(level: JapaneseLevelId, skill: JapaneseSkillId): string[] {
+  return levelTopics[level][skill];
+}
+
 export function getJapaneseLessonPreview(skill: JapaneseSkillId, lessonId: number, level: JapaneseLevelId) {
   return `${japaneseLevels[level].badge} ${skillTitle[skill]} - ${levelTopics[level][skill][lessonId - 1] ?? 'review'}`;
 }

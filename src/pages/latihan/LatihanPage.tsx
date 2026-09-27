@@ -22,6 +22,8 @@ import { useAuth } from '../../auth/AuthContext';
 import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
 import { arabicLessonCounts, arabicSkills, type ArabicLevelId, type ArabicSkillId } from '../module/arabic/arabicModuleData';
 import { mandarinLessonCounts, mandarinSkills, type MandarinLevelId, type MandarinSkillId } from '../module/mandarin/mandarinModuleData';
+import { japaneseLevels, japaneseSkills } from '../module/japanese/japaneseModuleData';
+import { japanesePracticeLevel } from './japanese/JapanesePracticePage';
 
 type GameStats = {
   xp: number;
@@ -104,6 +106,15 @@ function readMandarinCompleted(levelId: MandarinLevelId, skillId: MandarinSkillI
   }
 }
 
+function readJapanesePracticeScores(): Record<string, number> {
+  try {
+    const parsed = JSON.parse(localStorage.getItem('fluently_japanese_practice_scores_v1') || '{}');
+    return parsed && typeof parsed === 'object' ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
 function getArabicPracticeLevel(level?: string): ArabicLevelId {
   const value = (level || '').toLowerCase();
   if (value.includes('scholar') || value.includes('research')) return 'scholar';
@@ -161,6 +172,8 @@ export default function LatihanPage() {
   const targetLanguage = normalizeTargetLanguage(user?.persona?.targetLanguage);
   const isArabicPractice = targetLanguage === 'Arabic';
   const isMandarinPractice = targetLanguage === 'Mandarin';
+  const isJapanesePractice = targetLanguage === 'Japanese';
+  const japaneseLevelId = japanesePracticeLevel(user?.persona?.level);
   const arabicLevelId = getArabicPracticeLevel(user?.persona?.level);
   const arabicRouteLevel = getArabicRouteLevel(arabicLevelId);
   const mandarinLevelId = getMandarinPracticeLevel(user?.persona?.level);
@@ -332,7 +345,29 @@ export default function LatihanPage() {
       },
     ];
   }, [mandarinLevelId]);
-  const practiceCards = isArabicPractice ? arabicPracticeCards : isMandarinPractice ? mandarinPracticeCards : practiceSkillCards;
+  const japanesePracticeCards = useMemo<PracticeSkillCard[]>(() => {
+    const scores = readJapanesePracticeScores();
+    return japaneseSkills.map((skill) => {
+      const mastered = Object.entries(scores).filter(([key, value]) => key.startsWith(`${japaneseLevelId}/${skill.id}/`) && value >= 80).length;
+      return {
+        id: `japanese-${skill.id}`,
+        title: skill.label,
+        detail: skill.sublabel,
+        iconUrl: skill.icon,
+        color: skill.color,
+        bg: skill.bgColor,
+        route: `/latihan/japanese/${skill.id}?level=${japaneseLevelId}`,
+        progress: Math.round((mastered / 20) * 100),
+      };
+    });
+  }, [japaneseLevelId]);
+  const practiceCards = isArabicPractice
+    ? arabicPracticeCards
+    : isMandarinPractice
+      ? mandarinPracticeCards
+      : isJapanesePractice
+        ? japanesePracticeCards
+        : practiceSkillCards;
   const getSkillProgress = (skillId: string, fallback: number) => {
     const attempts = practiceHistory.filter((attempt) => attempt.skillId === skillId).slice(0, 5);
     if (!attempts.length) return fallback;
@@ -344,12 +379,14 @@ export default function LatihanPage() {
     return map;
   }, {});
 
-  const heroBadge = isArabicPractice ? 'Arabic Practice' : isMandarinPractice ? 'Mandarin Practice' : 'Fluently Practice';
-  const heroTitle = isArabicPractice ? 'Arabic Practice' : isMandarinPractice ? 'Mandarin Practice' : t('latihan.title');
+  const heroBadge = isArabicPractice ? 'Arabic Practice' : isMandarinPractice ? 'Mandarin Practice' : isJapanesePractice ? 'Japanese Practice' : 'Fluently Practice';
+  const heroTitle = isArabicPractice ? 'Arabic Practice' : isMandarinPractice ? 'Mandarin Practice' : isJapanesePractice ? 'Japanese Practice' : t('latihan.title');
   const heroDescription = isArabicPractice
     ? "Latihan Arab singkat untuk mufradat, istima', qira'ah, kitabah, kalam, nahwu, dan pronunciation sesuai progres modulmu."
     : isMandarinPractice
       ? 'Latihan Mandarin singkat untuk Cíhuì, Yǔfǎ, Xiězuò, Yuèdú, Tīnglì, Kǒuyǔ, Pīnyīn, tone, dan shadowing sesuai progres modulmu.'
+    : isJapanesePractice
+      ? `Latihan Jepang ${japaneseLevels[japaneseLevelId].badge}: kosakata, grammar, membaca, menulis, listening dengan audio, speaking, dan pelafalan.`
     : 'Latihan singkat untuk menjaga ritme belajar, memperkuat skill lemah, dan lanjut dari progres profilmu.';
   const statCards = isArabicPractice
     ? [
@@ -456,8 +493,8 @@ export default function LatihanPage() {
         <div className="mt-8">
           <section>
             <SectionHeader
-              title={isArabicPractice ? 'Arabic Skill Practice' : isMandarinPractice ? 'Mandarin Skill Practice' : 'Skill Practice'}
-              subtitle={isArabicPractice ? 'Pilih skill Arabic yang ingin kamu latih.' : isMandarinPractice ? 'Pilih skill Mandarin yang sudah dipisah agar latihan tetap fokus per topik.' : 'Pilih skill yang ingin kamu latih.'}
+              title={isArabicPractice ? 'Arabic Skill Practice' : isMandarinPractice ? 'Mandarin Skill Practice' : isJapanesePractice ? 'Japanese Skill Practice' : 'Skill Practice'}
+              subtitle={isArabicPractice ? 'Pilih skill Arabic yang ingin kamu latih.' : isMandarinPractice ? 'Pilih skill Mandarin yang sudah dipisah agar latihan tetap fokus per topik.' : isJapanesePractice ? 'Pilih skill Jepang. Setiap skill punya 20 topik per level JLPT.' : 'Pilih skill yang ingin kamu latih.'}
             />
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
               {practiceCards.map((skill, index) => {

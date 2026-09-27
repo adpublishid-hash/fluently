@@ -2,7 +2,8 @@
 // `npm run content:audit` (human-readable coverage report).
 import { getGeneratedArabicLesson, type GeneratedArabicContentLevel } from '../pages/module/arabic/beginner/generatedBeginnerArabicContent';
 import { arabicLessonCounts, arabicLevels, arabicSkills, type ArabicLevelId } from '../pages/module/arabic/arabicModuleData';
-import { getJapaneseLesson } from '../pages/module/japanese/japaneseLessonContent';
+import { getJapaneseLesson, getJapaneseTopicList } from '../pages/module/japanese/japaneseLessonContent';
+import { buildJapanesePractice } from '../pages/latihan/japanese/japanesePracticeContent';
 import { japaneseLessonCounts, japaneseSkills, type JapaneseLevelId } from '../pages/module/japanese/japaneseModuleData';
 import { getMandarinLesson } from '../pages/module/mandarin/mandarinLessonContent';
 import { mandarinLessonCounts, mandarinSkills, type MandarinLevelId } from '../pages/module/mandarin/mandarinModuleData';
@@ -47,6 +48,17 @@ export function collectLessons(): Array<{ language: string; level: string; lesso
       }
     });
     groups.push({ language: 'japanese', level, lessons });
+  });
+
+  (Object.keys(japaneseLessonCounts) as JapaneseLevelId[]).forEach((level) => {
+    const lessons: AuditLesson[] = [];
+    japaneseSkills.forEach(({ id: skill }) => {
+      getJapaneseTopicList(level, skill).forEach((topic, index) => {
+        const practice = buildJapanesePractice(level, skill, index + 1);
+        lessons.push({ key: `${skill}/${index + 1}`, title: topic, practice, fingerprint: JSON.stringify([skill, topic, practiceKey(practice)]) });
+      });
+    });
+    groups.push({ language: 'japanese-latihan', level, lessons });
   });
 
   (Object.keys(mandarinLessonCounts) as MandarinLevelId[]).forEach((level) => {

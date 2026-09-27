@@ -104,6 +104,8 @@ const GamePlayPage = lazy(() => import('./pages/game/GamePlayPage'));
 // Latihan pages (folder: pages/latihan/)
 const LatihanPage = lazy(() => import('./pages/latihan/LatihanPage'));
 const LatihanSkillPage = lazy(() => import('./pages/latihan/LatihanSkillPage'));
+const JapanesePracticeTopicsPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeTopicsPage })));
+const JapanesePracticeSessionPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeSessionPage })));
 const ArabicMufradatTopikPages = [
   lazy(() => import('./pages/latihan/arabic/mufradat/topik1')),
   lazy(() => import('./pages/latihan/arabic/mufradat/topik2')),
@@ -1175,6 +1177,8 @@ function AppContent() {
                   <Route path="/latihan/mandarin/kǒuyǔ" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
                   <Route path="/latihan/mandarin/Kǒuyǔ" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
                   <Route path="/latihan/mandarin/speaking" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
+                  <Route path="/latihan/japanese/:skillId" element={<JapanesePracticeTopicsPage />} />
+                  <Route path="/latihan/japanese/:skillId/:topicSlug" element={<JapanesePracticeSessionPage />} />
                   <Route path="/latihan/:skillId" element={<LatihanSkillPage />} />
                   <Route path="/latihan/:skillId/start" element={<ComingSoonPage />} />
                   <Route path="/latihan/:levelId/:skillId" element={<LatihanSkillPage />} />
