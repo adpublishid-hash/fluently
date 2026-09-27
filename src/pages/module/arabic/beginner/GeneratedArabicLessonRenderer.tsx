@@ -5,6 +5,7 @@ import type { ArabicSkillId } from '../arabicModuleData';
 import { getGeneratedArabicLesson, type GeneratedArabicContentLevel } from './generatedBeginnerArabicContent';
 import RubricCard from '../../../../components/shared/RubricCard';
 import { speak } from '../../../../utils/speech';
+import WordIllustration from '../../../../components/shared/WordIllustration';
 
 type GeneratedArabicLessonRendererProps = {
   skillId: ArabicSkillId;
@@ -139,9 +140,10 @@ export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onCom
                   <button
                     key={word.arabic}
                     onClick={() => speakArabic(word.arabic)}
-                    className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-left hover:border-teal-200 hover:bg-teal-50/50 transition"
+                    className="relative rounded-xl border border-slate-100 bg-slate-50 p-4 pl-12 text-left hover:border-teal-200 hover:bg-teal-50/50 transition"
                     title="Dengarkan kosakata"
                   >
+                    <WordIllustration meaning={word.meaning} className="absolute left-3 top-3" />
                     <p dir="rtl" lang="ar" className="text-2xl font-bold text-slate-900 leading-relaxed">{word.arabic}</p>
                     <p className="mt-1 text-xs font-semibold text-slate-500">{word.transliteration}</p>
                     <p className="mt-1 text-sm text-slate-700">{word.meaning}</p>

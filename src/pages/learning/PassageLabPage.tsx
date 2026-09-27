@@ -8,6 +8,7 @@ import { getPassage, getPassages, isPassageLanguage, passageLanguages, passageLe
 import { studyLanguageFor, studyLanguageLabel, studySpeechLang } from '../../features/learning/studyLanguages';
 import { buildChoiceQuestion, hashSeed, seededRandom, type ChoiceQuestion } from '../../utils/quiz';
 import { speak, stopSpeaking } from '../../utils/speech';
+import WordIllustration from '../../components/shared/WordIllustration';
 
 const DONE_KEY = 'fluently_passages_done_v1';
 const PASSAGE_XP = 20;
@@ -162,6 +163,7 @@ function PassageReader({ passage, onBack }: { passage: Passage; onBack: () => vo
             {passage.glossary.map((word) => (
               <button key={word.text} onClick={() => speak(word.text, lang, { rate })} className="flex items-start gap-2 rounded-2xl bg-slate-50 p-3 text-left">
                 <Volume2 size={14} className="mt-1 shrink-0 text-indigo-500" />
+                <WordIllustration meaning={word.meaning} className="text-xl" />
                 <span>
                   <span dir={isRtl ? 'rtl' : undefined} className="font-black text-slate-900">{word.text}</span>
                   {word.reading && <span className="ml-2 text-xs font-semibold text-slate-500">{word.reading}</span>}

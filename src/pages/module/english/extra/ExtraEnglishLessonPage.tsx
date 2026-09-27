@@ -4,6 +4,7 @@ import { CheckCircle2, Eye, EyeOff, Lightbulb, PenTool, Volume2 } from 'lucide-r
 import LessonShell from '../../../../components/shared/LessonShell';
 import LessonCompleteModal from '../../../../components/shared/LessonCompleteModal';
 import RubricCard from '../../../../components/shared/RubricCard';
+import WordIllustration from '../../../../components/shared/WordIllustration';
 import { playAudio } from '../../../../services/ttsService';
 import { markCompletedId, readCompletedIds } from '../../../../utils/lessonProgress';
 import { buildChoiceQuestion, hashSeed, seededRandom, type ChoiceQuestion } from '../../../../utils/quiz';
@@ -96,6 +97,7 @@ export default function ExtraEnglishLessonPage({ level, skill, lesson }: Props) 
                 {lesson.examples.map(([english, meaning]) => (
                   <button key={english} onClick={() => playAudio(english)} className="flex w-full items-start gap-3 rounded-xl bg-slate-50 p-3 text-left hover:bg-slate-100">
                     <Volume2 size={16} className="mt-0.5 shrink-0" style={{ color }} />
+                    {skill === 'vocabulary' && <WordIllustration meaning={meaning} term={english} className="text-xl" />}
                     <span>
                       <span className="block text-sm font-bold text-slate-900">{english}</span>
                       <span className="block text-xs text-slate-500">{meaning}</span>

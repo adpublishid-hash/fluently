@@ -8,6 +8,7 @@ import { languageCompletionKey, markCompletedId } from '../../../utils/lessonPro
 import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
 import RubricCard from '../../../components/shared/RubricCard';
 import { speak } from '../../../utils/speech';
+import WordIllustration from '../../../components/shared/WordIllustration';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
@@ -174,9 +175,10 @@ export default function MandarinLessonPage() {
                 <button
                   key={`${word.hanzi}-${word.pinyin}`}
                   onClick={() => speakMandarin(word.hanzi)}
-                  className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-left hover:bg-red-50/60 transition"
+                  className="relative rounded-xl border border-slate-100 bg-slate-50 p-4 pr-12 text-left hover:bg-red-50/60 transition"
                   title="Dengarkan Mandarin"
                 >
+                  <WordIllustration meaning={word.meaning} className="absolute right-3 top-3" />
                   <p lang="zh-CN" className="text-2xl font-bold text-slate-900 leading-relaxed">{word.hanzi}</p>
                   <p className="mt-1 text-xs font-semibold text-slate-500">{word.pinyin}</p>
                   <p className="mt-1 text-sm text-slate-700">{word.meaning}</p>

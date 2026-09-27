@@ -17,6 +17,7 @@ import {
 import { getStudyLevels, studyLanguageFor, studyLanguageLabel, studyLevelIndex, studySpeechLang } from '../../features/learning/studyBank';
 import type { StudyWord } from '../../features/learning/studyBank';
 import { speak } from '../../utils/speech';
+import WordIllustration from '../../components/shared/WordIllustration';
 
 const grades: Array<{ id: ReviewGrade; label: string; hint: string; className: string }> = [
   { id: 'again', label: 'Lupa', hint: 'ulang hari ini', className: 'bg-rose-50 text-rose-700 border-rose-200' },
@@ -99,7 +100,7 @@ export default function ReviewPage() {
               <Volume2 size={16} /> Dengarkan
             </button>
             {revealed ? (
-              <p className="mt-6 rounded-2xl bg-slate-50 p-4 text-lg font-black text-slate-800">{card.meaning}</p>
+              <p className="mt-6 flex items-center justify-center gap-3 rounded-2xl bg-slate-50 p-4 text-lg font-black text-slate-800"><WordIllustration meaning={card.meaning} term={language === 'english' ? card.term : undefined} className="text-3xl" />{card.meaning}</p>
             ) : (
               <button onClick={() => setRevealed(true)} className="mt-6 w-full rounded-2xl bg-slate-900 py-4 text-sm font-black text-white">Lihat arti</button>
             )}
