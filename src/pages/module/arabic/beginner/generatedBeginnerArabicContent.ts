@@ -1,4 +1,5 @@
 import type { ArabicSkillId } from '../arabicModuleData';
+import { hashSeed, shuffleQuestionOptions } from '../../../../utils/quiz';
 
 export type GeneratedArabicContentLevel = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate' | 'advanced' | 'proficiency' | 'mastery' | 'scholar';
 
@@ -1797,6 +1798,11 @@ export function getArabicLessonPreview(skillId: ArabicSkillId, lesson: number, l
 }
 
 export function getGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel = 'beginner'): GeneratedArabicLesson {
+  const generated = buildGeneratedArabicLesson(skillId, lesson, level);
+  return { ...generated, practice: shuffleQuestionOptions(generated.practice, hashSeed('arabic', level, skillId, lesson)) };
+}
+
+function buildGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel): GeneratedArabicLesson {
   const safeLesson = Math.max(1, Math.min(20, lesson));
   if (level === 'scholar') {
     const topic = getArabicLessonPreview(skillId, safeLesson, 'scholar');

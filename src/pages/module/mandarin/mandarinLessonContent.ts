@@ -1,3 +1,4 @@
+import { hashSeed, shuffleQuestionOptions } from '../../../utils/quiz';
 import type { MandarinLevelId, MandarinSkillId } from './mandarinModuleData';
 
 export type MandarinLesson = {
@@ -1943,6 +1944,11 @@ export function getMandarinLessonPreview(skillId: MandarinSkillId, lesson: numbe
 }
 
 export function getMandarinLesson(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId): MandarinLesson {
+  const generated = buildMandarinLesson(skillId, lesson, level);
+  return { ...generated, practice: shuffleQuestionOptions(generated.practice, hashSeed('mandarin', level, skillId, lesson)) };
+}
+
+function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId): MandarinLesson {
   const safeLesson = Math.max(1, Math.min(20, lesson));
   const topic = getMandarinLessonPreview(skillId, safeLesson, level);
   const meta = levelMeta[level];
