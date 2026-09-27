@@ -184,7 +184,7 @@ export function getLevelSentences(language: StudyLanguage, level: string): Study
     if (level === 'beginner' || level === 'elementary') {
       return getFoundationLevelSentences(level).map((item) => ({ term: item.arabic, reading: item.transliteration, meaning: item.meaning, level }));
     }
-    return uniqueBy(arabicUpperLessons(level).flatMap((lesson) => lesson.examples), (item) => item.arabic)
+    return uniqueBy(arabicUpperLessons(level).flatMap((lesson) => [...(lesson.passage?.sentences ?? []), ...lesson.examples]), (item) => item.arabic)
       .map((item) => ({ term: item.arabic, reading: item.transliteration, meaning: item.meaning, level }));
   });
 }

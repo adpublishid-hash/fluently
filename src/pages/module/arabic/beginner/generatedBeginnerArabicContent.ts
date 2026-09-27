@@ -2,6 +2,7 @@ import type { ArabicSkillId } from '../arabicModuleData';
 import { buildChoiceQuestion, hashSeed, seededRandom, shuffleQuestionOptions, type ChoiceQuestion } from '../../../../utils/quiz';
 import { getArabicUpperLevelWords, getArabicUpperTheme, isArabicUpperLevel } from '../upper/arabicUpperThemes';
 import { getFoundationLesson, getFoundationTopic } from '../foundation/arabicFoundationLessons';
+import { getArabicUpperPassage, type ArabicPassageSentence } from '../upper/passages';
 
 export type GeneratedArabicContentLevel = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate' | 'advanced' | 'proficiency' | 'mastery' | 'scholar';
 
@@ -15,6 +16,8 @@ export type GeneratedArabicLesson = {
   patterns?: Array<{ label: string; arabic: string; transliteration: string; meaning: string }>;
   vocabulary?: Array<{ arabic: string; transliteration: string; meaning: string }>;
   examples: Array<{ arabic: string; transliteration: string; meaning: string }>;
+  /** B1+ theme passage (reading text for qiraah/kitabah, listening script for istima/kalam). */
+  passage?: { title: string; sentences: ArabicPassageSentence[]; listenFirst: boolean };
   productionSteps?: string[];
   practice: Array<{ question: string; options: string[]; answer: string }>;
   task: string;
@@ -1745,11 +1748,33 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
   const themeQuiz = theme.vocabulary
     .map((word) => buildChoiceQuestion(`Apa arti「${word.arabic}」(${word.transliteration})?`, word.meaning, meanings, random))
     .filter((question): question is ChoiceQuestion => question !== null);
+  const passage = getArabicUpperPassage(level, Math.max(1, Math.min(20, lessonId)));
+  const passageQuiz: ChoiceQuestion[] = [];
+  if (passage) {
+    const comprehension = passage.questions
+      .map((item) => buildChoiceQuestion(`Bacaan: ${item.question}`, item.answer, item.distractors, random))
+      .filter((question): question is ChoiceQuestion => question !== null);
+    // Receptive skills get every comprehension question plus a sentence-meaning item.
+    const receptive = skillId === 'qiraah' || skillId === 'istima';
+    passageQuiz.push(...(receptive ? comprehension : comprehension.slice(0, 1)));
+    if (receptive) {
+      const sentence = passage.sentences[Math.floor(random() * passage.sentences.length)];
+      const sentenceMeanings = passage.sentences.map((item) => item.meaning);
+      const meaningQuestion = buildChoiceQuestion(`Arti kalimat bacaan「${sentence.arabic}」adalah...`, sentence.meaning, sentenceMeanings, random);
+      if (meaningQuestion) passageQuiz.push(meaningQuestion);
+    }
+  }
+  const passageNote = passage
+    ? [skillId === 'istima'
+      ? `Dengarkan teks "${theme.title}" dulu tanpa melihat tulisan, jawab pertanyaan bacaan, lalu buka teks untuk mengecek.`
+      : `Baca teks pendek "${theme.title}", garis bawahi istilah tema, lalu jawab pertanyaan pemahaman di tab latihan.`]
+    : [];
   return {
     ...lesson,
-    explanation: [`Tema kosakata lesson ini: ${theme.title}. Pakai keempat istilah tema dalam latihan dan tugas akhir.`, ...(lesson.explanation ?? [])],
+    explanation: [`Tema kosakata lesson ini: ${theme.title}. Pakai keempat istilah tema dalam latihan dan tugas akhir.`, ...passageNote, ...(lesson.explanation ?? [])],
     vocabulary: [...theme.vocabulary, ...(lesson.vocabulary ?? [])],
-    practice: [...themeQuiz, ...lesson.practice],
+    passage: passage ? { title: theme.title, sentences: passage.sentences, listenFirst: skillId === 'istima' } : undefined,
+    practice: [...themeQuiz, ...passageQuiz, ...lesson.practice],
   };
 }
 
