@@ -1,8 +1,9 @@
-const CACHE_VERSION = 'fluently-cache-v6';
+const CACHE_VERSION = 'fluently-cache-v7';
 const APP_CACHE = `${CACHE_VERSION}-app`;
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 const FONT_CACHE = `${CACHE_VERSION}-fonts`;
+const STROKE_CACHE = `${CACHE_VERSION}-strokes`;
 
 const APP_SHELL = [
   '/',
@@ -14,9 +15,11 @@ const APP_SHELL = [
   '/pwa/apple-touch-icon.png',
 ];
 
-const MAX_STATIC_ITEMS = 220;
+// Lesson pages are lazy chunks; keep enough of them for offline study.
+const MAX_STATIC_ITEMS = 450;
 const MAX_IMAGE_ITEMS = 140;
 const MAX_FONT_ITEMS = 40;
+const MAX_STROKE_ITEMS = 600;
 
 function isHttpRequest(request) {
   return request.url.startsWith('http');
@@ -133,6 +136,12 @@ self.addEventListener('fetch', (event) => {
 
   if (request.mode === 'navigate') {
     event.respondWith(networkFirst(request, APP_CACHE));
+    return;
+  }
+
+  // Hanzi/Kanji stroke data (immutable per version) for the stroke-order panel.
+  if (url.hostname === 'cdn.jsdelivr.net' && url.pathname.includes('/hanzi-writer-data@')) {
+    event.respondWith(cacheFirst(request, STROKE_CACHE, MAX_STROKE_ITEMS));
     return;
   }
 
