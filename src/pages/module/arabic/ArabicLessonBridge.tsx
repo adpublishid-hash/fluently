@@ -6,6 +6,8 @@ import { ViewState } from '../../../types';
 import { arabicLessonCounts, arabicSkills, normalizeArabicLevel, type ArabicSkillId } from './arabicModuleData';
 import ArabicLessonSupplement from './ArabicLessonSupplement';
 import GeneratedArabicLessonRenderer from './beginner/GeneratedArabicLessonRenderer';
+import { useAuth } from '../../../auth/AuthContext';
+import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
 
 const aiKamusArabicLessons = import.meta.glob('../../ai-kamus/arabic/{pemula,elementary}/{grammar,kalam,mufradat,pronunciation}/Lesson*.tsx');
 
@@ -19,19 +21,8 @@ function parseLessonId(params: { lessonId?: string; lessonSlug?: string }) {
   return Number(match?.[0] ?? 1);
 }
 
-function getCompleted(levelId: string, skillId: string): number[] {
-  try {
-    return JSON.parse(localStorage.getItem(`talky_arabic_${levelId}_${skillId}_completed`) || '[]');
-  } catch {
-    return [];
-  }
-}
-
 function markComplete(levelId: string, skillId: string, lessonId: number) {
-  const completed = getCompleted(levelId, skillId);
-  if (!completed.includes(lessonId)) {
-    localStorage.setItem(`talky_arabic_${levelId}_${skillId}_completed`, JSON.stringify([...completed, lessonId]));
-  }
+  return markCompletedId(languageCompletionKey('arabic', levelId, skillId), lessonId);
 }
 
 const quickPractice: Partial<Record<ArabicSkillId, Array<{ label: string; arabic: string; hint: string }>>> = {
@@ -75,6 +66,7 @@ function speakArabic(text: string) {
 }
 
 export default function ArabicLessonBridge() {
+  const { awardXp } = useAuth();
   const navigate = useNavigate();
   const params = useParams();
   const [searchParams] = useSearchParams();
@@ -97,6 +89,7 @@ export default function ArabicLessonBridge() {
   const goBack = () => navigate(`/modul/arabic/${routeLevelId}/${skillId}`);
   const completeAndContinue = () => {
     markComplete(levelId, skillId, lessonId);
+    void awardXp(50, 'lesson', `modul/arabic/${routeLevelId}/${skillId}/lesson-${lessonId}`);
     if (lessonId < totalLessons) navigate(`/modul/arabic/${routeLevelId}/${skillId}/lesson-${lessonId + 1}`);
     else goBack();
   };

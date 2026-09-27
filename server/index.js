@@ -8,6 +8,7 @@ const path = require('path');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const rateLimit = require('express-rate-limit');
+const { XP_PER_LEVEL, DAILY_XP_CAP, normalizeXpRequest, grantableXp } = require('./lib/xpPolicy');
 
 // Load .env manually (no dotenv dependency)
 const envPath = path.join(__dirname, '.env');
@@ -344,7 +345,8 @@ app.use((_req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '0'); // modern browsers ignore this; rely on CSP instead
   res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
-  res.setHeader('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+  // Microphone stays enabled for same-origin pages: speaking & pronunciation lessons use speech recognition.
+  res.setHeader('Permissions-Policy', 'camera=(), microphone=(self), geolocation=()');
   if (isProduction) {
     res.setHeader('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   }
@@ -420,7 +422,7 @@ async function optionalAuth(req, _res, next) {
 
 function requireAdmin(req, res, next) {
   return requireAuth(req, res, () => {
-    if ((req.user.email || '').toLowerCase() !== ADMIN_EMAIL) {
+    if ((req.user.email || '').toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
       return res.status(403).json({ error: 'Admin access required' });
     }
     next();
@@ -458,6 +460,22 @@ const aiLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many AI requests, please slow down for a moment.' },
+});
+
+const xpLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Terlalu banyak permintaan XP, coba lagi sebentar.' },
+});
+
+const progressLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Terlalu banyak sinkronisasi progres, coba lagi sebentar.' },
 });
 
 async function ensureSchema() {
@@ -567,6 +585,28 @@ async function ensureSchema() {
     )
   `);
   await pool.query('create unique index if not exists ai_chat_daily_topics_user_date_uidx on ai_chat_daily_topics (user_key, topic_date)');
+
+  await pool.query(`
+    create table if not exists xp_events (
+      id bigserial primary key,
+      user_id integer not null references users(id) on delete cascade,
+      activity text not null,
+      source_key text,
+      xp integer not null,
+      created_at timestamptz not null default now()
+    )
+  `);
+  await pool.query('create unique index if not exists xp_events_user_source_uidx on xp_events (user_id, source_key) where source_key is not null');
+  await pool.query('create index if not exists xp_events_user_created_idx on xp_events (user_id, created_at)');
+
+  await pool.query(`
+    create table if not exists lesson_progress (
+      user_id integer not null references users(id) on delete cascade,
+      item_key text not null,
+      completed_at timestamptz not null default now(),
+      primary key (user_id, item_key)
+    )
+  `);
 
   await seedAdminUser();
   await seedShopProducts();
@@ -1755,20 +1795,47 @@ app.put('/api/users/persona', requireAuth, async (req, res) => {
 });
 
 // ── Award XP + update streak ─────────────────────────────
-// POST /api/users/xp  { xp: number, activity: string }
-// XP per level = 3000. Level increments automatically.
-const XP_PER_LEVEL = 3000;
+// POST /api/users/xp  { xp: number, activity: string, sourceKey?: string }
+// The server decides how much XP is granted (see lib/xpPolicy.js):
+// per-activity ceilings, one award per sourceKey, and a daily cap.
+app.post('/api/users/xp', xpLimiter, requireAuth, async (req, res) => {
+  const request = normalizeXpRequest(req.body);
+  if (request.error) return res.status(400).json({ error: request.error });
 
-app.post('/api/users/xp', requireAuth, async (req, res) => {
-  const rawXp = Number(req.body?.xp);
-  if (!rawXp || rawXp <= 0 || rawXp > 1000) {
-    return res.status(400).json({ error: 'xp harus antara 1–1000' });
-  }
-
+  const client = await pool.connect();
   try {
+    await client.query('BEGIN');
+    // Lock the user row so concurrent requests cannot both pass the daily cap.
+    await client.query('SELECT id FROM users WHERE id = $1 FOR UPDATE', [req.user.id]);
+    const today = await client.query(
+      `SELECT COALESCE(SUM(xp), 0)::int AS total FROM xp_events
+       WHERE user_id = $1 AND created_at >= date_trunc('day', now() AT TIME ZONE 'UTC') AT TIME ZONE 'UTC'`,
+      [req.user.id],
+    );
+    let awarded = grantableXp(request.xp, today.rows[0].total);
+    let duplicate = false;
+
+    if (request.sourceKey) {
+      const inserted = await client.query(
+        `INSERT INTO xp_events (user_id, activity, source_key, xp) VALUES ($1, $2, $3, $4)
+         ON CONFLICT (user_id, source_key) WHERE source_key IS NOT NULL DO NOTHING
+         RETURNING id`,
+        [req.user.id, request.activity, request.sourceKey, awarded],
+      );
+      if (!inserted.rows.length) {
+        duplicate = true;
+        awarded = 0;
+      }
+    } else if (awarded > 0) {
+      await client.query(
+        'INSERT INTO xp_events (user_id, activity, xp) VALUES ($1, $2, $3)',
+        [req.user.id, request.activity, awarded],
+      );
+    }
+
     // Use DB time to decide streak: if last activity was yesterday → continue streak,
     // if today → no change, if older → reset to 1.
-    const result = await pool.query(
+    const result = await client.query(
       `UPDATE users
        SET xp     = xp + $1,
            level  = GREATEST(1, FLOOR((xp + $1) / $2)::int + 1),
@@ -1784,13 +1851,69 @@ app.post('/api/users/xp', requireAuth, async (req, res) => {
        WHERE id = $3
        RETURNING id, name, email, phone, onboarding_completed, persona, role, plan, plan_expires_at,
                  status, display_name, avatar_url, xp, streak, level`,
-      [rawXp, XP_PER_LEVEL, req.user.id],
+      [awarded, XP_PER_LEVEL, req.user.id],
     );
+    await client.query('COMMIT');
 
     if (!result.rows.length) return res.status(404).json({ error: 'User not found' });
-    res.json({ success: true, user: publicUser(result.rows[0]) });
+    res.json({
+      success: true,
+      awarded,
+      duplicate,
+      capped: !duplicate && awarded < request.xp,
+      dailyCap: DAILY_XP_CAP,
+      user: publicUser(result.rows[0]),
+    });
   } catch (err) {
+    await client.query('ROLLBACK').catch(() => {});
     console.error('[xp-award]', err);
+    res.status(500).json({ error: 'Server error' });
+  } finally {
+    client.release();
+  }
+});
+
+// ── Lesson progress sync ─────────────────────────────────
+// Progress items are "<storageKey>|<lessonId>" strings mirroring the client's
+// localStorage completion lists, so progress follows the user across devices.
+const PROGRESS_ITEM_PATTERN = /^(talky|fluently)_[a-z0-9_-]{1,120}_completed\|[a-z0-9:/_.-]{1,80}$/i;
+const PROGRESS_MAX_ITEMS = 5000;
+
+async function readProgress(userId) {
+  const result = await pool.query(
+    'SELECT item_key FROM lesson_progress WHERE user_id = $1 ORDER BY completed_at',
+    [userId],
+  );
+  return result.rows.map((row) => row.item_key);
+}
+
+app.get('/api/users/progress', requireAuth, async (req, res) => {
+  try {
+    res.json({ items: await readProgress(req.user.id) });
+  } catch (err) {
+    console.error('[progress-read]', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+app.post('/api/users/progress', progressLimiter, requireAuth, async (req, res) => {
+  const raw = Array.isArray(req.body?.items) ? req.body.items : null;
+  if (!raw) return res.status(400).json({ error: 'items harus berupa array' });
+  if (raw.length > PROGRESS_MAX_ITEMS) return res.status(400).json({ error: `Maksimal ${PROGRESS_MAX_ITEMS} item per sinkronisasi` });
+  const items = [...new Set(raw.filter((item) => typeof item === 'string' && PROGRESS_ITEM_PATTERN.test(item)))];
+
+  try {
+    if (items.length) {
+      await pool.query(
+        `INSERT INTO lesson_progress (user_id, item_key)
+         SELECT $1, unnest($2::text[])
+         ON CONFLICT DO NOTHING`,
+        [req.user.id, items],
+      );
+    }
+    res.json({ items: await readProgress(req.user.id) });
+  } catch (err) {
+    console.error('[progress-write]', err);
     res.status(500).json({ error: 'Server error' });
   }
 });

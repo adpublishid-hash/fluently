@@ -5,6 +5,8 @@ import { BookOpen, CheckCircle, ChevronLeft, Headphones, Mic, Volume2 } from 'lu
 import { ViewState } from '../../../types';
 import { arabicLessonCounts, arabicSkills, type ArabicLevelId, type ArabicSkillId } from './arabicModuleData';
 import ArabicLessonSupplement from './ArabicLessonSupplement';
+import { useAuth } from '../../../auth/AuthContext';
+import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
 
 type LegacyLessonProps = {
   apiKey?: string;
@@ -52,19 +54,8 @@ const quickPractice: Record<ArabicSkillId, Array<{ label: string; arabic: string
   ],
 };
 
-function getCompleted(levelId: string, skillId: string): number[] {
-  try {
-    return JSON.parse(localStorage.getItem(`talky_arabic_${levelId}_${skillId}_completed`) || '[]');
-  } catch {
-    return [];
-  }
-}
-
 function markComplete(levelId: string, skillId: string, lessonId: number) {
-  const completed = getCompleted(levelId, skillId);
-  if (!completed.includes(lessonId)) {
-    localStorage.setItem(`talky_arabic_${levelId}_${skillId}_completed`, JSON.stringify([...completed, lessonId]));
-  }
+  return markCompletedId(languageCompletionKey('arabic', levelId, skillId), lessonId);
 }
 
 function speakArabic(text: string) {
@@ -83,6 +74,7 @@ export default function ArabicStaticLessonShell({
   lessonId,
   LessonComponent,
 }: ArabicStaticLessonShellProps) {
+  const { awardXp } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const totalLessons = arabicLessonCounts[levelId][skillId];
@@ -95,6 +87,7 @@ export default function ArabicStaticLessonShell({
   const goBack = () => navigate(listPath);
   const completeAndContinue = () => {
     markComplete(levelId, skillId, lessonId);
+    void awardXp(50, 'lesson', `modul/arabic/${routeLevelId}/${skillId}/lesson-${lessonId}`);
     if (lessonId < totalLessons) navigate(`/modul/arabic/${routeLevelId}/${skillId}/lesson-${lessonId + 1}`);
     else goBack();
   };

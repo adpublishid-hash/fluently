@@ -3,25 +3,16 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BookOpen, CheckCircle, ChevronLeft, ClipboardCheck, Layers, ListChecks, Target, Volume2 } from 'lucide-react';
 import { getMandarinLesson } from './mandarinLessonContent';
 import { isMandarinSkill, mandarinLessonCounts, mandarinLevels, mandarinSkills, normalizeMandarinLevel, type MandarinSkillId } from './mandarinModuleData';
+import { useAuth } from '../../../auth/AuthContext';
+import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
   return Number(match?.[0] ?? 1);
 }
 
-function getCompleted(levelId: string, skillId: string): number[] {
-  try {
-    return JSON.parse(localStorage.getItem(`talky_mandarin_${levelId}_${skillId}_completed`) || '[]');
-  } catch {
-    return [];
-  }
-}
-
 function markComplete(levelId: string, skillId: string, lessonId: number) {
-  const completed = getCompleted(levelId, skillId);
-  if (!completed.includes(lessonId)) {
-    localStorage.setItem(`talky_mandarin_${levelId}_${skillId}_completed`, JSON.stringify([...completed, lessonId]));
-  }
+  return markCompletedId(languageCompletionKey('mandarin', levelId, skillId), lessonId);
 }
 
 function speakMandarin(text: string) {
@@ -34,6 +25,7 @@ function speakMandarin(text: string) {
 }
 
 export default function MandarinLessonPage() {
+  const { awardXp } = useAuth();
   const navigate = useNavigate();
   const params = useParams();
   const levelId = normalizeMandarinLevel(params.levelId);
@@ -49,6 +41,7 @@ export default function MandarinLessonPage() {
   const goBack = () => navigate(`/modul/mandarin/${levelId}/${skillId}`);
   const completeAndContinue = () => {
     markComplete(levelId, skillId, lessonId);
+    void awardXp(50, 'lesson', `modul/mandarin/${levelId}/${skillId}/lesson-${lessonId}`);
     if (lessonId < totalLessons) navigate(`/modul/mandarin/${levelId}/${skillId}/lesson-${lessonId + 1}`);
     else goBack();
   };

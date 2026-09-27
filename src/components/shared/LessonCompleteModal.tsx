@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../auth/AuthContext';
 
 interface Props {
@@ -16,15 +17,23 @@ export default function LessonCompleteModal({
   show, onClose, lessonLabel, accentColor, nextLessonPath, onNext, onBack, xpReward = 50,
 }: Props) {
   const { awardXp } = useAuth();
+  const { pathname } = useLocation();
   const awarded = useRef(false);
+  const [alreadyClaimed, setAlreadyClaimed] = useState(false);
 
   useEffect(() => {
     if (show && !awarded.current) {
       awarded.current = true;
-      awardXp(xpReward, 'lesson');
+      // The lesson path is the idempotency key: repeating a lesson grants no extra XP.
+      awardXp(xpReward, 'lesson', pathname.replace(/^\/+/, '')).then((result) => {
+        setAlreadyClaimed(Boolean(result.duplicate));
+      });
     }
-    if (!show) awarded.current = false;
-  }, [show, xpReward, awardXp]);
+    if (!show) {
+      awarded.current = false;
+      setAlreadyClaimed(false);
+    }
+  }, [show, xpReward, awardXp, pathname]);
 
   if (!show) return null;
   return (
@@ -49,7 +58,9 @@ export default function LessonCompleteModal({
         </p>
         <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 rounded-full px-3 py-1 mb-4">
           <span style={{ fontSize: 14 }}>⚡</span>
-          <span className="text-[13px] font-extrabold text-amber-600">+{xpReward} XP</span>
+          <span className="text-[13px] font-extrabold text-amber-600">
+            {alreadyClaimed ? 'XP lesson ini sudah diklaim' : `+${xpReward} XP`}
+          </span>
         </div>
         <div className="flex justify-center gap-2 mb-6">
           <span style={{ fontSize: 26 }}>⭐</span>
