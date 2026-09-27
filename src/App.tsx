@@ -104,6 +104,9 @@ const GamePlayPage = lazy(() => import('./pages/game/GamePlayPage'));
 // Latihan pages (folder: pages/latihan/)
 const LatihanPage = lazy(() => import('./pages/latihan/LatihanPage'));
 const LatihanSkillPage = lazy(() => import('./pages/latihan/LatihanSkillPage'));
+const ReviewPage = lazy(() => import('./pages/learning/ReviewPage'));
+const PlacementTestPage = lazy(() => import('./pages/learning/PlacementTestPage'));
+const MockExamPage = lazy(() => import('./pages/learning/MockExamPage'));
 const JapanesePracticeTopicsPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeTopicsPage })));
 const JapanesePracticeSessionPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeSessionPage })));
 const ArabicMufradatTopikPages = [
@@ -1212,6 +1215,9 @@ function AppContent() {
                   <Route path="/upgrade"   element={<UpgradePage />} />
                   <Route path="/analytics" element={<AnalyticsPage />} />
                   <Route path="/goals"     element={<GoalsPage />} />
+                  <Route path="/review" element={<ReviewPage />} />
+                  <Route path="/placement" element={<PlacementTestPage />} />
+                  <Route path="/simulasi/:language" element={<MockExamPage />} />
                   <Route path="/notes"     element={<NotesPage />} />
                   {/* Default redirect */}
                   <Route path="*" element={<Navigate to="/modul" replace />} />
