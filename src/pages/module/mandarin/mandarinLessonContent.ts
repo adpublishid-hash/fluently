@@ -1,4 +1,5 @@
-import { hashSeed, shuffleQuestionOptions } from '../../../utils/quiz';
+import { buildChoiceQuestion, hashSeed, seededRandom, shuffleQuestionOptions, type ChoiceQuestion } from '../../../utils/quiz';
+import { getMandarinLevelThemeWords, getMandarinTheme } from './mandarinThemeBank';
 import type { MandarinLevelId, MandarinSkillId } from './mandarinModuleData';
 
 export type MandarinLesson = {
@@ -1932,14 +1933,37 @@ const upperIntermediateLessonPacks: Array<{
   },
 ];
 
+// HSK 7-9 lessons share one theme per lesson number; the skill decides the angle.
+const postHskSkillFrame: Record<MandarinSkillId, string> = {
+  grammar: 'Struktur wacana',
+  speaking: 'Seminar',
+  listening: 'Kuliah umum',
+  reading: 'Bacaan kritis',
+  writing: 'Esai akademik',
+  vocabulary: 'Kosakata tematik',
+  pronunciation: 'Retorika lisan',
+};
+
+/** Vocabulary questions for a lesson theme (HSK 5 and HSK 7-9). */
+function themeQuestions(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): ChoiceQuestion[] {
+  const theme = getMandarinTheme(level, lesson);
+  if (!theme) return [];
+  const random = seededRandom(hashSeed('mandarin-theme', level, skillId, lesson));
+  const pool = getMandarinLevelThemeWords(level).map((word) => word.meaning);
+  return theme.vocabulary
+    .map((word) => buildChoiceQuestion(`${word.hanzi} (${word.pinyin}) berarti...`, word.meaning, pool, random))
+    .filter((question): question is ChoiceQuestion => question !== null);
+}
+
 export function getMandarinLessonPreview(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId = 'beginner') {
   const safeLesson = Math.max(1, Math.min(20, lesson));
   if (level === 'beginner') return beginnerTopics[skillId][safeLesson - 1] ?? `HSK 1 ${skillId} Lesson ${safeLesson}`;
   if (level === 'advanced') return advancedTopics[skillId][safeLesson - 1] ?? `HSK 5 ${skillId} Lesson ${safeLesson}`;
   if (level === 'proficiency') return proficiencyTopics[skillId][safeLesson - 1] ?? `HSK 6 ${skillId} Lesson ${safeLesson}`;
-  if (level === 'hsk-7') return `HSK 7 ${proficiencyTopics[skillId][safeLesson - 1] ?? `${skillId} Lesson ${safeLesson}`}`;
-  if (level === 'hsk-8') return `HSK 8 ${proficiencyTopics[skillId][safeLesson - 1] ?? `${skillId} Lesson ${safeLesson}`}`;
-  if (level === 'hsk-9') return `HSK 9 ${proficiencyTopics[skillId][safeLesson - 1] ?? `${skillId} Lesson ${safeLesson}`}`;
+  if (level === 'hsk-7' || level === 'hsk-8' || level === 'hsk-9') {
+    const theme = getMandarinTheme(level, safeLesson);
+    return theme ? `${postHskSkillFrame[skillId]}: ${theme.title} (${theme.hanzi})` : `${skillId} Lesson ${safeLesson}`;
+  }
   return topics[skillId][safeLesson - 1] ?? `Lesson ${safeLesson}`;
 }
 
@@ -2005,15 +2029,18 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     { hanzi: '相反', pinyin: 'xiang fan', meaning: 'sebaliknya' },
     { hanzi: '由此可见', pinyin: 'you ci ke jian', meaning: 'dari sini dapat terlihat' },
   ];
+  const lessonTheme = getMandarinTheme(level, safeLesson);
+  const lessonThemeQuiz = themeQuestions(level, skillId, safeLesson);
   const advancedPack = {
     goal: advancedTheme.goal,
-    vocabulary: advancedCoreVocabulary,
+    vocabulary: [...(lessonTheme?.vocabulary ?? []), ...advancedCoreVocabulary],
     examples: [
       { hanzi: '这种社会现象反映了人们价值观的变化。', pinyin: 'Zhe zhong she hui xian xiang fan ying le ren men jia zhi guan de bian hua.', meaning: 'Fenomena sosial ini mencerminkan perubahan nilai masyarakat.' },
       { hanzi: '虽然这种趋势带来了新的机会，但也产生了一些值得注意的挑战。', pinyin: 'Sui ran zhe zhong qu shi dai lai le xin de ji hui, dan ye chan sheng le yi xie zhi de zhu yi de tiao zhan.', meaning: 'Walaupun tren ini membawa peluang baru, ia juga menimbulkan tantangan yang perlu diperhatikan.' },
       { hanzi: '由此可见，我们不能只看短期效率，还要考虑长期影响。', pinyin: 'You ci ke jian, wo men bu neng zhi kan duan qi xiao lu, hai yao kao lv chang qi ying xiang.', meaning: 'Dari sini terlihat bahwa kita tidak boleh hanya melihat efisiensi jangka pendek, tetapi juga mempertimbangkan dampak jangka panjang.' },
     ],
     quiz: [
+      ...lessonThemeQuiz,
       { question: '由此可见 biasanya dipakai untuk...', options: ['menarik kesimpulan dari argumen', 'menanyakan nama', 'membuka harga'], answer: 'menarik kesimpulan dari argumen' },
       { question: '趋势 berarti...', options: ['tren/arah perkembangan', 'kamar tidur', 'nada netral'], answer: 'tren/arah perkembangan' },
       { question: '忽视 berarti...', options: ['mengabaikan', 'mempercepat', 'membayar'], answer: 'mengabaikan' },
@@ -2253,7 +2280,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       };
   const postHskPack = {
     goal: `${postHskConfig.goal} Topik lesson: ${topic}.`,
-    vocabulary: [...postHskConfig.vocabulary, ...proficiencyPack.vocabulary],
+    vocabulary: [...(lessonTheme?.vocabulary ?? []), ...postHskConfig.vocabulary, ...proficiencyPack.vocabulary],
     examples: [
       {
         hanzi: `在${postHskConfig.code}阶段，学习者需要围绕“${topic}”提出更具原创性的论点，并说明其理论意义。`,
@@ -2268,6 +2295,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       ...proficiencyPack.examples,
     ],
     quiz: [
+      ...lessonThemeQuiz,
       { question: `${postHskConfig.code} output harus menonjolkan...`, options: ['argumen matang dan register akademik', 'sapaan dasar', 'hafalan angka'], answer: 'argumen matang dan register akademik' },
       { question: '原创性论点 berarti...', options: ['argumen orisinal', 'kalimat sapaan', 'jadwal harian'], answer: 'argumen orisinal' },
       ...proficiencyPack.quiz,
