@@ -1,7 +1,19 @@
 // Rewrites Mandarin `pinyin` fields from their Hanzi with tone marks (pinyin-pro).
 // Usage: npx vite-node scripts/mandarin-tone-marks.ts [--check]
 import { readFileSync, writeFileSync } from 'node:fs';
-import { pinyin } from 'pinyin-pro';
+import { customPinyin, pinyin } from 'pinyin-pro';
+
+// Context readings pinyin-pro gets wrong in this content.
+customPinyin({
+  大城市: 'dà chéng shì',
+  只讨论: 'zhǐ tǎo lùn',
+  只追求: 'zhǐ zhuī qiú',
+  只看: 'zhǐ kàn',
+  难题: 'nán tí',
+  保证了: 'bǎo zhèng le',
+  传播得: 'chuán bō de',
+  说得: 'shuō de',
+});
 
 const PUNCTUATION: Record<string, string> = {
   '。': '.', '，': ',', '？': '?', '！': '!', '；': ';', '：': ':', '、': ',',
@@ -40,7 +52,11 @@ function segments(text: string, isTerm: boolean): string[] {
   return merged;
 }
 
+// Standalone grammar particles are taught with their neutral-tone reading.
+const TERM_OVERRIDES: Record<string, string> = { 了: 'le', 得: 'de', 着: 'zhe' };
+
 export function toTonePinyin(hanzi: string): string {
+  if (TERM_OVERRIDES[hanzi]) return TERM_OVERRIDES[hanzi];
   const isTerm = [...hanzi].every((char) => HANZI.test(char));
   if (isTerm) return segments(hanzi, true).map(wordPinyin).join(' ');
   // Sentences: syllables from the whole sentence (polyphones resolved in
@@ -59,6 +75,7 @@ export function toTonePinyin(hanzi: string): string {
 const files = [
   'src/pages/module/mandarin/mandarinLessonContent.ts',
   'src/pages/module/mandarin/mandarinThemeBank.ts',
+  'src/pages/module/mandarin/mandarinThemeSentences.ts',
 ];
 const check = process.argv.includes('--check');
 let changed = 0;
@@ -74,9 +91,11 @@ for (const file of files) {
       return `hanzi:${s1}'${hanzi}',${s2}pinyin:${s3}'${updated}'`;
     },
   );
-  // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi']
+  // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi'] (sentence tuples in
+  // mandarinThemeSentences.ts are always regenerated).
+  const sentenceFile = file.endsWith('mandarinThemeSentences.ts');
   next = next.replace(/\['([^'\\]+)', '([^'\\]*)', '/g, (match, hanzi, old) => {
-    if (!HANZI.test(hanzi) || !/^[\p{L} ']+$/u.test(old)) return match;
+    if (!HANZI.test(hanzi) || (!sentenceFile && !/^[\p{L} ']+$/u.test(old))) return match;
     const updated = toTonePinyin(hanzi).replace(/'/g, "\\'");
     if (updated !== old) changed += 1;
     return `['${hanzi}', '${updated}', '`;

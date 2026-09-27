@@ -1,5 +1,7 @@
-import { buildChoiceQuestion, hashSeed, seededRandom, shuffleQuestionOptions, type ChoiceQuestion } from '../../../utils/quiz';
+import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, shuffleQuestionOptions, type ChoiceQuestion } from '../../../utils/quiz';
 import { getMandarinLevelThemeWords, getMandarinTheme } from './mandarinThemeBank';
+import { getMandarinLevelThemeSentences, getMandarinThemeSentences } from './mandarinThemeSentences';
+import { buildLessonPractice, type PracticeMaterial } from './mandarinPracticeGenerator';
 import type { MandarinLevelId, MandarinSkillId } from './mandarinModuleData';
 
 export type MandarinLesson = {
@@ -923,7 +925,7 @@ const elementaryLessonPacks: Array<{
       { hanzi: '贵', pinyin: 'guì', meaning: 'mahal' },
       { hanzi: '便宜', pinyin: 'piányi', meaning: 'murah' },
       { hanzi: '太', pinyin: 'tài', meaning: 'terlalu' },
-      { hanzi: '了', pinyin: 'liǎo', meaning: 'partikel perubahan/penekanan' },
+      { hanzi: '了', pinyin: 'le', meaning: 'partikel perubahan/penekanan' },
     ],
     examples: [
       { hanzi: '这个太贵了。', pinyin: 'Zhè ge tài guì le.', meaning: 'Ini terlalu mahal.' },
@@ -958,7 +960,7 @@ const elementaryLessonPacks: Array<{
   {
     goal: 'Ceritakan aktivitas yang sudah terjadi memakai 了.',
     vocabulary: [
-      { hanzi: '了', pinyin: 'liǎo', meaning: 'partikel selesai/perubahan' },
+      { hanzi: '了', pinyin: 'le', meaning: 'partikel selesai/perubahan' },
       { hanzi: '吃饭', pinyin: 'chīfàn', meaning: 'makan' },
       { hanzi: '看电影', pinyin: 'kàn diànyǐng', meaning: 'menonton film' },
       { hanzi: '昨天', pinyin: 'zuótiān', meaning: 'kemarin' },
@@ -1118,7 +1120,7 @@ const elementaryLessonPacks: Array<{
   {
     goal: 'Gunakan 得 untuk menggambarkan cara melakukan sesuatu.',
     vocabulary: [
-      { hanzi: '得', pinyin: 'dé', meaning: 'partikel complement' },
+      { hanzi: '得', pinyin: 'de', meaning: 'partikel complement' },
       { hanzi: '说', pinyin: 'shuō', meaning: 'berbicara' },
       { hanzi: '写', pinyin: 'xiě', meaning: 'menulis' },
       { hanzi: '快', pinyin: 'kuài', meaning: 'cepat' },
@@ -1126,7 +1128,7 @@ const elementaryLessonPacks: Array<{
       { hanzi: '好', pinyin: 'hǎo', meaning: 'baik/bagus' },
     ],
     examples: [
-      { hanzi: '他说中文说得很好。', pinyin: 'Tā shuō zhōng wén shuō dé hěn hǎo.', meaning: 'Dia berbicara Mandarin dengan sangat baik.' },
+      { hanzi: '他说中文说得很好。', pinyin: 'Tā shuō zhōng wén shuō de hěn hǎo.', meaning: 'Dia berbicara Mandarin dengan sangat baik.' },
       { hanzi: '你写汉字写得很快。', pinyin: 'Nǐ xiě hàn zì xiě dé hěn kuài.', meaning: 'Kamu menulis Hanzi dengan cepat.' },
       { hanzi: '请说慢一点儿。', pinyin: 'Qǐng shuō màn yì diǎn ér.', meaning: 'Tolong bicara sedikit lebih pelan.' },
     ],
@@ -1275,7 +1277,7 @@ const intermediateLessonPacks: Array<{
     ],
     examples: [
       { hanzi: '我的中文越来越流利。', pinyin: 'Wǒ de zhōng wén yuè lái yuè liú lì.', meaning: 'Mandarin saya semakin lancar.' },
-      { hanzi: '现在我比以前说得清楚。', pinyin: 'Xiàn zài wǒ bǐ yǐ qián shuō dé qīng chǔ.', meaning: 'Sekarang saya berbicara lebih jelas daripada sebelumnya.' },
+      { hanzi: '现在我比以前说得清楚。', pinyin: 'Xiàn zài wǒ bǐ yǐ qián shuō de qīng chǔ.', meaning: 'Sekarang saya berbicara lebih jelas daripada sebelumnya.' },
       { hanzi: '每天练习已经成为我的习惯。', pinyin: 'Měi tiān liàn xí yǐ jīng chéng wéi wǒ de xí guàn.', meaning: 'Latihan setiap hari sudah menjadi kebiasaan saya.' },
     ],
     quiz: [
@@ -1944,6 +1946,129 @@ const postHskSkillFrame: Record<MandarinSkillId, string> = {
   pronunciation: 'Retorika lisan',
 };
 
+const proficiencyThemeVocabulary: MandarinLesson['vocabulary'][] = [
+  [
+    { hanzi: '公共信任', pinyin: 'gōnggòng xìnrèn', meaning: 'kepercayaan publik' },
+    { hanzi: '合法性', pinyin: 'héfǎxìng', meaning: 'legitimasi' },
+    { hanzi: '透明度', pinyin: 'tòumíngdù', meaning: 'transparansi' },
+    { hanzi: '问责机制', pinyin: 'wènzé jīzhì', meaning: 'mekanisme akuntabilitas' },
+  ],
+  [
+    { hanzi: '主体性', pinyin: 'zhǔtǐxìng', meaning: 'agency/otonomi subjek' },
+    { hanzi: '伦理边界', pinyin: 'lúnlǐ biānjiè', meaning: 'batas etika' },
+    { hanzi: '算法偏见', pinyin: 'suànfǎ piānjiàn', meaning: 'bias algoritma' },
+    { hanzi: '技术依赖', pinyin: 'jìshù yīlài', meaning: 'ketergantungan teknologi' },
+  ],
+  [
+    { hanzi: '教育公平', pinyin: 'jiàoyù gōngpíng', meaning: 'keadilan pendidikan' },
+    { hanzi: '资源分配', pinyin: 'zīyuán fēnpèi', meaning: 'distribusi sumber daya' },
+    { hanzi: '阶层流动', pinyin: 'jiēcéng liúdòng', meaning: 'mobilitas kelas sosial' },
+    { hanzi: '机会不均', pinyin: 'jīhuì bùjūn', meaning: 'ketidakmerataan peluang' },
+  ],
+  [
+    { hanzi: '可持续性', pinyin: 'kěchíxùxìng', meaning: 'keberlanjutan' },
+    { hanzi: '生态成本', pinyin: 'shēngtài chéngběn', meaning: 'biaya ekologis' },
+    { hanzi: '代际公平', pinyin: 'dàijì gōngpíng', meaning: 'keadilan antargenerasi' },
+    { hanzi: '绿色转型', pinyin: 'lǜsè zhuǎnxíng', meaning: 'transisi hijau' },
+  ],
+  [
+    { hanzi: '舆论引导', pinyin: 'yúlùn yǐndǎo', meaning: 'pengarahan opini publik' },
+    { hanzi: '信息茧房', pinyin: 'xìnxī jiǎnfáng', meaning: 'echo chamber informasi' },
+    { hanzi: '媒介素养', pinyin: 'méijiè sùyǎng', meaning: 'literasi media' },
+    { hanzi: '话语权', pinyin: 'huàyǔ quán', meaning: 'kuasa wacana' },
+  ],
+  [
+    { hanzi: '劳动保障', pinyin: 'láodòng bǎozhàng', meaning: 'perlindungan tenaga kerja' },
+    { hanzi: '技能转型', pinyin: 'jìnéng zhuǎnxíng', meaning: 'transformasi keterampilan' },
+    { hanzi: '就业弹性', pinyin: 'jiùyè tánxìng', meaning: 'fleksibilitas kerja' },
+    { hanzi: '替代风险', pinyin: 'tìdài fēngxiǎn', meaning: 'risiko tergantikan' },
+  ],
+  [
+    { hanzi: '文化传承', pinyin: 'wénhuà chuánchéng', meaning: 'pewarisan budaya' },
+    { hanzi: '身份认同', pinyin: 'shēnfèn rèntóng', meaning: 'identitas diri/kolektif' },
+    { hanzi: '现代性', pinyin: 'xiàndàixìng', meaning: 'modernitas' },
+    { hanzi: '本土语境', pinyin: 'běntǔ yǔjìng', meaning: 'konteks lokal' },
+  ],
+  [
+    { hanzi: '城市治理', pinyin: 'chéngshì zhìlǐ', meaning: 'tata kelola kota' },
+    { hanzi: '公共服务', pinyin: 'gōnggòng fúwù', meaning: 'layanan publik' },
+    { hanzi: '空间正义', pinyin: 'kōngjiān zhèngyì', meaning: 'keadilan ruang' },
+    { hanzi: '基础设施', pinyin: 'jīchǔ shèshī', meaning: 'infrastruktur' },
+  ],
+  [
+    { hanzi: '公共卫生', pinyin: 'gōnggòng wèishēng', meaning: 'kesehatan publik' },
+    { hanzi: '个人自由', pinyin: 'gèrén zìyóu', meaning: 'kebebasan individu' },
+    { hanzi: '集体利益', pinyin: 'jítǐ lìyì', meaning: 'kepentingan kolektif' },
+    { hanzi: '风险沟通', pinyin: 'fēngxiǎn gōutōng', meaning: 'komunikasi risiko' },
+  ],
+  [
+    { hanzi: '风险治理', pinyin: 'fēngxiǎn zhìlǐ', meaning: 'tata kelola risiko' },
+    { hanzi: '创新生态', pinyin: 'chuàngxīn shēngtài', meaning: 'ekosistem inovasi' },
+    { hanzi: '试错成本', pinyin: 'shìcuò chéngběn', meaning: 'biaya trial-and-error' },
+    { hanzi: '监管框架', pinyin: 'jiānguǎn kuàngjià', meaning: 'kerangka regulasi' },
+  ],
+  [
+    { hanzi: '全球化', pinyin: 'quánqiúhuà', meaning: 'globalisasi' },
+    { hanzi: '地方能动性', pinyin: 'dìfāng néngdòngxìng', meaning: 'agency lokal' },
+    { hanzi: '文化适应', pinyin: 'wénhuà shìyìng', meaning: 'adaptasi budaya' },
+    { hanzi: '相互依存', pinyin: 'xiānghù yīcún', meaning: 'saling bergantung' },
+  ],
+  [
+    { hanzi: '制度改革', pinyin: 'zhìdù gǎigé', meaning: 'reformasi institusi' },
+    { hanzi: '执行力', pinyin: 'zhíxíng lì', meaning: 'kapasitas eksekusi' },
+    { hanzi: '监督体系', pinyin: 'jiāndū tǐxì', meaning: 'sistem pengawasan' },
+    { hanzi: '路径依赖', pinyin: 'lùjìng yīlài', meaning: 'path dependency' },
+  ],
+  [
+    { hanzi: '社会流动', pinyin: 'shèhuì liúdòng', meaning: 'mobilitas sosial' },
+    { hanzi: '文化资本', pinyin: 'wénhuà zīběn', meaning: 'modal budaya' },
+    { hanzi: '阶层固化', pinyin: 'jiēcéng gùhuà', meaning: 'pengerasan kelas sosial' },
+    { hanzi: '机会结构', pinyin: 'jīhuì jiégòu', meaning: 'struktur peluang' },
+  ],
+  [
+    { hanzi: '环境正义', pinyin: 'huánjìng zhèngyì', meaning: 'keadilan lingkungan' },
+    { hanzi: '污染负担', pinyin: 'wūrǎn fùdān', meaning: 'beban polusi' },
+    { hanzi: '补偿机制', pinyin: 'bǔcháng jīzhì', meaning: 'mekanisme kompensasi' },
+    { hanzi: '生态责任', pinyin: 'shēngtài zérèn', meaning: 'tanggung jawab ekologis' },
+  ],
+  [
+    { hanzi: '跨文化沟通', pinyin: 'kuà wénhuà gōutōng', meaning: 'komunikasi lintas budaya' },
+    { hanzi: '谈判立场', pinyin: 'tánpàn lìchǎng', meaning: 'posisi negosiasi' },
+    { hanzi: '共同利益', pinyin: 'gòngtóng lìyì', meaning: 'kepentingan bersama' },
+    { hanzi: '误读', pinyin: 'wùdú', meaning: 'salah menafsirkan' },
+  ],
+  [
+    { hanzi: '文献综述', pinyin: 'wénxiàn zōngshù', meaning: 'literature review' },
+    { hanzi: '观点整合', pinyin: 'guāndiǎn zhěnghé', meaning: 'integrasi pandangan' },
+    { hanzi: '理论框架', pinyin: 'lǐlùn kuàngjià', meaning: 'kerangka teori' },
+    { hanzi: '论证链条', pinyin: 'lùnzhèng liàntiáo', meaning: 'rantai argumentasi' },
+  ],
+  [
+    { hanzi: '批判性阅读', pinyin: 'pīpànxìng yuèdú', meaning: 'critical reading' },
+    { hanzi: '证据强度', pinyin: 'zhèngjù qiángdù', meaning: 'kekuatan bukti' },
+    { hanzi: '逻辑漏洞', pinyin: 'luójí lòudòng', meaning: 'celah logika' },
+    { hanzi: '隐含假设', pinyin: 'yǐnhán jiǎshè', meaning: 'asumsi implisit' },
+  ],
+  [
+    { hanzi: '战略建议', pinyin: 'zhànlüè jiànyì', meaning: 'rekomendasi strategis' },
+    { hanzi: '执行摘要', pinyin: 'zhíxíng zhāiyào', meaning: 'executive summary' },
+    { hanzi: '优先级', pinyin: 'yōuxiān jí', meaning: 'prioritas' },
+    { hanzi: '关键风险', pinyin: 'guānjiàn fēngxiǎn', meaning: 'risiko kunci' },
+  ],
+  [
+    { hanzi: '修辞策略', pinyin: 'xiūcí cèlüè', meaning: 'strategi retorika' },
+    { hanzi: '语气控制', pinyin: 'yǔqì kòngzhì', meaning: 'kontrol nada bicara' },
+    { hanzi: '节奏安排', pinyin: 'jiézòu ānpái', meaning: 'pengaturan ritme' },
+    { hanzi: '强调焦点', pinyin: 'qiángdiào jiāodiǎn', meaning: 'fokus penekanan' },
+  ],
+  [
+    { hanzi: '综合能力', pinyin: 'zōnghé nénglì', meaning: 'kemampuan terpadu' },
+    { hanzi: '成果展示', pinyin: 'chéngguǒ zhǎnshì', meaning: 'presentasi hasil' },
+    { hanzi: '反思日志', pinyin: 'fǎnsī rìzhì', meaning: 'jurnal refleksi' },
+    { hanzi: '持续改进', pinyin: 'chíxù gǎijìn', meaning: 'perbaikan berkelanjutan' },
+  ],
+];
+
 /** Vocabulary questions for a lesson theme (HSK 5 and HSK 7-9). */
 function themeQuestions(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): ChoiceQuestion[] {
   const theme = getMandarinTheme(level, lesson);
@@ -1967,9 +2092,56 @@ export function getMandarinLessonPreview(skillId: MandarinSkillId, lesson: numbe
   return topics[skillId][safeLesson - 1] ?? `Lesson ${safeLesson}`;
 }
 
+type LessonPack = { vocabulary: MandarinLesson['vocabulary']; examples: MandarinLesson['examples'] };
+
+function packsFor(level: MandarinLevelId): LessonPack[] | null {
+  if (level === 'beginner') return beginnerLessonPacks;
+  if (level === 'elementary') return elementaryLessonPacks;
+  if (level === 'intermediate') return intermediateLessonPacks;
+  if (level === 'upper-intermediate') return [...upperIntermediateLessonPacks, ...upperIntermediateExtraLessonPacks];
+  return null;
+}
+
+function themeWordsFor(level: MandarinLevelId, lesson: number): MandarinLesson['vocabulary'] {
+  if (level === 'proficiency') return proficiencyThemeVocabulary[lesson - 1] ?? [];
+  return getMandarinTheme(level, lesson)?.vocabulary ?? [];
+}
+
+const materialCache = new Map<string, PracticeMaterial>();
+
+/** Lesson-number-specific sentences and words plus level-wide distractor pools. */
+function practiceMaterial(level: MandarinLevelId, lesson: number): PracticeMaterial {
+  const key = `${level}:${lesson}`;
+  const cached = materialCache.get(key);
+  if (cached) return cached;
+  const packs = packsFor(level);
+  const material: PracticeMaterial = packs
+    ? {
+        sentences: packs[lesson - 1]?.examples ?? [],
+        words: packs[lesson - 1]?.vocabulary ?? [],
+        levelSentences: packs.flatMap((pack) => pack.examples),
+        levelWords: packs.flatMap((pack) => pack.vocabulary),
+      }
+    : {
+        sentences: getMandarinThemeSentences(level, lesson),
+        words: themeWordsFor(level, lesson),
+        levelSentences: getMandarinLevelThemeSentences(level),
+        levelWords: Array.from({ length: 20 }, (_, index) => themeWordsFor(level, index + 1)).flat(),
+      };
+  materialCache.set(key, material);
+  return material;
+}
+
 export function getMandarinLesson(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId): MandarinLesson {
-  const generated = buildMandarinLesson(skillId, lesson, level);
-  return { ...generated, practice: shuffleQuestionOptions(generated.practice, hashSeed('mandarin', level, skillId, lesson)) };
+  const safeLesson = Math.max(1, Math.min(20, lesson));
+  const generated = buildMandarinLesson(skillId, safeLesson, level);
+  // Lesson-specific questions go first; shared drills fill the rest up to the original length.
+  const specific = buildLessonPractice(skillId, practiceMaterial(level, safeLesson), hashSeed('mandarin-practice', level, skillId, safeLesson));
+  const seen = new Set<string>();
+  const practice = [...specific, ...generated.practice]
+    .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
+    .slice(0, Math.max(generated.practice.length, specific.length));
+  return { ...generated, practice: shuffleQuestionOptions(practice, hashSeed('mandarin', level, skillId, safeLesson)) };
 }
 
 function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId): MandarinLesson {
@@ -2031,13 +2203,15 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
   ];
   const lessonTheme = getMandarinTheme(level, safeLesson);
   const lessonThemeQuiz = themeQuestions(level, skillId, safeLesson);
+  const lessonThemeSentences = getMandarinThemeSentences(level, safeLesson);
   const advancedPack = {
     goal: advancedTheme.goal,
     vocabulary: [...(lessonTheme?.vocabulary ?? []), ...advancedCoreVocabulary],
     examples: [
+      ...lessonThemeSentences,
       { hanzi: '这种社会现象反映了人们价值观的变化。', pinyin: 'Zhè zhǒng shè huì xiàn xiàng fǎn yìng le rén men jià zhí guān de biàn huà.', meaning: 'Fenomena sosial ini mencerminkan perubahan nilai masyarakat.' },
       { hanzi: '虽然这种趋势带来了新的机会，但也产生了一些值得注意的挑战。', pinyin: 'Suī rán zhè zhǒng qū shì dài lái le xīn de jī huì, dàn yě chǎn shēng le yì xiē zhí dé zhù yì de tiǎo zhàn.', meaning: 'Walaupun tren ini membawa peluang baru, ia juga menimbulkan tantangan yang perlu diperhatikan.' },
-      { hanzi: '由此可见，我们不能只看短期效率，还要考虑长期影响。', pinyin: 'Yóu cǐ kě jiàn, wǒ men bù néng zhī kàn duǎn qī xiào lǜ, hái yào kǎo lǜ cháng qī yǐng xiǎng.', meaning: 'Dari sini terlihat bahwa kita tidak boleh hanya melihat efisiensi jangka pendek, tetapi juga mempertimbangkan dampak jangka panjang.' },
+      { hanzi: '由此可见，我们不能只看短期效率，还要考虑长期影响。', pinyin: 'Yóu cǐ kě jiàn, wǒ men bù néng zhǐ kàn duǎn qī xiào lǜ, hái yào kǎo lǜ cháng qī yǐng xiǎng.', meaning: 'Dari sini terlihat bahwa kita tidak boleh hanya melihat efisiensi jangka pendek, tetapi juga mempertimbangkan dampak jangka panjang.' },
     ],
     quiz: [
       ...lessonThemeQuiz,
@@ -2083,141 +2257,8 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     { hanzi: '取舍', pinyin: 'qǔshě', meaning: 'trade-off / pilihan mengorbankan sesuatu' },
     { hanzi: '不容忽视', pinyin: 'bùróng hūshì', meaning: 'tidak boleh diabaikan' },
   ];
-  const proficiencyThemeVocabulary: MandarinLesson['vocabulary'][] = [
-    [
-      { hanzi: '公共信任', pinyin: 'gōnggòng xìnrèn', meaning: 'kepercayaan publik' },
-      { hanzi: '合法性', pinyin: 'héfǎxìng', meaning: 'legitimasi' },
-      { hanzi: '透明度', pinyin: 'tòumíngdù', meaning: 'transparansi' },
-      { hanzi: '问责机制', pinyin: 'wènzé jīzhì', meaning: 'mekanisme akuntabilitas' },
-    ],
-    [
-      { hanzi: '主体性', pinyin: 'zhǔtǐxìng', meaning: 'agency/otonomi subjek' },
-      { hanzi: '伦理边界', pinyin: 'lúnlǐ biānjiè', meaning: 'batas etika' },
-      { hanzi: '算法偏见', pinyin: 'suànfǎ piānjiàn', meaning: 'bias algoritma' },
-      { hanzi: '技术依赖', pinyin: 'jìshù yīlài', meaning: 'ketergantungan teknologi' },
-    ],
-    [
-      { hanzi: '教育公平', pinyin: 'jiàoyù gōngpíng', meaning: 'keadilan pendidikan' },
-      { hanzi: '资源分配', pinyin: 'zīyuán fēnpèi', meaning: 'distribusi sumber daya' },
-      { hanzi: '阶层流动', pinyin: 'jiēcéng liúdòng', meaning: 'mobilitas kelas sosial' },
-      { hanzi: '机会不均', pinyin: 'jīhuì bùjūn', meaning: 'ketidakmerataan peluang' },
-    ],
-    [
-      { hanzi: '可持续性', pinyin: 'kěchíxùxìng', meaning: 'keberlanjutan' },
-      { hanzi: '生态成本', pinyin: 'shēngtài chéngběn', meaning: 'biaya ekologis' },
-      { hanzi: '代际公平', pinyin: 'dàijì gōngpíng', meaning: 'keadilan antargenerasi' },
-      { hanzi: '绿色转型', pinyin: 'lǜsè zhuǎnxíng', meaning: 'transisi hijau' },
-    ],
-    [
-      { hanzi: '舆论引导', pinyin: 'yúlùn yǐndǎo', meaning: 'pengarahan opini publik' },
-      { hanzi: '信息茧房', pinyin: 'xìnxī jiǎnfáng', meaning: 'echo chamber informasi' },
-      { hanzi: '媒介素养', pinyin: 'méijiè sùyǎng', meaning: 'literasi media' },
-      { hanzi: '话语权', pinyin: 'huàyǔ quán', meaning: 'kuasa wacana' },
-    ],
-    [
-      { hanzi: '劳动保障', pinyin: 'láodòng bǎozhàng', meaning: 'perlindungan tenaga kerja' },
-      { hanzi: '技能转型', pinyin: 'jìnéng zhuǎnxíng', meaning: 'transformasi keterampilan' },
-      { hanzi: '就业弹性', pinyin: 'jiùyè tánxìng', meaning: 'fleksibilitas kerja' },
-      { hanzi: '替代风险', pinyin: 'tìdài fēngxiǎn', meaning: 'risiko tergantikan' },
-    ],
-    [
-      { hanzi: '文化传承', pinyin: 'wénhuà chuánchéng', meaning: 'pewarisan budaya' },
-      { hanzi: '身份认同', pinyin: 'shēnfèn rèntóng', meaning: 'identitas diri/kolektif' },
-      { hanzi: '现代性', pinyin: 'xiàndàixìng', meaning: 'modernitas' },
-      { hanzi: '本土语境', pinyin: 'běntǔ yǔjìng', meaning: 'konteks lokal' },
-    ],
-    [
-      { hanzi: '城市治理', pinyin: 'chéngshì zhìlǐ', meaning: 'tata kelola kota' },
-      { hanzi: '公共服务', pinyin: 'gōnggòng fúwù', meaning: 'layanan publik' },
-      { hanzi: '空间正义', pinyin: 'kōngjiān zhèngyì', meaning: 'keadilan ruang' },
-      { hanzi: '基础设施', pinyin: 'jīchǔ shèshī', meaning: 'infrastruktur' },
-    ],
-    [
-      { hanzi: '公共卫生', pinyin: 'gōnggòng wèishēng', meaning: 'kesehatan publik' },
-      { hanzi: '个人自由', pinyin: 'gèrén zìyóu', meaning: 'kebebasan individu' },
-      { hanzi: '集体利益', pinyin: 'jítǐ lìyì', meaning: 'kepentingan kolektif' },
-      { hanzi: '风险沟通', pinyin: 'fēngxiǎn gōutōng', meaning: 'komunikasi risiko' },
-    ],
-    [
-      { hanzi: '风险治理', pinyin: 'fēngxiǎn zhìlǐ', meaning: 'tata kelola risiko' },
-      { hanzi: '创新生态', pinyin: 'chuàngxīn shēngtài', meaning: 'ekosistem inovasi' },
-      { hanzi: '试错成本', pinyin: 'shìcuò chéngběn', meaning: 'biaya trial-and-error' },
-      { hanzi: '监管框架', pinyin: 'jiānguǎn kuàngjià', meaning: 'kerangka regulasi' },
-    ],
-    [
-      { hanzi: '全球化', pinyin: 'quánqiúhuà', meaning: 'globalisasi' },
-      { hanzi: '地方能动性', pinyin: 'dìfāng néngdòngxìng', meaning: 'agency lokal' },
-      { hanzi: '文化适应', pinyin: 'wénhuà shìyìng', meaning: 'adaptasi budaya' },
-      { hanzi: '相互依存', pinyin: 'xiānghù yīcún', meaning: 'saling bergantung' },
-    ],
-    [
-      { hanzi: '制度改革', pinyin: 'zhìdù gǎigé', meaning: 'reformasi institusi' },
-      { hanzi: '执行力', pinyin: 'zhíxíng lì', meaning: 'kapasitas eksekusi' },
-      { hanzi: '监督体系', pinyin: 'jiāndū tǐxì', meaning: 'sistem pengawasan' },
-      { hanzi: '路径依赖', pinyin: 'lùjìng yīlài', meaning: 'path dependency' },
-    ],
-    [
-      { hanzi: '社会流动', pinyin: 'shèhuì liúdòng', meaning: 'mobilitas sosial' },
-      { hanzi: '文化资本', pinyin: 'wénhuà zīběn', meaning: 'modal budaya' },
-      { hanzi: '阶层固化', pinyin: 'jiēcéng gùhuà', meaning: 'pengerasan kelas sosial' },
-      { hanzi: '机会结构', pinyin: 'jīhuì jiégòu', meaning: 'struktur peluang' },
-    ],
-    [
-      { hanzi: '环境正义', pinyin: 'huánjìng zhèngyì', meaning: 'keadilan lingkungan' },
-      { hanzi: '污染负担', pinyin: 'wūrǎn fùdān', meaning: 'beban polusi' },
-      { hanzi: '补偿机制', pinyin: 'bǔcháng jīzhì', meaning: 'mekanisme kompensasi' },
-      { hanzi: '生态责任', pinyin: 'shēngtài zérèn', meaning: 'tanggung jawab ekologis' },
-    ],
-    [
-      { hanzi: '跨文化沟通', pinyin: 'kuà wénhuà gōutōng', meaning: 'komunikasi lintas budaya' },
-      { hanzi: '谈判立场', pinyin: 'tánpàn lìchǎng', meaning: 'posisi negosiasi' },
-      { hanzi: '共同利益', pinyin: 'gòngtóng lìyì', meaning: 'kepentingan bersama' },
-      { hanzi: '误读', pinyin: 'wùdú', meaning: 'salah menafsirkan' },
-    ],
-    [
-      { hanzi: '文献综述', pinyin: 'wénxiàn zōngshù', meaning: 'literature review' },
-      { hanzi: '观点整合', pinyin: 'guāndiǎn zhěnghé', meaning: 'integrasi pandangan' },
-      { hanzi: '理论框架', pinyin: 'lǐlùn kuàngjià', meaning: 'kerangka teori' },
-      { hanzi: '论证链条', pinyin: 'lùnzhèng liàntiáo', meaning: 'rantai argumentasi' },
-    ],
-    [
-      { hanzi: '批判性阅读', pinyin: 'pīpànxìng yuèdú', meaning: 'critical reading' },
-      { hanzi: '证据强度', pinyin: 'zhèngjù qiángdù', meaning: 'kekuatan bukti' },
-      { hanzi: '逻辑漏洞', pinyin: 'luójí lòudòng', meaning: 'celah logika' },
-      { hanzi: '隐含假设', pinyin: 'yǐnhán jiǎshè', meaning: 'asumsi implisit' },
-    ],
-    [
-      { hanzi: '战略建议', pinyin: 'zhànlüè jiànyì', meaning: 'rekomendasi strategis' },
-      { hanzi: '执行摘要', pinyin: 'zhíxíng zhāiyào', meaning: 'executive summary' },
-      { hanzi: '优先级', pinyin: 'yōuxiān jí', meaning: 'prioritas' },
-      { hanzi: '关键风险', pinyin: 'guānjiàn fēngxiǎn', meaning: 'risiko kunci' },
-    ],
-    [
-      { hanzi: '修辞策略', pinyin: 'xiūcí cèlüè', meaning: 'strategi retorika' },
-      { hanzi: '语气控制', pinyin: 'yǔqì kòngzhì', meaning: 'kontrol nada bicara' },
-      { hanzi: '节奏安排', pinyin: 'jiézòu ānpái', meaning: 'pengaturan ritme' },
-      { hanzi: '强调焦点', pinyin: 'qiángdiào jiāodiǎn', meaning: 'fokus penekanan' },
-    ],
-    [
-      { hanzi: '综合能力', pinyin: 'zōnghé nénglì', meaning: 'kemampuan terpadu' },
-      { hanzi: '成果展示', pinyin: 'chéngguǒ zhǎnshì', meaning: 'presentasi hasil' },
-      { hanzi: '反思日志', pinyin: 'fǎnsī rìzhì', meaning: 'jurnal refleksi' },
-      { hanzi: '持续改进', pinyin: 'chíxù gǎijìn', meaning: 'perbaikan berkelanjutan' },
-    ],
-  ];
   const proficiencyThemeVocab = proficiencyThemeVocabulary[safeLesson - 1] ?? proficiencyThemeVocabulary[0];
-  const proficiencyThemeExamples: MandarinLesson['examples'] = [
-    {
-      hanzi: `围绕“${proficiencyTheme.title}”这一议题，学习者需要先识别核心矛盾，再判断不同方案背后的价值取舍。`,
-      pinyin: `Wei rao "${proficiencyTheme.title}" zhe yi yi ti, xue xi zhe xu yao xian shi bie he xin mao dun, zai pan duan bu tong fang an bei hou de jia zhi qu she.`,
-      meaning: `Untuk isu "${proficiencyTheme.title}", pelajar perlu mengidentifikasi kontradiksi inti, lalu menilai trade-off nilai di balik berbagai solusi.`,
-    },
-    {
-      hanzi: `如果只从单一角度理解“${proficiencyTheme.title}”，就容易忽略其制度、文化和长期影响。`,
-      pinyin: `Ru guo zhi cong dan yi jiao du li jie "${proficiencyTheme.title}", jiu rong yi hu lue qi zhi du, wen hua he chang qi ying xiang.`,
-      meaning: `Jika "${proficiencyTheme.title}" hanya dipahami dari satu sudut, aspek institusional, budaya, dan dampak jangka panjangnya mudah terabaikan.`,
-    },
-  ];
+  const proficiencyThemeExamples: MandarinLesson['examples'] = getMandarinThemeSentences('proficiency', safeLesson);
   const proficiencyPack = {
     goal: proficiencyTheme.goal,
     vocabulary: [...proficiencyThemeVocab, ...proficiencyCoreVocabulary],
@@ -2282,17 +2323,13 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     goal: `${postHskConfig.goal} Topik lesson: ${topic}.`,
     vocabulary: [...(lessonTheme?.vocabulary ?? []), ...postHskConfig.vocabulary, ...proficiencyPack.vocabulary],
     examples: [
-      {
-        hanzi: `在${postHskConfig.code}阶段，学习者需要围绕“${topic}”提出更具原创性的论点，并说明其理论意义。`,
-        pinyin: `Zai ${postHskConfig.code} jie duan, xue xi zhe xu yao wei rao "${topic}" ti chu geng ju yuan chuang xing de lun dian, bing shuo ming qi li lun yi yi.`,
-        meaning: `Pada tahap ${postHskConfig.code}, pelajar perlu mengajukan argumen yang lebih orisinal tentang "${topic}" dan menjelaskan makna teoretisnya.`,
-      },
+      ...lessonThemeSentences,
       {
         hanzi: '成熟的表达不只追求复杂，而是能够在复杂之中保持清晰、准确和有说服力。',
-        pinyin: 'Chéng shú de biǎo dá bù zhī zhuī qiú fù zá, ér shì néng gòu zài fù zá zhī zhōng bǎo chí qīng xī, zhǔn què hé yǒu shuō fú lì.',
+        pinyin: 'Chéng shú de biǎo dá bù zhǐ zhuī qiú fù zá, ér shì néng gòu zài fù zá zhī zhōng bǎo chí qīng xī, zhǔn què hé yǒu shuō fú lì.',
         meaning: 'Ekspresi matang tidak hanya mengejar kompleksitas, tetapi menjaga kejernihan, akurasi, dan daya persuasi di dalam kompleksitas.',
       },
-      ...proficiencyPack.examples,
+      ...proficiencyPack.examples.slice(proficiencyThemeExamples.length),
     ],
     quiz: [
       ...lessonThemeQuiz,
@@ -3044,7 +3081,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     writing: {
       title: 'Model esai HSK 6',
       hanzi: '一个成熟的公共决策不应只追求短期效率，还必须考虑公平、透明度和社会韧性。不可否认，快速行动有助于解决眼前问题；然而，如果决策过程缺乏沟通，政策本身即便方向正确，也可能难以获得公众支持。归根结底，治理能力体现在权衡利弊之后仍能建立信任。',
-      pinyin: 'Yí gè chéng shú de gōng gòng jué cè bú yìng zhī zhuī qiú duǎn qī xiào lǜ, hái bì xū kǎo lǜ gōng píng, tòu míng dù hé shè huì rèn xìng. bù kě fǒu rèn, kuài sù xíng dòng yǒu zhù yú jiě jué yǎn qián wèn tí; rán ér, rú guǒ jué cè guò chéng quē fá gōu tōng, zhèng cè běn shēn jí biàn fāng xiàng zhèng què, yě kě néng nán yǐ huò dé gōng zhòng zhī chí. guī gēn jié dǐ, zhì lǐ néng lì tǐ xiàn zài quán héng lì bì zhī hòu réng néng jiàn lì xìn rèn.',
+      pinyin: 'Yí gè chéng shú de gōng gòng jué cè bú yìng zhǐ zhuī qiú duǎn qī xiào lǜ, hái bì xū kǎo lǜ gōng píng, tòu míng dù hé shè huì rèn xìng. bù kě fǒu rèn, kuài sù xíng dòng yǒu zhù yú jiě jué yǎn qián wèn tí; rán ér, rú guǒ jué cè guò chéng quē fá gōu tōng, zhèng cè běn shēn jí biàn fāng xiàng zhèng què, yě kě néng nán yǐ huò dé gōng zhòng zhī chí. guī gēn jié dǐ, zhì lǐ néng lì tǐ xiàn zài quán héng lì bì zhī hòu réng néng jiàn lì xìn rèn.',
       meaning: 'Keputusan publik yang matang tidak seharusnya hanya mengejar efisiensi jangka pendek, tetapi juga mempertimbangkan keadilan, transparansi, dan resiliensi sosial. Tidak dapat disangkal, tindakan cepat membantu menyelesaikan masalah di depan mata; namun jika proses keputusan kurang komunikasi, kebijakan yang arahnya benar pun mungkin sulit mendapat dukungan publik. Pada akhirnya, kapasitas tata kelola terlihat dari kemampuan membangun kepercayaan setelah menimbang untung-rugi.',
     },
     vocabulary: {
@@ -3079,11 +3116,17 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     vocabulary: 'Buat lexical dossier: 20 kata HSK 6, kolokasi, register, sinonim dekat, contoh kalimat, dan konteks yang tidak cocok.',
     pronunciation: 'Rekam 3 menit dengan prosodi profesional: jeda retoris, penekanan idiom, soft disagreement, dan intonasi kesimpulan.',
   };
+  const postHskModelClosing = {
+    hanzi: '换句话说，关键不在于语言形式有多复杂，而在于论点是否清晰、证据是否可靠、推理是否经得起反驳。',
+    pinyin: 'Huàn jù huà shuō, guān jiàn bú zài yú yǔ yán xíng shì yǒu duō fù zá, ér zài yú lùn diǎn shì fǒu qīng xī, zhèng jù shì fǒu kě kào, tuī lǐ shì fǒu jīng dé qǐ fǎn bó.',
+    meaning: 'Dengan kata lain, kuncinya bukan seberapa kompleks bentuk bahasa, tetapi apakah argumen jelas, bukti dapat dipercaya, dan penalaran tahan terhadap sanggahan.',
+  };
+  const postHskModelParts = [...lessonThemeSentences, postHskModelClosing];
   const postHskModelOutput: MandarinLesson['modelOutput'] = {
-    title: postHskConfig.modelTitle,
-    hanzi: `围绕“${topic}”，高阶学习者不能只复述材料，而要界定概念、比较论证路径，并提出具有解释力的综合判断。换句话说，关键不在于语言形式有多复杂，而在于论点是否清晰、证据是否可靠、推理是否经得起反驳。`,
-    pinyin: `Wei rao "${topic}", gao jie xue xi zhe bu neng zhi fu shu cai liao, er yao jie ding gai nian, bi jiao lun zheng lu jing, bing ti chu ju you jie shi li de zong he pan duan. Huan ju hua shuo, guan jian bu zai yu yu yan xing shi you duo fu za, er zai yu lun dian shi fou qing xi, zheng ju shi fou ke kao, tui li shi fou jing de qi fan bo.`,
-    meaning: `Untuk topik "${topic}", pelajar tingkat tinggi tidak cukup mengulang materi. Mereka harus mendefinisikan konsep, membandingkan jalur argumentasi, dan menyampaikan sintesis yang punya daya jelaskan. Kuncinya bukan seberapa kompleks bentuk bahasa, tetapi apakah argumen jelas, bukti dapat dipercaya, dan penalaran tahan terhadap sanggahan.`,
+    title: `${postHskConfig.modelTitle}: ${lessonTheme?.hanzi ?? topic}`,
+    hanzi: postHskModelParts.map((part) => part.hanzi).join(''),
+    pinyin: postHskModelParts.map((part) => part.pinyin).join(' '),
+    meaning: postHskModelParts.map((part) => part.meaning).join(' '),
   };
 
   return {

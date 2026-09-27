@@ -8,7 +8,7 @@ import { useCart } from '../../shop/CartContext';
 import { useAuth } from '../../auth/AuthContext';
 import { useLanguage } from '../../i18n/LanguageContext';
 import AppLanguageSwitcher from '../shared/AppLanguageSwitcher';
-import { studyLanguageFor } from '../../features/learning/studyBank';
+import { studyLanguageFor } from '../../features/learning/studyLanguages';
 
 const fallbackAvatar = (name: string) =>
   `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name || 'Learner')}&backgroundColor=b6e3f4`;
