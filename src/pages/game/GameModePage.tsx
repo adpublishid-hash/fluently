@@ -7,8 +7,7 @@ import { gameModes } from '../../data/mockData';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
 import { useAuth } from '../../auth/AuthContext';
-import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
-import { arabicGameDifficultyCopy, arabicGameModeCopy } from '../../features/game/arabicGameContent';
+import { getGamePack } from '../../features/game/gamePacks';
 
 const difficulties = [
   { id: 'easy',   icon: Shield,  labelKey: 'gameDifficulty.easy'   as const, subKey: 'gameDifficulty.easySub'   as const, color: '#2ECC71', bgColor: '#E8F8F0' },
@@ -22,11 +21,12 @@ export default function GameModePage() {
   const { categoryId, modeId } = useParams<{ categoryId: string; modeId: string }>();
   const navigate = useNavigate();
   const mode = gameModes.find((m) => m.id === modeId);
-  const isArabicGame = normalizeTargetLanguage(user?.persona?.targetLanguage) === 'Arabic';
+  const gamePack = getGamePack(user?.persona?.targetLanguage);
+  const hasPack = Boolean(gamePack);
 
   if (!mode) return null;
 
-  const modeCopy = isArabicGame ? arabicGameModeCopy[mode.id] : null;
+  const modeCopy = hasPack ? gamePack?.modeCopy[mode.id] : null;
   const modeTitle = modeCopy?.title || t(mode.labelKey as TranslationKey);
   const modeSubtitle = modeCopy?.subtitle || t(mode.sublabelKey as TranslationKey);
 
@@ -34,16 +34,16 @@ export default function GameModePage() {
     <PageContainer>
       <div className="pb-28 md:pb-8">
         <PageHeader
-          title={isArabicGame ? modeTitle : undefined}
-          titleKey={isArabicGame ? undefined : mode.labelKey as TranslationKey}
-          subtitle={isArabicGame ? 'Pilih level Arabic yang sesuai, lalu mulai latihan.' : undefined}
-          subtitleKey={isArabicGame ? undefined : 'game.difficultySubtitle'}
+          title={hasPack ? modeTitle : undefined}
+          titleKey={hasPack ? undefined : mode.labelKey as TranslationKey}
+          subtitle={hasPack ? `Pilih level ${gamePack?.language} yang sesuai, lalu mulai latihan.` : undefined}
+          subtitleKey={hasPack ? undefined : 'game.difficultySubtitle'}
         />
 
         {/* Mode info */}
         <motion.div
           className="mx-5 md:mx-0 mb-8 rounded-2xl p-5 text-center"
-          style={{ backgroundColor: isArabicGame ? '#CCFBF1' : mode.bgColor, border: `1px solid ${isArabicGame ? '#0F766E' : mode.color}20` }}
+          style={{ backgroundColor: hasPack ? gamePack?.accentSoft : mode.bgColor, border: `1px solid ${hasPack ? gamePack?.accent : mode.color}20` }}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
         >
@@ -60,15 +60,15 @@ export default function GameModePage() {
 
         {/* Difficulty cards */}
         <div className="px-5 md:px-0">
-          <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">{isArabicGame ? 'Pilih Level Arabic' : t('game.difficultyTitle')}</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">{isArabicGame ? 'Easy, Medium, dan Hard memakai bank soal Arabic berbeda.' : t('game.difficultySubtitle')}</p>
+          <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">{hasPack ? `Pilih Level ${gamePack?.language}` : t('game.difficultyTitle')}</h2>
+          <p className="text-[13px] text-[#6B7280] mb-5">{hasPack ? `Easy, Medium, dan Hard memakai bank soal ${gamePack?.language} berbeda.` : t('game.difficultySubtitle')}</p>
 
           <div className="grid gap-4 md:grid-cols-3">
             {difficulties.map((diff, i) => {
               const Icon = diff.icon;
-              const copy = isArabicGame ? arabicGameDifficultyCopy[diff.id] : null;
-              const color = isArabicGame ? '#0F766E' : diff.color;
-              const bgColor = isArabicGame ? '#CCFBF1' : diff.bgColor;
+              const copy = hasPack ? gamePack?.difficultyCopy[diff.id] : null;
+              const color = hasPack ? gamePack?.accent : diff.color;
+              const bgColor = hasPack ? gamePack?.accentSoft : diff.bgColor;
               return (
                 <motion.button
                   key={diff.id}
@@ -92,7 +92,7 @@ export default function GameModePage() {
                     style={{ backgroundColor: color }}
                     whileHover={{ scale: 1.05 }}
                   >
-                    {isArabicGame ? 'Mulai Arabic' : t('common.play')}
+                    {hasPack ? `Mulai ${gamePack?.language}` : t('common.play')}
                   </motion.div>
                 </motion.button>
               );
