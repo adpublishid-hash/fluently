@@ -1,5 +1,6 @@
 import type { ArabicSkillId } from '../arabicModuleData';
-import { hashSeed, shuffleQuestionOptions } from '../../../../utils/quiz';
+import { buildChoiceQuestion, hashSeed, seededRandom, shuffleQuestionOptions, type ChoiceQuestion } from '../../../../utils/quiz';
+import { getArabicUpperLevelWords, getArabicUpperTheme, isArabicUpperLevel } from '../upper/arabicUpperThemes';
 import { getFoundationLesson, getFoundationTopic } from '../foundation/arabicFoundationLessons';
 
 export type GeneratedArabicContentLevel = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate' | 'advanced' | 'proficiency' | 'mastery' | 'scholar';
@@ -1727,8 +1728,29 @@ export function getArabicLessonPreview(skillId: ArabicSkillId, lesson: number, l
 }
 
 export function getGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel = 'beginner'): GeneratedArabicLesson {
-  const generated = buildGeneratedArabicLesson(skillId, lesson, level);
+  const generated = withUpperTheme(buildGeneratedArabicLesson(skillId, lesson, level), skillId, lesson, level);
   return { ...generated, practice: shuffleQuestionOptions(generated.practice, hashSeed('arabic', level, skillId, lesson)) };
+}
+
+/**
+ * B1+ lessons share skill-level material; each lesson number adds its own
+ * vocabulary theme (words, explanation line and quiz questions).
+ */
+function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, lessonId: number, level: GeneratedArabicContentLevel): GeneratedArabicLesson {
+  if (!isArabicUpperLevel(level)) return lesson;
+  const theme = getArabicUpperTheme(level, Math.max(1, Math.min(20, lessonId)));
+  if (!theme) return lesson;
+  const random = seededRandom(hashSeed('arabic-theme', level, skillId, lessonId));
+  const meanings = getArabicUpperLevelWords(level).map((word) => word.meaning);
+  const themeQuiz = theme.vocabulary
+    .map((word) => buildChoiceQuestion(`Apa arti「${word.arabic}」(${word.transliteration})?`, word.meaning, meanings, random))
+    .filter((question): question is ChoiceQuestion => question !== null);
+  return {
+    ...lesson,
+    explanation: [`Tema kosakata lesson ini: ${theme.title}. Pakai keempat istilah tema dalam latihan dan tugas akhir.`, ...(lesson.explanation ?? [])],
+    vocabulary: [...theme.vocabulary, ...(lesson.vocabulary ?? [])],
+    practice: [...themeQuiz, ...lesson.practice],
+  };
 }
 
 function buildGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel): GeneratedArabicLesson {
