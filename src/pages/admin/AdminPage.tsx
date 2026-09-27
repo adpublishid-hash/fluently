@@ -144,6 +144,27 @@ const normalizeVariants = (variants?: ProductVariant[]) =>
     }))
     .filter((variant) => variant.id && variant.name);
 
+const getPlanExpiryTime = (value?: string | null) => {
+  if (!value) return null;
+  const time = new Date(value).getTime();
+  return Number.isFinite(time) ? time : null;
+};
+
+const isExpiredProPlan = (user: AdminUser) => {
+  const expiryTime = getPlanExpiryTime(user.planExpiresAt);
+  return user.plan === 'pro' && expiryTime !== null && expiryTime <= Date.now();
+};
+
+const formatPlanExpiry = (value?: string | null) => {
+  const expiryTime = getPlanExpiryTime(value);
+  if (expiryTime === null) return '';
+  return new Date(expiryTime).toLocaleDateString('id-ID', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
 function adminHeaders(token: string | null) {
   return {
     'Content-Type': 'application/json',
@@ -324,7 +345,10 @@ export default function AdminPage() {
     if (!user) return;
     setSavingId(target.id);
     try {
-      const next = { ...target, ...patch };
+      const next: Partial<AdminUser> = { ...patch };
+      if (Object.prototype.hasOwnProperty.call(patch, 'plan')) {
+        next.planExpiresAt = patch.planExpiresAt ?? null;
+      }
       const res = await fetch(`/api/admin/users/${target.id}`, {
         method: 'PATCH',
         headers: adminHeaders(token),
@@ -690,6 +714,27 @@ export default function AdminPage() {
                               <option value="pro">Pro</option>
                               <option value="lifetime">Lifetime</option>
                             </select>
+                            {item.plan === 'pro' && (
+                              <div className="mt-2 space-y-1">
+                                {isExpiredProPlan(item) ? (
+                                  <>
+                                    <p className="text-[11px] font-black text-red-600">Pro expired {formatPlanExpiry(item.planExpiresAt)}</p>
+                                    <button
+                                      type="button"
+                                      disabled={savingId === item.id}
+                                      onClick={() => updateUser(item, { plan: 'pro', planExpiresAt: null })}
+                                      className="h-7 rounded-[6px] bg-emerald-50 px-2 text-[11px] font-black text-emerald-700 disabled:opacity-50"
+                                    >
+                                      Aktifkan Pro
+                                    </button>
+                                  </>
+                                ) : item.planExpiresAt ? (
+                                  <p className="text-[11px] font-bold text-gray-500">Aktif sampai {formatPlanExpiry(item.planExpiresAt)}</p>
+                                ) : (
+                                  <p className="text-[11px] font-bold text-emerald-700">Pro aktif</p>
+                                )}
+                              </div>
+                            )}
                           </td>
                           <td className="px-4 py-3">
                             <select

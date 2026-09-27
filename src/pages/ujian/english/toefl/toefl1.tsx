@@ -1,52 +1,51 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { AlertTriangle, ArrowLeft, CheckCircle2, Clock3, Download, Eye, EyeOff, FileText, Headphones, ListChecks, Mail, Play, RotateCcw, Trophy, Volume2, XCircle } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, Clock3, Download, Eye, EyeOff, FileText, Flag, Headphones, ListChecks, Mail, Play, RotateCcw, Trophy, Volume2, XCircle } from 'lucide-react';
 import PageContainer from '../../../../components/layout/PageContainer';
 import { useAuth } from '../../../../auth/AuthContext';
 import { generateToeflCertificate, generateToeflCertificateBase64 } from '../../../../utils/generateToeflCertificate';
 import { hasApiKey, playAudio, stopCurrentAudio } from '../../../../services/ttsService';
-
-type SectionId = 'Listening' | 'Structure' | 'Reading';
-
-type Question = {
-  id: string;
-  section: SectionId;
-  prompt: string;
-  options: string[];
-  answer: number;
-  explanation: string;
-  passage?: string;
-  skill?: string;
-  instruction?: string;
-  correction?: string;
-};
+import { ANSWER_PENDING, toeflPractice2Questions } from './toeflPractice2Data';
+import type { Question, SectionId } from './toeflPractice2Data';
 
 const STORAGE_KEY = 'talky_exam_english_toefl1_result';
+const PROGRESS_STORAGE_KEY = 'talky_exam_english_toefl2_progress';
 const EXAM_SECONDS = 115 * 60;
 
-const conversion = {
+const toeflScoreConversion: Record<SectionId, Record<number, number>> = {
   Listening: {
-    0: 24, 1: 25, 2: 26, 3: 27, 4: 28, 5: 29, 6: 30, 7: 31, 8: 32, 9: 32,
+    1: 25, 2: 26, 3: 27, 4: 28, 5: 29, 6: 30, 7: 31, 8: 32, 9: 32,
     10: 33, 11: 35, 12: 37, 13: 38, 14: 39, 15: 41, 16: 41, 17: 42, 18: 43, 19: 44,
     20: 45, 21: 45, 22: 46, 23: 47, 24: 47, 25: 48, 26: 48, 27: 49, 28: 49, 29: 50,
     30: 51, 31: 52, 32: 52, 33: 53, 34: 53, 35: 54, 36: 54, 37: 55, 38: 56, 39: 57,
     40: 57, 41: 58, 42: 59, 43: 60, 44: 61, 45: 62, 46: 63, 47: 65, 48: 66, 49: 67, 50: 68,
   },
   Structure: {
-    0: 20, 1: 20, 2: 21, 3: 22, 4: 23, 5: 25, 6: 26, 7: 27, 8: 29, 9: 31,
+    1: 20, 2: 21, 3: 22, 4: 23, 5: 25, 6: 26, 7: 27, 8: 29, 9: 31,
     10: 33, 11: 35, 12: 36, 13: 37, 14: 38, 15: 40, 16: 40, 17: 41, 18: 42, 19: 43,
     20: 44, 21: 45, 22: 46, 23: 47, 24: 48, 25: 49, 26: 50, 27: 51, 28: 52, 29: 53,
     30: 54, 31: 55, 32: 56, 33: 57, 34: 58, 35: 60, 36: 61, 37: 63, 38: 65, 39: 68, 40: 68,
   },
   Reading: {
-    0: 21, 1: 22, 2: 23, 3: 23, 4: 25, 5: 26, 6: 27, 7: 28, 8: 28, 9: 29,
+    1: 22, 2: 23, 3: 23, 4: 25, 5: 26, 6: 27, 7: 28, 8: 28, 9: 29,
     10: 30, 11: 31, 12: 32, 13: 33, 14: 34, 15: 35, 16: 36, 17: 37, 18: 38, 19: 39,
     20: 40, 21: 41, 22: 42, 23: 43, 24: 43, 25: 44, 26: 45, 27: 46, 28: 46, 29: 47,
     30: 48, 31: 48, 32: 49, 33: 50, 34: 51, 35: 52, 36: 52, 37: 53, 38: 54, 39: 54,
     40: 55, 41: 56, 42: 57, 43: 58, 44: 59, 45: 60, 46: 61, 47: 63, 48: 65, 49: 66, 50: 67,
   },
-} as const;
+};
+
+const maxConversionRaw: Record<SectionId, number> = {
+  Listening: 50,
+  Structure: 40,
+  Reading: 50,
+};
+
+const getConvertedSectionScore = (section: SectionId, raw: number) => {
+  const clampedRaw = Math.min(Math.max(raw, 1), maxConversionRaw[section]);
+  return toeflScoreConversion[section][clampedRaw];
+};
 
 const sectionConfig = [
   { title: 'Listening' as const, icon: Headphones, total: 50, time: '35 min' },
@@ -561,7 +560,23 @@ const readingQuestions: Question[] = readingPassages.flatMap((item, passageIndex
   });
 });
 
-const questions: Question[] = [...listeningQuestions, ...structureQuestions, ...readingQuestions];
+const questions: Question[] = toeflPractice2Questions;
+const answerKeyReady = questions.every((question) => question.answer !== ANSWER_PENDING);
+const questionNavigatorGroups = sectionConfig.map((section) => ({
+  ...section,
+  questionEntries: questions
+    .map((question, index) => ({ question, index }))
+    .filter(({ question }) => question.section === section.title),
+}));
+
+type StoredExamProgress = {
+  version: 2;
+  currentIndex: number;
+  timeLeft: number;
+  answers: Record<string, number>;
+  flaggedQuestionIds: string[];
+  savedAt: string;
+};
 
 const formatTime = (seconds: number) => {
   const minutes = Math.floor(seconds / 60);
@@ -570,6 +585,62 @@ const formatTime = (seconds: number) => {
 };
 
 const getSectionQuestions = (section: SectionId) => questions.filter((question) => question.section === section);
+const questionById = new Map(questions.map((question) => [question.id, question]));
+
+const getFlaggedQuestionIds = (flaggedQuestions: Record<string, boolean>) =>
+  Object.entries(flaggedQuestions)
+    .filter(([, isFlagged]) => isFlagged)
+    .map(([questionId]) => questionId);
+
+const createFlaggedQuestionMap = (questionIds: string[]) =>
+  questionIds.reduce<Record<string, boolean>>((acc, questionId) => {
+    if (questionById.has(questionId)) acc[questionId] = true;
+    return acc;
+  }, {});
+
+const clearStoredProgress = () => {
+  if (typeof window === 'undefined') return;
+  try {
+    window.localStorage.removeItem(PROGRESS_STORAGE_KEY);
+  } catch {
+    // Ignore storage failures in private browsing or restricted environments.
+  }
+};
+
+const readStoredProgress = (): StoredExamProgress | null => {
+  if (typeof window === 'undefined') return null;
+  try {
+    const raw = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<StoredExamProgress>;
+    if (parsed.version !== 2) return null;
+    const timeLeft = Math.min(Math.max(Number(parsed.timeLeft) || 0, 0), EXAM_SECONDS);
+    if (timeLeft <= 0) return null;
+    const currentIndex = Math.min(Math.max(Number(parsed.currentIndex) || 0, 0), questions.length - 1);
+    const answers = Object.entries(parsed.answers ?? {}).reduce<Record<string, number>>((acc, [questionId, answer]) => {
+      const question = questionById.get(questionId);
+      if (question && Number.isInteger(answer) && answer >= 0 && answer < question.options.length) {
+        acc[questionId] = answer;
+      }
+      return acc;
+    }, {});
+    const flaggedQuestionIds = Array.isArray(parsed.flaggedQuestionIds)
+      ? parsed.flaggedQuestionIds.filter((questionId) => questionById.has(questionId))
+      : [];
+
+    return {
+      version: 2,
+      currentIndex,
+      timeLeft,
+      answers,
+      flaggedQuestionIds,
+      savedAt: typeof parsed.savedAt === 'string' ? parsed.savedAt : new Date().toISOString(),
+    };
+  } catch {
+    clearStoredProgress();
+    return null;
+  }
+};
 
 const getListeningAudioText = (question: Question) => {
   if (question.section !== 'Listening' || !question.passage) return '';
@@ -603,8 +674,12 @@ export default function EnglishToefl1Page() {
   const [downloading, setDownloading] = useState(false);
   const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [emailError, setEmailError] = useState('');
+  const [savedProgress, setSavedProgress] = useState<StoredExamProgress | null>(() => readStoredProgress());
+  const [flaggedQuestions, setFlaggedQuestions] = useState<Record<string, boolean>>({});
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [showNavWarning, setShowNavWarning] = useState(false);
+  const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [showQuestionNavigator, setShowQuestionNavigator] = useState(true);
   const [showListeningTranscript, setShowListeningTranscript] = useState(false);
   const completionEmailSentRef = useRef(false);
 
@@ -638,11 +713,22 @@ export default function EnglishToefl1Page() {
   const currentQuestion = questions[currentIndex];
   const answeredCount = Object.keys(answers).length;
   const currentListeningAudio = getListeningAudioText(currentQuestion);
+  const currentListeningAudioSrc = currentQuestion.section === 'Listening' ? currentQuestion.audioSrc ?? '' : '';
   const currentSectionQuestions = getSectionQuestions(currentQuestion.section);
   const currentSectionPosition = Math.max(
     currentSectionQuestions.findIndex((question) => question.id === currentQuestion.id) + 1,
     1,
   );
+  const currentAnswer = answers[currentQuestion.id];
+  const isCurrentQuestionFlagged = Boolean(flaggedQuestions[currentQuestion.id]);
+  const unansweredQuestions = useMemo(
+    () => questions
+      .map((question, index) => ({ question, index }))
+      .filter(({ question }) => answers[question.id] === undefined),
+    [answers],
+  );
+  const unansweredCount = unansweredQuestions.length;
+  const flaggedQuestionCount = getFlaggedQuestionIds(flaggedQuestions).length;
 
   useEffect(() => {
     setShowListeningTranscript(false);
@@ -650,16 +736,39 @@ export default function EnglishToefl1Page() {
     if (typeof window !== 'undefined' && window.speechSynthesis) window.speechSynthesis.cancel();
   }, [currentIndex]);
 
+  useEffect(() => {
+    if (!started || submitted) return;
+    const progress: StoredExamProgress = {
+      version: 2,
+      currentIndex,
+      timeLeft,
+      answers,
+      flaggedQuestionIds: getFlaggedQuestionIds(flaggedQuestions),
+      savedAt: new Date().toISOString(),
+    };
+    try {
+      window.localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress));
+    } catch {
+      // Autosave is helpful, but the exam should continue if browser storage is unavailable.
+    }
+  }, [answers, currentIndex, flaggedQuestions, started, submitted, timeLeft]);
+
   const sectionResults = useMemo(() => {
     return sectionConfig.map((section) => {
       const sectionQuestions = getSectionQuestions(section.title);
-      const raw = sectionQuestions.filter((question) => answers[question.id] === question.answer).length;
-      const scaled = conversion[section.title][raw as keyof typeof conversion[typeof section.title]];
-      return { ...section, raw, scaled };
+      const answered = sectionQuestions.filter((question) => answers[question.id] !== undefined).length;
+      const raw = answerKeyReady
+        ? sectionQuestions.filter((question) => answers[question.id] === question.answer).length
+        : 0;
+      const scaled = answerKeyReady
+        ? getConvertedSectionScore(section.title, raw)
+        : 0;
+      return { ...section, answered, raw, scaled };
     });
   }, [answers]);
 
   const totalScore = useMemo(() => {
+    if (!answerKeyReady) return 0;
     const totalScaled = sectionResults.reduce((sum, section) => sum + section.scaled, 0);
     return Math.round((totalScaled * 10) / 3);
   }, [sectionResults]);
@@ -690,16 +799,20 @@ export default function EnglishToefl1Page() {
     const studentName = user?.displayName ?? user?.name ?? 'Valued Learner';
     const sections = sectionResults.map(({ title, raw, scaled, total }) => ({ title, raw, scaled, total }));
     setSubmittedAt(now);
+    clearStoredProgress();
+    setSavedProgress(null);
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify({
         score: totalScore,
         sections,
         total: questions.length,
+        answerKeyReady,
         submittedAt: now,
       }),
     );
 
+    if (!answerKeyReady) return;
     if (!user?.email) return;
     setEmailStatus('sending');
     setEmailError('');
@@ -715,7 +828,7 @@ export default function EnglishToefl1Page() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', ...authHeaders() },
         body: JSON.stringify({
-          testName: 'TOEFL Practice Test 1',
+          testName: 'TOEFL Practice Test 2',
           totalScore,
           sections,
           submittedAt: now,
@@ -751,7 +864,46 @@ export default function EnglishToefl1Page() {
     }
   };
 
+  const startExam = (section?: SectionId) => {
+    const index = section ? questions.findIndex((question) => question.section === section) : 0;
+    clearStoredProgress();
+    completionEmailSentRef.current = false;
+    setStarted(true);
+    setSubmitted(false);
+    setSubmittedAt('');
+    setCurrentIndex(index >= 0 ? index : 0);
+    setTimeLeft(EXAM_SECONDS);
+    setAnswers({});
+    setFlaggedQuestions({});
+    setEmailStatus('idle');
+    setEmailError('');
+    setSavedProgress(null);
+    setShowSubmitModal(false);
+    setShowQuestionNavigator(true);
+  };
+
+  const resumeExam = (progress: StoredExamProgress) => {
+    completionEmailSentRef.current = false;
+    setStarted(true);
+    setSubmitted(false);
+    setSubmittedAt('');
+    setCurrentIndex(progress.currentIndex);
+    setTimeLeft(progress.timeLeft);
+    setAnswers(progress.answers);
+    setFlaggedQuestions(createFlaggedQuestionMap(progress.flaggedQuestionIds));
+    setEmailStatus('idle');
+    setEmailError('');
+    setShowSubmitModal(false);
+    setShowQuestionNavigator(true);
+  };
+
+  const discardSavedProgress = () => {
+    clearStoredProgress();
+    setSavedProgress(null);
+  };
+
   const resetExam = () => {
+    clearStoredProgress();
     completionEmailSentRef.current = false;
     setStarted(false);
     setSubmitted(false);
@@ -759,8 +911,12 @@ export default function EnglishToefl1Page() {
     setCurrentIndex(0);
     setTimeLeft(EXAM_SECONDS);
     setAnswers({});
+    setFlaggedQuestions({});
     setEmailStatus('idle');
     setEmailError('');
+    setSavedProgress(null);
+    setShowSubmitModal(false);
+    setShowListeningTranscript(false);
   };
 
   const handleCancelConfirm = () => {
@@ -772,6 +928,48 @@ export default function EnglishToefl1Page() {
   const jumpToSection = (section: SectionId) => {
     const index = questions.findIndex((question) => question.section === section);
     if (index >= 0) setCurrentIndex(index);
+  };
+
+  const jumpToQuestion = (index: number) => {
+    setCurrentIndex(Math.min(Math.max(index, 0), questions.length - 1));
+  };
+
+  const toggleCurrentQuestionFlag = () => {
+    setFlaggedQuestions((current) => ({
+      ...current,
+      [currentQuestion.id]: !current[currentQuestion.id],
+    }));
+  };
+
+  const clearCurrentAnswer = () => {
+    setAnswers((current) => {
+      const next = { ...current };
+      delete next[currentQuestion.id];
+      return next;
+    });
+  };
+
+  const handleSubmitAttempt = () => {
+    setShowSubmitModal(true);
+  };
+
+  const confirmSubmit = () => {
+    setShowSubmitModal(false);
+    setSubmitted(true);
+  };
+
+  const reviewFirstUnanswered = () => {
+    const firstUnanswered = unansweredQuestions[0];
+    if (!firstUnanswered) return;
+    setShowSubmitModal(false);
+    jumpToQuestion(firstUnanswered.index);
+  };
+
+  const reviewFirstFlagged = () => {
+    const firstFlaggedIndex = questions.findIndex((question) => flaggedQuestions[question.id]);
+    if (firstFlaggedIndex < 0) return;
+    setShowSubmitModal(false);
+    jumpToQuestion(firstFlaggedIndex);
   };
 
   return (
@@ -866,6 +1064,76 @@ export default function EnglishToefl1Page() {
         )}
       </AnimatePresence>
 
+      {/* ── Submit confirmation modal ───────────────────────────────── */}
+      <AnimatePresence>
+        {showSubmitModal && (
+          <motion.div
+            key="submit-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 px-4 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0, y: 16 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 16 }}
+              transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              className="w-full max-w-md rounded-3xl bg-white p-6 shadow-2xl"
+            >
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-50 mx-auto">
+                <CheckCircle2 size={28} className="text-emerald-600" />
+              </div>
+              <h2 className="text-center text-xl font-black text-[#101828]">Submit Ujian?</h2>
+              <p className="mt-2 text-center text-sm font-semibold leading-relaxed text-slate-500">
+                {unansweredCount > 0
+                  ? `${unansweredCount} soal belum dijawab.`
+                  : 'Semua soal sudah dijawab.'}
+                {flaggedQuestionCount > 0 ? ` ${flaggedQuestionCount} soal masih ditandai untuk review.` : ''}
+              </p>
+              <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                {unansweredCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={reviewFirstUnanswered}
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-amber-50 py-3 text-sm font-black text-amber-700 hover:bg-amber-100"
+                  >
+                    <AlertTriangle size={17} />
+                    Review Kosong
+                  </button>
+                )}
+                {flaggedQuestionCount > 0 && (
+                  <button
+                    type="button"
+                    onClick={reviewFirstFlagged}
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-sky-50 py-3 text-sm font-black text-[#1E6F9F] hover:bg-sky-100"
+                  >
+                    <Flag size={17} />
+                    Review Tanda
+                  </button>
+                )}
+              </div>
+              <div className="mt-4 flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowSubmitModal(false)}
+                  className="flex-1 rounded-2xl bg-slate-100 py-3 text-sm font-black text-slate-600 hover:bg-slate-200"
+                >
+                  Kembali
+                </button>
+                <button
+                  type="button"
+                  onClick={confirmSubmit}
+                  className="flex-1 rounded-2xl bg-emerald-600 py-3 text-sm font-black text-white hover:bg-emerald-700"
+                >
+                  Submit
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ── Main page ─────────────────────────────────────────────────── */}
       <PageContainer>
         {/* When exam is active: fullscreen overlay that hides sidebar + bottom nav */}
@@ -893,7 +1161,7 @@ export default function EnglishToefl1Page() {
             )}
             <div className="min-w-0 flex-1">
               <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#4FA3D1]">English TOEFL PBT</p>
-              <h1 className="truncate text-lg font-black leading-tight text-[#101828]">TOEFL Practice Test 1</h1>
+              <h1 className="truncate text-lg font-black leading-tight text-[#101828]">TOEFL Practice Test 2</h1>
             </div>
             <div className="flex items-center gap-1.5 rounded-2xl bg-slate-100 px-3 py-2 text-sm font-black text-slate-700">
               <Clock3 size={16} />
@@ -912,6 +1180,38 @@ export default function EnglishToefl1Page() {
               </p>
             </div>
 
+            {savedProgress && (
+              <div className="rounded-3xl border border-sky-100 bg-sky-50 p-4 shadow-sm">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-sm font-black text-[#101828]">Progress ujian tersimpan</p>
+                    <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">
+                      {Object.keys(savedProgress.answers).length} / {questions.length} soal terjawab · sisa waktu {formatTime(savedProgress.timeLeft)}
+                    </p>
+                    <p className="mt-0.5 text-[11px] font-bold text-slate-400">
+                      Disimpan {new Date(savedProgress.savedAt).toLocaleString('id-ID')}
+                    </p>
+                  </div>
+                  <div className="flex shrink-0 gap-2">
+                    <button
+                      type="button"
+                      onClick={discardSavedProgress}
+                      className="rounded-2xl bg-white px-4 py-3 text-xs font-black text-slate-500 ring-1 ring-sky-100 hover:bg-slate-50"
+                    >
+                      Hapus
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => resumeExam(savedProgress)}
+                      className="rounded-2xl bg-[#4FA3D1] px-4 py-3 text-xs font-black text-white shadow-sm hover:bg-[#2F86B5]"
+                    >
+                      Lanjutkan
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="grid gap-3 sm:grid-cols-3">
               {sectionConfig.map((section) => {
                 const Icon = section.icon;
@@ -919,10 +1219,7 @@ export default function EnglishToefl1Page() {
                   <button
                     key={section.title}
                     type="button"
-                    onClick={() => {
-                      setStarted(true);
-                      setTimeout(() => jumpToSection(section.title), 0);
-                    }}
+                    onClick={() => startExam(section.title)}
                     className="rounded-3xl border border-slate-100 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                   >
                     <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-[#4FA3D1]">
@@ -937,7 +1234,7 @@ export default function EnglishToefl1Page() {
 
             <button
               type="button"
-              onClick={() => setStarted(true)}
+              onClick={() => startExam()}
               className="h-14 w-full rounded-2xl bg-[#4FA3D1] text-base font-black text-white shadow-lg shadow-blue-100 hover:bg-[#2F86B5]"
             >
               Mulai dari Listening
@@ -969,10 +1266,72 @@ export default function EnglishToefl1Page() {
                   </button>
                 ))}
               </div>
+              <div className="mt-4 border-t border-slate-100 pt-4">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <p className="text-sm font-black text-[#101828]">Question Navigator</p>
+                    <p className="mt-0.5 text-xs font-bold text-slate-400">
+                      {answeredCount} terjawab · {unansweredCount} kosong · {flaggedQuestionCount} review
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setShowQuestionNavigator((value) => !value)}
+                    className="inline-flex w-fit items-center gap-2 rounded-2xl bg-slate-100 px-3 py-2 text-xs font-black text-slate-600 hover:bg-slate-200"
+                  >
+                    <ListChecks size={16} />
+                    {showQuestionNavigator ? 'Sembunyikan' : 'Tampilkan'}
+                  </button>
+                </div>
+
+                {showQuestionNavigator && (
+                  <div className="mt-4 max-h-[320px] space-y-4 overflow-y-auto pr-1">
+                    {questionNavigatorGroups.map((section) => (
+                      <div key={section.title}>
+                        <div className="mb-2 flex items-center justify-between gap-2">
+                          <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">{section.title}</p>
+                          <p className="text-[11px] font-black text-slate-400">
+                            {section.questionEntries.filter(({ question }) => answers[question.id] !== undefined).length} / {section.total}
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-8 gap-1.5 sm:grid-cols-10 md:grid-cols-12">
+                          {section.questionEntries.map(({ question, index }) => {
+                            const isCurrent = index === currentIndex;
+                            const isAnswered = answers[question.id] !== undefined;
+                            const isFlagged = Boolean(flaggedQuestions[question.id]);
+                            return (
+                              <button
+                                key={question.id}
+                                type="button"
+                                title={`${section.title} ${index + 1}`}
+                                onClick={() => jumpToQuestion(index)}
+                                className={`relative flex h-9 items-center justify-center rounded-xl text-[11px] font-black transition ${
+                                  isCurrent
+                                    ? 'bg-[#4FA3D1] text-white shadow-sm'
+                                    : isAnswered
+                                      ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100'
+                                      : 'bg-slate-100 text-slate-500 ring-1 ring-slate-100'
+                                }`}
+                              >
+                                {index + 1}
+                                {isFlagged && (
+                                  <span className={`absolute -right-1 -top-1 h-3 w-3 rounded-full border-2 ${
+                                    isCurrent ? 'border-[#4FA3D1] bg-amber-300' : 'border-white bg-amber-400'
+                                  }`} />
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-              {currentQuestion.section === 'Listening' && currentListeningAudio ? (
+              {currentQuestion.section === 'Listening' && (currentListeningAudioSrc || currentListeningAudio) ? (
                 <div className="mb-4 rounded-3xl border border-blue-100 bg-gradient-to-br from-blue-50 to-sky-50 p-4">
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-3">
@@ -980,42 +1339,56 @@ export default function EnglishToefl1Page() {
                         <Headphones size={22} />
                       </div>
                       <div>
-                        <p className="text-sm font-black text-[#101828]">TOEFL Listening Audio</p>
+                        <p className="text-sm font-black text-[#101828]">{currentQuestion.audioLabel || 'TOEFL Listening Audio'}</p>
                         <p className="mt-0.5 text-xs font-semibold text-slate-500">
-                          Putar audio, lalu pilih jawaban terbaik. Transcript disembunyikan seperti test asli.
+                          Putar audio asli, lalu pilih jawaban terbaik. Track mengikuti bagian Listening yang sedang dikerjakan.
                         </p>
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => speakWithBrowserFallback(currentListeningAudio)}
-                      className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#4FA3D1] px-5 text-sm font-black text-white shadow-sm hover:bg-[#2F86B5]"
-                    >
-                      <Play size={16} className="fill-white" />
-                      Play Audio
-                    </button>
+                    {!currentListeningAudioSrc && (
+                      <button
+                        type="button"
+                        onClick={() => speakWithBrowserFallback(currentListeningAudio)}
+                        className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-2xl bg-[#4FA3D1] px-5 text-sm font-black text-white shadow-sm hover:bg-[#2F86B5]"
+                      >
+                        <Play size={16} className="fill-white" />
+                        Play Audio
+                      </button>
+                    )}
                   </div>
 
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => speakWithBrowserFallback(currentListeningAudio)}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-[#4FA3D1] ring-1 ring-blue-100"
+                  {currentListeningAudioSrc ? (
+                    <audio
+                      key={currentQuestion.audioSrc}
+                      controls
+                      preload="metadata"
+                      className="mt-4 w-full"
+                      src={currentListeningAudioSrc}
                     >
-                      <Volume2 size={13} />
-                      Replay
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setShowListeningTranscript((value) => !value)}
-                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-slate-500 ring-1 ring-slate-100"
-                    >
-                      {showListeningTranscript ? <EyeOff size={13} /> : <Eye size={13} />}
-                      {showListeningTranscript ? 'Hide transcript' : 'Show transcript'}
-                    </button>
-                  </div>
+                      Browser kamu tidak mendukung audio player.
+                    </audio>
+                  ) : (
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => speakWithBrowserFallback(currentListeningAudio)}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-[#4FA3D1] ring-1 ring-blue-100"
+                      >
+                        <Volume2 size={13} />
+                        Replay
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setShowListeningTranscript((value) => !value)}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-black text-slate-500 ring-1 ring-slate-100"
+                      >
+                        {showListeningTranscript ? <EyeOff size={13} /> : <Eye size={13} />}
+                        {showListeningTranscript ? 'Hide transcript' : 'Show transcript'}
+                      </button>
+                    </div>
+                  )}
 
-                  {showListeningTranscript && (
+                  {!currentListeningAudioSrc && showListeningTranscript && (
                     <div className="mt-3 max-h-[160px] overflow-y-auto rounded-2xl bg-white p-4 text-sm font-semibold leading-relaxed text-slate-600 ring-1 ring-blue-100">
                       Audio transcript {currentIndex + 1}: {currentListeningAudio}
                     </div>
@@ -1064,6 +1437,40 @@ export default function EnglishToefl1Page() {
                   </div>
                 </div>
               )}
+              <div className="mb-4 flex flex-col gap-3 rounded-2xl bg-slate-50 p-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-xs font-black text-slate-500">
+                    Soal {currentIndex + 1} · {currentQuestion.section}
+                  </p>
+                  <p className="mt-0.5 text-[11px] font-bold text-slate-400">
+                    {currentAnswer === undefined ? 'Belum dijawab' : `Pilihan ${String.fromCharCode(65 + currentAnswer)} dipilih`}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {currentAnswer !== undefined && (
+                    <button
+                      type="button"
+                      onClick={clearCurrentAnswer}
+                      className="inline-flex items-center gap-1.5 rounded-2xl bg-white px-3 py-2 text-xs font-black text-slate-500 ring-1 ring-slate-100 hover:bg-slate-100"
+                    >
+                      <XCircle size={15} />
+                      Hapus Jawaban
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    onClick={toggleCurrentQuestionFlag}
+                    className={`inline-flex items-center gap-1.5 rounded-2xl px-3 py-2 text-xs font-black ring-1 ${
+                      isCurrentQuestionFlagged
+                        ? 'bg-amber-50 text-amber-700 ring-amber-100 hover:bg-amber-100'
+                        : 'bg-white text-slate-500 ring-slate-100 hover:bg-slate-100'
+                    }`}
+                  >
+                    <Flag size={15} className={isCurrentQuestionFlagged ? 'fill-amber-300' : ''} />
+                    {isCurrentQuestionFlagged ? 'Ditandai' : 'Tandai Review'}
+                  </button>
+                </div>
+              </div>
               <h2 className="text-lg font-black leading-snug text-[#101828]">{currentQuestion.prompt}</h2>
 
               <div className="mt-5 grid gap-3">
@@ -1112,7 +1519,7 @@ export default function EnglishToefl1Page() {
               ) : (
                 <button
                   type="button"
-                  onClick={() => setSubmitted(true)}
+                  onClick={handleSubmitAttempt}
                   className="flex-1 rounded-2xl bg-emerald-600 px-4 py-3 text-sm font-black text-white"
                 >
                   Submit
@@ -1120,7 +1527,9 @@ export default function EnglishToefl1Page() {
               )}
             </div>
 
-            <p className="text-center text-xs font-bold text-slate-400">{answeredCount} dari {questions.length} soal terjawab</p>
+            <p className="text-center text-xs font-bold text-slate-400">
+              {answeredCount} dari {questions.length} soal terjawab · {unansweredCount} kosong · {flaggedQuestionCount} review
+            </p>
           </motion.div>
         )}
 
@@ -1128,76 +1537,97 @@ export default function EnglishToefl1Page() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
             <div className="rounded-3xl bg-gradient-to-br from-emerald-500 to-[#1E6F9F] p-6 text-center text-white">
               <Trophy className="mx-auto mb-3" size={40} />
-              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white/70">Estimated TOEFL PBT Score</p>
-              <h2 className="mt-2 text-5xl font-black">{totalScore}</h2>
-              <p className="mt-2 text-sm font-bold text-white/80">Konversi section score berdasarkan tabel TOEFL PBT.</p>
+              <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white/70">
+                {answerKeyReady ? 'Estimated TOEFL PBT Score' : 'Answer Key Pending'}
+              </p>
+              <h2 className="mt-2 text-5xl font-black">{answerKeyReady ? totalScore : 'Pending'}</h2>
+              <p className="mt-2 text-sm font-bold text-white/80">
+                {answerKeyReady
+                  ? 'Konversi section score berdasarkan tabel TOEFL PBT.'
+                  : 'Kunci jawaban belum tersedia, jadi skor dan benar/salah belum dihitung.'}
+              </p>
             </div>
 
             <div className="grid gap-3 sm:grid-cols-3">
               {sectionResults.map((section) => (
                 <div key={section.title} className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
                   <p className="text-xs font-black uppercase tracking-wider text-slate-400">{section.title}</p>
-                  <p className="mt-2 text-2xl font-black text-[#101828]">{section.scaled}</p>
-                  <p className="mt-1 text-sm font-bold text-slate-500">{section.raw} / {section.total} benar</p>
+                  <p className="mt-2 text-2xl font-black text-[#101828]">{answerKeyReady ? section.scaled : '-'}</p>
+                  <p className="mt-1 text-sm font-bold text-slate-500">
+                    {answerKeyReady ? `${section.raw} / ${section.total} benar` : `${section.answered} / ${section.total} terjawab`}
+                  </p>
                 </div>
               ))}
             </div>
 
             <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-              <h3 className="text-lg font-black text-[#101828]">Rekomendasi</h3>
+              <h3 className="text-lg font-black text-[#101828]">{answerKeyReady ? 'Rekomendasi' : 'Menunggu kunci jawaban'}</h3>
               <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-500">
-                {totalScore >= 550
-                  ? 'Skor kamu sudah kuat. Fokus berikutnya: speed reading, listening detail, dan latihan full test dengan batas waktu.'
-                  : totalScore >= 450
-                    ? 'Fondasi sudah terbentuk. Naikkan skor dengan drilling Structure dan latihan membaca passage akademik setiap hari.'
-                    : 'Bangun ulang grammar dasar, vocabulary akademik, dan kebiasaan listening pendek. Ulangi test setelah latihan terarah 1 minggu.'}
+                {answerKeyReady
+                  ? totalScore >= 550
+                    ? 'Skor kamu sudah kuat. Fokus berikutnya: speed reading, listening detail, dan latihan full test dengan batas waktu.'
+                    : totalScore >= 450
+                      ? 'Fondasi sudah terbentuk. Naikkan skor dengan drilling Structure dan latihan membaca passage akademik setiap hari.'
+                      : 'Bangun ulang grammar dasar, vocabulary akademik, dan kebiasaan listening pendek. Ulangi test setelah latihan terarah 1 minggu.'
+                  : 'Jawaban peserta tetap tersimpan di sesi ini. Setelah kunci jawaban dimasukkan, skor, review benar/salah, email, dan sertifikat bisa diaktifkan kembali.'}
               </p>
             </div>
 
-            <div className="rounded-3xl border border-sky-100 bg-sky-50 p-4 shadow-sm">
-              <div className="flex items-start gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white text-[#1E6F9F]">
-                  <Mail size={18} />
-                </div>
-                <div>
-                  <p className="text-sm font-black text-[#101828]">
-                    {emailStatus === 'sent'
-                      ? 'Sertifikat sudah dikirim ke email'
-                      : emailStatus === 'sending'
-                        ? 'Mengirim sertifikat ke email...'
-                        : emailStatus === 'error'
-                          ? 'Sertifikat belum terkirim otomatis'
-                          : 'Sertifikat akan dikirim ke email'}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">
-                    {emailStatus === 'error'
-                      ? `${emailError || 'Silakan coba download sertifikat manual.'}`
-                      : `Kami mengirim PDF sertifikat TOEFL ke ${user?.email || 'email akun kamu'}.`}
-                  </p>
+            {answerKeyReady && (
+              <div className="rounded-3xl border border-sky-100 bg-sky-50 p-4 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-white text-[#1E6F9F]">
+                    <Mail size={18} />
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-[#101828]">
+                      {emailStatus === 'sent'
+                        ? 'Sertifikat sudah dikirim ke email'
+                        : emailStatus === 'sending'
+                          ? 'Mengirim sertifikat ke email...'
+                          : emailStatus === 'error'
+                            ? 'Sertifikat belum terkirim otomatis'
+                            : 'Sertifikat akan dikirim ke email'}
+                    </p>
+                    <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">
+                      {emailStatus === 'error'
+                        ? `${emailError || 'Silakan coba download sertifikat manual.'}`
+                        : `Kami mengirim PDF sertifikat TOEFL ke ${user?.email || 'email akun kamu'}.`}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="space-y-3">
               {questions.map((question, index) => {
                 const userAnswer = answers[question.id];
-                const isCorrect = userAnswer === question.answer;
+                const hasQuestionAnswer = question.answer !== ANSWER_PENDING;
+                const isCorrect = hasQuestionAnswer && userAnswer === question.answer;
                 return (
                   <div key={question.id} className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
                     <div className="mb-2 flex items-center justify-between gap-3">
                       <p className="text-xs font-black uppercase tracking-wider text-slate-400">{index + 1}. {question.section}</p>
-                      <span className={`rounded-full px-2.5 py-1 text-[10px] font-black ${isCorrect ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-600'}`}>
-                        {isCorrect ? 'Benar' : 'Review'}
+                      <span className={`rounded-full px-2.5 py-1 text-[10px] font-black ${
+                        !hasQuestionAnswer
+                          ? 'bg-amber-50 text-amber-700'
+                          : isCorrect
+                            ? 'bg-emerald-50 text-emerald-700'
+                            : 'bg-red-50 text-red-600'
+                      }`}>
+                        {!hasQuestionAnswer ? 'Pending' : isCorrect ? 'Benar' : 'Review'}
                       </span>
                     </div>
                     <p className="font-black leading-snug text-[#101828]">{question.prompt}</p>
                     <p className="mt-2 text-sm font-semibold text-slate-500">
                       Jawaban kamu: {userAnswer === undefined ? 'Belum dijawab' : question.options[userAnswer]}
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-emerald-700">
-                      Jawaban benar: {question.options[question.answer]}
-                    </p>
-                    {question.correction && (
+                    {hasQuestionAnswer && (
+                      <p className="mt-1 text-sm font-semibold text-emerald-700">
+                        Jawaban benar: {question.options[question.answer]}
+                      </p>
+                    )}
+                    {hasQuestionAnswer && question.correction && (
                       <p className="mt-1 text-sm font-semibold text-sky-700">
                         Perbaikan: {question.correction}
                       </p>
@@ -1208,15 +1638,17 @@ export default function EnglishToefl1Page() {
               })}
             </div>
 
-            <button
-              type="button"
-              onClick={handleDownloadCertificate}
-              disabled={downloading}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#0D2B55] to-[#1E6F9F] px-4 py-4 text-sm font-black text-white shadow-md shadow-blue-200 transition hover:opacity-90 disabled:opacity-60"
-            >
-              <Download size={18} />
-              {downloading ? 'Generating Certificate…' : 'Download Certificate (PDF)'}
-            </button>
+            {answerKeyReady && (
+              <button
+                type="button"
+                onClick={handleDownloadCertificate}
+                disabled={downloading}
+                className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#0D2B55] to-[#1E6F9F] px-4 py-4 text-sm font-black text-white shadow-md shadow-blue-200 transition hover:opacity-90 disabled:opacity-60"
+              >
+                <Download size={18} />
+                {downloading ? 'Generating Certificate...' : 'Download Certificate (PDF)'}
+              </button>
+            )}
 
             <div className="flex gap-3">
               <button

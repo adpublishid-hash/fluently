@@ -30,6 +30,21 @@ const VOICE_ALIASES: Record<string, TTSVoice> = {
   shimmer: 'Aoede',
 };
 
+const detectSpeechLanguage = (text: string) => {
+  if (/[\u0600-\u06FF]/.test(text)) return 'ar-SA';
+  if (/[\u3040-\u30ff]/.test(text)) return 'ja-JP';
+  if (/[\u3400-\u9FFF]/.test(text)) return 'zh-CN';
+  return 'en-US';
+};
+
+const buildTtsInstruction = (text: string) => {
+  const language = detectSpeechLanguage(text);
+  if (language === 'ar-SA') return `Read this Arabic clearly and naturally with correct makharij and vowel length: ${text}`;
+  if (language === 'ja-JP') return `Read this Japanese clearly and naturally: ${text}`;
+  if (language === 'zh-CN') return `Read this Mandarin clearly and naturally with accurate tones: ${text}`;
+  return `Say clearly and naturally: ${text}`;
+};
+
 function normalizeVoice(value: string | null): TTSVoice {
   if (!value) return 'Kore';
   if ((TTS_VOICES as readonly string[]).includes(value)) return value as TTSVoice;
@@ -78,7 +93,7 @@ function speakWithBrowserVoice(
   stopCurrentAudio();
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
+  utterance.lang = detectSpeechLanguage(text);
   utterance.rate = 0.92;
   utterance.pitch = 1;
   utterance.onstart = () => onStart?.();
@@ -197,7 +212,7 @@ export async function speakText(
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: `Say clearly and naturally: ${trimmedText}` }] }],
+          contents: [{ parts: [{ text: buildTtsInstruction(trimmedText) }] }],
           generationConfig: {
             responseModalities: ['AUDIO'],
             speechConfig: {

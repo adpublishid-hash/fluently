@@ -2,11 +2,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  X, ShoppingBag, BarChart3, BookOpen, Target, NotebookPen, GraduationCap,
+  X, ShoppingBag, BarChart3, Target, NotebookPen, GraduationCap,
   Trophy, Sparkles, Settings, FileText, User, LogOut, ChevronRight, Shield,
+  Video,
 } from 'lucide-react';
 import { useCart } from '../../shop/CartContext';
 import { useAuth } from '../../auth/AuthContext';
+import { useLanguage } from '../../i18n/LanguageContext';
+import AppLanguageSwitcher from '../shared/AppLanguageSwitcher';
 
 const fallbackAvatar = (name: string) =>
   `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name || 'Learner')}&backgroundColor=b6e3f4`;
@@ -31,6 +34,7 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
   const navigate = useNavigate();
   const { itemCount } = useCart();
   const { user } = useAuth();
+  const { t } = useLanguage();
   const isAdmin = user?.role === 'admin';
   const displayName = user?.displayName || user?.name || 'Learner';
   const avatarUrl = user?.avatarUrl || fallbackAvatar(displayName);
@@ -53,16 +57,16 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
   }, [open, onClose]);
 
   const items: MenuItem[] = [
-    { id: 'shop',          label: 'Shop',          icon: ShoppingBag,  color: '#10B981', bgColor: '#ECFDF5', path: '/shop',         badge: itemCount },
-    ...(isAdmin ? [{ id: 'admin', label: 'Admin', icon: Shield, color: '#0891B2', bgColor: '#E0F2FE', path: '/admin' }] : []),
-    { id: 'practice',      label: 'Practice',      icon: FileText,     color: '#F59E0B', bgColor: '#FEF9E7', path: '/latihan' },
-    { id: 'leaderboard',   label: 'Leaderboard',   icon: Trophy,       color: '#F39C12', bgColor: '#FEF3C7', path: '/rank' },
-    { id: 'ielts',         label: 'IELTS Prep',    icon: BookOpen,        color: '#7C3AED', bgColor: '#F5F3FF', path: '/ielts' },
-    { id: 'goals',         label: 'Goals',         icon: Target,          color: '#E74C3C', bgColor: '#FDEDEC', path: '/goals' },
-    { id: 'notes',         label: 'Notes',         icon: NotebookPen,     color: '#4FA3D1', bgColor: '#EAF7FC', path: '/notes' },
-    { id: 'exam',          label: 'Exam',          icon: GraduationCap,   color: '#9B59B6', bgColor: '#F4ECF7', path: '/ujian/english' },
-    { id: 'analytics',     label: 'Analytics',     icon: BarChart3,       color: '#2980B9', bgColor: '#D6EAF8', path: '/analytics' },
-    { id: 'settings',      label: 'Settings',      icon: Settings,        color: '#6B7280', bgColor: '#F3F4F6', path: '/profile' },
+    { id: 'shop',          label: t('nav.shop'),          icon: ShoppingBag,  color: '#10B981', bgColor: '#ECFDF5', path: '/shop',         badge: itemCount },
+    ...(isAdmin ? [{ id: 'admin', label: t('nav.admin'), icon: Shield, color: '#0891B2', bgColor: '#E0F2FE', path: '/admin' }] : []),
+    { id: 'video',         label: t('nav.videoLessons'),  icon: Video,        color: '#0F766E', bgColor: '#ECFDF5', path: '/video' },
+    { id: 'practice',      label: t('nav.latihan'),      icon: FileText,     color: '#F59E0B', bgColor: '#FEF9E7', path: '/latihan' },
+    { id: 'leaderboard',   label: t('nav.leaderboard'),   icon: Trophy,       color: '#F39C12', bgColor: '#FEF3C7', path: '/rank' },
+    { id: 'goals',         label: t('nav.goals'),         icon: Target,          color: '#E74C3C', bgColor: '#FDEDEC', path: '/goals' },
+    { id: 'notes',         label: t('nav.notes'),         icon: NotebookPen,     color: '#4FA3D1', bgColor: '#EAF7FC', path: '/notes' },
+    { id: 'exam',          label: t('nav.exam'),          icon: GraduationCap,   color: '#9B59B6', bgColor: '#F4ECF7', path: '/ujian/english' },
+    { id: 'analytics',     label: t('nav.analytics'),     icon: BarChart3,       color: '#2980B9', bgColor: '#D6EAF8', path: '/analytics' },
+    { id: 'settings',      label: t('nav.settings.short'),      icon: Settings,        color: '#6B7280', bgColor: '#F3F4F6', path: '/profile' },
   ];
 
   const handleNav = (path: string) => {
@@ -77,7 +81,7 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
           {/* Backdrop */}
           <motion.button
             type="button"
-            aria-label="Close menu"
+            aria-label={t('common.close')}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -113,8 +117,8 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
                   <Sparkles size={15} className="text-primary" />
                 </div>
                 <div>
-                  <h2 className="text-[17px] font-extrabold text-text-primary leading-none">More</h2>
-                  <p className="text-[10.5px] text-text-muted font-medium mt-0.5">Quick access to everything</p>
+                  <h2 className="text-[17px] font-extrabold text-text-primary leading-none">{t('nav.more')}</h2>
+                  <p className="text-[10.5px] text-text-muted font-medium mt-0.5">{t('nav.quickAccess')}</p>
                 </div>
               </div>
               <button
@@ -146,11 +150,11 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
                   </div>
                   <div className="flex-1 text-left min-w-0">
                     <p className="text-white text-[13.5px] font-extrabold leading-tight">Fluently Shop</p>
-                    <p className="text-white/80 text-[10.5px] font-medium mt-0.5">eBooks · Books · eCourses</p>
+                    <p className="text-white/80 text-[10.5px] font-medium mt-0.5">{t('shop.productTypes')}</p>
                   </div>
                   {itemCount > 0 ? (
                     <span className="bg-white text-primary text-[10.5px] font-extrabold px-2 py-1 rounded-full shrink-0">
-                      {itemCount} item{itemCount > 1 ? 's' : ''}
+                      {itemCount} {t(itemCount > 1 ? 'shop.items' : 'shop.item')}
                     </span>
                   ) : (
                     <ChevronRight size={16} className="text-white/80 shrink-0" />
@@ -158,8 +162,12 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
                 </div>
               </motion.button>
 
+              <div className="mb-3">
+                <AppLanguageSwitcher />
+              </div>
+
               {/* Section label */}
-              <p className="text-[10px] font-extrabold text-text-muted uppercase tracking-wider mb-2.5 mt-3 px-1">Quick Menu</p>
+              <p className="text-[10px] font-extrabold text-text-muted uppercase tracking-wider mb-2.5 mt-3 px-1">{t('nav.quickMenu')}</p>
 
               {/* Grid */}
               <div className="grid grid-cols-4 gap-2">
@@ -218,7 +226,7 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
                   <button
                     onClick={() => { onClose(); onLogout(); }}
                     className="w-9 h-9 rounded-xl border border-red-200 text-red-500 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer shrink-0"
-                    aria-label="Log Out"
+                    aria-label={t('nav.logOut')}
                   >
                     <LogOut size={15} />
                   </button>

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -6,22 +6,22 @@ import {
   BarChart3,
   BookOpen,
   Brain,
-  Clock3,
   FileText,
   Flame,
   Headphones,
   Mic,
   PenLine,
-  Play,
-  RotateCcw,
   Target,
   Trophy,
-  XCircle,
+  type LucideIcon,
 } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { skills } from '../../data/mockData';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { useAuth } from '../../auth/AuthContext';
+import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
+import { arabicLessonCounts, arabicSkills, type ArabicLevelId, type ArabicSkillId } from '../module/arabic/arabicModuleData';
+import { mandarinLessonCounts, mandarinSkills, type MandarinLevelId, type MandarinSkillId } from '../module/mandarin/mandarinModuleData';
 
 type GameStats = {
   xp: number;
@@ -39,6 +39,18 @@ type PracticeAttempt = {
   completedAt: string;
 };
 
+type PracticeSkillCard = {
+  id: string;
+  title: string;
+  detail: string;
+  icon?: LucideIcon;
+  iconUrl?: string;
+  color: string;
+  bg: string;
+  route: string;
+  progress: number;
+};
+
 const mascotSrc = '/assets/mascot/bear1ae6b0cad-ea07-469f-baa3-c9cdfcbc5546.png';
 
 const defaultStats: GameStats = {
@@ -48,13 +60,13 @@ const defaultStats: GameStats = {
   bestScore: 0,
 };
 
-const practiceSkillCards = [
-  { id: 'vocabulary', title: 'Vocabulary', detail: 'Flashcard dan review kata.', icon: BookOpen, color: '#2563EB', bg: '#DBEAFE', route: '/latihan/vocabulary', progress: 0 },
-  { id: 'grammar', title: 'Grammar', detail: 'Tense dan sentence pattern.', icon: Brain, color: '#7C3AED', bg: '#EDE9FE', route: '/latihan/grammar', progress: 0 },
-  { id: 'listening', title: 'Listening', detail: 'Audio choice dan dictation.', icon: Headphones, color: '#0891B2', bg: '#CFFAFE', route: '/latihan/listening', progress: 0 },
-  { id: 'speaking', title: 'Speaking', detail: 'Pronunciation dan response.', icon: Mic, color: '#DB2777', bg: '#FCE7F3', route: '/latihan/speaking', progress: 0 },
-  { id: 'writing', title: 'Writing', detail: 'Sentence fix dan email polish.', icon: PenLine, color: '#EA580C', bg: '#FFEDD5', route: '/latihan/writing', progress: 0 },
-  { id: 'reading', title: 'Reading', detail: 'Short passage dan inference.', icon: FileText, color: '#16A34A', bg: '#DCFCE7', route: '/latihan/reading', progress: 0 },
+const practiceSkillCards: PracticeSkillCard[] = [
+  { id: 'vocabulary', title: 'Vocabulary', detail: 'Flashcard dan review kata.', icon: BookOpen, color: '#2563EB', bg: '#DBEAFE', route: '/latihan/english/vocabulary', progress: 0 },
+  { id: 'grammar', title: 'Grammar', detail: 'Tense dan sentence pattern.', icon: Brain, color: '#7C3AED', bg: '#EDE9FE', route: '/latihan/english/grammar', progress: 0 },
+  { id: 'listening', title: 'Listening', detail: 'Audio choice dan dictation.', icon: Headphones, color: '#0891B2', bg: '#CFFAFE', route: '/latihan/english/listening', progress: 0 },
+  { id: 'speaking', title: 'Speaking', detail: 'Pronunciation dan response.', icon: Mic, color: '#DB2777', bg: '#FCE7F3', route: '/latihan/english/speaking', progress: 0 },
+  { id: 'writing', title: 'Writing', detail: 'Sentence fix dan email polish.', icon: PenLine, color: '#EA580C', bg: '#FFEDD5', route: '/latihan/english/writing', progress: 0 },
+  { id: 'reading', title: 'Reading', detail: 'Short passage dan inference.', icon: FileText, color: '#16A34A', bg: '#DCFCE7', route: '/latihan/english/reading', progress: 0 },
 ];
 
 function readGameStats(): GameStats {
@@ -62,15 +74,6 @@ function readGameStats(): GameStats {
     return { ...defaultStats, ...JSON.parse(localStorage.getItem('fluently_game_stats') || '{}') };
   } catch {
     return defaultStats;
-  }
-}
-
-function readMistakeCount() {
-  try {
-    const records = JSON.parse(localStorage.getItem('fluently-mistake-bank-v1') || '[]');
-    return Array.isArray(records) ? records.length : 0;
-  } catch {
-    return 0;
   }
 }
 
@@ -83,6 +86,53 @@ function readPracticeHistory(): PracticeAttempt[] {
   }
 }
 
+function readArabicCompleted(levelId: ArabicLevelId, skillId: ArabicSkillId): number[] {
+  try {
+    const records = JSON.parse(localStorage.getItem(`talky_arabic_${levelId}_${skillId}_completed`) || '[]');
+    return Array.isArray(records) ? records.filter((item) => Number.isFinite(Number(item))).map(Number) : [];
+  } catch {
+    return [];
+  }
+}
+
+function readMandarinCompleted(levelId: MandarinLevelId, skillId: MandarinSkillId): number[] {
+  try {
+    const records = JSON.parse(localStorage.getItem(`talky_mandarin_${levelId}_${skillId}_completed`) || '[]');
+    return Array.isArray(records) ? records.filter((item) => Number.isFinite(Number(item))).map(Number) : [];
+  } catch {
+    return [];
+  }
+}
+
+function getArabicPracticeLevel(level?: string): ArabicLevelId {
+  const value = (level || '').toLowerCase();
+  if (value.includes('scholar') || value.includes('research')) return 'scholar';
+  if (value.includes('mastery') || value.includes('post-c2')) return 'mastery';
+  if (value.includes('proficiency') || value.includes('c2')) return 'proficiency';
+  if (value.includes('advanced') || value.includes('c1')) return 'advanced';
+  if (value.includes('upper') || value.includes('b2')) return 'upper-intermediate';
+  if (value.includes('intermediate') || value.includes('b1')) return 'intermediate';
+  if (value.includes('elementary') || value.includes('a2')) return 'elementary';
+  return 'pemula';
+}
+
+function getMandarinPracticeLevel(level?: string): MandarinLevelId {
+  const value = (level || '').toLowerCase();
+  if (value.includes('hsk 9') || value.includes('hsk-9') || value.includes('mastery')) return 'hsk-9';
+  if (value.includes('hsk 8') || value.includes('hsk-8') || value.includes('scholar')) return 'hsk-8';
+  if (value.includes('hsk 7') || value.includes('hsk-7') || value.includes('expert')) return 'hsk-7';
+  if (value.includes('proficiency') || value.includes('hsk 6') || value.includes('hsk-6') || value.includes('c2')) return 'proficiency';
+  if (value.includes('advanced') || value.includes('hsk 5') || value.includes('hsk-5') || value.includes('c1')) return 'advanced';
+  if (value.includes('upper') || value.includes('hsk 4') || value.includes('hsk-4') || value.includes('b2')) return 'upper-intermediate';
+  if (value.includes('intermediate') || value.includes('hsk 3') || value.includes('hsk-3') || value.includes('b1')) return 'intermediate';
+  if (value.includes('elementary') || value.includes('hsk 2') || value.includes('hsk-2') || value.includes('a2')) return 'elementary';
+  return 'beginner';
+}
+
+function getArabicRouteLevel(levelId: ArabicLevelId) {
+  return levelId === 'pemula' ? 'beginner' : levelId;
+}
+
 function SectionHeader({ title, subtitle }: { title: string; subtitle: string }) {
   return (
     <div className="mb-4">
@@ -92,99 +142,280 @@ function SectionHeader({ title, subtitle }: { title: string; subtitle: string })
   );
 }
 
+function PracticeCardIcon({ skill, size = 19 }: { skill: PracticeSkillCard; size?: number }) {
+  const Icon = skill.icon;
+  if (skill.iconUrl) {
+    return <img src={skill.iconUrl} alt="" className="h-[70%] w-[70%] object-contain" />;
+  }
+  if (Icon) {
+    return <Icon size={size} />;
+  }
+  return <span className="text-sm font-black">{skill.title.slice(0, 1)}</span>;
+}
+
 export default function LatihanPage() {
   const { t } = useLanguage();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [sessionMinutes, setSessionMinutes] = useState(10);
 
+  const targetLanguage = normalizeTargetLanguage(user?.persona?.targetLanguage);
+  const isArabicPractice = targetLanguage === 'Arabic';
+  const isMandarinPractice = targetLanguage === 'Mandarin';
+  const arabicLevelId = getArabicPracticeLevel(user?.persona?.level);
+  const arabicRouteLevel = getArabicRouteLevel(arabicLevelId);
+  const mandarinLevelId = getMandarinPracticeLevel(user?.persona?.level);
   const gameStats = useMemo(() => readGameStats(), []);
-  const mistakeCount = useMemo(() => readMistakeCount(), []);
   const practiceHistory = useMemo(() => readPracticeHistory(), []);
   const totalSkillDays = skills.reduce((sum, skill) => sum + skill.totalDays, 0);
   const completedSkillDays = skills.reduce((sum, skill) => sum + skill.completedDays, 0);
-  const moduleProgress = Math.round((completedSkillDays / totalSkillDays) * 100);
-  const dailyProgress = Math.min(100, Math.round(((gameStats.completed || 0) % 6) / 6 * 100));
-  const sessionRouteLabel = sessionMinutes === 5 ? 'Word Match' : sessionMinutes === 15 ? 'Response Builder' : 'Listen & Tap';
+  const englishModuleProgress = Math.round((completedSkillDays / totalSkillDays) * 100);
+  const arabicSummary = useMemo(() => {
+    return arabicSkills.reduce(
+      (summary, skill) => {
+        const total = arabicLessonCounts[arabicLevelId][skill.id];
+        const completed = Math.min(total, readArabicCompleted(arabicLevelId, skill.id).length);
+        return {
+          total: summary.total + total,
+          completed: summary.completed + completed,
+        };
+      },
+      { total: 0, completed: 0 }
+    );
+  }, [arabicLevelId]);
+  const mandarinSummary = useMemo(() => {
+    return mandarinSkills.reduce(
+      (summary, skill) => {
+        const total = mandarinLessonCounts[mandarinLevelId][skill.id];
+        const completed = Math.min(total, readMandarinCompleted(mandarinLevelId, skill.id).length);
+        return {
+          total: summary.total + total,
+          completed: summary.completed + completed,
+        };
+      },
+      { total: 0, completed: 0 }
+    );
+  }, [mandarinLevelId]);
+  const moduleProgress = isArabicPractice
+    ? Math.round((arabicSummary.completed / Math.max(1, arabicSummary.total)) * 100)
+    : isMandarinPractice
+      ? Math.round((mandarinSummary.completed / Math.max(1, mandarinSummary.total)) * 100)
+      : englishModuleProgress;
+  const arabicPracticeCards = useMemo<PracticeSkillCard[]>(() => (
+    arabicSkills.map((skill) => {
+      const isNahwuCard = skill.id === 'grammar';
+      const isIstimaCard = skill.id === 'istima';
+      const isKalamCard = skill.id === 'kalam';
+      const isQiraahCard = skill.id === 'qiraah';
+      const isKitabahCard = skill.id === 'kitabah';
+      const isMakharijCard = skill.id === 'pronunciation';
+      const total = arabicLessonCounts[arabicLevelId][skill.id];
+      const completed = Math.min(total, readArabicCompleted(arabicLevelId, skill.id).length);
+      return {
+        id: isNahwuCard ? 'nahwu' : isMakharijCard ? 'makharij' : skill.id,
+        title: isNahwuCard ? 'Nahwu' : isMakharijCard ? 'Makharij' : skill.label,
+        detail: isNahwuCard ? 'Nahwu dasar, i\'rab, dan struktur kalimat Arab.' : isMakharijCard ? 'Titik keluar huruf, bunyi, dan pelafalan Arab.' : skill.sublabel,
+        iconUrl: skill.icon,
+        color: skill.color,
+        bg: skill.bgColor,
+        route: skill.id === 'mufradat'
+          ? '/latihan/arabic/mufradat'
+          : isNahwuCard
+            ? '/latihan/arabic/nahwu'
+            : isIstimaCard
+              ? '/latihan/arabic/istima'
+              : isKalamCard
+                ? '/latihan/arabic/kalam'
+                : isQiraahCard
+                  ? '/latihan/arabic/qiraah'
+                  : isKitabahCard
+                    ? '/latihan/arabic/kitabah'
+                    : isMakharijCard
+                      ? '/latihan/arabic/makharij'
+                      : `/latihan/${arabicRouteLevel}/${skill.id}`,
+        progress: Math.round((completed / Math.max(1, total)) * 100),
+      };
+    })
+  ), [arabicLevelId, arabicRouteLevel]);
+  const mandarinPracticeCards = useMemo<PracticeSkillCard[]>(() => {
+    const cihuiSkill = mandarinSkills.find((skill) => skill.id === 'vocabulary') ?? mandarinSkills[0];
+    const yufaSkill = mandarinSkills.find((skill) => skill.id === 'grammar') ?? mandarinSkills[0];
+    const xiezuoSkill = mandarinSkills.find((skill) => skill.id === 'writing') ?? mandarinSkills[0];
+    const yueduSkill = mandarinSkills.find((skill) => skill.id === 'reading') ?? mandarinSkills[0];
+    const tingliSkill = mandarinSkills.find((skill) => skill.id === 'listening') ?? mandarinSkills[0];
+    const kouyuSkill = mandarinSkills.find((skill) => skill.id === 'speaking') ?? mandarinSkills[0];
+    const pronunciationSkill = mandarinSkills.find((skill) => skill.id === 'pronunciation') ?? mandarinSkills[mandarinSkills.length - 1];
+    const cihuiTotal = mandarinLessonCounts[mandarinLevelId].vocabulary;
+    const cihuiCompleted = Math.min(cihuiTotal, readMandarinCompleted(mandarinLevelId, 'vocabulary').length);
+    const yufaTotal = mandarinLessonCounts[mandarinLevelId].grammar;
+    const yufaCompleted = Math.min(yufaTotal, readMandarinCompleted(mandarinLevelId, 'grammar').length);
+    const xiezuoTotal = mandarinLessonCounts[mandarinLevelId].writing;
+    const xiezuoCompleted = Math.min(xiezuoTotal, readMandarinCompleted(mandarinLevelId, 'writing').length);
+    const yueduTotal = mandarinLessonCounts[mandarinLevelId].reading;
+    const yueduCompleted = Math.min(yueduTotal, readMandarinCompleted(mandarinLevelId, 'reading').length);
+    const tingliTotal = mandarinLessonCounts[mandarinLevelId].listening;
+    const tingliCompleted = Math.min(tingliTotal, readMandarinCompleted(mandarinLevelId, 'listening').length);
+    const kouyuTotal = mandarinLessonCounts[mandarinLevelId].speaking;
+    const kouyuCompleted = Math.min(kouyuTotal, readMandarinCompleted(mandarinLevelId, 'speaking').length);
+    const pinyinTotal = mandarinLessonCounts[mandarinLevelId].pronunciation;
+    const pinyinCompleted = Math.min(pinyinTotal, readMandarinCompleted(mandarinLevelId, 'pronunciation').length);
+
+    return [
+      {
+        id: 'cihui',
+        title: 'Cíhuì',
+        detail: 'Kosakata HSK, arti, pinyin, kolokasi, dan contoh kalimat.',
+        iconUrl: cihuiSkill.icon,
+        color: cihuiSkill.color,
+        bg: cihuiSkill.bgColor,
+        route: '/latihan/mandarin/cihui',
+        progress: Math.round((cihuiCompleted / Math.max(1, cihuiTotal)) * 100),
+      },
+      {
+        id: 'yufa',
+        title: 'Yǔfǎ',
+        detail: 'Struktur kalimat, partikel, kata kerja, dan pola Mandarin.',
+        iconUrl: yufaSkill.icon,
+        color: yufaSkill.color,
+        bg: yufaSkill.bgColor,
+        route: '/latihan/mandarin/yufa',
+        progress: Math.round((yufaCompleted / Math.max(1, yufaTotal)) * 100),
+      },
+      {
+        id: 'xiezuo',
+        title: 'Xiězuò',
+        detail: 'Hanzi, stroke order, kalimat, paragraf, dan tulisan praktis.',
+        iconUrl: xiezuoSkill.icon,
+        color: xiezuoSkill.color,
+        bg: xiezuoSkill.bgColor,
+        route: '/latihan/mandarin/xiezuo',
+        progress: Math.round((xiezuoCompleted / Math.max(1, xiezuoTotal)) * 100),
+      },
+      {
+        id: 'yuedu',
+        title: 'Yuèdú',
+        detail: 'Hanzi, pinyin, teks pendek, keyword, dan pemahaman bacaan.',
+        iconUrl: yueduSkill.icon,
+        color: yueduSkill.color,
+        bg: yueduSkill.bgColor,
+        route: '/latihan/mandarin/yuedu',
+        progress: Math.round((yueduCompleted / Math.max(1, yueduTotal)) * 100),
+      },
+      {
+        id: 'tingli',
+        title: 'Tīnglì',
+        detail: 'Audio Mandarin, transcript, keyword, tone, dan pemahaman lisan.',
+        iconUrl: tingliSkill.icon,
+        color: tingliSkill.color,
+        bg: tingliSkill.bgColor,
+        route: '/latihan/mandarin/tingli',
+        progress: Math.round((tingliCompleted / Math.max(1, tingliTotal)) * 100),
+      },
+      {
+        id: 'kouyu',
+        title: 'Kǒuyǔ',
+        detail: 'Dialog, respons, roleplay, model audio, dan produksi lisan.',
+        iconUrl: kouyuSkill.icon,
+        color: kouyuSkill.color,
+        bg: kouyuSkill.bgColor,
+        route: '/latihan/mandarin/kouyu',
+        progress: Math.round((kouyuCompleted / Math.max(1, kouyuTotal)) * 100),
+      },
+      {
+        id: 'pinyin',
+        title: 'Pīnyīn',
+        detail: 'Tone, initial-final, sandhi, dan shadowing Mandarin.',
+        iconUrl: pronunciationSkill.icon,
+        color: pronunciationSkill.color,
+        bg: pronunciationSkill.bgColor,
+        route: '/latihan/mandarin/pinyin',
+        progress: Math.round((pinyinCompleted / Math.max(1, pinyinTotal)) * 100),
+      },
+    ];
+  }, [mandarinLevelId]);
+  const practiceCards = isArabicPractice ? arabicPracticeCards : isMandarinPractice ? mandarinPracticeCards : practiceSkillCards;
   const getSkillProgress = (skillId: string, fallback: number) => {
     const attempts = practiceHistory.filter((attempt) => attempt.skillId === skillId).slice(0, 5);
     if (!attempts.length) return fallback;
     const average = attempts.reduce((sum, attempt) => sum + (attempt.score / attempt.total) * 100, 0) / attempts.length;
     return Math.round(average);
   };
-  const skillProgressMap = practiceSkillCards.reduce<Record<string, number>>((map, skill) => {
+  const skillProgressMap = practiceCards.reduce<Record<string, number>>((map, skill) => {
     map[skill.id] = getSkillProgress(skill.id, skill.progress);
     return map;
   }, {});
-  const trainedSkillIds = new Set(practiceHistory.map((attempt) => attempt.skillId));
-  const recommendedSkill = practiceSkillCards
-    .map((skill) => ({ ...skill, computedProgress: skillProgressMap[skill.id], trained: trainedSkillIds.has(skill.id) }))
-    .sort((a, b) => Number(a.trained) - Number(b.trained) || a.computedProgress - b.computedProgress)[0];
-  const lastAttempt = practiceHistory[0];
 
-  const startDailyPractice = () => {
-    if (sessionMinutes === 5) {
-      navigate('/game/vocabulary/word-match/play?difficulty=easy');
-      return;
-    }
-    if (sessionMinutes === 15) {
-      navigate('/game/speaking/response-builder/play?difficulty=easy');
-      return;
-    }
-    navigate('/game/listening/listen-tap/play?difficulty=easy');
-  };
+  const heroBadge = isArabicPractice ? 'Arabic Practice' : isMandarinPractice ? 'Mandarin Practice' : 'Fluently Practice';
+  const heroTitle = isArabicPractice ? 'Arabic Practice' : isMandarinPractice ? 'Mandarin Practice' : t('latihan.title');
+  const heroDescription = isArabicPractice
+    ? "Latihan Arab singkat untuk mufradat, istima', qira'ah, kitabah, kalam, nahwu, dan pronunciation sesuai progres modulmu."
+    : isMandarinPractice
+      ? 'Latihan Mandarin singkat untuk Cíhuì, Yǔfǎ, Xiězuò, Yuèdú, Tīnglì, Kǒuyǔ, Pīnyīn, tone, dan shadowing sesuai progres modulmu.'
+    : 'Latihan singkat untuk menjaga ritme belajar, memperkuat skill lemah, dan lanjut dari progres profilmu.';
+  const statCards = isArabicPractice
+    ? [
+      { label: 'Streak', value: user?.streak ?? 0, suffix: 'days', icon: Flame, color: '#EA580C', bg: '#FFEDD5' },
+      { label: 'Arabic XP', value: gameStats.xp, suffix: 'xp', icon: Trophy, color: '#CA8A04', bg: '#FEF3C7' },
+      { label: 'Lessons', value: arabicSummary.completed, suffix: `/ ${arabicSummary.total}`, icon: BookOpen, color: '#0F766E', bg: '#CCFBF1' },
+      { label: 'Practice', value: moduleProgress, suffix: '%', icon: BarChart3, color: '#2563EB', bg: '#DBEAFE' },
+    ]
+    : isMandarinPractice
+      ? [
+        { label: 'Streak', value: user?.streak ?? 0, suffix: 'days', icon: Flame, color: '#EA580C', bg: '#FFEDD5' },
+        { label: 'Mandarin XP', value: gameStats.xp, suffix: 'xp', icon: Trophy, color: '#CA8A04', bg: '#FEF3C7' },
+        { label: 'Lessons', value: mandarinSummary.completed, suffix: `/ ${mandarinSummary.total}`, icon: BookOpen, color: '#DC2626', bg: '#FEE2E2' },
+        { label: 'Practice', value: moduleProgress, suffix: '%', icon: BarChart3, color: '#DB2777', bg: '#FCE7F3' },
+      ]
+    : [
+      { label: 'Streak', value: user?.streak ?? 0, suffix: 'days', icon: Flame, color: '#EA580C', bg: '#FFEDD5' },
+      { label: 'Game XP', value: gameStats.xp, suffix: 'xp', icon: Trophy, color: '#CA8A04', bg: '#FEF3C7' },
+      { label: 'Practice', value: moduleProgress, suffix: '%', icon: BarChart3, color: '#2563EB', bg: '#DBEAFE' },
+      { label: 'Best', value: gameStats.bestScore || 0, suffix: 'score', icon: Target, color: '#16A34A', bg: '#DCFCE7' },
+    ];
 
   return (
     <PageContainer>
       <div className="mx-auto max-w-6xl px-5 pb-28 md:px-0 md:pb-10">
         <motion.section
-          className="mt-6 overflow-hidden rounded-[26px] border border-gray-100 bg-white shadow-sm md:mt-0"
+          className="mt-6 overflow-hidden rounded-[28px] border border-gray-100 bg-white shadow-sm md:mt-0"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="grid gap-0 lg:grid-cols-[1fr_340px]">
             <div className="p-6 sm:p-8">
               <div className="inline-flex items-center rounded-full bg-[#EAF7FC] px-3 py-1 text-[11px] font-black uppercase tracking-[0.14em] text-[#2563EB]">
-                Fluently Practice
+                {heroBadge}
               </div>
-              <h1 className="mt-4 text-3xl font-black leading-tight text-[#1A1A2E] sm:text-5xl">{t('latihan.title')}</h1>
+              <h1 className="mt-4 text-3xl font-black leading-tight text-[#1A1A2E] sm:text-5xl">{heroTitle}</h1>
               <p className="mt-3 max-w-xl text-sm font-semibold leading-relaxed text-gray-500">
-                Latihan singkat untuk menjaga ritme belajar, memperkuat skill lemah, dan lanjut dari progres profilmu.
+                {heroDescription}
               </p>
-
-              <div className="mt-6 flex flex-wrap items-center gap-2">
-                {[5, 10, 15].map((minute) => (
-                  <button
-                    key={minute}
-                    onClick={() => setSessionMinutes(minute)}
-                    className={`h-10 rounded-full px-4 text-sm font-black transition focus:outline-none focus:ring-2 focus:ring-[#7EC3E6]/50 ${sessionMinutes === minute ? 'bg-[#1A1A2E] text-white shadow-sm' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}`}
-                  >
-                    {minute} min
-                  </button>
-                ))}
-                <button
-                  onClick={startDailyPractice}
-                  className="inline-flex h-10 items-center gap-2 rounded-full bg-[#F59E0B] px-5 text-sm font-black text-white shadow-sm transition hover:bg-[#D97706] focus:outline-none focus:ring-2 focus:ring-[#F59E0B]/30"
-                >
-                  <Play size={16} />
-                  Start
-                </button>
-              </div>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {[
-                  { label: 'Mode', value: sessionRouteLabel },
-                  { label: 'Progress', value: `${dailyProgress}%` },
-                ].map((item) => (
-                  <div key={item.label} className="rounded-2xl bg-gray-50 px-4 py-3">
-                    <p className="text-[10px] font-black uppercase tracking-[0.14em] text-gray-400">{item.label}</p>
-                    <p className="mt-1 truncate text-sm font-black text-[#1A1A2E]">{item.value}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            <div className="relative min-h-[250px] bg-[#EAF7FC] p-6">
+            <div className={`relative min-h-[250px] p-6 ${isArabicPractice ? 'bg-[#ECFDF5]' : isMandarinPractice ? 'bg-[#FFF1F2]' : 'bg-[#EAF7FC]'}`}>
+              {isArabicPractice && (
+                <>
+                  <div className="absolute left-5 top-5 z-10 rounded-2xl border border-teal-100 bg-white/85 px-4 py-3 shadow-sm backdrop-blur">
+                    <p dir="rtl" lang="ar" className="text-2xl font-black leading-none text-[#0F766E]">السَّلامُ عَلَيْكُمْ</p>
+                    <p className="mt-1 text-[11px] font-black uppercase tracking-[0.12em] text-teal-600/70">As-salamu alaikum</p>
+                  </div>
+                  <div className="absolute bottom-5 right-5 z-10 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 text-right shadow-sm backdrop-blur">
+                    <p className="text-xs font-black text-[#0F172A]">Makharij · Mufradat · Kalam</p>
+                    <p className="mt-1 text-[11px] font-semibold text-slate-500">{arabicSummary.completed}/{arabicSummary.total} lessons</p>
+                  </div>
+                </>
+              )}
+              {isMandarinPractice && (
+                <>
+                  <div className="absolute left-5 top-5 z-10 rounded-2xl border border-rose-100 bg-white/85 px-4 py-3 shadow-sm backdrop-blur">
+                    <p lang="zh-CN" className="text-2xl font-black leading-none text-[#DC2626]">你好</p>
+                    <p className="mt-1 text-[11px] font-black uppercase tracking-[0.12em] text-rose-600/70">nǐ hǎo</p>
+                  </div>
+                  <div className="absolute bottom-5 right-5 z-10 rounded-2xl border border-white/70 bg-white/80 px-4 py-3 text-right shadow-sm backdrop-blur">
+                    <p className="text-xs font-black text-[#0F172A]">Cíhuì · Tīnglì · Kǒuyǔ</p>
+                    <p className="mt-1 text-[11px] font-semibold text-slate-500">{mandarinSummary.completed}/{mandarinSummary.total} lessons</p>
+                  </div>
+                </>
+              )}
               <img
                 src={mascotSrc}
                 alt=""
@@ -195,17 +426,12 @@ export default function LatihanPage() {
         </motion.section>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { label: 'Streak', value: user?.streak ?? 0, suffix: 'days', icon: Flame, color: '#EA580C', bg: '#FFEDD5' },
-            { label: 'Game XP', value: gameStats.xp, suffix: 'xp', icon: Trophy, color: '#CA8A04', bg: '#FEF3C7' },
-            { label: 'Practice', value: moduleProgress, suffix: '%', icon: BarChart3, color: '#2563EB', bg: '#DBEAFE' },
-            { label: 'Best', value: gameStats.bestScore || 0, suffix: 'score', icon: Target, color: '#16A34A', bg: '#DCFCE7' },
-          ].map((stat, index) => {
+          {statCards.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
-                className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm"
+                className="rounded-3xl border border-gray-100 bg-white p-4 shadow-sm"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.04 * index }}
@@ -228,102 +454,25 @@ export default function LatihanPage() {
         </div>
 
         <div className="mt-8">
-          <section className="mb-8">
-            <SectionHeader title="Practice Intelligence" subtitle="Rekomendasi berdasarkan hasil latihan terakhir." />
-            <div className="grid gap-3 md:grid-cols-2">
-              <motion.button
-                type="button"
-                onClick={() => navigate(recommendedSkill.route)}
-                className="rounded-2xl border border-gray-100 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#7EC3E6]/40"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Recommended Next</p>
-                <div className="mt-3 flex items-center gap-3">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl" style={{ backgroundColor: recommendedSkill.bg, color: recommendedSkill.color }}>
-                    <recommendedSkill.icon size={19} />
-                  </div>
-                  <div className="min-w-0">
-                    <h3 className="font-black text-[#1A1A2E]">{recommendedSkill.title}</h3>
-                    <p className="mt-1 text-xs font-semibold text-gray-500">
-                      {recommendedSkill.trained ? `Progress terakhir ${recommendedSkill.computedProgress}%.` : 'Belum ada latihan tersimpan untuk skill ini.'}
-                    </p>
-                  </div>
-                </div>
-              </motion.button>
-
-              <motion.div
-                className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.03 }}
-              >
-                <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Last Attempt</p>
-                {lastAttempt ? (
-                  <div className="mt-3">
-                    <h3 className="font-black text-[#1A1A2E]">{lastAttempt.topicTitle}</h3>
-                    <p className="mt-1 text-xs font-semibold text-gray-500">
-                      {lastAttempt.skillId} · {lastAttempt.score}/{lastAttempt.total} benar · fokus {lastAttempt.weakestLevel}
-                    </p>
-                  </div>
-                ) : (
-                  <p className="mt-3 text-sm font-semibold text-gray-500">Belum ada riwayat quiz. Selesaikan satu topik untuk melihat insight.</p>
-                )}
-              </motion.div>
-            </div>
-          </section>
-
-          <section className="mb-8">
-            <SectionHeader title="Review Center" subtitle="Perbaiki soal yang paling sering membuatmu salah." />
-            <motion.button
-              type="button"
-              onClick={() => navigate('/latihan/review-mistakes')}
-              className="w-full rounded-2xl border border-[#FECACA] bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#FECACA]/50"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-            >
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-start gap-3">
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-[#FEF2F2] text-[#DC2626]">
-                    <XCircle size={19} />
-                  </div>
-                  <div>
-                    <h3 className="font-black text-[#1A1A2E]">Review Mistakes</h3>
-                    <p className="mt-1 text-xs font-semibold leading-relaxed text-gray-500">
-                      Ulangi soal yang salah sampai benar. Soal yang berhasil dijawab akan keluar otomatis dari bank.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex shrink-0 items-center gap-3">
-                  <div className="rounded-2xl bg-[#FEF2F2] px-4 py-2 text-center">
-                    <p className="text-lg font-black text-[#DC2626]">{mistakeCount}</p>
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[#DC2626]/70">mistakes</p>
-                  </div>
-                  <div className="grid h-10 w-10 place-items-center rounded-2xl bg-[#1A1A2E] text-white">
-                    <RotateCcw size={17} />
-                  </div>
-                </div>
-              </div>
-            </motion.button>
-          </section>
-
           <section>
-            <SectionHeader title="Skill Practice" subtitle="Pilih skill yang ingin kamu latih." />
+            <SectionHeader
+              title={isArabicPractice ? 'Arabic Skill Practice' : isMandarinPractice ? 'Mandarin Skill Practice' : 'Skill Practice'}
+              subtitle={isArabicPractice ? 'Pilih skill Arabic yang ingin kamu latih.' : isMandarinPractice ? 'Pilih skill Mandarin yang sudah dipisah agar latihan tetap fokus per topik.' : 'Pilih skill yang ingin kamu latih.'}
+            />
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {practiceSkillCards.map((skill, index) => {
-                const Icon = skill.icon;
+              {practiceCards.map((skill, index) => {
                 return (
                   <motion.button
                     key={skill.id}
                     onClick={() => navigate(skill.route)}
-                    className="group rounded-2xl border border-gray-100 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#7EC3E6]/40"
+                    className="group rounded-3xl border border-gray-100 bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#7EC3E6]/40"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.03 * index }}
                   >
                     <div className="flex items-start gap-3">
                       <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl" style={{ backgroundColor: skill.bg, color: skill.color }}>
-                        <Icon size={19} />
+                        <PracticeCardIcon skill={skill} />
                       </div>
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center justify-between gap-2">
@@ -349,27 +498,6 @@ export default function LatihanPage() {
               })}
             </div>
           </section>
-        </div>
-
-        <div className="mt-8 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-2xl bg-[#F3E8FF] text-[#7C3AED]">
-                <Clock3 size={18} />
-              </div>
-              <div>
-                <p className="text-sm font-black text-[#1A1A2E]">Mini Session</p>
-                <p className="text-xs font-semibold text-gray-500">{sessionMinutes} menit</p>
-              </div>
-            </div>
-            <button
-              onClick={startDailyPractice}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#1A1A2E] px-5 text-sm font-black text-white transition hover:bg-[#2A2A44] focus:outline-none focus:ring-2 focus:ring-[#7EC3E6]/40"
-            >
-              <Play size={16} />
-              Continue Practice
-            </button>
-          </div>
         </div>
       </div>
     </PageContainer>

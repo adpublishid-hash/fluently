@@ -1,8 +1,13 @@
 import {
+  buildLocalizedCustomTopicPrompt,
   buildLocalizedFeedback,
   buildLocalizedLesson,
+  buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
+  getLocalizedTopicLabel,
+  isCustomLocalizedTopicValue,
   isEnglishChat,
+  normalizeLocalizedTopicValue,
 } from '../languageAdapters';
 import {
   buildWritingFeedback,
@@ -30,10 +35,12 @@ export function selectWritingTopic(topicValue: string, runtime: TopicRuntime) {
   const { studentName, levelId, targetLanguage, setMessages, setSelectedTopic, setVocabStage, sendAiReply } = runtime;
   const localized = !isEnglishChat(targetLanguage);
 
-  if (topicValue === 'custom-writing') {
-    setMessages(prev => [...prev, createUserMessage('Custom Writing Topic')]);
+  if (topicValue === 'custom-writing' || (localized && isCustomLocalizedTopicValue(topicValue))) {
+    setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'writing', topicValue) : 'Custom Writing Topic')]);
     setVocabStage('ask-topic');
-    sendAiReply(`Boleh, ${studentName || 'teman'}! Tulis topik writing custom yang kamu mau.
+    sendAiReply(localized
+      ? buildLocalizedCustomTopicPrompt(studentName || 'teman', 'writing', targetLanguage)
+      : `Boleh, ${studentName || 'teman'}! Tulis topik writing custom yang kamu mau.
 
 Contoh:
 - Daily journal
@@ -43,8 +50,8 @@ Contoh:
     return;
   }
 
-  const topic = normalizeWritingTopic(topicValue);
-  setMessages(prev => [...prev, createUserMessage(writingTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
+  const topic = localized ? normalizeLocalizedTopicValue(topicValue) : normalizeWritingTopic(topicValue);
+  setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'writing', topicValue) : writingTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
   setSelectedTopic(topic);
   setVocabStage('practice');
   if (localized) {
@@ -88,7 +95,7 @@ export function handleWritingAnswer(userText: string, vocabStage: VocabularyStag
       return;
     }
 
-    const topic = normalizeWritingTopic(userText);
+    const topic = localized ? normalizeLocalizedTopicValue(userText) : normalizeWritingTopic(userText);
     setSelectedTopic(topic);
     setVocabStage('practice');
     if (localized) {
@@ -100,14 +107,16 @@ export function handleWritingAnswer(userText: string, vocabStage: VocabularyStag
   }
 
   if (localized) {
-    if (vocabStage === 'practice') {
-      setVocabStage('game');
-      sendAiReply(buildLocalizedFeedback(studentName || 'teman', userText, 'writing', targetLanguage), 1400);
+    if (wantsTopicSelect(userText)) {
+      setVocabStage('ask-topic');
+      sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'writing', targetLanguage), 900);
       return;
     }
 
-    setVocabStage('ask-topic');
-    sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'writing', targetLanguage), 900);
+    setVocabStage('practice');
+    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'writing', targetLanguage)}
+
+${buildLocalizedPracticeLoopReply(studentName || 'teman', 'writing', targetLanguage)}`, 1400);
     return;
   }
 

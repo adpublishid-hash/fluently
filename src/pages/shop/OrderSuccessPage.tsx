@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2, Home, Package, ArrowRight, QrCode, Copy, MessageCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PageContainer from '../../components/layout/PageContainer';
 import { useCart } from '../../shop/CartContext';
 import { formatRupiah } from '../../data/shopData';
@@ -27,6 +27,20 @@ const loadStoredOrder = () => {
   }
 };
 
+type OrderSnapshot = {
+  items: ReturnType<typeof useCart>['items'];
+  orderItems?: any[];
+  subtotal: number;
+  shippingCost: number;
+  paymentFee: number;
+  shippingMethodName: string | undefined;
+  addressName: string | undefined;
+  phone: string | undefined;
+  email: string | undefined;
+  orderNumber: string;
+  order?: any;
+};
+
 export default function OrderSuccessPage() {
   const navigate = useNavigate();
   const { items, subtotal, shippingMethod, shippingCost, address, clearCart, products, getProductPrice } = useCart();
@@ -34,26 +48,11 @@ export default function OrderSuccessPage() {
   const [qrisImage, setQrisImage] = useState(() => loadStoredOrder()?.qrisImage || FALLBACK_QRIS);
   const [confirmWhatsApp, setConfirmWhatsApp] = useState(() => normalizeWhatsApp(loadStoredOrder()?.confirmWhatsApp));
 
-  /* Snapshot the order before clearing cart */
-  const snapshotRef = useRef<{
-    items: typeof items;
-    orderItems?: any[];
-    subtotal: number;
-    shippingCost: number;
-    paymentFee: number;
-    shippingMethodName: string | undefined;
-    addressName: string | undefined;
-    phone: string | undefined;
-    email: string | undefined;
-    orderNumber: string;
-    order?: any;
-  } | null>(null);
-
-  if (snapshotRef.current === null) {
+  const [snap] = useState<OrderSnapshot>(() => {
     const storedOrder: any = loadStoredOrder();
     const storedAddress = storedOrder?.shipping_address || null;
     const storedMethod = storedOrder?.shipping_method || null;
-    snapshotRef.current = {
+    return {
       items,
       orderItems: Array.isArray(storedOrder?.items) ? storedOrder.items : undefined,
       subtotal: Number(storedOrder?.subtotal ?? subtotal),
@@ -66,9 +65,8 @@ export default function OrderSuccessPage() {
       orderNumber: storedOrder?.id || localStorage.getItem('fluently_last_order_id') || `FLY-${Date.now().toString().slice(-8)}`,
       order: storedOrder,
     };
-  }
+  });
 
-  const snap = snapshotRef.current;
   const total = snap.subtotal + snap.shippingCost + snap.paymentFee;
 
   const lineItems = useMemo(() =>

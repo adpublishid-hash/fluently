@@ -1,6 +1,6 @@
 import { Suspense, lazy, useMemo, useState } from 'react';
 import type React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { BookOpen, CheckCircle, ChevronLeft, Headphones, Mic, Volume2 } from 'lucide-react';
 import { ViewState } from '../../../types';
 import { arabicLessonCounts, arabicSkills, normalizeArabicLevel, type ArabicSkillId } from './arabicModuleData';
@@ -39,6 +39,18 @@ const quickPractice: Partial<Record<ArabicSkillId, Array<{ label: string; arabic
     { label: 'Dengarkan', arabic: 'السَّلامُ عَلَيْكُمْ', hint: 'Ucapkan salam dengan panjang mad yang jelas.' },
     { label: 'Jawab', arabic: 'وَعَلَيْكُمُ السَّلامُ', hint: 'Latih jawaban salam dengan ritme natural.' },
   ],
+  istima: [
+    { label: 'Audio', arabic: 'أَنَا مِنْ إِنْدُونِيسِيَا', hint: 'Dengarkan tanpa melihat teks, lalu ulangi maknanya.' },
+    { label: 'Kata kunci', arabic: 'أَيْنَ الْقَلَمُ؟', hint: 'Tangkap kata tanya dan objek utama.' },
+  ],
+  qiraah: [
+    { label: 'Bacaan', arabic: 'هَذَا بَيْتٌ كَبِيرٌ', hint: 'Baca dari kanan ke kiri dan cari kata benda.' },
+    { label: 'Pemahaman', arabic: 'الْوَلَدُ فِي الْمَدْرَسَةِ', hint: 'Temukan siapa, di mana, dan maknanya.' },
+  ],
+  kitabah: [
+    { label: 'Salin', arabic: 'أَنَا طَالِبٌ', hint: 'Tulis ulang dengan bentuk huruf sambung yang rapi.' },
+    { label: 'Susun', arabic: 'هَذِهِ مَدْرَسَةٌ', hint: 'Perhatikan kata tunjuk dan isim setelahnya.' },
+  ],
   mufradat: [
     { label: 'Kosakata', arabic: 'كِتَابٌ', hint: 'Baca, dengarkan, lalu sebutkan artinya: buku.' },
     { label: 'Kalimat', arabic: 'هَذَا كِتَابٌ', hint: 'Pola dasar: ini adalah sebuah buku.' },
@@ -65,6 +77,7 @@ function speakArabic(text: string) {
 export default function ArabicLessonBridge() {
   const navigate = useNavigate();
   const params = useParams();
+  const [searchParams] = useSearchParams();
   const levelId = normalizeArabicLevel(params.levelId);
   const routeLevelId = params.levelId === 'beginner' ? 'beginner' : levelId;
   const skillId: ArabicSkillId = isArabicSkill(params.skillId) ? params.skillId : 'kalam';
@@ -73,7 +86,8 @@ export default function ArabicLessonBridge() {
   const skill = arabicSkills.find((item) => item.id === skillId) ?? arabicSkills[0];
   const progress = Math.min(100, Math.max(0, (lessonId / totalLessons) * 100));
   const modulePath = `../../ai-kamus/arabic/${levelId}/${skillId}/Lesson${lessonId}.tsx`;
-  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>('materi');
+  const initialTab = searchParams.get('tab') === 'latihan' || searchParams.get('practice') === '1' ? 'latihan' : 'materi';
+  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>(initialTab);
 
   const LessonComponent = useMemo(() => {
     const importer = aiKamusArabicLessons[modulePath];
@@ -112,6 +126,7 @@ export default function ArabicLessonBridge() {
       contentLevel={levelId === 'scholar' ? 'scholar' : levelId === 'mastery' ? 'mastery' : levelId === 'proficiency' ? 'proficiency' : levelId === 'advanced' ? 'advanced' : levelId === 'upper-intermediate' ? 'upper-intermediate' : levelId === 'intermediate' ? 'intermediate' : levelId === 'elementary' ? 'elementary' : 'beginner'}
       levelLabel={levelId === 'scholar' ? 'Scholar' : levelId === 'mastery' ? 'Mastery' : levelId === 'proficiency' ? 'Proficiency' : levelId === 'advanced' ? 'Advanced' : levelId === 'upper-intermediate' ? 'Upper-Intermediate' : levelId === 'intermediate' ? 'Intermediate' : levelId === 'elementary' ? 'Elementary' : 'Beginner'}
       onComplete={completeAndContinue}
+      initialTab={initialTab}
     />
   );
 

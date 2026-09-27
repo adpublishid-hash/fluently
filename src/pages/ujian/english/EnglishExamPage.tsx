@@ -6,8 +6,8 @@ import PageContainer from '../../../components/layout/PageContainer';
 const examOptions = [
   {
     label: 'TOEFL PBT',
-    title: 'TOEFL Test 1',
-    description: 'Full practice 140 soal dengan Listening, Structure, Reading, dan estimasi skor PBT.',
+    title: 'TOEFL Practice Test 2',
+    description: 'Full practice 140 soal dengan Listening audio asli, Structure, Reading, dan estimasi skor PBT saat kunci tersedia.',
     route: '/ujian/english/toefl/toefl1',
     available: true,
     meta: ['140 questions', '115 min', 'Real score conversion'],
@@ -23,16 +23,6 @@ const examOptions = [
     meta: ['Coming soon', 'Full test', 'Score conversion'],
     accent: '#6366F1',
     bg: 'linear-gradient(135deg,#EEF2FF,#FFFFFF)',
-  },
-  {
-    label: 'IELTS',
-    title: 'IELTS Prep',
-    description: 'Planner IELTS dengan target band, writing prompts, speaking cue cards, dan weekly prep rhythm.',
-    route: '/ielts',
-    available: true,
-    meta: ['Prep planner', 'Band score', '4 modules'],
-    accent: '#10B981',
-    bg: 'linear-gradient(135deg,#ECFDF5,#FFFFFF)',
   },
 ];
 
@@ -69,7 +59,7 @@ export default function EnglishExamPage() {
             <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white/70">Test Center</p>
             <h2 className="mt-2 text-3xl font-black leading-tight">Mulai dari simulasi yang paling sesuai.</h2>
             <p className="mt-3 text-sm font-semibold leading-relaxed text-white/75">
-              Pilih TOEFL atau IELTS sebelum masuk ke halaman test. TOEFL Test 1 sudah aktif dengan konversi skor PBT.
+              Pilih simulasi TOEFL sebelum masuk ke halaman test. TOEFL Practice Test 2 sudah aktif dengan materi baru.
             </p>
             <div className="mt-5 grid grid-cols-3 gap-2">
               {skills.map((skill) => {

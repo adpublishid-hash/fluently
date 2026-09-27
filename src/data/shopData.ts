@@ -64,10 +64,10 @@ export const products: Product[] = [
     id: 'p4',
     type: 'ebook',
     category: 'exam-prep',
-    title: 'IELTS Academic - Complete Preparation',
+    title: 'TOEFL PBT - Complete Preparation',
     author: 'Dr. Michael Owens',
     description:
-      'Strategies for all 4 sections, 8 full practice tests, model answers for writing tasks, and an audio bank for listening practice.',
+      'Strategies for Listening, Structure, and Reading, with full practice tests, answer reviews, and score conversion guidance.',
     cover: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=600&q=70&auto=format',
     rating: 4.9,
     reviewCount: 2150,
@@ -77,7 +77,7 @@ export const products: Product[] = [
     pages: 580,
     language: 'EN',
     level: 'B2 - C2',
-    tags: ['IELTS', 'Exam', 'Practice Tests'],
+    tags: ['TOEFL', 'Exam', 'Practice Tests'],
     bestseller: true,
   },
   {

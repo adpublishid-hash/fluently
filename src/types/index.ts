@@ -3,7 +3,7 @@
    ══════════════════════════════════════════ */
 
 // ── Navigation ──
-export type TabType = 'modul' | 'game' | 'latihan' | 'chat' | 'shop' | 'profile' | 'admin';
+export type TabType = 'modul' | 'video' | 'game' | 'latihan' | 'chat' | 'shop' | 'profile' | 'admin';
 
 export const ViewState = {
   MODULES_LESSON_LIST: 'modules-lesson-list',

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
+import { recordDailyXp } from '../utils/dailyXp';
 
 interface User {
   id: number;
@@ -44,6 +45,7 @@ interface AuthContextType {
   requestPasswordReset: (email: string) => Promise<{ success: boolean; error?: string }>;
   confirmPasswordReset: (token: string, newPassword: string) => Promise<{ success: boolean; error?: string }>;
   userExists: (email: string) => Promise<boolean>;
+  refreshUser: () => Promise<{ success: boolean; error?: string }>;
   upgradePlan: (plan: 'pro' | 'lifetime') => Promise<{ success: boolean; error?: string }>;
   awardXp: (xp: number, activity?: string) => Promise<{ success: boolean; error?: string }>;
   authHeaders: () => Record<string, string>;
@@ -72,7 +74,7 @@ function normalizeUser(data: any): User {
     level: Number(data.level ?? 1),
     onboardingCompleted: Boolean(data.onboardingCompleted ?? data.onboarding_completed),
     persona: data.persona ?? null,
-    role: isAdminEmail ? 'admin' : 'user',
+    role: isAdminEmail || data.role === 'admin' ? 'admin' : 'user',
     plan: ['free', 'pro', 'lifetime'].includes(data.plan) ? data.plan : 'free',
     planExpiresAt: data.planExpiresAt ?? data.plan_expires_at ?? null,
     status: data.status === 'suspended' ? 'suspended' : 'active',
@@ -120,28 +122,54 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem(TOKEN_KEY);
   }, []);
 
-  // Refresh local copy from /me on mount whenever we have a token, so other devices
-  // (or admin role/plan changes) reflect immediately.
+  const refreshUser = useCallback(async (): Promise<{ success: boolean; error?: string }> => {
+    if (!token) return { success: false, error: 'User session not found' };
+
+    try {
+      const res = await fetch(`${API}/users/me`, {
+        cache: 'no-store',
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.status === 401) {
+        logout();
+        return { success: false, error: 'Session expired' };
+      }
+      if (!res.ok) return { success: false, error: 'Gagal refresh session' };
+
+      const data = await res.json();
+      if (data?.user) persistSession(normalizeUser(data.user));
+      return { success: true };
+    } catch {
+      return { success: false, error: 'Server tidak dapat dihubungi' };
+    }
+  }, [token, logout, persistSession]);
+
+  // Keep the cached local user in sync with server-side admin changes.
   useEffect(() => {
     if (!token) return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch(`${API}/users/me`, { headers: { Authorization: `Bearer ${token}` } });
-        if (cancelled) return;
-        if (res.status === 401) {
-          logout();
-          return;
-        }
-        if (!res.ok) return;
-        const data = await res.json();
-        if (data?.user) persistSession(normalizeUser(data.user));
-      } catch {
-        // network error — keep cached user
+
+    const refreshIfVisible = () => {
+      if (document.visibilityState !== 'hidden') {
+        void refreshUser();
       }
-    })();
-    return () => { cancelled = true; };
-  }, [token, logout, persistSession]);
+    };
+    const refreshOnVisible = () => {
+      if (document.visibilityState === 'visible') {
+        void refreshUser();
+      }
+    };
+
+    void refreshUser();
+    window.addEventListener('focus', refreshIfVisible);
+    document.addEventListener('visibilitychange', refreshOnVisible);
+    const intervalId = window.setInterval(refreshIfVisible, 60_000);
+
+    return () => {
+      window.removeEventListener('focus', refreshIfVisible);
+      document.removeEventListener('visibilitychange', refreshOnVisible);
+      window.clearInterval(intervalId);
+    };
+  }, [token, refreshUser]);
 
   const login = useCallback(async (email: string, password: string): Promise<{ success: boolean; error?: string }> => {
     try {
@@ -367,6 +395,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await res.json();
       if (!res.ok) return { success: false, error: data.error };
       persistSession(normalizeUser(data.user));
+      if (xp > 0) recordDailyXp(xp);
       return { success: true };
     } catch {
       return { success: false, error: 'Server tidak dapat dihubungi' };
@@ -380,7 +409,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       completeOnboarding, updatePersona, updateProfile,
       changePassword,
       requestPasswordReset, confirmPasswordReset,
-      userExists, upgradePlan, awardXp, authHeaders,
+      userExists, refreshUser, upgradePlan, awardXp, authHeaders,
     }}>
       {children}
     </AuthContext.Provider>

@@ -275,7 +275,7 @@ export function createToeflCertificateDoc(options: CertificateOptions): jsPDF {
   doc.setFont('times', 'bold');
   doc.setFontSize(12.5);
   color(doc, C.blue);
-  doc.text('TOEFL Practice Test 1  (PBT Format)', cx, descY + 7, { align: 'center' });
+  doc.text('TOEFL Practice Test 2  (PBT Format)', cx, descY + 7, { align: 'center' });
 
   doc.setFont('times', 'italic');
   doc.setFontSize(8.5);

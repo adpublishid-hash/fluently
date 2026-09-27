@@ -1,6 +1,7 @@
 import { FREE_CHAT_SCENARIO_IDS, getEffectivePlan, hasFullAccess, type UserPlan } from '../../utils/accessControl';
 
 const FREE_CHAT_TOPIC_STORAGE = 'fluently_free_ai_chat_topic_daily';
+type AppLanguage = 'en' | 'id';
 
 type ChatLimitUser = {
   id?: number | string;
@@ -36,8 +37,11 @@ export const isFreeAiChatUser = (user: ChatLimitUser) => getEffectivePlan(user) 
 export const isFreeChatLevelAllowed = (levelId?: string) =>
   FREE_CHAT_SCENARIO_IDS.includes(String(levelId || 'a1').toLowerCase());
 
-export const getFreeChatLevelBlockMessage = (levelId?: string) => {
+export const getFreeChatLevelBlockMessage = (levelId?: string, language: AppLanguage = 'id') => {
   const level = String(levelId || '').toUpperCase();
+  if (language === 'en') {
+    return `Level ${level || 'this'} is for Pro users. Free users can use AI Chat in A1 Beginner and A2 Elementary. Upgrade to Pro to unlock B1 through C2.`;
+  }
   return `Level ${level || 'ini'} hanya untuk Pro. Free user bisa memakai AI Chat di A1 Beginner dan A2 Elementary. Upgrade ke Pro untuk membuka B1 sampai C2.`;
 };
 
@@ -53,9 +57,12 @@ export function readTodayFreeChatTopic(user: ChatLimitUser): DailyTopicRecord | 
   }
 }
 
-export function getFreeChatTopicBlockMessage(user: ChatLimitUser, nextTopic: string) {
+export function getFreeChatTopicBlockMessage(user: ChatLimitUser, nextTopic: string, language: AppLanguage = 'id') {
   const record = readTodayFreeChatTopic(user);
-  const activeTopic = record?.topic || 'topik hari ini';
+  const activeTopic = record?.topic || (language === 'en' ? 'today topic' : 'topik hari ini');
+  if (language === 'en') {
+    return `Your free limit for today has already been used for "${activeTopic}". Free users can generate 1 AI Chat topic per day. You can keep practicing that topic, or upgrade to Pro for unlimited topics.`;
+  }
   return `Limit free hari ini sudah terpakai untuk topik "${activeTopic}". Free user hanya bisa generate 1 topik AI Chat per hari. Kamu tetap bisa lanjut topik itu, atau upgrade Pro untuk topik tanpa batas.`;
 }
 

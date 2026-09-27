@@ -1,6 +1,6 @@
 import type React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { BookOpen, CheckCircle, ChevronLeft, Headphones, Mic, Volume2 } from 'lucide-react';
 import { ViewState } from '../../../types';
 import { arabicLessonCounts, arabicSkills, type ArabicLevelId, type ArabicSkillId } from './arabicModuleData';
@@ -84,11 +84,13 @@ export default function ArabicStaticLessonShell({
   LessonComponent,
 }: ArabicStaticLessonShellProps) {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const totalLessons = arabicLessonCounts[levelId][skillId];
   const skill = arabicSkills.find((item) => item.id === skillId) ?? arabicSkills[0];
   const progress = Math.min(100, Math.max(0, (lessonId / totalLessons) * 100));
   const listPath = `/modul/arabic/${routeLevelId}/${skillId}`;
-  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>('materi');
+  const initialTab = searchParams.get('tab') === 'latihan' || searchParams.get('practice') === '1' ? 'latihan' : 'materi';
+  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>(initialTab);
 
   const goBack = () => navigate(listPath);
   const completeAndContinue = () => {

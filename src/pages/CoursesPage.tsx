@@ -1,10 +1,13 @@
 import { motion } from 'framer-motion';
 import { Play, ChevronRight, Lock, Zap, Gamepad2, Trophy, Flame, Calendar as CalendarIcon, Briefcase, Cloud, MessageSquare, LayoutGrid, Plane, Palette } from 'lucide-react';
 import PageContainer from '../components/layout/PageContainer';
-import { mockCourses, courseCollections, categoryLabels, difficultyColors, mockLeaderboard } from '../data/mockData';
+import { mockCourses, courseCollections, categoryLabels, difficultyColors } from '../data/mockData';
 import type { Course, CourseCategory } from '../types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { DAILY_XP_EVENT, getTodayXp } from '../utils/dailyXp';
+import { useLeaderboard } from '../features/leaderboard/leaderboard';
 
 const categories: { id: CourseCategory | 'all'; label: string; icon: React.ElementType }[] = [
   { id: 'all', label: 'All', icon: LayoutGrid },
@@ -309,21 +312,47 @@ function CategoryCoursesSection({ category, courses }: { category: string; cours
 /** 
  * Desktop Right Sidebar Widgets 
  */
+const DAILY_XP_GOAL = 50;
+
 function DailyGoalWidget() {
+  const [todayXP, setTodayXP] = useState<number>(getTodayXp);
+
+  useEffect(() => {
+    const refresh = () => setTodayXP(getTodayXp());
+    window.addEventListener(DAILY_XP_EVENT, refresh);
+    window.addEventListener('storage', refresh);
+    window.addEventListener('focus', refresh);
+    return () => {
+      window.removeEventListener(DAILY_XP_EVENT, refresh);
+      window.removeEventListener('storage', refresh);
+      window.removeEventListener('focus', refresh);
+    };
+  }, []);
+
+  const reached = todayXP >= DAILY_XP_GOAL;
+  const currentXP = Math.min(todayXP, DAILY_XP_GOAL);
+  const progress = Math.min(100, (todayXP / DAILY_XP_GOAL) * 100);
+
   return (
     <div className="desktop-sidebar-widget mb-6 flex flex-col items-center">
       <h4 className="font-bold text-sm text-text-secondary mb-4 w-full text-left">Today's Goal</h4>
-      <CircularProgress progress={85} size={100} />
-      <p className="text-sm font-extrabold text-text-primary mt-4">42 / 50 XP</p>
-      <p className="text-xs text-text-muted mt-1">Almost there!</p>
+      <CircularProgress progress={progress} size={100} />
+      <p className="text-sm font-extrabold text-text-primary mt-4">{currentXP} / {DAILY_XP_GOAL} XP</p>
+      <p className="text-xs text-text-muted mt-1">{reached ? 'Goal complete!' : todayXP > 0 ? 'Almost there!' : 'Keep going'}</p>
     </div>
   );
 }
 
 function LeaderboardSnippetWidget() {
-  const top3 = mockLeaderboard.slice(0, 3);
+  const navigate = useNavigate();
+  const { entries, loading } = useLeaderboard(3);
+  const top3 = entries.slice(0, 3);
   return (
-    <div className="desktop-sidebar-widget mb-6">
+    <button
+      type="button"
+      onClick={() => navigate('/rank')}
+      className="desktop-sidebar-widget mb-6 w-full text-left cursor-pointer transition-shadow hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
+    >
       <div className="flex items-center justify-between mb-4">
         <h4 className="font-bold text-sm text-text-secondary flex items-center gap-2">
           <Trophy size={16} className="text-yellow-500" /> Top Learners
@@ -331,18 +360,31 @@ function LeaderboardSnippetWidget() {
         <ChevronRight size={14} className="text-text-muted" />
       </div>
       <div className="space-y-4">
+        {loading && top3.length === 0 && [0, 1, 2].map((i) => (
+          <div key={i} className="flex items-center gap-3">
+            <span className="w-3" />
+            <div className="h-8 w-8 shrink-0 animate-pulse rounded-full bg-gray-100" />
+            <div className="flex-1 space-y-1.5">
+              <div className="h-2.5 w-3/4 animate-pulse rounded bg-gray-100" />
+              <div className="h-2 w-1/3 animate-pulse rounded bg-gray-100" />
+            </div>
+          </div>
+        ))}
+        {!loading && top3.length === 0 && (
+          <p className="text-[11px] text-text-muted py-1">No ranking yet. Start learning!</p>
+        )}
         {top3.map((entry) => (
           <div key={entry.user.id} className="flex items-center gap-3">
             <span className="font-bold text-text-muted text-xs w-3">{entry.rank}</span>
             <img src={entry.user.avatarUrl} alt="" className="w-8 h-8 rounded-full border border-gray-100" />
             <div className="flex-1 min-w-0">
               <p className="text-xs font-bold text-text-primary truncate">{entry.user.name}</p>
-              <p className="text-[10px] text-primary font-semibold">{entry.user.xp} XP</p>
+              <p className="text-[10px] text-primary font-semibold">{entry.user.xp.toLocaleString()} XP</p>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </button>
   );
 }
 

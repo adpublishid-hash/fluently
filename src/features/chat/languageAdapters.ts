@@ -7,6 +7,8 @@ type LanguageProfile = {
   greeting: string;
   topicHint: string;
   sample: string;
+  nativeName?: string;
+  topicLabels?: Partial<Record<'vocabulary' | 'grammar' | 'pronunciation' | 'speaking' | 'reading' | 'writing', string[]>>;
   vocabularyRows: Array<{ word: string; phonetic: string; meaning: string; pos: string; example: string }>;
   pronunciationRows: Array<{ sentence: string; phonetic: string; focus: string; tip: string }>;
   speakingRows: Array<{ prompt: string; grammarFocus: string; usefulPattern: string; example: string }>;
@@ -98,6 +100,68 @@ const grammarTopicLabels = [
   'Review & Mastery Check',
 ];
 
+const arabicTopicLabels: Record<'vocabulary' | 'grammar' | 'pronunciation' | 'speaking' | 'reading' | 'writing', string[]> = {
+  vocabulary: [
+    'Salam dan sapaan Arab', 'Identitas diri dan asal', 'Keluarga dan hubungan', 'Benda kelas dan alat tulis', 'Rumah dan ruangan',
+    'Makanan dan minuman', 'Angka 1-100', 'Warna dan sifat benda', 'Waktu harian', 'Hari dan jadwal',
+    'Tempat umum', 'Arah dan lokasi', 'Belanja dan harga', 'Transportasi', 'Sekolah dan pelajaran',
+    'Pekerjaan dan profesi', 'Kesehatan dan tubuh', 'Hobi dan aktivitas', 'Cuaca dan musim', 'Perasaan dan opini',
+    'Kata kerja harian', 'Huruf jar umum', 'Kata tanya Arabic', 'Sinonim dasar', 'Antonim dasar',
+    'Kolokasi sederhana', 'Ungkapan sopan', 'Kosakata ibadah umum', 'Frasa perjalanan', 'Review mufradat A1',
+  ],
+  grammar: [
+    'Jumlah ismiyyah: mubtada dan khabar', 'Jumlah fi’liyyah: fi’il dan fa’il', 'Dhamir munfashil', 'Dhamir muttashil', 'Isim mudzakkar dan muannats',
+    'Mufrad, mutsanna, dan jamak', 'Nakirah dan ma’rifah', 'Alif lam', 'Idhafah sederhana', 'Naat dan man’ut',
+    'Huruf jar dan majrur', 'Kata tunjuk hadha/hadhihi', 'Kata tanya Arabic', 'Fi’il madhi dasar', 'Fi’il mudhari dasar',
+    'Amr sederhana', 'Negasi dengan la dan ma', 'Kana dan saudaranya', 'Inna dan saudaranya', 'Maf’ul bih dasar',
+    'Zharaf makan dan zaman', 'Adad dan ma’dud dasar', 'Fi’il shahih dan mu’tal', 'Wazan fa’ala', 'Masdar dasar',
+    'Kalimat sebab akibat', 'Kalimat syarat sederhana', 'I’rab nominatif', 'I’rab akusatif', 'Review nahwu A1-A2',
+  ],
+  pronunciation: [
+    'Makharij tenggorokan: ء ه ع ح غ خ', 'Huruf tebal: ص ض ط ظ ق', 'Qaf vs kaf', 'Ain vs hamzah', 'Ha ح vs ha ه',
+    'Sin س vs syin ش', 'Sad ص vs sin س', 'Dhad ض vs dal د', 'Tha ط vs ta ت', 'Dzal ذ vs za ز',
+    'Mad alif, ya, waw', 'Harakat fathah kasrah dhammah', 'Sukun dan qalqalah', 'Ghunnah ringan', 'Syaddah',
+    'Alif lam syamsiyyah', 'Alif lam qamariyyah', 'Waqaf sederhana', 'Ritme kalimat pendek', 'Intonasi pertanyaan',
+    'Salam dan respons', 'Nama dan asal', 'Angka terdengar', 'Minimal pair Arabic', 'Shadowing dialog',
+    'Baca teks berharakat', 'Tempo pelan natural', 'Chunking frasa', 'Rekaman evaluasi', 'Review makharij',
+  ],
+  speaking: [
+    'Perkenalan diri', 'Tanya kabar', 'Asal negara dan kota', 'Keluarga saya', 'Kegiatan harian',
+    'Di kelas', 'Meminta bantuan', 'Pesan makanan', 'Belanja sederhana', 'Tanya arah',
+    'Membuat janji', 'Menceritakan hobi', 'Deskripsi rumah', 'Deskripsi sekolah', 'Bicara tentang cuaca',
+    'Menyampaikan suka/tidak suka', 'Telepon pendek', 'Percakapan transportasi', 'Di hotel', 'Di restoran',
+    'Kesehatan ringan', 'Minta izin', 'Memberi saran', 'Setuju dan tidak setuju', 'Cerita kemarin',
+    'Rencana besok', 'Presentasi 30 detik', 'Roleplay layanan', 'Dialog formal ringan', 'Review kalam',
+  ],
+  reading: [
+    'Salam tertulis', 'Profil pendek', 'Jadwal sekolah', 'Keluarga dalam paragraf', 'Teks rumah',
+    'Menu restoran', 'Daftar belanja', 'Papan petunjuk', 'Undangan pendek', 'Pesan WhatsApp Arab',
+    'Cerita rutinitas', 'Deskripsi kota', 'Cerita perjalanan', 'Pengumuman kelas', 'Teks kesehatan',
+    'Artikel pendek budaya', 'Biografi mini', 'Cerita masa lalu', 'Teks opini sederhana', 'Instruksi arah',
+    'Iklan sederhana', 'Teks sebab akibat', 'Dialog tertulis', 'Ringkasan cerita', 'Inferensi bacaan',
+    'Mencari detail', 'Main idea', 'Kosakata konteks', 'Baca tanpa harakat', 'Review qiraah',
+  ],
+  writing: [
+    'Menulis salam', 'Menulis nama dan asal', 'Kalimat ana...', 'Kalimat hadha/hadhihi', 'Deskripsi keluarga',
+    'Deskripsi rumah', 'Jadwal harian', 'Catatan kelas', 'Daftar belanja', 'Pesan pendek',
+    'Paragraf diri 4 kalimat', 'Menulis hobi', 'Menulis lokasi', 'Menulis permintaan sopan', 'Menulis undangan',
+    'Balasan pesan', 'Kalimat lampau sederhana', 'Kalimat rencana', 'Menggabungkan dua kalimat', 'Deskripsi gambar',
+    'Email sederhana', 'Ringkasan teks', 'Opini pendek', 'Cerita pengalaman', 'Instruksi singkat',
+    'Paragraf sebab akibat', 'Koreksi tulisan', 'Variasi kosakata', 'Portfolio mini', 'Review kitabah',
+  ],
+};
+
+const localizedFocusLabels: Partial<Record<TargetLanguage, Record<string, string>>> = {
+  Arabic: {
+    vocabulary: 'Mufradat',
+    grammar: 'Nahwu & Sharaf',
+    pronunciation: 'Makharij',
+    speaking: 'Kalam',
+    reading: "Qira'ah",
+    writing: 'Kitabah',
+  },
+};
+
 const dayOptions = (labels: string[], customValue: string, customLabel: string) => [
   ...Array.from({ length: 90 }, (_, index) => {
     const label = labels[index % labels.length];
@@ -124,9 +188,15 @@ const languageProfiles: Record<TargetLanguage, LanguageProfile> = {
   },
   Arabic: {
     languageName: 'Arabic',
-    greeting: 'Ahlan! Sebelum mulai, siapa namamu?',
-    topicHint: 'Pilih topik bahasa Arab yang mau kamu latih.',
+    nativeName: 'العَرَبِيَّة',
+    greeting: `أَهْلًا وَسَهْلًا!
+
+Aku akan jadi Arabic coach kamu: fokus pada mufradat, makharij, nahwu-sharaf, dan kalam bertahap.
+
+Sebelum mulai, siapa namamu?`,
+    topicHint: 'Pilih topik Arabic yang mau kamu latih. Kamu bisa jawab dengan tulisan Arab, transliterasi Latin, atau campuran dulu.',
     sample: 'مرحبا، اسمي علي.',
+    topicLabels: arabicTopicLabels,
     vocabularyRows: [
       { word: 'مرحبا', phonetic: '/marhaban/', meaning: 'halo', pos: 'phrase', example: 'مرحبا، اسمي علي.' },
       { word: 'اسمي', phonetic: '/ismi/', meaning: 'nama saya', pos: 'phrase', example: 'اسمي سارة.' },
@@ -143,6 +213,12 @@ const languageProfiles: Record<TargetLanguage, LanguageProfile> = {
       { word: 'أريد', phonetic: '/uriid/', meaning: 'saya ingin', pos: 'verb', example: 'أريد تذكرة.' },
       { word: 'اليوم', phonetic: '/al-yawm/', meaning: 'hari ini', pos: 'noun', example: 'اليوم جميل.' },
       { word: 'جيد', phonetic: '/jayyid/', meaning: 'baik', pos: 'adjective', example: 'هذا جيد.' },
+      { word: 'عندي', phonetic: '/indi/', meaning: 'saya punya', pos: 'phrase', example: 'عندي كتاب جديد.' },
+      { word: 'أحب', phonetic: '/uhibbu/', meaning: 'saya suka', pos: 'verb', example: 'أحب اللغة العربية.' },
+      { word: 'قريب', phonetic: '/qariib/', meaning: 'dekat', pos: 'adjective', example: 'بيتي قريب من المدرسة.' },
+      { word: 'بعيد', phonetic: '/ba iid/', meaning: 'jauh', pos: 'adjective', example: 'المطار بعيد.' },
+      { word: 'كم', phonetic: '/kam/', meaning: 'berapa', pos: 'question', example: 'كم السعر؟' },
+      { word: 'لماذا', phonetic: '/limadha/', meaning: 'mengapa', pos: 'question', example: 'لماذا تتعلم العربية؟' },
     ],
     pronunciationRows: [
       { sentence: 'مرحبا، اسمي علي.', phonetic: '/marhaban ismi ali/', focus: 'ح / h', tip: 'Buka tenggorokan ringan saat membaca ha.' },
@@ -165,6 +241,9 @@ const languageProfiles: Record<TargetLanguage, LanguageProfile> = {
       { prompt: 'Perkenalkan diri dalam 2 kalimat.', grammarFocus: 'nominal', usefulPattern: 'أنا ... / اسمي ...', example: 'أنا سارة. اسمي سارة وأنا طالبة.' },
       { prompt: 'Ceritakan tempat tinggalmu.', grammarFocus: 'preposition', usefulPattern: 'أعيش في ...', example: 'أعيش في جاكرتا.' },
       { prompt: 'Pesan makanan sederhana.', grammarFocus: 'request', usefulPattern: 'أريد ... من فضلك', example: 'أريد ماء من فضلك.' },
+      { prompt: 'Tanya lokasi dengan sopan.', grammarFocus: 'question', usefulPattern: 'أين ...؟', example: 'أين محطة القطار؟' },
+      { prompt: 'Sampaikan alasan belajar Arabic.', grammarFocus: 'because', usefulPattern: 'أتعلم العربية لأن...', example: 'أتعلم العربية لأنها جميلة.' },
+      { prompt: 'Minta lawan bicara mengulang.', grammarFocus: 'request', usefulPattern: 'أعد من فضلك', example: 'أعد الجملة من فضلك.' },
     ],
     readingPassage: 'مرحبا. اسمي ليلى. أعيش في جاكرتا. أذهب إلى المدرسة كل صباح. أحب اللغة العربية لأنها جميلة.',
     writingPrompt: 'Tulis 4-6 kalimat bahasa Arab tentang dirimu: nama, kota, sekolah/kerja, dan satu hal yang kamu suka.',
@@ -265,28 +344,141 @@ const languageProfiles: Record<TargetLanguage, LanguageProfile> = {
   },
 };
 
+export const getLocalizedFocusLabel = (targetLanguage: TargetLanguage, focus: ChatFocus) => {
+  const focusKey = focus || 'vocabulary';
+  return localizedFocusLabels[targetLanguage]?.[focusKey] || focusLabels[focusKey] || 'Chat';
+};
+
+const getTopicLabelsFor = (targetLanguage: TargetLanguage, focus: ChatFocus) => {
+  const profile = languageProfiles[targetLanguage];
+  const focusKey = (focus || 'vocabulary') as 'vocabulary' | 'grammar' | 'pronunciation' | 'speaking' | 'reading' | 'writing';
+  if (profile.topicLabels?.[focusKey]) return profile.topicLabels[focusKey]!;
+  return focusKey === 'grammar' ? grammarTopicLabels : commonTopicLabels;
+};
+
+const getCustomTopicLabel = (targetLanguage: TargetLanguage, focus: ChatFocus) => {
+  const label = getLocalizedFocusLabel(targetLanguage, focus);
+  const language = languageProfiles[targetLanguage].languageName;
+  if (targetLanguage === 'Arabic') return `Custom ${label} - Tulis topik Arabic sendiri`;
+  return `Custom ${label} - Tulis topik ${language} sendiri`;
+};
+
 export const isEnglishChat = (targetLanguage: TargetLanguage) => targetLanguage === 'English';
 
-export const buildLocalizedGreeting = (targetLanguage: TargetLanguage) =>
-  languageProfiles[targetLanguage].greeting;
+export const isCustomLocalizedTopicValue = (topicValue: string) =>
+  topicValue === 'custom-topic' ||
+  topicValue === 'custom-grammar' ||
+  topicValue === 'custom-pronunciation' ||
+  topicValue === 'custom-speaking' ||
+  topicValue === 'custom-reading' ||
+  topicValue === 'custom-writing';
+
+export const normalizeLocalizedTopicValue = (topicValue: string) =>
+  String(topicValue || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+export const getLocalizedTopicLabel = (targetLanguage: TargetLanguage, focus: ChatFocus, topicValue: string) => {
+  const option = getLocalizedTopicOptions(targetLanguage, focus).find((item) => item.value === topicValue);
+  return option?.label || normalizeLocalizedTopicValue(topicValue);
+};
+
+export const getLocalizedModeCopy = (targetLanguage: TargetLanguage, modeId: string) => {
+  if (targetLanguage === 'Arabic') {
+    const copy: Record<string, { label: string; sublabel: string }> = {
+      vocabulary: { label: 'Mufradat Coach', sublabel: 'Kosakata Arab, arti, contoh kalimat, dan recall bertahap.' },
+      pronunciation: { label: 'Makharij Coach', sublabel: 'Latih huruf Arab, mad, qalqalah, dan ritme waqaf dengan audio.' },
+      grammar: { label: 'Nahwu & Sharaf', sublabel: "Koreksi jumlah ismiyyah, fi'liyyah, i'rab dasar, dan pola kata." },
+      speaking: { label: 'Kalam Coach', sublabel: 'Roleplay percakapan Arab dengan pola pendek yang natural.' },
+      reading: { label: "Qira'ah Coach", sublabel: 'Baca teks Arab, ambil main idea, detail, dan mufradat baru.' },
+      writing: { label: 'Kitabah Coach', sublabel: 'Tulis kalimat/paragraf Arab lalu dapat koreksi struktur dan pilihan kata.' },
+    };
+    if (copy[modeId]) return copy[modeId];
+  }
+
+  return {
+    label: focusLabels[modeId] || 'AI Chat',
+    sublabel: `Practice ${languageProfiles[targetLanguage].languageName} with AI`,
+  };
+};
+
+export const buildLocalizedCustomTopicPrompt = (name: string, focus: ChatFocus, targetLanguage: TargetLanguage) => {
+  const label = getLocalizedFocusLabel(targetLanguage, focus);
+
+  if (targetLanguage === 'Arabic') {
+    const examples: Record<string, string[]> = {
+      vocabulary: ['Kosakata ibadah harian', 'Frasa perjalanan umrah', 'Kata kerja harian Arabic', 'Mufradat restoran'],
+      grammar: ['Idhafah sederhana', "Fi'il madhi dan mudhari", 'Mubtada-khabar', 'Huruf jar dan majrur'],
+      pronunciation: ['Huruf ع dan ح', 'Qaf vs kaf', 'Mad panjang-pendek', 'Waqaf di akhir kalimat'],
+      speaking: ['Perkenalan diri', 'Pesan makanan', 'Tanya arah', 'Dialog di kelas'],
+      reading: ['Profil pendek Arab', 'Jadwal sekolah', 'Pesan WhatsApp Arab', 'Cerita rutinitas'],
+      writing: ['Paragraf tentang diri', 'Pesan pendek Arab', 'Deskripsi keluarga', 'Kalimat rencana besok'],
+    };
+    const focusExamples = examples[focus || 'vocabulary'] || examples.vocabulary;
+
+    return `Boleh, ${name || 'teman'}! Tulis topik Arabic ${label} yang kamu mau.
+
+Contoh:
+${focusExamples.map((item) => `- ${item}`).join('\n')}
+
+Kamu boleh menulis pakai bahasa Indonesia, transliterasi, atau tulisan Arab.`;
+  }
+
+  const language = languageProfiles[targetLanguage].languageName;
+  return `Boleh, ${name || 'teman'}! Tulis topik ${language} ${label} yang kamu mau.`;
+};
+
+export const buildLocalizedPracticeLoopReply = (name: string, focus: ChatFocus, targetLanguage: TargetLanguage) => {
+  if (targetLanguage !== 'Arabic') return buildLocalizedTopicQuestion(name, focus, targetLanguage);
+
+  const label = getLocalizedFocusLabel(targetLanguage, focus);
+  const nextTask: Record<string, string> = {
+    vocabulary: 'kirim 3 kalimat baru memakai mufradat dari tabel.',
+    grammar: "kirim 2 kalimat baru lalu tandai mubtada-khabar atau fi'il-fa'il.",
+    pronunciation: 'tekan mic lagi dan ulangi 2 kalimat berikutnya dengan tempo pelan.',
+    speaking: 'jawab prompt berikutnya dengan 1-2 kalimat Arab.',
+    reading: 'jawab main idea, 3 mufradat baru, dan satu detail dari teks.',
+    writing: 'kirim versi revisi 4 kalimat Arab dengan struktur lebih rapi.',
+  };
+
+  return `Lanjut ${label}, ${name || 'teman'}.
+
+Tantangan berikutnya: ${nextTask[focus || 'vocabulary'] || nextTask.vocabulary}
+
+Kalau ingin ganti topik, ketik "topik baru".`;
+};
+
+export const buildLocalizedGreeting = (targetLanguage: TargetLanguage, focus?: ChatFocus) => {
+  const profile = languageProfiles[targetLanguage];
+  if (targetLanguage === 'Arabic') {
+    const label = getLocalizedFocusLabel(targetLanguage, focus);
+    return `${profile.greeting}
+
+Mode yang kamu pilih: ${label}.
+Kalau siap, balas dengan namamu.`;
+  }
+
+  return profile.greeting;
+};
 
 export const getLocalizedTopicOptions = (targetLanguage: TargetLanguage, focus: ChatFocus): TopicOption[] => {
   if (targetLanguage === 'English') return [];
   const focusKey = focus || 'vocabulary';
-  if (focusKey === 'grammar') return dayOptions(grammarTopicLabels, 'custom-grammar', 'Custom Grammar - Tulis topik sendiri');
-  if (focusKey === 'pronunciation') return dayOptions(commonTopicLabels, 'custom-pronunciation', 'Custom Pronunciation - Tulis fokus sendiri');
-  if (focusKey === 'speaking') return dayOptions(commonTopicLabels, 'custom-speaking', 'Custom Speaking - Tulis topik sendiri');
-  if (focusKey === 'reading') return dayOptions(commonTopicLabels, 'custom-reading', 'Custom Reading - Tulis topik sendiri');
-  if (focusKey === 'writing') return dayOptions(commonTopicLabels, 'custom-writing', 'Custom Writing - Tulis topik sendiri');
-  return dayOptions(commonTopicLabels, 'custom-topic', 'Custom Topic - Tulis topik sendiri');
+  const labels = getTopicLabelsFor(targetLanguage, focusKey);
+  if (focusKey === 'grammar') return dayOptions(labels, 'custom-grammar', getCustomTopicLabel(targetLanguage, 'grammar'));
+  if (focusKey === 'pronunciation') return dayOptions(labels, 'custom-pronunciation', getCustomTopicLabel(targetLanguage, 'pronunciation'));
+  if (focusKey === 'speaking') return dayOptions(labels, 'custom-speaking', getCustomTopicLabel(targetLanguage, 'speaking'));
+  if (focusKey === 'reading') return dayOptions(labels, 'custom-reading', getCustomTopicLabel(targetLanguage, 'reading'));
+  if (focusKey === 'writing') return dayOptions(labels, 'custom-writing', getCustomTopicLabel(targetLanguage, 'writing'));
+  return dayOptions(labels, 'custom-topic', getCustomTopicLabel(targetLanguage, 'vocabulary'));
 };
 
 export const getLocalizedTopicSelectCopy = (targetLanguage: TargetLanguage, focus: ChatFocus) => {
   const language = languageProfiles[targetLanguage].languageName;
-  const label = focusLabels[focus || 'vocabulary'] || 'Topic';
+  const label = getLocalizedFocusLabel(targetLanguage, focus);
   return {
-    title: targetLanguage === 'English' ? '' : `Topik ${language} ${label} (90 Days Challenge)`,
-    placeholder: targetLanguage === 'English' ? '' : `Pilih topik ${language}...`,
+    title: targetLanguage === 'English' ? '' : targetLanguage === 'Arabic' ? `Topik Arabic ${label}` : `Topik ${language} ${label} (90 Days Challenge)`,
+    placeholder: targetLanguage === 'English' ? '' : targetLanguage === 'Arabic' ? `Pilih fokus ${label}...` : `Pilih topik ${language}...`,
   };
 };
 
@@ -299,9 +491,114 @@ const buildPronunciationTable = (profile: LanguageProfile) =>
 const buildSpeakingTable = (profile: LanguageProfile) =>
   `SPEAKING_TABLE_START\n${profile.speakingRows.map((row) => `${row.prompt}|${row.grammarFocus}|${row.usefulPattern}|${row.example}`).join('\n')}\nSPEAKING_TABLE_END`;
 
+const buildArabicLesson = (name: string, focus: ChatFocus, topic: string, level: string, profile: LanguageProfile) => {
+  const displayTopic = topic.replace(/^Day \d+\s*-\s*/i, '');
+
+  if (focus === 'grammar') {
+    return `Siap, ${name}. Kita masuk Arabic Nahwu & Sharaf.
+
+Topik: ${displayTopic}
+Level: ${level}
+
+Pola inti:
+1. Baca contoh Arabnya dulu.
+2. Temukan fungsi kata: mubtada, khabar, fi'il, fa'il, maf'ul, huruf jar.
+3. Jawab pendek dulu. Harakat boleh belum sempurna.
+
+Contoh aman:
+زَيْدٌ طَالِبٌ
+Zaydun talibun
+Zaid adalah pelajar.
+
+Mini drill:
+1. Buat 2 jumlah ismiyyah.
+2. Buat 1 jumlah fi'liyyah.
+3. Tandai mana mubtada/khabar atau fi'il/fa'il.
+
+Aku akan koreksi struktur, i'rab dasar, pilihan kata, dan versi Arab yang lebih natural.`;
+  }
+
+  if (focus === 'pronunciation') {
+    return `Siap, ${name}. Aku jadi Makharij coach Arabic kamu.
+
+Fokus: ${displayTopic}
+Level: ${level}
+
+Latihan dengar dan tirukan:
+${buildPronunciationTable(profile)}
+
+Cara latihan:
+1. Putar audio kalimat 1.
+2. Ucapkan pelan dengan microphone.
+3. Aku cek huruf target, panjang-pendek mad, dan ritme waqaf.
+
+Mulai dari kalimat 1 dan 2 dulu.`;
+  }
+
+  if (focus === 'speaking') {
+    return `Siap, ${name}. Kita latihan Kalam Arabic untuk "${displayTopic}".
+
+Target sesi:
+1. Jawaban pendek tapi benar.
+2. Pakai pola Arab yang aman.
+3. Naik pelan ke jawaban 2-3 kalimat.
+
+${buildSpeakingTable(profile)}
+
+Mulai dari prompt 1. Jawab dengan microphone atau ketik transliterasi dulu kalau keyboard Arab belum siap.`;
+  }
+
+  if (focus === 'reading') {
+    return `Siap, ${name}. Kita latihan Qira'ah Arabic.
+
+Topik: ${displayTopic}
+Level: ${level}
+
+READING_PASSAGE_START
+${profile.readingPassage}
+READING_PASSAGE_END
+
+Tugas:
+1. Baca teks Arab dari kanan ke kiri.
+2. Tulis main idea dalam bahasa Indonesia.
+3. Ambil 3 mufradat baru.
+4. Jawab: siapa tokohnya, di mana dia tinggal, dan apa yang dia sukai?`;
+  }
+
+  if (focus === 'writing') {
+    return `Siap, ${name}. Kita latihan Kitabah Arabic.
+
+Topik: ${displayTopic}
+Level: ${level}
+
+WRITING_PROMPT_START
+${profile.writingPrompt}
+WRITING_PROMPT_END
+
+Checklist:
+1. Minimal 4 kalimat Arab.
+2. Boleh pakai harakat sebagian.
+3. Pakai pola: أنا..., اسمي..., أعيش في..., أحب...
+4. Aku akan koreksi huruf, urutan kata, nahwu dasar, dan versi yang lebih natural.`;
+  }
+
+  return `Siap, ${name}. Kita latihan Mufradat Arabic untuk "${displayTopic}".
+
+Target sesi:
+1. Pahami arti.
+2. Dengarkan bunyi Arab.
+3. Pakai kata dalam kalimat pendek.
+
+Kosakata inti:
+${buildVocabularyTable(profile)}
+
+Challenge pertama:
+Buat 3 kalimat memakai kata nomor 1, 2, dan 3. Kamu boleh menulis Arab penuh, transliterasi, atau campuran. Setelah itu aku koreksi dan lanjutkan ke challenge berikutnya.`;
+};
+
 export const buildLocalizedTopicQuestion = (name: string, focus: ChatFocus, targetLanguage: TargetLanguage) => {
   const profile = languageProfiles[targetLanguage];
-  const label = focusLabels[focus || ''] || 'Chat';
+  const label = getLocalizedFocusLabel(targetLanguage, focus);
   const token = selectTokens[focus || 'vocabulary'] || selectTokens.vocabulary;
 
   return `Hai, ${name}! Kita akan latihan ${profile.languageName} ${label}.
@@ -314,6 +611,10 @@ export const buildLocalizedLesson = (name: string, focus: ChatFocus, topic: stri
   const profile = languageProfiles[targetLanguage];
   const language = profile.languageName;
   const level = (levelId || 'beginner').toUpperCase();
+
+  if (targetLanguage === 'Arabic') {
+    return buildArabicLesson(name, focus, topic, level, profile);
+  }
 
   if (focus === 'grammar') {
     return `Siap, ${name}! Kita latihan grammar ${language} untuk topik "${topic}" di level ${level}.
@@ -392,6 +693,46 @@ export const buildLocalizedFeedback = (name: string, answer: string, focus: Chat
   const language = languageProfiles[targetLanguage].languageName;
   const wordCount = answer.trim().split(/\s+/).filter(Boolean).length;
   const hasEnoughText = wordCount >= 3;
+  const hasArabicScript = /[\u0600-\u06FF]/.test(answer);
+  const hasHarakat = /[\u064B-\u0652]/.test(answer);
+
+  if (targetLanguage === 'Arabic') {
+    const score = hasEnoughText && hasArabicScript ? 88 : hasEnoughText ? 80 : 68;
+    const focusHint = focus === 'pronunciation'
+      ? 'Fokus ulang makharij huruf target, mad panjang-pendek, dan waqaf. Ucapkan lebih pelan sebelum menaikkan tempo.'
+      : focus === 'speaking'
+        ? 'Untuk kalam, pakai pola pendek dulu: أنا..., أعيش في..., أحب... lalu tambah satu detail.'
+        : focus === 'grammar'
+          ? "Untuk nahwu, tandai fungsi kata: mubtada/khabar atau fi'il/fa'il sebelum membuat kalimat baru."
+          : focus === 'reading'
+            ? "Untuk qira'ah, ambil main idea dulu lalu baru detail. Jangan terjebak menerjemahkan semua kata."
+            : focus === 'writing'
+              ? 'Untuk kitabah, susun kalimat kanan-ke-kiri dan cek kesesuaian mudzakkar/muannats.'
+              : 'Untuk mufradat, pakai kata baru dalam contoh pendek supaya lebih melekat.';
+
+    return `Bagus, ${name}. Ini feedback Arabic kamu:
+
+Status: ${hasEnoughText ? 'Good progress' : 'Perlu dibuat sedikit lebih lengkap'}
+
+Yang sudah bagus:
+- Kamu sudah mulai produksi Arabic aktif.
+- ${hasArabicScript ? 'Sudah memakai tulisan Arab.' : 'Transliterasi boleh untuk awal, nanti kita naikkan ke tulisan Arab.'}
+- ${hasHarakat ? 'Harakat membantu bacaanmu lebih jelas.' : 'Belum wajib penuh harakat, tapi tambahkan harakat pada kata yang rawan salah.'}
+
+Yang perlu ditingkatkan:
+- ${focusHint}
+- Buat satu versi pendek yang benar sebelum membuat versi panjang.
+
+Contoh pola aman:
+أَنَا طَالِبٌ.
+أَعِيشُ فِي جَاكَرْتَا.
+أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ.
+
+Skor sementara: ${score}/100
+
+Lanjut: kirim 2 kalimat baru dengan pola yang sama.`;
+  }
+
   const score = hasEnoughText ? 84 : 68;
   const focusHint = focus === 'pronunciation'
     ? 'Untuk pronunciation, coba ulangi dengan tempo lebih pelan dan artikulasi lebih jelas.'
@@ -418,7 +759,24 @@ Lanjut challenge berikutnya ya.`;
 
 export const buildLocalizedReport = (targetLanguage: TargetLanguage, focus: ChatFocus) => {
   const language = languageProfiles[targetLanguage].languageName;
-  const label = focusLabels[focus || ''] || 'AI Chat';
+  const label = getLocalizedFocusLabel(targetLanguage, focus) || 'AI Chat';
+
+  if (targetLanguage === 'Arabic') {
+    return `Session Report - Arabic ${label}
+
+Skor: 84/100
+Kategori: Good Progress
+
+Ringkasan:
+- User sudah memulai latihan Arabic dengan mode ${label}.
+- Fokus utama sesi: produksi aktif, pemahaman pola, dan keberanian memakai Arabic.
+- Area yang perlu dijaga: makharij, harakat dasar, urutan kata, dan konsistensi latihan pendek.
+
+Rekomendasi:
+1. Ulangi topik yang sama dengan 3 kalimat baru.
+2. Pakai audio untuk mendengar contoh Arab sebelum menjawab.
+3. Lanjut ke Practice Arabic untuk drill cepat, lalu kembali ke Chat AI untuk koreksi.`;
+  }
 
   return `Session Report - ${language} ${label}
 

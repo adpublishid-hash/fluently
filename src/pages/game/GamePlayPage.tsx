@@ -5,6 +5,22 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Check, ChevronRight, Headphones, Keyboard, RotateCcw, Timer, Trophy, Volume2, X } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { useAuth } from '../../auth/AuthContext';
+import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
+import {
+  arabicArticleDashQuestions,
+  arabicConditionalRunQuestions,
+  arabicErrorFixQuestions,
+  arabicGameCategoryCopy,
+  arabicGameModeCopy,
+  arabicLetterQuestQuestions,
+  arabicListenTapQuestions,
+  arabicModalQuestQuestions,
+  arabicQuestionBuilderQuestions,
+  arabicSentenceBuilderQuestions,
+  arabicTenseMasterQuestions,
+  arabicVerbFormsQuestions,
+  arabicWordBank,
+} from '../../features/game/arabicGameContent';
 
 type GameStats = {
   xp: number;
@@ -1018,6 +1034,11 @@ function modeTitle(modeId?: string) {
   return 'Word Match';
 }
 
+function localizedModeTitle(modeId: string | undefined, isArabicGame: boolean) {
+  if (isArabicGame && modeId && arabicGameModeCopy[modeId]) return arabicGameModeCopy[modeId].title;
+  return modeTitle(modeId);
+}
+
 function difficultyLimit(difficulty: string | null) {
   if (difficulty === 'easy') return 4;
   if (difficulty === 'hard') return 8;
@@ -1376,7 +1397,8 @@ function makeWordSearchGrid(words: string[], size: number) {
     });
   });
 
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const hasArabic = words.some((word) => /[\u0600-\u06FF]/.test(word));
+  const alphabet = hasArabic ? 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return grid.map((row, rowIndex) =>
     row.map((cell, colIndex) => cell || alphabet[(rowIndex * 7 + colIndex * 11 + words.join('').length) % alphabet.length])
   );
@@ -1384,9 +1406,10 @@ function makeWordSearchGrid(words: string[], size: number) {
 
 export default function GamePlayPage() {
   const navigate = useNavigate();
-  const { awardXp } = useAuth();
+  const { user, awardXp } = useAuth();
   const { categoryId = 'vocabulary', modeId = 'word-match' } = useParams<{ categoryId: string; modeId: string }>();
   const [searchParams] = useSearchParams();
+  const isArabicGame = normalizeTargetLanguage(user?.persona?.targetLanguage) === 'Arabic';
   const difficulty = searchParams.get('difficulty') || 'medium';
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
@@ -1445,63 +1468,74 @@ export default function GamePlayPage() {
   const isSpeedQuiz = modeId === 'speed-quiz' || modeId === 'clan-battle';
   const isListenTap = modeId === 'listen-tap' || categoryId === 'listening';
   const isTyping = modeId === 'crossword' || modeId === 'typing-sprint';
-  const title = modeTitle(modeId);
+  const title = localizedModeTitle(modeId, isArabicGame);
+  const activeWordBank = isArabicGame ? arabicWordBank : wordBank;
+  const activeListenTapQuestions = isArabicGame ? arabicListenTapQuestions : listenTapQuestions;
+  const activeLetterQuestQuestions = isArabicGame ? arabicLetterQuestQuestions : letterQuestQuestions;
+  const activeSentenceBuilderQuestions = isArabicGame ? arabicSentenceBuilderQuestions : sentenceBuilderQuestions;
+  const activeTenseMasterQuestions = isArabicGame ? arabicTenseMasterQuestions : tenseMasterQuestions;
+  const activeVerbFormsQuestions = isArabicGame ? arabicVerbFormsQuestions : verbFormsQuestions;
+  const activeArticleDashQuestions = isArabicGame ? arabicArticleDashQuestions : articleDashQuestions;
+  const activeModalQuestQuestions = isArabicGame ? arabicModalQuestQuestions : modalQuestQuestions;
+  const activeConditionalRunQuestions = isArabicGame ? arabicConditionalRunQuestions : conditionalRunQuestions;
+  const activeQuestionBuilderQuestions = isArabicGame ? arabicQuestionBuilderQuestions : questionBuilderQuestions;
+  const activeErrorFixQuestions = isArabicGame ? arabicErrorFixQuestions : errorFixQuestions;
   const activeDifficulty = isLetterQuest ? currentLetterLevel : isVisualWordMatch ? currentWordMatchLevel : isTenseMaster ? currentTenseLevel : isVerbForms ? currentVerbFormsLevel : isArticleDash ? currentArticleDashLevel : isModalQuest ? currentModalQuestLevel : isConditionalRun ? currentConditionalRunLevel : isQuestionBuilder ? currentQuestionBuilderLevel : isErrorFix ? currentErrorFixLevel : isSentenceBuilder ? currentSentenceLevel : isListenTap ? currentListenLevel : isSpeedQuiz ? currentSpeedLevel : isTyping ? currentTypingLevel : isMemoryCard ? currentMemoryLevel : isFindWords ? currentFindWordsLevel : difficulty;
 
   const questions = useMemo(() => {
     const limit = difficultyLimit(difficulty);
     if (isTenseMaster) {
       const label = currentTenseLevel === 'easy' ? 'Easy' : currentTenseLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(tenseMasterQuestions.filter((item) => item.level === label));
+      return shuffle(activeTenseMasterQuestions.filter((item) => item.level === label));
     }
     if (isVerbForms) {
       const label = currentVerbFormsLevel === 'easy' ? 'Easy' : currentVerbFormsLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(verbFormsQuestions.filter((item) => item.level === label));
+      return shuffle(activeVerbFormsQuestions.filter((item) => item.level === label));
     }
     if (isArticleDash) {
       const label = currentArticleDashLevel === 'easy' ? 'Easy' : currentArticleDashLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(articleDashQuestions.filter((item) => item.level === label));
+      return shuffle(activeArticleDashQuestions.filter((item) => item.level === label));
     }
     if (isModalQuest) {
       const label = currentModalQuestLevel === 'easy' ? 'Easy' : currentModalQuestLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(modalQuestQuestions.filter((item) => item.level === label));
+      return shuffle(activeModalQuestQuestions.filter((item) => item.level === label));
     }
     if (isConditionalRun) {
       const label = currentConditionalRunLevel === 'easy' ? 'Easy' : currentConditionalRunLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(conditionalRunQuestions.filter((item) => item.level === label));
+      return shuffle(activeConditionalRunQuestions.filter((item) => item.level === label));
     }
     if (isQuestionBuilder) {
       const label = currentQuestionBuilderLevel === 'easy' ? 'Easy' : currentQuestionBuilderLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(questionBuilderQuestions.filter((item) => item.level === label));
+      return shuffle(activeQuestionBuilderQuestions.filter((item) => item.level === label));
     }
     if (isErrorFix) {
       const label = currentErrorFixLevel === 'easy' ? 'Easy' : currentErrorFixLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(errorFixQuestions.filter((item) => item.level === label));
+      return shuffle(activeErrorFixQuestions.filter((item) => item.level === label));
     }
     if (isSentenceBuilder) {
       const label = currentSentenceLevel === 'easy' ? 'Easy' : currentSentenceLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(sentenceBuilderQuestions.filter((item) => item.level === label));
+      return shuffle(activeSentenceBuilderQuestions.filter((item) => item.level === label));
     }
     if (isListenTap) {
       const label = currentListenLevel === 'easy' ? 'Easy' : currentListenLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(listenTapQuestions.filter((item) => item.level === label));
+      return shuffle(activeListenTapQuestions.filter((item) => item.level === label));
     }
     if (isSpeedQuiz) {
       const label = currentSpeedLevel === 'easy' ? 'Easy' : currentSpeedLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(listenTapQuestions.filter((item) => item.level === label));
+      return shuffle(activeListenTapQuestions.filter((item) => item.level === label));
     }
     if (isTyping) {
       const label = currentTypingLevel === 'easy' ? 'Easy' : currentTypingLevel === 'medium' ? 'Medium' : 'Hard';
-      return shuffle(listenTapQuestions.filter((item) => item.level === label));
+      return shuffle(activeListenTapQuestions.filter((item) => item.level === label));
     }
-    return shuffle(wordBank).slice(0, Math.min(limit, wordBank.length));
-  }, [currentArticleDashLevel, currentConditionalRunLevel, currentErrorFixLevel, currentListenLevel, currentModalQuestLevel, currentQuestionBuilderLevel, currentSentenceLevel, currentSpeedLevel, currentTenseLevel, currentTypingLevel, currentVerbFormsLevel, difficulty, isArticleDash, isConditionalRun, isErrorFix, isListenTap, isModalQuest, isQuestionBuilder, isSentenceBuilder, isSpeedQuiz, isTenseMaster, isTyping, isVerbForms]);
+    return shuffle(activeWordBank).slice(0, Math.min(limit, activeWordBank.length));
+  }, [activeArticleDashQuestions, activeConditionalRunQuestions, activeErrorFixQuestions, activeListenTapQuestions, activeModalQuestQuestions, activeQuestionBuilderQuestions, activeSentenceBuilderQuestions, activeTenseMasterQuestions, activeVerbFormsQuestions, activeWordBank, currentArticleDashLevel, currentConditionalRunLevel, currentErrorFixLevel, currentListenLevel, currentModalQuestLevel, currentQuestionBuilderLevel, currentSentenceLevel, currentSpeedLevel, currentTenseLevel, currentTypingLevel, currentVerbFormsLevel, difficulty, isArticleDash, isConditionalRun, isErrorFix, isListenTap, isModalQuest, isQuestionBuilder, isSentenceBuilder, isSpeedQuiz, isTenseMaster, isTyping, isVerbForms]);
 
   const memoryPairCount = currentMemoryLevel === 'hard' ? 6 : currentMemoryLevel === 'medium' ? 5 : 4;
   const memoryPool = useMemo(() => {
     const level = currentMemoryLevel === 'hard' ? 'Hard' : currentMemoryLevel === 'medium' ? 'Medium' : 'Easy';
-    return shuffle(letterQuestQuestions.filter((item) => item.level === level));
-  }, [currentMemoryLevel]);
+    return shuffle(activeLetterQuestQuestions.filter((item) => item.level === level));
+  }, [activeLetterQuestQuestions, currentMemoryLevel]);
   const memoryCards = useMemo(() => {
     const pairs = memoryPool.slice(memoryBoard * memoryPairCount, memoryBoard * memoryPairCount + memoryPairCount);
     return shuffle(pairs.flatMap((item, pairId) => ([
@@ -1512,8 +1546,8 @@ export default function GamePlayPage() {
   const memoryTotalBoards = Math.ceil(memoryPool.length / memoryPairCount);
   const findWordsPool = useMemo(() => {
     const level = currentFindWordsLevel === 'hard' ? 'Hard' : currentFindWordsLevel === 'medium' ? 'Medium' : 'Easy';
-    return shuffle(letterQuestQuestions.filter((item) => item.level === level));
-  }, [currentFindWordsLevel]);
+    return shuffle(activeLetterQuestQuestions.filter((item) => item.level === level));
+  }, [activeLetterQuestQuestions, currentFindWordsLevel]);
   const findWordsItems = useMemo(() => {
     return findWordsPool.slice(findWordsBoard * 4, findWordsBoard * 4 + 4);
   }, [findWordsBoard, findWordsPool]);
@@ -1525,16 +1559,16 @@ export default function GamePlayPage() {
 
   const letterQuestPool = useMemo(() => {
     const label = currentLetterLevel === 'easy' ? 'Easy' : currentLetterLevel === 'medium' ? 'Medium' : 'Hard';
-    return shuffle(letterQuestQuestions.filter((item) => item.level === label));
-  }, [currentLetterLevel]);
+    return shuffle(activeLetterQuestQuestions.filter((item) => item.level === label));
+  }, [activeLetterQuestQuestions, currentLetterLevel]);
   const letterQuestItems = useMemo(() => {
     return letterQuestPool.slice(letterBoard * 4, letterBoard * 4 + 4);
   }, [letterBoard, letterQuestPool]);
   const letterQuestTotalBoards = Math.ceil(letterQuestPool.length / 4);
   const wordMatchPool = useMemo(() => {
     const label = currentWordMatchLevel === 'easy' ? 'Easy' : currentWordMatchLevel === 'medium' ? 'Medium' : 'Hard';
-    return shuffle(letterQuestQuestions.filter((item) => item.level === label));
-  }, [currentWordMatchLevel]);
+    return shuffle(activeLetterQuestQuestions.filter((item) => item.level === label));
+  }, [activeLetterQuestQuestions, currentWordMatchLevel]);
   const wordMatchItems = useMemo(() => {
     return wordMatchPool.slice(wordMatchBoard * 4, wordMatchBoard * 4 + 4);
   }, [wordMatchBoard, wordMatchPool]);
@@ -1603,7 +1637,7 @@ export default function GamePlayPage() {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
+    utterance.lang = isArabicGame ? 'ar-SA' : 'en-US';
     utterance.rate = 0.82;
     window.speechSynthesis.speak(utterance);
   };
@@ -2126,7 +2160,9 @@ export default function GamePlayPage() {
               <ArrowLeft size={18} />
             </button>
             <div className="text-center min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#7EC3E6] font-black">{categoryId} game</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#7EC3E6] font-black">
+                {isArabicGame ? `${arabicGameCategoryCopy[categoryId] || 'Arabic'} game` : `${categoryId} game`}
+              </p>
               <h1 className="text-[18px] font-black text-[#1A1A2E] truncate">{title}</h1>
             </div>
             <div className="h-10 px-3 rounded-full bg-white border border-gray-100 flex items-center gap-1.5 text-[12px] font-black text-[#F59E0B] shadow-sm">
@@ -2151,14 +2187,14 @@ export default function GamePlayPage() {
                   <div className="flex-1 min-w-0">
                     <div className="relative mb-4">
                       <div className="mx-auto w-fit rounded-b-[28px] rounded-t-sm bg-[#4FA3D1] px-8 py-3 shadow-sm">
-                        <h2 className="text-3xl sm:text-4xl font-black text-white leading-none">Find the words</h2>
+                        <h2 className="text-3xl sm:text-4xl font-black text-white leading-none">{isArabicGame ? 'Find Arabic Words' : 'Find the words'}</h2>
                       </div>
                       <p className="mt-4 text-center text-sm sm:text-base font-black text-[#1A1A2E]">
-                        Pilih kartu jawaban, lalu klik huruf di papan.
+                        {isArabicGame ? 'Pilih kartu mufradat, lalu klik huruf Arab di papan.' : 'Pilih kartu jawaban, lalu klik huruf di papan.'}
                       </p>
                       <p className="mt-2 text-center">
                         <span className="inline-flex px-4 py-1 rounded-full bg-[#EAF7FC] text-[12px] font-black text-[#2F80ED]">
-                          {currentFindWordsLevel.toUpperCase()} Level - Board {findWordsBoard + 1} / {findWordsTotalBoards} - 30 words
+                          {currentFindWordsLevel.toUpperCase()} Level - Board {findWordsBoard + 1} / {findWordsTotalBoards} - 30 {isArabicGame ? 'Arabic words' : 'words'}
                         </span>
                       </p>
                     </div>
@@ -2183,7 +2219,7 @@ export default function GamePlayPage() {
                               disabled={findWordsChecked}
                               className={`aspect-square border border-[#4FA3D1]/70 flex items-center justify-center text-[14px] min-[390px]:text-[18px] sm:text-[22px] font-black transition-colors ${isActiveCell ? 'bg-[#2F80ED] text-white' : isSelectedCell ? 'bg-[#EAF7FC] text-[#2F80ED]' : 'bg-white text-[#1A1A2E] hover:bg-[#EAF7FC]'}`}
                             >
-                              {letter}
+                              <span dir={isArabicGame ? 'rtl' : 'auto'}>{letter}</span>
                             </button>
                           );
                           })
@@ -2212,7 +2248,7 @@ export default function GamePlayPage() {
                                 <div className="flex gap-1.5">
                                   {item.word.split('').map((_, letterIndex) => (
                                     <span key={letterIndex} className="h-8 flex-1 min-w-[18px] rounded-md border-2 border-[#4FA3D1]/70 bg-white flex items-center justify-center text-sm font-black text-[#1A1A2E]">
-                                      {answer[letterIndex] || ''}
+                                      <span dir={isArabicGame ? 'rtl' : 'auto'}>{answer[letterIndex] || ''}</span>
                                     </span>
                                   ))}
                                 </div>
@@ -2261,7 +2297,7 @@ export default function GamePlayPage() {
                       disabled={!findWordsChecked && findWordsItems.some((item, index) => (findWordsAnswers[index] || '').length !== item.word.length)}
                       className="mt-5 h-13 w-full rounded-2xl bg-[#2F80ED] text-white font-black disabled:opacity-40"
                     >
-                      {findWordsChecked && findWordsBoard + 1 < findWordsTotalBoards ? 'Next Board' : findWordsChecked ? 'Finishing...' : 'Check Find the Words'}
+                      {findWordsChecked && findWordsBoard + 1 < findWordsTotalBoards ? (isArabicGame ? 'Board Berikutnya' : 'Next Board') : findWordsChecked ? (isArabicGame ? 'Menyelesaikan...' : 'Finishing...') : isArabicGame ? 'Check Arabic Words' : 'Check Find the Words'}
                     </button>
                   </div>
                 </div>
@@ -2278,7 +2314,7 @@ export default function GamePlayPage() {
                 <div>
                   <div className="mb-6 text-center">
                     <span className="inline-flex px-4 py-1 rounded-full bg-white/80 text-[12px] font-black text-[#1A1A2E]">
-                      {currentWordMatchLevel.toUpperCase()} Level - Board {wordMatchBoard + 1} / {wordMatchTotalBoards} - 30 visual matches
+                      {currentWordMatchLevel.toUpperCase()} Level - Board {wordMatchBoard + 1} / {wordMatchTotalBoards} - 30 {isArabicGame ? 'Arabic matches' : 'visual matches'}
                     </span>
                   </div>
 
@@ -2343,7 +2379,7 @@ export default function GamePlayPage() {
                                 className="block text-[17px] min-[390px]:text-[20px] sm:text-[36px] font-black text-black truncate"
                                 style={{ fontFamily: "'Comic Sans MS', 'DM Sans', sans-serif", textShadow: '1px 1px 0 rgba(0,0,0,0.12)' }}
                               >
-                                {wordMatchWords[pictureIndex]?.word}
+                                <span dir={isArabicGame ? 'rtl' : 'auto'}>{wordMatchWords[pictureIndex]?.word}</span>
                               </span>
                             </button>
                           </div>
@@ -2369,7 +2405,7 @@ export default function GamePlayPage() {
                     disabled={!wordMatchChecked && Object.keys(wordMatchPairs).length !== wordMatchItems.length}
                     className="mt-5 h-13 w-full rounded-2xl bg-[#2F80ED] text-white font-black disabled:opacity-40"
                   >
-                    {wordMatchChecked && wordMatchBoard + 1 < wordMatchTotalBoards ? 'Next Board' : wordMatchChecked ? 'Finishing...' : 'Check Word Match'}
+                    {wordMatchChecked && wordMatchBoard + 1 < wordMatchTotalBoards ? (isArabicGame ? 'Board Berikutnya' : 'Next Board') : wordMatchChecked ? (isArabicGame ? 'Menyelesaikan...' : 'Finishing...') : isArabicGame ? 'Check Arabic Match' : 'Check Word Match'}
                   </button>
                 </div>
               </div>
@@ -2387,10 +2423,10 @@ export default function GamePlayPage() {
                     className="text-[42px] sm:text-[56px] leading-none font-black text-[#8B6BC0]"
                     style={{ fontFamily: "'Comic Sans MS', 'DM Sans', sans-serif", textShadow: '2px 3px 0 rgba(30,41,59,0.22)' }}
                   >
-                    Letter Quest
+                    {isArabicGame ? 'Arabic Letter Quest' : 'Letter Quest'}
                   </h2>
                   <p className="inline-block mt-3 px-4 py-1 rounded-full bg-[#F5D7F0] text-[12px] font-black text-[#40344D]">
-                    {currentLetterLevel.toUpperCase()} Level - Board {letterBoard + 1} / {letterQuestTotalBoards} - 30 visual questions.
+                    {currentLetterLevel.toUpperCase()} Level - Board {letterBoard + 1} / {letterQuestTotalBoards} - 30 {isArabicGame ? 'Arabic words' : 'visual questions'}.
                   </p>
                   <p className="hidden">
                     Board {letterBoard + 1} / {letterQuestTotalBoards} • 30 visual questions across Easy, Medium, and Hard.
@@ -2424,7 +2460,7 @@ export default function GamePlayPage() {
                         <div className="flex justify-center gap-1.5 mt-3">
                           {item.word.split('').map((_, letterIndex) => (
                             <div key={letterIndex} className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-white shadow-sm flex items-center justify-center text-sm font-black text-[#5B4B73]">
-                              {answer[letterIndex] || ''}
+                              <span dir={isArabicGame ? 'rtl' : 'auto'}>{answer[letterIndex] || ''}</span>
                             </div>
                           ))}
                         </div>
@@ -2438,7 +2474,7 @@ export default function GamePlayPage() {
                               disabled={complete || letterChecked}
                               className="h-7 rounded-md text-white text-[15px] font-black hover:bg-white/20 disabled:opacity-45"
                             >
-                              {letter}
+                              <span dir={isArabicGame ? 'rtl' : 'auto'}>{letter}</span>
                             </button>
                           ))}
                         </div>
@@ -2465,7 +2501,7 @@ export default function GamePlayPage() {
                   disabled={!letterChecked && letterAnswers.some((answer, index) => letterQuestItems[index] && answer.length !== letterQuestItems[index].word.length)}
                   className="mt-5 h-13 w-full rounded-2xl bg-[#8B6BC0] text-white font-black disabled:opacity-40"
                 >
-                  {letterChecked && letterBoard + 1 < letterQuestTotalBoards ? 'Next Board' : letterChecked ? 'Finishing...' : 'Check Letter Quest'}
+                  {letterChecked && letterBoard + 1 < letterQuestTotalBoards ? (isArabicGame ? 'Board Berikutnya' : 'Next Board') : letterChecked ? (isArabicGame ? 'Menyelesaikan...' : 'Finishing...') : isArabicGame ? 'Check Arabic Letters' : 'Check Letter Quest'}
                 </button>
               </div>
             </motion.div>
@@ -2480,8 +2516,8 @@ export default function GamePlayPage() {
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.18em] text-[#4FA3D1] font-black">Memory challenge</p>
-                    <h2 className="text-2xl font-black text-[#1A1A2E]">Match picture and word</h2>
-                    <p className="text-sm text-gray-500 font-medium">Buka kartu, ingat posisinya, lalu temukan pasangan visual dan kata.</p>
+                    <h2 className="text-2xl font-black text-[#1A1A2E]">{isArabicGame ? 'Match picture and Arabic word' : 'Match picture and word'}</h2>
+                    <p className="text-sm text-gray-500 font-medium">{isArabicGame ? 'Buka kartu, ingat posisinya, lalu temukan pasangan visual dan mufradat Arab.' : 'Buka kartu, ingat posisinya, lalu temukan pasangan visual dan kata.'}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="px-3 py-1.5 rounded-full bg-[#EAF7FC] text-[11px] font-black text-[#2F80ED] uppercase">
@@ -2522,7 +2558,7 @@ export default function GamePlayPage() {
                                 <span className="relative drop-shadow-md">{getWordMatchVisual(card.label, card.icon)}</span>
                               </span>
                             ) : (
-                              <span className="px-3 py-2 rounded-2xl bg-white text-[#1A1A2E] text-sm sm:text-base font-black shadow-sm break-words">
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} className="px-3 py-2 rounded-2xl bg-white text-[#1A1A2E] text-sm sm:text-base font-black shadow-sm break-words">
                                 {card.label}
                               </span>
                             )
@@ -2558,7 +2594,7 @@ export default function GamePlayPage() {
                 <div className="p-5 md:p-7 bg-gradient-to-br from-[#EAF7FC] to-white border-b border-gray-100">
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[11px] font-black text-[#4FA3D1] uppercase tracking-wider">
-                      Question {round + 1} / {questions.length}
+                      {isArabicGame ? 'Soal' : 'Question'} {round + 1} / {questions.length}
                     </span>
                     <span className="text-[11px] font-bold text-gray-400 capitalize">{isTenseMaster ? currentTenseLevel : isVerbForms ? currentVerbFormsLevel : isArticleDash ? currentArticleDashLevel : isModalQuest ? currentModalQuestLevel : isConditionalRun ? currentConditionalRunLevel : isQuestionBuilder ? currentQuestionBuilderLevel : isErrorFix ? currentErrorFixLevel : isSentenceBuilder ? currentSentenceLevel : isListenTap ? currentListenLevel : isSpeedQuiz ? currentSpeedLevel : isTyping ? currentTypingLevel : difficulty}</span>
                   </div>
@@ -2573,8 +2609,8 @@ export default function GamePlayPage() {
                           {current.formula}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Lengkapi kalimat sesuai tense:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? "Lengkapi kalimat dengan fi'il yang tepat:" : 'Lengkapi kalimat sesuai tense:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
                   ) : isVerbForms ? (
@@ -2587,22 +2623,22 @@ export default function GamePlayPage() {
                           {current.pattern}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Pilih bentuk verb yang tepat:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? "Pilih bentuk fi'il yang tepat:" : 'Pilih bentuk verb yang tepat:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">Arti: {current.translation}</p>
                     </>
                   ) : isArticleDash ? (
                     <>
                       <div className="flex flex-wrap items-center gap-2 mb-4">
                         <span className="px-3 py-1.5 rounded-full bg-white border border-orange-200 text-[11px] font-black text-orange-600">
-                          Article choice
+                          {isArabicGame ? 'Pilihan ال' : 'Article choice'}
                         </span>
                         <span className="px-3 py-1.5 rounded-full bg-[#1A1A2E] text-white text-[11px] font-black">
-                          a / an / the / no article
+                          {isArabicGame ? 'marifah / nakirah' : 'a / an / the / no article'}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Pilih article yang tepat:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? 'Pilih bentuk marifah/nakirah yang tepat:' : 'Pilih article yang tepat:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
                   ) : isModalQuest ? (
@@ -2612,11 +2648,11 @@ export default function GamePlayPage() {
                           {current.tone}
                         </span>
                         <span className="px-3 py-1.5 rounded-full bg-[#1A1A2E] text-white text-[11px] font-black">
-                          modal + V1
+                          {isArabicGame ? "ungkapan + fi'il" : 'modal + V1'}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Pilih modal verb yang tepat:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? 'Pilih ungkapan Arab yang tepat:' : 'Pilih modal verb yang tepat:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
                   ) : isConditionalRun ? (
@@ -2629,8 +2665,8 @@ export default function GamePlayPage() {
                           {current.rule}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Lengkapi conditional sentence:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? 'Lengkapi kalimat syarat Arabic:' : 'Lengkapi conditional sentence:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
                   ) : isQuestionBuilder ? (
@@ -2643,8 +2679,8 @@ export default function GamePlayPage() {
                           {current.rule}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Pilih kata pembuka untuk membangun pertanyaan:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? 'Pilih kata tanya Arab yang tepat:' : 'Pilih kata pembuka untuk membangun pertanyaan:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
                   ) : isErrorFix ? (
@@ -2654,44 +2690,44 @@ export default function GamePlayPage() {
                           {current.type}
                         </span>
                         <span className="px-3 py-1.5 rounded-full bg-[#1A1A2E] text-white text-[11px] font-black">
-                          find and fix
+                          {isArabicGame ? 'koreksi Arab' : 'find and fix'}
                         </span>
                       </div>
                       <p className="text-[13px] text-gray-500 font-semibold mb-2">Pilih versi kalimat yang sudah benar:</p>
-                      <h2 className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
                   ) : isSentenceBuilder ? (
                     <>
                       <div className="flex flex-wrap items-center gap-2 mb-4">
                         <span className="px-3 py-1.5 rounded-full bg-white border border-[#7EC3E6]/40 text-[11px] font-black text-[#2F80ED]">
-                          {currentSentenceLevel === 'easy' ? 'Basic sentence' : currentSentenceLevel === 'medium' ? 'Expanded sentence' : 'Complex sentence'}
+                          {isArabicGame ? currentSentenceLevel === 'easy' ? 'Jumlah dasar' : currentSentenceLevel === 'medium' ? 'Jumlah harian' : 'Jumlah kompleks' : currentSentenceLevel === 'easy' ? 'Basic sentence' : currentSentenceLevel === 'medium' ? 'Expanded sentence' : 'Complex sentence'}
                         </span>
                         <span className="px-3 py-1.5 rounded-full bg-[#1A1A2E] text-white text-[11px] font-black">
-                          {current.answer.length} words
+                          {current.answer.length} {isArabicGame ? 'kata Arab' : 'words'}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Susun kalimat bahasa Inggris:</p>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? 'Susun kalimat bahasa Arab:' : 'Susun kalimat bahasa Inggris:'}</p>
                       <h2 className="text-[24px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                     </>
                   ) : isListenTap ? (
                     <>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-3">Dengarkan kata lalu pilih artinya:</p>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-3">{isArabicGame ? 'Dengarkan kata Arab lalu pilih artinya:' : 'Dengarkan kata lalu pilih artinya:'}</p>
                       <button onClick={() => speak(current.word)} className="h-16 px-6 rounded-2xl bg-[#7EC3E6] text-white inline-flex items-center gap-3 font-black">
                         <Volume2 size={24} />
-                        Play Audio
+                        {isArabicGame ? 'Putar Audio Arab' : 'Play Audio'}
                       </button>
                     </>
                   ) : isTyping ? (
                     <>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">Ketik kata bahasa Inggris dari arti ini:</p>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? 'Ketik kata Arab dari arti ini:' : 'Ketik kata bahasa Inggris dari arti ini:'}</p>
                       <h2 className="text-[30px] md:text-[40px] leading-tight font-black text-[#1A1A2E]">{current.answer}</h2>
                       <p className="text-sm text-gray-400 mt-3">Hint: {current.hint}</p>
                     </>
                   ) : (
                     <>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isSpeedQuiz ? 'Jawab cepat sebelum waktu habis:' : 'Pilih arti yang paling tepat:'}</p>
-                      <h2 className="text-[34px] md:text-[44px] leading-tight font-black text-[#1A1A2E]">{current.word}</h2>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{isSpeedQuiz ? 'Jawab cepat sebelum waktu habis:' : isArabicGame ? 'Pilih arti mufradat yang paling tepat:' : 'Pilih arti yang paling tepat:'}</p>
+                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} className="text-[34px] md:text-[44px] leading-tight font-black text-[#1A1A2E]">{current.word}</h2>
                     </>
                   )}
                 </div>
@@ -2747,7 +2783,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[70px] rounded-2xl border px-5 text-left font-black transition flex items-center justify-between ${stateClass}`}
                             >
-                              <span>{option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option}</span>
                               {feedback && isPicked && (isCorrect ? <Check size={20} /> : <X size={20} />)}
                             </button>
                           );
@@ -2803,7 +2839,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[68px] rounded-2xl border px-5 text-left font-black transition flex items-center justify-between shadow-sm ${stateClass}`}
                             >
-                              <span>{option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option}</span>
                               {feedback && isPicked && (isCorrect ? <Check size={20} /> : <X size={20} />)}
                             </button>
                           );
@@ -2836,11 +2872,11 @@ export default function GamePlayPage() {
                             {selected ? (selected === 'no article' ? '0' : selected) : '?'}
                           </div>
                           <div className="min-w-0">
-                            <p className="text-[11px] uppercase tracking-wider font-black text-orange-600">Dash slot</p>
-                            <p className="text-sm font-bold text-gray-500">Isi bagian kosong dengan article yang benar.</p>
+                            <p className="text-[11px] uppercase tracking-wider font-black text-orange-600">{isArabicGame ? 'Slot kosong' : 'Dash slot'}</p>
+                            <p className="text-sm font-bold text-gray-500">{isArabicGame ? 'Isi bagian kosong dengan bentuk Arabic yang benar.' : 'Isi bagian kosong dengan article yang benar.'}</p>
                           </div>
                         </div>
-                        <div className="mt-4 rounded-2xl bg-white border border-orange-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
+                        <div dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="mt-4 rounded-2xl bg-white border border-orange-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
                           {current.prompt.split('____').map((part, index, parts) => (
                             <span key={`${part}-${index}`}>
                               {part}
@@ -2873,7 +2909,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[76px] rounded-2xl border px-4 text-center font-black transition flex items-center justify-center shadow-sm ${stateClass}`}
                             >
-                              <span>{option === 'no article' ? 'no article' : option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option === 'no article' ? 'no article' : option}</span>
                               {feedback && isPicked && <span className="ml-2">{isCorrect ? <Check size={18} /> : <X size={18} />}</span>}
                             </button>
                           );
@@ -2903,9 +2939,11 @@ export default function GamePlayPage() {
                       <div className="rounded-3xl border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-5">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                           <div className="grid grid-cols-3 gap-2 sm:w-64">
-                            {['can', 'should', 'must', 'may', 'would', 'could'].map((modal) => (
+                            {(isArabicGame ? ['أستطيع', 'يجب', 'أريد', 'هل يمكن', 'من فضلك', 'لا بد'] : ['can', 'should', 'must', 'may', 'would', 'could']).map((modal) => (
                               <span
                                 key={modal}
+                                dir={isArabicGame ? 'rtl' : 'auto'}
+                                lang={isArabicGame ? 'ar' : undefined}
                                 className={`h-10 rounded-xl border flex items-center justify-center text-xs font-black ${selected === modal ? 'bg-amber-500 border-amber-500 text-white shadow-sm' : 'bg-white border-amber-100 text-amber-600'}`}
                               >
                                 {modal}
@@ -2913,12 +2951,12 @@ export default function GamePlayPage() {
                             ))}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-[11px] uppercase tracking-wider font-black text-amber-600">Quest clue</p>
+                            <p className="text-[11px] uppercase tracking-wider font-black text-amber-600">{isArabicGame ? 'Petunjuk' : 'Quest clue'}</p>
                             <p className="text-sm font-bold text-gray-500 mt-1">{current.tone} - {current.rule}</p>
                           </div>
                         </div>
 
-                        <div className="mt-4 rounded-2xl bg-white border border-amber-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
+                        <div dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="mt-4 rounded-2xl bg-white border border-amber-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
                           {current.prompt.split('____').map((part, index, parts) => (
                             <span key={`${part}-${index}`}>
                               {part}
@@ -2951,7 +2989,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[68px] rounded-2xl border px-5 text-center font-black transition flex items-center justify-center shadow-sm ${stateClass}`}
                             >
-                              <span>{option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option}</span>
                               {feedback && isPicked && <span className="ml-2">{isCorrect ? <Check size={18} /> : <X size={18} />}</span>}
                             </button>
                           );
@@ -2981,17 +3019,17 @@ export default function GamePlayPage() {
                       <div className="rounded-3xl border border-purple-200 bg-gradient-to-br from-purple-50 to-white p-5">
                         <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
                           <div className="rounded-2xl bg-white border border-purple-100 p-4 text-center">
-                            <p className="text-[10px] uppercase tracking-wider font-black text-purple-500">If clause</p>
-                            <p className="mt-1 text-sm font-black text-[#1A1A2E]">condition</p>
+                            <p className="text-[10px] uppercase tracking-wider font-black text-purple-500">{isArabicGame ? 'Syarat' : 'If clause'}</p>
+                            <p className="mt-1 text-sm font-black text-[#1A1A2E]">{isArabicGame ? 'kondisi' : 'condition'}</p>
                           </div>
                           <ChevronRight className="text-purple-400" size={22} />
                           <div className="rounded-2xl bg-white border border-purple-100 p-4 text-center">
-                            <p className="text-[10px] uppercase tracking-wider font-black text-purple-500">Result</p>
-                            <p className="mt-1 text-sm font-black text-[#1A1A2E]">outcome</p>
+                            <p className="text-[10px] uppercase tracking-wider font-black text-purple-500">{isArabicGame ? 'Jawab syarat' : 'Result'}</p>
+                            <p className="mt-1 text-sm font-black text-[#1A1A2E]">{isArabicGame ? 'hasil' : 'outcome'}</p>
                           </div>
                         </div>
 
-                        <div className="mt-4 rounded-2xl bg-white border border-purple-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
+                        <div dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="mt-4 rounded-2xl bg-white border border-purple-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
                           {current.prompt.split('____').map((part, index, parts) => (
                             <span key={`${part}-${index}`}>
                               {part}
@@ -3024,7 +3062,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[68px] rounded-2xl border px-5 text-left font-black transition flex items-center justify-between shadow-sm ${stateClass}`}
                             >
-                              <span>{option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option}</span>
                               {feedback && isPicked && (isCorrect ? <Check size={20} /> : <X size={20} />)}
                             </button>
                           );
@@ -3054,18 +3092,18 @@ export default function GamePlayPage() {
                       <div className="rounded-3xl border border-cyan-200 bg-gradient-to-br from-cyan-50 to-white p-5">
                         <div className="grid grid-cols-3 gap-3">
                           {[
-                            ['Starter', selected || '?'],
-                            ['Subject', current.prompt.replace('____', '').trim().split(' ')[0] || 'subject'],
-                            ['Pattern', current.type],
+                            [isArabicGame ? 'Pembuka' : 'Starter', selected || '?'],
+                            [isArabicGame ? 'Kalimat' : 'Subject', current.prompt.replace('____', '').trim().split(' ')[0] || (isArabicGame ? 'kalimat' : 'subject')],
+                            [isArabicGame ? 'Pola' : 'Pattern', current.type],
                           ].map(([label, value], index) => (
                             <div key={label} className={`rounded-2xl border p-3 text-center ${index === 0 ? 'bg-cyan-500 border-cyan-500 text-white shadow-sm' : 'bg-white border-cyan-100 text-[#1A1A2E]'}`}>
                               <p className={`text-[10px] uppercase tracking-wider font-black ${index === 0 ? 'text-white/80' : 'text-cyan-600'}`}>{label}</p>
-                              <p className="mt-1 text-sm font-black truncate">{value}</p>
+                              <p dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="mt-1 text-sm font-black truncate">{value}</p>
                             </div>
                           ))}
                         </div>
 
-                        <div className="mt-4 rounded-2xl bg-white border border-cyan-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
+                        <div dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="mt-4 rounded-2xl bg-white border border-cyan-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
                           {current.prompt.split('____').map((part, index, parts) => (
                             <span key={`${part}-${index}`}>
                               {part}
@@ -3079,7 +3117,7 @@ export default function GamePlayPage() {
                         </div>
 
                         <div className="mt-4 flex flex-wrap gap-2">
-                          {['question word', 'auxiliary', 'subject', 'base verb'].map((part, index) => (
+                          {(isArabicGame ? ['kata tanya', 'subjek', 'predikat', 'makna'] : ['question word', 'auxiliary', 'subject', 'base verb']).map((part, index) => (
                             <span key={part} className={`px-3 py-1.5 rounded-full text-[11px] font-black ${index === 0 ? 'bg-cyan-600 text-white' : 'bg-white border border-cyan-100 text-cyan-700'}`}>
                               {part}
                             </span>
@@ -3106,7 +3144,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[72px] rounded-2xl border px-4 text-center font-black transition flex items-center justify-center shadow-sm ${stateClass}`}
                             >
-                              <span>{option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option}</span>
                               {feedback && isPicked && <span className="ml-2">{isCorrect ? <Check size={18} /> : <X size={18} />}</span>}
                             </button>
                           );
@@ -3139,14 +3177,14 @@ export default function GamePlayPage() {
                             <X size={24} />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-[11px] uppercase tracking-wider font-black text-rose-600">Sentence with error</p>
+                            <p className="text-[11px] uppercase tracking-wider font-black text-rose-600">{isArabicGame ? 'Kalimat perlu dikoreksi' : 'Sentence with error'}</p>
                             <p className="text-sm font-bold text-gray-500">{current.type}</p>
                           </div>
                         </div>
 
                         <div className="mt-4 rounded-2xl bg-white border border-rose-100 p-4">
-                          <p className="text-[11px] uppercase tracking-wider font-black text-rose-500 mb-2">Original</p>
-                          <p className="text-lg sm:text-xl font-black text-[#1A1A2E]">{current.prompt}</p>
+                          <p className="text-[11px] uppercase tracking-wider font-black text-rose-500 mb-2">{isArabicGame ? 'Asal' : 'Original'}</p>
+                          <p dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-lg sm:text-xl font-black text-[#1A1A2E]">{current.prompt}</p>
                         </div>
 
                         <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-center gap-2">
@@ -3156,8 +3194,8 @@ export default function GamePlayPage() {
                         </div>
 
                         <div className="mt-3 rounded-2xl bg-emerald-50 border border-emerald-100 p-4">
-                          <p className="text-[11px] uppercase tracking-wider font-black text-emerald-600 mb-2">Your fix</p>
-                          <p className="text-base sm:text-lg font-black text-[#1A1A2E]">{selected || 'Choose the corrected sentence below'}</p>
+                          <p className="text-[11px] uppercase tracking-wider font-black text-emerald-600 mb-2">{isArabicGame ? 'Koreksi kamu' : 'Your fix'}</p>
+                          <p dir={isArabicGame && selected ? 'rtl' : 'auto'} lang={isArabicGame && selected ? 'ar' : undefined} className="text-base sm:text-lg font-black text-[#1A1A2E]">{selected || (isArabicGame ? 'Pilih kalimat Arab yang sudah benar' : 'Choose the corrected sentence below')}</p>
                         </div>
                       </div>
 
@@ -3180,7 +3218,7 @@ export default function GamePlayPage() {
                               disabled={!!feedback}
                               className={`min-h-[66px] rounded-2xl border px-5 text-left font-black transition flex items-center justify-between shadow-sm ${stateClass}`}
                             >
-                              <span>{option}</span>
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{option}</span>
                               {feedback && isPicked && (isCorrect ? <Check size={20} /> : <X size={20} />)}
                             </button>
                           );
@@ -3209,7 +3247,7 @@ export default function GamePlayPage() {
 
                       <div className="rounded-3xl border border-[#7EC3E6]/35 bg-gradient-to-br from-[#EAF7FC] to-white p-4">
                         <div className="flex items-center justify-between text-[11px] font-black text-gray-400 mb-3">
-                          <span>Sentence path</span>
+                          <span>{isArabicGame ? 'Susunan kalimat' : 'Sentence path'}</span>
                           <span>{builtWords.length} / {current.answer.length}</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
@@ -3222,7 +3260,7 @@ export default function GamePlayPage() {
                                 onClick={() => removeBuiltWord(index)}
                                 className="min-h-10 px-3 py-2 rounded-xl bg-white text-[#1A1A2E] text-sm font-black shadow-sm border border-[#7EC3E6]/30"
                               >
-                                {word}
+                                <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{word}</span>
                               </button>
                             ) : (
                               <span
@@ -3235,7 +3273,7 @@ export default function GamePlayPage() {
                           })}
                         </div>
                         {builtWords.length === 0 && (
-                          <p className="text-xs text-gray-400 font-semibold mt-3">Tap kata di bawah untuk menyusun jawaban.</p>
+                          <p className="text-xs text-gray-400 font-semibold mt-3">{isArabicGame ? 'Tap kata Arab di bawah untuk menyusun jawaban.' : 'Tap kata di bawah untuk menyusun jawaban.'}</p>
                         )}
                       </div>
 
@@ -3249,7 +3287,7 @@ export default function GamePlayPage() {
                               disabled={used || !!feedback}
                               className={`min-h-12 px-4 py-2.5 rounded-2xl text-sm font-black border transition ${used ? 'bg-gray-100 text-gray-300 border-gray-100' : 'bg-white text-[#1A1A2E] border-gray-200 hover:border-[#7EC3E6] hover:bg-[#EAF7FC] hover:-translate-y-0.5 shadow-sm'}`}
                             >
-                              {word}
+                              <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined}>{word}</span>
                             </button>
                           );
                         })}
@@ -3257,14 +3295,14 @@ export default function GamePlayPage() {
 
                       {feedback && (
                         <div className={`rounded-2xl p-4 text-sm font-bold ${feedback === 'correct' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
-                          {feedback === 'correct' ? 'Benar. Kalimatmu sudah tepat.' : `Belum tepat. Jawaban: ${current.answer.join(' ')}`}
+                          {feedback === 'correct' ? (isArabicGame ? 'Benar. Jumlah Arab sudah tepat.' : 'Benar. Kalimatmu sudah tepat.') : `Belum tepat. Jawaban: ${current.answer.join(' ')}`}
                         </div>
                       )}
 
                       <div className="flex gap-3">
-                        <button onClick={undoWord} disabled={builtWords.length === 0 || !!feedback} className="h-12 px-4 rounded-2xl bg-gray-100 text-gray-600 font-black disabled:opacity-40">Undo</button>
+                        <button onClick={undoWord} disabled={builtWords.length === 0 || !!feedback} className="h-12 px-4 rounded-2xl bg-gray-100 text-gray-600 font-black disabled:opacity-40">{isArabicGame ? 'Urungkan' : 'Undo'}</button>
                         <button onClick={feedback ? () => goNext(score) : checkSentence} disabled={!feedback && builtWords.length !== current.answer.length} className="h-12 flex-1 rounded-2xl bg-[#7EC3E6] text-white font-black disabled:opacity-40">
-                          {feedback ? 'Next' : 'Check'}
+                          {feedback ? (isArabicGame ? 'Lanjut' : 'Next') : (isArabicGame ? 'Periksa' : 'Check')}
                         </button>
                       </div>
                     </div>
@@ -3280,16 +3318,18 @@ export default function GamePlayPage() {
                           }}
                           autoFocus
                           className="w-full h-14 rounded-2xl border border-gray-200 bg-[#F8FAFC] pl-11 pr-4 font-black text-[#1A1A2E] outline-none focus:border-[#7EC3E6]"
-                          placeholder="Type your answer..."
+                          dir={isArabicGame ? 'rtl' : 'auto'}
+                          lang={isArabicGame ? 'ar' : undefined}
+                          placeholder={isArabicGame ? 'اكتب الإجابة...' : 'Type your answer...'}
                         />
                       </div>
                       {feedback && (
                         <div className={`rounded-2xl p-4 text-sm font-bold ${feedback === 'correct' ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
-                          {feedback === 'correct' ? 'Correct.' : `Answer: ${current.word}`}
+                          {feedback === 'correct' ? (isArabicGame ? 'Benar.' : 'Correct.') : `${isArabicGame ? 'Jawaban' : 'Answer'}: ${current.word}`}
                         </div>
                       )}
                       <button onClick={feedback ? () => goNext(score) : checkTyping} className="h-12 w-full rounded-2xl bg-[#7EC3E6] text-white font-black">
-                        {feedback ? 'Next' : 'Submit'}
+                        {feedback ? (isArabicGame ? 'Lanjut' : 'Next') : (isArabicGame ? 'Kirim' : 'Submit')}
                       </button>
                     </div>
                   ) : (
@@ -3309,7 +3349,7 @@ export default function GamePlayPage() {
                             onClick={() => answerWordMatch(option)}
                             className={`min-h-[54px] rounded-2xl border px-4 text-left font-black transition flex items-center justify-between ${stateClass}`}
                           >
-                            <span className="inline-flex items-center gap-2">
+                            <span dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="inline-flex items-center gap-2">
                               {isListenTap && <Headphones size={16} className="text-[#7EC3E6]" />}
                               {option}
                             </span>

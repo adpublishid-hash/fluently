@@ -10,6 +10,7 @@ type GeneratedArabicLessonRendererProps = {
   onComplete: () => void;
   contentLevel?: GeneratedArabicContentLevel;
   levelLabel?: string;
+  initialTab?: 'materi' | 'latihan';
 };
 
 function speakArabic(text: string) {
@@ -21,10 +22,10 @@ function speakArabic(text: string) {
   window.speechSynthesis.speak(utterance);
 }
 
-export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onComplete, contentLevel = 'beginner', levelLabel = 'Beginner' }: GeneratedArabicLessonRendererProps) {
+export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onComplete, contentLevel = 'beginner', levelLabel = 'Beginner', initialTab = 'materi' }: GeneratedArabicLessonRendererProps) {
   const lesson = getGeneratedArabicLesson(skillId, lessonId, contentLevel);
   const [answers, setAnswers] = useState<Record<number, string>>({});
-  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>('materi');
+  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>(initialTab);
   const isIntermediate = contentLevel === 'intermediate' || contentLevel === 'upper-intermediate';
   const levelCode = contentLevel === 'scholar'
     ? 'Research'

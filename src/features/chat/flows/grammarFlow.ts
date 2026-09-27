@@ -8,7 +8,17 @@ import {
   normalizeGrammarTopic,
 } from '../english';
 import type { VocabularyStage } from '../english';
-import { buildLocalizedFeedback, buildLocalizedLesson, buildLocalizedTopicQuestion, isEnglishChat } from '../languageAdapters';
+import {
+  buildLocalizedCustomTopicPrompt,
+  buildLocalizedFeedback,
+  buildLocalizedLesson,
+  buildLocalizedPracticeLoopReply,
+  buildLocalizedTopicQuestion,
+  getLocalizedTopicLabel,
+  isCustomLocalizedTopicValue,
+  isEnglishChat,
+  normalizeLocalizedTopicValue,
+} from '../languageAdapters';
 import { createUserMessage } from '../session';
 import type { FlowRuntime, TopicRuntime } from './types';
 
@@ -26,10 +36,12 @@ export function selectGrammarTopic(topicValue: string, runtime: TopicRuntime) {
   const { studentName, levelId, targetLanguage, setMessages, setSelectedTopic, setVocabStage, sendAiReply } = runtime;
   const localized = !isEnglishChat(targetLanguage);
 
-  if (topicValue === 'custom-grammar') {
-    setMessages(prev => [...prev, createUserMessage('Custom Grammar Topic')]);
+  if (topicValue === 'custom-grammar' || (localized && isCustomLocalizedTopicValue(topicValue))) {
+    setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'grammar', topicValue) : 'Custom Grammar Topic')]);
     setVocabStage('ask-topic');
-    sendAiReply(`Boleh, ${studentName || 'teman'}! Tulis topik grammar custom yang kamu mau.
+    sendAiReply(localized
+      ? buildLocalizedCustomTopicPrompt(studentName || 'teman', 'grammar', targetLanguage)
+      : `Boleh, ${studentName || 'teman'}! Tulis topik grammar custom yang kamu mau.
 
 Contoh:
 - Conditional sentences
@@ -39,8 +51,8 @@ Contoh:
     return;
   }
 
-  const topic = normalizeGrammarTopic(topicValue);
-  setMessages(prev => [...prev, createUserMessage(grammarTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
+  const topic = localized ? normalizeLocalizedTopicValue(topicValue) : normalizeGrammarTopic(topicValue);
+  setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'grammar', topicValue) : grammarTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
   setSelectedTopic(topic);
   setVocabStage('practice');
   if (localized) {
@@ -84,7 +96,7 @@ export function handleGrammarAnswer(userText: string, vocabStage: VocabularyStag
       return;
     }
 
-    const topic = normalizeGrammarTopic(userText);
+    const topic = localized ? normalizeLocalizedTopicValue(userText) : normalizeGrammarTopic(userText);
     setSelectedTopic(topic);
     setVocabStage('practice');
     if (localized) {
@@ -96,14 +108,16 @@ export function handleGrammarAnswer(userText: string, vocabStage: VocabularyStag
   }
 
   if (localized) {
-    if (vocabStage === 'practice') {
-      setVocabStage('game');
-      sendAiReply(buildLocalizedFeedback(studentName || 'teman', userText, 'grammar', targetLanguage), 1400);
+    if (wantsTopicSelect(userText)) {
+      setVocabStage('ask-topic');
+      sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'grammar', targetLanguage), 900);
       return;
     }
 
-    setVocabStage('ask-topic');
-    sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'grammar', targetLanguage), 900);
+    setVocabStage('practice');
+    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'grammar', targetLanguage)}
+
+${buildLocalizedPracticeLoopReply(studentName || 'teman', 'grammar', targetLanguage)}`, 1400);
     return;
   }
 

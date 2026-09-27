@@ -59,7 +59,7 @@ export function createUserMessage(text: string, id = Date.now().toString()): Cha
 }
 
 export function getGuidedGreeting(modeId?: string, targetLanguage: TargetLanguage = 'English') {
-  if (!isEnglishChat(targetLanguage)) return buildLocalizedGreeting(targetLanguage);
+  if (!isEnglishChat(targetLanguage)) return buildLocalizedGreeting(targetLanguage, modeId);
   if (modeId === 'reading') return buildReadingGreeting();
   if (modeId === 'writing') return buildWritingGreeting();
   if (modeId === 'speaking') return buildSpeakingGreeting();

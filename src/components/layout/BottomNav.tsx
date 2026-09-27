@@ -27,7 +27,7 @@ export default function BottomNav({ onLogout }: Props) {
   const [moreOpen, setMoreOpen] = useState(false);
 
   /* "More" routes that should highlight the More button as active */
-  const morePaths = ['/shop', '/rank', '/profile', '/admin', '/ielts', '/goals', '/notes', '/ujian', '/analytics', '/settings'];
+  const morePaths = ['/video', '/shop', '/rank', '/profile', '/admin', '/goals', '/notes', '/ujian', '/analytics', '/settings'];
   const isMoreActive = morePaths.some(p => location.pathname === p || location.pathname.startsWith(p + '/'));
 
   const activeTab = tabs.find((tab) => location.pathname.startsWith(tab.path))?.id ?? null;

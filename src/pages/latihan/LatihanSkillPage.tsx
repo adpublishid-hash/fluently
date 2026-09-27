@@ -1,26 +1,28 @@
 import { useMemo, useState } from 'react';
-import type { ReactNode } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Award, CheckCircle2, ClipboardList, Headphones, Lock, Play, RotateCcw, Target, Volume2, XCircle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Award, BookOpen, Brain, CheckCircle2, ClipboardList, FileText, Headphones, Lock, Mic, PenLine, Play, RotateCcw, Sparkles, Target, Volume2, XCircle, type LucideIcon } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { PageHeader, NavCard } from '../../components/shared/NavComponents';
 import { practiceQuestionTypes } from '../../data/mockData';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
-import { playAudio, stopCurrentAudio } from '../../services/ttsService';
 import { useAuth } from '../../auth/AuthContext';
 import { FREE_PRACTICE_TOPIC_IDS, hasFullAccess } from '../../utils/accessControl';
+import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
+import { arabicLessonCounts, arabicLevels, arabicSkills, normalizeArabicLevel, type ArabicLevelId, type ArabicSkillId } from '../module/arabic/arabicModuleData';
+import { getArabicLessonPreview, type GeneratedArabicContentLevel } from '../module/arabic/beginner/generatedBeginnerArabicContent';
+import { VocabularyQuizPage } from './components/PracticeQuizPage';
 
-type QuizLevel = 'Basic' | 'Intermediate' | 'Advanced';
+export type QuizLevel = 'Basic' | 'Intermediate' | 'Advanced';
 
-type Topic = {
+export type Topic = {
   id: string;
   title: string;
   description: string;
 };
 
-type VocabQuestion = {
+export type VocabQuestion = {
   id: string;
   level: QuizLevel;
   prompt: string;
@@ -51,64 +53,388 @@ type PracticeAttempt = {
   completedAt: string;
 };
 
-type TopicTerm = {
+export type TopicTerm = {
   word: string;
   meaning: string;
 };
 
-type GrammarSeed = {
+type ArabicQuickDrillItem = {
+  id: string;
+  arabic: string;
+  transliteration: string;
+  meaning: string;
   prompt: string;
   answer: string;
-  options: string[];
-};
-
-type SpeakingTopic = Topic & {
-  situation: string;
-  goal: string;
-  pattern: string;
-  pronunciation: string;
-  sample: string;
-  formalResponse: string;
-  casualResponse: string;
-  repairPhrase: string;
-  fluencyTip: string;
-};
-
-type WritingTopic = Topic & {
-  task: string;
-  goal: string;
-  format: string;
-  structure: string;
-  sample: string;
-  opening: string;
-  connector: string;
-  closing: string;
-  editingTip: string;
-};
-
-type ReadingTopic = Topic & {
-  passageTitle: string;
-  passage: string;
-  mainIdea: string;
-  detail: string;
-  vocabulary: string;
-  vocabularyMeaning: string;
-  inference: string;
-  purpose: string;
-  readingSkill: string;
-};
-
-type ListeningTopic = Topic & {
-  level: string;
-  accent: string;
-  goal: string;
-  lines: Array<{ speaker: string; text: string; note: string }>;
-  focus: string[];
-  questions?: VocabQuestion[];
+  hint: string;
 };
 
 const mistakeBankKey = 'fluently-mistake-bank-v1';
 const practiceHistoryKey = 'fluently-practice-history-v1';
+
+const arabicLevelRoutes = new Set(['beginner', 'pemula', 'elementary', 'intermediate', 'upper-intermediate', 'advanced', 'proficiency', 'mastery', 'scholar']);
+
+function normalizeRouteParam(value?: string) {
+  return value?.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+const arabicPracticeModes: Record<ArabicSkillId, Array<{ title: string; detail: string; icon: LucideIcon }>> = {
+  kalam: [
+    { title: 'Shadow Reply', detail: 'Dengarkan frasa, ulangi, lalu jawab dengan pola yang sama.', icon: Volume2 },
+    { title: 'Dialog Builder', detail: 'Susun respons singkat untuk percakapan harian Arabic.', icon: ClipboardList },
+    { title: 'Fluency Sprint', detail: 'Latih jawaban 30-60 detik tanpa berhenti terlalu lama.', icon: Target },
+  ],
+  istima: [
+    { title: 'Listen First', detail: 'Dengarkan audio sebelum melihat teks Arabnya.', icon: Headphones },
+    { title: 'Keyword Catch', detail: 'Tangkap kata kunci, angka, tempat, dan maksud pembicara.', icon: Target },
+    { title: 'Dictation Mini', detail: 'Tulis ulang frasa pendek setelah mendengarkan.', icon: ClipboardList },
+  ],
+  qiraah: [
+    { title: 'Read Aloud', detail: 'Baca teks Arab dari kanan ke kiri dengan ritme stabil.', icon: Volume2 },
+    { title: 'Meaning Check', detail: 'Cari ide utama, detail, dan kosakata penting.', icon: ClipboardList },
+    { title: 'Inference Drill', detail: 'Latih pemahaman makna tersirat dari teks pendek.', icon: Target },
+  ],
+  kitabah: [
+    { title: 'Copy Script', detail: 'Salin huruf sambung dan jaga bentuk tulisan tetap rapi.', icon: ClipboardList },
+    { title: 'Sentence Build', detail: 'Susun kalimat dari pola dasar ke variasi baru.', icon: Target },
+    { title: 'Mini Paragraph', detail: 'Tulis 3-5 kalimat Arabic sesuai topik lesson.', icon: Award },
+  ],
+  mufradat: [
+    { title: 'Flash Meaning', detail: 'Baca kata, dengarkan, lalu sebutkan maknanya.', icon: Volume2 },
+    { title: 'Example Sentence', detail: 'Pakai mufradat dalam contoh kalimat pendek.', icon: ClipboardList },
+    { title: 'Recall Sprint', detail: 'Ulangi kata lama sampai keluar otomatis.', icon: Target },
+  ],
+  grammar: [
+    { title: "I'rab Check", detail: "Kenali fungsi kata dalam jumlah ismiyyah dan fi'liyyah.", icon: ClipboardList },
+    { title: 'Pattern Drill', detail: 'Ulangi nahwu-sharaf lewat pola yang sering muncul.', icon: Target },
+    { title: 'Transform Sentence', detail: 'Ubah kata ganti, waktu, atau susunan kalimat.', icon: Award },
+  ],
+  pronunciation: [
+    { title: 'Makharij Focus', detail: 'Latih titik keluarnya huruf Arab satu per satu.', icon: Volume2 },
+    { title: 'Minimal Pair', detail: 'Bedakan bunyi mirip seperti ق/ك, ع/ا, dan ح/ه.', icon: Headphones },
+    { title: 'Shadow Phrase', detail: 'Tirukan frasa pendek dengan mad, waqaf, dan ritme.', icon: Target },
+  ],
+};
+
+const arabicSamples: Record<ArabicSkillId, { arabic: string; label: string }> = {
+  kalam: { arabic: 'كَيْفَ حَالُكَ؟', label: 'Tanya kabar dan jawab natural' },
+  istima: { arabic: 'أَنَا مِنْ إِنْدُونِيسِيَا', label: 'Tangkap kata kunci dari audio' },
+  qiraah: { arabic: 'هَذَا بَيْتٌ كَبِيرٌ', label: 'Baca dan pahami teks pendek' },
+  kitabah: { arabic: 'أَنَا طَالِبٌ', label: 'Tulis ulang dengan huruf sambung' },
+  mufradat: { arabic: 'كِتَابٌ', label: 'Kosakata, arti, dan contoh' },
+  grammar: { arabic: 'زَيْدٌ طَالِبٌ', label: 'Mubtada dan khabar dasar' },
+  pronunciation: { arabic: 'ع ح ه ء', label: 'Makharij huruf tenggorokan' },
+};
+
+const arabicQuickDrills: Record<ArabicSkillId, ArabicQuickDrillItem[]> = {
+  kalam: [
+    {
+      id: 'kalam-greeting',
+      arabic: 'السَّلامُ عَلَيْكُمْ',
+      transliteration: 'As-salamu alaikum',
+      meaning: 'Semoga keselamatan atas kalian.',
+      prompt: 'Ucapkan salam, lalu jawab seolah temanmu menyapa lebih dulu.',
+      answer: 'وَعَلَيْكُمُ السَّلامُ',
+      hint: 'Jawaban dimulai dengan wa alaikum.',
+    },
+    {
+      id: 'kalam-name',
+      arabic: 'مَا اسْمُكَ؟',
+      transliteration: 'Ma ismuka?',
+      meaning: 'Siapa namamu?',
+      prompt: 'Jawab dengan nama kamu memakai pola ismi...',
+      answer: 'اِسْمِي ...',
+      hint: 'Pola: ismi + nama.',
+    },
+    {
+      id: 'kalam-origin',
+      arabic: 'مِنْ أَيْنَ أَنْتَ؟',
+      transliteration: 'Min ayna anta?',
+      meaning: 'Dari mana kamu?',
+      prompt: 'Jawab asal negara/kota dengan pola ana min...',
+      answer: 'أَنَا مِنْ إِنْدُونِيسِيَا',
+      hint: 'Pola: ana min + tempat.',
+    },
+    {
+      id: 'kalam-feeling',
+      arabic: 'كَيْفَ حَالُكَ؟',
+      transliteration: 'Kayfa haluka?',
+      meaning: 'Bagaimana kabarmu?',
+      prompt: 'Jawab singkat dan natural.',
+      answer: 'أَنَا بِخَيْرٍ، الْحَمْدُ لِلّٰهِ',
+      hint: 'Gunakan bi khayr untuk kabar baik.',
+    },
+  ],
+  istima: [
+    {
+      id: 'istima-origin',
+      arabic: 'أَنَا مِنْ إِنْدُونِيسِيَا',
+      transliteration: 'Ana min Indunisiya',
+      meaning: 'Saya dari Indonesia.',
+      prompt: 'Dengarkan. Kata tempat apa yang kamu tangkap?',
+      answer: 'إِنْدُونِيسِيَا',
+      hint: 'Fokus kata setelah min.',
+    },
+    {
+      id: 'istima-question',
+      arabic: 'أَيْنَ الْقَلَمُ؟',
+      transliteration: 'Ayna al-qalamu?',
+      meaning: 'Di mana pulpen itu?',
+      prompt: 'Dengarkan. Kata tanya apa yang dipakai?',
+      answer: 'أَيْنَ',
+      hint: 'Kata tanya untuk lokasi.',
+    },
+    {
+      id: 'istima-class',
+      arabic: 'اِفْتَحِ الْكِتَابَ',
+      transliteration: 'Iftahi al-kitaba',
+      meaning: 'Bukalah buku itu.',
+      prompt: 'Dengarkan instruksi kelas. Apa objeknya?',
+      answer: 'الْكِتَابَ',
+      hint: 'Objeknya adalah buku.',
+    },
+    {
+      id: 'istima-time',
+      arabic: 'السَّاعَةُ السَّابِعَةُ',
+      transliteration: 'As-sa ah as-sabi ah',
+      meaning: 'Jam tujuh.',
+      prompt: 'Dengarkan. Angka berapa yang disebut?',
+      answer: 'السَّابِعَةُ',
+      hint: 'Dari akar angka tujuh.',
+    },
+  ],
+  qiraah: [
+    {
+      id: 'qiraah-house',
+      arabic: 'هَذَا بَيْتٌ كَبِيرٌ',
+      transliteration: 'Hadha baytun kabirun',
+      meaning: 'Ini rumah yang besar.',
+      prompt: 'Baca dari kanan ke kiri. Kata sifatnya apa?',
+      answer: 'كَبِيرٌ',
+      hint: 'Kata sifat muncul setelah benda.',
+    },
+    {
+      id: 'qiraah-school',
+      arabic: 'الْوَلَدُ فِي الْمَدْرَسَةِ',
+      transliteration: 'Al-waladu fi al-madrasati',
+      meaning: 'Anak laki-laki itu di sekolah.',
+      prompt: 'Temukan lokasi dalam kalimat.',
+      answer: 'الْمَدْرَسَةِ',
+      hint: 'Lokasi muncul setelah fi.',
+    },
+    {
+      id: 'qiraah-book',
+      arabic: 'الْكِتَابُ عَلَى الطَّاوِلَةِ',
+      transliteration: 'Al-kitabu ala at-tawilati',
+      meaning: 'Buku itu di atas meja.',
+      prompt: 'Apa benda utama pada kalimat?',
+      answer: 'الْكِتَابُ',
+      hint: 'Muncul di awal kalimat.',
+    },
+    {
+      id: 'qiraah-student',
+      arabic: 'فَاطِمَةُ طَالِبَةٌ مُجْتَهِدَةٌ',
+      transliteration: 'Fatimatu talibatun mujtahidatun',
+      meaning: 'Fatimah adalah siswi yang rajin.',
+      prompt: 'Apa sifat Fatimah?',
+      answer: 'مُجْتَهِدَةٌ',
+      hint: 'Sifat terakhir dalam kalimat.',
+    },
+  ],
+  kitabah: [
+    {
+      id: 'kitabah-intro',
+      arabic: 'أَنَا طَالِبٌ',
+      transliteration: 'Ana talibun',
+      meaning: 'Saya seorang pelajar.',
+      prompt: 'Tulis ulang kalimat ini dengan huruf Arab.',
+      answer: 'أَنَا طَالِبٌ',
+      hint: 'Mulai dengan ana.',
+    },
+    {
+      id: 'kitabah-school',
+      arabic: 'هَذِهِ مَدْرَسَةٌ',
+      transliteration: 'Hadhihi madrasatun',
+      meaning: 'Ini sekolah.',
+      prompt: 'Tulis kalimat dengan kata tunjuk untuk benda feminin.',
+      answer: 'هَذِهِ مَدْرَسَةٌ',
+      hint: 'Gunakan hadhihi.',
+    },
+    {
+      id: 'kitabah-book',
+      arabic: 'عِنْدِي كِتَابٌ',
+      transliteration: 'Indi kitabun',
+      meaning: 'Saya punya sebuah buku.',
+      prompt: 'Tulis pola "saya punya..." untuk kata kitab.',
+      answer: 'عِنْدِي كِتَابٌ',
+      hint: 'Gunakan indi.',
+    },
+    {
+      id: 'kitabah-like',
+      arabic: 'أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ',
+      transliteration: 'Uhibbu al-lughata al-arabiyyata',
+      meaning: 'Saya suka bahasa Arab.',
+      prompt: 'Tulis kalimat tentang menyukai bahasa Arab.',
+      answer: 'أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ',
+      hint: 'Mulai dengan uhibbu.',
+    },
+  ],
+  mufradat: [
+    {
+      id: 'mufradat-book',
+      arabic: 'كِتَابٌ',
+      transliteration: 'Kitabun',
+      meaning: 'Buku.',
+      prompt: 'Sebutkan arti kata ini.',
+      answer: 'Buku',
+      hint: 'Benda yang dibaca.',
+    },
+    {
+      id: 'mufradat-pen',
+      arabic: 'قَلَمٌ',
+      transliteration: 'Qalamun',
+      meaning: 'Pulpen.',
+      prompt: 'Sebutkan arti kata ini.',
+      answer: 'Pulpen',
+      hint: 'Dipakai untuk menulis.',
+    },
+    {
+      id: 'mufradat-house',
+      arabic: 'بَيْتٌ',
+      transliteration: 'Baytun',
+      meaning: 'Rumah.',
+      prompt: 'Sebutkan arti kata ini.',
+      answer: 'Rumah',
+      hint: 'Tempat tinggal.',
+    },
+    {
+      id: 'mufradat-school',
+      arabic: 'مَدْرَسَةٌ',
+      transliteration: 'Madrasatun',
+      meaning: 'Sekolah.',
+      prompt: 'Sebutkan arti kata ini.',
+      answer: 'Sekolah',
+      hint: 'Tempat belajar.',
+    },
+  ],
+  grammar: [
+    {
+      id: 'grammar-mubtada',
+      arabic: 'زَيْدٌ طَالِبٌ',
+      transliteration: 'Zaydun talibun',
+      meaning: 'Zaid adalah pelajar.',
+      prompt: 'Tentukan mubtada dalam jumlah ismiyyah ini.',
+      answer: 'زَيْدٌ',
+      hint: 'Mubtada biasanya isim pertama.',
+    },
+    {
+      id: 'grammar-khabar',
+      arabic: 'الْبَيْتُ كَبِيرٌ',
+      transliteration: 'Al-baytu kabirun',
+      meaning: 'Rumah itu besar.',
+      prompt: 'Tentukan khabar dalam kalimat ini.',
+      answer: 'كَبِيرٌ',
+      hint: 'Khabar memberi informasi tentang mubtada.',
+    },
+    {
+      id: 'grammar-fiil',
+      arabic: 'كَتَبَ الطَّالِبُ',
+      transliteration: 'Kataba at-talibu',
+      meaning: 'Pelajar itu menulis.',
+      prompt: "Tentukan fi'il dalam jumlah fi'liyyah ini.",
+      answer: 'كَتَبَ',
+      hint: 'Fiil adalah kata kerja.',
+    },
+    {
+      id: 'grammar-jar',
+      arabic: 'فِي الْبَيْتِ',
+      transliteration: 'Fi al-bayti',
+      meaning: 'Di rumah.',
+      prompt: 'Huruf jar apa yang dipakai?',
+      answer: 'فِي',
+      hint: 'Artinya di/dalam.',
+    },
+  ],
+  pronunciation: [
+    {
+      id: 'pronunciation-ain',
+      arabic: 'ع',
+      transliteration: 'Ain',
+      meaning: 'Huruf tenggorokan tengah.',
+      prompt: 'Ucapkan dari tenggorokan, jangan seperti hamzah biasa.',
+      answer: 'ع',
+      hint: 'Rasa bunyinya dari bagian tengah tenggorokan.',
+    },
+    {
+      id: 'pronunciation-ha',
+      arabic: 'ح',
+      transliteration: 'Ha',
+      meaning: 'Ha tenggorokan tanpa titik.',
+      prompt: 'Bedakan ح dari ه.',
+      answer: 'ح',
+      hint: 'Lebih kuat dan keluar dari tenggorokan.',
+    },
+    {
+      id: 'pronunciation-qaf',
+      arabic: 'قَلْبٌ',
+      transliteration: 'Qalbun',
+      meaning: 'Hati.',
+      prompt: 'Ucapkan qaf dengan tebal, bukan kaf.',
+      answer: 'قَلْبٌ',
+      hint: 'Qaf berasal dari pangkal lidah.',
+    },
+    {
+      id: 'pronunciation-kaf',
+      arabic: 'كَلْبٌ',
+      transliteration: 'Kalbun',
+      meaning: 'Anjing.',
+      prompt: 'Ucapkan kaf dengan ringan dan bedakan dari qalbun.',
+      answer: 'كَلْبٌ',
+      hint: 'Kaf lebih ringan daripada qaf.',
+    },
+  ],
+};
+
+function isArabicSkill(value?: string): value is ArabicSkillId {
+  return value === 'kalam' || value === 'istima' || value === 'qiraah' || value === 'kitabah' || value === 'mufradat' || value === 'grammar' || value === 'pronunciation';
+}
+
+function isArabicLevelRoute(value?: string) {
+  return value ? arabicLevelRoutes.has(value) : false;
+}
+
+function getArabicRouteLevel(levelId: ArabicLevelId) {
+  return levelId === 'pemula' ? 'beginner' : levelId;
+}
+
+function getArabicContentLevel(levelId: ArabicLevelId): GeneratedArabicContentLevel {
+  return levelId === 'pemula' ? 'beginner' : levelId;
+}
+
+function readArabicCompleted(levelId: ArabicLevelId, skillId: ArabicSkillId): number[] {
+  if (typeof window === 'undefined') return [];
+
+  try {
+    const raw = window.localStorage.getItem(`talky_arabic_${levelId}_${skillId}_completed`);
+    const records = raw ? JSON.parse(raw) : [];
+    return Array.isArray(records) ? records.filter((item) => Number.isFinite(Number(item))).map(Number) : [];
+  } catch {
+    return [];
+  }
+}
+
+function getArabicLessonTitle(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel, skillLabel: string) {
+  if (lesson <= 20) return getArabicLessonPreview(skillId, lesson, level);
+  return `${skillLabel} Review ${lesson}`;
+}
+
+function speakArabicText(text: string) {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'ar-SA';
+  utterance.rate = 0.85;
+  window.speechSynthesis.speak(utterance);
+}
 
 function loadMistakeBank(): MistakeRecord[] {
   if (typeof window === 'undefined') return [];
@@ -517,1129 +843,1866 @@ const grammarTopics: Topic[] = [
   { id: 'conjunctions', title: 'Conjunctions (Kata Sambung)', description: 'Latihan kata hubung seperti and, but, because, although, dll.' },
 ];
 
-const speakingTopics: SpeakingTopic[] = [
+const speakingTopics: Topic[] = [
   {
-    id: 'self-introduction',
-    title: 'Self Introduction',
-    description: 'Latihan memperkenalkan diri dengan natural dan percaya diri.',
-    situation: 'meeting a new classmate or coworker',
-    goal: 'introduce your name, background, and one personal detail',
-    pattern: 'Hi, I am ___. I am from ___, and I am interested in ___.',
-    pronunciation: 'clear word stress in introduction phrases',
-    sample: 'Hi, I am Raka. I am from Bandung, and I am interested in product design.',
-    formalResponse: 'It is a pleasure to meet you.',
-    casualResponse: 'Nice to meet you.',
-    repairPhrase: 'Let me say that again more clearly.',
-    fluencyTip: 'Pause briefly after your name and keep the ending clear.',
+    "id": "self-introduction",
+    "title": "Self Introduction",
+    "description": "Latihan memperkenalkan diri dengan natural dan percaya diri."
   },
   {
-    id: 'daily-routine',
-    title: 'Daily Routine',
-    description: 'Bercerita tentang rutinitas harian dengan present simple.',
-    situation: 'talking about your normal day',
-    goal: 'describe morning, work or study, and evening habits',
-    pattern: 'I usually ___ in the morning, then I ___ before ___.',
-    pronunciation: 'final -s in third-person routine verbs',
-    sample: 'I usually check my schedule in the morning, then I study before lunch.',
-    formalResponse: 'My routine is fairly consistent during the week.',
-    casualResponse: 'My days are pretty simple.',
-    repairPhrase: 'What I mean is, this is what I usually do.',
-    fluencyTip: 'Use sequence words like first, then, after that, and finally.',
+    "id": "daily-routine",
+    "title": "Daily Routine",
+    "description": "Bercerita tentang rutinitas harian dengan present simple."
   },
   {
-    id: 'ordering-food',
-    title: 'Ordering Food',
-    description: 'Berbicara sopan saat memesan makanan atau minuman.',
-    situation: 'ordering at a restaurant or cafe',
-    goal: 'order an item, ask for a detail, and confirm politely',
-    pattern: 'Could I have ___, please? Also, could you make it ___?',
-    pronunciation: 'rising intonation in polite requests',
-    sample: 'Could I have the chicken sandwich, please? Also, could you make it less spicy?',
-    formalResponse: 'Could I please have the grilled fish with rice?',
-    casualResponse: 'Can I get a burger and fries?',
-    repairPhrase: 'Sorry, I meant the small size, not the large one.',
-    fluencyTip: 'Start with could I or can I to sound natural and polite.',
+    "id": "ordering-food",
+    "title": "Ordering Food",
+    "description": "Berbicara sopan saat memesan makanan atau minuman."
   },
   {
-    id: 'asking-directions',
-    title: 'Asking for Directions',
-    description: 'Minta arah dan memastikan instruksi dengan jelas.',
-    situation: 'asking someone how to get to a place',
-    goal: 'ask for directions, repeat key landmarks, and thank the person',
-    pattern: 'Excuse me, how do I get to ___ from here?',
-    pronunciation: 'stress place names and direction words',
-    sample: 'Excuse me, how do I get to the train station from here?',
-    formalResponse: 'Could you tell me the best way to reach the station?',
-    casualResponse: 'How do I get to the station?',
-    repairPhrase: 'So I go straight first, then turn left, right?',
-    fluencyTip: 'Repeat the route in your own words to confirm understanding.',
+    "id": "asking-directions",
+    "title": "Asking for Directions",
+    "description": "Minta arah dan memastikan instruksi dengan jelas."
   },
   {
-    id: 'small-talk',
-    title: 'Small Talk',
-    description: 'Latihan obrolan ringan agar percakapan mengalir.',
-    situation: 'starting a friendly short conversation',
-    goal: 'open a topic, respond naturally, and ask a follow-up question',
-    pattern: 'How has your ___ been? Mine has been ___.',
-    pronunciation: 'natural linking in how has your',
-    sample: 'How has your week been? Mine has been busy but good.',
-    formalResponse: 'How has your week been so far?',
-    casualResponse: 'How is your week going?',
-    repairPhrase: 'Actually, let me put it another way.',
-    fluencyTip: 'Answer briefly, then ask one follow-up question.',
+    "id": "small-talk",
+    "title": "Small Talk",
+    "description": "Latihan obrolan ringan agar percakapan mengalir."
   },
   {
-    id: 'phone-call',
-    title: 'Phone Call',
-    description: 'Berbicara di telepon untuk membuka, menahan, dan menutup panggilan.',
-    situation: 'calling an office or service desk',
-    goal: 'state your reason, ask for help, and close politely',
-    pattern: 'Hi, I am calling about ___. Could you help me with that?',
-    pronunciation: 'clear consonants because the listener cannot see your face',
-    sample: 'Hi, I am calling about my appointment. Could you help me reschedule it?',
-    formalResponse: 'May I speak with someone from customer support?',
-    casualResponse: 'Can I talk to someone about my booking?',
-    repairPhrase: 'Sorry, the line is not clear. Could you repeat that?',
-    fluencyTip: 'Speak slightly slower on phone calls and chunk your message.',
+    "id": "phone-call",
+    "title": "Phone Call",
+    "description": "Berbicara di telepon untuk membuka, menahan, dan menutup panggilan."
   },
   {
-    id: 'travel-check-in',
-    title: 'Travel Check-in',
-    description: 'Latihan bicara saat check-in hotel atau bandara.',
-    situation: 'checking in at a hotel or airport counter',
-    goal: 'give your name, confirm a booking, and ask one practical question',
-    pattern: 'I have a reservation under ___. Could I check in now?',
-    pronunciation: 'sentence stress on reservation details',
-    sample: 'I have a reservation under Wahib Rohman. Could I check in now?',
-    formalResponse: 'I have a reservation under my name, and I would like to check in.',
-    casualResponse: 'Hi, I have a booking under Wahib.',
-    repairPhrase: 'The reservation is under my last name, Rohman.',
-    fluencyTip: 'Keep names and numbers slow enough to be understood.',
+    "id": "travel-check-in",
+    "title": "Travel Check-in",
+    "description": "Latihan bicara saat check-in hotel atau bandara."
   },
   {
-    id: 'job-interview',
-    title: 'Job Interview',
-    description: 'Menjawab pertanyaan interview dengan terstruktur.',
-    situation: 'answering a common interview question',
-    goal: 'describe experience, strength, and motivation clearly',
-    pattern: 'In my previous role, I ___. That helped me ___.',
-    pronunciation: 'confident falling intonation in final statements',
-    sample: 'In my previous role, I handled user feedback. That helped me improve product decisions.',
-    formalResponse: 'I believe my experience in communication would be valuable for this role.',
-    casualResponse: 'I think my communication skills fit this role well.',
-    repairPhrase: 'Let me give a more specific example.',
-    fluencyTip: 'Use one concrete example instead of listing too many points.',
+    "id": "job-interview",
+    "title": "Job Interview",
+    "description": "Menjawab pertanyaan interview dengan terstruktur."
   },
   {
-    id: 'giving-opinion',
-    title: 'Giving Opinions',
-    description: 'Mengutarakan pendapat dan alasan secara sopan.',
-    situation: 'sharing your opinion in a discussion',
-    goal: 'state an opinion, support it, and acknowledge another view',
-    pattern: 'I think ___ because ___. However, I understand that ___.',
-    pronunciation: 'stress contrast words like however and but',
-    sample: 'I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.',
-    formalResponse: 'From my perspective, the main benefit is flexibility.',
-    casualResponse: 'I think it is helpful because it saves time.',
-    repairPhrase: 'To clarify, I am not saying it is perfect.',
-    fluencyTip: 'Use because for your reason and however for balance.',
+    "id": "giving-opinion",
+    "title": "Giving Opinions",
+    "description": "Mengutarakan pendapat dan alasan secara sopan."
   },
   {
-    id: 'describing-picture',
-    title: 'Describing a Picture',
-    description: 'Mendeskripsikan gambar dengan urutan dan detail.',
-    situation: 'describing an image in a speaking test',
-    goal: 'describe people, place, action, and possible meaning',
-    pattern: 'In the picture, I can see ___. It looks like ___.',
-    pronunciation: 'smooth linking in it looks like',
-    sample: 'In the picture, I can see two people working in a cafe. It looks like they are planning a project.',
-    formalResponse: 'The image appears to show a professional discussion.',
-    casualResponse: 'It looks like two friends are working together.',
-    repairPhrase: 'I am not completely sure, but it seems like they are discussing work.',
-    fluencyTip: 'Move from general details to specific observations.',
+    "id": "describing-picture",
+    "title": "Describing a Picture",
+    "description": "Mendeskripsikan gambar dengan urutan dan detail."
   },
   {
-    id: 'storytelling',
-    title: 'Storytelling',
-    description: 'Menceritakan pengalaman singkat dengan alur jelas.',
-    situation: 'telling a short personal story',
-    goal: 'explain what happened, how you felt, and what you learned',
-    pattern: 'Last week, I ___. At first, ___. In the end, ___.',
-    pronunciation: 'past tense endings in happened, learned, and helped',
-    sample: 'Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.',
-    formalResponse: 'That experience taught me to prepare more carefully.',
-    casualResponse: 'It taught me to plan better next time.',
-    repairPhrase: 'Let me start from the beginning.',
-    fluencyTip: 'Use time markers to make your story easy to follow.',
+    "id": "storytelling",
+    "title": "Storytelling",
+    "description": "Menceritakan pengalaman singkat dengan alur jelas."
   },
   {
-    id: 'complaint-request',
-    title: 'Complaint & Request',
-    description: 'Menyampaikan keluhan dengan tetap sopan.',
-    situation: 'reporting a problem to customer service',
-    goal: 'explain the problem, request a solution, and stay polite',
-    pattern: 'I am afraid there is a problem with ___. Could you please ___?',
-    pronunciation: 'polite tone on could you please',
-    sample: 'I am afraid there is a problem with my order. Could you please check it?',
-    formalResponse: 'I would appreciate it if you could look into this issue.',
-    casualResponse: 'Could you help me fix this?',
-    repairPhrase: 'I do not mean to complain, but I need some help with this.',
-    fluencyTip: 'Describe the problem first, then ask for one clear action.',
+    "id": "complaint-request",
+    "title": "Complaint & Request",
+    "description": "Menyampaikan keluhan dengan tetap sopan."
   },
   {
-    id: 'presentation-opening',
-    title: 'Presentation Opening',
-    description: 'Membuka presentasi dengan tujuan dan struktur.',
-    situation: 'starting a short presentation',
-    goal: 'greet the audience, introduce the topic, and preview points',
-    pattern: 'Good morning. Today, I am going to talk about ___. I will cover ___.',
-    pronunciation: 'clear pauses after greeting and topic',
-    sample: 'Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.',
-    formalResponse: 'Today, I would like to present three key points.',
-    casualResponse: 'Today, I want to talk about three things.',
-    repairPhrase: 'Let me outline the main points first.',
-    fluencyTip: 'Use signposting words so listeners know where you are going.',
+    "id": "presentation-opening",
+    "title": "Presentation Opening",
+    "description": "Membuka presentasi dengan tujuan dan struktur."
   },
   {
-    id: 'agree-disagree',
-    title: 'Agreeing & Disagreeing',
-    description: 'Setuju dan tidak setuju tanpa terdengar kasar.',
-    situation: 'responding to another person in a discussion',
-    goal: 'agree, partly agree, or disagree with a reason',
-    pattern: 'I see your point, but I think ___ because ___.',
-    pronunciation: 'soft tone before disagreement phrases',
-    sample: 'I see your point, but I think remote work is still useful because it saves commuting time.',
-    formalResponse: 'I partly agree, although I would add one concern.',
-    casualResponse: 'I get that, but I see it a bit differently.',
-    repairPhrase: 'I may have explained that too strongly. What I mean is...',
-    fluencyTip: 'Acknowledge the other view before giving your own.',
+    "id": "agree-disagree",
+    "title": "Agreeing & Disagreeing",
+    "description": "Setuju dan tidak setuju tanpa terdengar kasar."
   },
   {
-    id: 'future-plans',
-    title: 'Future Plans',
-    description: 'Berbicara tentang rencana, target, dan harapan.',
-    situation: 'talking about goals for the next few months',
-    goal: 'describe a plan, reason, and expected result',
-    pattern: 'I am planning to ___ because ___. I hope it will ___.',
-    pronunciation: 'connected speech in going to and planning to',
-    sample: 'I am planning to practice English every day because I want to speak more confidently.',
-    formalResponse: 'My goal is to improve my speaking fluency over the next three months.',
-    casualResponse: 'I want to get better at speaking this year.',
-    repairPhrase: 'To be more specific, I want to focus on speaking fluency.',
-    fluencyTip: 'Connect your plan to a clear reason and outcome.',
-  },
+    "id": "future-plans",
+    "title": "Future Plans",
+    "description": "Berbicara tentang rencana, target, dan harapan."
+  }
 ];
 
-const writingTopics: WritingTopic[] = [
+const writingTopics: Topic[] = [
   {
-    id: 'simple-sentences',
-    title: 'Simple Sentences',
-    description: 'Latihan membuat kalimat pendek yang jelas dan benar.',
-    task: 'write clear sentences about everyday activities',
-    goal: 'make a complete sentence with subject, verb, and object or complement',
-    format: 'one complete sentence',
-    structure: 'Subject + verb + object/complement.',
-    sample: 'I study English every morning.',
-    opening: 'I usually',
-    connector: 'and',
-    closing: 'every day.',
-    editingTip: 'Check that every sentence has a subject and a verb.',
+    "id": "simple-sentences",
+    "title": "Simple Sentences",
+    "description": "Latihan membuat kalimat pendek yang jelas dan benar."
   },
   {
-    id: 'daily-journal',
-    title: 'Daily Journal',
-    description: 'Menulis catatan harian singkat dengan urutan waktu.',
-    task: 'write a short journal entry about your day',
-    goal: 'describe events, feelings, and one reflection',
-    format: 'short journal paragraph',
-    structure: 'Time marker + event + feeling + reflection.',
-    sample: 'Today, I finished my work early. I felt relieved because I had time to rest.',
-    opening: 'Today,',
-    connector: 'because',
-    closing: 'I learned something useful.',
-    editingTip: 'Use past tense for events that already happened.',
+    "id": "daily-journal",
+    "title": "Daily Journal",
+    "description": "Menulis catatan harian singkat dengan urutan waktu."
   },
   {
-    id: 'email-request',
-    title: 'Email Request',
-    description: 'Menulis email permintaan dengan sopan dan rapi.',
-    task: 'write a polite email asking for help or information',
-    goal: 'state the request clearly and close politely',
-    format: 'short formal email',
-    structure: 'Greeting + reason + request + thanks + closing.',
-    sample: 'Dear Ms. Lee, I am writing to ask for more information about the schedule. Thank you for your help.',
-    opening: 'Dear Sir or Madam,',
-    connector: 'I am writing to',
-    closing: 'Thank you for your time.',
-    editingTip: 'Keep the request direct, polite, and easy to answer.',
+    "id": "email-request",
+    "title": "Email Request",
+    "description": "Menulis email permintaan dengan sopan dan rapi."
   },
   {
-    id: 'opinion-paragraph',
-    title: 'Opinion Paragraph',
-    description: 'Menulis pendapat dengan alasan dan contoh.',
-    task: 'write one paragraph giving your opinion',
-    goal: 'state an opinion, support it, and add an example',
-    format: 'opinion paragraph',
-    structure: 'Opinion + reason + example + concluding sentence.',
-    sample: 'I think online learning is useful because it is flexible. For example, students can study from home.',
-    opening: 'In my opinion,',
-    connector: 'for example',
-    closing: 'For these reasons, I agree with this idea.',
-    editingTip: 'Make sure your reason clearly supports your opinion.',
+    "id": "opinion-paragraph",
+    "title": "Opinion Paragraph",
+    "description": "Menulis pendapat dengan alasan dan contoh."
   },
   {
-    id: 'descriptive-place',
-    title: 'Describing a Place',
-    description: 'Mendeskripsikan tempat dengan detail sensorik.',
-    task: 'write a description of a place you know',
-    goal: 'describe location, appearance, and atmosphere',
-    format: 'descriptive paragraph',
-    structure: 'Place + details + atmosphere + personal impression.',
-    sample: 'My favorite cafe is small but comfortable. It has warm lights, wooden tables, and quiet music.',
-    opening: 'One place I like is',
-    connector: 'also',
-    closing: 'That is why I enjoy going there.',
-    editingTip: 'Use specific adjectives instead of vague words like nice or good.',
+    "id": "descriptive-place",
+    "title": "Describing a Place",
+    "description": "Mendeskripsikan tempat dengan detail sensorik."
   },
   {
-    id: 'story-writing',
-    title: 'Short Story',
-    description: 'Menulis cerita pendek dengan awal, konflik, dan akhir.',
-    task: 'write a short story based on a simple event',
-    goal: 'show sequence, problem, and resolution',
-    format: 'short narrative',
-    structure: 'Beginning + problem + action + ending.',
-    sample: 'Last night, I lost my keys. After searching for twenty minutes, I found them under my notebook.',
-    opening: 'Last night,',
-    connector: 'after that',
-    closing: 'In the end, everything was fine.',
-    editingTip: 'Keep the time order clear with words like first, then, and finally.',
+    "id": "story-writing",
+    "title": "Short Story",
+    "description": "Menulis cerita pendek dengan awal, konflik, dan akhir."
   },
   {
-    id: 'compare-contrast',
-    title: 'Compare & Contrast',
-    description: 'Membandingkan dua hal dengan connector yang tepat.',
-    task: 'write a paragraph comparing two options',
-    goal: 'explain similarities and differences clearly',
-    format: 'comparison paragraph',
-    structure: 'Similarity + difference + preference or conclusion.',
-    sample: 'Both buses and trains are affordable. However, trains are usually faster and more comfortable.',
-    opening: 'Both options',
-    connector: 'however',
-    closing: 'Overall, I prefer the second option.',
-    editingTip: 'Use however for contrast and both for similarity.',
+    "id": "compare-contrast",
+    "title": "Compare & Contrast",
+    "description": "Membandingkan dua hal dengan connector yang tepat."
   },
   {
-    id: 'problem-solution',
-    title: 'Problem & Solution',
-    description: 'Menulis masalah dan solusi dengan alur logis.',
-    task: 'write about a problem and suggest a solution',
-    goal: 'identify the issue, explain impact, and offer a practical fix',
-    format: 'problem-solution paragraph',
-    structure: 'Problem + effect + solution + expected result.',
-    sample: 'Many students feel tired because they sleep late. One solution is to set a regular bedtime.',
-    opening: 'One common problem is',
-    connector: 'as a result',
-    closing: 'This solution can make the situation better.',
-    editingTip: 'Connect the solution directly to the problem you introduced.',
+    "id": "problem-solution",
+    "title": "Problem & Solution",
+    "description": "Menulis masalah dan solusi dengan alur logis."
   },
   {
-    id: 'social-media-caption',
-    title: 'Social Media Caption',
-    description: 'Menulis caption singkat yang natural dan menarik.',
-    task: 'write a short caption for a post',
-    goal: 'make the message concise, friendly, and clear',
-    format: 'short caption',
-    structure: 'Hook + detail + feeling or call to action.',
-    sample: 'A slow morning, a good book, and fresh coffee. Perfect start to the day.',
-    opening: 'A little moment from',
-    connector: 'with',
-    closing: 'What a day.',
-    editingTip: 'Cut unnecessary words so the caption feels clean.',
+    "id": "social-media-caption",
+    "title": "Social Media Caption",
+    "description": "Menulis caption singkat yang natural dan menarik."
   },
   {
-    id: 'formal-letter',
-    title: 'Formal Letter',
-    description: 'Menulis surat formal dengan nada profesional.',
-    task: 'write a formal letter for an official purpose',
-    goal: 'use formal tone, clear purpose, and polite closing',
-    format: 'formal letter',
-    structure: 'Salutation + purpose + details + request + closing.',
-    sample: 'Dear Manager, I am writing to request a copy of the official receipt for my recent purchase.',
-    opening: 'Dear Manager,',
-    connector: 'regarding',
-    closing: 'Sincerely,',
-    editingTip: 'Avoid casual contractions like wanna, gonna, or thanks a lot.',
+    "id": "formal-letter",
+    "title": "Formal Letter",
+    "description": "Menulis surat formal dengan nada profesional."
   },
   {
-    id: 'application-message',
-    title: 'Application Message',
-    description: 'Menulis pesan lamaran singkat dan meyakinkan.',
-    task: 'write a short job or program application message',
-    goal: 'introduce yourself, show interest, and mention relevant experience',
-    format: 'application message',
-    structure: 'Introduction + interest + relevant skill + closing.',
-    sample: 'I am interested in applying for this position because I have experience in customer service and communication.',
-    opening: 'I am writing to apply for',
-    connector: 'because',
-    closing: 'I look forward to your response.',
-    editingTip: 'Mention one specific skill that matches the opportunity.',
+    "id": "application-message",
+    "title": "Application Message",
+    "description": "Menulis pesan lamaran singkat dan meyakinkan."
   },
   {
-    id: 'review-writing',
-    title: 'Review Writing',
-    description: 'Menulis ulasan produk, tempat, atau pengalaman.',
-    task: 'write a balanced review',
-    goal: 'describe experience, mention strengths, and give a recommendation',
-    format: 'review paragraph',
-    structure: 'Item + experience + positive/negative points + recommendation.',
-    sample: 'The restaurant has friendly service and fresh food. However, the waiting time was a little long.',
-    opening: 'I recently tried',
-    connector: 'however',
-    closing: 'I would recommend it to people who enjoy quiet places.',
-    editingTip: 'Balance praise with one useful detail or limitation.',
+    "id": "review-writing",
+    "title": "Review Writing",
+    "description": "Menulis ulasan produk, tempat, atau pengalaman."
   },
   {
-    id: 'academic-summary',
-    title: 'Academic Summary',
-    description: 'Merangkum teks akademik dengan singkat dan objektif.',
-    task: 'write a brief summary of a text or idea',
-    goal: 'capture the main idea without personal opinion',
-    format: 'academic summary',
-    structure: 'Source/topic + main idea + key point + result.',
-    sample: 'The text explains that regular sleep improves focus and memory. It also shows that poor sleep affects learning.',
-    opening: 'The text explains that',
-    connector: 'in addition',
-    closing: 'Overall, the main point is clear.',
-    editingTip: 'Do not add personal opinions in a summary unless asked.',
+    "id": "academic-summary",
+    "title": "Academic Summary",
+    "description": "Merangkum teks akademik dengan singkat dan objektif."
   },
   {
-    id: 'argument-essay',
-    title: 'Argument Essay',
-    description: 'Menulis argumen dengan thesis, alasan, dan counterpoint.',
-    task: 'write a short argumentative essay response',
-    goal: 'present a claim, support it, and address another view',
-    format: 'argument essay paragraph',
-    structure: 'Thesis + reason + evidence/example + counterpoint + conclusion.',
-    sample: 'Technology can improve education because it gives students access to many resources. However, it should be used with clear guidance.',
-    opening: 'This essay argues that',
-    connector: 'on the other hand',
-    closing: 'Therefore, this approach is reasonable.',
-    editingTip: 'Make the thesis specific enough to guide the whole paragraph.',
+    "id": "argument-essay",
+    "title": "Argument Essay",
+    "description": "Menulis argumen dengan thesis, alasan, dan counterpoint."
   },
   {
-    id: 'editing-proofreading',
-    title: 'Editing & Proofreading',
-    description: 'Melatih memperbaiki kalimat agar jelas dan akurat.',
-    task: 'edit sentences for grammar, clarity, and punctuation',
-    goal: 'find weak parts and choose a cleaner version',
-    format: 'edited sentence or paragraph',
-    structure: 'Read + identify issue + revise + check meaning.',
-    sample: 'She does not like coffee, but she drinks tea every morning.',
-    opening: 'The corrected sentence is',
-    connector: 'but',
-    closing: 'The meaning is now clear.',
-    editingTip: 'Check verb agreement, punctuation, and word order before submitting.',
-  },
+    "id": "editing-proofreading",
+    "title": "Editing & Proofreading",
+    "description": "Melatih memperbaiki kalimat agar jelas dan akurat."
+  }
 ];
 
-const readingTopics: ReadingTopic[] = [
+const readingTopics: Topic[] = [
   {
-    id: 'daily-life',
-    title: 'Daily Life',
-    description: 'Bacaan pendek tentang rutinitas dan kebiasaan sehari-hari.',
-    passageTitle: 'A Quiet Morning',
-    passage: 'Mira wakes up early every weekday. She drinks water, checks her schedule, and walks to the bus stop before seven. She likes quiet mornings because they help her feel ready for the day.',
-    mainIdea: 'Mira has a calm morning routine that helps her prepare for the day.',
-    detail: 'Mira walks to the bus stop before seven.',
-    vocabulary: 'schedule',
-    vocabularyMeaning: 'a plan that shows when things happen',
-    inference: 'Mira probably values being organized.',
-    purpose: 'to describe a simple daily routine',
-    readingSkill: 'finding the main idea and supporting details',
+    "id": "daily-life",
+    "title": "Daily Life",
+    "description": "Bacaan pendek tentang rutinitas dan kebiasaan sehari-hari."
   },
   {
-    id: 'school-notice',
-    title: 'School Notice',
-    description: 'Membaca pengumuman sekolah dan menangkap informasi penting.',
-    passageTitle: 'Library Hours Update',
-    passage: 'Starting Monday, the school library will close at 5 p.m. instead of 4 p.m. Students may use the extra hour for group projects, reading, or computer access. Food and drinks are still not allowed inside.',
-    mainIdea: 'The school library will stay open one hour longer.',
-    detail: 'Food and drinks are still not allowed inside the library.',
-    vocabulary: 'access',
-    vocabularyMeaning: 'the ability or permission to use something',
-    inference: 'Students will have more time to study after class.',
-    purpose: 'to inform students about a change in library hours',
-    readingSkill: 'identifying specific information in a notice',
+    "id": "school-notice",
+    "title": "School Notice",
+    "description": "Membaca pengumuman sekolah dan menangkap informasi penting."
   },
   {
-    id: 'travel-blog',
-    title: 'Travel Blog',
-    description: 'Membaca cerita perjalanan dan memahami opini penulis.',
-    passageTitle: 'A Weekend in Yogyakarta',
-    passage: 'Last weekend, Arif visited Yogyakarta with two friends. They explored small streets, tried local food, and watched the sunset near the temple. Arif thought the best part was meeting friendly local artists.',
-    mainIdea: 'Arif enjoyed a short trip to Yogyakarta with memorable local experiences.',
-    detail: 'Arif watched the sunset near the temple.',
-    vocabulary: 'explored',
-    vocabularyMeaning: 'traveled around a place to learn about it',
-    inference: 'Arif enjoys cultural experiences when traveling.',
-    purpose: 'to share a personal travel experience',
-    readingSkill: 'understanding personal recounts and opinions',
+    "id": "travel-blog",
+    "title": "Travel Blog",
+    "description": "Membaca cerita perjalanan dan memahami opini penulis."
   },
   {
-    id: 'health-article',
-    title: 'Health Article',
-    description: 'Membaca artikel kesehatan ringan dengan detail saran.',
-    passageTitle: 'Small Habits for Better Sleep',
-    passage: 'Many people sleep poorly because they use screens late at night. Doctors suggest turning off phones thirty minutes before bed. A regular bedtime and a dark room can also improve sleep quality.',
-    mainIdea: 'Small bedtime habits can improve sleep quality.',
-    detail: 'Doctors suggest turning off phones thirty minutes before bed.',
-    vocabulary: 'quality',
-    vocabularyMeaning: 'how good or bad something is',
-    inference: 'Screen use before bed can make sleep worse.',
-    purpose: 'to give simple advice for better sleep',
-    readingSkill: 'recognizing advice and cause-effect relationships',
+    "id": "health-article",
+    "title": "Health Article",
+    "description": "Membaca artikel kesehatan ringan dengan detail saran."
   },
   {
-    id: 'technology-news',
-    title: 'Technology News',
-    description: 'Membaca berita singkat tentang teknologi dan dampaknya.',
-    passageTitle: 'A New Language App',
-    passage: 'A local startup launched a language app for busy learners. The app gives short lessons, daily reminders, and pronunciation feedback. The team hopes it will help users practice even when they only have ten minutes.',
-    mainIdea: 'A new app helps busy learners practice languages in short sessions.',
-    detail: 'The app gives pronunciation feedback.',
-    vocabulary: 'launched',
-    vocabularyMeaning: 'started or introduced something new',
-    inference: 'The app is designed for people with limited time.',
-    purpose: 'to report the launch of a useful learning app',
-    readingSkill: 'summarizing news and identifying product features',
+    "id": "technology-news",
+    "title": "Technology News",
+    "description": "Membaca berita singkat tentang teknologi dan dampaknya."
   },
   {
-    id: 'restaurant-review',
-    title: 'Restaurant Review',
-    description: 'Membaca ulasan restoran dan membedakan fakta serta opini.',
-    passageTitle: 'Green Bowl Cafe',
-    passage: 'Green Bowl Cafe serves fresh salads, soup, and fruit drinks. The service is quick, but the seating area is small. The reviewer recommends visiting before noon because it becomes crowded during lunch.',
-    mainIdea: 'Green Bowl Cafe has fresh food and quick service, but limited seating.',
-    detail: 'The seating area is small.',
-    vocabulary: 'recommends',
-    vocabularyMeaning: 'suggests something as a good choice',
-    inference: 'The cafe is popular around lunch time.',
-    purpose: 'to review a cafe and give a practical suggestion',
-    readingSkill: 'separating facts, opinions, and recommendations',
+    "id": "restaurant-review",
+    "title": "Restaurant Review",
+    "description": "Membaca ulasan restoran dan membedakan fakta serta opini."
   },
   {
-    id: 'work-email',
-    title: 'Work Email',
-    description: 'Membaca email kantor dan memahami action item.',
-    passageTitle: 'Project Reminder',
-    passage: 'Hi team, please send your final slides by Thursday afternoon. I will combine them into one deck before Friday morning. If you need design support, contact Nina before noon tomorrow.',
-    mainIdea: 'The email reminds the team to send final slides by Thursday afternoon.',
-    detail: 'Nina can help with design support before noon tomorrow.',
-    vocabulary: 'combine',
-    vocabularyMeaning: 'put things together',
-    inference: 'The presentation deck must be ready before Friday morning.',
-    purpose: 'to remind coworkers about a project deadline',
-    readingSkill: 'finding deadlines and required actions',
+    "id": "work-email",
+    "title": "Work Email",
+    "description": "Membaca email kantor dan memahami action item."
   },
   {
-    id: 'environment',
-    title: 'Environment',
-    description: 'Membaca teks lingkungan dengan hubungan sebab-akibat.',
-    passageTitle: 'Cleaner Neighborhoods',
-    passage: 'Residents in Maple Street started sorting their waste last month. They separate paper, plastic, and food scraps. As a result, the area has less trash, and more families are joining the program.',
-    mainIdea: 'Waste sorting helped Maple Street become cleaner.',
-    detail: 'Residents separate paper, plastic, and food scraps.',
-    vocabulary: 'residents',
-    vocabularyMeaning: 'people who live in a place',
-    inference: 'The program is becoming more popular.',
-    purpose: 'to describe a community recycling effort',
-    readingSkill: 'tracking cause and result',
+    "id": "environment",
+    "title": "Environment",
+    "description": "Membaca teks lingkungan dengan hubungan sebab-akibat."
   },
   {
-    id: 'biography',
-    title: 'Short Biography',
-    description: 'Membaca biografi singkat dan memahami pencapaian tokoh.',
-    passageTitle: 'The Young Inventor',
-    passage: 'Lina built her first simple robot when she was twelve. At sixteen, she won a national science competition. She now teaches younger students how to design small machines using recycled materials.',
-    mainIdea: 'Lina is a young inventor who now helps other students learn.',
-    detail: 'Lina won a national science competition at sixteen.',
-    vocabulary: 'inventor',
-    vocabularyMeaning: 'a person who creates something new',
-    inference: 'Lina is interested in both science and education.',
-    purpose: 'to introduce an inspiring young inventor',
-    readingSkill: 'understanding timeline and achievements',
+    "id": "biography",
+    "title": "Short Biography",
+    "description": "Membaca biografi singkat dan memahami pencapaian tokoh."
   },
   {
-    id: 'shopping-policy',
-    title: 'Shopping Policy',
-    description: 'Membaca aturan toko dan memahami syarat penting.',
-    passageTitle: 'Return Policy',
-    passage: 'Customers may return unused items within fourteen days. The original receipt is required. Sale items cannot be returned, but they may be exchanged for a different size if stock is available.',
-    mainIdea: 'The store allows returns and exchanges under certain conditions.',
-    detail: 'The original receipt is required for returns.',
-    vocabulary: 'exchanged',
-    vocabularyMeaning: 'replaced with another item',
-    inference: 'A sale item can only be changed if another size is in stock.',
-    purpose: 'to explain the store return policy',
-    readingSkill: 'reading rules and conditions carefully',
+    "id": "shopping-policy",
+    "title": "Shopping Policy",
+    "description": "Membaca aturan toko dan memahami syarat penting."
   },
   {
-    id: 'science-fact',
-    title: 'Science Fact',
-    description: 'Membaca fakta sains singkat dan menarik kesimpulan.',
-    passageTitle: 'Why Plants Need Light',
-    passage: 'Plants use sunlight to make food through a process called photosynthesis. Without enough light, many plants grow slowly or become weak. This is why indoor plants are often placed near windows.',
-    mainIdea: 'Plants need sunlight to make food and grow well.',
-    detail: 'Indoor plants are often placed near windows.',
-    vocabulary: 'process',
-    vocabularyMeaning: 'a series of actions or changes',
-    inference: 'A dark room is not ideal for many plants.',
-    purpose: 'to explain why light matters for plant growth',
-    readingSkill: 'understanding explanations and scientific terms',
+    "id": "science-fact",
+    "title": "Science Fact",
+    "description": "Membaca fakta sains singkat dan menarik kesimpulan."
   },
   {
-    id: 'event-schedule',
-    title: 'Event Schedule',
-    description: 'Membaca jadwal acara dan menemukan urutan kegiatan.',
-    passageTitle: 'Community Workshop',
-    passage: 'The workshop begins at 9 a.m. with registration. A cooking demonstration starts at 10 a.m., followed by a short lunch break. The final session at 1 p.m. focuses on budgeting for healthy meals.',
-    mainIdea: 'The community workshop has several scheduled activities.',
-    detail: 'The final session focuses on budgeting for healthy meals.',
-    vocabulary: 'registration',
-    vocabularyMeaning: 'the act of signing up or checking in',
-    inference: 'Participants should arrive before the cooking demonstration starts.',
-    purpose: 'to show the order of workshop activities',
-    readingSkill: 'reading sequence and time information',
+    "id": "event-schedule",
+    "title": "Event Schedule",
+    "description": "Membaca jadwal acara dan menemukan urutan kegiatan."
   },
   {
-    id: 'opinion-column',
-    title: 'Opinion Column',
-    description: 'Membaca opini dan memahami alasan penulis.',
-    passageTitle: 'Why Parks Matter',
-    passage: 'City parks are more than places to relax. They give children safe spaces to play and help adults exercise outdoors. In my view, every neighborhood should have a clean and accessible park.',
-    mainIdea: 'The writer believes every neighborhood should have a clean park.',
-    detail: 'Parks give children safe spaces to play.',
-    vocabulary: 'accessible',
-    vocabularyMeaning: 'easy to reach or use',
-    inference: 'The writer values public spaces that support health and community life.',
-    purpose: 'to persuade readers that parks are important',
-    readingSkill: 'identifying opinion, reason, and persuasion',
+    "id": "opinion-column",
+    "title": "Opinion Column",
+    "description": "Membaca opini dan memahami alasan penulis."
   },
   {
-    id: 'instructions',
-    title: 'Instructions',
-    description: 'Membaca instruksi dan memahami langkah-langkah.',
-    passageTitle: 'How to Reset a Password',
-    passage: 'Open the login page and click Forgot Password. Enter your email address, then check your inbox for a reset link. Create a new password and save it in a secure place.',
-    mainIdea: 'The text explains how to reset a password.',
-    detail: 'Users should check their inbox for a reset link.',
-    vocabulary: 'secure',
-    vocabularyMeaning: 'safe or protected',
-    inference: 'The user needs access to their email account.',
-    purpose: 'to give step-by-step password reset instructions',
-    readingSkill: 'following procedural steps',
+    "id": "instructions",
+    "title": "Instructions",
+    "description": "Membaca instruksi dan memahami langkah-langkah."
   },
   {
-    id: 'culture',
-    title: 'Culture',
-    description: 'Membaca teks budaya dan memahami makna kebiasaan.',
-    passageTitle: 'Sharing Food',
-    passage: 'In many families, sharing food is a way to welcome guests. A simple meal can show kindness, respect, and friendship. Even when the food is not expensive, the gesture often feels meaningful.',
-    mainIdea: 'Sharing food can be an important gesture of welcome and respect.',
-    detail: 'A simple meal can show kindness, respect, and friendship.',
-    vocabulary: 'gesture',
-    vocabularyMeaning: 'an action that shows a feeling or intention',
-    inference: 'The meaning of sharing food is not only about price.',
-    purpose: 'to explain the cultural meaning of sharing food',
-    readingSkill: 'interpreting meaning beyond literal details',
-  },
+    "id": "culture",
+    "title": "Culture",
+    "description": "Membaca teks budaya dan memahami makna kebiasaan."
+  }
 ];
 
-const sharedGrammarSeeds: GrammarSeed[] = [
-  { prompt: 'Choose the correct sentence.', answer: 'She goes to school every day.', options: ['She goes to school every day.', 'She go to school every day.', 'She going to school every day.', 'She gone to school every day.'] },
-  { prompt: 'Complete the sentence: They ____ watching a movie now.', answer: 'are', options: ['are', 'is', 'do', 'does'] },
-  { prompt: 'Choose the correct past form: I ____ my homework yesterday.', answer: 'finished', options: ['finished', 'finish', 'finishes', 'am finishing'] },
-  { prompt: 'Which option is grammatically correct?', answer: 'There are many books on the table.', options: ['There are many books on the table.', 'There is many books on the table.', 'There are much books on the table.', 'There be many books on the table.'] },
-  { prompt: 'Complete the question: ____ you speak English?', answer: 'Do', options: ['Do', 'Are', 'Is', 'Does'] },
+const listeningTopics: Topic[] = [
+  {
+    "id": "coffee-order",
+    "title": "Ordering Coffee",
+    "description": "Percakapan cepat saat memesan minuman di cafe."
+  },
+  {
+    "id": "hotel-check-in",
+    "title": "Hotel Check-in",
+    "description": "Dialog resepsionis dan tamu saat check-in."
+  },
+  {
+    "id": "job-interview",
+    "title": "Job Interview Small Talk",
+    "description": "Pembuka interview sebelum pertanyaan utama."
+  },
+  {
+    "id": "doctor-appointment",
+    "title": "Doctor Appointment",
+    "description": "Pasien menjelaskan gejala ke dokter."
+  },
+  {
+    "id": "directions",
+    "title": "Asking for Directions",
+    "description": "Minta arah ke stasiun dan memahami instruksi."
+  },
+  {
+    "id": "meeting-update",
+    "title": "Project Meeting Update",
+    "description": "Update singkat dalam meeting kantor."
+  },
+  {
+    "id": "airport-security",
+    "title": "Airport Security",
+    "description": "Instruksi petugas keamanan bandara."
+  },
+  {
+    "id": "restaurant-complaint",
+    "title": "Restaurant Complaint",
+    "description": "Komplain sopan tentang pesanan restoran."
+  },
+  {
+    "id": "shopping-return",
+    "title": "Returning an Item",
+    "description": "Mengembalikan barang ke toko."
+  },
+  {
+    "id": "phone-call",
+    "title": "Making a Phone Call",
+    "description": "Telepon kantor dan meninggalkan pesan."
+  },
+  {
+    "id": "weekend-plans",
+    "title": "Weekend Plans",
+    "description": "Percakapan santai tentang rencana akhir pekan."
+  },
+  {
+    "id": "apartment-viewing",
+    "title": "Apartment Viewing",
+    "description": "Melihat apartemen dan bertanya fasilitas."
+  },
+  {
+    "id": "tech-support",
+    "title": "Tech Support",
+    "description": "Percakapan support saat aplikasi bermasalah."
+  },
+  {
+    "id": "class-discussion",
+    "title": "Class Discussion",
+    "description": "Diskusi kelas tentang tugas kelompok."
+  },
+  {
+    "id": "news-briefing",
+    "title": "Short News Briefing",
+    "description": "Mendengar ringkasan berita singkat."
+  }
 ];
 
-const grammarQuestionSeeds: Record<string, GrammarSeed[]> = {
-  'be-auxiliary': [
-    { prompt: 'Complete: She ____ a teacher.', answer: 'is', options: ['is', 'are', 'do', 'does'] },
-    { prompt: 'Complete: ____ they at home yesterday?', answer: 'Were', options: ['Were', 'Was', 'Do', 'Does'] },
-    { prompt: 'Complete: He ____ not like coffee.', answer: 'does', options: ['does', 'is', 'are', 'was'] },
-  ],
-  'nouns-articles': [
-    { prompt: 'Complete: I saw ____ elephant at the zoo.', answer: 'an', options: ['an', 'a', 'the', '-'] },
-    { prompt: 'Complete: ____ sun rises in the east.', answer: 'The', options: ['The', 'A', 'An', '-'] },
-    { prompt: 'Choose the correct phrase.', answer: 'some information', options: ['some information', 'an information', 'many information', 'a few information'] },
-  ],
-  'prepositions-time-place': [
-    { prompt: 'Complete: The meeting is ____ Monday.', answer: 'on', options: ['on', 'in', 'at', 'by'] },
-    { prompt: 'Complete: She lives ____ Jakarta.', answer: 'in', options: ['in', 'on', 'at', 'to'] },
-    { prompt: 'Complete: I wake up ____ 6 a.m.', answer: 'at', options: ['at', 'on', 'in', 'from'] },
-  ],
-  quantifiers: [
-    { prompt: 'Complete: How ____ water do you drink?', answer: 'much', options: ['much', 'many', 'few', 'several'] },
-    { prompt: 'Complete: I have ____ friends in this city.', answer: 'many', options: ['many', 'much', 'any', 'little'] },
-    { prompt: 'Complete: We do not have ____ sugar left.', answer: 'any', options: ['any', 'some', 'many', 'few'] },
-  ],
-  comparison: [
-    { prompt: 'Complete: This book is ____ than that one.', answer: 'more interesting', options: ['more interesting', 'most interesting', 'interestingest', 'interestinger'] },
-    { prompt: 'Complete: She is the ____ student in class.', answer: 'best', options: ['best', 'better', 'gooder', 'more good'] },
-    { prompt: 'Complete: My bag is ____ than yours.', answer: 'heavier', options: ['heavier', 'heaviest', 'more heavy', 'heavyer'] },
-  ],
-  tenses: [
-    { prompt: 'Complete: I ____ dinner when you called.', answer: 'was cooking', options: ['was cooking', 'cook', 'have cooked', 'am cook'] },
-    { prompt: 'Complete: She ____ in Bali since 2020.', answer: 'has lived', options: ['has lived', 'lives', 'lived', 'is living'] },
-    { prompt: 'Complete: They ____ tomorrow morning.', answer: 'will arrive', options: ['will arrive', 'arrived', 'arrives', 'have arrived'] },
-  ],
-  'pronouns-possessives': [
-    { prompt: 'Complete: This book is ____.', answer: 'mine', options: ['mine', 'my', 'me', 'myself'] },
-    { prompt: 'Complete: I gave ____ a present.', answer: 'her', options: ['her', 'she', 'hers', 'herself'] },
-    { prompt: 'Complete: He fixed the computer by ____.', answer: 'himself', options: ['himself', 'him', 'his', 'he'] },
-  ],
-  'adjectives-adverbs': [
-    { prompt: 'Complete: She speaks English ____.', answer: 'fluently', options: ['fluently', 'fluent', 'more fluent', 'fluency'] },
-    { prompt: 'Complete: This is a ____ answer.', answer: 'clear', options: ['clear', 'clearly', 'clearerly', 'clearness'] },
-    { prompt: 'Complete: Drive ____ in the rain.', answer: 'carefully', options: ['carefully', 'careful', 'care', 'more careful'] },
-  ],
-  'question-tags': [
-    { prompt: 'Complete: You are tired, ____?', answer: "aren't you", options: ["aren't you", "are you", "don't you", "weren't you"] },
-    { prompt: 'Complete: She likes tea, ____?', answer: "doesn't she", options: ["doesn't she", "isn't she", "does she", "didn't she"] },
-    { prompt: 'Complete: They did not come, ____?', answer: 'did they', options: ['did they', "didn't they", 'do they', 'are they'] },
-  ],
-  'relative-clauses': [
-    { prompt: 'Complete: The woman ____ teaches us is kind.', answer: 'who', options: ['who', 'which', 'where', 'when'] },
-    { prompt: 'Complete: This is the phone ____ I bought yesterday.', answer: 'that', options: ['that', 'who', 'where', 'when'] },
-    { prompt: 'Complete: The city ____ I was born is beautiful.', answer: 'where', options: ['where', 'which', 'who', 'that'] },
-  ],
-  intensifiers: [
-    { prompt: 'Complete: It was ____ a beautiful day.', answer: 'such', options: ['such', 'so', 'too', 'enough'] },
-    { prompt: 'Complete: The coffee is ____ hot to drink.', answer: 'too', options: ['too', 'so', 'such', 'enough'] },
-    { prompt: 'Complete: She is old ____ to drive.', answer: 'enough', options: ['enough', 'too', 'such', 'so'] },
-  ],
-  participles: [
-    { prompt: 'Complete: I am ____ in science.', answer: 'interested', options: ['interested', 'interesting', 'interest', 'interests'] },
-    { prompt: 'Complete: The movie was very ____.', answer: 'boring', options: ['boring', 'bored', 'bore', 'bores'] },
-    { prompt: 'Complete: The children were ____ by the story.', answer: 'excited', options: ['excited', 'exciting', 'excite', 'excitement'] },
-  ],
-  'used-to': [
-    { prompt: 'Complete: I ____ play football every weekend.', answer: 'used to', options: ['used to', 'am used to', 'use to', 'used'] },
-    { prompt: 'Complete: She is used to ____ early.', answer: 'waking up', options: ['waking up', 'wake up', 'woke up', 'wakes up'] },
-    { prompt: 'Complete: Did you ____ live here?', answer: 'use to', options: ['use to', 'used to', 'are used to', 'using to'] },
-  ],
-  'modal-verbs': [
-    { prompt: 'Complete: You ____ wear a helmet.', answer: 'must', options: ['must', 'can', 'may', 'would'] },
-    { prompt: 'Complete: ____ I borrow your pen?', answer: 'May', options: ['May', 'Must', 'Should', 'Have'] },
-    { prompt: 'Complete: You ____ see a doctor if you feel worse.', answer: 'should', options: ['should', 'can', 'may', 'will'] },
-  ],
-  'active-passive': [
-    { prompt: 'Choose the passive sentence.', answer: 'The letter was written by Ana.', options: ['The letter was written by Ana.', 'Ana wrote the letter.', 'Ana was writing the letter.', 'The letter wrote Ana.'] },
-    { prompt: 'Complete: The room ____ every day.', answer: 'is cleaned', options: ['is cleaned', 'cleans', 'cleaned', 'is cleaning'] },
-    { prompt: 'Complete: The cake ____ by my mother yesterday.', answer: 'was made', options: ['was made', 'is made', 'made', 'makes'] },
-  ],
-  'gerunds-infinitives': [
-    { prompt: 'Complete: I enjoy ____ music.', answer: 'listening to', options: ['listening to', 'to listen', 'listen to', 'listened to'] },
-    { prompt: 'Complete: She decided ____ abroad.', answer: 'to study', options: ['to study', 'studying', 'study', 'studied'] },
-    { prompt: 'Complete: He avoided ____ late.', answer: 'being', options: ['being', 'to be', 'be', 'been'] },
-  ],
-  conditionals: [
-    { prompt: 'Complete: If it rains, we ____ at home.', answer: 'will stay', options: ['will stay', 'stayed', 'would stay', 'stay'] },
-    { prompt: 'Complete: If I had more time, I ____ more books.', answer: 'would read', options: ['would read', 'will read', 'read', 'have read'] },
-    { prompt: 'Complete: If water reaches 100°C, it ____.', answer: 'boils', options: ['boils', 'will boil', 'would boil', 'boiled'] },
-  ],
-  conjunctions: [
-    { prompt: 'Complete: I stayed home ____ I was sick.', answer: 'because', options: ['because', 'but', 'although', 'and'] },
-    { prompt: 'Complete: She is tired ____ she keeps working.', answer: 'but', options: ['but', 'because', 'so', 'and'] },
-    { prompt: 'Complete: ____ it was raining, we went out.', answer: 'Although', options: ['Although', 'Because', 'So', 'And'] },
-  ],
-};
-
-const listeningTopics: ListeningTopic[] = [
+const arabicMufradatTopics: Topic[] = [
   {
-    id: 'coffee-order',
-    title: 'Ordering Coffee',
-    description: 'Percakapan cepat saat memesan minuman di cafe.',
-    level: 'Daily',
-    accent: 'Natural American',
-    goal: 'Tangkap pesanan, pilihan ukuran, dan klarifikasi singkat.',
-    focus: ['Could I get...', 'Would you like...', 'That comes to...'],
-    lines: [
-      { speaker: 'Barista', text: 'Hi there. What can I get started for you?', note: 'Opening service question' },
-      { speaker: 'Customer', text: 'Could I get a medium latte with oat milk, please?', note: 'Polite order' },
-      { speaker: 'Barista', text: 'Sure. Would you like that hot or iced?', note: 'Choice question' },
-      { speaker: 'Customer', text: 'Iced, please. And could you make it half sweet?', note: 'Extra request' },
-      { speaker: 'Barista', text: 'Absolutely. That comes to five fifty.', note: 'Price phrase' },
-    ],
+    "id": "arabic-mufradat-salam",
+    "title": "Mufradat 1: Salam",
+    "description": "Kosakata salam dan sapaan dasar dalam bahasa Arab."
   },
   {
-    id: 'hotel-check-in',
-    title: 'Hotel Check-in',
-    description: 'Dialog resepsionis dan tamu saat check-in.',
-    level: 'Travel',
-    accent: 'Native service English',
-    goal: 'Pahami nama reservasi, dokumen, dan instruksi kamar.',
-    focus: ['reservation under...', 'photo ID', 'elevator is on your left'],
-    lines: [
-      { speaker: 'Receptionist', text: 'Good evening. Welcome to Blue Harbor Hotel. Do you have a reservation?', note: 'Greeting and request' },
-      { speaker: 'Guest', text: 'Yes, it should be under Daniel Park.', note: 'Reservation name' },
-      { speaker: 'Receptionist', text: 'Great. May I see a photo ID and a credit card for incidentals?', note: 'Common check-in phrase' },
-      { speaker: 'Guest', text: 'Of course. Also, is breakfast included?', note: 'Follow-up question' },
-      { speaker: 'Receptionist', text: 'Yes. It is served from six thirty to ten on the second floor.', note: 'Time detail' },
-    ],
+    "id": "arabic-mufradat-keluarga",
+    "title": "Mufradat 2: Keluarga",
+    "description": "Kosakata anggota keluarga inti."
   },
   {
-    id: 'job-interview',
-    title: 'Job Interview Small Talk',
-    description: 'Pembuka interview sebelum pertanyaan utama.',
-    level: 'Professional',
-    accent: 'Natural workplace English',
-    goal: 'Kenali sapaan, respon sopan, dan transisi interview.',
-    focus: ['Thanks for coming in', 'I appreciate the opportunity', 'walk me through'],
-    lines: [
-      { speaker: 'Interviewer', text: 'Thanks for coming in today. Did you find the office okay?', note: 'Small talk' },
-      { speaker: 'Candidate', text: 'Yes, absolutely. The directions were very clear.', note: 'Positive response' },
-      { speaker: 'Interviewer', text: 'Great. Before we begin, would you like some water?', note: 'Offer' },
-      { speaker: 'Candidate', text: 'No, thank you. I am all set.', note: 'Polite refusal' },
-      { speaker: 'Interviewer', text: 'Perfect. Could you walk me through your recent experience?', note: 'Interview transition' },
-    ],
+    "id": "arabic-mufradat-kelas",
+    "title": "Mufradat 3: Kelas",
+    "description": "Kosakata benda dan orang di kelas."
   },
   {
-    id: 'doctor-appointment',
-    title: 'Doctor Appointment',
-    description: 'Pasien menjelaskan gejala ke dokter.',
-    level: 'Health',
-    accent: 'Clear native English',
-    goal: 'Dengar gejala, durasi, dan saran awal.',
-    focus: ['How long have you...', 'mild fever', 'take it easy'],
-    lines: [
-      { speaker: 'Doctor', text: 'What seems to be the problem today?', note: 'Medical opening' },
-      { speaker: 'Patient', text: 'I have had a sore throat and a mild fever since Monday.', note: 'Symptoms and duration' },
-      { speaker: 'Doctor', text: 'Any coughing or trouble breathing?', note: 'Follow-up symptoms' },
-      { speaker: 'Patient', text: 'A little coughing, but no trouble breathing.', note: 'Contrast detail' },
-      { speaker: 'Doctor', text: 'Okay. Drink plenty of fluids and take it easy for a couple of days.', note: 'Advice' },
-    ],
+    "id": "arabic-mufradat-rumah",
+    "title": "Mufradat 4: Rumah",
+    "description": "Kosakata bagian rumah sederhana."
   },
   {
-    id: 'directions',
-    title: 'Asking for Directions',
-    description: 'Minta arah ke stasiun dan memahami instruksi.',
-    level: 'Travel',
-    accent: 'Everyday English',
-    goal: 'Tangkap belokan, jarak, dan landmark.',
-    focus: ['go straight', 'turn left', 'you cannot miss it'],
-    lines: [
-      { speaker: 'Traveler', text: 'Excuse me. Is there a train station nearby?', note: 'Polite interruption' },
-      { speaker: 'Local', text: 'Yes. Go straight for two blocks, then turn left at the bakery.', note: 'Directions' },
-      { speaker: 'Traveler', text: 'At the bakery, turn left. Got it.', note: 'Confirming detail' },
-      { speaker: 'Local', text: 'After that, you will see the station across from the park.', note: 'Landmark' },
-      { speaker: 'Traveler', text: 'Thanks. That is really helpful.', note: 'Closing thanks' },
-    ],
+    "id": "arabic-mufradat-angka-1-20",
+    "title": "Mufradat 5: Angka 1-20",
+    "description": "Kosakata angka dasar untuk hitungan awal."
   },
   {
-    id: 'meeting-update',
-    title: 'Project Meeting Update',
-    description: 'Update singkat dalam meeting kantor.',
-    level: 'Work',
-    accent: 'Business English',
-    goal: 'Pahami status, deadline, dan blocker.',
-    focus: ['quick update', 'on track', 'waiting on feedback'],
-    lines: [
-      { speaker: 'Manager', text: 'Could you give us a quick update on the landing page?', note: 'Meeting prompt' },
-      { speaker: 'Designer', text: 'Sure. The layout is done, and the mobile version is almost finished.', note: 'Progress update' },
-      { speaker: 'Manager', text: 'Are we still on track for Friday?', note: 'Deadline check' },
-      { speaker: 'Designer', text: 'Yes, as long as we get feedback by tomorrow morning.', note: 'Condition' },
-      { speaker: 'Manager', text: 'Okay, I will follow up with the client today.', note: 'Next action' },
-    ],
+    "id": "arabic-mufradat-warna",
+    "title": "Mufradat 6: Warna",
+    "description": "Kosakata warna paling sering digunakan."
   },
   {
-    id: 'airport-security',
-    title: 'Airport Security',
-    description: 'Instruksi petugas keamanan bandara.',
-    level: 'Travel',
-    accent: 'Clear public-service English',
-    goal: 'Tangkap instruksi singkat dan urutan tindakan.',
-    focus: ['boarding pass', 'take off your jacket', 'place it in the tray'],
-    lines: [
-      { speaker: 'Officer', text: 'Please have your boarding pass and passport ready.', note: 'Preparation instruction' },
-      { speaker: 'Passenger', text: 'Sure. Do I need to take my laptop out?', note: 'Clarifying question' },
-      { speaker: 'Officer', text: 'Yes, please place it in a separate tray.', note: 'Specific instruction' },
-      { speaker: 'Passenger', text: 'And should I take off my jacket?', note: 'Follow-up' },
-      { speaker: 'Officer', text: 'Yes, jacket and belt off, please.', note: 'Short instruction' },
-    ],
+    "id": "arabic-mufradat-makanan",
+    "title": "Mufradat 7: Makanan",
+    "description": "Kosakata makanan sehari-hari."
   },
   {
-    id: 'restaurant-complaint',
-    title: 'Restaurant Complaint',
-    description: 'Komplain sopan tentang pesanan restoran.',
-    level: 'Daily',
-    accent: 'Polite native English',
-    goal: 'Kenali komplain halus dan solusi layanan.',
-    focus: ['I am sorry, but...', 'I ordered...', 'I will fix that'],
-    lines: [
-      { speaker: 'Customer', text: 'Excuse me. I am sorry, but I ordered the grilled chicken, not the pasta.', note: 'Polite complaint' },
-      { speaker: 'Server', text: 'Oh, I apologize. Let me check that right away.', note: 'Apology' },
-      { speaker: 'Customer', text: 'No worries. I just wanted to make sure.', note: 'Softening phrase' },
-      { speaker: 'Server', text: 'You are right. I will bring the correct dish out as soon as possible.', note: 'Solution' },
-      { speaker: 'Customer', text: 'Thank you. I appreciate it.', note: 'Closing' },
-    ],
+    "id": "arabic-mufradat-minuman",
+    "title": "Mufradat 8: Minuman",
+    "description": "Kosakata minuman dasar."
   },
   {
-    id: 'shopping-return',
-    title: 'Returning an Item',
-    description: 'Mengembalikan barang ke toko.',
-    level: 'Daily',
-    accent: 'Retail English',
-    goal: 'Dengar alasan return, receipt, dan refund.',
-    focus: ['return this item', 'receipt', 'refund to your card'],
-    lines: [
-      { speaker: 'Customer', text: 'Hi. I would like to return this jacket.', note: 'Return request' },
-      { speaker: 'Clerk', text: 'No problem. Do you still have the receipt?', note: 'Receipt question' },
-      { speaker: 'Customer', text: 'Yes, here it is. I bought it two days ago.', note: 'Purchase detail' },
-      { speaker: 'Clerk', text: 'Was there anything wrong with it?', note: 'Reason question' },
-      { speaker: 'Customer', text: 'It is just a little too small.', note: 'Reason' },
-    ],
+    "id": "arabic-mufradat-hari",
+    "title": "Mufradat 9: Hari",
+    "description": "Kosakata hari dan penanda waktu mingguan."
   },
   {
-    id: 'phone-call',
-    title: 'Making a Phone Call',
-    description: 'Telepon kantor dan meninggalkan pesan.',
-    level: 'Work',
-    accent: 'Phone English',
-    goal: 'Pahami pembuka telepon, unavailable, dan pesan.',
-    focus: ['speaking', 'not available', 'leave a message'],
-    lines: [
-      { speaker: 'Assistant', text: 'Good morning, GreenTech Solutions. This is Maya speaking.', note: 'Phone greeting' },
-      { speaker: 'Caller', text: 'Hi Maya. Could I speak with Mr. Allen, please?', note: 'Request' },
-      { speaker: 'Assistant', text: 'I am sorry, he is not available at the moment.', note: 'Unavailable phrase' },
-      { speaker: 'Caller', text: 'Could I leave a message?', note: 'Message request' },
-      { speaker: 'Assistant', text: 'Of course. I will make sure he gets it.', note: 'Confirmation' },
-    ],
+    "id": "arabic-mufradat-waktu",
+    "title": "Mufradat 10: Waktu",
+    "description": "Kosakata waktu dasar untuk rutinitas."
   },
   {
-    id: 'weekend-plans',
-    title: 'Weekend Plans',
-    description: 'Percakapan santai tentang rencana akhir pekan.',
-    level: 'Social',
-    accent: 'Casual native English',
-    goal: 'Tangkap rencana, preferensi, dan ajakan.',
-    focus: ['thinking of...', 'sounds good', 'want to join'],
-    lines: [
-      { speaker: 'Ava', text: 'Do you have any plans this weekend?', note: 'Opening topic' },
-      { speaker: 'Ben', text: 'Not really. I was thinking of going hiking if the weather is nice.', note: 'Tentative plan' },
-      { speaker: 'Ava', text: 'That sounds good. Where are you planning to go?', note: 'Interest question' },
-      { speaker: 'Ben', text: 'Probably Pine Hill. It is close and not too crowded.', note: 'Reason' },
-      { speaker: 'Ava', text: 'Nice. Let me know, I might join you.', note: 'Soft plan' },
-    ],
+    "id": "arabic-mufradat-anggota-tubuh",
+    "title": "Mufradat 11: Anggota Tubuh",
+    "description": "Kosakata bagian tubuh sederhana."
   },
   {
-    id: 'apartment-viewing',
-    title: 'Apartment Viewing',
-    description: 'Melihat apartemen dan bertanya fasilitas.',
-    level: 'Housing',
-    accent: 'Natural city English',
-    goal: 'Dengar harga sewa, fasilitas, dan aturan.',
-    focus: ['utilities included', 'laundry room', 'move in'],
-    lines: [
-      { speaker: 'Agent', text: 'This is a one-bedroom apartment with a lot of natural light.', note: 'Description' },
-      { speaker: 'Renter', text: 'It looks nice. Are utilities included in the rent?', note: 'Cost question' },
-      { speaker: 'Agent', text: 'Water is included, but electricity and internet are separate.', note: 'Details' },
-      { speaker: 'Renter', text: 'Got it. Is there a laundry room in the building?', note: 'Facilities' },
-      { speaker: 'Agent', text: 'Yes, it is on the first floor, next to the mailboxes.', note: 'Location detail' },
-    ],
+    "id": "arabic-mufradat-pakaian",
+    "title": "Mufradat 12: Pakaian",
+    "description": "Kosakata pakaian dan benda yang dikenakan."
   },
   {
-    id: 'tech-support',
-    title: 'Tech Support',
-    description: 'Percakapan support saat aplikasi bermasalah.',
-    level: 'Technology',
-    accent: 'Support English',
-    goal: 'Pahami problem, troubleshooting, dan solusi.',
-    focus: ['restart the app', 'clear the cache', 'try again'],
-    lines: [
-      { speaker: 'User', text: 'Hi. The app keeps freezing when I open the dashboard.', note: 'Problem report' },
-      { speaker: 'Support', text: 'Thanks for letting us know. Have you tried restarting the app?', note: 'First troubleshooting step' },
-      { speaker: 'User', text: 'Yes, but the same thing happened again.', note: 'Result' },
-      { speaker: 'Support', text: 'Okay. Please clear the cache and sign in again.', note: 'Instruction' },
-      { speaker: 'User', text: 'All right. I will try that now.', note: 'Action' },
-    ],
+    "id": "arabic-mufradat-transportasi",
+    "title": "Mufradat 13: Transportasi",
+    "description": "Kosakata kendaraan umum dan pribadi."
   },
   {
-    id: 'class-discussion',
-    title: 'Class Discussion',
-    description: 'Diskusi kelas tentang tugas kelompok.',
-    level: 'Academic',
-    accent: 'Campus English',
-    goal: 'Tangkap opini, pembagian tugas, dan deadline.',
-    focus: ['I can handle...', 'due next week', 'sounds fair'],
-    lines: [
-      { speaker: 'Student A', text: 'We need to divide the presentation into three parts.', note: 'Task planning' },
-      { speaker: 'Student B', text: 'I can handle the introduction and background research.', note: 'Offering task' },
-      { speaker: 'Student C', text: 'Great. I will prepare the examples and visuals.', note: 'Taking role' },
-      { speaker: 'Student A', text: 'Then I will do the conclusion and edit the slides.', note: 'Remaining role' },
-      { speaker: 'Student B', text: 'Sounds fair. Let us finish the first draft by Friday.', note: 'Deadline' },
-    ],
+    "id": "arabic-mufradat-tempat-umum",
+    "title": "Mufradat 14: Tempat Umum",
+    "description": "Kosakata lokasi umum di sekitar kota."
   },
   {
-    id: 'news-briefing',
-    title: 'Short News Briefing',
-    description: 'Mendengar ringkasan berita singkat.',
-    level: 'Media',
-    accent: 'Broadcast-style English',
-    goal: 'Dengar topik utama, angka, dan dampak.',
-    focus: ['according to...', 'expected to', 'as a result'],
-    lines: [
-      { speaker: 'Anchor', text: 'According to city officials, the new bus route will start next Monday.', note: 'Source phrase' },
-      { speaker: 'Reporter', text: 'The route is expected to reduce travel time by about fifteen minutes.', note: 'Expected impact' },
-      { speaker: 'Anchor', text: 'How many neighborhoods will it serve?', note: 'Detail question' },
-      { speaker: 'Reporter', text: 'It will connect five neighborhoods with the central station.', note: 'Number detail' },
-      { speaker: 'Anchor', text: 'As a result, commuters should have more options during rush hour.', note: 'Conclusion' },
-    ],
+    "id": "arabic-mufradat-profesi",
+    "title": "Mufradat 15: Profesi",
+    "description": "Kosakata pekerjaan dasar."
   },
+  {
+    "id": "arabic-mufradat-hewan",
+    "title": "Mufradat 16: Hewan",
+    "description": "Kosakata hewan yang sering dikenalkan."
+  },
+  {
+    "id": "arabic-mufradat-cuaca",
+    "title": "Mufradat 17: Cuaca",
+    "description": "Kosakata cuaca dan kondisi udara."
+  },
+  {
+    "id": "arabic-mufradat-hobi",
+    "title": "Mufradat 18: Hobi",
+    "description": "Kosakata kegiatan waktu luang."
+  },
+  {
+    "id": "arabic-mufradat-kata-kerja-harian",
+    "title": "Mufradat 19: Kata Kerja Harian",
+    "description": "Kata kerja dasar untuk aktivitas sehari-hari."
+  },
+  {
+    "id": "arabic-mufradat-sifat-dasar",
+    "title": "Mufradat 20: Sifat Dasar",
+    "description": "Kosakata sifat untuk mendeskripsikan benda dan orang."
+  },
+  {
+    "id": "arabic-mufradat-arah",
+    "title": "Mufradat 21: Arah",
+    "description": "Kosakata arah dan posisi dasar."
+  },
+  {
+    "id": "arabic-mufradat-belanja",
+    "title": "Mufradat 22: Belanja",
+    "description": "Kosakata jual beli dan harga."
+  },
+  {
+    "id": "arabic-mufradat-alat-tulis",
+    "title": "Mufradat 23: Alat Tulis",
+    "description": "Kosakata perlengkapan belajar."
+  },
+  {
+    "id": "arabic-mufradat-buah",
+    "title": "Mufradat 24: Buah",
+    "description": "Kosakata buah-buahan dasar."
+  },
+  {
+    "id": "arabic-mufradat-sayur",
+    "title": "Mufradat 25: Sayur",
+    "description": "Kosakata sayuran yang sering dipakai."
+  },
+  {
+    "id": "arabic-mufradat-peralatan-rumah",
+    "title": "Mufradat 26: Peralatan Rumah",
+    "description": "Kosakata benda rumah tangga."
+  },
+  {
+    "id": "arabic-mufradat-masjid",
+    "title": "Mufradat 27: Masjid",
+    "description": "Kosakata aktivitas dan benda di masjid."
+  },
+  {
+    "id": "arabic-mufradat-sekolah",
+    "title": "Mufradat 28: Sekolah",
+    "description": "Kosakata kegiatan dan elemen sekolah."
+  },
+  {
+    "id": "arabic-mufradat-kota",
+    "title": "Mufradat 29: Kota",
+    "description": "Kosakata tempat dan bagian kota."
+  },
+  {
+    "id": "arabic-mufradat-negara",
+    "title": "Mufradat 30: Negara",
+    "description": "Kosakata negara dan identitas umum."
+  },
+  {
+    "id": "arabic-mufradat-perasaan",
+    "title": "Mufradat 31: Perasaan",
+    "description": "Kosakata untuk mengungkapkan perasaan."
+  },
+  {
+    "id": "arabic-mufradat-kesehatan",
+    "title": "Mufradat 32: Kesehatan",
+    "description": "Kosakata kesehatan dasar."
+  },
+  {
+    "id": "arabic-mufradat-keluarga-besar",
+    "title": "Mufradat 33: Keluarga Besar",
+    "description": "Kosakata kerabat dalam keluarga besar."
+  },
+  {
+    "id": "arabic-mufradat-aktivitas-pagi",
+    "title": "Mufradat 34: Aktivitas Pagi",
+    "description": "Kosakata rutinitas pagi."
+  },
+  {
+    "id": "arabic-mufradat-aktivitas-malam",
+    "title": "Mufradat 35: Aktivitas Malam",
+    "description": "Kosakata rutinitas malam."
+  },
+  {
+    "id": "arabic-mufradat-pertanyaan-umum",
+    "title": "Mufradat 36: Pertanyaan Umum",
+    "description": "Kata tanya yang sering dipakai."
+  },
+  {
+    "id": "arabic-mufradat-kata-sambung",
+    "title": "Mufradat 37: Kata Sambung",
+    "description": "Kosakata penghubung kalimat dasar."
+  },
+  {
+    "id": "arabic-mufradat-kata-depan",
+    "title": "Mufradat 38: Kata Depan",
+    "description": "Huruf jar dan preposisi paling dasar."
+  },
+  {
+    "id": "arabic-mufradat-ungkapan-sopan",
+    "title": "Mufradat 39: Ungkapan Sopan",
+    "description": "Frasa sopan untuk percakapan harian."
+  },
+  {
+    "id": "arabic-mufradat-review-mufradat",
+    "title": "Mufradat 40: Review Mufradat",
+    "description": "Review kosakata inti dari beberapa topik awal."
+  }
 ];
 
-function buildListeningQuestions(topic: ListeningTopic): VocabQuestion[] {
-  const speakerNames = Array.from(new Set(topic.lines.map((line) => line.speaker)));
-  const firstLine = topic.lines[0];
-  const secondLine = topic.lines[1] || topic.lines[0];
-  const thirdLine = topic.lines[2] || topic.lines[0];
-  const fourthLine = topic.lines[3] || topic.lines[1] || topic.lines[0];
-  const lastLine = topic.lines[topic.lines.length - 1];
-  const firstFocus = topic.focus[0] || firstLine.text;
-  const secondFocus = topic.focus[1] || secondLine.text;
-  const thirdFocus = topic.focus[2] || lastLine.text;
-  const lineTexts = topic.lines.map((line) => line.text);
-  const lineNotes = topic.lines.map((line) => line.note);
-  const distractors = [
-    'The speaker changes the subject.',
-    'The speaker cancels the plan.',
-    'The speaker refuses to answer.',
-    'The speaker asks for payment first.',
-    'The speaker gives unrelated personal news.',
-    'The conversation becomes a formal speech.',
-    'The speakers discuss a sports result.',
-    'The listener should ignore the audio.',
-  ];
+const arabicNahwuTopics: Topic[] = [
+  {
+    "id": "arabic-nahwu-isim-fiil",
+    "title": "Nahwu 1: Isim dan Fiil",
+    "description": "Membedakan kata benda, kata kerja, dan huruf dasar dalam kalimat Arab."
+  },
+  {
+    "id": "arabic-nahwu-mubtada-khabar",
+    "title": "Nahwu 2: Mubtada dan Khabar",
+    "description": "Mengenali subjek dan informasi utama dalam jumlah ismiyyah."
+  },
+  {
+    "id": "arabic-nahwu-kata-tunjuk",
+    "title": "Nahwu 3: Kata Tunjuk",
+    "description": "Memakai hadza, hadzihi, dzalika, dan tilka sesuai benda yang ditunjuk."
+  },
+  {
+    "id": "arabic-nahwu-dhamir-munfashil",
+    "title": "Nahwu 4: Dhamir Munfashil",
+    "description": "Menghafal kata ganti terpisah untuk membuat kalimat sederhana."
+  },
+  {
+    "id": "arabic-nahwu-mudzakkar-muannats",
+    "title": "Nahwu 5: Mudzakkar dan Muannats",
+    "description": "Mengenali jenis kata maskulin dan feminin pada kata Arab dasar."
+  },
+  {
+    "id": "arabic-nahwu-mufrad-mutsanna-jamak",
+    "title": "Nahwu 6: Mufrad, Mutsanna, dan Jamak",
+    "description": "Mengenal jumlah tunggal, dua, dan banyak dalam kata Arab."
+  },
+  {
+    "id": "arabic-nahwu-huruf-jar",
+    "title": "Nahwu 7: Huruf Jar",
+    "description": "Memahami kata depan Arab yang membuat isim setelahnya majrur."
+  },
+  {
+    "id": "arabic-nahwu-jumlah-ismiyyah",
+    "title": "Nahwu 8: Jumlah Ismiyyah",
+    "description": "Mengenali kalimat Arab yang dimulai dengan isim atau dhamir."
+  },
+  {
+    "id": "arabic-nahwu-jumlah-fiiliyyah",
+    "title": "Nahwu 9: Jumlah Fiiliyyah",
+    "description": "Mengenali kalimat Arab yang dimulai dengan fiil."
+  },
+  {
+    "id": "arabic-nahwu-kata-tanya",
+    "title": "Nahwu 10: Kata Tanya",
+    "description": "Memakai kata tanya Arab dasar untuk orang, benda, tempat, dan waktu."
+  },
+  {
+    "id": "arabic-nahwu-naat-manuut",
+    "title": "Nahwu 11: Naat dan Manuut",
+    "description": "Mengenali sifat dan kata yang disifati dalam frasa Arab."
+  },
+  {
+    "id": "arabic-nahwu-idafah-dasar",
+    "title": "Nahwu 12: Idafah Dasar",
+    "description": "Memahami susunan kepemilikan atau hubungan dua isim."
+  },
+  {
+    "id": "arabic-nahwu-fiil-madhi",
+    "title": "Nahwu 13: Fiil Madhi",
+    "description": "Mengenali kata kerja lampau pada contoh Arab pendek."
+  },
+  {
+    "id": "arabic-nahwu-fiil-mudhari",
+    "title": "Nahwu 14: Fiil Mudhari",
+    "description": "Mengenali kata kerja sedang atau akan terjadi."
+  },
+  {
+    "id": "arabic-nahwu-fiil-amr",
+    "title": "Nahwu 15: Fiil Amr",
+    "description": "Mengenali bentuk perintah Arab yang sering dipakai di kelas."
+  },
+  {
+    "id": "arabic-nahwu-negasi-laa",
+    "title": "Nahwu 16: Negasi Laa",
+    "description": "Memahami penggunaan laa untuk meniadakan atau melarang."
+  },
+  {
+    "id": "arabic-nahwu-negasi-maa",
+    "title": "Nahwu 17: Negasi Maa",
+    "description": "Memakai maa untuk meniadakan kejadian lampau atau kepemilikan sederhana."
+  },
+  {
+    "id": "arabic-nahwu-urutan-kata",
+    "title": "Nahwu 18: Urutan Kata",
+    "description": "Melatih susunan kata dalam jumlah ismiyyah dan fiiliyyah."
+  },
+  {
+    "id": "arabic-nahwu-kalimat-sederhana",
+    "title": "Nahwu 19: Kalimat Sederhana",
+    "description": "Menyusun kalimat Arab pendek untuk identitas, kepemilikan, dan aktivitas."
+  },
+  {
+    "id": "arabic-nahwu-review-nahwu-pemula",
+    "title": "Nahwu 20: Review Nahwu Pemula",
+    "description": "Mengulang kaidah inti dari topik nahwu pemula dalam kalimat campuran."
+  }
+];
 
-  const makeOptions = (answer: string, wrongs: string[], seed: number) => {
-    const fallback = [
-      ...distractors,
-      'A weather report',
-      'A school announcement',
-      'Translate every word first.',
-      'Skip the full conversation.',
-    ];
-    const uniqueWrongs = [...wrongs, ...fallback].filter((option, index, list) => option !== answer && list.indexOf(option) === index);
-    return rotateOptions([answer, ...uniqueWrongs].slice(0, 4), seed);
-  };
+const arabicIstimaTopics: Topic[] = [
+  {
+    "id": "arabic-istima-bunyi-pendek-panjang",
+    "title": "Istima 1: Bunyi Pendek dan Panjang",
+    "description": "Melatih telinga membedakan harakat pendek dan bunyi mad panjang."
+  },
+  {
+    "id": "arabic-istima-salam-terdengar",
+    "title": "Istima 2: Salam Terdengar",
+    "description": "Menangkap salam, jawaban salam, dan sapaan Arab sederhana."
+  },
+  {
+    "id": "arabic-istima-nama-orang",
+    "title": "Istima 3: Nama Orang",
+    "description": "Menangkap nama yang disebut dalam pertanyaan dan jawaban pendek."
+  },
+  {
+    "id": "arabic-istima-asal-negara",
+    "title": "Istima 4: Asal Negara",
+    "description": "Mendengar frasa asal negara dan kota dengan pola min."
+  },
+  {
+    "id": "arabic-istima-kata-kelas",
+    "title": "Istima 5: Kata Kelas",
+    "description": "Menangkap kosakata benda kelas dari audio pendek."
+  },
+  {
+    "id": "arabic-istima-kata-rumah",
+    "title": "Istima 6: Kata Rumah",
+    "description": "Mendengar kata rumah, kamar, pintu, dan dapur dalam kalimat pendek."
+  },
+  {
+    "id": "arabic-istima-angka-terdengar",
+    "title": "Istima 7: Angka Terdengar",
+    "description": "Melatih telinga mengenali angka Arab dasar dalam konteks pendek."
+  },
+  {
+    "id": "arabic-istima-warna-terdengar",
+    "title": "Istima 8: Warna Terdengar",
+    "description": "Menangkap nama warna saat mendengar deskripsi benda."
+  },
+  {
+    "id": "arabic-istima-instruksi-kelas",
+    "title": "Istima 9: Instruksi Kelas",
+    "description": "Memahami perintah guru yang sering terdengar di kelas Arab."
+  },
+  {
+    "id": "arabic-istima-makanan-minuman",
+    "title": "Istima 10: Makanan dan Minuman",
+    "description": "Mendengar pilihan makanan dan minuman dalam kalimat harian."
+  },
+  {
+    "id": "arabic-istima-apa-kabar",
+    "title": "Istima 11: Apa Kabar",
+    "description": "Mendengar tanya kabar dan respons singkat dalam percakapan."
+  },
+  {
+    "id": "arabic-istima-jam-sederhana",
+    "title": "Istima 12: Jam Sederhana",
+    "description": "Menangkap waktu sederhana dari audio Arab pendek."
+  },
+  {
+    "id": "arabic-istima-lokasi-benda",
+    "title": "Istima 13: Lokasi Benda",
+    "description": "Memahami posisi benda melalui kata depan Arab dasar."
+  },
+  {
+    "id": "arabic-istima-keluarga-terdengar",
+    "title": "Istima 14: Keluarga Terdengar",
+    "description": "Menangkap sebutan anggota keluarga dalam kalimat pendek."
+  },
+  {
+    "id": "arabic-istima-hobi-terdengar",
+    "title": "Istima 15: Hobi Terdengar",
+    "description": "Mendengar aktivitas hobi dan kesukaan sederhana."
+  },
+  {
+    "id": "arabic-istima-arah-sederhana",
+    "title": "Istima 16: Arah Sederhana",
+    "description": "Menangkap arah kanan, kiri, depan, dan belakang."
+  },
+  {
+    "id": "arabic-istima-dialog-pasar",
+    "title": "Istima 17: Dialog Pasar",
+    "description": "Mendengar frasa jual beli, harga, dan permintaan sederhana."
+  },
+  {
+    "id": "arabic-istima-dialog-sekolah",
+    "title": "Istima 18: Dialog Sekolah",
+    "description": "Mendengar percakapan singkat tentang kelas, guru, dan pelajaran."
+  },
+  {
+    "id": "arabic-istima-pengumuman-pendek",
+    "title": "Istima 19: Pengumuman Pendek",
+    "description": "Menangkap informasi penting dari pengumuman Arab singkat."
+  },
+  {
+    "id": "arabic-istima-cerita-audio-mini",
+    "title": "Istima 20: Cerita Audio Mini",
+    "description": "Memahami cerita sangat pendek tentang rutinitas sehari-hari."
+  }
+];
 
-  const baseQuestions: VocabQuestion[] = [
-    {
-      id: `${topic.id}-listening-main-idea`,
-      level: 'Basic',
-      prompt: 'What is the main situation in this conversation?',
-      answer: topic.title,
-      options: makeOptions(topic.title, ['A weather report', 'A sports interview', 'A school announcement'], 0),
-    },
-    {
-      id: `${topic.id}-listening-speakers`,
-      level: 'Basic',
-      prompt: 'Who speaks first in the conversation?',
-      answer: firstLine.speaker,
-      options: makeOptions(firstLine.speaker, [...speakerNames.filter((name) => name !== firstLine.speaker), 'Narrator', 'Teacher'], 1),
-    },
-    {
-      id: `${topic.id}-listening-first-response`,
-      level: 'Basic',
-      prompt: `What does ${secondLine.speaker} say near the beginning?`,
-      answer: secondLine.text,
-      options: makeOptions(secondLine.text, [firstLine.text, thirdLine.text, lastLine.text], 2),
-    },
-    {
-      id: `${topic.id}-listening-third-speaker`,
-      level: 'Basic',
-      prompt: `Who says: "${thirdLine.text}"?`,
-      answer: thirdLine.speaker,
-      options: makeOptions(thirdLine.speaker, [...speakerNames.filter((name) => name !== thirdLine.speaker), 'Narrator', 'Customer service agent'], 3),
-    },
-    {
-      id: `${topic.id}-listening-focus-1`,
-      level: 'Intermediate',
-      prompt: `Which phrase is one of the focus chunks for "${topic.title}"?`,
-      answer: firstFocus,
-      options: makeOptions(firstFocus, ['by the way', 'as soon as possible', 'never mind'], 4),
-    },
-    {
-      id: `${topic.id}-listening-detail`,
-      level: 'Intermediate',
-      prompt: 'Which line appears in the conversation?',
-      answer: lastLine.text,
-      options: makeOptions(lastLine.text, [firstLine.text, secondLine.text, distractors[1]], 5),
-    },
-    {
-      id: `${topic.id}-listening-note`,
-      level: 'Intermediate',
-      prompt: `What is the function of this line: "${firstLine.text}"?`,
-      answer: firstLine.note,
-      options: makeOptions(firstLine.note, ['Closing thanks', 'Price disagreement', 'A grammar correction', ...lineNotes], 6),
-    },
-    {
-      id: `${topic.id}-listening-sequence`,
-      level: 'Intermediate',
-      prompt: `What comes right after: "${thirdLine.text}"?`,
-      answer: fourthLine.text,
-      options: makeOptions(fourthLine.text, lineTexts.filter((text) => text !== fourthLine.text), 7),
-    },
-    {
-      id: `${topic.id}-listening-purpose`,
-      level: 'Intermediate',
-      prompt: 'What listening goal matches this topic?',
-      answer: topic.goal,
-      options: makeOptions(topic.goal, ['Memorize random word lists only.', 'Practice silent reading without audio.', 'Focus only on spelling rules.'], 8),
-    },
-    {
-      id: `${topic.id}-listening-focus-2`,
-      level: 'Advanced',
-      prompt: `Listen for natural chunks. Which chunk should you shadow in this topic?`,
-      answer: secondFocus,
-      options: makeOptions(secondFocus, ['I have no idea', 'That is impossible', 'See you next year', firstFocus], 9),
-    },
-    {
-      id: `${topic.id}-listening-focus-3`,
-      level: 'Advanced',
-      prompt: 'Which phrase is useful for native-speed recognition in this conversation?',
-      answer: thirdFocus,
-      options: makeOptions(thirdFocus, ['Let me sleep on it', 'It depends on the weather', 'That sounds impossible'], 10),
-    },
-    {
-      id: `${topic.id}-listening-final-function`,
-      level: 'Advanced',
-      prompt: `What is the function of the final line: "${lastLine.text}"?`,
-      answer: lastLine.note,
-      options: makeOptions(lastLine.note, ['Opening service question', 'A disagreement', 'A topic change', ...lineNotes], 11),
-    },
-    {
-      id: `${topic.id}-listening-inference`,
-      level: 'Advanced',
-      prompt: 'What should you do first in the recommended practice flow?',
-      answer: 'Listen without reading.',
-      options: makeOptions('Listen without reading.', ['Translate every word first.', 'Skip the full conversation.', 'Only read the transcript silently.'], 12),
-    },
-  ];
+const arabicKalamTopics: Topic[] = [
+  {
+    "id": "arabic-kalam-salam-dan-sapaan",
+    "title": "Kalam 1: Salam dan Sapaan",
+    "description": "Latihan membuka percakapan dengan salam dan sapaan sederhana."
+  },
+  {
+    "id": "arabic-kalam-memperkenalkan-nama",
+    "title": "Kalam 2: Memperkenalkan Nama",
+    "description": "Latihan menyebut nama dan menanyakan nama orang lain."
+  },
+  {
+    "id": "arabic-kalam-asal-negara",
+    "title": "Kalam 3: Asal Negara",
+    "description": "Latihan menyebut asal negara atau kota dengan pola ana min."
+  },
+  {
+    "id": "arabic-kalam-menanyakan-kabar",
+    "title": "Kalam 4: Menanyakan Kabar",
+    "description": "Latihan tanya kabar dan memberi jawaban singkat yang natural."
+  },
+  {
+    "id": "arabic-kalam-ucapan-terima-kasih",
+    "title": "Kalam 5: Ucapan Terima Kasih",
+    "description": "Latihan mengucapkan terima kasih dan meresponsnya."
+  },
+  {
+    "id": "arabic-kalam-permintaan-maaf",
+    "title": "Kalam 6: Permintaan Maaf",
+    "description": "Latihan meminta maaf dan memberi alasan pendek."
+  },
+  {
+    "id": "arabic-kalam-izin-dan-permisi",
+    "title": "Kalam 7: Izin dan Permisi",
+    "description": "Latihan meminta izin masuk, keluar, atau berbicara."
+  },
+  {
+    "id": "arabic-kalam-keluarga-dekat",
+    "title": "Kalam 8: Keluarga Dekat",
+    "description": "Latihan berbicara tentang ayah, ibu, saudara, dan saudari."
+  },
+  {
+    "id": "arabic-kalam-benda-di-kelas",
+    "title": "Kalam 9: Benda di Kelas",
+    "description": "Latihan menyebut benda kelas dan lokasinya."
+  },
+  {
+    "id": "arabic-kalam-aktivitas-harian",
+    "title": "Kalam 10: Aktivitas Harian",
+    "description": "Latihan berbicara tentang rutinitas pagi, belajar, dan tidur."
+  },
+  {
+    "id": "arabic-kalam-makanan-dan-minuman",
+    "title": "Kalam 11: Makanan dan Minuman",
+    "description": "Latihan memesan, menyebut suka, dan meminta makanan sederhana."
+  },
+  {
+    "id": "arabic-kalam-angka-sederhana",
+    "title": "Kalam 12: Angka Sederhana",
+    "description": "Latihan memakai angka dalam percakapan harian."
+  },
+  {
+    "id": "arabic-kalam-waktu-dan-jam",
+    "title": "Kalam 13: Waktu dan Jam",
+    "description": "Latihan bertanya jam dan menyebut waktu sederhana."
+  },
+  {
+    "id": "arabic-kalam-arah-sederhana",
+    "title": "Kalam 14: Arah Sederhana",
+    "description": "Latihan meminta dan memberi arah kanan, kiri, depan, dan belakang."
+  },
+  {
+    "id": "arabic-kalam-berbelanja-ringan",
+    "title": "Kalam 15: Berbelanja Ringan",
+    "description": "Latihan bertanya harga, meminta barang, dan menutup transaksi."
+  },
+  {
+    "id": "arabic-kalam-transportasi",
+    "title": "Kalam 16: Transportasi",
+    "description": "Latihan bicara tentang kendaraan dan perjalanan singkat."
+  },
+  {
+    "id": "arabic-kalam-hobi",
+    "title": "Kalam 17: Hobi",
+    "description": "Latihan menyebut hobi dan alasan sederhana."
+  },
+  {
+    "id": "arabic-kalam-cuaca",
+    "title": "Kalam 18: Cuaca",
+    "description": "Latihan bicara tentang cuaca hari ini."
+  },
+  {
+    "id": "arabic-kalam-janji-bertemu",
+    "title": "Kalam 19: Janji Bertemu",
+    "description": "Latihan membuat janji bertemu dengan waktu dan tempat sederhana."
+  },
+  {
+    "id": "arabic-kalam-review-dialog-pemula",
+    "title": "Kalam 20: Review Dialog Pemula",
+    "description": "Menggabungkan salam, perkenalan, asal, kabar, dan penutup."
+  }
+];
 
-  return topic.questions ?? baseQuestions;
-}
+const arabicQiraahTopics: Topic[] = [
+  {
+    "id": "arabic-qiraah-huruf-dan-kata-pendek",
+    "title": "Qiraah 1: Huruf dan Kata Pendek",
+    "description": "Melatih membaca kata Arab pendek berharakat dengan makna dasar."
+  },
+  {
+    "id": "arabic-qiraah-salam-tertulis",
+    "title": "Qiraah 2: Salam Tertulis",
+    "description": "Membaca salam, respons, dan sapaan pendek dalam teks Arab."
+  },
+  {
+    "id": "arabic-qiraah-nama-dan-asal",
+    "title": "Qiraah 3: Nama dan Asal",
+    "description": "Membaca teks singkat tentang nama, asal negara, dan kota."
+  },
+  {
+    "id": "arabic-qiraah-keluarga",
+    "title": "Qiraah 4: Keluarga",
+    "description": "Membaca kalimat tentang anggota keluarga dekat."
+  },
+  {
+    "id": "arabic-qiraah-sekolah",
+    "title": "Qiraah 5: Sekolah",
+    "description": "Membaca teks pendek tentang kelas, guru, dan alat belajar."
+  },
+  {
+    "id": "arabic-qiraah-rumah",
+    "title": "Qiraah 6: Rumah",
+    "description": "Membaca deskripsi rumah, ruangan, dan posisi benda."
+  },
+  {
+    "id": "arabic-qiraah-waktu-harian",
+    "title": "Qiraah 7: Waktu Harian",
+    "description": "Membaca kalimat tentang pagi, siang, malam, dan rutinitas."
+  },
+  {
+    "id": "arabic-qiraah-angka-1-20",
+    "title": "Qiraah 8: Angka 1-20",
+    "description": "Membaca angka sederhana dalam kalimat Arab harian."
+  },
+  {
+    "id": "arabic-qiraah-warna-dan-benda",
+    "title": "Qiraah 9: Warna dan Benda",
+    "description": "Membaca deskripsi warna untuk benda di sekitar."
+  },
+  {
+    "id": "arabic-qiraah-makanan-sederhana",
+    "title": "Qiraah 10: Makanan Sederhana",
+    "description": "Membaca teks pendek tentang makanan, minuman, dan kesukaan."
+  },
+  {
+    "id": "arabic-qiraah-pasar-kecil",
+    "title": "Qiraah 11: Pasar Kecil",
+    "description": "Membaca kalimat jual beli sederhana di pasar."
+  },
+  {
+    "id": "arabic-qiraah-masjid-dan-tempat-umum",
+    "title": "Qiraah 12: Masjid dan Tempat Umum",
+    "description": "Membaca teks tentang masjid, jalan, toko, dan tempat sekitar."
+  },
+  {
+    "id": "arabic-qiraah-cuaca",
+    "title": "Qiraah 13: Cuaca",
+    "description": "Membaca kalimat tentang cuaca, panas, dingin, dan hujan."
+  },
+  {
+    "id": "arabic-qiraah-hobi",
+    "title": "Qiraah 14: Hobi",
+    "description": "Membaca bacaan pendek tentang hobi dan kegiatan waktu luang."
+  },
+  {
+    "id": "arabic-qiraah-transportasi",
+    "title": "Qiraah 15: Transportasi",
+    "description": "Membaca teks tentang kendaraan dan perjalanan pendek."
+  },
+  {
+    "id": "arabic-qiraah-arah-sederhana",
+    "title": "Qiraah 16: Arah Sederhana",
+    "description": "Membaca instruksi arah kanan, kiri, depan, dan belakang."
+  },
+  {
+    "id": "arabic-qiraah-kesehatan-dasar",
+    "title": "Qiraah 17: Kesehatan Dasar",
+    "description": "Membaca teks pendek tentang sakit, sehat, obat, dan dokter."
+  },
+  {
+    "id": "arabic-qiraah-pekerjaan",
+    "title": "Qiraah 18: Pekerjaan",
+    "description": "Membaca deskripsi profesi dan tempat kerja sederhana."
+  },
+  {
+    "id": "arabic-qiraah-undangan-pendek",
+    "title": "Qiraah 19: Undangan Pendek",
+    "description": "Membaca undangan sederhana, waktu, tempat, dan ajakan."
+  },
+  {
+    "id": "arabic-qiraah-cerita-mini",
+    "title": "Qiraah 20: Cerita Mini",
+    "description": "Membaca cerita sangat pendek berisi urutan kegiatan harian."
+  }
+];
+
+const arabicKitabahTopics: Topic[] = [
+  {
+    "id": "arabic-kitabah-menulis-huruf-sambung",
+    "title": "Kitabah 1: Menulis Huruf Sambung",
+    "description": "Melatih bentuk huruf Arab ketika berdiri sendiri dan tersambung."
+  },
+  {
+    "id": "arabic-kitabah-menyalin-kata-berharakat",
+    "title": "Kitabah 2: Menyalin Kata Berharakat",
+    "description": "Menyalin kata Arab pendek dengan fathah, kasrah, dhammah, dan sukun."
+  },
+  {
+    "id": "arabic-kitabah-menulis-salam",
+    "title": "Kitabah 3: Menulis Salam",
+    "description": "Menulis salam, jawaban salam, dan sapaan singkat."
+  },
+  {
+    "id": "arabic-kitabah-identitas-diri",
+    "title": "Kitabah 4: Menulis Identitas Diri",
+    "description": "Menulis nama, asal, status pelajar, dan bahasa yang dipelajari."
+  },
+  {
+    "id": "arabic-kitabah-jumlah-ismiyyah-sederhana",
+    "title": "Kitabah 5: Jumlah Ismiyyah Sederhana",
+    "description": "Menulis kalimat nominal dasar dengan mubtada dan khabar."
+  },
+  {
+    "id": "arabic-kitabah-kata-tunjuk",
+    "title": "Kitabah 6: Kata Tunjuk",
+    "description": "Menulis kalimat dengan هذا dan هذه untuk benda maskulin dan feminin."
+  },
+  {
+    "id": "arabic-kitabah-dhamir-dasar",
+    "title": "Kitabah 7: Dhamir Dasar",
+    "description": "Menulis kalimat pendek memakai kata ganti dasar."
+  },
+  {
+    "id": "arabic-kitabah-benda-di-kelas",
+    "title": "Kitabah 8: Benda di Kelas",
+    "description": "Menulis kalimat tentang benda kelas dan posisinya."
+  },
+  {
+    "id": "arabic-kitabah-keluarga-saya",
+    "title": "Kitabah 9: Keluarga Saya",
+    "description": "Menulis kalimat pendek tentang anggota keluarga."
+  },
+  {
+    "id": "arabic-kitabah-rutinitas-pagi",
+    "title": "Kitabah 10: Rutinitas Pagi",
+    "description": "Menulis kegiatan pagi dengan kata kerja sederhana."
+  },
+  {
+    "id": "arabic-kitabah-kalimat-tanya",
+    "title": "Kitabah 11: Kalimat Tanya",
+    "description": "Menulis pertanyaan dasar dengan من، ما، أين، كيف."
+  },
+  {
+    "id": "arabic-kitabah-jawaban-ya-tidak",
+    "title": "Kitabah 12: Jawaban Ya/Tidak",
+    "description": "Menulis jawaban singkat memakai نعم dan لا."
+  },
+  {
+    "id": "arabic-kitabah-preposisi-dasar",
+    "title": "Kitabah 13: Preposisi Dasar",
+    "description": "Menulis kalimat dengan في، على، من، إلى."
+  },
+  {
+    "id": "arabic-kitabah-deskripsi-warna",
+    "title": "Kitabah 14: Deskripsi Warna",
+    "description": "Menulis warna benda dengan kesesuaian sederhana."
+  },
+  {
+    "id": "arabic-kitabah-angka-dalam-kalimat",
+    "title": "Kitabah 15: Angka dalam Kalimat",
+    "description": "Menulis jumlah benda dengan angka dasar."
+  },
+  {
+    "id": "arabic-kitabah-pesan-pendek",
+    "title": "Kitabah 16: Pesan Pendek",
+    "description": "Menulis pesan singkat untuk teman atau guru."
+  },
+  {
+    "id": "arabic-kitabah-paragraf-3-kalimat",
+    "title": "Kitabah 17: Paragraf 3 Kalimat",
+    "description": "Menulis paragraf mini berisi tiga kalimat terhubung."
+  },
+  {
+    "id": "arabic-kitabah-dialog-mini",
+    "title": "Kitabah 18: Dialog Mini",
+    "description": "Menulis dialog sangat pendek berisi tanya jawab harian."
+  },
+  {
+    "id": "arabic-kitabah-kartu-perkenalan",
+    "title": "Kitabah 19: Kartu Perkenalan",
+    "description": "Menulis kartu identitas sederhana berisi nama, asal, dan hobi."
+  },
+  {
+    "id": "arabic-kitabah-review-tulisan-pemula",
+    "title": "Kitabah 20: Review Tulisan Pemula",
+    "description": "Menggabungkan salam, identitas, lokasi, dan paragraf pendek."
+  }
+];
+
+const arabicMakharijTopics: Topic[] = [
+  {
+    "id": "arabic-makharij-makharij-tenggorokan",
+    "title": "Makharij 1: Makharij Tenggorokan",
+    "description": "Melatih huruf halqi yang keluar dari area tenggorokan."
+  },
+  {
+    "id": "arabic-makharij-huruf-bibir",
+    "title": "Makharij 2: Huruf Bibir",
+    "description": "Melatih huruf yang keluar dari bibir dan sekitarnya."
+  },
+  {
+    "id": "arabic-makharij-huruf-lidah-depan",
+    "title": "Makharij 3: Huruf Lidah Depan",
+    "description": "Melatih huruf yang banyak memakai ujung lidah."
+  },
+  {
+    "id": "arabic-makharij-huruf-tebal",
+    "title": "Makharij 4: Huruf Tebal",
+    "description": "Melatih huruf tafkhim agar bunyinya penuh dan mantap."
+  },
+  {
+    "id": "arabic-makharij-huruf-tipis",
+    "title": "Makharij 5: Huruf Tipis",
+    "description": "Melatih huruf tarqiq agar tidak terdengar terlalu berat."
+  },
+  {
+    "id": "arabic-makharij-harakat-fathah",
+    "title": "Makharij 6: Harakat Fathah",
+    "description": "Melatih bunyi a pendek pada huruf Arab."
+  },
+  {
+    "id": "arabic-makharij-kasrah",
+    "title": "Makharij 7: Kasrah",
+    "description": "Melatih bunyi i pendek di bawah huruf."
+  },
+  {
+    "id": "arabic-makharij-dhammah",
+    "title": "Makharij 8: Dhammah",
+    "description": "Melatih bunyi u pendek dengan bibir membulat."
+  },
+  {
+    "id": "arabic-makharij-sukun",
+    "title": "Makharij 9: Sukun",
+    "description": "Melatih huruf mati tanpa vokal setelahnya."
+  },
+  {
+    "id": "arabic-makharij-tasydid",
+    "title": "Makharij 10: Tasydid",
+    "description": "Melatih huruf ganda agar ditekan sebentar lalu dilepas."
+  },
+  {
+    "id": "arabic-makharij-mad-asli",
+    "title": "Makharij 11: Mad Asli",
+    "description": "Melatih panjang dua harakat pada alif, waw, dan ya mad."
+  },
+  {
+    "id": "arabic-makharij-hamzah",
+    "title": "Makharij 12: Hamzah",
+    "description": "Melatih hamzah di awal, tengah, dan akhir kata."
+  },
+  {
+    "id": "arabic-makharij-ain-dan-ha",
+    "title": "Makharij 13: Ain dan Ha",
+    "description": "Membedakan ع، ح، ه agar tidak tertukar."
+  },
+  {
+    "id": "arabic-makharij-qaf-dan-kaf",
+    "title": "Makharij 14: Qaf dan Kaf",
+    "description": "Membedakan ق yang tebal dan ك yang ringan."
+  },
+  {
+    "id": "arabic-makharij-sin-dan-shad",
+    "title": "Makharij 15: Sin dan Shad",
+    "description": "Membedakan س tipis dan ص tebal."
+  },
+  {
+    "id": "arabic-makharij-dal-dan-dhad",
+    "title": "Makharij 16: Dal dan Dhad",
+    "description": "Membedakan د tipis dan ض tebal."
+  },
+  {
+    "id": "arabic-makharij-ra-tafkhim",
+    "title": "Makharij 17: Ra Tafkhim",
+    "description": "Melatih ra yang dibaca tebal dalam kondisi tertentu."
+  },
+  {
+    "id": "arabic-makharij-lam-jalalah",
+    "title": "Makharij 18: Lam Jalalah",
+    "description": "Melatih lam pada lafaz Allah dalam kondisi tebal dan tipis."
+  },
+  {
+    "id": "arabic-makharij-waqaf-pendek",
+    "title": "Makharij 19: Waqaf Pendek",
+    "description": "Melatih berhenti singkat di akhir kata dan kalimat."
+  },
+  {
+    "id": "arabic-makharij-review-pelafalan-pemula",
+    "title": "Makharij 20: Review Pelafalan Pemula",
+    "description": "Menggabungkan huruf halqi, tebal-tipis, mad, dan waqaf."
+  }
+];
+
+const mandarinPinyinTopics: Topic[] = [
+  {
+    "id": "mandarin-pinyin-tone-1-high-flat",
+    "title": "Pīnyīn 1: Tone 1 High Flat",
+    "description": "Melatih nada pertama yang tinggi, datar, dan stabil tanpa naik turun."
+  },
+  {
+    "id": "mandarin-pinyin-tone-2-rising",
+    "title": "Pīnyīn 2: Tone 2 Rising",
+    "description": "Melatih nada kedua yang naik seperti intonasi bertanya singkat."
+  },
+  {
+    "id": "mandarin-pinyin-tone-3-dipping",
+    "title": "Pīnyīn 3: Tone 3 Dipping",
+    "description": "Melatih nada ketiga yang rendah dan melengkung turun-naik secara ringan."
+  },
+  {
+    "id": "mandarin-pinyin-tone-4-falling",
+    "title": "Pīnyīn 4: Tone 4 Falling",
+    "description": "Melatih nada keempat yang jatuh tegas dari tinggi ke rendah."
+  },
+  {
+    "id": "mandarin-pinyin-neutral-tone",
+    "title": "Pīnyīn 5: Neutral Tone",
+    "description": "Melatih nada netral yang ringan, pendek, dan mengikuti nada sebelumnya."
+  },
+  {
+    "id": "mandarin-pinyin-tone-pairs-1-1-and-1-4",
+    "title": "Pīnyīn 6: Tone Pairs 1-1 and 1-4",
+    "description": "Melatih pasangan nada dari nada pertama ke nada pertama atau keempat."
+  },
+  {
+    "id": "mandarin-pinyin-tone-pairs-2-2-and-2-4",
+    "title": "Pīnyīn 7: Tone Pairs 2-2 and 2-4",
+    "description": "Melatih pasangan nada naik-naik dan naik-jatuh dalam kata sehari-hari."
+  },
+  {
+    "id": "mandarin-pinyin-third-tone-sandhi-basics",
+    "title": "Pīnyīn 8: Third Tone Sandhi Basics",
+    "description": "Melatih perubahan nada ketiga saat bertemu nada ketiga lain."
+  },
+  {
+    "id": "mandarin-pinyin-pinyin-initials-b-p-m-f",
+    "title": "Pīnyīn 9: Pinyin Initials b p m f",
+    "description": "Melatih bunyi bibir b, p, m, dan f dalam pīnyīn Mandarin."
+  },
+  {
+    "id": "mandarin-pinyin-pinyin-initials-d-t-n-l",
+    "title": "Pīnyīn 10: Pinyin Initials d t n l",
+    "description": "Melatih bunyi ujung lidah d, t, n, dan l."
+  },
+  {
+    "id": "mandarin-pinyin-pinyin-initials-g-k-h",
+    "title": "Pīnyīn 11: Pinyin Initials g k h",
+    "description": "Melatih bunyi belakang lidah g, k, dan h."
+  },
+  {
+    "id": "mandarin-pinyin-finals-a-o-e",
+    "title": "Pīnyīn 12: Finals a o e",
+    "description": "Melatih final dasar a, o, dan e sebagai inti suku kata Mandarin."
+  },
+  {
+    "id": "mandarin-pinyin-finals-i-u-u-umlaut",
+    "title": "Pīnyīn 13: Finals i u ü",
+    "description": "Melatih final i, u, dan ü, termasuk posisi bibir untuk ü."
+  },
+  {
+    "id": "mandarin-pinyin-finals-ai-ei-ao-ou",
+    "title": "Pīnyīn 14: Finals ai ei ao ou",
+    "description": "Melatih diftong dasar ai, ei, ao, dan ou dengan transisi vokal jelas."
+  },
+  {
+    "id": "mandarin-pinyin-finals-an-en-ang-eng",
+    "title": "Pīnyīn 15: Finals an en ang eng",
+    "description": "Melatih nasal depan dan belakang dalam final an, en, ang, dan eng."
+  },
+  {
+    "id": "mandarin-pinyin-syllable-ni-hao",
+    "title": "Pīnyīn 16: Syllable nǐ hǎo",
+    "description": "Melatih salam paling dasar dengan sandhi nada ketiga yang natural."
+  },
+  {
+    "id": "mandarin-pinyin-syllable-xie-xie",
+    "title": "Pīnyīn 17: Syllable xièxie",
+    "description": "Melatih x, final ie, dan nada netral dalam ucapan terima kasih."
+  },
+  {
+    "id": "mandarin-pinyin-read-name-slowly",
+    "title": "Pīnyīn 18: Read Name Slowly",
+    "description": "Melatih membaca nama Mandarin pelan dengan nada dan suku kata terpisah jelas."
+  },
+  {
+    "id": "mandarin-pinyin-shadowing-mini-dialogue",
+    "title": "Pīnyīn 19: Shadowing Mini Dialogue",
+    "description": "Melatih tiruan pendek untuk salam, nama, dan respons dasar."
+  },
+  {
+    "id": "mandarin-pinyin-hsk-1-pronunciation-review",
+    "title": "Pīnyīn 20: HSK 1 Pronunciation Review",
+    "description": "Menggabungkan nada, initial-final, sandhi, dan shadowing dasar HSK 1."
+  }
+];
+
+const mandarinYufaTopics: Topic[] = [
+  {
+    "id": "mandarin-yufa-basic-word-order-wo-shi",
+    "title": "Yǔfǎ 1: Basic Word Order: 我 + 是 + ...",
+    "description": "Melatih urutan dasar SVO dalam kalimat identitas sederhana."
+  },
+  {
+    "id": "mandarin-yufa-yes-no-questions-with-ma",
+    "title": "Yǔfǎ 2: Yes/No Questions with 吗",
+    "description": "Mengubah kalimat pernyataan menjadi pertanyaan ya/tidak memakai 吗."
+  },
+  {
+    "id": "mandarin-yufa-negation-with-bu",
+    "title": "Yǔfǎ 3: Negation with 不",
+    "description": "Membuat kalimat negatif dasar dengan 不 sebelum kata kerja atau adjektiva."
+  },
+  {
+    "id": "mandarin-yufa-name-sentences-with-jiao",
+    "title": "Yǔfǎ 4: Name Sentences with 叫",
+    "description": "Memperkenalkan nama dengan pola subjek + 叫 + nama."
+  },
+  {
+    "id": "mandarin-yufa-nationality-with-shi-ren",
+    "title": "Yǔfǎ 5: Nationality with 是...人",
+    "description": "Menyebut asal negara memakai 是 + negara + 人."
+  },
+  {
+    "id": "mandarin-yufa-possession-with-de",
+    "title": "Yǔfǎ 6: Possession with 的",
+    "description": "Menyatakan kepemilikan dan hubungan sederhana dengan 的."
+  },
+  {
+    "id": "mandarin-yufa-numbers-in-simple-sentences",
+    "title": "Yǔfǎ 7: Numbers in Simple Sentences",
+    "description": "Memakai angka dalam kalimat identitas, umur, dan jumlah dasar."
+  },
+  {
+    "id": "mandarin-yufa-measure-word-ge",
+    "title": "Yǔfǎ 8: Measure Word 个",
+    "description": "Menggunakan 个 sebagai kata ukur umum setelah angka."
+  },
+  {
+    "id": "mandarin-yufa-this-and-that-zhe-na",
+    "title": "Yǔfǎ 9: This and That: 这 / 那",
+    "description": "Membedakan ini dan itu dalam pola 这/那 + 是 + benda."
+  },
+  {
+    "id": "mandarin-yufa-plural-pronoun-men",
+    "title": "Yǔfǎ 10: Plural Pronoun 们",
+    "description": "Membentuk kata ganti jamak dasar dengan 们."
+  },
+  {
+    "id": "mandarin-yufa-have-there-is-with-you",
+    "title": "Yǔfǎ 11: Have/There Is with 有",
+    "description": "Menyatakan punya dan ada memakai 有."
+  },
+  {
+    "id": "mandarin-yufa-want-with-xiang",
+    "title": "Yǔfǎ 12: Want with 想",
+    "description": "Menyatakan keinginan dasar dengan 想 sebelum kata kerja."
+  },
+  {
+    "id": "mandarin-yufa-like-with-xihuan",
+    "title": "Yǔfǎ 13: Like with 喜欢",
+    "description": "Menyatakan suka pada benda, orang, atau aktivitas dengan 喜欢."
+  },
+  {
+    "id": "mandarin-yufa-time-word-jintian",
+    "title": "Yǔfǎ 14: Time Word 今天",
+    "description": "Meletakkan kata waktu seperti 今天 di awal atau setelah subjek."
+  },
+  {
+    "id": "mandarin-yufa-location-with-zai",
+    "title": "Yǔfǎ 15: Location with 在",
+    "description": "Menyatakan berada di suatu tempat dengan 在."
+  },
+  {
+    "id": "mandarin-yufa-question-words-shei-shenme",
+    "title": "Yǔfǎ 16: Question Words 谁 and 什么",
+    "description": "Memakai 谁 dan 什么 pada posisi informasi yang ditanyakan."
+  },
+  {
+    "id": "mandarin-yufa-how-many-with-ji",
+    "title": "Yǔfǎ 17: How Many with 几",
+    "description": "Menanyakan jumlah kecil dengan 几 dan kata ukur."
+  },
+  {
+    "id": "mandarin-yufa-adjective-predicate-hen-hao",
+    "title": "Yǔfǎ 18: Adjective Predicate 很好",
+    "description": "Membuat kalimat adjektiva dengan 很 sebelum sifat."
+  },
+  {
+    "id": "mandarin-yufa-simple-request-qing",
+    "title": "Yǔfǎ 19: Simple Request 请",
+    "description": "Membuat permintaan sopan dan instruksi pendek dengan 请."
+  },
+  {
+    "id": "mandarin-yufa-hsk-1-grammar-review",
+    "title": "Yǔfǎ 20: HSK 1 Grammar Review",
+    "description": "Menggabungkan pola dasar HSK 1 dalam latihan review terpadu."
+  }
+];
+
+const mandarinCihuiTopics: Topic[] = [
+  {
+    "id": "mandarin-cihui-greetings-and-polite-words",
+    "title": "Cíhuì 1: Greetings and Polite Words",
+    "description": "Melatih salam, ucapan terima kasih, pamit, dan permintaan maaf dasar."
+  },
+  {
+    "id": "mandarin-cihui-pronouns-and-people",
+    "title": "Cíhuì 2: Pronouns and People",
+    "description": "Melatih kata ganti orang paling awal dalam kalimat Mandarin."
+  },
+  {
+    "id": "mandarin-cihui-family-members",
+    "title": "Cíhuì 3: Family Members",
+    "description": "Melatih kosakata keluarga inti dan saudara kandung dasar."
+  },
+  {
+    "id": "mandarin-cihui-numbers-zero-to-ten",
+    "title": "Cíhuì 4: Numbers Zero to Ten",
+    "description": "Melatih angka dasar yang sering dipakai untuk umur, jumlah, dan harga."
+  },
+  {
+    "id": "mandarin-cihui-days-and-time",
+    "title": "Cíhuì 5: Days and Time",
+    "description": "Melatih kata waktu dasar untuk membicarakan hari dan saat ini."
+  },
+  {
+    "id": "mandarin-cihui-places-around-town",
+    "title": "Cíhuì 6: Places Around Town",
+    "description": "Melatih tempat umum yang sering muncul dalam percakapan HSK 1."
+  },
+  {
+    "id": "mandarin-cihui-classroom-words",
+    "title": "Cíhuì 7: Classroom Words",
+    "description": "Melatih kata benda dan peran yang sering dipakai di kelas."
+  },
+  {
+    "id": "mandarin-cihui-food-and-drink",
+    "title": "Cíhuì 8: Food and Drink",
+    "description": "Melatih kata makanan dan minuman dasar untuk kebutuhan harian."
+  },
+  {
+    "id": "mandarin-cihui-fruits",
+    "title": "Cíhuì 9: Fruits",
+    "description": "Melatih kosakata buah populer untuk belanja dan selera makan."
+  },
+  {
+    "id": "mandarin-cihui-transportation",
+    "title": "Cíhuì 10: Transportation",
+    "description": "Melatih kendaraan dasar untuk menyebut cara pergi ke tempat tertentu."
+  },
+  {
+    "id": "mandarin-cihui-daily-actions",
+    "title": "Cíhuì 11: Daily Actions",
+    "description": "Melatih kata kerja harian yang sering menjadi inti kalimat pendek."
+  },
+  {
+    "id": "mandarin-cihui-learning-actions",
+    "title": "Cíhuì 12: Learning Actions",
+    "description": "Melatih kata kerja belajar: belajar, menulis, membaca, dan berbicara."
+  },
+  {
+    "id": "mandarin-cihui-basic-adjectives",
+    "title": "Cíhuì 13: Basic Adjectives",
+    "description": "Melatih kata sifat dasar untuk menilai benda, orang, dan jumlah."
+  },
+  {
+    "id": "mandarin-cihui-colors",
+    "title": "Cíhuì 14: Colors",
+    "description": "Melatih warna dasar untuk mendeskripsikan benda sehari-hari."
+  },
+  {
+    "id": "mandarin-cihui-shopping-and-money",
+    "title": "Cíhuì 15: Shopping and Money",
+    "description": "Melatih kosakata belanja: uang, membeli, mahal, dan murah."
+  },
+  {
+    "id": "mandarin-cihui-weather-and-temperature",
+    "title": "Cíhuì 16: Weather and Temperature",
+    "description": "Melatih kata cuaca dan suhu untuk percakapan sehari-hari."
+  },
+  {
+    "id": "mandarin-cihui-body-and-health",
+    "title": "Cíhuì 17: Body and Health",
+    "description": "Melatih bagian tubuh dan kata kesehatan yang paling sering dipakai."
+  },
+  {
+    "id": "mandarin-cihui-hobbies-and-interests",
+    "title": "Cíhuì 18: Hobbies and Interests",
+    "description": "Melatih kosakata minat untuk membicarakan aktivitas santai."
+  },
+  {
+    "id": "mandarin-cihui-question-words",
+    "title": "Cíhuì 19: Question Words",
+    "description": "Melatih kata tanya inti agar cepat mengenali maksud pertanyaan."
+  },
+  {
+    "id": "mandarin-cihui-hsk-1-vocabulary-review",
+    "title": "Cíhuì 20: HSK 1 Vocabulary Review",
+    "description": "Menggabungkan kosakata penting HSK 1 untuk review akhir Cíhuì pemula."
+  }
+];
+
+const mandarinXiezuoTopics: Topic[] = [
+  {
+    "id": "mandarin-xiezuo-stroke-basics-and-simple-hanzi",
+    "title": "Xiězuò 1: Stroke Basics and Simple Hanzi",
+    "description": "Melatih Hanzi paling sederhana untuk membangun kontrol garis dan bentuk dasar."
+  },
+  {
+    "id": "mandarin-xiezuo-radicals-and-basic-shapes",
+    "title": "Xiězuò 2: Radicals and Basic Shapes",
+    "description": "Melatih bentuk dasar seperti orang, mulut, matahari, dan bulan."
+  },
+  {
+    "id": "mandarin-xiezuo-pronouns-in-writing",
+    "title": "Xiězuò 3: Pronouns in Writing",
+    "description": "Melatih menulis kata ganti orang dan membedakan bentuk Hanzi-nya."
+  },
+  {
+    "id": "mandarin-xiezuo-name-and-identity-sentences",
+    "title": "Xiězuò 4: Name and Identity Sentences",
+    "description": "Melatih kalimat identitas dasar memakai 叫 dan 是."
+  },
+  {
+    "id": "mandarin-xiezuo-family-sentences",
+    "title": "Xiězuò 5: Family Sentences",
+    "description": "Melatih kalimat pendek tentang keluarga dengan 的 dan kata sifat."
+  },
+  {
+    "id": "mandarin-xiezuo-numbers-and-measure-words",
+    "title": "Xiězuò 6: Numbers and Measure Words",
+    "description": "Melatih menulis angka dengan kata ukur umum dalam kalimat sederhana."
+  },
+  {
+    "id": "mandarin-xiezuo-time-words-in-sentences",
+    "title": "Xiězuò 7: Time Words in Sentences",
+    "description": "Melatih kata waktu seperti hari ini, besok, kemarin, dan sekarang."
+  },
+  {
+    "id": "mandarin-xiezuo-location-with-zai",
+    "title": "Xiězuò 8: Location with 在",
+    "description": "Melatih kalimat lokasi dengan 在 dan tempat umum."
+  },
+  {
+    "id": "mandarin-xiezuo-possession-with-de",
+    "title": "Xiězuò 9: Possession with 的",
+    "description": "Melatih kepemilikan sederhana dengan 的 dalam frasa benda."
+  },
+  {
+    "id": "mandarin-xiezuo-likes-and-wants",
+    "title": "Xiězuò 10: Likes and Wants",
+    "description": "Melatih kalimat dengan 喜欢 dan 想 untuk minat serta keinginan."
+  },
+  {
+    "id": "mandarin-xiezuo-food-and-drink-writing",
+    "title": "Xiězuò 11: Food and Drink Writing",
+    "description": "Melatih kalimat makan, minum, dan selera sederhana."
+  },
+  {
+    "id": "mandarin-xiezuo-shopping-notes",
+    "title": "Xiězuò 12: Shopping Notes",
+    "description": "Melatih catatan belanja pendek tentang harga dan barang."
+  },
+  {
+    "id": "mandarin-xiezuo-question-sentences",
+    "title": "Xiězuò 13: Question Sentences",
+    "description": "Melatih menulis pertanyaan pendek dengan 什么, 谁, 哪儿, dan 几."
+  },
+  {
+    "id": "mandarin-xiezuo-weather-journal",
+    "title": "Xiězuò 14: Weather Journal",
+    "description": "Melatih kalimat catatan cuaca harian yang pendek dan jelas."
+  },
+  {
+    "id": "mandarin-xiezuo-daily-routine",
+    "title": "Xiězuò 15: Daily Routine",
+    "description": "Melatih kalimat rutinitas dengan belajar, makan, pergi, dan pulang."
+  },
+  {
+    "id": "mandarin-xiezuo-classroom-mini-notes",
+    "title": "Xiězuò 16: Classroom Mini Notes",
+    "description": "Melatih catatan kelas pendek untuk benda dan instruksi belajar."
+  },
+  {
+    "id": "mandarin-xiezuo-travel-mini-sentences",
+    "title": "Xiězuò 17: Travel Mini Sentences",
+    "description": "Melatih kalimat perjalanan pendek dengan transportasi dan tempat tujuan."
+  },
+  {
+    "id": "mandarin-xiezuo-short-dialogue-writing",
+    "title": "Xiězuò 18: Short Dialogue Writing",
+    "description": "Melatih menulis dialog pendek untuk salam, nama, dan pertanyaan dasar."
+  },
+  {
+    "id": "mandarin-xiezuo-mini-paragraph-about-self",
+    "title": "Xiězuò 19: Mini Paragraph About Self",
+    "description": "Melatih paragraf pendek tentang nama, identitas, bahasa, dan hobi."
+  },
+  {
+    "id": "mandarin-xiezuo-hsk-1-writing-review",
+    "title": "Xiězuò 20: HSK 1 Writing Review",
+    "description": "Menggabungkan pola writing HSK 1 dari salam sampai paragraf pendek."
+  }
+];
+
+const mandarinYueduTopics: Topic[] = [
+  {
+    "id": "mandarin-yuedu-greetings-and-signs",
+    "title": "Yuèdú 1: Greetings and Signs",
+    "description": "Membaca salam pendek, tanda sederhana, dan respons sopan sehari-hari."
+  },
+  {
+    "id": "mandarin-yuedu-self-introduction",
+    "title": "Yuèdú 2: Self Introduction",
+    "description": "Membaca perkenalan diri pendek tentang nama, asal, dan identitas."
+  },
+  {
+    "id": "mandarin-yuedu-family-reading",
+    "title": "Yuèdú 3: Family Reading",
+    "description": "Membaca teks pendek tentang anggota keluarga dan relasi sederhana."
+  },
+  {
+    "id": "mandarin-yuedu-classroom-reading",
+    "title": "Yuèdú 4: Classroom Reading",
+    "description": "Membaca catatan dan instruksi kelas yang sering muncul di level awal."
+  },
+  {
+    "id": "mandarin-yuedu-daily-schedule",
+    "title": "Yuèdú 5: Daily Schedule",
+    "description": "Membaca jadwal singkat tentang pagi, siang, sore, dan malam."
+  },
+  {
+    "id": "mandarin-yuedu-places-and-directions",
+    "title": "Yuèdú 6: Places and Directions",
+    "description": "Membaca lokasi dan arah sederhana dalam kalimat pendek."
+  },
+  {
+    "id": "mandarin-yuedu-shopping-receipts",
+    "title": "Yuèdú 7: Shopping Receipts",
+    "description": "Membaca informasi belanja sederhana tentang barang, harga, dan jumlah."
+  },
+  {
+    "id": "mandarin-yuedu-menu-reading",
+    "title": "Yuèdú 8: Menu Reading",
+    "description": "Membaca menu pendek, minuman, dan pilihan makanan dasar."
+  },
+  {
+    "id": "mandarin-yuedu-weather-notes",
+    "title": "Yuèdú 9: Weather Notes",
+    "description": "Membaca catatan cuaca dan suhu sederhana."
+  },
+  {
+    "id": "mandarin-yuedu-transport-reading",
+    "title": "Yuèdú 10: Transport Reading",
+    "description": "Membaca informasi transportasi sederhana untuk pergi dan pulang."
+  },
+  {
+    "id": "mandarin-yuedu-friend-messages",
+    "title": "Yuèdú 11: Friend Messages",
+    "description": "Membaca pesan singkat dari teman tentang rencana dan lokasi."
+  },
+  {
+    "id": "mandarin-yuedu-hobbies-reading",
+    "title": "Yuèdú 12: Hobbies Reading",
+    "description": "Membaca minat dan aktivitas santai dalam teks pendek."
+  },
+  {
+    "id": "mandarin-yuedu-health-reading",
+    "title": "Yuèdú 13: Health Reading",
+    "description": "Membaca keluhan tubuh, dokter, dan saran sederhana."
+  },
+  {
+    "id": "mandarin-yuedu-time-and-date-reading",
+    "title": "Yuèdú 14: Time and Date Reading",
+    "description": "Membaca tanggal, jam, dan urutan kegiatan pendek."
+  },
+  {
+    "id": "mandarin-yuedu-simple-email",
+    "title": "Yuèdú 15: Simple Email",
+    "description": "Membaca email pendek dengan sapaan, isi, dan penutup."
+  },
+  {
+    "id": "mandarin-yuedu-school-announcements",
+    "title": "Yuèdú 16: School Announcements",
+    "description": "Membaca pengumuman sekolah singkat tentang kelas dan kegiatan."
+  },
+  {
+    "id": "mandarin-yuedu-home-mini-story",
+    "title": "Yuèdú 17: Home Mini Story",
+    "description": "Membaca cerita mini tentang kegiatan di rumah."
+  },
+  {
+    "id": "mandarin-yuedu-question-word-reading",
+    "title": "Yuèdú 18: Question Word Reading",
+    "description": "Mengenali 什么, 谁, 哪儿, 几, dan 怎么 dari konteks bacaan."
+  },
+  {
+    "id": "mandarin-yuedu-reading-connectors",
+    "title": "Yuèdú 19: Reading Connectors",
+    "description": "Membaca konektor dasar seperti 和, 也, 但是, dan 所以."
+  },
+  {
+    "id": "mandarin-yuedu-hsk-1-reading-review",
+    "title": "Yuèdú 20: HSK 1 Reading Review",
+    "description": "Review Yuèdú HSK 1 dengan teks gabungan tentang diri, keluarga, kelas, dan kegiatan."
+  }
+];
+
+const mandarinTingliTopics: Topic[] = [
+  {
+    "id": "mandarin-tingli-greetings-and-names",
+    "title": "Tīnglì 1: Greetings and Names",
+    "description": "Melatih mendengar salam, nama, dan respons sopan yang sangat sering muncul."
+  },
+  {
+    "id": "mandarin-tingli-classroom-instructions",
+    "title": "Tīnglì 2: Classroom Instructions",
+    "description": "Melatih instruksi kelas seperti dengarkan, baca, tulis, dan ulangi."
+  },
+  {
+    "id": "mandarin-tingli-numbers-and-age",
+    "title": "Tīnglì 3: Numbers and Age",
+    "description": "Melatih angka dasar, umur, dan jumlah orang dari audio pendek."
+  },
+  {
+    "id": "mandarin-tingli-family-introductions",
+    "title": "Tīnglì 4: Family Introductions",
+    "description": "Melatih anggota keluarga dan hubungan sederhana dari kalimat lisan."
+  },
+  {
+    "id": "mandarin-tingli-time-and-daily-schedule",
+    "title": "Tīnglì 5: Time and Daily Schedule",
+    "description": "Melatih waktu, jadwal, dan kegiatan harian dari audio singkat."
+  },
+  {
+    "id": "mandarin-tingli-places-and-directions",
+    "title": "Tīnglì 6: Places and Directions",
+    "description": "Melatih tempat umum, lokasi, dan arah sederhana dalam audio."
+  },
+  {
+    "id": "mandarin-tingli-food-and-drink-orders",
+    "title": "Tīnglì 7: Food and Drink Orders",
+    "description": "Melatih pesanan makanan dan minuman dalam percakapan pendek."
+  },
+  {
+    "id": "mandarin-tingli-shopping-and-prices",
+    "title": "Tīnglì 8: Shopping and Prices",
+    "description": "Melatih harga, barang, dan frasa belanja dasar dari audio."
+  },
+  {
+    "id": "mandarin-tingli-weather-and-plans",
+    "title": "Tīnglì 9: Weather and Plans",
+    "description": "Melatih cuaca, suhu, dan rencana sederhana yang didengar."
+  },
+  {
+    "id": "mandarin-tingli-transportation-messages",
+    "title": "Tīnglì 10: Transportation Messages",
+    "description": "Melatih kendaraan, pergi-pulang, dan pesan transportasi pendek."
+  },
+  {
+    "id": "mandarin-tingli-phone-numbers-and-dates",
+    "title": "Tīnglì 11: Phone Numbers and Dates",
+    "description": "Melatih nomor telepon, tanggal, dan hari dari audio pendek."
+  },
+  {
+    "id": "mandarin-tingli-hobbies-and-free-time",
+    "title": "Tīnglì 12: Hobbies and Free Time",
+    "description": "Melatih hobi, minat, dan aktivitas santai dari audio sederhana."
+  },
+  {
+    "id": "mandarin-tingli-school-announcements",
+    "title": "Tīnglì 13: School Announcements",
+    "description": "Melatih pengumuman singkat tentang kelas, ruang, dan kegiatan sekolah."
+  },
+  {
+    "id": "mandarin-tingli-friend-invitations",
+    "title": "Tīnglì 14: Friend Invitations",
+    "description": "Melatih ajakan teman, waktu bertemu, dan respons singkat."
+  },
+  {
+    "id": "mandarin-tingli-health-and-body",
+    "title": "Tīnglì 15: Health and Body",
+    "description": "Melatih keluhan tubuh dan saran kesehatan sederhana dari audio."
+  },
+  {
+    "id": "mandarin-tingli-home-routines",
+    "title": "Tīnglì 16: Home Routines",
+    "description": "Melatih aktivitas rumah seperti makan, tidur, membersihkan, dan belajar."
+  },
+  {
+    "id": "mandarin-tingli-travel-and-hotel",
+    "title": "Tīnglì 17: Travel and Hotel",
+    "description": "Melatih audio perjalanan sederhana tentang hotel, kamar, dan tujuan."
+  },
+  {
+    "id": "mandarin-tingli-question-words-in-audio",
+    "title": "Tīnglì 18: Question Words in Audio",
+    "description": "Melatih mengenali 谁, 什么, 哪儿, 几, dan 怎么 dari pertanyaan lisan."
+  },
+  {
+    "id": "mandarin-tingli-connectors-and-contrast",
+    "title": "Tīnglì 19: Connectors and Contrast",
+    "description": "Melatih konektor dasar seperti 和, 也, 但是, dan 所以 dalam audio."
+  },
+  {
+    "id": "mandarin-tingli-hsk-1-listening-review",
+    "title": "Tīnglì 20: HSK 1 Listening Review",
+    "description": "Review Tīnglì HSK 1 dengan gabungan salam, angka, waktu, tempat, dan aktivitas."
+  }
+];
+
+const mandarinKouyuTopics: Topic[] = [
+  {
+    "id": "mandarin-kouyu-greetings-and-polite-responses",
+    "title": "Kǒuyǔ 1: Greetings and Polite Responses",
+    "description": "Melatih salam, sapaan sopan, dan respons pendek dalam percakapan Mandarin awal."
+  },
+  {
+    "id": "mandarin-kouyu-self-introduction",
+    "title": "Kǒuyǔ 2: Self Introduction",
+    "description": "Melatih perkenalan diri dasar: nama, asal, identitas, dan bahasa yang dipelajari."
+  },
+  {
+    "id": "mandarin-kouyu-names-nationality-and-language",
+    "title": "Kǒuyǔ 3: Names, Nationality and Language",
+    "description": "Melatih tanya-jawab nama, kewarganegaraan, dan bahasa yang digunakan."
+  },
+  {
+    "id": "mandarin-kouyu-family-conversations",
+    "title": "Kǒuyǔ 4: Family Conversations",
+    "description": "Melatih percakapan tentang keluarga, anggota keluarga, dan jumlah orang di rumah."
+  },
+  {
+    "id": "mandarin-kouyu-classroom-speaking",
+    "title": "Kǒuyǔ 5: Classroom Speaking",
+    "description": "Melatih respons lisan saat belajar di kelas Mandarin."
+  },
+  {
+    "id": "mandarin-kouyu-numbers-age-and-quantity",
+    "title": "Kǒuyǔ 6: Numbers, Age and Quantity",
+    "description": "Melatih berbicara tentang umur, jumlah, nomor, dan benda sehari-hari."
+  },
+  {
+    "id": "mandarin-kouyu-daily-routine",
+    "title": "Kǒuyǔ 7: Daily Routine",
+    "description": "Melatih bicara tentang rutinitas pagi, belajar, makan, dan tidur."
+  },
+  {
+    "id": "mandarin-kouyu-time-and-appointments",
+    "title": "Kǒuyǔ 8: Time and Appointments",
+    "description": "Melatih membuat janji sederhana dengan waktu, hari, dan tempat."
+  },
+  {
+    "id": "mandarin-kouyu-shopping-dialogue",
+    "title": "Kǒuyǔ 9: Shopping Dialogue",
+    "description": "Melatih tanya harga, membeli barang, dan memberi pendapat saat belanja."
+  },
+  {
+    "id": "mandarin-kouyu-restaurant-ordering",
+    "title": "Kǒuyǔ 10: Restaurant Ordering",
+    "description": "Melatih memesan makanan, minuman, dan memberi respons di restoran."
+  },
+  {
+    "id": "mandarin-kouyu-directions-and-places",
+    "title": "Kǒuyǔ 11: Directions and Places",
+    "description": "Melatih bertanya dan menjelaskan lokasi tempat umum."
+  },
+  {
+    "id": "mandarin-kouyu-transport-and-travel",
+    "title": "Kǒuyǔ 12: Transport and Travel",
+    "description": "Melatih berbicara tentang kendaraan, tujuan, dan perjalanan singkat."
+  },
+  {
+    "id": "mandarin-kouyu-hobbies-and-preferences",
+    "title": "Kǒuyǔ 13: Hobbies and Preferences",
+    "description": "Melatih menyatakan suka, tidak suka, hobi, dan aktivitas akhir pekan."
+  },
+  {
+    "id": "mandarin-kouyu-weather-and-plans",
+    "title": "Kǒuyǔ 14: Weather and Plans",
+    "description": "Melatih membicarakan cuaca dan rencana kegiatan sederhana."
+  },
+  {
+    "id": "mandarin-kouyu-phone-conversation",
+    "title": "Kǒuyǔ 15: Phone Conversation",
+    "description": "Melatih pembuka telepon, meminta bicara dengan seseorang, dan meninggalkan pesan."
+  },
+  {
+    "id": "mandarin-kouyu-health-and-doctor",
+    "title": "Kǒuyǔ 16: Health and Doctor",
+    "description": "Melatih keluhan kesehatan, saran sederhana, dan percakapan dokter."
+  },
+  {
+    "id": "mandarin-kouyu-invitations-and-responses",
+    "title": "Kǒuyǔ 17: Invitations and Responses",
+    "description": "Melatih mengajak, menerima, menolak sopan, dan mengatur ulang rencana."
+  },
+  {
+    "id": "mandarin-kouyu-making-requests",
+    "title": "Kǒuyǔ 18: Making Requests",
+    "description": "Melatih meminta bantuan, izin, dan klarifikasi secara sopan."
+  },
+  {
+    "id": "mandarin-kouyu-mini-storytelling",
+    "title": "Kǒuyǔ 19: Mini Storytelling",
+    "description": "Melatih menceritakan kegiatan pendek dengan urutan waktu dan konektor dasar."
+  },
+  {
+    "id": "mandarin-kouyu-hsk-1-speaking-review",
+    "title": "Kǒuyǔ 20: HSK 1 Speaking Review",
+    "description": "Review Kǒuyǔ HSK 1 dengan perkenalan, waktu, keluarga, tempat, dan rencana."
+  }
+];
 
 function rotateOptions(options: string[], amount: number) {
   const offset = amount % options.length;
   return [...options.slice(offset), ...options.slice(0, offset)];
 }
 
-function buildQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQuestion[] {
-  const topic = topics.find((item) => item.id === topicId) || topics[0];
-  const terms = topicTerms[topic.id] || topicTerms.general;
+function buildVocabularyQuestionsForTopic(topic: Topic, terms: TopicTerm[], language: 'en' | 'id' = 'en'): VocabQuestion[] {
   const levelPrompts: Record<QuizLevel, (term: TopicTerm) => string> = {
     Basic: (term) => language === 'id' ? `Kata mana yang berarti "${term.meaning}"?` : `Which word means "${term.meaning}"?`,
     Intermediate: (term) => language === 'id'
@@ -1675,661 +2738,129 @@ function buildQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQue
   );
 }
 
-function buildGrammarQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQuestion[] {
-  const topic = grammarTopics.find((item) => item.id === topicId) || grammarTopics[0];
-  const seeds = [...(grammarQuestionSeeds[topic.id] || []), ...sharedGrammarSeeds];
-  const levelPrefixes: Record<QuizLevel, string> = {
-    Basic: language === 'id' ? 'Cek grammar dasar' : 'Basic grammar check',
-    Intermediate: language === 'id' ? 'Pilih struktur terbaik' : 'Choose the best structure',
-    Advanced: language === 'id' ? 'Akurasi grammar formal' : 'Formal grammar accuracy',
-  };
-
-  return (['Basic', 'Intermediate', 'Advanced'] as QuizLevel[]).flatMap((level, levelIndex) =>
-    Array.from({ length: 10 }, (_, index) => {
-      const seed = seeds[(index + levelIndex * 2) % seeds.length];
-      return {
-        id: `${topic.id}-${level}-${index}`,
-        level,
-        prompt: `${levelPrefixes[level]} (${topic.title}): ${seed.prompt}`,
-        answer: seed.answer,
-        options: rotateOptions(seed.options, index + levelIndex),
-      };
-    })
-  );
+function buildQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQuestion[] {
+  const topic = topics.find((item) => item.id === topicId) || topics[0];
+  const terms = topicTerms[topic.id] || topicTerms.general;
+  return buildVocabularyQuestionsForTopic(topic, terms, language);
 }
 
-function buildSpeakingQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQuestion[] {
-  const topic = speakingTopics.find((item) => item.id === topicId) || speakingTopics[0];
-  const allAnswers = Array.from(
-    new Set(
-      speakingTopics.flatMap((item) => [
-        item.pattern,
-        item.sample,
-        item.formalResponse,
-        item.casualResponse,
-        item.repairPhrase,
-        item.fluencyTip,
-        item.goal,
-        item.pronunciation,
-      ])
-    )
-  );
+type SkillTheme = {
+  color: string;
+  bg: string;
+  soft: string;
+  icon: LucideIcon;
+  label: string;
+};
 
-  const optionSet = (answer: string, wrongs: string[], seed: number) => {
-    const fallback = [
-      ...allAnswers,
-      'Speak faster so you can finish quickly.',
-      'Use only one-word answers.',
-      'Avoid pausing between ideas.',
-      'Ignore the listener and continue talking.',
-      'Start with unrelated personal information.',
-    ];
-    const uniqueWrongs = [...wrongs, ...fallback].filter((option, index, list) => option !== answer && list.indexOf(option) === index);
-    return rotateOptions([answer, ...uniqueWrongs].slice(0, 4), seed);
-  };
+const skillThemes: Record<string, SkillTheme> = {
+  vocabulary: { color: '#2563EB', bg: '#DBEAFE', soft: '#EFF6FF', icon: BookOpen, label: 'Vocabulary' },
+  grammar: { color: '#7C3AED', bg: '#EDE9FE', soft: '#F5F3FF', icon: Brain, label: 'Grammar' },
+  listening: { color: '#0891B2', bg: '#CFFAFE', soft: '#ECFEFF', icon: Headphones, label: 'Listening' },
+  speaking: { color: '#DB2777', bg: '#FCE7F3', soft: '#FDF2F8', icon: Mic, label: 'Speaking' },
+  writing: { color: '#EA580C', bg: '#FFEDD5', soft: '#FFF7ED', icon: PenLine, label: 'Writing' },
+  reading: { color: '#16A34A', bg: '#DCFCE7', soft: '#F0FDF4', icon: FileText, label: 'Reading' },
+  mufradat: { color: '#2980B9', bg: '#D6EAF8', soft: '#EFF6FF', icon: BookOpen, label: 'Mufradat' },
+  nahwu: { color: '#8E44AD', bg: '#F4ECF7', soft: '#FBF5FF', icon: Brain, label: 'Nahwu' },
+  istima: { color: '#0F766E', bg: '#CCFBF1', soft: '#ECFDF5', icon: Headphones, label: 'Istima' },
+  kalam: { color: '#E74C3C', bg: '#FDEDEC', soft: '#FFF5F5', icon: Mic, label: 'Kalam' },
+  qiraah: { color: '#2563EB', bg: '#DBEAFE', soft: '#EFF6FF', icon: FileText, label: 'Qiraah' },
+  kitabah: { color: '#D97706', bg: '#FEF3C7', soft: '#FFFBEB', icon: PenLine, label: 'Kitabah' },
+  makharij: { color: '#E83E8C', bg: '#FDEDF4', soft: '#FFF7FB', icon: Volume2, label: 'Makharij' },
+  pronunciation: { color: '#E83E8C', bg: '#FDEDF4', soft: '#FFF7FB', icon: Volume2, label: 'Makharij' },
+  pinyin: { color: '#DB2777', bg: '#FCE7F3', soft: '#FFF1F2', icon: Volume2, label: 'Pīnyīn' },
+  yufa: { color: '#DC2626', bg: '#FEE2E2', soft: '#FEF2F2', icon: Brain, label: 'Yǔfǎ' },
+  cihui: { color: '#CA8A04', bg: '#FEF3C7', soft: '#FFFBEB', icon: BookOpen, label: 'Cíhuì' },
+  xiezuo: { color: '#16A34A', bg: '#DCFCE7', soft: '#F0FDF4', icon: PenLine, label: 'Xiězuò' },
+  yuedu: { color: '#2563EB', bg: '#DBEAFE', soft: '#EFF6FF', icon: FileText, label: 'Yuèdú' },
+  tingli: { color: '#0891B2', bg: '#CFFAFE', soft: '#ECFEFF', icon: Headphones, label: 'Tīnglì' },
+  kouyu: { color: '#EA580C', bg: '#FFEDD5', soft: '#FFF7ED', icon: Mic, label: 'Kǒuyǔ' },
+};
 
-  const text = {
-    Basic: {
-      bestResponse: language === 'id' ? 'Pilih respons paling tepat untuk situasi ini' : 'Choose the best response for this situation',
-      pattern: language === 'id' ? 'Pola kalimat mana yang cocok untuk latihan speaking ini?' : 'Which sentence pattern fits this speaking practice?',
-      goal: language === 'id' ? 'Apa tujuan speaking dari topik ini?' : 'What is the speaking goal for this topic?',
-      sample: language === 'id' ? 'Contoh jawaban mana yang paling natural?' : 'Which sample answer sounds most natural?',
-    },
-    Intermediate: {
-      formal: language === 'id' ? 'Respons mana yang terdengar lebih formal dan sopan?' : 'Which response sounds more formal and polite?',
-      casual: language === 'id' ? 'Respons mana yang cocok untuk percakapan santai?' : 'Which response fits a casual conversation?',
-      repair: language === 'id' ? 'Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?' : 'If you misspeak, which phrase helps you repair your answer?',
-      flow: language === 'id' ? 'Strategi mana yang membantu jawaban lebih lancar?' : 'Which strategy helps the answer sound more fluent?',
-    },
-    Advanced: {
-      pronunciation: language === 'id' ? 'Fokus pronunciation mana yang paling sesuai?' : 'Which pronunciation focus fits this topic best?',
-      structure: language === 'id' ? 'Agar jawaban lebih terstruktur, apa yang sebaiknya dilakukan?' : 'To make the answer more structured, what should the speaker do?',
-      nuance: language === 'id' ? 'Pilihan mana yang menjaga tone tetap natural?' : 'Which choice keeps the tone natural?',
-      performance: language === 'id' ? 'Saat latihan level advanced, kebiasaan mana yang paling membantu?' : 'In advanced practice, which habit helps the most?',
-    },
-  };
+const defaultSkillTheme: SkillTheme = { color: '#2563EB', bg: '#DBEAFE', soft: '#EFF6FF', icon: Sparkles, label: 'Practice' };
 
-  const seeds: Array<Omit<VocabQuestion, 'id' | 'level'>> = [
-    {
-      prompt: `${text.Basic.bestResponse}: ${topic.situation}.`,
-      answer: topic.sample,
-      options: optionSet(topic.sample, [topic.formalResponse, topic.casualResponse, 'I do not know anything about this topic.'], 0),
-    },
-    {
-      prompt: text.Basic.pattern,
-      answer: topic.pattern,
-      options: optionSet(topic.pattern, ['Because I think it is good.', 'Yes, I agree with you.', 'Can you repeat the price?'], 1),
-    },
-    {
-      prompt: text.Basic.goal,
-      answer: topic.goal,
-      options: optionSet(topic.goal, ['memorize spelling only', 'translate every word silently', 'avoid answering follow-up questions'], 2),
-    },
-    {
-      prompt: text.Basic.sample,
-      answer: topic.sample,
-      options: optionSet(topic.sample, ['Yes.', 'No problem.', 'Maybe later, thank you.'], 3),
-    },
-    {
-      prompt: `${text.Basic.bestResponse}: ${topic.description}`,
-      answer: topic.casualResponse,
-      options: optionSet(topic.casualResponse, [topic.repairPhrase, 'I disagree with all grammar rules.', 'Please cancel my account immediately.'], 4),
-    },
-    {
-      prompt: text.Basic.pattern,
-      answer: topic.pattern,
-      options: optionSet(topic.pattern, [topic.goal, topic.pronunciation, topic.fluencyTip], 5),
-    },
-    {
-      prompt: text.Basic.goal,
-      answer: topic.goal,
-      options: optionSet(topic.goal, [topic.description, topic.pronunciation, 'answer without listening to the question'], 6),
-    },
-    {
-      prompt: text.Basic.sample,
-      answer: topic.sample,
-      options: optionSet(topic.sample, [topic.formalResponse, 'I went there yesterday because blue.', 'The pronunciation is difficult but no answer.'], 7),
-    },
-    {
-      prompt: `${text.Basic.bestResponse}: start speaking about "${topic.title}".`,
-      answer: topic.pattern,
-      options: optionSet(topic.pattern, ['What time is the airport?', 'I am sorry for your lost ticket.', 'There is no reason to speak.'], 8),
-    },
-    {
-      prompt: text.Basic.goal,
-      answer: topic.goal,
-      options: optionSet(topic.goal, ['speak with no pauses at all', 'use random advanced vocabulary', 'avoid giving details'], 9),
-    },
-    {
-      prompt: text.Intermediate.formal,
-      answer: topic.formalResponse,
-      options: optionSet(topic.formalResponse, [topic.casualResponse, topic.repairPhrase, 'Yeah, whatever.'], 10),
-    },
-    {
-      prompt: text.Intermediate.casual,
-      answer: topic.casualResponse,
-      options: optionSet(topic.casualResponse, [topic.formalResponse, topic.pronunciation, 'It is hereby requested that silence continues.'], 11),
-    },
-    {
-      prompt: text.Intermediate.repair,
-      answer: topic.repairPhrase,
-      options: optionSet(topic.repairPhrase, [topic.sample, topic.formalResponse, 'I will stop speaking now.'], 12),
-    },
-    {
-      prompt: text.Intermediate.flow,
-      answer: topic.fluencyTip,
-      options: optionSet(topic.fluencyTip, ['Read every sentence in your first language.', 'Use the longest word in every sentence.', 'Speak without checking meaning.'], 13),
-    },
-    {
-      prompt: `${text.Intermediate.formal} Topic: ${topic.title}.`,
-      answer: topic.formalResponse,
-      options: optionSet(topic.formalResponse, [topic.casualResponse, topic.sample, 'No, I do not want to answer.'], 14),
-    },
-    {
-      prompt: `${text.Intermediate.casual} Topic: ${topic.title}.`,
-      answer: topic.casualResponse,
-      options: optionSet(topic.casualResponse, [topic.formalResponse, topic.pattern, 'This document has been processed accordingly.'], 15),
-    },
-    {
-      prompt: `${text.Intermediate.repair} Situation: ${topic.situation}.`,
-      answer: topic.repairPhrase,
-      options: optionSet(topic.repairPhrase, ['Please ignore every mistake.', topic.goal, topic.pronunciation], 16),
-    },
-    {
-      prompt: `${text.Intermediate.flow} Topic: ${topic.title}.`,
-      answer: topic.fluencyTip,
-      options: optionSet(topic.fluencyTip, ['Stop after every word.', 'Never use examples.', 'Only repeat the question.'], 17),
-    },
-    {
-      prompt: text.Intermediate.formal,
-      answer: topic.formalResponse,
-      options: optionSet(topic.formalResponse, [topic.casualResponse, topic.repairPhrase, topic.sample], 18),
-    },
-    {
-      prompt: text.Intermediate.repair,
-      answer: topic.repairPhrase,
-      options: optionSet(topic.repairPhrase, ['Say nothing until the listener guesses.', 'Change topic immediately.', 'Laugh and end the conversation.'], 19),
-    },
-    {
-      prompt: text.Advanced.pronunciation,
-      answer: topic.pronunciation,
-      options: optionSet(topic.pronunciation, ['silent reading without voice', 'only spelling each letter', 'speaking as fast as possible'], 20),
-    },
-    {
-      prompt: text.Advanced.structure,
-      answer: topic.fluencyTip,
-      options: optionSet(topic.fluencyTip, ['Answer with unrelated vocabulary.', 'Use no transitions or examples.', 'Repeat the same sentence four times.'], 21),
-    },
-    {
-      prompt: text.Advanced.nuance,
-      answer: topic.formalResponse,
-      options: optionSet(topic.formalResponse, [topic.casualResponse, 'I refuse to explain my idea.', 'Your question is not important.'], 22),
-    },
-    {
-      prompt: text.Advanced.performance,
-      answer: topic.pronunciation,
-      options: optionSet(topic.pronunciation, [topic.description, 'ignore word stress completely', 'avoid listening to your own recording'], 23),
-    },
-    {
-      prompt: `${text.Advanced.pronunciation} Topic: ${topic.title}.`,
-      answer: topic.pronunciation,
-      options: optionSet(topic.pronunciation, ['focus only on handwriting', 'skip pronunciation practice', 'use flat intonation for every sentence'], 24),
-    },
-    {
-      prompt: `${text.Advanced.structure} Situation: ${topic.situation}.`,
-      answer: topic.pattern,
-      options: optionSet(topic.pattern, [topic.repairPhrase, topic.pronunciation, 'One word is always enough.'], 25),
-    },
-    {
-      prompt: `${text.Advanced.nuance} When speaking about "${topic.title}".`,
-      answer: topic.repairPhrase,
-      options: optionSet(topic.repairPhrase, [topic.sample, 'I will not repeat anything.', 'The listener should understand everything automatically.'], 26),
-    },
-    {
-      prompt: text.Advanced.performance,
-      answer: topic.fluencyTip,
-      options: optionSet(topic.fluencyTip, ['Memorize answers without meaning.', 'Avoid eye contact and pauses.', 'Use filler sounds after every word.'], 27),
-    },
-    {
-      prompt: `${text.Advanced.structure} Best full model answer?`,
-      answer: topic.sample,
-      options: optionSet(topic.sample, [topic.casualResponse, topic.formalResponse, 'Fine.'], 28),
-    },
-    {
-      prompt: `${text.Advanced.pronunciation} Final speaking focus?`,
-      answer: topic.pronunciation,
-      options: optionSet(topic.pronunciation, [topic.fluencyTip, topic.goal, 'translation speed'], 29),
-    },
-  ];
+function getDedicatedTopicRoute({ levelId, skillId, topicId, topicIndex }: { levelId?: string; skillId: string; topicId: string; topicIndex: number }) {
+  if (levelId === 'arabic' && skillId === 'mufradat') {
+    return `/latihan/arabic/mufradat/topik${topicIndex + 1}`;
+  }
 
-  return seeds.map((seed, index) => ({
-    ...seed,
-    id: `${topic.id}-speaking-${index}`,
-    level: index < 10 ? 'Basic' : index < 20 ? 'Intermediate' : 'Advanced',
-  }));
-}
+  if (levelId === 'arabic' && (skillId === 'nahwu' || skillId === 'grammar')) {
+    return `/latihan/arabic/nahwu/topik${topicIndex + 1}`;
+  }
 
-function buildWritingQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQuestion[] {
-  const topic = writingTopics.find((item) => item.id === topicId) || writingTopics[0];
-  const allAnswers = Array.from(
-    new Set(
-      writingTopics.flatMap((item) => [
-        item.task,
-        item.goal,
-        item.format,
-        item.structure,
-        item.sample,
-        item.opening,
-        item.connector,
-        item.closing,
-        item.editingTip,
-      ])
-    )
-  );
+  if (levelId === 'arabic' && skillId === 'istima') {
+    return `/latihan/arabic/istima/topik${topicIndex + 1}`;
+  }
 
-  const optionSet = (answer: string, wrongs: string[], seed: number) => {
-    const fallback = [
-      ...allAnswers,
-      'Write without checking grammar or meaning.',
-      'Use random connectors in every sentence.',
-      'Make the paragraph longer by repeating the same idea.',
-      'Ignore punctuation and capitalization.',
-      'Start with a sentence that does not match the task.',
-    ];
-    const uniqueWrongs = [...wrongs, ...fallback].filter((option, index, list) => option !== answer && list.indexOf(option) === index);
-    return rotateOptions([answer, ...uniqueWrongs].slice(0, 4), seed);
-  };
+  if (levelId === 'arabic' && skillId === 'kalam') {
+    return `/latihan/arabic/kalam/topik${topicIndex + 1}`;
+  }
 
-  const text = {
-    Basic: {
-      task: language === 'id' ? 'Apa tugas writing utama untuk topik ini?' : 'What is the main writing task for this topic?',
-      format: language === 'id' ? 'Format tulisan mana yang paling sesuai?' : 'Which writing format fits this topic best?',
-      structure: language === 'id' ? 'Struktur mana yang sebaiknya dipakai?' : 'Which structure should be used?',
-      sample: language === 'id' ? 'Contoh tulisan mana yang paling tepat?' : 'Which writing sample is the best fit?',
-    },
-    Intermediate: {
-      opening: language === 'id' ? 'Opening mana yang paling tepat untuk tulisan ini?' : 'Which opening fits this writing task?',
-      connector: language === 'id' ? 'Connector mana yang paling sesuai?' : 'Which connector fits best?',
-      closing: language === 'id' ? 'Closing mana yang paling sesuai?' : 'Which closing is most suitable?',
-      goal: language === 'id' ? 'Tujuan tulisan mana yang benar?' : 'Which writing goal is correct?',
-    },
-    Advanced: {
-      editing: language === 'id' ? 'Editing tip mana yang paling membantu?' : 'Which editing tip is most helpful?',
-      clarity: language === 'id' ? 'Pilihan mana yang membuat tulisan lebih jelas?' : 'Which choice makes the writing clearer?',
-      tone: language === 'id' ? 'Pilihan mana yang menjaga tone sesuai format?' : 'Which choice keeps the tone appropriate for the format?',
-      revision: language === 'id' ? 'Revisi mana yang paling kuat?' : 'Which revision is strongest?',
-    },
-  };
+  if (levelId === 'arabic' && skillId === 'qiraah') {
+    return `/latihan/arabic/qiraah/topik${topicIndex + 1}`;
+  }
 
-  const seeds: Array<Omit<VocabQuestion, 'id' | 'level'>> = [
-    {
-      prompt: `${text.Basic.task}: ${topic.description}`,
-      answer: topic.task,
-      options: optionSet(topic.task, ['write a random list of words', 'copy the prompt without changing it', 'translate only one word'], 0),
-    },
-    {
-      prompt: text.Basic.format,
-      answer: topic.format,
-      options: optionSet(topic.format, ['voice recording', 'multiple unrelated phrases', 'pronunciation drill only'], 1),
-    },
-    {
-      prompt: text.Basic.structure,
-      answer: topic.structure,
-      options: optionSet(topic.structure, ['Conclusion + random detail + no topic sentence.', 'One word + comma + no verb.', 'Question + unrelated answer + emoji.'], 2),
-    },
-    {
-      prompt: text.Basic.sample,
-      answer: topic.sample,
-      options: optionSet(topic.sample, ['Good yes because maybe.', 'I am very very very.', 'Writing is speak fast.'], 3),
-    },
-    {
-      prompt: text.Basic.task,
-      answer: topic.task,
-      options: optionSet(topic.task, [topic.goal, topic.editingTip, 'avoid the topic completely'], 4),
-    },
-    {
-      prompt: text.Basic.structure,
-      answer: topic.structure,
-      options: optionSet(topic.structure, [topic.opening, topic.connector, topic.closing], 5),
-    },
-    {
-      prompt: `${text.Basic.format} Topic: ${topic.title}.`,
-      answer: topic.format,
-      options: optionSet(topic.format, ['casual phone call', 'listening transcript only', 'vocabulary flashcard'], 6),
-    },
-    {
-      prompt: text.Basic.sample,
-      answer: topic.sample,
-      options: optionSet(topic.sample, [topic.opening, topic.closing, 'And because but however.'], 7),
-    },
-    {
-      prompt: text.Basic.task,
-      answer: topic.goal,
-      options: optionSet(topic.goal, ['make the writing unclear', 'use no main idea', 'choose the longest answer only'], 8),
-    },
-    {
-      prompt: text.Basic.structure,
-      answer: topic.structure,
-      options: optionSet(topic.structure, ['No structure is needed.', 'Only use a closing sentence.', 'Repeat the first word five times.'], 9),
-    },
-    {
-      prompt: text.Intermediate.opening,
-      answer: topic.opening,
-      options: optionSet(topic.opening, [topic.connector, topic.closing, 'Finally, therefore, however,'], 10),
-    },
-    {
-      prompt: text.Intermediate.connector,
-      answer: topic.connector,
-      options: optionSet(topic.connector, [topic.opening, topic.closing, 'Dear'], 11),
-    },
-    {
-      prompt: text.Intermediate.closing,
-      answer: topic.closing,
-      options: optionSet(topic.closing, [topic.opening, topic.connector, 'Because and because.'], 12),
-    },
-    {
-      prompt: text.Intermediate.goal,
-      answer: topic.goal,
-      options: optionSet(topic.goal, [topic.task, topic.format, 'write as many words as possible without checking'], 13),
-    },
-    {
-      prompt: `${text.Intermediate.opening} Format: ${topic.format}.`,
-      answer: topic.opening,
-      options: optionSet(topic.opening, [topic.sample, topic.editingTip, 'I not sure maybe.'], 14),
-    },
-    {
-      prompt: `${text.Intermediate.connector} Structure: ${topic.structure}`,
-      answer: topic.connector,
-      options: optionSet(topic.connector, ['!!!', 'very very', topic.closing], 15),
-    },
-    {
-      prompt: `${text.Intermediate.closing} Topic: ${topic.title}.`,
-      answer: topic.closing,
-      options: optionSet(topic.closing, [topic.opening, topic.task, 'No ending needed.'], 16),
-    },
-    {
-      prompt: `${text.Intermediate.goal} Task: ${topic.task}.`,
-      answer: topic.goal,
-      options: optionSet(topic.goal, ['ignore the reader', 'hide the main point', 'use only informal slang'], 17),
-    },
-    {
-      prompt: text.Intermediate.connector,
-      answer: topic.connector,
-      options: optionSet(topic.connector, [topic.opening, topic.closing, topic.format], 18),
-    },
-    {
-      prompt: text.Intermediate.closing,
-      answer: topic.closing,
-      options: optionSet(topic.closing, ['Start with no context.', 'Add an unrelated question.', topic.connector], 19),
-    },
-    {
-      prompt: text.Advanced.editing,
-      answer: topic.editingTip,
-      options: optionSet(topic.editingTip, ['Never revise after writing.', 'Add more words even if they repeat the idea.', 'Ignore the task after the first sentence.'], 20),
-    },
-    {
-      prompt: text.Advanced.clarity,
-      answer: topic.structure,
-      options: optionSet(topic.structure, ['Use several unrelated structures at once.', 'Remove the main idea.', 'Put the conclusion before the topic is introduced.'], 21),
-    },
-    {
-      prompt: text.Advanced.tone,
-      answer: topic.format,
-      options: optionSet(topic.format, ['random informal chat for every task', 'audio conversation only', 'word list without sentences'], 22),
-    },
-    {
-      prompt: text.Advanced.revision,
-      answer: topic.sample,
-      options: optionSet(topic.sample, ['I thing good very because.', 'This text no clear but yes.', 'For example however because in conclusion.'], 23),
-    },
-    {
-      prompt: `${text.Advanced.editing} Topic: ${topic.title}.`,
-      answer: topic.editingTip,
-      options: optionSet(topic.editingTip, [topic.opening, topic.connector, 'Use punctuation only at the end of the course.'], 24),
-    },
-    {
-      prompt: `${text.Advanced.clarity} Goal: ${topic.goal}.`,
-      answer: topic.goal,
-      options: optionSet(topic.goal, ['write with no reader in mind', 'make every sentence the same', 'choose complex words even when simple words work better'], 25),
-    },
-    {
-      prompt: `${text.Advanced.tone} Best opening?`,
-      answer: topic.opening,
-      options: optionSet(topic.opening, [topic.connector, topic.closing, topic.editingTip], 26),
-    },
-    {
-      prompt: `${text.Advanced.revision} Best connector?`,
-      answer: topic.connector,
-      options: optionSet(topic.connector, ['there there', 'grammar', topic.format], 27),
-    },
-    {
-      prompt: `${text.Advanced.clarity} Best complete model?`,
-      answer: topic.sample,
-      options: optionSet(topic.sample, [topic.opening, topic.closing, 'No topic no sentence.'], 28),
-    },
-    {
-      prompt: `${text.Advanced.editing} Final check?`,
-      answer: topic.editingTip,
-      options: optionSet(topic.editingTip, ['Submit without reading.', 'Delete the main idea.', 'Use only one long sentence for everything.'], 29),
-    },
-  ];
+  if (levelId === 'arabic' && skillId === 'kitabah') {
+    return `/latihan/arabic/kitabah/topik${topicIndex + 1}`;
+  }
 
-  return seeds.map((seed, index) => ({
-    ...seed,
-    id: `${topic.id}-writing-${index}`,
-    level: index < 10 ? 'Basic' : index < 20 ? 'Intermediate' : 'Advanced',
-  }));
-}
+  if (levelId === 'arabic' && (skillId === 'makharij' || skillId === 'pronunciation')) {
+    return `/latihan/arabic/makharij/topik${topicIndex + 1}`;
+  }
 
-function buildReadingQuestions(topicId: string, language: 'en' | 'id' = 'en'): VocabQuestion[] {
-  const topic = readingTopics.find((item) => item.id === topicId) || readingTopics[0];
-  const allAnswers = Array.from(
-    new Set(
-      readingTopics.flatMap((item) => [
-        item.mainIdea,
-        item.detail,
-        item.vocabulary,
-        item.vocabularyMeaning,
-        item.inference,
-        item.purpose,
-        item.readingSkill,
-        item.passageTitle,
-      ])
-    )
-  );
+  if (levelId === 'mandarin' && (skillId === 'pinyin' || skillId === 'pronunciation')) {
+    return `/latihan/mandarin/pinyin/topik${topicIndex + 1}`;
+  }
 
-  const optionSet = (answer: string, wrongs: string[], seed: number) => {
-    const fallback = [
-      ...allAnswers,
-      'The text gives no useful information.',
-      'The reader should ignore the details.',
-      'The passage is mainly a list of unrelated words.',
-      'The author wants readers to memorize grammar rules only.',
-      'The correct answer cannot be found or inferred from the text.',
-    ];
-    const uniqueWrongs = [...wrongs, ...fallback].filter((option, index, list) => option !== answer && list.indexOf(option) === index);
-    return rotateOptions([answer, ...uniqueWrongs].slice(0, 4), seed);
-  };
+  if (levelId === 'mandarin' && (skillId === 'yufa' || skillId === 'grammar')) {
+    return `/latihan/mandarin/yufa/topik${topicIndex + 1}`;
+  }
 
-  const text = {
-    Basic: {
-      title: language === 'id' ? 'Apa judul bacaan ini?' : 'What is the title of this reading passage?',
-      mainIdea: language === 'id' ? 'Apa ide utama bacaan ini?' : 'What is the main idea of this passage?',
-      detail: language === 'id' ? 'Detail mana yang disebutkan dalam bacaan?' : 'Which detail is mentioned in the passage?',
-      vocab: language === 'id' ? 'Kata kunci mana yang muncul dalam bacaan?' : 'Which key word appears in the passage?',
-    },
-    Intermediate: {
-      meaning: language === 'id' ? 'Apa arti kata ini berdasarkan konteks?' : 'What does this word mean in context?',
-      purpose: language === 'id' ? 'Apa tujuan penulis?' : "What is the writer's purpose?",
-      skill: language === 'id' ? 'Skill reading mana yang paling sesuai?' : 'Which reading skill fits this passage?',
-      detail: language === 'id' ? 'Informasi spesifik mana yang benar?' : 'Which specific information is correct?',
-    },
-    Advanced: {
-      inference: language === 'id' ? 'Kesimpulan mana yang paling masuk akal?' : 'Which inference is most reasonable?',
-      evidence: language === 'id' ? 'Jawaban mana yang paling didukung oleh teks?' : 'Which answer is best supported by the text?',
-      summary: language === 'id' ? 'Ringkasan mana yang paling akurat?' : 'Which summary is most accurate?',
-      author: language === 'id' ? 'Apa maksud penulis secara lebih dalam?' : "What is the writer's deeper intention?",
-    },
-  };
+  if (levelId === 'mandarin' && (skillId === 'cihui' || skillId === 'vocabulary')) {
+    return `/latihan/mandarin/cihui/topik${topicIndex + 1}`;
+  }
 
-  const seeds: Array<Omit<VocabQuestion, 'id' | 'level'>> = [
-    {
-      prompt: text.Basic.title,
-      answer: topic.passageTitle,
-      options: optionSet(topic.passageTitle, ['A Random Conversation', 'Grammar Practice Only', 'Unknown Topic'], 0),
-    },
-    {
-      prompt: text.Basic.mainIdea,
-      answer: topic.mainIdea,
-      options: optionSet(topic.mainIdea, ['The passage is mostly about sports results.', 'The text only explains punctuation.', 'The passage has no clear topic.'], 1),
-    },
-    {
-      prompt: text.Basic.detail,
-      answer: topic.detail,
-      options: optionSet(topic.detail, [topic.inference, topic.purpose, 'The opposite detail is stated.'], 2),
-    },
-    {
-      prompt: text.Basic.vocab,
-      answer: topic.vocabulary,
-      options: optionSet(topic.vocabulary, ['therefore', 'although', 'meanwhile'], 3),
-    },
-    {
-      prompt: `${text.Basic.mainIdea} Passage: "${topic.passageTitle}".`,
-      answer: topic.mainIdea,
-      options: optionSet(topic.mainIdea, [topic.detail, topic.purpose, 'A story about an unrelated event.'], 4),
-    },
-    {
-      prompt: text.Basic.detail,
-      answer: topic.detail,
-      options: optionSet(topic.detail, ['The passage says the event was canceled.', 'The text says nothing happened.', topic.mainIdea], 5),
-    },
-    {
-      prompt: text.Basic.vocab,
-      answer: topic.vocabulary,
-      options: optionSet(topic.vocabulary, [topic.vocabularyMeaning, topic.readingSkill, 'main idea'], 6),
-    },
-    {
-      prompt: text.Basic.title,
-      answer: topic.passageTitle,
-      options: optionSet(topic.passageTitle, [topic.title, topic.purpose, 'No title is possible.'], 7),
-    },
-    {
-      prompt: `${text.Basic.detail} Topic: ${topic.title}.`,
-      answer: topic.detail,
-      options: optionSet(topic.detail, [topic.inference, 'The writer gives no details.', 'All details are unrelated.'], 8),
-    },
-    {
-      prompt: text.Basic.mainIdea,
-      answer: topic.mainIdea,
-      options: optionSet(topic.mainIdea, [topic.vocabularyMeaning, topic.readingSkill, 'The text is only about spelling.'], 9),
-    },
-    {
-      prompt: `${text.Intermediate.meaning} Word: "${topic.vocabulary}".`,
-      answer: topic.vocabularyMeaning,
-      options: optionSet(topic.vocabularyMeaning, ['a person who asks questions', 'a place for official meetings', 'a type of punctuation mark'], 10),
-    },
-    {
-      prompt: text.Intermediate.purpose,
-      answer: topic.purpose,
-      options: optionSet(topic.purpose, ['to confuse readers with unrelated facts', 'to list grammar formulas only', 'to advertise a sports team'], 11),
-    },
-    {
-      prompt: text.Intermediate.skill,
-      answer: topic.readingSkill,
-      options: optionSet(topic.readingSkill, ['memorizing pronunciation only', 'writing a formal letter', 'speaking without preparation'], 12),
-    },
-    {
-      prompt: text.Intermediate.detail,
-      answer: topic.detail,
-      options: optionSet(topic.detail, [topic.mainIdea, topic.inference, 'A detail not connected to the passage.'], 13),
-    },
-    {
-      prompt: `${text.Intermediate.meaning} The word is "${topic.vocabulary}".`,
-      answer: topic.vocabularyMeaning,
-      options: optionSet(topic.vocabularyMeaning, [topic.vocabulary, topic.purpose, 'the opposite of the passage meaning'], 14),
-    },
-    {
-      prompt: `${text.Intermediate.purpose} Passage: "${topic.passageTitle}".`,
-      answer: topic.purpose,
-      options: optionSet(topic.purpose, [topic.mainIdea, topic.detail, 'to test math formulas'], 15),
-    },
-    {
-      prompt: `${text.Intermediate.skill} Topic: ${topic.title}.`,
-      answer: topic.readingSkill,
-      options: optionSet(topic.readingSkill, ['essay writing', 'listening for accent only', 'drawing a picture'], 16),
-    },
-    {
-      prompt: text.Intermediate.detail,
-      answer: topic.detail,
-      options: optionSet(topic.detail, ['The text says the opposite.', topic.vocabularyMeaning, topic.purpose], 17),
-    },
-    {
-      prompt: text.Intermediate.meaning,
-      answer: topic.vocabularyMeaning,
-      options: optionSet(topic.vocabularyMeaning, [topic.inference, topic.mainIdea, 'a sentence that closes an email'], 18),
-    },
-    {
-      prompt: text.Intermediate.purpose,
-      answer: topic.purpose,
-      options: optionSet(topic.purpose, ['to avoid giving information', 'to describe unrelated grammar errors', topic.readingSkill], 19),
-    },
-    {
-      prompt: text.Advanced.inference,
-      answer: topic.inference,
-      options: optionSet(topic.inference, ['The opposite of the passage is probably true.', 'The passage gives no clue about this topic.', 'The writer dislikes all details in the text.'], 20),
-    },
-    {
-      prompt: text.Advanced.evidence,
-      answer: topic.detail,
-      options: optionSet(topic.detail, [topic.inference, 'A detail from another topic.', 'A claim with no textual support.'], 21),
-    },
-    {
-      prompt: text.Advanced.summary,
-      answer: topic.mainIdea,
-      options: optionSet(topic.mainIdea, ['The passage gives many unrelated examples without a topic.', 'The passage is mainly about spelling mistakes.', 'The passage only asks a question.'], 22),
-    },
-    {
-      prompt: text.Advanced.author,
-      answer: topic.purpose,
-      options: optionSet(topic.purpose, [topic.vocabularyMeaning, 'to hide the main idea', 'to make readers ignore the topic'], 23),
-    },
-    {
-      prompt: `${text.Advanced.inference} Passage: "${topic.passageTitle}".`,
-      answer: topic.inference,
-      options: optionSet(topic.inference, [topic.detail, topic.purpose, 'No inference can be made.'], 24),
-    },
-    {
-      prompt: `${text.Advanced.evidence} Main idea check.`,
-      answer: topic.mainIdea,
-      options: optionSet(topic.mainIdea, [topic.vocabulary, topic.vocabularyMeaning, 'A conclusion from a different passage.'], 25),
-    },
-    {
-      prompt: `${text.Advanced.summary} Best reading skill?`,
-      answer: topic.readingSkill,
-      options: optionSet(topic.readingSkill, [topic.purpose, topic.detail, 'ignoring supporting details'], 26),
-    },
-    {
-      prompt: `${text.Advanced.author} What does the writer want the reader to understand?`,
-      answer: topic.purpose,
-      options: optionSet(topic.purpose, [topic.inference, topic.vocabulary, 'The passage has no purpose.'], 27),
-    },
-    {
-      prompt: text.Advanced.summary,
-      answer: topic.mainIdea,
-      options: optionSet(topic.mainIdea, [topic.detail, topic.vocabularyMeaning, 'Only one small word matters.'], 28),
-    },
-    {
-      prompt: text.Advanced.inference,
-      answer: topic.inference,
-      options: optionSet(topic.inference, ['The text proves the opposite.', 'There is no clue in the passage.', topic.detail], 29),
-    },
-  ];
+  if (levelId === 'mandarin' && (skillId === 'xiezuo' || skillId === 'writing')) {
+    return `/latihan/mandarin/xiezuo/topik${topicIndex + 1}`;
+  }
 
-  return seeds.map((seed, index) => ({
-    ...seed,
-    id: `${topic.id}-reading-${index}`,
-    level: index < 10 ? 'Basic' : index < 20 ? 'Intermediate' : 'Advanced',
-  }));
+  if (levelId === 'mandarin' && (skillId === 'yuedu' || skillId === 'reading')) {
+    return `/latihan/mandarin/yuedu/topik${topicIndex + 1}`;
+  }
+
+  if (levelId === 'mandarin' && (skillId === 'tingli' || skillId === 'listening')) {
+    return `/latihan/mandarin/tingli/topik${topicIndex + 1}`;
+  }
+
+  if (levelId === 'mandarin' && (skillId === 'kouyu' || skillId === 'speaking')) {
+    return `/latihan/mandarin/kouyu/topik${topicIndex + 1}`;
+  }
+
+  if (skillId === 'vocabulary') {
+    return `/latihan/english/vocabulary/topik${topicIndex + 1}`;
+  }
+
+  if (skillId === 'grammar') {
+    return `/latihan/english/grammar/topik${topicIndex + 1}`;
+  }
+
+  if (skillId === 'listening') {
+    return `/latihan/english/listening/topik${topicIndex + 1}`;
+  }
+
+  if (skillId === 'speaking') {
+    return `/latihan/english/speaking/topik${topicIndex + 1}`;
+  }
+
+  if (skillId === 'writing') {
+    return `/latihan/english/writing/topik${topicIndex + 1}`;
+  }
+
+  if (skillId === 'reading') {
+    return `/latihan/english/reading/topik${topicIndex + 1}`;
+  }
+
+  const basePath = levelId ? `/latihan/${levelId}/${skillId}` : `/latihan/${skillId}`;
+  return `${basePath}?topic=${topicId}`;
 }
 
 function TopicListPage({
@@ -2347,55 +2878,107 @@ function TopicListPage({
   const { user } = useAuth();
   const fullAccess = hasFullAccess(user);
   const freeTopicIds = FREE_PRACTICE_TOPIC_IDS[skillId] || items.slice(0, 3).map((topic) => topic.id);
+  const theme = skillThemes[skillId] ?? defaultSkillTheme;
+  const HeaderIcon = theme.icon;
+  const unlockedCount = fullAccess ? items.length : items.filter((topic) => freeTopicIds.includes(topic.id)).length;
 
   return (
     <PageContainer>
-      <div className="mx-auto max-w-5xl px-5 pb-28 md:px-0 md:pb-8">
-        <div className="rounded-[6px] border border-[#CBD5E1] bg-white px-5 py-6 shadow-sm md:px-8">
-          <div className="mb-6 flex items-start gap-3">
+      <div className="mx-auto max-w-5xl px-5 pb-28 md:px-0 md:pb-10">
+        <motion.section
+          className="relative overflow-hidden rounded-[28px] border border-gray-100 bg-white p-6 shadow-sm sm:p-8"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div
+            className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full opacity-60 blur-3xl"
+            style={{ background: `radial-gradient(circle, ${theme.bg}, transparent 70%)` }}
+          />
+          <div className="relative flex items-start gap-4">
             <motion.button
               type="button"
               onClick={() => navigate('/latihan')}
-              className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gray-100 bg-white shadow-sm transition hover:bg-gray-50"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-gray-100 bg-white text-gray-600 shadow-sm transition hover:bg-gray-50"
               whileTap={{ scale: 0.92 }}
+              aria-label="Kembali"
             >
-              <ArrowLeft size={17} />
+              <ArrowLeft size={18} />
             </motion.button>
-            <div className="flex-1 text-center">
-              <h1 className="text-[22px] font-black text-[#0F172A]">{title}</h1>
-              <p className="mt-1 text-xs font-semibold text-gray-500">Pilih topik latihan yang ingin kamu kerjakan.</p>
+            <div className="min-w-0 flex-1">
+              <div
+                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em]"
+                style={{ backgroundColor: theme.soft, color: theme.color }}
+              >
+                <Sparkles size={12} />
+                Latihan {theme.label}
+              </div>
+              <h1 className="mt-3 text-2xl font-black leading-tight text-[#1A1A2E] sm:text-3xl">{title}</h1>
+              <p className="mt-1.5 max-w-lg text-sm font-semibold leading-relaxed text-gray-500">
+                Pilih topik latihan yang ingin kamu kerjakan. {unlockedCount} dari {items.length} topik terbuka untukmu.
+              </p>
             </div>
-            <div className="h-9 w-9 shrink-0" />
+            <div
+              className="hidden h-14 w-14 shrink-0 place-items-center rounded-2xl sm:grid"
+              style={{ backgroundColor: theme.bg, color: theme.color }}
+            >
+              <HeaderIcon size={26} />
+            </div>
           </div>
+        </motion.section>
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {items.map((topic, index) => {
-              const locked = !fullAccess && !freeTopicIds.includes(topic.id);
-              return (
-                <motion.button
-                  key={topic.id}
-                  type="button"
-                  onClick={() => locked ? navigate('/upgrade') : navigate(`/latihan/${skillId}?topic=${topic.id}`)}
-                  className={`group relative min-h-[150px] rounded-[6px] border bg-white p-4 text-left transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#7EC3E6]/40 ${locked ? 'border-gray-200 opacity-80' : 'border-[#CBD5E1] hover:border-[#2563EB]'}`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.015 * index }}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="inline-flex rounded bg-[#EEF2FF] px-2 py-1 text-[10px] font-black uppercase tracking-[0.08em] text-[#2563EB]">
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {items.map((topic, index) => {
+            const locked = !fullAccess && !freeTopicIds.includes(topic.id);
+            return (
+              <motion.button
+                key={topic.id}
+                type="button"
+                onClick={() => locked ? navigate('/upgrade') : navigate(getDedicatedTopicRoute({ levelId, skillId, topicId: topic.id, topicIndex: index }))}
+                className="group relative flex min-h-[168px] flex-col overflow-hidden rounded-3xl border border-gray-100 bg-white p-5 text-left shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2"
+                style={{ ['--tw-ring-color' as string]: `${theme.color}55` }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.02 * index }}
+              >
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-1 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100"
+                  style={{ background: `linear-gradient(90deg, ${theme.color}, ${theme.color}00)` }}
+                />
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-3">
+                    <div
+                      className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl text-sm font-black transition-transform duration-200 group-hover:scale-105"
+                      style={locked ? { backgroundColor: '#F1F5F9', color: '#94A3B8' } : { backgroundColor: theme.bg, color: theme.color }}
+                    >
+                      {locked ? <Lock size={18} /> : String(index + 1).padStart(2, '0')}
+                    </div>
+                    <span
+                      className="text-[10px] font-black uppercase tracking-[0.14em]"
+                      style={{ color: locked ? '#94A3B8' : theme.color }}
+                    >
                       Topik {index + 1}
                     </span>
-                    {locked && <span className="inline-flex items-center gap-1 rounded bg-amber-50 px-2 py-1 text-[10px] font-black text-amber-600"><Lock size={11} /> Pro</span>}
                   </div>
-                  <h2 className="mt-3 text-sm font-black text-[#0F172A]">{topic.title}</h2>
-                  <p className="mt-2 min-h-[34px] text-xs font-semibold leading-relaxed text-gray-500">{topic.description}</p>
-                  <div className={`mt-4 border-t border-gray-100 pt-3 text-xs font-black ${locked ? 'text-amber-600' : 'text-[#2563EB]'}`}>
-                    {locked ? 'Upgrade untuk akses' : 'Mulai Latihan ->'}
-                  </div>
-                </motion.button>
-              );
-            })}
-          </div>
+                  {locked && (
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-[10px] font-black text-amber-600">
+                      <Lock size={11} /> Pro
+                    </span>
+                  )}
+                </div>
+
+                <h2 className="mt-4 text-[15px] font-black leading-snug text-[#1A1A2E]">{topic.title}</h2>
+                <p className="mt-1.5 line-clamp-2 text-xs font-semibold leading-relaxed text-gray-500">{topic.description}</p>
+
+                <div
+                  className="mt-auto flex items-center gap-1.5 pt-4 text-xs font-black"
+                  style={{ color: locked ? '#D97706' : theme.color }}
+                >
+                  {locked ? 'Upgrade untuk akses' : 'Mulai Latihan'}
+                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                </div>
+              </motion.button>
+            );
+          })}
         </div>
       </div>
     </PageContainer>
@@ -2426,995 +3009,445 @@ function ListeningTopicList({ levelId }: { levelId?: string }) {
   return <TopicListPage levelId={levelId} skillId="listening" title="Native AI Conversation Practice" topics={listeningTopics} />;
 }
 
-function ListeningPracticePage({ topicId }: { topicId: string }) {
+function ArabicMufradatTopicList() {
+  return <TopicListPage levelId="arabic" skillId="mufradat" title="Daftar Isi Latihan Mufradat" topics={arabicMufradatTopics} />;
+}
+
+function ArabicNahwuTopicList() {
+  return <TopicListPage levelId="arabic" skillId="nahwu" title="Daftar Isi Latihan Nahwu" topics={arabicNahwuTopics} />;
+}
+
+function ArabicIstimaTopicList() {
+  return <TopicListPage levelId="arabic" skillId="istima" title="Daftar Isi Latihan Istima" topics={arabicIstimaTopics} />;
+}
+
+function ArabicKalamTopicList() {
+  return <TopicListPage levelId="arabic" skillId="kalam" title="Daftar Isi Latihan Kalam" topics={arabicKalamTopics} />;
+}
+
+function ArabicQiraahTopicList() {
+  return <TopicListPage levelId="arabic" skillId="qiraah" title="Daftar Isi Latihan Qiraah" topics={arabicQiraahTopics} />;
+}
+
+function ArabicKitabahTopicList() {
+  return <TopicListPage levelId="arabic" skillId="kitabah" title="Daftar Isi Latihan Kitabah" topics={arabicKitabahTopics} />;
+}
+
+function ArabicMakharijTopicList() {
+  return <TopicListPage levelId="arabic" skillId="makharij" title="Daftar Isi Latihan Makharij" topics={arabicMakharijTopics} />;
+}
+
+function MandarinPinyinTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="pinyin" title="Daftar Isi Latihan Pīnyīn" topics={mandarinPinyinTopics} />;
+}
+
+function MandarinYufaTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="yufa" title="Daftar Isi Latihan Yǔfǎ" topics={mandarinYufaTopics} />;
+}
+
+function MandarinCihuiTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="cihui" title="Daftar Isi Latihan Cíhuì" topics={mandarinCihuiTopics} />;
+}
+
+function MandarinXiezuoTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="xiezuo" title="Daftar Isi Latihan Xiězuò" topics={mandarinXiezuoTopics} />;
+}
+
+function MandarinYueduTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="yuedu" title="Daftar Isi Latihan Yuèdú" topics={mandarinYueduTopics} />;
+}
+
+function MandarinTingliTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="tingli" title="Daftar Isi Latihan Tīnglì" topics={mandarinTingliTopics} />;
+}
+
+function MandarinKouyuTopicList() {
+  return <TopicListPage levelId="mandarin" skillId="kouyu" title="Daftar Isi Latihan Kǒuyǔ" topics={mandarinKouyuTopics} />;
+}
+
+function ArabicPracticeTopicList({ levelId, skillId }: { levelId?: string; skillId: ArabicSkillId }) {
   const navigate = useNavigate();
-  const topic = listeningTopics.find((item) => item.id === topicId) || listeningTopics[0];
-  const [activeLine, setActiveLine] = useState<number | null>(null);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [mistakeBankCount, setMistakeBankCount] = useState(() => loadMistakeBank().length);
-
-  const script = topic.lines.map((line) => `${line.speaker}: ${line.text}`).join('\n');
-  const questions = useMemo(() => buildListeningQuestions(topic), [topic]);
-  const answeredCount = Object.keys(answers).length;
-  const score = questions.reduce((total, question) => total + (answers[question.id] === question.answer ? 1 : 0), 0);
-  const wrongQuestions = questions.filter((question) => answers[question.id] && answers[question.id] !== question.answer);
-  const listeningLevelStats = (['Basic', 'Intermediate', 'Advanced'] as QuizLevel[]).map((level) => {
-    const levelQuestions = questions.filter((question) => question.level === level);
-    const correct = levelQuestions.filter((question) => answers[question.id] === question.answer).length;
-    return { level, correct, total: Math.max(1, levelQuestions.length) };
+  const normalizedLevelId = normalizeArabicLevel(levelId);
+  const routeLevelId = getArabicRouteLevel(normalizedLevelId);
+  const contentLevel = getArabicContentLevel(normalizedLevelId);
+  const skill = arabicSkills.find((item) => item.id === skillId) ?? arabicSkills[0];
+  const level = arabicLevels[normalizedLevelId];
+  const totalLessons = arabicLessonCounts[normalizedLevelId][skillId];
+  const completedLessons = useMemo(() => readArabicCompleted(normalizedLevelId, skillId), [normalizedLevelId, skillId]);
+  const completedSet = useMemo(() => new Set(completedLessons), [completedLessons]);
+  const completedCount = Math.min(totalLessons, completedLessons.length);
+  const progress = Math.round((completedCount / Math.max(1, totalLessons)) * 100);
+  const sample = arabicSamples[skillId];
+  const nextLesson = Array.from({ length: totalLessons }, (_, index) => index + 1).find((lesson) => !completedSet.has(lesson)) ?? totalLessons;
+  const quickDrills = arabicQuickDrills[skillId];
+  const [activeModeIndex, setActiveModeIndex] = useState(0);
+  const [drillIndex, setDrillIndex] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+  const [draftAnswer, setDraftAnswer] = useState('');
+  const [quickCorrect, setQuickCorrect] = useState(0);
+  const [quickAnswered, setQuickAnswered] = useState(0);
+  const [lastQuickResult, setLastQuickResult] = useState<number | null>(null);
+  const [savedQuickScore, setSavedQuickScore] = useState(() => {
+    const latest = loadPracticeHistory().find((attempt) => attempt.skillId === skillId && attempt.topicId === `arabic-${skillId}-quick`);
+    return latest ? Math.round((latest.score / Math.max(1, latest.total)) * 100) : 0;
   });
-  const weakestListeningLevel = listeningLevelStats.reduce((weakest, stat) => {
-    const statRate = stat.correct / stat.total;
-    const weakestRate = weakest.correct / weakest.total;
-    return statRate < weakestRate ? stat : weakest;
-  }, listeningLevelStats[0]);
-  const listeningRecommendation = score >= Math.ceil(questions.length * 0.85)
-    ? 'Bagus. Lanjut ke topic listening berikutnya atau ulangi conversation tanpa membaca script.'
-    : score >= Math.ceil(questions.length * 0.6)
-      ? 'Dengarkan ulang conversation, lalu fokus ke baris yang menjadi dasar soal salah.'
-      : 'Ulangi Listen First 2 kali sebelum membaca script, lalu kerjakan quiz lagi.';
+  const activeMode = arabicPracticeModes[skillId][activeModeIndex] ?? arabicPracticeModes[skillId][0];
+  const activeDrill = quickDrills[drillIndex % quickDrills.length];
+  const quickProgress = Math.round((quickAnswered / Math.max(1, quickDrills.length)) * 100);
+  const lessons = useMemo(() => (
+    Array.from({ length: totalLessons }, (_, index) => {
+      const lesson = index + 1;
+      return {
+        id: lesson,
+        title: getArabicLessonTitle(skillId, lesson, contentLevel, skill.label),
+        done: completedSet.has(lesson),
+      };
+    })
+  ), [completedSet, contentLevel, skill.label, skillId, totalLessons]);
 
-  const playFullConversation = () => {
-    setActiveLine(null);
-    playAudio(script, 0.92);
+  const openLesson = (lesson: number) => {
+    navigate(`/modul/arabic/${routeLevelId}/${skillId}/lesson-${lesson}?tab=latihan`);
   };
 
-  const playLine = (index: number) => {
-    setActiveLine(index);
-    playAudio(topic.lines[index].text, 0.92);
+  const resetQuickSession = () => {
+    setDrillIndex(0);
+    setRevealed(false);
+    setDraftAnswer('');
+    setQuickCorrect(0);
+    setQuickAnswered(0);
+    setLastQuickResult(null);
   };
 
-  const submitListeningQuiz = () => {
-    const wrongRecords: MistakeRecord[] = wrongQuestions.map((question) => ({
-      id: `listening-${topic.id}-${question.id}`,
-      skillId: 'listening',
-      topicTitle: topic.title,
-      level: question.level,
-      prompt: question.prompt,
-      answer: question.answer,
-      selected: answers[question.id],
-      options: question.options,
-      savedAt: new Date().toISOString(),
-    }));
-    const existing = loadMistakeBank().filter((record) => !wrongRecords.some((item) => item.id === record.id));
-    const nextBank = [...wrongRecords, ...existing];
-    saveMistakeBank(nextBank);
-    setMistakeBankCount(nextBank.length);
-    savePracticeAttempt({
-      id: `listening-${topic.id}-${Date.now()}`,
-      skillId: 'listening',
-      topicId: topic.id,
-      topicTitle: topic.title,
-      score,
-      total: questions.length,
-      weakestLevel: weakestListeningLevel.level,
-      completedAt: new Date().toISOString(),
-    });
-    setSubmitted(true);
+  const choosePracticeMode = (index: number) => {
+    setActiveModeIndex(index);
+    setRevealed(false);
+    setDraftAnswer('');
   };
 
-  return (
-    <PageContainer>
-      <div className="mx-auto max-w-5xl px-5 pb-28 md:px-0 md:pb-8">
-        <div className="overflow-hidden rounded-[10px] border border-[#CBD5E1] bg-white shadow-sm">
-          <div className="bg-[#F8FAFC] px-5 py-5 md:px-8">
-            <div className="mb-5 flex items-start gap-3">
-              <motion.button
-                type="button"
-                onClick={() => navigate('/latihan/listening', { replace: true })}
-                className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gray-100 bg-white shadow-sm transition hover:bg-gray-50"
-                whileTap={{ scale: 0.92 }}
-              >
-                <ArrowLeft size={17} />
-              </motion.button>
-              <div className="min-w-0 flex-1">
-                <div className="flex flex-wrap gap-2">
-                  <span className="inline-flex rounded bg-[#E0F2FE] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#0891B2]">
-                    Native AI Conversation
-                  </span>
-                  <span className="inline-flex rounded bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-gray-500">
-                    {topic.level}
-                  </span>
-                </div>
-                <h1 className="mt-3 text-[24px] font-black leading-tight text-[#0F172A]">{topic.title}</h1>
-                <p className="mt-1 max-w-2xl text-sm font-semibold leading-relaxed text-gray-500">{topic.goal}</p>
-              </div>
-              <div className="h-9 w-9 shrink-0" />
-            </div>
+  const completeQuickCard = (remembered: boolean) => {
+    const nextAnswered = quickAnswered + 1;
+    const nextCorrect = quickCorrect + (remembered ? 1 : 0);
 
-            <div className="grid gap-3 md:grid-cols-3">
-              {[
-                { label: 'Conversation', value: `${topic.lines.length} lines`, icon: Headphones },
-                { label: 'Accent', value: topic.accent, icon: Volume2 },
-                { label: 'Focus', value: `${topic.focus.length} chunks`, icon: Target },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.label} className="rounded-[8px] border border-[#CBD5E1] bg-white px-4 py-3">
-                    <div className="flex items-center gap-3">
-                      <div className="grid h-9 w-9 place-items-center rounded-[8px] bg-[#E0F2FE] text-[#0891B2]">
-                        <Icon size={17} />
-                      </div>
-                      <div className="min-w-0">
-                        <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">{item.label}</p>
-                        <p className="mt-0.5 truncate text-sm font-black text-[#0F172A]">{item.value}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+    if (nextAnswered >= quickDrills.length) {
+      const finalScore = Math.round((nextCorrect / Math.max(1, quickDrills.length)) * 100);
+      savePracticeAttempt({
+        id: `arabic-${skillId}-quick-${Date.now()}`,
+        skillId,
+        topicId: `arabic-${skillId}-quick`,
+        topicTitle: `${skill.label} Quick Drill`,
+        score: nextCorrect,
+        total: quickDrills.length,
+        weakestLevel: finalScore >= 80 ? 'Advanced' : finalScore >= 55 ? 'Intermediate' : 'Basic',
+        completedAt: new Date().toISOString(),
+      });
+      setSavedQuickScore(finalScore);
+      setLastQuickResult(finalScore);
+      setQuickCorrect(0);
+      setQuickAnswered(0);
+      setDrillIndex(0);
+      setRevealed(false);
+      setDraftAnswer('');
+      return;
+    }
 
-          <div className="px-5 py-6 md:px-8">
-            <div className="mb-5 flex flex-col gap-3 rounded-[10px] border border-[#CBD5E1] bg-[#F8FAFC] p-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-sm font-black text-[#0F172A]">Listen First</p>
-                <p className="mt-1 text-xs font-semibold text-gray-500">Dengarkan full conversation 1-2 kali sebelum membaca detail per baris.</p>
-              </div>
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <button
-                  type="button"
-                  onClick={playFullConversation}
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-[4px] bg-[#0891B2] px-4 text-sm font-black text-white transition hover:bg-[#0E7490]"
-                >
-                  <Play size={16} fill="currentColor" />
-                  Play Conversation
-                </button>
-                <button
-                  type="button"
-                  onClick={stopCurrentAudio}
-                  className="inline-flex h-10 items-center justify-center rounded-[4px] border border-[#CBD5E1] px-4 text-sm font-black text-[#0F172A] transition hover:bg-white"
-                >
-                  Stop
-                </button>
-              </div>
-            </div>
-
-            <section className="mb-6 rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-              <div className="mb-4 flex flex-col gap-1 border-b-2 border-[#0891B2] pb-3">
-                <h2 className="text-base font-black text-[#0F172A]">Conversation Script</h2>
-                <p className="text-xs font-semibold text-gray-500">Klik tiap baris untuk mendengar ulang bagian pendek.</p>
-              </div>
-
-              <div className="space-y-3">
-                {topic.lines.map((line, index) => (
-                  <div
-                    key={`${line.speaker}-${index}`}
-                    className={`rounded-[8px] border p-4 transition ${activeLine === index ? 'border-[#0891B2] bg-[#ECFEFF]' : 'border-gray-100 bg-white'}`}
-                  >
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                      <div className="min-w-0">
-                        <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[#0891B2]">{line.speaker}</p>
-                        <p className="mt-1 text-sm font-black leading-relaxed text-[#0F172A]">{line.text}</p>
-                        <p className="mt-2 text-xs font-semibold text-gray-500">{line.note}</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => playLine(index)}
-                        className="inline-flex h-9 shrink-0 items-center justify-center gap-2 rounded-[4px] border border-[#CBD5E1] px-3 text-xs font-black text-[#0F172A] transition hover:border-[#0891B2] hover:text-[#0891B2]"
-                      >
-                        <Volume2 size={15} />
-                        Listen
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              <section className="rounded-[10px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-                <h2 className="text-base font-black text-[#0F172A]">Focus Chunks</h2>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {topic.focus.map((chunk) => (
-                    <button
-                      key={chunk}
-                      type="button"
-                      onClick={() => playAudio(chunk, 0.86)}
-                      className="rounded-full border border-[#BAE6FD] bg-white px-3 py-1.5 text-xs font-black text-[#0E7490] transition hover:bg-[#ECFEFF]"
-                    >
-                      {chunk}
-                    </button>
-                  ))}
-                </div>
-              </section>
-
-              <section className="rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-                <h2 className="text-base font-black text-[#0F172A]">Shadowing Drill</h2>
-                <div className="mt-3 space-y-2 text-sm font-semibold text-gray-600">
-                  <p>1. Listen without reading.</p>
-                  <p>2. Listen again and mark words you missed.</p>
-                  <p>3. Play each line, pause, then repeat with the same rhythm.</p>
-                  <p>4. Play full conversation and shadow at native speed.</p>
-                </div>
-              </section>
-            </div>
-
-            <section className="mt-6 rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-              <div className="mb-4 flex flex-col gap-3 border-b-2 border-[#0891B2] pb-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <h2 className="text-base font-black text-[#0F172A]">Listening Quiz</h2>
-                  <p className="mt-1 text-xs font-semibold text-gray-500">Jawab pilihan ganda berdasarkan conversation yang kamu dengar.</p>
-                </div>
-                <span className="rounded bg-[#E0F2FE] px-2.5 py-1 text-xs font-black text-[#0E7490]">
-                  {answeredCount}/{questions.length} answered
-                </span>
-              </div>
-
-              <div className="space-y-4">
-                {questions.map((question, index) => {
-                  const selected = answers[question.id];
-                  const correct = selected === question.answer;
-
-                  return (
-                    <div
-                      key={question.id}
-                      className={`rounded-[8px] border p-4 transition ${
-                        submitted
-                          ? correct
-                            ? 'border-[#BBF7D0] bg-[#F0FDF4]'
-                            : 'border-[#FECACA] bg-[#FFFBFB]'
-                          : selected
-                            ? 'border-[#BAE6FD] bg-[#F8FAFC]'
-                            : 'border-gray-100 bg-white'
-                      }`}
-                    >
-                      <div className="mb-3 flex items-start justify-between gap-3">
-                        <div className="flex min-w-0 gap-3">
-                          <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#E0F2FE] text-xs font-black text-[#0891B2]">
-                            {index + 1}
-                          </span>
-                          <p className="pt-1 text-sm font-black leading-relaxed text-[#0F172A]">{question.prompt}</p>
-                        </div>
-                        {submitted && (
-                          <span className={`inline-flex shrink-0 items-center gap-1 text-xs font-black ${correct ? 'text-[#047857]' : 'text-[#DC2626]'}`}>
-                            {correct ? <CheckCircle2 size={14} /> : <XCircle size={14} />}
-                            {correct ? 'Benar' : 'Salah'}
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="grid gap-2">
-                        {question.options.map((option, optionIndex) => {
-                          const optionLabel = String.fromCharCode(65 + optionIndex);
-                          const isSelected = selected === option;
-                          const showCorrect = submitted && option === question.answer;
-                          const showWrong = submitted && isSelected && option !== question.answer;
-
-                          return (
-                            <label
-                              key={`${question.id}-${option}`}
-                              className={`flex min-h-11 cursor-pointer items-center gap-3 rounded-[6px] border px-3 py-2 text-sm font-semibold transition ${
-                                showCorrect
-                                  ? 'border-[#10B981] bg-[#ECFDF5] text-[#065F46]'
-                                  : showWrong
-                                    ? 'border-[#EF4444] bg-[#FEF2F2] text-[#991B1B]'
-                                    : isSelected
-                                      ? 'border-[#0891B2] bg-[#ECFEFF] text-[#0E7490]'
-                                      : 'border-[#CBD5E1] bg-white text-[#0F172A] hover:border-[#0891B2]'
-                              }`}
-                            >
-                              <input
-                                type="radio"
-                                name={question.id}
-                                checked={isSelected}
-                                disabled={submitted}
-                                onChange={() => setAnswers((current) => ({ ...current, [question.id]: option }))}
-                                className="h-3.5 w-3.5"
-                              />
-                              <span>{optionLabel}. {option}</span>
-                            </label>
-                          );
-                        })}
-                      </div>
-
-                      {submitted && (
-                        <div className="mt-3 rounded-[6px] border border-[#CBD5E1] bg-white px-3 py-2">
-                          <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Pembahasan</p>
-                          <p className="mt-1 text-xs font-semibold leading-relaxed text-gray-600">
-                            {buildQuestionExplanation(question, selected)}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {submitted && (
-                <div className="mt-4 grid gap-3 md:grid-cols-2">
-                  <div className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3">
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Hasil Listening</p>
-                    <p className="mt-1 text-xl font-black text-[#0F172A]">{score}/{questions.length} benar</p>
-                    <p className="mt-2 text-xs font-semibold leading-relaxed text-gray-600">{listeningRecommendation}</p>
-                  </div>
-                  <div className="rounded-[8px] border border-[#CBD5E1] bg-white px-4 py-3">
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Mistake Bank</p>
-                    <p className="mt-1 text-xl font-black text-[#0F172A]">{mistakeBankCount} soal tersimpan</p>
-                    <p className="mt-2 text-xs font-semibold leading-relaxed text-gray-500">{wrongQuestions.length} soal listening dari topic ini masuk review.</p>
-                  </div>
-                </div>
-              )}
-
-              <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setAnswers({});
-                    setSubmitted(false);
-                  }}
-                  className="inline-flex h-10 items-center justify-center gap-2 rounded-[4px] border border-[#CBD5E1] px-4 text-sm font-black text-[#0F172A] transition hover:bg-gray-50"
-                >
-                  <RotateCcw size={16} />
-                  Reset Quiz
-                </button>
-                <button
-                  type="button"
-                  onClick={submitListeningQuiz}
-                  className="inline-flex h-10 items-center justify-center rounded-[4px] bg-[#0891B2] px-5 text-sm font-black text-white transition hover:bg-[#0E7490] disabled:cursor-not-allowed disabled:opacity-50"
-                  disabled={answeredCount < questions.length}
-                >
-                  {answeredCount < questions.length ? `Jawab ${questions.length - answeredCount} soal lagi` : 'Submit Quiz'}
-                </button>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-    </PageContainer>
-  );
-}
-
-function SpeakingPracticeIntro({ topic }: { topic: SpeakingTopic }) {
-  const drillItems = [
-    { label: 'Pattern', value: topic.pattern },
-    { label: 'Model Answer', value: topic.sample },
-    { label: 'Formal', value: topic.formalResponse },
-    { label: 'Casual', value: topic.casualResponse },
-    { label: 'Repair Phrase', value: topic.repairPhrase },
-  ];
-
-  const playSpeakingPack = () => {
-    playAudio(
-      [
-        `Situation: ${topic.situation}.`,
-        `Goal: ${topic.goal}.`,
-        `Pattern: ${topic.pattern}.`,
-        `Model answer: ${topic.sample}`,
-      ].join(' '),
-      0.9
-    );
-  };
-
-  return (
-    <section className="mb-6 overflow-hidden rounded-[10px] border border-[#CBD5E1] bg-white">
-      <div className="border-b border-[#CBD5E1] bg-[#F8FAFC] p-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <span className="inline-flex rounded bg-[#E0F2FE] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#0891B2]">
-              Speaking Studio
-            </span>
-            <h2 className="mt-3 text-lg font-black text-[#0F172A]">{topic.title}</h2>
-            <p className="mt-1 max-w-3xl text-sm font-semibold leading-relaxed text-gray-600">{topic.goal}</p>
-          </div>
-          <div className="flex shrink-0 gap-2">
-            <button
-              type="button"
-              onClick={playSpeakingPack}
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-[4px] bg-[#0891B2] px-4 text-sm font-black text-white transition hover:bg-[#0E7490]"
-            >
-              <Play size={16} fill="currentColor" />
-              Listen Model
-            </button>
-            <button
-              type="button"
-              onClick={stopCurrentAudio}
-              className="inline-flex h-10 items-center justify-center rounded-[4px] border border-[#CBD5E1] px-4 text-sm font-black text-[#0F172A] transition hover:bg-white"
-            >
-              Stop
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-4 p-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-          <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Situation Prompt</p>
-          <p className="mt-2 text-base font-black leading-relaxed text-[#0F172A]">{topic.situation}</p>
-          <div className="mt-4 rounded-[8px] bg-white p-4">
-            <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[#0891B2]">Model Answer</p>
-            <p className="mt-2 text-sm font-black leading-relaxed text-[#0F172A]">{topic.sample}</p>
-          </div>
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            <div className="rounded-[8px] bg-white p-3">
-              <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Pronunciation Focus</p>
-              <p className="mt-1 text-sm font-semibold text-gray-700">{topic.pronunciation}</p>
-            </div>
-            <div className="rounded-[8px] bg-white p-3">
-              <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Fluency Tip</p>
-              <p className="mt-1 text-sm font-semibold text-gray-700">{topic.fluencyTip}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <div className="rounded-[8px] border border-[#CBD5E1] bg-white p-4">
-            <h3 className="text-sm font-black text-[#0F172A]">Repeat Bank</h3>
-            <div className="mt-3 space-y-2">
-              {drillItems.map((item) => (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => playAudio(item.value, 0.88)}
-                  className="flex w-full items-center justify-between gap-3 rounded-[6px] border border-[#CBD5E1] px-3 py-2 text-left transition hover:border-[#0891B2] hover:bg-[#ECFEFF]"
-                >
-                  <span className="min-w-0">
-                    <span className="block text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">{item.label}</span>
-                    <span className="mt-0.5 block text-xs font-black leading-relaxed text-[#0F172A]">{item.value}</span>
-                  </span>
-                  <Volume2 className="shrink-0 text-[#0891B2]" size={16} />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-            <h3 className="text-sm font-black text-[#0F172A]">Practice Flow</h3>
-            <div className="mt-3 space-y-2 text-sm font-semibold text-gray-600">
-              <p>1. Listen to the model answer once.</p>
-              <p>2. Repeat the pattern slowly, then at natural speed.</p>
-              <p>3. Replace the blank with your own detail.</p>
-              <p>4. Answer the 30 multiple choice questions to lock the structure.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WritingPracticeIntro({ topic }: { topic: WritingTopic }) {
-  const writingParts = [
-    { label: 'Opening', value: topic.opening },
-    { label: 'Connector', value: topic.connector },
-    { label: 'Closing', value: topic.closing },
-    { label: 'Structure', value: topic.structure },
-    { label: 'Editing Tip', value: topic.editingTip },
-  ];
-
-  return (
-    <section className="mb-6 overflow-hidden rounded-[10px] border border-[#CBD5E1] bg-white">
-      <div className="border-b border-[#CBD5E1] bg-[#F8FAFC] p-4">
-        <div className="flex flex-col gap-2">
-          <span className="inline-flex w-fit rounded bg-[#EEF2FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#2563EB]">
-            Writing Studio
-          </span>
-          <h2 className="text-lg font-black text-[#0F172A]">{topic.title}</h2>
-          <p className="max-w-3xl text-sm font-semibold leading-relaxed text-gray-600">{topic.goal}</p>
-        </div>
-      </div>
-
-      <div className="grid gap-4 p-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-          <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Writing Task</p>
-          <p className="mt-2 text-base font-black leading-relaxed text-[#0F172A]">{topic.task}</p>
-
-          <div className="mt-4 grid gap-3 md:grid-cols-2">
-            <div className="rounded-[8px] bg-white p-3">
-              <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Format</p>
-              <p className="mt-1 text-sm font-black text-[#0F172A]">{topic.format}</p>
-            </div>
-            <div className="rounded-[8px] bg-white p-3">
-              <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Structure</p>
-              <p className="mt-1 text-sm font-semibold text-gray-700">{topic.structure}</p>
-            </div>
-          </div>
-
-          <div className="mt-4 rounded-[8px] bg-white p-4">
-            <p className="text-[10px] font-black uppercase tracking-[0.12em] text-[#2563EB]">Model Writing</p>
-            <p className="mt-2 text-sm font-black leading-relaxed text-[#0F172A]">{topic.sample}</p>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <div className="rounded-[8px] border border-[#CBD5E1] bg-white p-4">
-            <h3 className="text-sm font-black text-[#0F172A]">Writing Builder</h3>
-            <div className="mt-3 space-y-2">
-              {writingParts.map((item) => (
-                <div key={item.label} className="rounded-[6px] border border-[#CBD5E1] px-3 py-2">
-                  <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">{item.label}</p>
-                  <p className="mt-0.5 text-xs font-black leading-relaxed text-[#0F172A]">{item.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-            <h3 className="text-sm font-black text-[#0F172A]">Draft Flow</h3>
-            <div className="mt-3 space-y-2 text-sm font-semibold text-gray-600">
-              <p>1. Read the task and decide the format.</p>
-              <p>2. Write one clear main idea first.</p>
-              <p>3. Add one connector and one supporting detail.</p>
-              <p>4. Check grammar, punctuation, and tone before submitting.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ReadingPracticeIntro({ topic }: { topic: ReadingTopic }) {
-  const readingSteps = [
-    'Skim judul dan kalimat pertama untuk menangkap arah teks.',
-    'Baca passage lengkap tanpa berhenti terlalu lama di satu kata.',
-    `Perhatikan kata "${topic.vocabulary}" dan tebak maknanya dari konteks.`,
-    'Cari satu detail pendukung sebelum masuk ke pilihan ganda.',
-  ];
-
-  const playPassage = () => {
-    playAudio(`${topic.passageTitle}. ${topic.passage}`, 0.9);
-  };
-
-  return (
-    <section className="mb-6 overflow-hidden rounded-[10px] border border-[#CBD5E1] bg-white">
-      <div className="border-b border-[#CBD5E1] bg-[#F8FAFC] p-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <span className="inline-flex rounded bg-[#DCFCE7] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#15803D]">
-              Reading Lab
-            </span>
-            <h2 className="mt-3 text-lg font-black text-[#0F172A]">{topic.passageTitle}</h2>
-            <p className="mt-1 max-w-3xl text-sm font-semibold leading-relaxed text-gray-600">{topic.description}</p>
-          </div>
-          <div className="flex shrink-0 gap-2">
-            <button
-              type="button"
-              onClick={playPassage}
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-[4px] bg-[#15803D] px-4 text-sm font-black text-white transition hover:bg-[#166534]"
-            >
-              <Play size={16} fill="currentColor" />
-              Read Aloud
-            </button>
-            <button
-              type="button"
-              onClick={stopCurrentAudio}
-              className="inline-flex h-10 items-center justify-center rounded-[4px] border border-[#CBD5E1] px-4 text-sm font-black text-[#0F172A] transition hover:bg-white"
-            >
-              Stop
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-4 p-4 lg:grid-cols-[1.15fr_0.85fr]">
-        <article className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-          <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Passage</p>
-          <h3 className="mt-2 text-base font-black text-[#0F172A]">{topic.passageTitle}</h3>
-          <p className="mt-3 text-sm font-semibold leading-7 text-gray-700">{topic.passage}</p>
-        </article>
-
-        <div className="space-y-4">
-          <div className="rounded-[8px] border border-[#CBD5E1] bg-white p-4">
-            <h3 className="text-sm font-black text-[#0F172A]">Reading Focus</h3>
-            <div className="mt-3 grid gap-2">
-              {[
-                { label: 'Skill', value: topic.readingSkill },
-                { label: 'Question Types', value: 'Main idea, detail, vocabulary, inference, purpose' },
-                { label: 'Key Word', value: topic.vocabulary },
-              ].map((item) => (
-                <div key={item.label} className="rounded-[6px] border border-[#CBD5E1] px-3 py-2">
-                  <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">{item.label}</p>
-                  <p className="mt-0.5 text-xs font-black leading-relaxed text-[#0F172A]">{item.value}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-            <h3 className="text-sm font-black text-[#0F172A]">Before You Answer</h3>
-            <div className="mt-3 space-y-2">
-              {readingSteps.map((step, index) => (
-                <div key={step} className="flex gap-2 text-sm font-semibold leading-relaxed text-gray-600">
-                  <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#DCFCE7] text-[10px] font-black text-[#15803D]">
-                    {index + 1}
-                  </span>
-                  <p>{step}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function VocabularyQuizPage({
-  topicId,
-  levelId,
-  skillId = 'vocabulary',
-  quizTopics = topics,
-  buildQuizQuestions = buildQuestions,
-  quizLabel = 'Vocabulary',
-  introContent,
-}: {
-  topicId: string;
-  levelId?: string;
-  skillId?: string;
-  quizTopics?: Topic[];
-  buildQuizQuestions?: (topicId: string, language?: 'en' | 'id') => VocabQuestion[];
-  quizLabel?: string;
-  introContent?: (topic: Topic) => ReactNode;
-}) {
-  const navigate = useNavigate();
-  const { language } = useLanguage();
-  const topic = quizTopics.find((item) => item.id === topicId) || quizTopics[0];
-  const questions = useMemo(() => buildQuizQuestions(topic.id, language), [buildQuizQuestions, language, topic.id]);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [mistakeBankCount, setMistakeBankCount] = useState(() => loadMistakeBank().length);
-
-  const score = questions.reduce((total, question) => total + (answers[question.id] === question.answer ? 1 : 0), 0);
-  const answeredCount = Object.keys(answers).length;
-  const progressPercent = Math.round((answeredCount / questions.length) * 100);
-  const wrongQuestions = questions.filter((question) => answers[question.id] && answers[question.id] !== question.answer);
-  const levelStats = (['Basic', 'Intermediate', 'Advanced'] as QuizLevel[]).map((level) => {
-    const levelQuestions = questions.filter((question) => question.level === level);
-    const answered = levelQuestions.filter((question) => answers[question.id]).length;
-    const correct = levelQuestions.filter((question) => answers[question.id] === question.answer).length;
-
-    return { level, answered, correct, total: levelQuestions.length };
-  });
-  const weakestLevel = levelStats.reduce((weakest, stat) => {
-    const statRate = stat.correct / stat.total;
-    const weakestRate = weakest.correct / weakest.total;
-    return statRate < weakestRate ? stat : weakest;
-  }, levelStats[0]);
-  const recommendation = score >= 26
-    ? `Mantap. Lanjut ke topik ${quizLabel} berikutnya atau coba ulang mode Advanced.`
-    : score >= 18
-      ? `Fokus ulang level ${weakestLevel.level}; level ini skormu ${weakestLevel.correct}/${weakestLevel.total}.`
-      : `Perkuat Basic dulu sebelum lanjut. Mulai dari review ${wrongQuestions.length} soal yang salah.`;
-
-  const reset = () => {
-    setAnswers({});
-    setSubmitted(false);
-  };
-
-  const scrollToQuestion = (questionId: string) => {
-    document.getElementById(questionId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  };
-
-  const submitQuiz = () => {
-    const wrongRecords: MistakeRecord[] = wrongQuestions.map((question) => ({
-      id: `${skillId}-${topic.id}-${question.id}`,
-      skillId,
-      topicTitle: topic.title,
-      level: question.level,
-      prompt: question.prompt,
-      answer: question.answer,
-      selected: answers[question.id],
-      options: question.options,
-      savedAt: new Date().toISOString(),
-    }));
-    const existing = loadMistakeBank().filter((record) => !wrongRecords.some((item) => item.id === record.id));
-    const nextBank = [...wrongRecords, ...existing];
-    saveMistakeBank(nextBank);
-    setMistakeBankCount(nextBank.length);
-    savePracticeAttempt({
-      id: `${skillId}-${topic.id}-${Date.now()}`,
-      skillId,
-      topicId: topic.id,
-      topicTitle: topic.title,
-      score,
-      total: questions.length,
-      weakestLevel: weakestLevel.level,
-      completedAt: new Date().toISOString(),
-    });
-    setSubmitted(true);
+    setQuickCorrect(nextCorrect);
+    setQuickAnswered(nextAnswered);
+    setDrillIndex((current) => (current + 1) % quickDrills.length);
+    setRevealed(false);
+    setDraftAnswer('');
   };
 
   return (
     <PageContainer>
       <div className="mx-auto max-w-6xl px-5 pb-28 md:px-0 md:pb-8">
-        <div className="overflow-hidden rounded-[10px] border border-[#CBD5E1] bg-white shadow-sm">
-          <div className="bg-[#F8FAFC] px-5 py-4 md:px-8">
-          <div className="mb-5 text-xs font-semibold text-gray-500">
-            Latihan Soal <span className="mx-1">/</span> {quizLabel} <span className="mx-1">/</span>{' '}
-            <span className="font-black text-[#2563EB]">{topic.title}</span>
-          </div>
+        <PageHeader
+          title={`${skill.label} Practice`}
+          subtitle={`${level.title} - ${completedCount}/${totalLessons} lesson selesai`}
+          onBack={() => navigate('/latihan')}
+        />
 
-          <div className="flex items-start gap-3">
-            <motion.button
-              type="button"
-              onClick={() => navigate(`/latihan/${skillId}`, { replace: true })}
-              className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full border border-gray-100 bg-white shadow-sm transition hover:bg-gray-50"
-              whileTap={{ scale: 0.92 }}
-            >
-              <ArrowLeft size={17} />
-            </motion.button>
-            <div className="flex-1">
-              <div className="inline-flex rounded bg-[#EEF2FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-[#2563EB]">
-                30 multiple choice questions
-              </div>
-              <h1 className="mt-3 text-[24px] font-black leading-tight text-[#0F172A]">Latihan Soal: {quizLabel} ({topic.title})</h1>
-              <p className="mt-1 max-w-2xl text-sm font-semibold leading-relaxed text-gray-500">
-                Kerjakan campuran soal Basic, Intermediate, dan Advanced. Pilih satu jawaban paling tepat untuk setiap nomor.
-              </p>
-            </div>
-            <div className="h-9 w-9 shrink-0" />
-          </div>
-          </div>
-
-          <div className="px-5 py-6 md:px-8">
-          {introContent?.(topic)}
-
-          <div className="mb-5 grid gap-3 md:grid-cols-4">
-            {[
-              { label: 'Total Soal', value: '30', icon: ClipboardList, color: '#2563EB', bg: '#DBEAFE' },
-              { label: 'Terjawab', value: `${answeredCount}/30`, icon: Target, color: '#0F766E', bg: '#CCFBF1' },
-              { label: 'Progress', value: `${progressPercent}%`, icon: CheckCircle2, color: '#7C3AED', bg: '#EDE9FE' },
-              { label: 'Skor', value: submitted ? `${score}/30` : '-', icon: Award, color: '#F59E0B', bg: '#FEF3C7' },
-            ].map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.label} className="rounded-[8px] border border-[#CBD5E1] bg-white px-4 py-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">{item.label}</p>
-                      <p className="mt-1 text-lg font-black text-[#0F172A]">{item.value}</p>
-                    </div>
-                    <div className="grid h-9 w-9 place-items-center rounded-[8px]" style={{ backgroundColor: item.bg, color: item.color }}>
-                      <Icon size={17} />
-                    </div>
-                  </div>
+        <section className="overflow-hidden rounded-[26px] border border-teal-100 bg-white shadow-sm">
+          <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+            <div className="p-5 md:p-7">
+              <div className="flex items-center gap-3">
+                <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl p-2" style={{ backgroundColor: skill.bgColor }}>
+                  <img src={skill.icon} alt="" className="h-full w-full object-contain" />
                 </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0F766E]">Arabic Focus Drill</p>
+                  <h1 className="truncate text-2xl font-black text-[#0F172A]">{skill.label}</h1>
+                </div>
+              </div>
+
+              <p className="mt-4 max-w-2xl text-sm font-semibold leading-relaxed text-slate-500">{skill.sublabel}</p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-3">
+                {[
+                  { label: 'Level', value: level.badge },
+                  { label: 'Progress', value: `${progress}%` },
+                  { label: 'Next', value: `Lesson ${nextLesson}` },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-2xl bg-slate-50 px-4 py-3">
+                    <p className="text-[10px] font-black uppercase tracking-[0.14em] text-slate-400">{item.label}</p>
+                    <p className="mt-1 truncate text-sm font-black text-[#0F172A]">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                <button
+                  onClick={() => openLesson(nextLesson)}
+                  className="inline-flex h-11 items-center gap-2 rounded-full bg-[#0F766E] px-5 text-sm font-black text-white shadow-sm transition hover:bg-[#0B6B63] focus:outline-none focus:ring-2 focus:ring-teal-200"
+                >
+                  <Play size={16} />
+                  Mulai Latihan Berikutnya
+                </button>
+                <button
+                  onClick={() => navigate(`/modul/arabic/${routeLevelId}/${skillId}`)}
+                  className="inline-flex h-11 items-center gap-2 rounded-full border border-teal-100 bg-white px-5 text-sm font-black text-[#0F766E] transition hover:bg-teal-50"
+                >
+                  Buka Modul Lengkap
+                </button>
+              </div>
+            </div>
+
+            <div className="relative min-h-[240px] bg-[#ECFDF5] p-6">
+              <div className="absolute inset-6 rounded-[24px] border border-white/70 bg-white/70 shadow-sm" />
+              <div className="relative z-10 flex h-full min-h-[210px] flex-col justify-between">
+                <div className="rounded-2xl border border-teal-100 bg-white/90 p-4 shadow-sm">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-teal-600">Sample Drill</p>
+                  <p dir="rtl" lang="ar" className="mt-3 text-4xl font-black leading-relaxed text-[#0F172A]">{sample.arabic}</p>
+                  <p className="mt-2 text-xs font-semibold text-slate-500">{sample.label}</p>
+                </div>
+                <div className="mt-4 overflow-hidden rounded-full bg-white">
+                  <div className="h-2 rounded-full bg-[#0F766E]" style={{ width: `${progress}%` }} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-6">
+          <div className="mb-4">
+            <h2 className="text-lg font-black text-[#0F172A]">Mode Latihan</h2>
+            <p className="mt-0.5 text-[13px] font-semibold text-slate-500">Pilih pola practice yang paling cocok untuk sesi singkat hari ini.</p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {arabicPracticeModes[skillId].map((mode, index) => {
+              const Icon = mode.icon;
+              const selected = index === activeModeIndex;
+              const openMode = () => {
+                if (skillId === 'mufradat' && index === 0) {
+                  navigate(`/latihan/arabic/mufradat/topik${Math.min(nextLesson, arabicMufradatTopics.length)}`);
+                  return;
+                }
+
+                choosePracticeMode(index);
+              };
+
+              return (
+                <motion.button
+                  key={mode.title}
+                  type="button"
+                  onClick={openMode}
+                  className={`rounded-2xl border p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-teal-100 ${selected ? 'border-[#0F766E] bg-teal-50' : 'border-teal-100 bg-white hover:border-teal-200'}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.04 * index }}
+                >
+                  <div className={`grid h-11 w-11 place-items-center rounded-2xl ${selected ? 'bg-white text-[#0F766E]' : 'bg-teal-50 text-[#0F766E]'}`}>
+                    <Icon size={19} />
+                  </div>
+                  <h3 className="mt-3 font-black text-[#0F172A]">{mode.title}</h3>
+                  <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">{mode.detail}</p>
+                </motion.button>
               );
             })}
           </div>
+        </section>
 
-          <div className="mb-6 rounded-[8px] border border-[#CBD5E1] bg-white p-4">
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <p className="text-sm font-black text-[#0F172A]">Question Navigator</p>
-              <p className="text-xs font-bold text-gray-500">{answeredCount} of 30 answered</p>
-            </div>
-            <div className="mb-4 h-2 overflow-hidden rounded-full bg-gray-100">
-              <motion.div
-                className="h-full rounded-full bg-[#2563EB]"
-                initial={{ width: 0 }}
-                animate={{ width: `${progressPercent}%` }}
-                transition={{ duration: 0.35 }}
-              />
-            </div>
-            <div className="grid gap-2" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(32px, 1fr))' }}>
-              {questions.map((question, index) => {
-                const answered = Boolean(answers[question.id]);
-                const correct = answers[question.id] === question.answer;
-
-                return (
-                  <button
-                    key={question.id}
-                    type="button"
-                    onClick={() => scrollToQuestion(question.id)}
-                    className={`h-8 rounded-[6px] border text-xs font-black transition ${
-                      submitted
-                        ? correct
-                          ? 'border-[#10B981] bg-[#ECFDF5] text-[#047857]'
-                          : 'border-[#EF4444] bg-[#FEF2F2] text-[#DC2626]'
-                        : answered
-                          ? 'border-[#2563EB] bg-[#DBEAFE] text-[#1D4ED8]'
-                          : 'border-[#CBD5E1] bg-white text-gray-400 hover:border-[#2563EB]'
-                    }`}
-                  >
-                    {index + 1}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mb-7 grid gap-3 md:grid-cols-3">
-            {levelStats.map((stat) => (
-              <div key={stat.level} className="rounded-[8px] border border-[#CBD5E1] bg-[#F8FAFC] p-4">
-                <div className="mb-2 flex items-center justify-between gap-3">
-                  <p className="text-sm font-black text-[#0F172A]">{stat.level}</p>
-                  <span className="text-xs font-black text-gray-500">
-                    {submitted ? `${stat.correct}/${stat.total}` : `${stat.answered}/${stat.total}`}
-                  </span>
+        <section className="mt-6 overflow-hidden rounded-[26px] border border-teal-100 bg-white shadow-sm">
+          <div className="grid gap-0 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="p-5 md:p-6">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div>
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0F766E]">Quick Drill</p>
+                  <h2 className="mt-1 text-xl font-black text-[#0F172A]">{activeMode.title}</h2>
+                  <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">{activeMode.detail}</p>
                 </div>
-                <div className="h-2 overflow-hidden rounded-full bg-white">
-                  <motion.div
-                    className="h-full rounded-full bg-[#2563EB]"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${(stat.answered / stat.total) * 100}%` }}
-                    transition={{ duration: 0.35 }}
-                  />
+                <div className="rounded-full bg-teal-50 px-3 py-1 text-xs font-black text-[#0F766E]">
+                  {quickAnswered + 1}/{quickDrills.length}
                 </div>
               </div>
+
+              <div className="mt-5 rounded-[24px] border border-slate-100 bg-slate-50 p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Arabic Card</p>
+                    <p dir="rtl" lang="ar" className="mt-3 text-4xl font-black leading-relaxed text-[#0F172A]">{activeDrill.arabic}</p>
+                    <p className="mt-2 text-xs font-black text-[#0F766E]">{activeDrill.transliteration}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => speakArabicText(activeDrill.arabic)}
+                    className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-teal-100 bg-white text-[#0F766E] transition hover:bg-teal-50"
+                    title="Dengarkan Arabic"
+                  >
+                    <Volume2 size={18} />
+                  </button>
+                </div>
+
+                <div className="mt-4 rounded-2xl bg-white p-4">
+                  <p className="text-sm font-black text-[#0F172A]">{activeDrill.prompt}</p>
+                  <p className="mt-2 text-xs font-semibold leading-relaxed text-slate-500">Hint: {activeDrill.hint}</p>
+                </div>
+
+                <textarea
+                  value={draftAnswer}
+                  onChange={(event) => setDraftAnswer(event.target.value)}
+                  rows={3}
+                  dir={skillId === 'kitabah' || draftAnswer.match(/[\u0600-\u06FF]/) ? 'rtl' : 'auto'}
+                  placeholder={skillId === 'kitabah' ? 'Tulis jawaban Arabmu di sini...' : 'Catat jawabanmu dulu, lalu reveal untuk self-check.'}
+                  className="mt-4 w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-[#0F172A] outline-none transition placeholder:text-slate-300 focus:border-[#0F766E] focus:ring-2 focus:ring-teal-100"
+                />
+
+                {revealed && (
+                  <motion.div
+                    className="mt-4 rounded-2xl border border-teal-100 bg-white p-4"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <p className="text-[10px] font-black uppercase tracking-[0.16em] text-teal-600">Jawaban</p>
+                    <p dir="auto" className="mt-2 text-lg font-black text-[#0F172A]">{activeDrill.answer}</p>
+                    <p className="mt-1 text-sm font-semibold text-slate-500">{activeDrill.meaning}</p>
+                  </motion.div>
+                )}
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setRevealed(true)}
+                    className="inline-flex h-11 items-center justify-center rounded-full border border-teal-100 bg-white px-5 text-sm font-black text-[#0F766E] transition hover:bg-teal-50"
+                  >
+                    Lihat Jawaban
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => completeQuickCard(true)}
+                    className="inline-flex h-11 items-center justify-center rounded-full bg-[#0F766E] px-5 text-sm font-black text-white shadow-sm transition hover:bg-[#0B6B63]"
+                  >
+                    Saya Benar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => completeQuickCard(false)}
+                    className="inline-flex h-11 items-center justify-center rounded-full bg-slate-100 px-5 text-sm font-black text-slate-600 transition hover:bg-slate-200"
+                  >
+                    Perlu Ulang
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-teal-50 bg-[#F8FAFC] p-5 md:p-6 lg:border-l lg:border-t-0">
+              <div className="rounded-2xl border border-white bg-white p-4 shadow-sm">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Session Score</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  {[
+                    { label: 'Benar', value: quickCorrect },
+                    { label: 'Terjawab', value: quickAnswered },
+                    { label: 'Best', value: `${savedQuickScore}%` },
+                  ].map((item) => (
+                    <div key={item.label} className="rounded-2xl bg-slate-50 px-4 py-3">
+                      <p className="text-[10px] font-black uppercase tracking-[0.12em] text-slate-400">{item.label}</p>
+                      <p className="mt-1 text-lg font-black text-[#0F172A]">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 overflow-hidden rounded-full bg-slate-100">
+                  <div className="h-2 rounded-full bg-[#0F766E] transition-all" style={{ width: `${quickProgress}%` }} />
+                </div>
+                {lastQuickResult !== null && (
+                  <div className="mt-4 rounded-2xl border border-teal-100 bg-teal-50 p-4">
+                    <p className="text-sm font-black text-[#0F172A]">Sesi selesai: {lastQuickResult}%</p>
+                    <p className="mt-1 text-xs font-semibold text-slate-500">Skor tersimpan dan akan ikut memengaruhi rekomendasi practice.</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="mt-4 rounded-2xl border border-white bg-white p-4 shadow-sm">
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">Practice Flow</p>
+                <div className="mt-3 space-y-3">
+                  {[
+                    'Dengarkan Arabic card 1-2 kali.',
+                    'Jawab di scratchpad tanpa melihat jawaban.',
+                    'Reveal, self-check, lalu tandai benar atau perlu ulang.',
+                  ].map((step, index) => (
+                    <div key={step} className="flex gap-3 rounded-2xl bg-slate-50 p-3">
+                      <div className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-teal-50 text-xs font-black text-[#0F766E]">{index + 1}</div>
+                      <p className="text-xs font-semibold leading-relaxed text-slate-600">{step}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 flex flex-col gap-2">
+                  <button
+                    type="button"
+                    onClick={resetQuickSession}
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 text-sm font-black text-slate-600 transition hover:bg-slate-50"
+                  >
+                    <RotateCcw size={16} />
+                    Reset Quick Drill
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => openLesson(nextLesson)}
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-[#0F172A] px-5 text-sm font-black text-white transition hover:bg-[#1E293B]"
+                  >
+                    <Play size={16} />
+                    Lanjut ke Lesson {nextLesson}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-lg font-black text-[#0F172A]">Lesson Practice</h2>
+              <p className="mt-0.5 text-[13px] font-semibold text-slate-500">Buka lesson langsung ke tab Latihan Arabic.</p>
+            </div>
+            <div className="rounded-full bg-teal-50 px-3 py-1 text-xs font-black text-[#0F766E]">{completedCount}/{totalLessons} done</div>
+          </div>
+
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {lessons.map((lesson, index) => (
+              <motion.button
+                key={lesson.id}
+                type="button"
+                onClick={() => openLesson(lesson.id)}
+                className={`group rounded-2xl border bg-white p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-teal-100 ${lesson.done ? 'border-teal-100' : 'border-slate-100 hover:border-teal-200'}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: Math.min(0.24, 0.015 * index) }}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <span className="inline-flex rounded-full bg-slate-50 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em] text-slate-400">
+                      Lesson {lesson.id}
+                    </span>
+                    <h3 className="mt-3 line-clamp-2 font-black text-[#0F172A]">{lesson.title}</h3>
+                  </div>
+                  <div className={`grid h-9 w-9 shrink-0 place-items-center rounded-2xl ${lesson.done ? 'bg-teal-50 text-[#0F766E]' : 'bg-slate-50 text-slate-300 group-hover:text-[#0F766E]'}`}>
+                    {lesson.done ? <CheckCircle2 size={18} /> : <Play size={16} />}
+                  </div>
+                </div>
+                <p className="mt-3 text-xs font-semibold text-slate-500">{lesson.done ? 'Sudah selesai. Bisa diulang untuk review.' : 'Buka tab latihan dengan soal dan drill Arabic.'}</p>
+              </motion.button>
             ))}
           </div>
-
-          {(['Basic', 'Intermediate', 'Advanced'] as QuizLevel[]).map((level) => (
-            <section key={level} className="mb-8 rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-              <div className="flex flex-col gap-2 border-b-2 border-[#2563EB] pb-3 sm:flex-row sm:items-center sm:justify-between">
-                <h2 className="text-base font-black text-[#0F172A]">{level} Level</h2>
-                <span className="text-xs font-bold text-gray-500">
-                  {questions.filter((question) => question.level === level && answers[question.id]).length}/10 answered
-                </span>
-              </div>
-
-              <div className="mt-4 space-y-5">
-                {questions
-                  .filter((question) => question.level === level)
-                  .map((question) => {
-                    const selected = answers[question.id];
-                    const correct = selected === question.answer;
-
-                    return (
-                      <div
-                        key={question.id}
-                        id={question.id}
-                        className={`scroll-mt-24 rounded-[8px] border p-4 transition ${
-                          submitted
-                            ? correct
-                              ? 'border-[#BBF7D0] bg-[#F0FDF4]'
-                              : 'border-[#FECACA] bg-[#FFFBFB]'
-                            : selected
-                              ? 'border-[#BFDBFE] bg-[#F8FAFC]'
-                              : 'border-gray-100 bg-white'
-                        }`}
-                      >
-                        <div className="mb-2 flex items-start justify-between gap-3">
-                          <div className="flex min-w-0 gap-3">
-                            <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#EEF2FF] text-xs font-black text-[#2563EB]">
-                              {questions.findIndex((item) => item.id === question.id) + 1}
-                            </span>
-                            <p className="pt-1 text-sm font-black leading-relaxed text-[#0F172A]">{question.prompt}</p>
-                          </div>
-                          {submitted && (
-                            <span className={`inline-flex shrink-0 items-center gap-1 text-xs font-black ${correct ? 'text-[#047857]' : 'text-[#DC2626]'}`}>
-                              {correct ? <CheckCircle2 size={14} /> : <XCircle size={14} />}
-                              {correct ? 'Benar' : 'Salah'}
-                            </span>
-                          )}
-                        </div>
-
-                        <div className="space-y-2">
-                          {question.options.map((option, optionIndex) => {
-                            const optionLabel = String.fromCharCode(65 + optionIndex);
-                            const isSelected = selected === option;
-                            const showCorrect = submitted && option === question.answer;
-                            const showWrong = submitted && isSelected && option !== question.answer;
-
-                            return (
-                              <label
-                                key={option}
-                                className={`flex min-h-11 cursor-pointer items-center gap-3 rounded-[6px] border px-3 py-2 text-sm font-semibold transition ${
-                                  showCorrect
-                                    ? 'border-[#10B981] bg-[#ECFDF5] text-[#065F46]'
-                                    : showWrong
-                                      ? 'border-[#EF4444] bg-[#FEF2F2] text-[#991B1B]'
-                                      : isSelected
-                                        ? 'border-[#2563EB] bg-[#EFF6FF] text-[#1D4ED8]'
-                                        : 'border-[#CBD5E1] bg-white text-[#0F172A] hover:border-[#2563EB]'
-                                }`}
-                              >
-                                <input
-                                  type="radio"
-                                  name={question.id}
-                                  checked={isSelected}
-                                  disabled={submitted}
-                                  onChange={() => setAnswers((current) => ({ ...current, [question.id]: option }))}
-                                  className="h-3.5 w-3.5"
-                                />
-                                <span>{optionLabel}. {option}</span>
-                              </label>
-                            );
-                          })}
-                        </div>
-
-                        {submitted && (
-                          <div className="mt-3 rounded-[6px] border border-[#CBD5E1] bg-white px-3 py-2">
-                            <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Pembahasan</p>
-                            <p className="mt-1 text-xs font-semibold leading-relaxed text-gray-600">
-                              {buildQuestionExplanation(question, selected)}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-              </div>
-            </section>
-          ))}
-
-          {submitted && (
-            <div className="mb-5 space-y-4">
-              <div className="rounded-[10px] border border-[#CBD5E1] bg-[#F8FAFC] p-5">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Hasil Akhir</p>
-                    <p className="mt-1 text-2xl font-black text-[#0F172A]">{score}/30 benar</p>
-                    <p className="mt-2 text-sm font-semibold text-gray-600">{recommendation}</p>
-                  </div>
-                  <div className="rounded-[8px] bg-white px-4 py-3 text-sm font-black text-[#2563EB]">
-                    Nilai: {Math.round((score / questions.length) * 100)}
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Mistake Bank</p>
-                      <p className="mt-1 text-lg font-black text-[#0F172A]">{mistakeBankCount} soal tersimpan</p>
-                    </div>
-                    <div className="grid h-10 w-10 place-items-center rounded-[8px] bg-[#FEF2F2] text-[#DC2626]">
-                      <XCircle size={18} />
-                    </div>
-                  </div>
-                  <p className="mt-3 text-xs font-semibold leading-relaxed text-gray-500">
-                    Soal yang salah otomatis disimpan di perangkat ini, jadi nanti bisa dibuat mode Review Mistakes.
-                  </p>
-                </div>
-
-                <div className="rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-                  <p className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400">Adaptive Focus</p>
-                  <p className="mt-1 text-lg font-black text-[#0F172A]">{weakestLevel.level}</p>
-                  <p className="mt-3 text-xs font-semibold leading-relaxed text-gray-500">
-                    Level terlemahmu di topik ini adalah {weakestLevel.level} dengan skor {weakestLevel.correct}/{weakestLevel.total}. Prioritaskan level ini sebelum lanjut.
-                  </p>
-                </div>
-              </div>
-
-              {wrongQuestions.length > 0 && (
-                <div className="rounded-[10px] border border-[#CBD5E1] bg-white p-4">
-                  <div className="mb-3 flex flex-col gap-1 border-b border-gray-100 pb-3">
-                    <h3 className="text-base font-black text-[#0F172A]">Review Soal Salah</h3>
-                    <p className="text-xs font-semibold text-gray-500">Mulai dari daftar ini saat mengulang topik.</p>
-                  </div>
-                  <div className="grid gap-2 md:grid-cols-2">
-                    {wrongQuestions.slice(0, 8).map((question) => (
-                      <button
-                        key={`review-${question.id}`}
-                        type="button"
-                        onClick={() => scrollToQuestion(question.id)}
-                        className="rounded-[6px] border border-[#FECACA] bg-[#FFFBFB] px-3 py-2 text-left transition hover:border-[#EF4444]"
-                      >
-                        <span className="text-[10px] font-black uppercase tracking-[0.12em] text-[#DC2626]">{question.level}</span>
-                        <span className="mt-1 line-clamp-2 block text-xs font-black leading-relaxed text-[#0F172A]">{question.prompt}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          <div className="sticky bottom-0 -mx-5 flex flex-col gap-3 border-t border-gray-100 bg-white/95 px-5 py-4 backdrop-blur sm:flex-row sm:items-center sm:justify-between md:-mx-8 md:px-8">
-            <button
-              type="button"
-              onClick={reset}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-[4px] border border-[#CBD5E1] px-5 text-sm font-black text-[#0F172A] transition hover:bg-gray-50"
-            >
-              <RotateCcw size={16} />
-              Reset Jawaban
-            </button>
-            <button
-              type="button"
-              onClick={submitQuiz}
-              className="inline-flex h-11 items-center justify-center rounded-[4px] bg-[#2563EB] px-6 text-sm font-black text-white transition hover:bg-[#1D4ED8] disabled:cursor-not-allowed disabled:opacity-50"
-              disabled={answeredCount < questions.length}
-            >
-              {answeredCount < questions.length ? `Jawab ${questions.length - answeredCount} soal lagi` : 'Submit Jawaban'}
-            </button>
-          </div>
-        </div>
-      </div>
+        </section>
       </div>
     </PageContainer>
   );
@@ -3621,85 +3654,294 @@ function ReviewMistakesPage() {
 
 export default function LatihanSkillPage() {
   const { t } = useLanguage();
-  const { levelId, skillId } = useParams<{ levelId: string; skillId: string }>();
+  const params = useParams<{ levelId: string; skillId: string }>();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const levelId = normalizeRouteParam(params.levelId);
+  const skillId = normalizeRouteParam(params.skillId);
   const topicId = searchParams.get('topic');
   const activeSkillId = skillId || levelId;
+  const targetLanguage = normalizeTargetLanguage(user?.persona?.targetLanguage);
 
   if (activeSkillId === 'review-mistakes') {
     return <ReviewMistakesPage />;
   }
 
+  if ((activeSkillId === 'pinyin' || activeSkillId === 'pronunciation') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinPinyinTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/pinyin/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/pinyin" replace />;
+    }
+
+    return <MandarinPinyinTopicList />;
+  }
+
+  if ((activeSkillId === 'yufa' || activeSkillId === 'grammar') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinYufaTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/yufa/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/yufa" replace />;
+    }
+
+    return <MandarinYufaTopicList />;
+  }
+
+  if ((activeSkillId === 'cihui' || activeSkillId === 'vocabulary') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinCihuiTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/cihui/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/cihui" replace />;
+    }
+
+    return <MandarinCihuiTopicList />;
+  }
+
+  if ((activeSkillId === 'xiezuo' || activeSkillId === 'writing') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinXiezuoTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/xiezuo/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/xiezuo" replace />;
+    }
+
+    return <MandarinXiezuoTopicList />;
+  }
+
+  if ((activeSkillId === 'yuedu' || activeSkillId === 'reading') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinYueduTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/yuedu/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/yuedu" replace />;
+    }
+
+    return <MandarinYueduTopicList />;
+  }
+
+  if ((activeSkillId === 'tingli' || activeSkillId === 'listening') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinTingliTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/tingli/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/tingli" replace />;
+    }
+
+    return <MandarinTingliTopicList />;
+  }
+
+  if ((activeSkillId === 'kouyu' || activeSkillId === 'speaking') && (levelId === 'mandarin' || (!levelId && targetLanguage === 'Mandarin'))) {
+    if (topicId) {
+      const topicIndex = mandarinKouyuTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/mandarin/kouyu/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/mandarin/kouyu" replace />;
+    }
+
+    return <MandarinKouyuTopicList />;
+  }
+
+  if (levelId === 'arabic' && activeSkillId === 'mufradat') {
+    if (topicId) {
+      const topicIndex = arabicMufradatTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/mufradat/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/mufradat" replace />;
+    }
+
+    return <ArabicMufradatTopicList />;
+  }
+
+  if (
+    (activeSkillId === 'nahwu' && (!levelId || levelId === 'arabic')) ||
+    (activeSkillId === 'grammar' && (levelId === 'arabic' || isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic')))
+  ) {
+    if (topicId) {
+      const topicIndex = arabicNahwuTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/nahwu/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/nahwu" replace />;
+    }
+
+    return <ArabicNahwuTopicList />;
+  }
+
+  if (activeSkillId === 'istima' && (levelId === 'arabic' || isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic'))) {
+    if (topicId) {
+      const topicIndex = arabicIstimaTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/istima/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/istima" replace />;
+    }
+
+    return <ArabicIstimaTopicList />;
+  }
+
+  if (activeSkillId === 'kalam' && (levelId === 'arabic' || isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic'))) {
+    if (topicId) {
+      const topicIndex = arabicKalamTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/kalam/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/kalam" replace />;
+    }
+
+    return <ArabicKalamTopicList />;
+  }
+
+  if (activeSkillId === 'qiraah' && (levelId === 'arabic' || isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic'))) {
+    if (topicId) {
+      const topicIndex = arabicQiraahTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/qiraah/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/qiraah" replace />;
+    }
+
+    return <ArabicQiraahTopicList />;
+  }
+
+  if (activeSkillId === 'kitabah' && (levelId === 'arabic' || isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic'))) {
+    if (topicId) {
+      const topicIndex = arabicKitabahTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/kitabah/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/kitabah" replace />;
+    }
+
+    return <ArabicKitabahTopicList />;
+  }
+
+  if ((activeSkillId === 'makharij' || activeSkillId === 'pronunciation') && (levelId === 'arabic' || isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic'))) {
+    if (topicId) {
+      const topicIndex = arabicMakharijTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/arabic/makharij/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/arabic/makharij" replace />;
+    }
+
+    return <ArabicMakharijTopicList />;
+  }
+
+  if (isArabicSkill(activeSkillId) && (isArabicLevelRoute(levelId) || (!levelId && targetLanguage === 'Arabic'))) {
+    return <ArabicPracticeTopicList levelId={levelId} skillId={activeSkillId} />;
+  }
+
   if (activeSkillId === 'vocabulary') {
-    return topicId ? <VocabularyQuizPage topicId={topicId} levelId={levelId} /> : <VocabularyTopicList levelId={levelId} />;
+    if (topicId) {
+      const topicIndex = topics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/english/vocabulary/topik${topicIndex + 1}`} replace />;
+      }
+    }
+
+    return topicId ? (
+      <VocabularyQuizPage
+        topicId={topicId}
+        levelId={levelId}
+        skillId="vocabulary"
+        quizTopics={topics}
+        buildQuizQuestions={buildQuestions}
+        quizLabel="Vocabulary"
+      />
+    ) : (
+      <VocabularyTopicList levelId={levelId} />
+    );
   }
 
   if (activeSkillId === 'grammar') {
-    return topicId ? (
-      <VocabularyQuizPage
-        topicId={topicId}
-        levelId={levelId}
-        skillId="grammar"
-        quizTopics={grammarTopics}
-        buildQuizQuestions={buildGrammarQuestions}
-        quizLabel="Grammar"
-      />
-    ) : (
-      <GrammarTopicList levelId={levelId} />
-    );
+    if (topicId) {
+      const topicIndex = grammarTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/english/grammar/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/english/grammar" replace />;
+    }
+
+    return <GrammarTopicList levelId={levelId} />;
   }
 
   if (activeSkillId === 'speaking') {
-    return topicId ? (
-      <VocabularyQuizPage
-        topicId={topicId}
-        levelId={levelId}
-        skillId="speaking"
-        quizTopics={speakingTopics}
-        buildQuizQuestions={buildSpeakingQuestions}
-        quizLabel="Speaking"
-        introContent={(topic) => <SpeakingPracticeIntro topic={topic as SpeakingTopic} />}
-      />
-    ) : (
-      <SpeakingTopicList levelId={levelId} />
-    );
+    if (topicId) {
+      const topicIndex = speakingTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/english/speaking/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/english/speaking" replace />;
+    }
+
+    return <SpeakingTopicList levelId={levelId} />;
   }
 
   if (activeSkillId === 'writing') {
-    return topicId ? (
-      <VocabularyQuizPage
-        topicId={topicId}
-        levelId={levelId}
-        skillId="writing"
-        quizTopics={writingTopics}
-        buildQuizQuestions={buildWritingQuestions}
-        quizLabel="Writing"
-        introContent={(topic) => <WritingPracticeIntro topic={topic as WritingTopic} />}
-      />
-    ) : (
-      <WritingTopicList levelId={levelId} />
-    );
+    if (topicId) {
+      const topicIndex = writingTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/english/writing/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/english/writing" replace />;
+    }
+
+    return <WritingTopicList levelId={levelId} />;
   }
 
   if (activeSkillId === 'reading') {
-    return topicId ? (
-      <VocabularyQuizPage
-        topicId={topicId}
-        levelId={levelId}
-        skillId="reading"
-        quizTopics={readingTopics}
-        buildQuizQuestions={buildReadingQuestions}
-        quizLabel="Reading"
-        introContent={(topic) => <ReadingPracticeIntro topic={topic as ReadingTopic} />}
-      />
-    ) : (
-      <ReadingTopicList levelId={levelId} />
-    );
+    if (topicId) {
+      const topicIndex = readingTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/english/reading/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/english/reading" replace />;
+    }
+
+    return <ReadingTopicList levelId={levelId} />;
   }
 
   if (activeSkillId === 'listening') {
-    return topicId ? <ListeningPracticePage topicId={topicId} /> : <ListeningTopicList levelId={levelId} />;
+    if (topicId) {
+      const topicIndex = listeningTopics.findIndex((topic) => topic.id === topicId);
+      if (topicIndex >= 0) {
+        return <Navigate to={`/latihan/english/listening/topik${topicIndex + 1}`} replace />;
+      }
+
+      return <Navigate to="/latihan/english/listening" replace />;
+    }
+
+    return <ListeningTopicList levelId={levelId} />;
   }
 
   return (

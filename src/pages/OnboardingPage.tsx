@@ -395,8 +395,8 @@ function LanguageSwitcher() {
   const { language, setLanguage } = useLanguage();
 
   const options: { code: Language; label: string; flag: string }[] = [
+    { code: 'id', label: 'Bahasa Indonesia', flag: '🇮🇩' },
     { code: 'en', label: 'English', flag: '🇬🇧' },
-    { code: 'id', label: 'Indonesia', flag: '🇮🇩' },
   ];
 
   return (

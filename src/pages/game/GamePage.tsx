@@ -5,6 +5,8 @@ import { BookOpen, Brain, Crown, Gamepad2, Headphones, Keyboard, Lock, Pencil, P
 import PageContainer from '../../components/layout/PageContainer';
 import { useAuth } from '../../auth/AuthContext';
 import { FREE_GAME_MODE_IDS, hasFullAccess } from '../../utils/accessControl';
+import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
+import { arabicGameCategoryCopy, arabicGameHomeCopy, arabicGameModeCopy } from '../../features/game/arabicGameContent';
 
 const arcadeMascotSrc = '/assets/mascot/89b30199-8e8b-40c7-8b41-6684be727e2e.png';
 
@@ -242,6 +244,7 @@ function readStats() {
 export default function GamePage() {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const isArabicGame = normalizeTargetLanguage(user?.persona?.targetLanguage) === 'Arabic';
   const fullAccess = hasFullAccess(user);
   const [activeCategory, setActiveCategory] = useState('all');
   const stats = useMemo(() => readStats(), []);
@@ -250,12 +253,15 @@ export default function GamePage() {
     if (activeCategory === 'all') return gameModes;
     return gameModes.filter((mode) => mode.category === activeCategory);
   }, [activeCategory]);
+  const gameAccent = isArabicGame ? '#0F766E' : '#7EC3E6';
+  const heroBg = isArabicGame ? '#0F766E' : '#7EC3E6';
 
   return (
     <PageContainer>
       <div className="pb-28 md:pb-8 px-5 md:px-0">
         <motion.div
-          className="mt-6 md:mt-0 rounded-3xl overflow-hidden relative bg-[#7EC3E6]"
+          className="mt-6 md:mt-0 rounded-3xl overflow-hidden relative"
+          style={{ backgroundColor: heroBg }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -274,11 +280,17 @@ export default function GamePage() {
                 <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
                   <Gamepad2 size={30} className="text-white" />
                 </div>
-                <h1 className="text-white text-2xl md:text-3xl font-black">Fluently Arcade</h1>
+                <h1 className="text-white text-2xl md:text-3xl font-black">{isArabicGame ? arabicGameHomeCopy.title : 'Fluently Arcade'}</h1>
                 <p className="text-white/80 text-sm font-semibold mt-1 max-w-[26rem] leading-relaxed">
-                  Latihan vocabulary, grammar, listening,
-                  <span className="block">dan writing dalam format game cepat.</span>
+                  {isArabicGame ? arabicGameHomeCopy.subtitle : 'Latihan vocabulary, grammar, listening,'}
+                  {!isArabicGame && <span className="block">dan writing dalam format game cepat.</span>}
                 </p>
+                {isArabicGame && (
+                  <div className="mt-4 inline-flex flex-col rounded-2xl border border-white/20 bg-white/15 px-4 py-2">
+                    <span dir="rtl" lang="ar" className="text-2xl font-black leading-relaxed text-white">تَحَدِّي العَرَبِيَّة</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-white/70">Arabic game mode aktif</span>
+                  </div>
+                )}
               </div>
               <div className="bg-white/18 rounded-2xl px-4 py-3 text-right">
                 <p className="text-white/70 text-[11px] font-bold uppercase tracking-wider">Game XP</p>
@@ -290,9 +302,9 @@ export default function GamePage() {
 
         <div className="grid grid-cols-3 gap-3 mt-5">
           {[
-            ['Played', stats.played || 0],
-            ['Complete', stats.completed || 0],
-            ['Best', stats.bestScore || 0],
+            [isArabicGame ? 'Dimainkan' : 'Played', stats.played || 0],
+            [isArabicGame ? 'Selesai' : 'Complete', stats.completed || 0],
+            [isArabicGame ? 'Terbaik' : 'Best', stats.bestScore || 0],
           ].map(([label, value]) => (
             <div key={label} className="rounded-2xl bg-white border border-gray-100 p-4 text-center shadow-sm">
               <p className="text-[20px] font-black text-[#1A1A2E]">{value}</p>
@@ -304,8 +316,8 @@ export default function GamePage() {
         <section className="mt-8">
           <div className="flex flex-col gap-4 mb-4">
             <div>
-              <h2 className="text-[20px] font-black text-[#1A1A2E]">Choose Game</h2>
-              <p className="text-[13px] text-gray-500 font-medium">Filter game berdasarkan skill yang ingin kamu latih.</p>
+              <h2 className="text-[20px] font-black text-[#1A1A2E]">{isArabicGame ? arabicGameHomeCopy.chooseTitle : 'Choose Game'}</h2>
+              <p className="text-[13px] text-gray-500 font-medium">{isArabicGame ? arabicGameHomeCopy.chooseSubtitle : 'Filter game berdasarkan skill yang ingin kamu latih.'}</p>
             </div>
 
             <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
@@ -319,7 +331,7 @@ export default function GamePage() {
                     onClick={() => setActiveCategory(category.id)}
                     className={`h-10 shrink-0 rounded-full px-4 text-[12px] font-black border transition-colors ${active ? 'bg-[#1A1A2E] text-white border-[#1A1A2E]' : 'bg-white text-gray-500 border-gray-100 hover:border-[#7EC3E6] hover:text-[#2F86B5]'}`}
                   >
-                    {category.label}
+                    {isArabicGame ? arabicGameCategoryCopy[category.id] || category.label : category.label}
                     <span className={`ml-2 ${active ? 'text-white/65' : 'text-gray-300'}`}>{count}</span>
                   </button>
                 );
@@ -330,6 +342,7 @@ export default function GamePage() {
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {filteredGameModes.map((mode, index) => {
               const Icon = mode.icon;
+              const copy = isArabicGame ? arabicGameModeCopy[mode.id] : null;
               const best = stats.modeBest?.[mode.title] || 0;
               const locked = !fullAccess && !FREE_GAME_MODE_IDS.includes(mode.id);
               return (
@@ -340,22 +353,22 @@ export default function GamePage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.07 }}
-                  whileHover={{ y: -4, boxShadow: `0 16px 38px ${mode.color}22` }}
+                  whileHover={{ y: -4, boxShadow: `0 16px 38px ${(isArabicGame ? gameAccent : mode.color)}22` }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: mode.bg }}>
-                      <Icon size={27} style={{ color: mode.color }} />
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center" style={{ backgroundColor: isArabicGame ? '#CCFBF1' : mode.bg }}>
+                      <Icon size={27} style={{ color: isArabicGame ? gameAccent : mode.color }} />
                     </div>
-                    <span className="px-2.5 py-1 rounded-full text-[10px] font-black" style={{ color: mode.color, backgroundColor: `${mode.color}14` }}>
-                      {locked ? 'Pro' : mode.status}
+                    <span className="px-2.5 py-1 rounded-full text-[10px] font-black" style={{ color: isArabicGame ? gameAccent : mode.color, backgroundColor: `${isArabicGame ? gameAccent : mode.color}14` }}>
+                      {locked ? 'Pro' : copy?.status || mode.status}
                     </span>
                   </div>
-                  <h3 className="mt-5 text-[17px] font-black text-[#1A1A2E]">{mode.title}</h3>
-                  <p className="mt-1 text-[13px] leading-relaxed text-gray-500 font-medium">{mode.subtitle}</p>
+                  <h3 className="mt-5 text-[17px] font-black text-[#1A1A2E]">{copy?.title || mode.title}</h3>
+                  <p className="mt-1 text-[13px] leading-relaxed text-gray-500 font-medium">{copy?.subtitle || mode.subtitle}</p>
                   <div className="mt-5 flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-gray-400 capitalize">{mode.category} · Best score: {best}</span>
-                    <span className="w-9 h-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: mode.color }}>
+                    <span className="text-[11px] font-bold text-gray-400 capitalize">{isArabicGame ? arabicGameCategoryCopy[mode.category] || mode.category : mode.category} · {isArabicGame ? 'Skor terbaik' : 'Best score'}: {best}</span>
+                    <span className="w-9 h-9 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: isArabicGame ? gameAccent : mode.color }}>
                       {locked ? <Lock size={15} /> : <Play size={15} fill="currentColor" />}
                     </span>
                   </div>
@@ -387,13 +400,13 @@ export default function GamePage() {
               </div>
               <div>
                 <h3 className="font-black text-[#1A1A2E]">Daily Quest</h3>
-                <p className="text-[12px] text-gray-500 font-medium">Selesaikan 3 game untuk bonus arcade.</p>
+                <p className="text-[12px] text-gray-500 font-medium">{isArabicGame ? arabicGameHomeCopy.dailyQuestSubtitle : 'Selesaikan 3 game untuk bonus arcade.'}</p>
               </div>
             </div>
-            <span className="text-[13px] font-black text-[#7EC3E6]">{Math.min(stats.completed || 0, 3)} / 3</span>
+            <span className="text-[13px] font-black" style={{ color: gameAccent }}>{Math.min(stats.completed || 0, 3)} / 3</span>
           </div>
           <div className="mt-4 h-2.5 bg-gray-100 rounded-full overflow-hidden">
-            <motion.div className="h-full bg-[#7EC3E6] rounded-full" initial={{ width: 0 }} animate={{ width: `${dailyProgress}%` }} />
+            <motion.div className="h-full rounded-full" style={{ backgroundColor: gameAccent }} initial={{ width: 0 }} animate={{ width: `${dailyProgress}%` }} />
           </div>
         </section>
       </div>

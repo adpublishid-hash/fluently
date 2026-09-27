@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, KeyRound, Lock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
@@ -8,14 +8,18 @@ import { ChatHeader, ChatInputBar, ChatMessageList } from '../features/chat/comp
 import { useChatSession } from '../features/chat/hooks';
 import { hasUsableChatAiAccess } from '../services/aiKeyService';
 import { getFreeChatLevelBlockMessage, isFreeAiChatUser, isFreeChatLevelAllowed } from '../features/chat/freeChatLimits';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export default function ChatPage() {
   const { modeId, scenarioId: levelId } = useParams<{ modeId: string; scenarioId: string }>();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { language, t } = useLanguage();
+  const sessionId = searchParams.get('session') || undefined;
   const [hasAiAccess, setHasAiAccess] = useState(() => hasUsableChatAiAccess(user?.plan));
   const isLevelLocked = isFreeAiChatUser(user) && !isFreeChatLevelAllowed(levelId);
-  const chat = useChatSession({ modeId, levelId, navigate });
+  const chat = useChatSession({ modeId, levelId, navigate, sessionId });
 
   useEffect(() => {
     const refreshGeminiKey = () => setHasAiAccess(hasUsableChatAiAccess(user?.plan));
@@ -36,11 +40,11 @@ export default function ChatPage() {
             <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-amber-50 text-amber-600 ring-1 ring-amber-100">
               <Lock size={28} />
             </div>
-            <h1 className="mt-5 text-2xl font-black text-text-primary">{isLevelLocked ? 'Level ini untuk Pro' : 'AI Chat dikunci dulu'}</h1>
+            <h1 className="mt-5 text-2xl font-black text-text-primary">{isLevelLocked ? t('chat.levelLockedTitle') : t('chat.aiLockedTitle')}</h1>
             <p className="mx-auto mt-3 max-w-xl text-sm font-semibold leading-relaxed text-text-muted">
               {isLevelLocked
-                ? getFreeChatLevelBlockMessage(levelId)
-                : 'AI Chat memakai default Gemini Flash 2.5 dari Fluently. Coba refresh halaman jika akses belum aktif.'}
+                ? getFreeChatLevelBlockMessage(levelId, language)
+                : t('chat.aiLockedBody')}
             </p>
 
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -50,7 +54,7 @@ export default function ChatPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3 text-sm font-black text-white shadow-sm transition hover:bg-primary-dark"
               >
                 <KeyRound size={18} />
-                {isLevelLocked ? 'Upgrade Pro' : 'Buka Profile'}
+                {isLevelLocked ? t('chat.upgradePro') : t('chat.openProfile')}
                 <ArrowRight size={16} />
               </button>
               <button
@@ -59,7 +63,7 @@ export default function ChatPage() {
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-black text-text-secondary transition hover:border-gray-300 hover:bg-gray-50"
               >
                 <ArrowLeft size={18} />
-                Kembali
+                {t('common.back')}
               </button>
             </div>
           </div>

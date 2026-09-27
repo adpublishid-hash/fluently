@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
 import { Flame, TrendingUp, Crown, Medal, BarChart3, Target, Trophy } from 'lucide-react';
 import PageContainer from '../components/layout/PageContainer';
-import { mockLeaderboard } from '../data/mockData';
 import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useAuth } from '../auth/AuthContext';
+import { useLeaderboard } from '../features/leaderboard/leaderboard';
+import type { LeaderboardEntry } from '../types';
 
-function PodiumUser({ entry, position, maxXp }: { entry: typeof mockLeaderboard[0]; position: 1 | 2 | 3; maxXp: number }) {
+function PodiumUser({ entry, position, maxXp }: { entry?: LeaderboardEntry; position: 1 | 2 | 3; maxXp: number }) {
   const heights = { 1: 150, 2: 118, 3: 98 };
   const sizes = { 1: 'h-20 w-20 md:h-24 md:w-24', 2: 'h-16 w-16 md:h-20 md:w-20', 3: 'h-16 w-16 md:h-20 md:w-20' };
   const delays = { 1: 0.3, 2: 0.1, 3: 0.5 };
@@ -15,7 +16,26 @@ function PodiumUser({ entry, position, maxXp }: { entry: typeof mockLeaderboard[
     2: { border: '#BFC7D5', bg: 'from-slate-100 to-slate-50', text: 'text-slate-500' },
     3: { border: '#C47A35', bg: 'from-orange-100 to-amber-50', text: 'text-orange-600' },
   };
-  const percent = Math.round((entry.user.xp / maxXp) * 100);
+
+  // Empty podium slot when there aren't enough learners yet.
+  if (!entry) {
+    return (
+      <div className="flex min-w-0 flex-1 flex-col items-center opacity-50">
+        <div className="relative z-10 mb-3">
+          <div className={`${sizes[position]} flex items-center justify-center rounded-full border-[5px] border-dashed border-gray-200 bg-gray-50 text-gray-300`}>
+            <Trophy size={22} />
+          </div>
+        </div>
+        <p className="text-center text-sm font-black text-text-muted">—</p>
+        <div
+          className={`mt-3 w-full max-w-[118px] rounded-t-[28px] bg-gradient-to-b ${colors[position].bg}`}
+          style={{ height: heights[position] }}
+        />
+      </div>
+    );
+  }
+
+  const percent = maxXp > 0 ? Math.round((entry.user.xp / maxXp) * 100) : 0;
 
   return (
     <motion.div
@@ -61,14 +81,14 @@ function PodiumUser({ entry, position, maxXp }: { entry: typeof mockLeaderboard[
   );
 }
 
-function StatPanel({ period }: { period: 'weekly' | 'monthly' }) {
+function StatPanel({ period, entries, userRank }: { period: 'weekly' | 'monthly'; entries: LeaderboardEntry[]; userRank: number | null }) {
   const { t } = useLanguage();
   const { user } = useAuth();
   const userXp = user?.xp ?? 0;
   const userAvatarUrl = user?.avatarUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(user?.displayName || user?.name || 'Learner')}&backgroundColor=b6e3f4`;
   const weeklyBars = [0, 0, 0, 0, 0, 0, 0];
   const weeklyXp   = [0, 0, 0, 0, 0, 0, 0];
-  const top5Xp = mockLeaderboard[4]?.user.xp ?? 0;
+  const top5Xp = entries[4]?.user.xp ?? 0;
   const targetToTop5 = Math.max(0, top5Xp - userXp + 1);
   const top5Progress = top5Xp > 0 ? Math.min(100, Math.round((userXp / top5Xp) * 100)) : 0;
 
@@ -83,7 +103,7 @@ function StatPanel({ period }: { period: 'weekly' | 'monthly' }) {
             <img src={userAvatarUrl} alt="" className="w-full h-full object-cover" />
           </div>
           <div>
-            <p className="text-3xl font-black text-primary">#6</p>
+            <p className="text-3xl font-black text-primary">{userRank ? `#${userRank}` : '—'}</p>
             <p className="text-sm font-semibold text-text-secondary">{t('rank.diamondLeague')}</p>
           </div>
         </div>
@@ -159,13 +179,8 @@ function StatPanel({ period }: { period: 'weekly' | 'monthly' }) {
 export default function RankPage() {
   const { t } = useLanguage();
   const [period, setPeriod] = useState<'weekly' | 'monthly'>('weekly');
+  const { entries: visibleLeaderboard, loading } = useLeaderboard(50);
 
-  const visibleLeaderboard = period === 'monthly'
-    ? mockLeaderboard.map((entry, index) => ({
-      ...entry,
-      user: { ...entry.user, xp: Math.round(entry.user.xp * (index < 3 ? 4.2 : 3.8)) },
-    }))
-    : mockLeaderboard;
   const top3 = visibleLeaderboard.slice(0, 3);
   const rest = visibleLeaderboard.slice(3);
   const maxXp = top3[0]?.user.xp || 1;
@@ -202,7 +217,12 @@ export default function RankPage() {
             </div>
           </div>
 
-          {visibleLeaderboard.length === 0 ? (
+          {loading && visibleLeaderboard.length === 0 ? (
+            <div className="mx-5 md:mx-0 rounded-[26px] border border-gray-100 bg-white p-10 text-center">
+              <div className="mx-auto mb-3 h-10 w-10 animate-spin rounded-full border-[3px] border-gray-200 border-t-primary" />
+              <p className="font-bold text-text-secondary">{t('common.loading')}</p>
+            </div>
+          ) : visibleLeaderboard.length === 0 ? (
             <div className="mx-5 md:mx-0 rounded-[26px] border border-dashed border-gray-200 bg-white p-10 text-center">
               <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gray-50">
                 <Trophy size={24} className="text-gray-300" />
@@ -289,7 +309,7 @@ export default function RankPage() {
           >
             <div className="flex items-center gap-2 mb-2">
               <Medal size={16} className="text-primary" />
-              <span className="text-xs font-bold text-text-primary">Rank #{userEntry?.rank || 6} · {t('rank.keepGoing')}</span>
+              <span className="text-xs font-bold text-text-primary">{userEntry?.rank ? `Rank #${userEntry.rank}` : t('rank.unranked')} · {t('rank.keepGoing')}</span>
             </div>
             <div className="h-2 bg-primary/20 rounded-full overflow-hidden">
               <motion.div
@@ -304,7 +324,7 @@ export default function RankPage() {
         </div>
 
         {/* Desktop Side Stats Panel */}
-        <StatPanel period={period} />
+        <StatPanel period={period} entries={visibleLeaderboard} userRank={userEntry?.rank ?? null} />
 
       </div>
     </PageContainer>

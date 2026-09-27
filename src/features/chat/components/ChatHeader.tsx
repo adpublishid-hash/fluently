@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Plus, Zap } from 'lucide-react';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 type ChatHeaderProps = {
   title: string;
@@ -18,6 +19,8 @@ export function ChatHeader({
   onNewSession,
   onEndSession,
 }: ChatHeaderProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="bg-white border-b border-gray-100 px-3 sm:px-5 pt-[max(0.75rem,env(safe-area-inset-top))] md:pt-4 pb-3.5 z-10 sticky top-0">
       <div className="w-full max-w-5xl mx-auto flex items-center justify-between">
@@ -28,7 +31,7 @@ export function ChatHeader({
             className="inline-flex h-10 items-center justify-center gap-1.5 rounded-2xl border border-gray-200 bg-white px-3 text-[11px] font-black text-text-secondary shadow-sm transition-colors hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
           >
             <ArrowLeft size={15} />
-            <span className="hidden sm:inline">Back</span>
+            <span className="hidden sm:inline">{t('common.back')}</span>
           </button>
           <button
             type="button"
@@ -36,7 +39,7 @@ export function ChatHeader({
             className="inline-flex h-10 items-center justify-center gap-1.5 rounded-2xl bg-primary px-3 text-[11px] font-black text-white shadow-sm transition-colors hover:bg-primary-dark"
           >
             <Plus size={15} />
-            <span className="hidden sm:inline">New Session</span>
+            <span className="hidden sm:inline">{t('chat.newSession')}</span>
           </button>
           <div className="relative">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/25 shadow-sm">
@@ -52,7 +55,7 @@ export function ChatHeader({
             <h1 className="font-extrabold text-[15px] text-text-primary leading-tight">{title}</h1>
             <div className="flex items-center gap-1.5 mt-0.5">
               <span className="text-[10px] font-bold text-green-500 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />Online
+                <span className="w-1.5 h-1.5 rounded-full bg-green-400 inline-block" />{t('chat.statusOnline')}
               </span>
               <span className="text-gray-300">·</span>
               <span className="text-[10px] text-text-muted font-semibold">{subtitle}</span>
@@ -63,7 +66,7 @@ export function ChatHeader({
         <div className="flex items-center gap-2">
           <div className="hidden md:flex items-center gap-1.5 bg-primary/10 border border-primary/20 px-3 py-1.5 rounded-full">
             <Zap size={11} className="text-primary fill-primary" />
-            <span className="text-[11px] font-extrabold text-primary">Unlimited</span>
+            <span className="text-[11px] font-extrabold text-primary">{t('chat.unlimited')}</span>
           </div>
           <button
             onClick={onEndSession}
@@ -74,7 +77,7 @@ export function ChatHeader({
                 : 'cursor-pointer border-red-100 bg-red-50 text-red-600 hover:bg-red-100'
             }`}
           >
-            {sessionEnded ? 'Report Ready' : 'End Session'}
+            {sessionEnded ? t('chat.reportReady') : t('chat.endSession')}
           </button>
         </div>
       </div>

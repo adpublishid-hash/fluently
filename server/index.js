@@ -658,6 +658,14 @@ function normalizeEmail(email = '') {
   return String(email).trim().toLowerCase();
 }
 
+function normalizePlanExpiresAt(plan, value) {
+  if (plan !== 'pro') return null;
+  if (!value) return null;
+  const expiresAt = new Date(value);
+  if (!Number.isFinite(expiresAt.getTime())) return null;
+  return expiresAt.getTime() > Date.now() ? expiresAt.toISOString() : null;
+}
+
 function isPhysicalShopProduct(product) {
   if (product?.delivery) return product.delivery === 'physical';
   return product?.type === 'book';
@@ -1651,6 +1659,7 @@ app.post('/api/auth/reset/confirm', resetLimiter, async (req, res) => {
 
 // ── Current user (token-verified) ─────────────────────────
 app.get('/api/users/me', requireAuth, (req, res) => {
+  res.set('Cache-Control', 'no-store');
   res.json({ user: publicUser(req.user) });
 });
 
@@ -1782,6 +1791,39 @@ app.post('/api/users/xp', requireAuth, async (req, res) => {
     res.json({ success: true, user: publicUser(result.rows[0]) });
   } catch (err) {
     console.error('[xp-award]', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+// GET /api/leaderboard?limit=50 — top learners ranked by XP.
+app.get('/api/leaderboard', requireAuth, async (req, res) => {
+  const limit = Math.min(100, Math.max(1, Number(req.query.limit) || 50));
+  try {
+    const result = await pool.query(
+      `SELECT id, name, display_name, avatar_url, xp, streak, level
+         FROM users
+        WHERE COALESCE(status, 'active') = 'active'
+        ORDER BY xp DESC, level DESC, id ASC
+        LIMIT $1`,
+      [limit],
+    );
+
+    const leaderboard = result.rows.map((row, index) => ({
+      rank: index + 1,
+      user: {
+        id: row.id,
+        name: row.display_name || row.name,
+        avatarUrl: row.avatar_url || '',
+        xp: Number(row.xp ?? 0),
+        streak: Number(row.streak ?? 0),
+        level: Number(row.level ?? 1),
+      },
+      isCurrentUser: row.id === req.user.id,
+    }));
+
+    res.json({ leaderboard });
+  } catch (err) {
+    console.error('[leaderboard]', err);
     res.status(500).json({ error: 'Server error' });
   }
 });
@@ -2152,15 +2194,44 @@ app.get('/api/admin/users', requireAdmin, async (_req, res) => {
 });
 
 app.patch('/api/admin/users/:id', requireAdmin, async (req, res) => {
-    const { name, role, plan, status, planExpiresAt } = req.body;
-    const safeRole = role === 'admin' ? 'admin' : 'user';
-  const safePlan = ['free', 'pro', 'lifetime'].includes(plan) ? plan : 'free';
-  const safeStatus = status === 'suspended' ? 'suspended' : 'active';
+  const { name, role, plan, status, planExpiresAt } = req.body || {};
+  const hasOwn = (key) => Object.prototype.hasOwnProperty.call(req.body || {}, key);
+  const validRoles = new Set(['user', 'admin']);
+  const validPlans = new Set(['free', 'pro', 'lifetime']);
+  const validStatuses = new Set(['active', 'suspended']);
+
+  if (hasOwn('role') && !validRoles.has(role)) {
+    return res.status(400).json({ error: 'Role tidak valid' });
+  }
+  if (hasOwn('plan') && !validPlans.has(plan)) {
+    return res.status(400).json({ error: 'Plan tidak valid' });
+  }
+  if (hasOwn('status') && !validStatuses.has(status)) {
+    return res.status(400).json({ error: 'Status tidak valid' });
+  }
 
   try {
+    const currentResult = await pool.query(
+      `SELECT id, name, role, plan, status, plan_expires_at
+         FROM users
+        WHERE id = $1`,
+      [req.params.id],
+    );
+
+    if (!currentResult.rows.length) return res.status(404).json({ error: 'User not found' });
+
+    const current = currentResult.rows[0];
+    const safeName = hasOwn('name') ? (String(name || '').trim() || current.name) : current.name;
+    const safeRole = hasOwn('role') ? role : (current.role || 'user');
+    const safePlan = hasOwn('plan') ? plan : (current.plan || 'free');
+    const safeStatus = hasOwn('status') ? status : (current.status || 'active');
+    const safePlanExpiresAt = (hasOwn('plan') || hasOwn('planExpiresAt'))
+      ? normalizePlanExpiresAt(safePlan, planExpiresAt)
+      : current.plan_expires_at;
+
     const result = await pool.query(
       `UPDATE users
-       SET name = COALESCE($1, name),
+       SET name = $1,
            role = $2,
            plan = $3,
            status = $4,
@@ -2168,10 +2239,9 @@ app.patch('/api/admin/users/:id', requireAdmin, async (req, res) => {
            updated_at = now()
        WHERE id = $6
        RETURNING id, name, email, phone, role, plan, plan_expires_at, status, onboarding_completed, persona, created_at, updated_at, last_login_at`,
-      [name || null, safeRole, safePlan, safeStatus, planExpiresAt || null, req.params.id]
+      [safeName, safeRole, safePlan, safeStatus, safePlanExpiresAt, req.params.id]
     );
 
-    if (!result.rows.length) return res.status(404).json({ error: 'User not found' });
     res.json({ success: true, user: adminUser(result.rows[0]) });
   } catch (err) {
     console.error(err);

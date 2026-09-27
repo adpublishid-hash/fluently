@@ -5,6 +5,9 @@ import PageContainer from '../components/layout/PageContainer';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useAuth } from '../auth/AuthContext';
 import { getTargetLanguageLabel, targetLanguageOptions, type TargetLanguage } from '../features/chat/targetLanguage';
+import AppLanguageSwitcher, { getAppLanguageLabel } from '../components/shared/AppLanguageSwitcher';
+import ActivityYearModal from '../components/shared/ActivityYearModal';
+import { FOCUS_SESSION_EVENT, getFocusSessions, getTodayFocusMinutes, type FocusSession } from '../utils/focusTimer';
 
 // Local-only preferences (notifications/privacy/rating). Profile fields (displayName/avatarUrl)
 // now live on the server and are read/written via AuthContext.updateProfile.
@@ -76,20 +79,30 @@ function countStoredLearningProgress() {
   return { lessons, sources };
 }
 
-function buildActivityGrid(streak: number, xp: number, completedLessons: number) {
-  const base = Math.max(1, Math.ceil((xp / 900) + (completedLessons / 8)));
-  const activeDays = Math.min(14, Math.max(streak, completedLessons ? Math.min(10, completedLessons) : 0));
-  const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
-
-  return Array.from({ length: 2 }, (_, weekIndex) => (
+// Build the trailing two-week grid from real focus-session minutes.
+// Levels mirror ActivityYearModal: 0 none, 1 <10m, 2 <25m, 3 <50m, 4 >=50m.
+function buildActivityGrid(sessions: FocusSession[]) {
+  return [0, 1].map((weekOffset) =>
     Array.from({ length: 7 }, (_, dayIndex) => {
-      const absolute = weekIndex * 7 + dayIndex;
-      const distanceFromToday = 13 - absolute + todayIndex - 6;
-      const isActive = distanceFromToday >= 0 && distanceFromToday < activeDays;
-      if (!isActive) return 0;
-      return Math.min(5, Math.max(1, ((base + weekIndex + dayIndex) % 5) + 1));
-    })
-  ));
+      const target = new Date();
+      const daysBack = (1 - weekOffset) * 7 + (6 - dayIndex);
+      target.setDate(target.getDate() - daysBack);
+      target.setHours(0, 0, 0, 0);
+      const start = target.getTime();
+      const end = start + 24 * 60 * 60 * 1000;
+      const minutes = sessions
+        .filter((session) => {
+          const time = new Date(session.completedAt).getTime();
+          return time >= start && time < end;
+        })
+        .reduce((sum, session) => sum + session.minutes, 0);
+      if (minutes >= 50) return 4;
+      if (minutes >= 25) return 3;
+      if (minutes >= 10) return 2;
+      if (minutes > 0) return 1;
+      return 0;
+    }),
+  );
 }
 
 function buildSupportMailto({
@@ -537,18 +550,28 @@ function ProgressList({ total, completed }: { total: number, completed: number }
   );
 }
 
-function ActivityHeatmapCard({ streak, xp }: { streak: number; xp: number }) {
+function ActivityHeatmapCard({ streak }: { streak: number }) {
+  const { t, language } = useLanguage();
   const [summary, setSummary] = useState(() => countStoredLearningProgress());
-  const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-  const grid = buildActivityGrid(streak, xp, summary.lessons);
+  const [focusSessions, setFocusSessions] = useState<FocusSession[]>(getFocusSessions);
+  const [showYearModal, setShowYearModal] = useState(false);
+  const days = language === 'id' ? ['S', 'S', 'R', 'K', 'J', 'S', 'M'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const grid = buildActivityGrid(focusSessions);
+  const todayFocus = getTodayFocusMinutes(focusSessions);
+  const flameCount = todayFocus || streak;
 
   useEffect(() => {
-    const refresh = () => setSummary(countStoredLearningProgress());
+    const refresh = () => {
+      setSummary(countStoredLearningProgress());
+      setFocusSessions(getFocusSessions());
+    };
     window.addEventListener('storage', refresh);
     window.addEventListener('focus', refresh);
+    window.addEventListener(FOCUS_SESSION_EVENT, refresh);
     return () => {
       window.removeEventListener('storage', refresh);
       window.removeEventListener('focus', refresh);
+      window.removeEventListener(FOCUS_SESSION_EVENT, refresh);
     };
   }, []);
 
@@ -562,15 +585,27 @@ function ActivityHeatmapCard({ streak, xp }: { streak: number; xp: number }) {
   };
 
   return (
-    <div className="bg-white rounded-3xl p-5 desktop-card border-none">
+    <>
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={() => setShowYearModal(true)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setShowYearModal(true);
+        }
+      }}
+      className="bg-white rounded-3xl p-5 desktop-card border-none cursor-pointer transition-shadow hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
+    >
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Activity size={18} className="text-emerald-500" />
-          <h3 className="text-base font-extrabold text-text-primary">Activity</h3>
+          <h3 className="text-base font-extrabold text-text-primary">{t('sidebar.activity')}</h3>
         </div>
         <div className="flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1">
           <Flame size={14} className="text-amber-500" />
-          <span className="text-xs font-black text-amber-600">{streak}</span>
+          <span className="text-xs font-black text-amber-600">{flameCount}</span>
         </div>
       </div>
 
@@ -587,7 +622,7 @@ function ActivityHeatmapCard({ streak, xp }: { streak: number; xp: number }) {
             {week.map((levelValue, dayIndex) => (
               <motion.div
                 key={`${weekIndex}-${dayIndex}`}
-                title={levelValue ? `${levelValue} activity points` : 'No activity'}
+                title={levelValue ? `${levelValue} activity points` : t('activity.noActivity')}
                 className="aspect-square rounded-xl"
                 style={{ backgroundColor: getColor(levelValue) }}
                 initial={{ scale: 0.75, opacity: 0 }}
@@ -609,7 +644,20 @@ function ActivityHeatmapCard({ streak, xp }: { streak: number; xp: number }) {
           <p className="mt-1 text-xl font-black text-sky-700">{summary.sources}</p>
         </div>
       </div>
+
+      <div className="mt-4 flex items-center justify-center gap-1 text-[11px] font-bold text-text-muted">
+        <span>{t('activity.viewYear')}</span>
+        <ChevronRight size={13} />
+      </div>
     </div>
+
+    <ActivityYearModal
+      open={showYearModal}
+      onClose={() => setShowYearModal(false)}
+      sessions={focusSessions}
+      streak={flameCount}
+    />
+    </>
   );
 }
 
@@ -618,7 +666,7 @@ function ActivityHeatmapCard({ streak, xp }: { streak: number; xp: number }) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
-  const { t, language, setLanguage } = useLanguage();
+  const { t, language } = useLanguage();
   const { user, updatePersona, updateProfile, changePassword, authHeaders } = useAuth();
   const [savingLanguage, setSavingLanguage] = useState(false);
   const [savingProfile, setSavingProfile] = useState(false);
@@ -652,6 +700,11 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   const totalCourses = 12;
   const targetLanguage = user?.persona?.targetLanguage || 'English';
   const targetLanguageLabel = getTargetLanguageLabel(targetLanguage);
+  const planLabel = user?.plan === 'lifetime'
+    ? t('profile.planLifetime')
+    : user?.plan === 'pro'
+      ? t('profile.planPro')
+      : t('profile.planFree');
 
   useEffect(() => {
     saveLocalPrefs(localPrefs);
@@ -859,7 +912,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div className="min-w-0 text-center md:text-left">
                     <h2 className="truncate text-2xl md:text-3xl font-black text-text-primary tracking-tight">{displayName}</h2>
-                    <p className="text-[13px] md:text-sm font-semibold text-text-secondary mt-1">{t('profile.levelProgress')} {level} {t('profile.levelLearner')} • {user?.plan === 'lifetime' ? 'Lifetime' : user?.plan === 'pro' ? 'Pro' : 'Free'} Plan</p>
+                    <p className="text-[13px] md:text-sm font-semibold text-text-secondary mt-1">{t('profile.levelProgress')} {level} {t('profile.levelLearner')} • {planLabel}</p>
                     {user?.email && <p className="mt-1 text-xs font-semibold text-text-muted">{user.email}</p>}
                   </div>
                   <div className="hidden shrink-0 md:flex items-center gap-2 bg-white/85 backdrop-blur rounded-2xl p-2 border border-primary/20 shadow-sm">
@@ -869,7 +922,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
                       className="flex h-9 items-center gap-1.5 rounded-xl bg-primary/10 px-3 text-[12px] font-black text-primary hover:bg-primary/15"
                     >
                       <Pencil size={14} />
-                      Edit
+                      {t('profile.editShort')}
                     </button>
                     <div className="flex h-9 items-center gap-1.5 rounded-xl bg-orange-50 px-3">
                       <Flame size={16} className="text-orange-500" />
@@ -912,7 +965,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             <div className="flex items-center justify-between mb-4">
               <div>
                 <h3 className="font-extrabold text-lg text-text-primary">{t('profile.yourBadges')}</h3>
-                <p className="mt-0.5 text-xs font-semibold text-text-muted">Lacak achievement dan target berikutnya.</p>
+                <p className="mt-0.5 text-xs font-semibold text-text-muted">{t('profile.badgesSubtitle')}</p>
               </div>
               <span className="shrink-0 text-[13px] bg-primary/10 text-primary font-bold px-3 py-1 rounded-full shadow-sm">
                 {achievements.filter(a => a.unlocked).length}/{achievements.length} {t('profile.unlocked')}
@@ -932,7 +985,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             <ProgressList total={totalCourses} completed={completedCourses} />
           </div>
 
-          <ActivityHeatmapCard streak={streak} xp={xp} />
+          <ActivityHeatmapCard streak={streak} />
 
           {/* Settings Menu */}
           <div className="bg-white rounded-3xl overflow-hidden desktop-card border-none">
@@ -941,12 +994,12 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             </div>
             <div className="divide-y divide-gray-50">
               <MenuItem icon={UserRound} label={t('profile.editProfile')} value={displayName} color="#4FA3D1" onClick={() => setActivePanel('edit-profile')} />
-              <MenuItem icon={Globe} label={t('profile.language')} value={language === 'id' ? 'Indonesia' : 'English'} color="#3498DB" onClick={() => setActivePanel('language')} />
-              <MenuItem icon={BookOpen} label="Bahasa dipelajari" value={targetLanguageLabel} color="#0F766E" onClick={() => setActivePanel('target-language')} />
+              <MenuItem icon={Globe} label={t('profile.appLanguage')} value={getAppLanguageLabel(language)} color="#3498DB" onClick={() => setActivePanel('language')} />
+              <MenuItem icon={BookOpen} label={t('profile.learningLanguage')} value={targetLanguageLabel} color="#0F766E" onClick={() => setActivePanel('target-language')} />
               <MenuItem icon={Bell} label={t('profile.notifications')} value={localPrefs.pushReminder ? t('profile.notificationsOn') : t('profile.notificationsOff')} color="#F39C12" onClick={() => setActivePanel('notifications')} />
               <MenuItem icon={Shield} label={t('profile.privacy')} value={localPrefs.profilePublic ? t('profile.privacyPublic') : t('profile.privacyPrivate')} color="#4FA3D1" onClick={() => setActivePanel('privacy')} />
               <MenuItem icon={Star} label={t('profile.rateUs')} value={localPrefs.rating ? `${localPrefs.rating}/5` : undefined} color="#FFD700" onClick={() => setActivePanel('rate')} />
-              <MenuItem icon={MessageSquare} label="Support & Feedback" value={SUPPORT_EMAIL} color="#10B981" onClick={() => setActivePanel('help')} />
+              <MenuItem icon={MessageSquare} label={t('profile.supportFeedback')} value={SUPPORT_EMAIL} color="#10B981" onClick={() => setActivePanel('help')} />
               <MenuItem icon={HelpCircle} label={t('profile.helpCenter')} color="#9B59B6" onClick={() => setActivePanel('help')} />
               <div className="p-2">
                 <button onClick={onLogout} className="w-full mt-2 bg-red-50 text-red-600 hover:bg-red-100 font-bold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer">
@@ -1064,26 +1117,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
 
       {activePanel === 'language' && (
         <ProfileModal title={t('profile.appLanguage')} onClose={() => setActivePanel(null)}>
-          <div className="grid gap-3">
-            {[
-              { value: 'en' as const, label: 'English', sub: t('profile.useEnglishInterface') },
-              { value: 'id' as const, label: 'Indonesia', sub: t('profile.useIndonesianInterface') },
-            ].map((item) => (
-              <button
-                key={item.value}
-                onClick={() => { setLanguage(item.value); setActivePanel(null); }}
-                className={`rounded-2xl border-2 p-4 text-left ${language === item.value ? 'border-primary bg-primary/10' : 'border-gray-100 bg-gray-50'}`}
-              >
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <p className="font-black text-text-primary">{item.label}</p>
-                    <p className="text-xs font-semibold text-text-muted">{item.sub}</p>
-                  </div>
-                  {language === item.value && <CheckCircle2 className="text-primary" size={20} />}
-                </div>
-              </button>
-            ))}
-          </div>
+          <AppLanguageSwitcher variant="card" onChange={() => setActivePanel(null)} />
         </ProfileModal>
       )}
 

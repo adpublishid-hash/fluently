@@ -14,7 +14,6 @@ export type PremiumFeature =
   | 'practice'
   | 'game'
   | 'chat'
-  | 'ielts'
   | 'exam'
   | 'goals'
   | 'notes'
@@ -74,6 +73,14 @@ function getPracticeSkill(pathname: string) {
   return null;
 }
 
+function getPracticeTopicIndex(pathname: string) {
+  const parts = pathname.split('/').filter(Boolean);
+  const topicPart = parts.find((part) => /^topik\d+$/i.test(part));
+  if (!topicPart) return null;
+  const topicIndex = Number(topicPart.replace(/\D/g, ''));
+  return Number.isFinite(topicIndex) && topicIndex > 0 ? topicIndex : null;
+}
+
 export function getPremiumBlock(pathname: string, search: string, user: PlanUser): PremiumBlock | null {
   if (pathname.startsWith('/admin') && !isAdminEmail(user)) {
     return {
@@ -85,19 +92,11 @@ export function getPremiumBlock(pathname: string, search: string, user: PlanUser
 
   if (hasFullAccess(user) || pathname === '/upgrade') return null;
 
-  if (pathname.startsWith('/ielts')) {
-    return {
-      feature: 'ielts',
-      title: 'IELTS hanya untuk Pro',
-      reason: 'Free member bisa belajar modul inti dulu. IELTS Prep terbuka untuk member Pro dan Lifetime.',
-    };
-  }
-
   if (pathname.startsWith('/ujian')) {
     return {
       feature: 'exam',
       title: 'Exam premium terkunci',
-      reason: 'TOEFL, IELTS, dan exam mode hanya tersedia untuk member Pro dan Lifetime.',
+      reason: 'TOEFL dan exam mode hanya tersedia untuk member Pro dan Lifetime.',
     };
   }
 
@@ -130,6 +129,15 @@ export function getPremiumBlock(pathname: string, search: string, user: PlanUser
           reason: `Free member hanya bisa membuka ${FREE_LIMITS.practiceTopics} topik pertama di setiap latihan.`,
         };
       }
+    }
+
+    const topicIndex = getPracticeTopicIndex(pathname);
+    if (topicIndex && topicIndex > FREE_LIMITS.practiceTopics) {
+      return {
+        feature: 'practice',
+        title: 'Topik practice premium',
+        reason: `Free member hanya bisa membuka ${FREE_LIMITS.practiceTopics} topik pertama di setiap latihan.`,
+      };
     }
   }
 

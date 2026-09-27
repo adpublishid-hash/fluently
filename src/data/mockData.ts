@@ -3,7 +3,6 @@ import type {
   GameCategoryData, GameModeData,
   PracticeQuestionTypeData,
   ChatAIModeData, ChatScenarioData,
-  LeaderboardEntry,
   ChatMessage, Course, CourseCollection,
 } from '../types';
 
@@ -105,10 +104,9 @@ export const chatScenarios: ChatScenarioData[] = [
 ];
 
 /* ══════════════════════════════════════════
-   LEADERBOARD — populated from backend (/api/leaderboard) at runtime
+   LEADERBOARD — fetched live from GET /api/leaderboard
+   via src/features/leaderboard/leaderboard.ts (useLeaderboard hook).
    ══════════════════════════════════════════ */
-
-export const mockLeaderboard: LeaderboardEntry[] = [];
 
 /* ══════════════════════════════════════════
    CHAT — Initial messages (empty; greeting handled by AI service)

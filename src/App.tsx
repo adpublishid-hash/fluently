@@ -91,6 +91,10 @@ const JapaneseLevelPage = lazy(() => import('./pages/module/japanese/JapaneseLev
 const JapaneseSkillPage = lazy(() => import('./pages/module/japanese/JapaneseSkillPage'));
 const JapaneseLessonPage = lazy(() => import('./pages/module/japanese/JapaneseLessonPage'));
 
+// Video lesson pages
+const VideoLessonsPage = lazy(() => import('./pages/video/VideoLessonsPage'));
+const VideoLessonPage = lazy(() => import('./pages/video/VideoLessonPage'));
+
 // Game pages (lazy — Phaser is ~3MB unpacked, only loaded when /game is visited)
 const GamePage = lazy(() => import('./pages/game/GamePage'));
 const GameCategoryPage = lazy(() => import('./pages/game/GameCategoryPage'));
@@ -100,6 +104,451 @@ const GamePlayPage = lazy(() => import('./pages/game/GamePlayPage'));
 // Latihan pages (folder: pages/latihan/)
 const LatihanPage = lazy(() => import('./pages/latihan/LatihanPage'));
 const LatihanSkillPage = lazy(() => import('./pages/latihan/LatihanSkillPage'));
+const ArabicMufradatTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik1')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik2')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik3')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik4')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik5')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik6')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik7')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik8')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik9')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik10')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik11')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik12')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik13')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik14')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik15')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik16')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik17')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik18')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik19')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik20')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik21')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik22')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik23')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik24')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik25')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik26')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik27')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik28')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik29')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik30')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik31')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik32')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik33')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik34')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik35')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik36')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik37')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik38')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik39')),
+  lazy(() => import('./pages/latihan/arabic/mufradat/topik40')),
+];
+const ArabicNahwuTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik1')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik2')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik3')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik4')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik5')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik6')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik7')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik8')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik9')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik10')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik11')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik12')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik13')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik14')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik15')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik16')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik17')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik18')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik19')),
+  lazy(() => import('./pages/latihan/arabic/nahwu/topik20')),
+];
+const ArabicIstimaTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/istima/topik1')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik2')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik3')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik4')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik5')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik6')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik7')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik8')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik9')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik10')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik11')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik12')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik13')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik14')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik15')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik16')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik17')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik18')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik19')),
+  lazy(() => import('./pages/latihan/arabic/istima/topik20')),
+];
+const ArabicKalamTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/kalam/topik1')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik2')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik3')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik4')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik5')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik6')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik7')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik8')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik9')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik10')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik11')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik12')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik13')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik14')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik15')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik16')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik17')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik18')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik19')),
+  lazy(() => import('./pages/latihan/arabic/kalam/topik20')),
+];
+const ArabicQiraahTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik1')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik2')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik3')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik4')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik5')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik6')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik7')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik8')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik9')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik10')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik11')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik12')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik13')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik14')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik15')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik16')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik17')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik18')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik19')),
+  lazy(() => import('./pages/latihan/arabic/qiraah/topik20')),
+];
+const ArabicKitabahTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik1')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik2')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik3')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik4')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik5')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik6')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik7')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik8')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik9')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik10')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik11')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik12')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik13')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik14')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik15')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik16')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik17')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik18')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik19')),
+  lazy(() => import('./pages/latihan/arabic/kitabah/topik20')),
+];
+const ArabicMakharijTopikPages = [
+  lazy(() => import('./pages/latihan/arabic/makharij/topik1')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik2')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik3')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik4')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik5')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik6')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik7')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik8')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik9')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik10')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik11')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik12')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik13')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik14')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik15')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik16')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik17')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik18')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik19')),
+  lazy(() => import('./pages/latihan/arabic/makharij/topik20')),
+];
+const MandarinPinyinTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/pinyin/topik20')),
+];
+const MandarinYufaTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/yufa/topik20')),
+];
+const MandarinCihuiTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/cihui/topik20')),
+];
+const MandarinXiezuoTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/xiezuo/topik20')),
+];
+const MandarinYueduTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/yuedu/topik20')),
+];
+const MandarinTingliTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/tingli/topik20')),
+];
+const MandarinKouyuTopikPages = [
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik1')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik2')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik3')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik4')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik5')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik6')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik7')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik8')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik9')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik10')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik11')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik12')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik13')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik14')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik15')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik16')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik17')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik18')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik19')),
+  lazy(() => import('./pages/latihan/mandarin/kouyu/topik20')),
+];
+const EnglishVocabularyTopikPages = [
+  lazy(() => import('./pages/latihan/english/vocabulary/topik1')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik2')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik3')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik4')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik5')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik6')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik7')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik8')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik9')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik10')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik11')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik12')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik13')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik14')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik15')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik16')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik17')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik18')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik19')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik20')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik21')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik22')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik23')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik24')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik25')),
+  lazy(() => import('./pages/latihan/english/vocabulary/topik26')),
+];
+const EnglishGrammarTopikPages = [
+  lazy(() => import('./pages/latihan/english/grammar/topik1')),
+  lazy(() => import('./pages/latihan/english/grammar/topik2')),
+  lazy(() => import('./pages/latihan/english/grammar/topik3')),
+  lazy(() => import('./pages/latihan/english/grammar/topik4')),
+  lazy(() => import('./pages/latihan/english/grammar/topik5')),
+  lazy(() => import('./pages/latihan/english/grammar/topik6')),
+  lazy(() => import('./pages/latihan/english/grammar/topik7')),
+  lazy(() => import('./pages/latihan/english/grammar/topik8')),
+  lazy(() => import('./pages/latihan/english/grammar/topik9')),
+  lazy(() => import('./pages/latihan/english/grammar/topik10')),
+  lazy(() => import('./pages/latihan/english/grammar/topik11')),
+  lazy(() => import('./pages/latihan/english/grammar/topik12')),
+  lazy(() => import('./pages/latihan/english/grammar/topik13')),
+  lazy(() => import('./pages/latihan/english/grammar/topik14')),
+  lazy(() => import('./pages/latihan/english/grammar/topik15')),
+  lazy(() => import('./pages/latihan/english/grammar/topik16')),
+  lazy(() => import('./pages/latihan/english/grammar/topik17')),
+  lazy(() => import('./pages/latihan/english/grammar/topik18')),
+  lazy(() => import('./pages/latihan/english/grammar/topik19')),
+];
+const EnglishListeningTopikPages = [
+  lazy(() => import('./pages/latihan/english/listening/topik1')),
+  lazy(() => import('./pages/latihan/english/listening/topik2')),
+  lazy(() => import('./pages/latihan/english/listening/topik3')),
+  lazy(() => import('./pages/latihan/english/listening/topik4')),
+  lazy(() => import('./pages/latihan/english/listening/topik5')),
+  lazy(() => import('./pages/latihan/english/listening/topik6')),
+  lazy(() => import('./pages/latihan/english/listening/topik7')),
+  lazy(() => import('./pages/latihan/english/listening/topik8')),
+  lazy(() => import('./pages/latihan/english/listening/topik9')),
+  lazy(() => import('./pages/latihan/english/listening/topik10')),
+  lazy(() => import('./pages/latihan/english/listening/topik11')),
+  lazy(() => import('./pages/latihan/english/listening/topik12')),
+  lazy(() => import('./pages/latihan/english/listening/topik13')),
+  lazy(() => import('./pages/latihan/english/listening/topik14')),
+  lazy(() => import('./pages/latihan/english/listening/topik15')),
+];
+const EnglishSpeakingTopikPages = [
+  lazy(() => import('./pages/latihan/english/speaking/topik1')),
+  lazy(() => import('./pages/latihan/english/speaking/topik2')),
+  lazy(() => import('./pages/latihan/english/speaking/topik3')),
+  lazy(() => import('./pages/latihan/english/speaking/topik4')),
+  lazy(() => import('./pages/latihan/english/speaking/topik5')),
+  lazy(() => import('./pages/latihan/english/speaking/topik6')),
+  lazy(() => import('./pages/latihan/english/speaking/topik7')),
+  lazy(() => import('./pages/latihan/english/speaking/topik8')),
+  lazy(() => import('./pages/latihan/english/speaking/topik9')),
+  lazy(() => import('./pages/latihan/english/speaking/topik10')),
+  lazy(() => import('./pages/latihan/english/speaking/topik11')),
+  lazy(() => import('./pages/latihan/english/speaking/topik12')),
+  lazy(() => import('./pages/latihan/english/speaking/topik13')),
+  lazy(() => import('./pages/latihan/english/speaking/topik14')),
+  lazy(() => import('./pages/latihan/english/speaking/topik15')),
+];
+const EnglishWritingTopikPages = [
+  lazy(() => import('./pages/latihan/english/writing/topik1')),
+  lazy(() => import('./pages/latihan/english/writing/topik2')),
+  lazy(() => import('./pages/latihan/english/writing/topik3')),
+  lazy(() => import('./pages/latihan/english/writing/topik4')),
+  lazy(() => import('./pages/latihan/english/writing/topik5')),
+  lazy(() => import('./pages/latihan/english/writing/topik6')),
+  lazy(() => import('./pages/latihan/english/writing/topik7')),
+  lazy(() => import('./pages/latihan/english/writing/topik8')),
+  lazy(() => import('./pages/latihan/english/writing/topik9')),
+  lazy(() => import('./pages/latihan/english/writing/topik10')),
+  lazy(() => import('./pages/latihan/english/writing/topik11')),
+  lazy(() => import('./pages/latihan/english/writing/topik12')),
+  lazy(() => import('./pages/latihan/english/writing/topik13')),
+  lazy(() => import('./pages/latihan/english/writing/topik14')),
+  lazy(() => import('./pages/latihan/english/writing/topik15')),
+];
+const EnglishReadingTopikPages = [
+  lazy(() => import('./pages/latihan/english/reading/topik1')),
+  lazy(() => import('./pages/latihan/english/reading/topik2')),
+  lazy(() => import('./pages/latihan/english/reading/topik3')),
+  lazy(() => import('./pages/latihan/english/reading/topik4')),
+  lazy(() => import('./pages/latihan/english/reading/topik5')),
+  lazy(() => import('./pages/latihan/english/reading/topik6')),
+  lazy(() => import('./pages/latihan/english/reading/topik7')),
+  lazy(() => import('./pages/latihan/english/reading/topik8')),
+  lazy(() => import('./pages/latihan/english/reading/topik9')),
+  lazy(() => import('./pages/latihan/english/reading/topik10')),
+  lazy(() => import('./pages/latihan/english/reading/topik11')),
+  lazy(() => import('./pages/latihan/english/reading/topik12')),
+  lazy(() => import('./pages/latihan/english/reading/topik13')),
+  lazy(() => import('./pages/latihan/english/reading/topik14')),
+  lazy(() => import('./pages/latihan/english/reading/topik15')),
+];
 
 // Ujian pages
 const EnglishExamPage = lazy(() => import('./pages/ujian/english/EnglishExamPage'));
@@ -117,7 +566,6 @@ const UpgradePage    = lazy(() => import('./pages/UpgradePage'));
 const AnalyticsPage  = lazy(() => import('./pages/AnalyticsPage'));
 const GoalsPage      = lazy(() => import('./pages/GoalsPage'));
 const NotesPage      = lazy(() => import('./pages/NotesPage'));
-const IELTSPage      = lazy(() => import('./pages/ielts/IELTSPage'));
 import ComingSoonPage from './pages/ComingSoonPage';
 import { getPremiumBlock } from './utils/accessControl';
 
@@ -250,8 +698,11 @@ function AppContent() {
     location.pathname.split('/').filter(Boolean).length >= 3 &&
     location.pathname.startsWith('/chat/');
   const isExamPage = location.pathname.startsWith('/ujian/');
+  const isVideoLessonPage = location.pathname.startsWith('/video/') &&
+                            /\/lesson-?\d+(?:\.tsx)?$/i.test(location.pathname);
 
   const isDeepPage = location.pathname.includes('/lesson-') ||
+                     isVideoLessonPage ||
                      location.pathname.includes('/play') ||
                      location.pathname.includes('/start') ||
                      isExamPage ||
@@ -261,6 +712,7 @@ function AppContent() {
   /* Pages where the right sidebar should appear */
   const showRightSidebar = [
     '/modul',
+    '/video',
     '/game',
     '/latihan',
     '/chat',
@@ -299,6 +751,11 @@ function AppContent() {
                 <Routes location={location}>
                   {/* â•â•â•â•â•â•â• MODULE â•â•â•â•â•â•â• */}
                   <Route path="/modul" element={<ModulPage />} />
+
+                  {/* VIDEO LESSONS */}
+                  <Route path="/video" element={<VideoLessonsPage />} />
+                  <Route path="/video/:languageId/:levelId" element={<VideoLessonsPage />} />
+                  <Route path="/video/:languageId/:levelId/:lessonSlug" element={<VideoLessonPage />} />
 
                   {/* English â€” Beginner (A1-A2) */}
                   <Route path="/modul/english/beginner" element={<BeginnerPage />} />
@@ -706,6 +1163,339 @@ function AppContent() {
                   {/* â•â•â•â•â•â•â• LATIHAN â•â•â•â•â•â•â• */}
                   <Route path="/latihan" element={<LatihanPage />} />
                   <Route path="/latihan/basic" element={<Navigate to="/latihan" replace />} />
+                  {EnglishVocabularyTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`english-vocabulary-topik-${index + 1}`}
+                      path={`/latihan/english/vocabulary/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {EnglishGrammarTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`english-grammar-topik-${index + 1}`}
+                      path={`/latihan/english/grammar/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {EnglishListeningTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`english-listening-topik-${index + 1}`}
+                      path={`/latihan/english/listening/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {EnglishSpeakingTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`english-speaking-topik-${index + 1}`}
+                      path={`/latihan/english/speaking/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {EnglishWritingTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`english-writing-topik-${index + 1}`}
+                      path={`/latihan/english/writing/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {EnglishReadingTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`english-reading-topik-${index + 1}`}
+                      path={`/latihan/english/reading/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicMufradatTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-mufradat-topik-${index + 1}`}
+                      path={`/latihan/arabic/mufradat/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicNahwuTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-nahwu-topik-${index + 1}`}
+                      path={`/latihan/arabic/nahwu/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicIstimaTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-istima-topik-${index + 1}`}
+                      path={`/latihan/arabic/istima/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicKalamTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-kalam-topik-${index + 1}`}
+                      path={`/latihan/arabic/kalam/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicQiraahTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-qiraah-topik-${index + 1}`}
+                      path={`/latihan/arabic/qiraah/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicKitabahTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-kitabah-topik-${index + 1}`}
+                      path={`/latihan/arabic/kitabah/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {ArabicMakharijTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`arabic-makharij-topik-${index + 1}`}
+                      path={`/latihan/arabic/makharij/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinPinyinTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-pinyin-topik-${index + 1}`}
+                      path={`/latihan/mandarin/pinyin/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinPinyinTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-pinyin-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/pīnyīn/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/pinyin/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinPinyinTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-pinyin-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Pīnyīn/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/pinyin/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinPinyinTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-pronunciation-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/pronunciation/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/pinyin/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinYufaTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-yufa-topik-${index + 1}`}
+                      path={`/latihan/mandarin/yufa/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinYufaTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-yufa-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/yǔfǎ/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/yufa/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinYufaTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-yufa-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Yǔfǎ/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/yufa/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinYufaTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-grammar-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/grammar/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/yufa/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinCihuiTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-cihui-topik-${index + 1}`}
+                      path={`/latihan/mandarin/cihui/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinCihuiTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-cihui-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/cíhuì/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/cihui/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinCihuiTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-cihui-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Cíhuì/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/cihui/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinCihuiTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-vocabulary-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/vocabulary/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/cihui/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinXiezuoTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-xiezuo-topik-${index + 1}`}
+                      path={`/latihan/mandarin/xiezuo/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinXiezuoTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-xiezuo-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/xiězuò/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/xiezuo/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinXiezuoTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-xiezuo-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Xiězuò/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/xiezuo/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinXiezuoTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-writing-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/writing/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/xiezuo/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinYueduTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-yuedu-topik-${index + 1}`}
+                      path={`/latihan/mandarin/yuedu/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinYueduTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-yuedu-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/yuèdú/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/yuedu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinYueduTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-yuedu-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Yuèdú/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/yuedu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinYueduTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-reading-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/reading/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/yuedu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinTingliTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-tingli-topik-${index + 1}`}
+                      path={`/latihan/mandarin/tingli/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinTingliTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-tingli-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/tīnglì/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/tingli/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinTingliTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-tingli-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Tīnglì/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/tingli/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinTingliTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-listening-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/listening/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/tingli/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinKouyuTopikPages.map((TopicPage, index) => (
+                    <Route
+                      key={`mandarin-kouyu-topik-${index + 1}`}
+                      path={`/latihan/mandarin/kouyu/topik${index + 1}`}
+                      element={<TopicPage />}
+                    />
+                  ))}
+                  {MandarinKouyuTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-kouyu-accent-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/kǒuyǔ/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/kouyu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinKouyuTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-kouyu-title-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/Kǒuyǔ/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/kouyu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {MandarinKouyuTopikPages.map((_, index) => (
+                    <Route
+                      key={`mandarin-speaking-topik-redirect-${index + 1}`}
+                      path={`/latihan/mandarin/speaking/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/mandarin/kouyu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {ArabicMakharijTopikPages.map((_, index) => (
+                    <Route
+                      key={`arabic-mahkraj-topik-redirect-${index + 1}`}
+                      path={`/latihan/arabic/mahkraj/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/arabic/makharij/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {ArabicMakharijTopikPages.map((_, index) => (
+                    <Route
+                      key={`arabic-makhraj-topik-redirect-${index + 1}`}
+                      path={`/latihan/arabic/makhraj/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/arabic/makharij/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  {ArabicNahwuTopikPages.map((_, index) => (
+                    <Route
+                      key={`arabic-grammar-topik-redirect-${index + 1}`}
+                      path={`/latihan/arabic/grammar/topik${index + 1}`}
+                      element={<Navigate to={`/latihan/arabic/nahwu/topik${index + 1}`} replace />}
+                    />
+                  ))}
+                  <Route path="/latihan/arabic/grammar" element={<Navigate to="/latihan/arabic/nahwu" replace />} />
+                  <Route path="/latihan/arabic/mahkraj" element={<Navigate to="/latihan/arabic/makharij" replace />} />
+                  <Route path="/latihan/arabic/makhraj" element={<Navigate to="/latihan/arabic/makharij" replace />} />
+                  <Route path="/latihan/arabic/pronunciation" element={<Navigate to="/latihan/arabic/makharij" replace />} />
+                  <Route path="/latihan/mandarin/pīnyīn" element={<Navigate to="/latihan/mandarin/pinyin" replace />} />
+                  <Route path="/latihan/mandarin/Pīnyīn" element={<Navigate to="/latihan/mandarin/pinyin" replace />} />
+                  <Route path="/latihan/mandarin/pronunciation" element={<Navigate to="/latihan/mandarin/pinyin" replace />} />
+                  <Route path="/latihan/mandarin/yǔfǎ" element={<Navigate to="/latihan/mandarin/yufa" replace />} />
+                  <Route path="/latihan/mandarin/Yǔfǎ" element={<Navigate to="/latihan/mandarin/yufa" replace />} />
+                  <Route path="/latihan/mandarin/grammar" element={<Navigate to="/latihan/mandarin/yufa" replace />} />
+                  <Route path="/latihan/mandarin/cíhuì" element={<Navigate to="/latihan/mandarin/cihui" replace />} />
+                  <Route path="/latihan/mandarin/Cíhuì" element={<Navigate to="/latihan/mandarin/cihui" replace />} />
+                  <Route path="/latihan/mandarin/vocabulary" element={<Navigate to="/latihan/mandarin/cihui" replace />} />
+                  <Route path="/latihan/mandarin/xiězuò" element={<Navigate to="/latihan/mandarin/xiezuo" replace />} />
+                  <Route path="/latihan/mandarin/Xiězuò" element={<Navigate to="/latihan/mandarin/xiezuo" replace />} />
+                  <Route path="/latihan/mandarin/writing" element={<Navigate to="/latihan/mandarin/xiezuo" replace />} />
+                  <Route path="/latihan/mandarin/yuèdú" element={<Navigate to="/latihan/mandarin/yuedu" replace />} />
+                  <Route path="/latihan/mandarin/Yuèdú" element={<Navigate to="/latihan/mandarin/yuedu" replace />} />
+                  <Route path="/latihan/mandarin/reading" element={<Navigate to="/latihan/mandarin/yuedu" replace />} />
+                  <Route path="/latihan/mandarin/tīnglì" element={<Navigate to="/latihan/mandarin/tingli" replace />} />
+                  <Route path="/latihan/mandarin/Tīnglì" element={<Navigate to="/latihan/mandarin/tingli" replace />} />
+                  <Route path="/latihan/mandarin/listening" element={<Navigate to="/latihan/mandarin/tingli" replace />} />
+                  <Route path="/latihan/mandarin/kǒuyǔ" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
+                  <Route path="/latihan/mandarin/Kǒuyǔ" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
+                  <Route path="/latihan/mandarin/speaking" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
                   <Route path="/latihan/:skillId" element={<LatihanSkillPage />} />
                   <Route path="/latihan/:skillId/start" element={<ComingSoonPage />} />
                   <Route path="/latihan/:levelId/:skillId" element={<LatihanSkillPage />} />
@@ -740,8 +1530,6 @@ function AppContent() {
                   <Route path="/analytics" element={<AnalyticsPage />} />
                   <Route path="/goals"     element={<GoalsPage />} />
                   <Route path="/notes"     element={<NotesPage />} />
-                  <Route path="/ielts"     element={<IELTSPage />} />
-
                   {/* Default redirect */}
                   <Route path="*" element={<Navigate to="/modul" replace />} />
                 // ============================================================

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mic, Send } from 'lucide-react';
 import type { RefObject } from 'react';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 type ChatInputBarProps = {
   input: string;
@@ -27,6 +28,7 @@ export function ChatInputBar({
   onSend,
   onToggleRecording,
 }: ChatInputBarProps) {
+  const { t } = useLanguage();
   const canSend = chatStarted && !sessionEnded && !inputDisabled && input.trim();
   const isTextareaDisabled = !chatStarted || sessionEnded || inputDisabled;
 
@@ -86,10 +88,10 @@ export function ChatInputBar({
 
       <p className="max-w-5xl mx-auto text-center text-[10px] text-text-muted mt-2.5 font-medium">
         {isRecording
-          ? 'Listening... speak clearly, then pause to submit'
+          ? t('chat.listeningHint')
           : inputDisabled
-            ? 'Pronunciation practice wajib memakai microphone'
-            : 'Fluently AI · Always verify important translations'}
+            ? t('chat.micOnlyHint')
+            : t('chat.footerDisclaimer')}
       </p>
     </div>
   );

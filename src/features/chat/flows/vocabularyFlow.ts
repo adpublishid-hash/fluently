@@ -8,7 +8,17 @@ import {
   topicSelectOptions,
 } from '../english';
 import type { VocabularyStage } from '../english';
-import { buildLocalizedFeedback, buildLocalizedLesson, buildLocalizedTopicQuestion, isEnglishChat } from '../languageAdapters';
+import {
+  buildLocalizedCustomTopicPrompt,
+  buildLocalizedFeedback,
+  buildLocalizedLesson,
+  buildLocalizedPracticeLoopReply,
+  buildLocalizedTopicQuestion,
+  getLocalizedTopicLabel,
+  isCustomLocalizedTopicValue,
+  isEnglishChat,
+  normalizeLocalizedTopicValue,
+} from '../languageAdapters';
 import { createUserMessage } from '../session';
 import { requestVocabularyCorrection, requestVocabularyLesson } from '../services/vocabularyCorrection';
 import type { FlowRuntime, TopicRuntime } from './types';
@@ -139,24 +149,26 @@ export async function selectVocabularyTopic(topicValue: string, runtime: TopicRu
 
   const localized = !isEnglishChat(targetLanguage);
 
-  if (topicValue === 'custom-topic') {
-    setMessages(prev => [...prev, createUserMessage('Custom Topic')]);
+  if (topicValue === 'custom-topic' || (localized && isCustomLocalizedTopicValue(topicValue))) {
+    setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'vocabulary', topicValue) : 'Custom Topic')]);
     setCompletedPracticeWords([]);
     setGeneratedVocabularyWords([]);
     setVocabularyPracticeOffset(0);
     setVocabStage('ask-topic');
-    sendAiReply(`Boleh, ${studentName || 'teman'}! Tulis topik custom yang kamu mau.
+    sendAiReply(localized
+      ? buildLocalizedCustomTopicPrompt(studentName || 'teman', 'vocabulary', targetLanguage)
+      : `Boleh, ${studentName || 'teman'}! Tulis topik custom yang kamu mau.
 
 Contoh:
 - English for nursing
 - Coffee shop conversation
-- IELTS writing vocabulary
+- TOEFL academic vocabulary
 - Gaming vocabulary`, 900);
     return;
   }
 
-  const topic = normalizeTopic(topicValue);
-  setMessages(prev => [...prev, createUserMessage(topicSelectOptions.find((option) => option.value === topicValue)?.label || topic)]);
+  const topic = localized ? normalizeLocalizedTopicValue(topicValue) : normalizeTopic(topicValue);
+  setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'vocabulary', topicValue) : topicSelectOptions.find((option) => option.value === topicValue)?.label || topic)]);
   setSelectedTopic(topic);
   setCompletedPracticeWords([]);
   setGeneratedVocabularyWords([]);
@@ -215,7 +227,7 @@ export async function handleVocabularyAnswer(userText: string, vocabStage: Vocab
       return;
     }
 
-    const topic = normalizeTopic(userText);
+    const topic = localized ? normalizeLocalizedTopicValue(userText) : normalizeTopic(userText);
     setSelectedTopic(topic);
     setCompletedPracticeWords([]);
     setGeneratedVocabularyWords([]);
@@ -236,14 +248,16 @@ export async function handleVocabularyAnswer(userText: string, vocabStage: Vocab
   }
 
   if (localized) {
-    if (vocabStage === 'practice') {
-      setVocabStage('game');
-      sendAiReply(buildLocalizedFeedback(studentName || 'teman', userText, 'vocabulary', targetLanguage), 1400);
+    if (wantsTopicSelect(userText)) {
+      setVocabStage('ask-topic');
+      sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'vocabulary', targetLanguage), 900);
       return;
     }
 
-    setVocabStage('ask-topic');
-    sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'vocabulary', targetLanguage), 900);
+    setVocabStage('practice');
+    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'vocabulary', targetLanguage)}
+
+${buildLocalizedPracticeLoopReply(studentName || 'teman', 'vocabulary', targetLanguage)}`, 1400);
     return;
   }
 

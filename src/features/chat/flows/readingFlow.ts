@@ -1,8 +1,13 @@
 import {
+  buildLocalizedCustomTopicPrompt,
   buildLocalizedFeedback,
   buildLocalizedLesson,
+  buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
+  getLocalizedTopicLabel,
+  isCustomLocalizedTopicValue,
   isEnglishChat,
+  normalizeLocalizedTopicValue,
 } from '../languageAdapters';
 import {
   buildReadingFeedback,
@@ -30,10 +35,12 @@ export function selectReadingTopic(topicValue: string, runtime: TopicRuntime) {
   const { studentName, levelId, targetLanguage, setMessages, setSelectedTopic, setVocabStage, sendAiReply } = runtime;
   const localized = !isEnglishChat(targetLanguage);
 
-  if (topicValue === 'custom-reading') {
-    setMessages(prev => [...prev, createUserMessage('Custom Reading Topic')]);
+  if (topicValue === 'custom-reading' || (localized && isCustomLocalizedTopicValue(topicValue))) {
+    setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'reading', topicValue) : 'Custom Reading Topic')]);
     setVocabStage('ask-topic');
-    sendAiReply(`Boleh, ${studentName || 'teman'}! Tulis topik reading custom yang kamu mau.
+    sendAiReply(localized
+      ? buildLocalizedCustomTopicPrompt(studentName || 'teman', 'reading', targetLanguage)
+      : `Boleh, ${studentName || 'teman'}! Tulis topik reading custom yang kamu mau.
 
 Contoh:
 - Short news article
@@ -43,8 +50,8 @@ Contoh:
     return;
   }
 
-  const topic = normalizeReadingTopic(topicValue);
-  setMessages(prev => [...prev, createUserMessage(readingTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
+  const topic = localized ? normalizeLocalizedTopicValue(topicValue) : normalizeReadingTopic(topicValue);
+  setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'reading', topicValue) : readingTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
   setSelectedTopic(topic);
   setVocabStage('practice');
   if (localized) {
@@ -88,7 +95,7 @@ export function handleReadingAnswer(userText: string, vocabStage: VocabularyStag
       return;
     }
 
-    const topic = normalizeReadingTopic(userText);
+    const topic = localized ? normalizeLocalizedTopicValue(userText) : normalizeReadingTopic(userText);
     setSelectedTopic(topic);
     setVocabStage('practice');
     if (localized) {
@@ -100,14 +107,16 @@ export function handleReadingAnswer(userText: string, vocabStage: VocabularyStag
   }
 
   if (localized) {
-    if (vocabStage === 'practice') {
-      setVocabStage('game');
-      sendAiReply(buildLocalizedFeedback(studentName || 'teman', userText, 'reading', targetLanguage), 1400);
+    if (wantsTopicSelect(userText)) {
+      setVocabStage('ask-topic');
+      sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'reading', targetLanguage), 900);
       return;
     }
 
-    setVocabStage('ask-topic');
-    sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'reading', targetLanguage), 900);
+    setVocabStage('practice');
+    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'reading', targetLanguage)}
+
+${buildLocalizedPracticeLoopReply(studentName || 'teman', 'reading', targetLanguage)}`, 1400);
     return;
   }
 

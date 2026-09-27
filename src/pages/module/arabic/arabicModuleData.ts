@@ -126,8 +126,8 @@ export const arabicSkills: Array<{
   },
   {
     id: 'pronunciation',
-    label: 'Pronunciation',
-    sublabel: 'Makharij, huruf, dan pelafalan Arab',
+    label: 'Makharij',
+    sublabel: 'Titik keluar huruf, bunyi, dan pelafalan Arab',
     icon: '/assets/icons/new/17. Learning Method.png',
     color: '#E83E8C',
     bgColor: '#FDEDF4',

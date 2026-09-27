@@ -7,7 +7,17 @@ import {
   speakingTopicOptions,
 } from '../english';
 import type { VocabularyStage } from '../english';
-import { buildLocalizedFeedback, buildLocalizedLesson, buildLocalizedTopicQuestion, isEnglishChat } from '../languageAdapters';
+import {
+  buildLocalizedCustomTopicPrompt,
+  buildLocalizedFeedback,
+  buildLocalizedLesson,
+  buildLocalizedPracticeLoopReply,
+  buildLocalizedTopicQuestion,
+  getLocalizedTopicLabel,
+  isCustomLocalizedTopicValue,
+  isEnglishChat,
+  normalizeLocalizedTopicValue,
+} from '../languageAdapters';
 import { createUserMessage } from '../session';
 import type { FlowRuntime, TopicRuntime } from './types';
 
@@ -35,10 +45,12 @@ export function selectSpeakingTopic(topicValue: string, runtime: TopicRuntime) {
 
   const localized = !isEnglishChat(targetLanguage);
 
-  if (topicValue === 'custom-speaking') {
-    setMessages(prev => [...prev, createUserMessage('Custom Speaking Topic')]);
+  if (topicValue === 'custom-speaking' || (localized && isCustomLocalizedTopicValue(topicValue))) {
+    setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'speaking', topicValue) : 'Custom Speaking Topic')]);
     setVocabStage('ask-topic');
-    sendAiReply(`Boleh, ${studentName || 'teman'}! Tulis topik speaking yang kamu mau.
+    sendAiReply(localized
+      ? buildLocalizedCustomTopicPrompt(studentName || 'teman', 'speaking', targetLanguage)
+      : `Boleh, ${studentName || 'teman'}! Tulis topik speaking yang kamu mau.
 
 Contoh:
 - Job interview practice
@@ -48,8 +60,8 @@ Contoh:
     return;
   }
 
-  const topic = normalizeSpeakingTopic(topicValue);
-  setMessages(prev => [...prev, createUserMessage(speakingTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
+  const topic = localized ? normalizeLocalizedTopicValue(topicValue) : normalizeSpeakingTopic(topicValue);
+  setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'speaking', topicValue) : speakingTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
   setSelectedTopic(topic);
   setPronunciationTurn(0);
   setVocabStage('practice');
@@ -96,7 +108,7 @@ export function handleSpeakingAnswer(userText: string, vocabStage: VocabularySta
       return;
     }
 
-    const topic = normalizeSpeakingTopic(userText);
+    const topic = localized ? normalizeLocalizedTopicValue(userText) : normalizeSpeakingTopic(userText);
     setSelectedTopic(topic);
     setPronunciationTurn(0);
     setVocabStage('practice');
@@ -109,13 +121,22 @@ export function handleSpeakingAnswer(userText: string, vocabStage: VocabularySta
   }
 
   if (localized) {
-    if (vocabStage === 'practice') {
-      setPronunciationTurn(pronunciationTurn + 1);
-      sendAiReply(buildLocalizedFeedback(studentName || 'teman', userText, 'speaking', targetLanguage), 1400);
+    if (wantsTopicSelect(userText)) {
+      setVocabStage('ask-topic');
+      sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'speaking', targetLanguage), 900);
       return;
     }
-    setVocabStage('ask-topic');
-    sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'speaking', targetLanguage), 900);
+
+    if (vocabStage === 'practice' || vocabStage === 'game') {
+      setPronunciationTurn(pronunciationTurn + 1);
+      setVocabStage('practice');
+      sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'speaking', targetLanguage)}
+
+${buildLocalizedPracticeLoopReply(studentName || 'teman', 'speaking', targetLanguage)}`, 1400);
+      return;
+    }
+    setVocabStage('practice');
+    sendAiReply(buildLocalizedPracticeLoopReply(studentName || 'teman', 'speaking', targetLanguage), 900);
     return;
   }
 

@@ -74,7 +74,7 @@ const planCards: PaidPlan[] = [
 const benefitGroups = [
   ['4 bahasa: Inggris, Arab, Mandarin, Jepang', 'Practice & roleplay tanpa batas', 'Sertifikat level CEFR/HSK/JLPT', 'Bonus worksheet generator PDF'],
   ['Semua level CEFR, HSK, dan JLPT', '27+ game arcade semua mode', 'Grup WA & support 1x24 jam', 'Bonus visual dictionary generator'],
-  ['AI Tutor tanpa batas chat & voice', 'Diskon 30% kelas live tutor', 'Pre-test TOEFL & IELTS', 'Analytics progres belajar lengkap'],
+  ['AI Tutor tanpa batas chat & voice', 'Diskon 30% kelas live tutor', 'Pre-test TOEFL', 'Analytics progres belajar lengkap'],
 ];
 
 const featureCopy: Record<string, { title: string; reason: string }> = {
@@ -94,7 +94,6 @@ const featureBackTargets: Record<string, string> = {
   exam: '/ujian',
   game: '/game',
   goals: '/goals',
-  ielts: '/ielts',
   lesson: '/modul',
   module: '/modul',
   notes: '/notes',
@@ -256,7 +255,7 @@ export default function UpgradePage({ block, returnTo }: UpgradePageProps) {
                   {message?.title || 'Buka semua fitur Fluently Pro'}
                 </h1>
                 <p className="mt-3 max-w-3xl text-sm font-semibold leading-relaxed text-white/70 md:text-base">
-                  {message?.reason || 'Free member tetap bisa belajar. Upgrade Pro untuk membuka semua modul, AI chat, practice, game, IELTS, exam, goals, notes, dan analytics.'}
+                  {message?.reason || 'Free member tetap bisa belajar. Upgrade Pro untuk membuka semua modul, AI chat, practice, game, exam, goals, notes, dan analytics.'}
                 </p>
               </div>
               {activePlan !== 'free' && (

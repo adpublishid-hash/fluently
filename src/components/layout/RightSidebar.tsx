@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Clock, Flame, Trophy } from 'lucide-react';
-import { mockLeaderboard } from '../../data/mockData';
+import ActivityYearModal from '../shared/ActivityYearModal';
+import { DAILY_XP_EVENT, getTodayXp } from '../../utils/dailyXp';
+import { useLeaderboard } from '../../features/leaderboard/leaderboard';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { formatRecentChatTime, getRecentChatRoute, getRecentChatSessions } from '../../features/chat/recentSessions';
 import { useAuth } from '../../auth/AuthContext';
 import { FOCUS_SESSION_EVENT, getFocusSessions, getTodayFocusMinutes, type FocusSession } from '../../utils/focusTimer';
+import { useLanguage } from '../../i18n/LanguageContext';
 
 const chatHistory: { id: number; title: string; time: string; mode: string; modeId: string }[] = [];
 
@@ -16,11 +19,25 @@ const chatHistory: { id: number; title: string; time: string; mode: string; mode
 const DAILY_XP_GOAL = 50;
 
 function TodaysGoal() {
-  const { user } = useAuth();
-  const totalXP = user?.xp ?? 0;
-  const currentXP = totalXP % DAILY_XP_GOAL; // resets each goal cycle
+  const { t } = useLanguage();
+  const [todayXP, setTodayXP] = useState<number>(getTodayXp);
+
+  useEffect(() => {
+    const refresh = () => setTodayXP(getTodayXp());
+    window.addEventListener(DAILY_XP_EVENT, refresh);
+    window.addEventListener('storage', refresh);
+    window.addEventListener('focus', refresh);
+    return () => {
+      window.removeEventListener(DAILY_XP_EVENT, refresh);
+      window.removeEventListener('storage', refresh);
+      window.removeEventListener('focus', refresh);
+    };
+  }, []);
+
   const goalXP = DAILY_XP_GOAL;
-  const progress = (currentXP / goalXP) * 100;
+  const currentXP = Math.min(todayXP, goalXP);
+  const reached = todayXP >= goalXP;
+  const progress = Math.min(100, (todayXP / goalXP) * 100);
   const size = 100;
   const stroke = 8;
   const r = (size - stroke) / 2;
@@ -29,7 +46,7 @@ function TodaysGoal() {
 
   return (
     <div className="desktop-sidebar-widget">
-      <h3 className="text-[14px] font-bold text-[#1A1A2E] tracking-tight mb-4">Today's Goal</h3>
+      <h3 className="text-[14px] font-bold text-[#1A1A2E] tracking-tight mb-4">{t('sidebar.todayGoal')}</h3>
 
       <div className="flex flex-col items-center">
         {/* Circular progress */}
@@ -47,7 +64,7 @@ function TodaysGoal() {
               cx={size / 2}
               cy={size / 2}
               r={r}
-              stroke="#7EC3E6"
+              stroke={reached ? '#22C55E' : '#7EC3E6'}
               strokeWidth={stroke}
               strokeLinecap="round"
               fill="none"
@@ -59,7 +76,7 @@ function TodaysGoal() {
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
             <span className="text-[11px] text-[#9CA3AF] font-medium">XP</span>
-            <Flame size={16} className="text-[#FF6B6B] mt-0.5" />
+            <Flame size={16} className={`mt-0.5 ${reached ? 'text-[#22C55E]' : 'text-[#FF6B6B]'}`} />
           </div>
         </div>
 
@@ -68,7 +85,7 @@ function TodaysGoal() {
           <p className="text-[18px] font-extrabold text-[#1A1A2E] tracking-tight">
             {currentXP} / {goalXP} <span className="text-[13px] font-bold text-[#4FA3D1]">XP</span>
           </p>
-          <p className="text-[11px] text-[#9CA3AF] font-normal mt-0.5">{currentXP >= goalXP ? 'Goal complete!' : 'Keep going'}</p>
+          <p className="text-[11px] text-[#9CA3AF] font-normal mt-0.5">{reached ? t('sidebar.goalComplete') : t('sidebar.keepGoing')}</p>
         </div>
       </div>
     </div>
@@ -81,7 +98,9 @@ function TodaysGoal() {
 
 function TopLearners() {
   const navigate = useNavigate();
-  const top3 = mockLeaderboard.slice(0, 3);
+  const { t } = useLanguage();
+  const { entries, loading } = useLeaderboard(3);
+  const top3 = entries.slice(0, 3);
 
   const rankColors: Record<number, string> = {
     1: '#FFD700',
@@ -94,7 +113,7 @@ function TopLearners() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Trophy size={16} className="text-[#F59E0B]" />
-          <h3 className="text-[14px] font-bold text-[#1A1A2E] tracking-tight">Top Learners</h3>
+          <h3 className="text-[14px] font-bold text-[#1A1A2E] tracking-tight">{t('sidebar.topLearners')}</h3>
         </div>
         <motion.button
           whileHover={{ x: 2 }}
@@ -107,8 +126,22 @@ function TopLearners() {
       </div>
 
       <div className="space-y-3">
-        {top3.length === 0 && (
-          <p className="text-[11px] text-[#9CA3AF] py-2">Belum ada peringkat. Mulai belajar!</p>
+        {loading && top3.length === 0 && (
+          <div className="space-y-3">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="flex items-center gap-3">
+                <span className="w-5" />
+                <div className="h-8 w-8 shrink-0 animate-pulse rounded-full bg-gray-100" />
+                <div className="flex-1 space-y-1.5">
+                  <div className="h-2.5 w-3/4 animate-pulse rounded bg-gray-100" />
+                  <div className="h-2 w-1/3 animate-pulse rounded bg-gray-100" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+        {!loading && top3.length === 0 && (
+          <p className="text-[11px] text-[#9CA3AF] py-2">{t('sidebar.noLeaderboard')}</p>
         )}
         {top3.map((entry) => (
           <motion.div
@@ -160,10 +193,12 @@ function TopLearners() {
 
 function ActivityHeatmap() {
   const { user } = useAuth();
+  const { language, t } = useLanguage();
   const streak = user?.streak ?? 0;
-  const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+  const days = language === 'id' ? ['S', 'S', 'R', 'K', 'J', 'S', 'M'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
   const [focusSessions, setFocusSessions] = useState<FocusSession[]>(getFocusSessions);
   const todayFocus = getTodayFocusMinutes(focusSessions);
+  const [showYearModal, setShowYearModal] = useState(false);
 
   useEffect(() => {
     const refresh = () => setFocusSessions(getFocusSessions());
@@ -207,11 +242,23 @@ function ActivityHeatmap() {
   };
 
   return (
-    <div className="desktop-sidebar-widget">
+    <>
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={() => setShowYearModal(true)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setShowYearModal(true);
+        }
+      }}
+      className="desktop-sidebar-widget cursor-pointer transition-shadow hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
+    >
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <span className="text-[14px]">📅</span>
-          <h3 className="text-[14px] font-bold text-[#1A1A2E] tracking-tight">Activity</h3>
+          <h3 className="text-[14px] font-bold text-[#1A1A2E] tracking-tight">{t('sidebar.activity')}</h3>
         </div>
         <div className="flex items-center gap-1 bg-[#FEF3C7] rounded-full px-2 py-0.5">
           <Flame size={12} className="text-[#F59E0B]" />
@@ -245,7 +292,20 @@ function ActivityHeatmap() {
           </div>
         ))}
       </div>
+
+      <div className="mt-3 flex items-center justify-center gap-1 text-[11px] font-bold text-[#9CA3AF]">
+        <span>{t('activity.viewYear')}</span>
+        <ChevronRight size={13} />
+      </div>
     </div>
+
+    <ActivityYearModal
+      open={showYearModal}
+      onClose={() => setShowYearModal(false)}
+      sessions={focusSessions}
+      streak={todayFocus || streak}
+    />
+    </>
   );
 }
 
@@ -255,6 +315,7 @@ function ActivityHeatmap() {
 
 function ChatSessionWidget() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
   const recentSessions = getRecentChatSessions();
   const sessions = recentSessions.length ? recentSessions : chatHistory;
 
@@ -263,14 +324,14 @@ function ChatSessionWidget() {
       <div className="px-5 py-4 border-b border-gray-50 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Clock size={15} className="text-text-muted" />
-          <h4 className="font-extrabold text-[14px] text-text-primary">Recent Sessions</h4>
+          <h4 className="font-extrabold text-[14px] text-text-primary">{t('chat.recentSessions')}</h4>
         </div>
         <button
           type="button"
           onClick={() => navigate('/chat')}
           className="text-[11px] font-bold text-primary hover:underline cursor-pointer"
         >
-          View all
+          {t('common.viewAll')}
         </button>
       </div>
       <div className="p-3">

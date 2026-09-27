@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { MessageSquare } from 'lucide-react';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 export function ChatEmptyState() {
+  const { t } = useLanguage();
+
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center px-6">
       <motion.div
@@ -18,7 +21,7 @@ export function ChatEmptyState() {
         transition={{ delay: 0.1 }}
         className="font-extrabold text-[15px] text-text-primary mb-2"
       >
-        Start a conversation
+        {t('chat.startConversationTitle')}
       </motion.h3>
       <motion.p
         initial={{ opacity: 0, y: 8 }}
@@ -26,7 +29,7 @@ export function ChatEmptyState() {
         transition={{ delay: 0.15 }}
         className="text-[13px] text-text-muted max-w-[200px] leading-relaxed"
       >
-        Type a message or tap a quick action to begin your session
+        {t('chat.startConversationSubtitle')}
       </motion.p>
     </div>
   );

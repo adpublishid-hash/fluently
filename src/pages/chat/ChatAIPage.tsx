@@ -1,17 +1,24 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { KeyRound, Lock, MessageCircle, Search, Sparkles, Zap, Flame, ChevronRight, ArrowRight } from 'lucide-react';
+import { BookOpen, KeyRound, Lock, MessageCircle, Search, Sparkles, Zap, Flame, ChevronRight, ArrowRight, Mic, Volume2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import PageContainer from '../../components/layout/PageContainer';
 import { chatAIModes } from '../../data/mockData';
 import { useAuth } from '../../auth/AuthContext';
 import { formatRecentChatTime, getRecentChatRoute, getRecentChatSessions } from '../../features/chat/recentSessions';
-import { getTargetLanguageLabel } from '../../features/chat/targetLanguage';
+import { getTargetLanguageLabel, normalizeTargetLanguage } from '../../features/chat/targetLanguage';
+import { getLocalizedModeCopy } from '../../features/chat/languageAdapters';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
 import { hasUsableChatAiAccess } from '../../services/aiKeyService';
 
 const fallbackRecentChats: { id: number; title: string; mode: string; modeId: string; time: string; color: string }[] = [];
+
+const arabicShortcuts = [
+  { title: 'Makharij Sprint', detail: 'Mulai dari huruf tenggorokan dan mad pendek.', route: '/chat/pronunciation', icon: Volume2 },
+  { title: 'Nahwu Check', detail: "Latih mubtada-khabar dan fi'il-fa'il.", route: '/chat/grammar', icon: BookOpen },
+  { title: 'Kalam Roleplay', detail: 'Jawab dengan microphone untuk dialog pendek.', route: '/chat/speaking', icon: Mic },
+];
 
 export default function ChatAIPage() {
   const { t } = useLanguage();
@@ -20,7 +27,13 @@ export default function ChatAIPage() {
   const [search, setSearch] = useState('');
   const [recentChats, setRecentChats] = useState(() => getRecentChatSessions());
   const [hasAiAccess, setHasAiAccess] = useState(() => hasUsableChatAiAccess(user?.plan));
+  const targetLanguage = normalizeTargetLanguage(user?.persona?.targetLanguage);
+  const isArabicChat = targetLanguage === 'Arabic';
   const targetLanguageLabel = getTargetLanguageLabel(user?.persona?.targetLanguage);
+  const replaceToken = (copy: string, token: string, value: string | number) => copy.replace(token, String(value));
+  const heroBackground = isArabicChat
+    ? 'linear-gradient(135deg, #0F766E 0%, #0D9488 50%, #115E59 100%)'
+    : 'linear-gradient(135deg, #7EC3E6 0%, #4FA3D1 50%, #2980B9 100%)';
 
   useEffect(() => {
     const refreshRecentChats = () => setRecentChats(getRecentChatSessions());
@@ -41,12 +54,21 @@ export default function ChatAIPage() {
 
   const goToGeminiSetup = () => navigate('/profile');
 
+  const getModeCopy = (mode: typeof chatAIModes[number]) => {
+    if (isArabicChat) return getLocalizedModeCopy(targetLanguage, mode.id);
+    return {
+      label: t(mode.labelKey as TranslationKey),
+      sublabel: t(mode.sublabelKey as TranslationKey),
+    };
+  };
+
   const filteredModes = chatAIModes.filter(mode => {
+    const copy = getModeCopy(mode);
     if (!search.trim()) return true;
     const q = search.toLowerCase();
     return (
-      t(mode.labelKey as TranslationKey).toLowerCase().includes(q) ||
-      t(mode.sublabelKey as TranslationKey).toLowerCase().includes(q)
+      copy.label.toLowerCase().includes(q) ||
+      copy.sublabel.toLowerCase().includes(q)
     );
   });
 
@@ -57,7 +79,7 @@ export default function ChatAIPage() {
         {/* ── Hero ── */}
         <motion.div
           className="mx-5 md:mx-0 mt-6 md:mt-0 rounded-3xl overflow-hidden relative"
-          style={{ background: 'linear-gradient(135deg, #7EC3E6 0%, #4FA3D1 50%, #2980B9 100%)' }}
+          style={{ background: heroBackground }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
@@ -90,7 +112,9 @@ export default function ChatAIPage() {
               transition={{ delay: 0.15 }}
             >
               <Sparkles size={11} className="text-white" />
-              <span className="text-[10.5px] font-extrabold text-white tracking-wider uppercase">AI-Powered {targetLanguageLabel} Tutor</span>
+              <span className="text-[10.5px] font-extrabold text-white tracking-wider uppercase">
+                {replaceToken(t('chatAi.heroBadge'), '{language}', targetLanguageLabel)}
+              </span>
             </motion.div>
 
             <div className="flex items-start gap-3">
@@ -104,7 +128,15 @@ export default function ChatAIPage() {
               </motion.div>
               <div className="flex-1 min-w-0">
                 <h1 className="text-white text-xl sm:text-2xl md:text-3xl font-black leading-tight">{t('chatAi.title')}</h1>
-                <p className="text-white/80 text-[12.5px] md:text-sm font-medium mt-1.5 leading-relaxed">{t('chatAi.subtitle')}</p>
+                <p className="text-white/80 text-[12.5px] md:text-sm font-medium mt-1.5 leading-relaxed">
+                  {isArabicChat ? 'Tutor Arabic AI untuk mufradat, makharij, nahwu-sharaf, kalam, qiraah, dan kitabah.' : t('chatAi.subtitle')}
+                </p>
+                {isArabicChat && (
+                  <div className="mt-3 inline-flex max-w-full flex-col rounded-2xl border border-white/20 bg-white/15 px-4 py-2 backdrop-blur-sm">
+                    <span dir="rtl" lang="ar" className="truncate text-xl font-black leading-relaxed text-white">أَهْلًا وَسَهْلًا</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-white/70">Ahlan wa sahlan</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -117,9 +149,9 @@ export default function ChatAIPage() {
             transition={{ delay: 0.2 }}
           >
             {[
-              { id: 'energy',  icon: Zap,      label: 'AI Energy',  value: user?.plan === 'free' ? 'Daily quota' : 'Unlimited' },
-              { id: 'streak',  icon: Flame,    label: 'Streak',     value: `${user?.streak ?? 0} days` },
-              { id: 'session', icon: Sparkles, label: 'Sessions',   value: `${recentChats.length} done` },
+              { id: 'energy',  icon: Zap,      label: t('chatAi.statAiEnergy'), value: user?.plan === 'free' ? t('chatAi.statDailyQuota') : t('chatAi.statUnlimited') },
+              { id: 'streak',  icon: Flame,    label: t('chatAi.statStreak'),   value: `${user?.streak ?? 0} ${t('chatAi.statDays')}` },
+              { id: 'session', icon: Sparkles, label: t('chatAi.statSessions'), value: `${recentChats.length} ${t('chatAi.statDone')}` },
             ].map((stat) => {
               const Icon = stat.icon;
               return (
@@ -138,6 +170,47 @@ export default function ChatAIPage() {
           </motion.div>
         </motion.div>
 
+        {isArabicChat && (
+          <motion.section
+            className="mx-5 mt-5 rounded-3xl border border-teal-100 bg-white p-4 shadow-sm md:mx-0"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18 }}
+          >
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#0F766E]">Arabic Coach</p>
+                <h2 className="text-base font-black text-[#0F172A]">Mulai cepat sesuai skill Arabic</h2>
+              </div>
+              <p className="text-xs font-semibold text-slate-500">Pakai voice untuk makharij dan kalam.</p>
+            </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {arabicShortcuts.map((shortcut) => {
+                const Icon = shortcut.icon;
+                return (
+                  <button
+                    key={shortcut.title}
+                    type="button"
+                    onClick={() => hasAiAccess ? navigate(shortcut.route) : goToGeminiSetup()}
+                    className="group rounded-2xl border border-teal-100 bg-teal-50/50 p-4 text-left transition hover:-translate-y-0.5 hover:bg-teal-50 hover:shadow-sm disabled:opacity-60"
+                    disabled={!hasAiAccess}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white text-[#0F766E]">
+                        <Icon size={18} />
+                      </div>
+                      <div className="min-w-0">
+                        <h3 className="font-black text-[#0F172A]">{shortcut.title}</h3>
+                        <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">{shortcut.detail}</p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.section>
+        )}
+
         {/* ── Search bar ── */}
         <motion.div
           className="px-5 md:px-0 mt-6"
@@ -151,7 +224,7 @@ export default function ChatAIPage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search focus, e.g. vocabulary, grammar..."
+              placeholder={t('chatAi.searchPlaceholder')}
               className="flex-1 bg-transparent text-[13.5px] text-text-primary placeholder:text-text-muted outline-none"
             />
             {search && (
@@ -159,7 +232,7 @@ export default function ChatAIPage() {
                 onClick={() => setSearch('')}
                 className="text-[11px] font-bold text-primary hover:text-primary-dark cursor-pointer"
               >
-                Clear
+                {t('common.clear')}
               </button>
             )}
           </div>
@@ -171,7 +244,7 @@ export default function ChatAIPage() {
             <h2 className="text-base font-extrabold text-text-primary">{t('chatAi.focusTitle')}</h2>
             <p className="text-[12.5px] text-text-muted mt-0.5">{t('chatAi.focusSub')}</p>
           </div>
-          <span className="text-[11px] font-bold text-text-muted">{filteredModes.length} focus</span>
+          <span className="text-[11px] font-bold text-text-muted">{filteredModes.length} {t('chatAi.focusUnit')}</span>
         </div>
 
         {!hasAiAccess && (
@@ -186,9 +259,9 @@ export default function ChatAIPage() {
                   <KeyRound size={18} />
                 </div>
                 <div>
-                  <p className="text-sm font-black text-amber-900">Gemini AI belum aktif</p>
+                  <p className="text-sm font-black text-amber-900">{t('chatAi.geminiLockedTitle')}</p>
                   <p className="mt-1 text-xs font-semibold leading-relaxed text-amber-700">
-                    AI Chat memakai default Gemini Flash 2.5 dari Fluently. Coba refresh halaman atau cek Profile jika akses belum aktif.
+                    {t('chatAi.geminiLockedBody')}
                   </p>
                 </div>
               </div>
@@ -197,7 +270,7 @@ export default function ChatAIPage() {
                 onClick={goToGeminiSetup}
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-amber-500 px-4 py-2.5 text-xs font-black text-white shadow-sm transition hover:bg-amber-600"
               >
-                Setup di Profile
+                {t('chatAi.setupProfile')}
                 <ArrowRight size={14} />
               </button>
             </div>
@@ -207,23 +280,28 @@ export default function ChatAIPage() {
         <div className="px-5 md:px-0">
           {filteredModes.length === 0 ? (
             <div className="bg-white rounded-2xl border border-gray-100 py-12 text-center">
-              <p className="text-[13px] text-text-muted">No focus matches "<span className="font-bold text-text-primary">{search}</span>"</p>
+              <p className="text-[13px] text-text-muted">
+                {replaceToken(t('chatAi.noFocusMatches'), '{search}', search)}
+              </p>
             </div>
           ) : (
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {filteredModes.map((mode, i) => (
-                <ModeCard
-                  key={mode.id}
-                  icon={mode.icon}
-                  label={t(mode.labelKey as TranslationKey)}
-                  sublabel={t(mode.sublabelKey as TranslationKey)}
-                  color={mode.color}
-                  bgColor={mode.bgColor}
-                  onClick={() => hasAiAccess ? navigate(`/chat/${mode.id}`) : goToGeminiSetup()}
-                  delay={0.05 * i}
-                  disabled={!hasAiAccess}
-                />
-              ))}
+              {filteredModes.map((mode, i) => {
+                const copy = getModeCopy(mode);
+                return (
+                  <ModeCard
+                    key={mode.id}
+                    icon={mode.icon}
+                    label={copy.label}
+                    sublabel={copy.sublabel}
+                    color={isArabicChat ? '#0F766E' : mode.color}
+                    bgColor={isArabicChat ? '#CCFBF1' : mode.bgColor}
+                    onClick={() => hasAiAccess ? navigate(`/chat/${mode.id}`) : goToGeminiSetup()}
+                    delay={0.05 * i}
+                    disabled={!hasAiAccess}
+                  />
+                );
+              })}
             </div>
           )}
         </div>
@@ -233,10 +311,10 @@ export default function ChatAIPage() {
           <>
             <div className="px-5 md:px-0 mt-8 mb-4 flex items-end justify-between">
               <div>
-                <h2 className="text-base font-extrabold text-text-primary">Continue Learning</h2>
-                <p className="text-[12.5px] text-text-muted mt-0.5">Pick up where you left off</p>
+                <h2 className="text-base font-extrabold text-text-primary">{t('chatAi.continueTitle')}</h2>
+                <p className="text-[12.5px] text-text-muted mt-0.5">{t('chatAi.continueSubtitle')}</p>
               </div>
-              <button className="text-[11px] font-bold text-primary hover:underline cursor-pointer">View all</button>
+              <button className="text-[11px] font-bold text-primary hover:underline cursor-pointer">{t('common.viewAll')}</button>
             </div>
 
             <div className="px-5 md:px-0 grid gap-2.5 md:grid-cols-2 lg:grid-cols-3">
@@ -306,6 +384,7 @@ function ModeCard({
   isNew?: boolean;
   disabled?: boolean;
 }) {
+  const { t } = useLanguage();
   const [iconFailed, setIconFailed] = useState(false);
 
   return (
@@ -328,7 +407,7 @@ function ModeCard({
         <div className="absolute top-3 right-3">
           {disabled && (
             <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[9px] font-extrabold uppercase tracking-wider text-amber-600">
-              <Lock size={10} /> Setup Key
+              <Lock size={10} /> {t('chatAi.setupKey')}
             </span>
           )}
           {isPopular && (
@@ -336,7 +415,7 @@ function ModeCard({
               className="text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider"
               style={{ backgroundColor: '#FEF3C7', color: '#D97706' }}
             >
-              🔥 Popular
+              🔥 {t('chatAi.popular')}
             </span>
           )}
           {isNew && (
@@ -344,7 +423,7 @@ function ModeCard({
               className="text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider"
               style={{ backgroundColor: bgColor, color }}
             >
-              ✨ New
+              ✨ {t('chatAi.new')}
             </span>
           )}
         </div>

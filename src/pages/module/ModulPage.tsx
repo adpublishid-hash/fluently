@@ -86,11 +86,11 @@ const examByLanguage = {
   English: {
     label: 'TOEFL Practice',
     title: 'Ujian Bahasa Inggris',
-    subtitle: 'Pilih TOEFL Test 1, TOEFL Test 2, atau IELTS sesuai target sertifikasi kamu.',
+    subtitle: 'Pilih TOEFL Test 1 atau TOEFL Test 2 sesuai target sertifikasi kamu.',
     route: '/ujian/english',
     progress: '0 / 3',
     note: 'exam options',
-    bullets: ['TOEFL PBT score', 'IELTS practice', 'Review jawaban'],
+    bullets: ['TOEFL PBT score', 'Timed practice', 'Review jawaban'],
     available: true,
   },
   Arabic: {

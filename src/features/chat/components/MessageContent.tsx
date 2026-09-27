@@ -4,6 +4,7 @@ import { getLocalizedTopicOptions, getLocalizedTopicSelectCopy, isEnglishChat } 
 import type { TargetLanguage } from '../targetLanguage';
 import type { PronunciationSentenceRow, SpeakingPromptRow, VocabularyRow } from '../types';
 import { playAudio } from '../../../services/ttsService';
+import { useLanguage } from '../../../i18n/LanguageContext';
 
 type MessageContentProps = {
   text: string;
@@ -141,7 +142,10 @@ function parseWritingPrompt(text: string) {
 }
 
 function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targetLanguage: TargetLanguage }) {
+  const { t } = useLanguage();
   const wordHeader = targetLanguage === 'English' ? 'English' : targetLanguage;
+  const isRtl = targetLanguage === 'Arabic';
+  const replaceToken = (copy: string, token: string, value: string | number) => copy.replace(token, String(value));
 
   return (
     <div className="my-3 overflow-hidden rounded-2xl border border-gray-200 bg-white">
@@ -150,7 +154,7 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
           <div key={`${row.word}-${index}-mobile`} className="p-3">
             <div className="mb-2 flex items-start justify-between gap-3">
               <div className="min-w-0">
-                <p className="break-words text-[14px] font-black leading-snug text-text-primary">
+                <p dir={isRtl ? 'rtl' : 'auto'} className="break-words text-[14px] font-black leading-snug text-text-primary">
                   <span className="text-text-secondary">{index + 1}.</span> {row.word}
                 </p>
                 <p className="mt-1 break-words text-[12px] font-semibold text-text-secondary">{row.phonetic}</p>
@@ -158,9 +162,9 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
               <button
                 type="button"
                 onClick={() => playAudio(row.word)}
-                title="Click to listen (Profile AI Voice)"
+                title={t('chat.listenProfileVoice')}
                 className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-500 ring-1 ring-blue-100 transition hover:bg-blue-500 hover:text-white"
-                aria-label={`Play vocabulary ${row.word}`}
+                aria-label={replaceToken(t('chat.playVocabulary'), '{word}', row.word)}
               >
                 <Volume2 size={16} />
               </button>
@@ -174,13 +178,13 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
               </span>
             </div>
             <div className="flex items-start gap-2 rounded-xl bg-blue-50/70 p-2.5 text-[12.5px] leading-relaxed text-text-secondary">
-              <span className="min-w-0 flex-1 break-words">{row.example}</span>
+              <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words">{row.example}</span>
               <button
                 type="button"
                 onClick={() => playAudio(row.example)}
-                title="Click to listen (Profile AI Voice)"
+                title={t('chat.listenProfileVoice')}
                 className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white text-blue-500 shadow-sm ring-1 ring-blue-100 transition hover:bg-blue-500 hover:text-white"
-                aria-label={`Play example for ${row.word}`}
+                aria-label={replaceToken(t('chat.playExample'), '{word}', row.word)}
               >
                 <Volume2 size={14} />
               </button>
@@ -195,9 +199,9 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
             <tr>
               <th className="w-[22%] px-2 py-2.5 font-black">{wordHeader}</th>
               <th className="w-[16%] px-2 py-2.5 font-black">IPA</th>
-              <th className="w-[18%] px-2 py-2.5 font-black">Indonesian</th>
-              <th className="w-[12%] px-2 py-2.5 font-black">Part</th>
-              <th className="w-[32%] px-2 py-2.5 font-black">Example</th>
+              <th className="w-[18%] px-2 py-2.5 font-black">{t('chat.table.indonesian')}</th>
+              <th className="w-[12%] px-2 py-2.5 font-black">{t('chat.table.part')}</th>
+              <th className="w-[32%] px-2 py-2.5 font-black">{t('chat.table.example')}</th>
             </tr>
           </thead>
           <tbody>
@@ -205,15 +209,15 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
               <tr key={`${row.word}-${index}`} className="border-t border-gray-200 align-middle">
                 <td className="px-2 py-2.5 font-semibold text-text-primary">
                   <div className="flex items-center gap-1.5">
-                    <span className="min-w-0 flex-1 break-words leading-snug">
+                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">
                       <span className="text-text-secondary">{index + 1}.</span> {row.word}
                     </span>
                     <button
                       type="button"
                       onClick={() => playAudio(row.word)}
-                      title="Click to listen (Profile AI Voice)"
+                      title={t('chat.listenProfileVoice')}
                       className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-blue-50 text-blue-500 ring-1 ring-blue-100 transition hover:bg-blue-500 hover:text-white"
-                      aria-label={`Play vocabulary ${row.word}`}
+                      aria-label={replaceToken(t('chat.playVocabulary'), '{word}', row.word)}
                     >
                       <Volume2 size={12} />
                     </button>
@@ -228,13 +232,13 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
                 </td>
                 <td className="bg-blue-50/70 px-2 py-2.5 text-text-secondary">
                   <div className="flex items-center gap-2">
-                    <span className="min-w-0 flex-1 break-words leading-snug">{row.example}</span>
+                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">{row.example}</span>
                     <button
                       type="button"
                       onClick={() => playAudio(row.example)}
-                      title="Click to listen (Profile AI Voice)"
+                      title={t('chat.listenProfileVoice')}
                       className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-blue-500 shadow-sm ring-1 ring-blue-100 transition hover:bg-blue-500 hover:text-white"
-                      aria-label={`Play example for ${row.word}`}
+                      aria-label={replaceToken(t('chat.playExample'), '{word}', row.word)}
                     >
                       <Volume2 size={12} />
                     </button>
@@ -249,17 +253,21 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
   );
 }
 
-function PronunciationTable({ rows }: { rows: PronunciationSentenceRow[] }) {
+function PronunciationTable({ rows, targetLanguage }: { rows: PronunciationSentenceRow[]; targetLanguage: TargetLanguage }) {
+  const { t } = useLanguage();
+  const isRtl = targetLanguage === 'Arabic';
+  const replaceToken = (copy: string, token: string, value: string | number) => copy.replace(token, String(value));
+
   return (
     <div className="my-3 overflow-hidden rounded-2xl border border-indigo-100 bg-white">
       <div className="max-h-[520px] overflow-auto">
         <table className="w-full table-fixed border-collapse text-left text-[11px] md:text-[12px]">
           <thead className="sticky top-0 z-10 bg-indigo-50 text-slate-700">
             <tr>
-              <th className="w-[36%] px-2 py-2.5 font-black">Sentence</th>
+              <th className="w-[36%] px-2 py-2.5 font-black">{t('chat.table.sentence')}</th>
               <th className="w-[26%] px-2 py-2.5 font-black">IPA</th>
-              <th className="w-[16%] px-2 py-2.5 font-black">Focus</th>
-              <th className="w-[22%] px-2 py-2.5 font-black">Coach Tip</th>
+              <th className="w-[16%] px-2 py-2.5 font-black">{t('chat.table.focus')}</th>
+              <th className="w-[22%] px-2 py-2.5 font-black">{t('chat.table.coachTip')}</th>
             </tr>
           </thead>
           <tbody>
@@ -267,15 +275,15 @@ function PronunciationTable({ rows }: { rows: PronunciationSentenceRow[] }) {
               <tr key={`${row.sentence}-${index}`} className="border-t border-indigo-100 align-top">
                 <td className="px-2 py-2.5 font-semibold text-text-primary">
                   <div className="flex items-start gap-1.5">
-                    <span className="min-w-0 flex-1 break-words leading-snug">
+                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">
                       <span className="text-text-secondary">{index + 1}.</span> {row.sentence}
                     </span>
                     <button
                       type="button"
                       onClick={() => playAudio(row.sentence)}
-                      title="Listen to native AI voice"
+                      title={t('chat.listenNativeVoice')}
                       className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-indigo-50 text-indigo-500 ring-1 ring-indigo-100 transition hover:bg-indigo-500 hover:text-white"
-                      aria-label={`Play pronunciation sentence ${index + 1}`}
+                      aria-label={replaceToken(t('chat.playPronunciationSentence'), '{number}', index + 1)}
                     >
                       <Volume2 size={12} />
                     </button>
@@ -297,17 +305,21 @@ function PronunciationTable({ rows }: { rows: PronunciationSentenceRow[] }) {
   );
 }
 
-function SpeakingTable({ rows }: { rows: SpeakingPromptRow[] }) {
+function SpeakingTable({ rows, targetLanguage }: { rows: SpeakingPromptRow[]; targetLanguage: TargetLanguage }) {
+  const { t } = useLanguage();
+  const isRtl = targetLanguage === 'Arabic';
+  const replaceToken = (copy: string, token: string, value: string | number) => copy.replace(token, String(value));
+
   return (
     <div className="my-3 overflow-hidden rounded-2xl border border-emerald-100 bg-white">
       <div className="max-h-[520px] overflow-auto">
         <table className="w-full table-fixed border-collapse text-left text-[11px] md:text-[12px]">
           <thead className="sticky top-0 z-10 bg-emerald-50 text-slate-700">
             <tr>
-              <th className="w-[32%] px-2 py-2.5 font-black">Speaking Prompt</th>
-              <th className="w-[18%] px-2 py-2.5 font-black">Grammar</th>
-              <th className="w-[22%] px-2 py-2.5 font-black">Pattern</th>
-              <th className="w-[28%] px-2 py-2.5 font-black">Example</th>
+              <th className="w-[32%] px-2 py-2.5 font-black">{t('chat.table.speakingPrompt')}</th>
+              <th className="w-[18%] px-2 py-2.5 font-black">{t('chat.table.grammar')}</th>
+              <th className="w-[22%] px-2 py-2.5 font-black">{t('chat.table.pattern')}</th>
+              <th className="w-[28%] px-2 py-2.5 font-black">{t('chat.table.example')}</th>
             </tr>
           </thead>
           <tbody>
@@ -326,13 +338,13 @@ function SpeakingTable({ rows }: { rows: SpeakingPromptRow[] }) {
                 <td className="break-words px-2 py-2.5 font-medium text-text-secondary">{row.usefulPattern}</td>
                 <td className="bg-emerald-50/50 px-2 py-2.5 text-text-secondary">
                   <div className="flex items-start gap-1.5">
-                    <span className="min-w-0 flex-1 break-words leading-snug">{row.example}</span>
+                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">{row.example}</span>
                     <button
                       type="button"
                       onClick={() => playAudio(row.example)}
-                      title="Listen to example"
+                      title={t('chat.listenExample')}
                       className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-white text-emerald-600 shadow-sm ring-1 ring-emerald-100 transition hover:bg-emerald-500 hover:text-white"
-                      aria-label={`Play speaking example ${index + 1}`}
+                      aria-label={replaceToken(t('chat.playSpeakingExample'), '{number}', index + 1)}
                     >
                       <Volume2 size={12} />
                     </button>
@@ -592,7 +604,7 @@ export function MessageContent({
           {readingPassage.before && <p className="whitespace-pre-line">{readingPassage.before}</p>}
           <div className="my-3 rounded-2xl border border-amber-100 bg-amber-50/60 p-4 text-[13px] leading-7 text-text-primary shadow-sm">
             <div className="mb-2 text-[11px] font-black uppercase tracking-widest text-amber-600">Reading Passage</div>
-            <p>{readingPassage.passage}</p>
+            <p dir={targetLanguage === 'Arabic' ? 'rtl' : 'auto'}>{readingPassage.passage}</p>
           </div>
           {readingPassage.after && <p className="whitespace-pre-line">{readingPassage.after}</p>}
         </div>
@@ -603,7 +615,7 @@ export function MessageContent({
       return (
         <div className="whitespace-normal">
           {speakingTable.before && <p className="whitespace-pre-line">{speakingTable.before}</p>}
-          <SpeakingTable rows={speakingTable.rows} />
+          <SpeakingTable rows={speakingTable.rows} targetLanguage={targetLanguage} />
           {speakingTable.after && <p className="whitespace-pre-line">{speakingTable.after}</p>}
         </div>
       );
@@ -613,7 +625,7 @@ export function MessageContent({
       return (
         <div className="whitespace-normal">
           {pronunciationTable.before && <p className="whitespace-pre-line">{pronunciationTable.before}</p>}
-          <PronunciationTable rows={pronunciationTable.rows} />
+          <PronunciationTable rows={pronunciationTable.rows} targetLanguage={targetLanguage} />
           {pronunciationTable.after && <p className="whitespace-pre-line">{pronunciationTable.after}</p>}
         </div>
       );

@@ -7,7 +7,17 @@ import {
   pronunciationTopicOptions,
 } from '../english';
 import type { VocabularyStage } from '../english';
-import { buildLocalizedFeedback, buildLocalizedLesson, buildLocalizedTopicQuestion, isEnglishChat } from '../languageAdapters';
+import {
+  buildLocalizedCustomTopicPrompt,
+  buildLocalizedFeedback,
+  buildLocalizedLesson,
+  buildLocalizedPracticeLoopReply,
+  buildLocalizedTopicQuestion,
+  getLocalizedTopicLabel,
+  isCustomLocalizedTopicValue,
+  isEnglishChat,
+  normalizeLocalizedTopicValue,
+} from '../languageAdapters';
 import {
   buildPronunciationPracticeInstruction,
   requestPronunciationFeedback,
@@ -63,10 +73,12 @@ export async function selectPronunciationTopic(topicValue: string, runtime: Topi
 
   const localized = !isEnglishChat(targetLanguage);
 
-  if (topicValue === 'custom-pronunciation') {
-    setMessages(prev => [...prev, createUserMessage('Custom Pronunciation Focus')]);
+  if (topicValue === 'custom-pronunciation' || (localized && isCustomLocalizedTopicValue(topicValue))) {
+    setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'pronunciation', topicValue) : 'Custom Pronunciation Focus')]);
     setVocabStage('ask-topic');
-    sendAiReply(`Boleh, ${studentName || 'teman'}! Tulis fokus pronunciation yang kamu mau.
+    sendAiReply(localized
+      ? buildLocalizedCustomTopicPrompt(studentName || 'teman', 'pronunciation', targetLanguage)
+      : `Boleh, ${studentName || 'teman'}! Tulis fokus pronunciation yang kamu mau.
 
 Contoh:
 - TH sound
@@ -76,8 +88,8 @@ Contoh:
     return;
   }
 
-  const topic = normalizePronunciationTopic(topicValue);
-  setMessages(prev => [...prev, createUserMessage(pronunciationTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
+  const topic = localized ? normalizeLocalizedTopicValue(topicValue) : normalizePronunciationTopic(topicValue);
+  setMessages(prev => [...prev, createUserMessage(localized ? getLocalizedTopicLabel(targetLanguage, 'pronunciation', topicValue) : pronunciationTopicOptions.find((option) => option.value === topicValue)?.label || topic)]);
   setSelectedTopic(topic);
   setGeneratedPronunciationRows([]);
   setPronunciationTurn(0);
@@ -133,7 +145,7 @@ export function handlePronunciationAnswer(userText: string, vocabStage: Vocabula
       return;
     }
 
-    const topic = normalizePronunciationTopic(userText);
+    const topic = localized ? normalizeLocalizedTopicValue(userText) : normalizePronunciationTopic(userText);
     setSelectedTopic(topic);
     setGeneratedPronunciationRows([]);
     setPronunciationTurn(0);
@@ -154,15 +166,23 @@ export function handlePronunciationAnswer(userText: string, vocabStage: Vocabula
   }
 
   if (localized) {
-    if (vocabStage === 'practice') {
-      setPronunciationTurn(pronunciationTurn + 1);
-      setVocabStage('game');
-      sendAiReply(buildLocalizedFeedback(studentName || 'teman', userText, 'pronunciation', targetLanguage), 1400);
+    if (wantsTopicSelect(userText)) {
+      setVocabStage('ask-topic');
+      sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'pronunciation', targetLanguage), 900);
       return;
     }
 
-    setVocabStage('ask-topic');
-    sendAiReply(buildLocalizedTopicQuestion(studentName || 'teman', 'pronunciation', targetLanguage), 900);
+    if (vocabStage === 'practice' || vocabStage === 'game') {
+      setPronunciationTurn(pronunciationTurn + 1);
+      setVocabStage('practice');
+      sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'pronunciation', targetLanguage)}
+
+${buildLocalizedPracticeLoopReply(studentName || 'teman', 'pronunciation', targetLanguage)}`, 1400);
+      return;
+    }
+
+    setVocabStage('practice');
+    sendAiReply(buildLocalizedPracticeLoopReply(studentName || 'teman', 'pronunciation', targetLanguage), 900);
     return;
   }
 

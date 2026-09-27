@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { BookOpen, Gamepad2, FileText, MessageCircle, ShoppingBag, User, LogOut, Flame, Zap, Shield, BarChart3, Target, NotebookPen, GraduationCap } from 'lucide-react';
+import { BookOpen, Gamepad2, FileText, MessageCircle, ShoppingBag, User, LogOut, Flame, Zap, Shield, BarChart3, Target, NotebookPen, GraduationCap, Video } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
@@ -13,6 +13,7 @@ const fallbackAvatar = (name: string) =>
 
 const tabs: { id: TabType; labelKey: TranslationKey; icon: React.ElementType; path: string; accent: string }[] = [
   { id: 'modul',   labelKey: 'nav.modul',   icon: BookOpen,      path: '/modul',   accent: '#4FA3D1' },
+  { id: 'video',   labelKey: 'nav.videoLessons', icon: Video,     path: '/video',   accent: '#0F766E' },
   { id: 'latihan', labelKey: 'nav.latihan',  icon: FileText,      path: '/latihan', accent: '#F59E0B' },
   { id: 'chat',    labelKey: 'nav.chatAi',   icon: MessageCircle, path: '/chat',    accent: '#3B82F6' },
   { id: 'game',    labelKey: 'nav.game',     icon: Gamepad2,      path: '/game',    accent: '#6366F1' },
@@ -62,19 +63,18 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
   const isPathActive = (path: string) =>
     location.pathname === path || location.pathname.startsWith(path + '/');
 
-  type ExtraItem = { label: string; icon: React.ElementType; path: string; accent: string; bg: string };
+  type ExtraItem = { labelKey: TranslationKey; icon: React.ElementType; path: string; accent: string; bg: string };
   const prepItems: ExtraItem[] = [
-    { label: 'IELTS Prep', icon: BookOpen,      path: '/ielts',         accent: '#7C3AED', bg: 'rgba(124,58,237,0.10)' },
-    { label: 'Exam',       icon: GraduationCap, path: '/ujian/english', accent: '#9B59B6', bg: 'rgba(155,89,182,0.10)' },
+    { labelKey: 'nav.exam',  icon: GraduationCap, path: '/ujian/english', accent: '#9B59B6', bg: 'rgba(155,89,182,0.10)' },
   ];
   const toolItems: ExtraItem[] = [
-    { label: 'Analytics', icon: BarChart3,   path: '/analytics', accent: '#2980B9', bg: 'rgba(41,128,185,0.10)'  },
-    { label: 'Goals',     icon: Target,      path: '/goals',     accent: '#E74C3C', bg: 'rgba(231,76,60,0.10)'   },
-    { label: 'Notes',     icon: NotebookPen, path: '/notes',     accent: '#4FA3D1', bg: 'rgba(79,163,209,0.10)'  },
+    { labelKey: 'nav.analytics', icon: BarChart3,   path: '/analytics', accent: '#2980B9', bg: 'rgba(41,128,185,0.10)'  },
+    { labelKey: 'nav.goals',     icon: Target,      path: '/goals',     accent: '#E74C3C', bg: 'rgba(231,76,60,0.10)'   },
+    { labelKey: 'nav.notes',     icon: NotebookPen, path: '/notes',     accent: '#4FA3D1', bg: 'rgba(79,163,209,0.10)'  },
   ];
   const accountItems: ExtraItem[] = [
-    { label: 'Shop',    icon: ShoppingBag, path: '/shop',    accent: '#10B981', bg: 'rgba(16,185,129,0.10)' },
-    { label: 'Profile', icon: User,        path: '/profile', accent: '#EC4899', bg: 'rgba(236,72,153,0.10)' },
+    { labelKey: 'nav.shop',    icon: ShoppingBag, path: '/shop',    accent: '#10B981', bg: 'rgba(16,185,129,0.10)' },
+    { labelKey: 'nav.profile', icon: User,        path: '/profile', accent: '#EC4899', bg: 'rgba(236,72,153,0.10)' },
   ];
 
   return (
@@ -115,7 +115,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
       <nav className="flex-1 overflow-y-auto px-1 scrollbar-none">
 
         {/* ── Learn ── */}
-        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Learn</p>
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">{t('nav.learn')}</p>
         <div className="space-y-0.5">
           {navTabs.map((tab) => {
             const isActive = resolvedActiveTab === tab.id;
@@ -141,7 +141,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
                   <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? tab.accent : '#9CA3AF' }} />
                 </motion.div>
                 <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>
-                  {tab.id === 'admin' ? 'Admin' : t(tab.labelKey)}
+                  {tab.id === 'admin' ? t('nav.admin') : t(tab.labelKey)}
                 </span>
                 {isActive && (
                   <motion.div layoutId="sidebarBar" className="ml-auto w-1 h-5 rounded-full"
@@ -155,7 +155,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
 
         {/* ── Test Prep ── */}
         <div className="h-px bg-gray-100 mx-2 mt-3 mb-2" />
-        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Test Prep</p>
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">{t('nav.testPrep')}</p>
         <div className="space-y-0.5">
           {prepItems.map(item => {
             const Icon = item.icon;
@@ -170,7 +170,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
                   className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
                   <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? item.accent : '#9CA3AF' }} />
                 </motion.div>
-                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{item.label}</span>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{t(item.labelKey)}</span>
                 {isActive && <div className="ml-auto w-1 h-5 rounded-full" style={{ backgroundColor: item.accent }} />}
               </motion.button>
             );
@@ -179,7 +179,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
 
         {/* ── Tools ── */}
         <div className="h-px bg-gray-100 mx-2 mt-3 mb-2" />
-        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Tools</p>
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">{t('nav.tools')}</p>
         <div className="space-y-0.5">
           {toolItems.map(item => {
             const Icon = item.icon;
@@ -194,7 +194,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
                   className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
                   <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? item.accent : '#9CA3AF' }} />
                 </motion.div>
-                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{item.label}</span>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{t(item.labelKey)}</span>
                 {isActive && <div className="ml-auto w-1 h-5 rounded-full" style={{ backgroundColor: item.accent }} />}
               </motion.button>
             );
@@ -203,7 +203,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
 
         {/* ── Account ── */}
         <div className="h-px bg-gray-100 mx-2 mt-3 mb-2" />
-        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">Account</p>
+        <p className="px-3 pb-1 text-[10px] font-extrabold uppercase tracking-widest text-gray-400">{t('nav.account')}</p>
         <div className="space-y-0.5">
           {accountItems.map(item => {
             const Icon = item.icon;
@@ -218,7 +218,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
                   className="w-9 h-9 rounded-xl flex items-center justify-center shrink-0">
                   <Icon size={18} strokeWidth={isActive ? 2.5 : 1.8} style={{ color: isActive ? item.accent : '#9CA3AF' }} />
                 </motion.div>
-                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{item.label}</span>
+                <span className={`text-[13.5px] tracking-tight ${isActive ? 'font-bold text-text-primary' : 'font-normal text-text-secondary'}`}>{t(item.labelKey)}</span>
                 {item.path === '/shop' && itemCount > 0 && (
                   <span className="ml-auto min-w-[18px] h-[18px] px-1 rounded-full bg-red-500 text-white text-[10px] font-extrabold flex items-center justify-center">
                     {itemCount > 99 ? '99+' : itemCount}

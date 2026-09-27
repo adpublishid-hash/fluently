@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import type { RefObject } from 'react';
 import type { ChatMessage } from '../../../types';
+import { useLanguage } from '../../../i18n/LanguageContext';
 import { quickActions } from '../freeChat';
 import type { TargetLanguage } from '../targetLanguage';
 import { ChatEmptyState } from './ChatEmptyState';
@@ -33,6 +34,13 @@ type ChatMessageListProps = {
 const formatTime = (date: Date) =>
   date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 
+const quickActionLabelKeys: Record<string, 'chat.practiceConversation' | 'chat.grammarHelp' | 'chat.vocabularyQuiz' | 'chat.dailyChallenge'> = {
+  'Practice Conversation': 'chat.practiceConversation',
+  'Grammar Help': 'chat.grammarHelp',
+  'Vocabulary Quiz': 'chat.vocabularyQuiz',
+  'Daily Challenge': 'chat.dailyChallenge',
+};
+
 export function ChatMessageList({
   messages,
   isTyping,
@@ -55,6 +63,8 @@ export function ChatMessageList({
   onSelectSpeakingTopic,
   onSelectWritingTopic,
 }: ChatMessageListProps) {
+  const { t } = useLanguage();
+
   return (
     <div className="flex-1 overflow-y-auto">
       <div className="w-full max-w-5xl mx-auto px-2.5 sm:px-4 md:px-6 py-4 md:py-5">
@@ -85,7 +95,9 @@ export function ChatMessageList({
                     >
                       <Icon size={14} style={{ color: action.color }} />
                     </div>
-                    <span className="text-[11.5px] font-bold text-text-primary leading-tight">{action.label}</span>
+                    <span className="text-[11.5px] font-bold text-text-primary leading-tight">
+                      {t(quickActionLabelKeys[action.label] || 'chat.practiceConversation')}
+                    </span>
                   </motion.button>
                 );
               })}
@@ -99,7 +111,7 @@ export function ChatMessageList({
           <>
             <div className="flex justify-center mb-5">
               <span className="text-[10px] font-bold text-text-muted bg-gray-100/80 px-3 py-1.5 rounded-full uppercase tracking-widest">
-                Today
+                {t('chat.today')}
               </span>
             </div>
 

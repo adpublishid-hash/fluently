@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ChevronDown, Pause, Play, RotateCcw, Search, Settings, Timer, X } from 'lucide-react';
+import { Check, Minus, Pause, Play, Plus, RotateCcw, Search, Timer, X } from 'lucide-react';
 import {
   ACTIVE_FOCUS_TIMER_EVENT,
   OPEN_FOCUS_TIMER_EVENT,
@@ -19,12 +19,14 @@ const RECENT_MODULES_KEY = 'fluently_recent_modules';
 const RECENT_CHAT_SESSIONS_KEY = 'fluently_recent_chat_sessions';
 const GOALS_KEY = 'talky_user_goals_v1';
 
-const PRESETS = [
+const TIMER_PRESETS = [
+  { label: 'Quick', minutes: 15 },
   { label: 'Pomodoro', minutes: 25 },
-  { label: 'Deep Work', minutes: 50 },
-  { label: 'Quick Focus', minutes: 15 },
-  { label: 'Custom', minutes: 30 },
+  { label: 'Deep', minutes: 50 },
 ];
+
+const MIN_CUSTOM_MINUTES = 1;
+const MAX_CUSTOM_MINUTES = 180;
 
 const LINK_TYPES: Array<{ type: FocusLinkType; label: string; empty: string; placeholder: string }> = [
   {
@@ -107,6 +109,12 @@ function secondsLeft(timer: ActiveFocusTimer | null) {
   return Math.max(0, Math.ceil((timer.endsAt - Date.now()) / 1000));
 }
 
+function clampMinutes(value: string | number) {
+  const minutes = Number(value);
+  if (!Number.isFinite(minutes)) return 30;
+  return Math.max(MIN_CUSTOM_MINUTES, Math.min(MAX_CUSTOM_MINUTES, Math.round(minutes)));
+}
+
 export default function GlobalFocusTimer() {
   const [timer, setTimer] = useState<ActiveFocusTimer | null>(getActiveFocusTimer);
   const [remaining, setRemaining] = useState(() => secondsLeft(getActiveFocusTimer()));
@@ -114,7 +122,8 @@ export default function GlobalFocusTimer() {
   const [linkType, setLinkType] = useState<FocusLinkType>('Free');
   const [query, setQuery] = useState('');
   const [selectedTitle, setSelectedTitle] = useState('');
-  const [preset, setPreset] = useState(PRESETS[0]);
+  const [durationMode, setDurationMode] = useState<'preset' | 'custom'>('preset');
+  const [presetMinutes, setPresetMinutes] = useState(TIMER_PRESETS[0].minutes);
   const [customMinutes, setCustomMinutes] = useState('30');
   const [freeLabel, setFreeLabel] = useState('');
   const [doneMessage, setDoneMessage] = useState('');
@@ -175,10 +184,13 @@ export default function GlobalFocusTimer() {
     ? Math.min(100, Math.round(((timer.durationMinutes * 60 - remaining) / (timer.durationMinutes * 60)) * 100))
     : 0;
 
-  const selectedMinutes = preset.label === 'Custom'
-    ? Math.max(1, Math.min(180, Number(customMinutes) || 30))
-    : preset.minutes;
+  const selectedMinutes = durationMode === 'custom' ? clampMinutes(customMinutes) : presetMinutes;
   const activeLinkConfig = LINK_TYPES.find((item) => item.type === linkType) || LINK_TYPES[0];
+
+  const adjustCustomMinutes = (delta: number) => {
+    setDurationMode('custom');
+    setCustomMinutes(String(clampMinutes(selectedMinutes + delta)));
+  };
 
   const startTimer = () => {
     const linkedTitle = selectedTitle || freeLabel.trim() || undefined;
@@ -212,34 +224,34 @@ export default function GlobalFocusTimer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9990] flex items-center justify-center bg-slate-950/35 px-4 backdrop-blur-sm"
+            className="fixed inset-0 z-[9990] flex items-center justify-center bg-slate-950/25 px-4"
             onClick={() => setShowModal(false)}
           >
             <motion.div
-              initial={{ y: 32, opacity: 0, scale: 0.96 }}
+              initial={{ y: 18, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: 32, opacity: 0, scale: 0.96 }}
-              className="w-full max-w-[520px] overflow-hidden rounded-[28px] bg-white shadow-2xl"
+              exit={{ y: 18, opacity: 0, scale: 0.98 }}
+              className="max-h-[calc(100vh-2rem)] w-full max-w-[460px] overflow-y-auto rounded-3xl border border-slate-100 bg-white shadow-[0_20px_70px_rgba(15,23,42,0.18)]"
               onClick={(event) => event.stopPropagation()}
             >
-              <div className="p-6 sm:p-7">
+              <div className="p-5 sm:p-6">
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-red-50 text-red-400">
-                      <Play size={30} />
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-[#4FA3D1]">
+                      <Timer size={21} />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-black text-[#101828]">Mulai Timer</h2>
-                      <p className="mt-1 text-sm font-semibold text-slate-500">Pilih mode dan mulai</p>
+                      <h2 className="text-xl font-black text-[#101828]">Mulai Timer</h2>
+                      <p className="mt-0.5 text-xs font-semibold text-slate-500">Atur fokus singkat atau custom</p>
                     </div>
                   </div>
-                  <button type="button" onClick={() => setShowModal(false)} className="rounded-2xl p-2 text-slate-500 hover:bg-slate-50">
-                    <X size={24} />
+                  <button type="button" onClick={() => setShowModal(false)} className="rounded-xl p-2 text-slate-400 hover:bg-slate-50 hover:text-slate-600">
+                    <X size={20} />
                   </button>
                 </div>
 
-                <p className="mt-8 text-[12px] font-black uppercase tracking-[0.28em] text-slate-500">Link To</p>
-                <div className="mt-4 grid grid-cols-4 rounded-2xl border border-red-100 bg-red-50/35 p-1">
+                <p className="mt-6 text-[11px] font-black uppercase tracking-[0.18em] text-slate-400">Link To</p>
+                <div className="mt-3 grid grid-cols-4 rounded-2xl border border-slate-100 bg-slate-50 p-1">
                   {LINK_TYPES.map((item) => (
                     <button
                       key={item.type}
@@ -249,7 +261,7 @@ export default function GlobalFocusTimer() {
                         setSelectedTitle('');
                         setQuery('');
                       }}
-                      className={`rounded-xl py-3 text-sm font-black ${linkType === item.type ? 'bg-white text-[#101828] shadow-sm' : 'text-slate-600'}`}
+                      className={`rounded-xl py-2 text-xs font-black ${linkType === item.type ? 'bg-white text-[#101828] shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
                     >
                       {item.label}
                     </button>
@@ -258,8 +270,8 @@ export default function GlobalFocusTimer() {
 
                 {linkType !== 'Free' && (
                   <>
-                    <div className="mt-4 flex items-center gap-3 rounded-2xl border border-red-100 bg-red-50/25 px-4 py-3">
-                      <Search size={20} className="text-slate-500" />
+                    <div className="mt-3 flex items-center gap-3 rounded-2xl border border-slate-100 bg-white px-4 py-2.5">
+                      <Search size={18} className="text-slate-400" />
                       <input
                         value={query}
                         onChange={(event) => setQuery(event.target.value)}
@@ -267,13 +279,13 @@ export default function GlobalFocusTimer() {
                         className="w-full bg-transparent text-sm font-semibold text-[#101828] outline-none placeholder:text-slate-400"
                       />
                     </div>
-                    <div className="mt-4 max-h-36 overflow-auto rounded-2xl border border-slate-100">
+                    <div className="mt-3 max-h-32 overflow-auto rounded-2xl border border-slate-100">
                       {linkItems.length ? linkItems.map((item) => (
                         <button
                           key={`${item.title}-${item.subtitle}`}
                           type="button"
                           onClick={() => setSelectedTitle(item.title)}
-                          className="flex w-full items-center justify-between gap-3 border-b border-slate-50 px-4 py-3 text-left last:border-0 hover:bg-slate-50"
+                          className="flex w-full items-center justify-between gap-3 border-b border-slate-50 px-4 py-2.5 text-left last:border-0 hover:bg-slate-50"
                         >
                           <span>
                             <span className="block text-sm font-black text-[#101828]">{item.title}</span>
@@ -289,62 +301,91 @@ export default function GlobalFocusTimer() {
                 )}
 
                 {linkType === 'Free' && (
-                  <div className="mt-5">
-                    <label className="mb-2 block text-[11px] font-black uppercase tracking-wider text-slate-400">Focus Label</label>
+                  <div className="mt-4">
+                    <label className="mb-2 block text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">Focus Label</label>
                     <input
                       value={freeLabel}
                       onChange={(event) => setFreeLabel(event.target.value)}
                       placeholder="Contoh: Review vocabulary A1"
-                      className="w-full rounded-2xl border border-red-100 bg-red-50/20 px-4 py-3 text-sm font-semibold text-[#101828] outline-none placeholder:text-slate-400 focus:border-[#4FA3D1]"
+                      className="w-full rounded-2xl border border-slate-100 bg-white px-4 py-2.5 text-sm font-semibold text-[#101828] outline-none placeholder:text-slate-400 focus:border-[#4FA3D1]"
                     />
-                    <p className="mt-3 text-center text-sm font-semibold text-slate-500">{activeLinkConfig.empty}</p>
+                    <p className="mt-2 text-center text-xs font-semibold text-slate-400">{activeLinkConfig.empty}</p>
                   </div>
                 )}
 
-                <div className="mt-8 rounded-2xl border border-red-100 bg-red-50/25 px-4 py-4">
+                <div className="mt-5 rounded-2xl border border-slate-100 bg-slate-50/80 p-3">
                   <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-3">
-                    <Settings size={20} className="text-slate-600" />
-                    <span className="text-sm font-black text-[#101828]">Customize</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const current = PRESETS.findIndex((item) => item.minutes === preset.minutes);
-                      setPreset(PRESETS[(current + 1) % PRESETS.length]);
-                    }}
-                    className="flex items-center gap-2 text-sm font-bold text-slate-600"
-                  >
-                    {preset.label} · {selectedMinutes}m <ChevronDown size={16} />
-                  </button>
-                  </div>
-                  {preset.label === 'Custom' && (
-                    <div className="mt-4 flex items-center gap-3">
-                      <input
-                        type="range"
-                        min="5"
-                        max="180"
-                        step="5"
-                        value={selectedMinutes}
-                        onChange={(event) => setCustomMinutes(event.target.value)}
-                        className="h-2 flex-1 accent-[#4FA3D1]"
-                      />
-                      <input
-                        type="number"
-                        min="1"
-                        max="180"
-                        value={customMinutes}
-                        onChange={(event) => setCustomMinutes(event.target.value)}
-                        className="w-20 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-black text-[#101828] outline-none"
-                      />
+                    <div>
+                      <p className="text-[11px] font-black uppercase tracking-[0.16em] text-slate-400">Duration</p>
+                      <p className="mt-1 text-sm font-black text-[#101828]">{selectedMinutes} menit fokus</p>
                     </div>
-                  )}
+                    <div className="rounded-full bg-white px-3 py-1 text-xs font-black text-[#4FA3D1] shadow-sm">
+                      {durationMode === 'custom' ? 'Manual' : 'Preset'}
+                    </div>
+                  </div>
+
+                  <div className="mt-3 grid grid-cols-3 gap-2">
+                    {TIMER_PRESETS.map((item) => (
+                      <button
+                        key={item.minutes}
+                        type="button"
+                        onClick={() => {
+                          setDurationMode('preset');
+                          setPresetMinutes(item.minutes);
+                        }}
+                        className={`rounded-xl border px-2 py-2 text-xs font-black transition ${
+                          durationMode === 'preset' && presetMinutes === item.minutes
+                            ? 'border-[#4FA3D1] bg-white text-[#101828] shadow-sm'
+                            : 'border-transparent bg-white/70 text-slate-500 hover:bg-white'
+                        }`}
+                      >
+                        {item.label} · {item.minutes}m
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className={`mt-2 flex items-center gap-2 rounded-xl border bg-white px-2 py-2 transition ${durationMode === 'custom' ? 'border-[#4FA3D1] shadow-sm' : 'border-transparent'}`}>
+                    <button
+                      type="button"
+                      onClick={() => adjustCustomMinutes(-5)}
+                      className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-50 text-slate-500 hover:bg-slate-100"
+                      aria-label="Kurangi durasi custom"
+                    >
+                      <Minus size={15} />
+                    </button>
+                    <input
+                      type="number"
+                      min={MIN_CUSTOM_MINUTES}
+                      max={MAX_CUSTOM_MINUTES}
+                      value={customMinutes}
+                      onFocus={() => setDurationMode('custom')}
+                      onChange={(event) => {
+                        setDurationMode('custom');
+                        setCustomMinutes(event.target.value);
+                      }}
+                      onBlur={() => setCustomMinutes(String(clampMinutes(customMinutes)))}
+                      className="min-w-0 flex-1 bg-transparent text-center text-lg font-black text-[#101828] outline-none"
+                      aria-label="Durasi custom dalam menit"
+                    />
+                    <span className="text-xs font-black uppercase tracking-[0.12em] text-slate-400">min</span>
+                    <button
+                      type="button"
+                      onClick={() => adjustCustomMinutes(5)}
+                      className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-50 text-slate-500 hover:bg-slate-100"
+                      aria-label="Tambah durasi custom"
+                    >
+                      <Plus size={15} />
+                    </button>
+                  </div>
+                  <p className="mt-2 text-center text-[11px] font-semibold text-slate-400">
+                    Custom {MIN_CUSTOM_MINUTES}-{MAX_CUSTOM_MINUTES} menit.
+                  </p>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between border-t border-slate-100 bg-red-50/15 px-7 py-5">
+              <div className="flex items-center justify-between border-t border-slate-100 bg-white px-5 py-4 sm:px-6">
                 <button type="button" onClick={() => setShowModal(false)} className="text-sm font-black text-slate-600">Cancel</button>
-                <button type="button" onClick={startTimer} className="flex items-center gap-3 rounded-2xl bg-[#101828] px-4 py-2 text-sm font-black text-white hover:bg-[#1E293B]">
+                <button type="button" onClick={startTimer} className="flex items-center gap-2 rounded-2xl bg-[#101828] px-4 py-2.5 text-sm font-black text-white shadow-sm hover:bg-[#1E293B]">
                   <Play size={18} fill="currentColor" />
                   Start Timer
                 </button>
