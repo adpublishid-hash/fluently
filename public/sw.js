@@ -1,9 +1,10 @@
-const CACHE_VERSION = 'fluently-cache-v7';
+const CACHE_VERSION = 'fluently-cache-v8';
 const APP_CACHE = `${CACHE_VERSION}-app`;
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 const FONT_CACHE = `${CACHE_VERSION}-fonts`;
 const STROKE_CACHE = `${CACHE_VERSION}-strokes`;
+const AUDIO_CACHE = `${CACHE_VERSION}-audio`;
 
 const APP_SHELL = [
   '/',
@@ -20,15 +21,20 @@ const MAX_STATIC_ITEMS = 450;
 const MAX_IMAGE_ITEMS = 140;
 const MAX_FONT_ITEMS = 40;
 const MAX_STROKE_ITEMS = 600;
+const MAX_AUDIO_ITEMS = 1500;
 
 function isHttpRequest(request) {
   return request.url.startsWith('http');
 }
 
 async function putCache(cacheName, request, response, maxItems) {
-  if (!response || (!response.ok && response.type !== 'opaque')) return;
+  if (!response || response.status === 206 || (!response.ok && response.type !== 'opaque')) return;
   const cache = await caches.open(cacheName);
-  await cache.put(request, response.clone());
+  try {
+    await cache.put(request, response.clone());
+  } catch {
+    return;
+  }
 
   if (!maxItems) return;
   const keys = await cache.keys();
@@ -52,6 +58,16 @@ async function cacheFirst(request, cacheName, maxItems) {
   if (cached) return cached;
   const response = await fetch(request);
   await putCache(cacheName, request, response, maxItems);
+  return response;
+}
+
+// Media elements send Range requests (206 responses cannot be cached), so
+// audio is fetched and cached as a whole file keyed by URL.
+async function cacheFirstMedia(request, cacheName, maxItems) {
+  const cached = await caches.match(request.url);
+  if (cached) return cached;
+  const response = await fetch(request.url);
+  await putCache(cacheName, request.url, response, maxItems);
   return response;
 }
 
@@ -142,6 +158,13 @@ self.addEventListener('fetch', (event) => {
   // Hanzi/Kanji stroke data (immutable per version) for the stroke-order panel.
   if (url.hostname === 'cdn.jsdelivr.net' && url.pathname.includes('/hanzi-writer-data@')) {
     event.respondWith(cacheFirst(request, STROKE_CACHE, MAX_STROKE_ITEMS));
+    return;
+  }
+
+  // Pre-generated audio files are content-addressed (never change), so cache-first.
+  // The manifest itself is JSON and goes through stale-while-revalidate below.
+  if (sameOrigin && url.pathname.startsWith('/audio/') && !url.pathname.endsWith('.json')) {
+    event.respondWith(cacheFirstMedia(request, AUDIO_CACHE, MAX_AUDIO_ITEMS));
     return;
   }
 

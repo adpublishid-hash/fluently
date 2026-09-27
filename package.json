@@ -13,7 +13,8 @@
     "server:start": "npm --prefix server start",
     "test": "vitest run",
     "content:audit": "vite-node scripts/content-audit.ts",
-    "content:pinyin": "vite-node scripts/mandarin-tone-marks.ts"
+    "content:pinyin": "vite-node scripts/mandarin-tone-marks.ts",
+    "audio:generate": "vite-node scripts/generate-audio.ts --"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",

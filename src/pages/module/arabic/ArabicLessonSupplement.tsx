@@ -1,6 +1,7 @@
 import { BookOpen, CheckCircle2, ClipboardList, Lightbulb, PenLine, Volume2 } from 'lucide-react';
 import type { ArabicLevelId, ArabicSkillId } from './arabicModuleData';
 import { getArabicLessonPreview } from './beginner/generatedBeginnerArabicContent';
+import { speak } from '../../../utils/speech';
 
 type ArabicExample = {
   arabic: string;
@@ -380,12 +381,7 @@ export function getArabicSupplement(levelId: ArabicLevelId, skillId: ArabicSkill
 }
 
 function speakArabic(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ar-SA';
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
+  speak(text, 'ar-SA', { rate: 0.85 });
 }
 
 export default function ArabicLessonSupplement({

@@ -4,6 +4,7 @@ import type { ViewState } from '../../../../types';
 import type { ArabicSkillId } from '../arabicModuleData';
 import { getGeneratedArabicLesson, type GeneratedArabicContentLevel } from './generatedBeginnerArabicContent';
 import RubricCard from '../../../../components/shared/RubricCard';
+import { speak } from '../../../../utils/speech';
 
 type GeneratedArabicLessonRendererProps = {
   skillId: ArabicSkillId;
@@ -15,12 +16,7 @@ type GeneratedArabicLessonRendererProps = {
 };
 
 function speakArabic(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ar-SA';
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
+  speak(text, 'ar-SA', { rate: 0.85 });
 }
 
 export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onComplete, contentLevel = 'beginner', levelLabel = 'Beginner', initialTab = 'materi' }: GeneratedArabicLessonRendererProps) {

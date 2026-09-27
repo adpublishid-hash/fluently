@@ -22,6 +22,24 @@ Frontend output is generated in `dist/`. The API server is in `server/` and star
 npm run server:start
 ```
 
+## Pre-generated audio
+
+Lesson pages play a recorded file when one exists for the exact text and fall
+back to live TTS otherwise (`src/services/audioLibrary.ts`). To record the
+course content with Gemini TTS:
+
+```bash
+npm run audio:generate -- --dry-run            # count texts/characters per language
+GEMINI_API_KEY=... npm run audio:generate      # core: passages, theme sentences, rubric models, English extras (~2.8k)
+GEMINI_API_KEY=... npm run audio:generate -- --scope all --lang zh,ja --limit 500
+```
+
+Files are named by a content hash, so the script resumes where it stopped and
+the service worker caches them permanently. MP3 output needs `ffmpeg` (WAV
+otherwise). The files go to `public/audio/` with `manifest.json`; for a large
+set, upload that folder to object storage/CDN and set `VITE_AUDIO_BASE_URL`
+instead of committing thousands of files.
+
 ## Required production environment
 
 Copy `server/.env.example` to your hosting provider's environment variables and replace every placeholder:

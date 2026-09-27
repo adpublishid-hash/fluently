@@ -7,6 +7,7 @@ import { useAuth } from '../../../auth/AuthContext';
 import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
 import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
 import RubricCard from '../../../components/shared/RubricCard';
+import { speak } from '../../../utils/speech';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
@@ -18,12 +19,7 @@ function markComplete(levelId: string, skillId: string, lessonId: number) {
 }
 
 function speakMandarin(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'zh-CN';
-  utterance.rate = 0.82;
-  window.speechSynthesis.speak(utterance);
+  speak(text, 'zh-CN', { rate: 0.82 });
 }
 
 export default function MandarinLessonPage() {

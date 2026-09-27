@@ -16,6 +16,7 @@ import {
 } from '../../features/learning/srs';
 import { getStudyLevels, studyLanguageFor, studyLanguageLabel, studyLevelIndex, studySpeechLang } from '../../features/learning/studyBank';
 import type { StudyWord } from '../../features/learning/studyBank';
+import { speak } from '../../utils/speech';
 
 const grades: Array<{ id: ReviewGrade; label: string; hint: string; className: string }> = [
   { id: 'again', label: 'Lupa', hint: 'ulang hari ini', className: 'bg-rose-50 text-rose-700 border-rose-200' },
@@ -23,15 +24,6 @@ const grades: Array<{ id: ReviewGrade; label: string; hint: string; className: s
   { id: 'good', label: 'Bisa', hint: 'interval normal', className: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
   { id: 'easy', label: 'Mudah', hint: 'interval panjang', className: 'bg-sky-50 text-sky-700 border-sky-200' },
 ];
-
-function speak(text: string, lang: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang;
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
-}
 
 export default function ReviewPage() {
   const navigate = useNavigate();
