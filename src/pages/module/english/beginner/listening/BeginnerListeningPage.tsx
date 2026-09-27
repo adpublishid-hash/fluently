@@ -5,6 +5,7 @@ import { Check, Play, Sparkles } from 'lucide-react';
 import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { useLanguage } from '../../../../../i18n/LanguageContext';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const SKILL = {
   icon: '/assets/icons/new/5. Video Lecture.png',
@@ -93,6 +94,7 @@ export default function BeginnerListeningPage() {
               );
             })}
           </div>
+          <ExtraLessonsList level="beginner" skill="listening" color="#8E44AD" />
         </div>
       </div>
     </PageContainer>

@@ -5,6 +5,7 @@ import { Check, Play, Sparkles } from 'lucide-react';
 import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { getCompletedListeningLessons } from './listeningUtils';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const COLOR = '#0D9488'; // Teal
 const TOTAL = 10;
@@ -127,6 +128,7 @@ export default function ElementaryListeningPage() {
               );
             })}
           </div>
+          <ExtraLessonsList level="elementary" skill="listening" color="#0EA5E9" />
         </div>
       </div>
     </PageContainer>

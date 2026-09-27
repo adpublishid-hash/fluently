@@ -5,6 +5,7 @@ import { Check, Play, Sparkles } from 'lucide-react';
 import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { useLanguage } from '../../../../../i18n/LanguageContext';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const SKILL = {
   id: 'vocabulary',
@@ -145,6 +146,7 @@ export default function VocabularyPage() {
               );
             })}
           </div>
+          <ExtraLessonsList level="elementary" skill="vocabulary" color="#2980B9" />
         </div>
       </div>
     </PageContainer>

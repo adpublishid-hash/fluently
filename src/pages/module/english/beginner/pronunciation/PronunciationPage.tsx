@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Check, Play, Sparkles } from 'lucide-react';
 import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const COLOR = '#7C3AED';
 const TOTAL = 10;
@@ -132,6 +133,7 @@ export default function PronunciationPage() {
               );
             })}
           </div>
+          <ExtraLessonsList level="beginner" skill="pronunciation" color="#F97316" />
         </div>
       </div>
     </PageContainer>

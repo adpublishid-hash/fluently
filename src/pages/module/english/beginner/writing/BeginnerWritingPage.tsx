@@ -5,6 +5,7 @@ import { Check, Play, Sparkles } from 'lucide-react';
 import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { useLanguage } from '../../../../../i18n/LanguageContext';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const SKILL = {
   id: 'writing',
@@ -156,6 +157,7 @@ export default function BeginnerWritingPage() {
               );
             })}
           </div>
+          <ExtraLessonsList level="beginner" skill="writing" color="#F39C12" />
         </div>
       </div>
     </PageContainer>
