@@ -6,6 +6,7 @@ import { isJapaneseSkill, japaneseLessonCounts, japaneseLevels, japaneseSkills, 
 import { useAuth } from '../../../auth/AuthContext';
 import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
 import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
+import RubricCard from '../../../components/shared/RubricCard';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
@@ -222,6 +223,7 @@ export default function JapaneseLessonPage() {
               ))}
             </div>
           </div>
+          {(skillId === 'speaking' || skillId === 'writing') && <RubricCard language="japanese" level={levelId} skill={skillId} />}
           {(skillId === 'writing' || skillId === 'vocabulary' || skillId === 'reading') && (
             <StrokeOrderPanel text={lesson.vocabulary.map((word) => word.japanese).join('')} color={skill.color} lang="ja" />
           )}

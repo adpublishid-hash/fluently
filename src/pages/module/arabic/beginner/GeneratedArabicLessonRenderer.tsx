@@ -3,6 +3,7 @@ import { BookOpen, CheckCircle, ClipboardCheck, Eye, EyeOff, Headphones, Layers,
 import type { ViewState } from '../../../../types';
 import type { ArabicSkillId } from '../arabicModuleData';
 import { getGeneratedArabicLesson, type GeneratedArabicContentLevel } from './generatedBeginnerArabicContent';
+import RubricCard from '../../../../components/shared/RubricCard';
 
 type GeneratedArabicLessonRendererProps = {
   skillId: ArabicSkillId;
@@ -156,6 +157,7 @@ export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onCom
         </section>
       )}
 
+      {(skillId === 'kalam' || skillId === 'kitabah') && <RubricCard language="arabic" level={contentLevel} skill={skillId === 'kalam' ? 'speaking' : 'writing'} accentColor="#0F766E" />}
       {lesson.passage && (
         <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">

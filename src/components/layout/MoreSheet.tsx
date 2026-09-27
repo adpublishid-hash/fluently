@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  X, ShoppingBag, BarChart3, Target, NotebookPen, GraduationCap, Trophy, Sparkles, Settings, FileText, User, LogOut, ChevronRight, Shield, Video, Brain, Compass, BookOpenText,
+  X, ShoppingBag, BarChart3, Target, NotebookPen, GraduationCap, Trophy, Sparkles, Settings, FileText, User, LogOut, ChevronRight, Shield, Video, Brain, Compass, BookOpenText, ClipboardCheck,
 } from 'lucide-react';
 import { useCart } from '../../shop/CartContext';
 import { useAuth } from '../../auth/AuthContext';
@@ -67,6 +67,7 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
     { id: 'notes',         label: t('nav.notes'),         icon: NotebookPen,     color: '#4FA3D1', bgColor: '#EAF7FC', path: '/notes' },
     { id: 'review',        label: 'Review Harian',        icon: Brain,           color: '#7C3AED', bgColor: '#EDE9FE', path: '/review' },
     { id: 'passages',      label: 'Bacaan & Simakan',     icon: BookOpenText,    color: '#4F46E5', bgColor: '#EEF2FF', path: studyLanguage === 'english' ? '/bacaan' : `/bacaan/${studyLanguage}` },
+    { id: 'assessment',    label: 'Penilaian AI',         icon: ClipboardCheck,  color: '#0F766E', bgColor: '#CCFBF1', path: `/nilai/${studyLanguage}` },
     { id: 'placement',     label: 'Tes Penempatan',       icon: Compass,         color: '#0284C7', bgColor: '#E0F2FE', path: '/placement' },
     { id: 'exam',          label: t('nav.exam'),          icon: GraduationCap,   color: '#9B59B6', bgColor: '#F4ECF7', path: examPath },
     { id: 'analytics',     label: t('nav.analytics'),     icon: BarChart3,       color: '#2980B9', bgColor: '#D6EAF8', path: '/analytics' },

@@ -3,6 +3,7 @@ const { pool } = require('../db');
 const { getServerEffectivePlan } = require('../lib/domain');
 const { requireAuth } = require('../middleware/auth');
 const { aiLimiter } = require('../middleware/rateLimits');
+const { buildAssessmentPrompt, findRubric, normalizeAssessment } = require('../lib/rubricAssessment');
 
 const ALLOWED_AI_MODELS = new Set(
   [GEMINI_MODEL, 'gemini-2.5-flash', 'gemini-2.5-flash-lite', ...(process.env.AI_ALLOWED_MODELS || '').split(',')]
@@ -379,6 +380,37 @@ module.exports = function register(app) {
     } catch (err) {
       console.error('[gemini] pronunciation feedback error:', err.message);
       return res.status(502).json({ error: 'AI pronunciation feedback failed.' });
+    }
+  });
+
+  // Rubric-based speaking/writing assessment for every language and level.
+  app.post('/api/ai/assess', aiLimiter, requireAuth, async (req, res) => {
+    const language = String(req.body?.language || '').trim();
+    const levelId = String(req.body?.levelId || '').trim();
+    const skill = String(req.body?.skill || '').trim();
+    const answer = String(req.body?.answer || '').trim().slice(0, 4000);
+    const task = String(req.body?.task || '').trim().slice(0, 300);
+    const found = findRubric(language, levelId, skill);
+    if (!found) return res.status(400).json({ error: 'language, levelId atau skill tidak dikenal.' });
+    if (answer.length < 5) return res.status(400).json({ error: 'Jawaban terlalu pendek untuk dinilai.' });
+
+    const access = resolveAiAccess(req, res);
+    if (!access) return;
+    const { apiKey, model } = access;
+    const prompt = buildAssessmentPrompt({ language, skill, task, answer, ...found });
+
+    try {
+      const geminiData = await callGeminiJson({ apiKey, model, prompt, temperature: 0.2, maxOutputTokens: 2000 });
+      if (!geminiData.ok) {
+        console.error('[gemini] assessment failed:', geminiData.status, geminiData.data);
+        return res.status(502).json({ error: 'Penilaian AI gagal.' });
+      }
+      const result = normalizeAssessment(extractJsonObject(geminiData.text), found.criteria);
+      if (!result) return res.status(502).json({ error: 'Penilaian AI mengembalikan format tidak valid.' });
+      return res.json({ model, ...result });
+    } catch (err) {
+      console.error('[gemini] assessment error:', err.message);
+      return res.status(502).json({ error: 'Penilaian AI gagal.' });
     }
   });
 

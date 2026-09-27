@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CheckCircle2, Eye, EyeOff, Lightbulb, PenTool, Volume2 } from 'lucide-react';
 import LessonShell from '../../../../components/shared/LessonShell';
 import LessonCompleteModal from '../../../../components/shared/LessonCompleteModal';
+import RubricCard from '../../../../components/shared/RubricCard';
 import { playAudio } from '../../../../services/ttsService';
 import { markCompletedId, readCompletedIds } from '../../../../utils/lessonProgress';
 import { buildChoiceQuestion, hashSeed, seededRandom, type ChoiceQuestion } from '../../../../utils/quiz';
@@ -139,6 +140,8 @@ export default function ExtraEnglishLessonPage({ level, skill, lesson }: Props) 
                 )}
               </section>
             )}
+
+            {(skill === 'speaking' || skill === 'writing') && <RubricCard language="english" level={level} skill={skill} accentColor={color} />}
 
             <section className="rounded-2xl border border-dashed p-5" style={{ borderColor: `${color}66`, backgroundColor: `${color}0d` }}>
               <h3 className="flex items-center gap-2 text-sm font-black text-slate-900"><PenTool size={16} style={{ color }} /> Tugas produksi</h3>

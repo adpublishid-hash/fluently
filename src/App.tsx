@@ -108,6 +108,7 @@ const ReviewPage = lazy(() => import('./pages/learning/ReviewPage'));
 const PlacementTestPage = lazy(() => import('./pages/learning/PlacementTestPage'));
 const MockExamPage = lazy(() => import('./pages/learning/MockExamPage'));
 const PassageLabPage = lazy(() => import('./pages/learning/PassageLabPage'));
+const AssessmentPage = lazy(() => import('./pages/learning/AssessmentPage'));
 const JapanesePracticeTopicsPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeTopicsPage })));
 const JapanesePracticeSessionPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeSessionPage })));
 const ArabicMufradatTopikPages = [
@@ -1221,6 +1222,8 @@ function AppContent() {
                   <Route path="/simulasi/:language" element={<MockExamPage />} />
                   <Route path="/bacaan" element={<PassageLabPage />} />
                   <Route path="/bacaan/:language" element={<PassageLabPage />} />
+                  <Route path="/nilai" element={<AssessmentPage />} />
+                  <Route path="/nilai/:language" element={<AssessmentPage />} />
                   <Route path="/notes"     element={<NotesPage />} />
                   {/* Default redirect */}
                   <Route path="*" element={<Navigate to="/modul" replace />} />

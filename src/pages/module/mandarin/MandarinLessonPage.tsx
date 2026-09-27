@@ -6,6 +6,7 @@ import { isMandarinSkill, mandarinLessonCounts, mandarinLevels, mandarinSkills, 
 import { useAuth } from '../../../auth/AuthContext';
 import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
 import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
+import RubricCard from '../../../components/shared/RubricCard';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
@@ -261,6 +262,7 @@ export default function MandarinLessonPage() {
           </div>
         </section>
 
+        {(skillId === 'speaking' || skillId === 'writing') && <RubricCard language="mandarin" level={levelId} skill={skillId} accentColor="#DC2626" />}
         {lesson.rubric && (
           <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">
             <h2 className="font-black text-slate-900 mb-4 flex items-center gap-2">
