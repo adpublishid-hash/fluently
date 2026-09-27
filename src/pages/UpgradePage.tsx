@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Check, Crown, Lock, MessageCircle, ShieldCheck,
-  Sparkles, Star, X, Zap,
+  Sparkles, Star, X,
 } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PageContainer from '../components/layout/PageContainer';

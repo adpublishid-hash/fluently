@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, BookOpen, Brain, Lightbulb } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, BookOpen, Lightbulb } from 'lucide-react';
 
 const THEORY_LINES = [
     "At C1 level, many learners make the same recurring errors — called **fossilized errors** — because they were never fully corrected at earlier stages. These include:",

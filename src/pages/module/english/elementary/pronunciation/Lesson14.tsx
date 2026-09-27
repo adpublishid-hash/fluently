@@ -1,12 +1,12 @@
 ﻿import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
 import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 import { motion } from 'framer-motion';
-import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star, Lightbulb, PlayCircle } from 'lucide-react';
-import { StarIcon, FlameIcon, MicIcon, TrendUpIcon, TrophyIcon, RefreshIcon } from '../../../../../components/Icons';
+import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
+import { StarIcon, MicIcon } from '../../../../../components/Icons';
 
 const ACCENT_CONCEPTS = [
   {

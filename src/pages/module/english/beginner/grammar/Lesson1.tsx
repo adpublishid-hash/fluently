@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  ChevronLeftIcon, MoreIcon, InfoIcon,
-  CheckCircleIcon, XCircleIcon, PlayCircleIcon, LightBulbIcon,
-  Sparkles, TrendUpIcon, StarIcon, ClipboardIcon, FlameIcon
+  ChevronLeftIcon,
+  CheckCircleIcon, XCircleIcon, TrendUpIcon, StarIcon, ClipboardIcon
 } from '../../../../../components/Icons';
 import { playAudio } from '../../../../../services/ttsService';
 

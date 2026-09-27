@@ -1,15 +1,10 @@
-import { Suspense, lazy, useMemo, useState } from 'react';
-import type React from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { BookOpen, CheckCircle, ChevronLeft, Headphones, Mic, Volume2 } from 'lucide-react';
-import { ViewState } from '../../../types';
+import { BookOpen, ChevronLeft } from 'lucide-react';
 import { arabicLessonCounts, arabicSkills, normalizeArabicLevel, type ArabicSkillId } from './arabicModuleData';
 import ArabicLessonSupplement from './ArabicLessonSupplement';
 import GeneratedArabicLessonRenderer from './beginner/GeneratedArabicLessonRenderer';
 import { useAuth } from '../../../auth/AuthContext';
 import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
-
-const aiKamusArabicLessons = import.meta.glob('../../ai-kamus/arabic/{pemula,elementary}/{grammar,kalam,mufradat,pronunciation}/Lesson*.tsx');
 
 function isArabicSkill(value?: string): value is ArabicSkillId {
   return value === 'kalam' || value === 'istima' || value === 'qiraah' || value === 'kitabah' || value === 'mufradat' || value === 'grammar' || value === 'pronunciation';
@@ -25,46 +20,6 @@ function markComplete(levelId: string, skillId: string, lessonId: number) {
   return markCompletedId(languageCompletionKey('arabic', levelId, skillId), lessonId);
 }
 
-const quickPractice: Partial<Record<ArabicSkillId, Array<{ label: string; arabic: string; hint: string }>>> = {
-  kalam: [
-    { label: 'Dengarkan', arabic: 'السَّلامُ عَلَيْكُمْ', hint: 'Ucapkan salam dengan panjang mad yang jelas.' },
-    { label: 'Jawab', arabic: 'وَعَلَيْكُمُ السَّلامُ', hint: 'Latih jawaban salam dengan ritme natural.' },
-  ],
-  istima: [
-    { label: 'Audio', arabic: 'أَنَا مِنْ إِنْدُونِيسِيَا', hint: 'Dengarkan tanpa melihat teks, lalu ulangi maknanya.' },
-    { label: 'Kata kunci', arabic: 'أَيْنَ الْقَلَمُ؟', hint: 'Tangkap kata tanya dan objek utama.' },
-  ],
-  qiraah: [
-    { label: 'Bacaan', arabic: 'هَذَا بَيْتٌ كَبِيرٌ', hint: 'Baca dari kanan ke kiri dan cari kata benda.' },
-    { label: 'Pemahaman', arabic: 'الْوَلَدُ فِي الْمَدْرَسَةِ', hint: 'Temukan siapa, di mana, dan maknanya.' },
-  ],
-  kitabah: [
-    { label: 'Salin', arabic: 'أَنَا طَالِبٌ', hint: 'Tulis ulang dengan bentuk huruf sambung yang rapi.' },
-    { label: 'Susun', arabic: 'هَذِهِ مَدْرَسَةٌ', hint: 'Perhatikan kata tunjuk dan isim setelahnya.' },
-  ],
-  mufradat: [
-    { label: 'Kosakata', arabic: 'كِتَابٌ', hint: 'Baca, dengarkan, lalu sebutkan artinya: buku.' },
-    { label: 'Kalimat', arabic: 'هَذَا كِتَابٌ', hint: 'Pola dasar: ini adalah sebuah buku.' },
-  ],
-  grammar: [
-    { label: 'Nahwu', arabic: 'زَيْدٌ طَالِبٌ', hint: 'Jumlah ismiyyah: mubtada + khabar.' },
-    { label: 'Analisis', arabic: 'كَتَبَ الطَّالِبُ', hint: 'Jumlah fi’liyyah: fi’il + fa’il.' },
-  ],
-  pronunciation: [
-    { label: 'Makharij', arabic: 'ع ح ه ء', hint: 'Fokus tenggorokan: ain, ha kecil, ha besar, hamzah.' },
-    { label: 'Minimal pair', arabic: 'قَلْبٌ كَلْبٌ', hint: 'Bedakan ق yang tebal dengan ك yang ringan.' },
-  ],
-};
-
-function speakArabic(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ar-SA';
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
-}
-
 export default function ArabicLessonBridge() {
   const { awardXp } = useAuth();
   const navigate = useNavigate();
@@ -77,14 +32,7 @@ export default function ArabicLessonBridge() {
   const totalLessons = arabicLessonCounts[levelId][skillId];
   const skill = arabicSkills.find((item) => item.id === skillId) ?? arabicSkills[0];
   const progress = Math.min(100, Math.max(0, (lessonId / totalLessons) * 100));
-  const modulePath = `../../ai-kamus/arabic/${levelId}/${skillId}/Lesson${lessonId}.tsx`;
   const initialTab = searchParams.get('tab') === 'latihan' || searchParams.get('practice') === '1' ? 'latihan' : 'materi';
-  const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>(initialTab);
-
-  const LessonComponent = useMemo(() => {
-    const importer = aiKamusArabicLessons[modulePath];
-    return importer ? lazy(importer as () => Promise<{ default: React.ComponentType<any> }>) : null;
-  }, [modulePath]);
 
   const goBack = () => navigate(`/modul/arabic/${routeLevelId}/${skillId}`);
   const completeAndContinue = () => {
@@ -94,16 +42,12 @@ export default function ArabicLessonBridge() {
     else goBack();
   };
 
-  const legacyNavigate = (view: ViewState) => {
-    if (view === ViewState.MODULES_LESSON_LIST) goBack();
-  };
-
   if (lessonId < 1 || lessonId > totalLessons) {
     return (
       <div className="min-h-screen grid place-items-center bg-slate-50 p-6">
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-8 max-w-md text-center">
           <h1 className="text-xl font-black text-slate-800 mb-2">Lesson tidak ditemukan</h1>
-          <p className="text-sm text-slate-500 mb-6">Materi Arabic AI Kamus untuk path ini belum tersedia.</p>
+          <p className="text-sm text-slate-500 mb-6">Materi Arabic untuk path ini belum tersedia.</p>
           <button onClick={goBack} className="px-5 py-3 rounded-xl text-white font-bold bg-[#0F766E]">
             Kembali ke daftar
           </button>
@@ -160,78 +104,13 @@ export default function ArabicLessonBridge() {
           </div>
         </div>
 
-        {LessonComponent && (
-          <div className="mb-4 grid grid-cols-2 rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
-            {[
-              { id: 'materi' as const, label: 'Materi' },
-              { id: 'latihan' as const, label: 'Latihan' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`rounded-xl px-4 py-3 text-sm font-black transition ${activeTab === tab.id ? 'bg-[#0F766E] text-white shadow-sm' : 'text-slate-500 hover:bg-slate-50'}`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {LessonComponent && activeTab === 'latihan' && (
-        <>
-        <div className="grid gap-3 md:grid-cols-2">
-          {(quickPractice[skillId] ?? quickPractice.kalam ?? []).map((item) => (
-            <div key={item.label} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm hover:border-teal-200 transition">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 text-[#0F766E] flex items-center justify-center shrink-0">
-                  {skillId === 'pronunciation' ? <Mic size={19} /> : skillId === 'kalam' ? <Headphones size={19} /> : <CheckCircle size={19} />}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-black uppercase tracking-widest text-slate-400">{item.label}</p>
-                  <p dir="rtl" lang="ar" className="mt-1 text-2xl md:text-3xl font-bold text-slate-900 leading-relaxed">{item.arabic}</p>
-                  <p className="mt-1 text-xs text-slate-500">{item.hint}</p>
-                </div>
-                <button
-                  onClick={() => speakArabic(item.arabic)}
-                  className="w-10 h-10 rounded-full border border-teal-100 bg-teal-50 text-[#0F766E] flex items-center justify-center hover:bg-teal-100"
-                  title="Dengarkan audio Arabic"
-                >
-                  <Volume2 size={18} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={completeAndContinue}
-          className="mt-4 w-full rounded-xl bg-[#0F766E] py-4 text-white font-black shadow-lg shadow-teal-100 hover:bg-[#0B6B63] transition"
-        >
-          Tandai Selesai
-        </button>
-        </>
-        )}
       </section>
 
-      {(!LessonComponent || activeTab === 'materi') && (
-      <>
       <ArabicLessonSupplement levelId={levelId} skillId={skillId} lessonId={lessonId} />
 
       <div className="arabic-lesson-content mx-auto max-w-5xl px-4 pb-28">
-        <Suspense fallback={<div className="min-h-[60vh] grid place-items-center text-slate-500 font-semibold">Memuat materi Arabic...</div>}>
-          {LessonComponent ? (
-            <LessonComponent
-              apiKey={import.meta.env.VITE_OPENAI_API_KEY || ''}
-              onNavigate={legacyNavigate}
-              onComplete={completeAndContinue}
-              userParams={{ name: 'Learner', isLifetime: true }}
-            />
-          ) : (
-            <GeneratedLesson />
-          )}
-        </Suspense>
+        <GeneratedLesson />
       </div>
-      </>
-      )}
     </div>
   );
 }
