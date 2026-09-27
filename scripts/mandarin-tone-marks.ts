@@ -13,6 +13,12 @@ customPinyin({
   保证了: 'bǎo zhèng le',
   传播得: 'chuán bō de',
   说得: 'shuō de',
+  过得: 'guò de',
+  紧张得: 'jǐn zhāng de',
+  只用: 'zhǐ yòng',
+  只想: 'zhǐ xiǎng',
+  中都: 'zhōng dōu',
+  不少: 'bù shǎo',
 });
 
 const PUNCTUATION: Record<string, string> = {
@@ -53,7 +59,7 @@ function segments(text: string, isTerm: boolean): string[] {
 }
 
 // Standalone grammar particles are taught with their neutral-tone reading.
-const TERM_OVERRIDES: Record<string, string> = { 了: 'le', 得: 'de', 着: 'zhe' };
+const TERM_OVERRIDES: Record<string, string> = { 了: 'le', 得: 'de', 着: 'zhe', '越…越…': 'yuè... yuè...' };
 
 export function toTonePinyin(hanzi: string): string {
   if (TERM_OVERRIDES[hanzi]) return TERM_OVERRIDES[hanzi];
@@ -76,6 +82,7 @@ const files = [
   'src/pages/module/mandarin/mandarinLessonContent.ts',
   'src/pages/module/mandarin/mandarinThemeBank.ts',
   'src/pages/module/mandarin/mandarinThemeSentences.ts',
+  'src/features/passages/mandarinPassages.ts',
 ];
 const check = process.argv.includes('--check');
 let changed = 0;
@@ -92,8 +99,8 @@ for (const file of files) {
     },
   );
   // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi'] (sentence tuples in
-  // mandarinThemeSentences.ts are always regenerated).
-  const sentenceFile = file.endsWith('mandarinThemeSentences.ts');
+  // mandarinThemeSentences.ts and mandarinPassages.ts are always regenerated).
+  const sentenceFile = file.endsWith('mandarinThemeSentences.ts') || file.endsWith('mandarinPassages.ts');
   next = next.replace(/\['([^'\\]+)', '([^'\\]*)', '/g, (match, hanzi, old) => {
     if (!HANZI.test(hanzi) || (!sentenceFile && !/^[\p{L} ']+$/u.test(old))) return match;
     const updated = toTonePinyin(hanzi).replace(/'/g, "\\'");
