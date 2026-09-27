@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "server:start": "npm --prefix server start",
     "test": "vitest run",
-    "content:audit": "vite-node scripts/content-audit.ts"
+    "content:audit": "vite-node scripts/content-audit.ts",
+    "content:pinyin": "vite-node scripts/mandarin-tone-marks.ts"
   },
   "dependencies": {
     "framer-motion": "^12.38.0",
@@ -36,6 +37,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "pinyin-pro": "^3.29.4",
     "postcss": "^8.5.8",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.3",
