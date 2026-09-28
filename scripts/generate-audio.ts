@@ -11,6 +11,7 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { getPassages, passageLanguages } from '../src/features/passages';
+import { englishSentences } from '../src/features/learning/englishLexiconExtra';
 import { getRubricLevels, type RubricLanguage } from '../src/features/rubrics';
 import { allExtraEnglishLessons } from '../src/pages/module/english/extra';
 import { getMandarinLevelThemeSentences } from '../src/pages/module/mandarin/mandarinThemeSentences';
@@ -64,6 +65,7 @@ passageLanguages.forEach((language) => {
     add(rubricLang[language], level.speaking.model);
     add(rubricLang[language], level.writing.model);
   }));
+Object.values(englishSentences).flat().forEach(([english]) => add('en', english));
 allExtraEnglishLessons().forEach(({ lesson }) => {
   lesson.examples.forEach(([english]) => add('en', english));
   lesson.dialogue?.forEach(([, english]) => add('en', english));

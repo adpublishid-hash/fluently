@@ -3,6 +3,8 @@ import { buildChoiceQuestion, hashSeed, seededRandom, shuffleQuestionOptions, ty
 import { getArabicUpperLevelWords, getArabicUpperTheme, isArabicUpperLevel } from '../upper/arabicUpperThemes';
 import { getFoundationLesson, getFoundationTopic } from '../foundation/arabicFoundationLessons';
 import { getArabicUpperPassage, type ArabicPassageSentence } from '../upper/passages';
+import { buildArabicThemePractice } from '../upper/arabicThemePractice';
+import { arabicThemeSentences, getArabicThemeSentences } from '../upper/themeSentences';
 
 export type GeneratedArabicContentLevel = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate' | 'advanced' | 'proficiency' | 'mastery' | 'scholar';
 
@@ -1764,6 +1766,23 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
       if (meaningQuestion) passageQuiz.push(meaningQuestion);
     }
   }
+  const lessonNumber = Math.max(1, Math.min(20, lessonId));
+  const toSentence = ([arabic, transliteration, meaning]: [string, string, string]) => ({ arabic, transliteration, meaning });
+  const themeSentences = getArabicThemeSentences(level, lessonNumber).map(toSentence);
+  const specific = buildArabicThemePractice(skillId, {
+    sentences: [...themeSentences, ...(passage?.sentences ?? [])],
+    words: theme.vocabulary,
+    levelSentences: levelThemeSentences(level),
+    levelWords: getArabicUpperLevelWords(level),
+    pairedSentences: themeSentences.length,
+  }, hashSeed('arabic-theme-practice', level, skillId, lessonNumber));
+  const original = [...themeQuiz, ...passageQuiz, ...lesson.practice];
+  const seen = new Set<string>();
+  // Lesson-specific questions first; shared skill drills fill up to the original length.
+  const practice = [...specific, ...original]
+    .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
+    .slice(0, Math.max(original.length, specific.length));
+  const exampleKeys = new Set(themeSentences.map((item) => item.arabic));
   const passageNote = passage
     ? [skillId === 'istima'
       ? `Dengarkan teks "${theme.title}" dulu tanpa melihat tulisan, jawab pertanyaan bacaan, lalu buka teks untuk mengecek.`
@@ -1773,9 +1792,18 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
     ...lesson,
     explanation: [`Tema kosakata lesson ini: ${theme.title}. Pakai keempat istilah tema dalam latihan dan tugas akhir.`, ...passageNote, ...(lesson.explanation ?? [])],
     vocabulary: [...theme.vocabulary, ...(lesson.vocabulary ?? [])],
+    examples: [...themeSentences, ...lesson.examples.filter((item) => !exampleKeys.has(item.arabic))],
     passage: passage ? { title: theme.title, sentences: passage.sentences, listenFirst: skillId === 'istima' } : undefined,
-    practice: [...themeQuiz, ...passageQuiz, ...lesson.practice],
+    practice,
   };
+}
+
+const levelSentenceCache = new Map<string, ArabicPassageSentence[]>();
+function levelThemeSentences(level: keyof typeof arabicThemeSentences): ArabicPassageSentence[] {
+  if (!levelSentenceCache.has(level)) {
+    levelSentenceCache.set(level, arabicThemeSentences[level].flat().map(([arabic, transliteration, meaning]) => ({ arabic, transliteration, meaning })));
+  }
+  return levelSentenceCache.get(level)!;
 }
 
 function buildGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number, level: GeneratedArabicContentLevel): GeneratedArabicLesson {
