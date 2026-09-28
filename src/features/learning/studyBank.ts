@@ -1,6 +1,6 @@
 // Shared, level-organised word/sentence banks for the four target languages.
 // Used by spaced-repetition review, the placement test and mock exams.
-import { englishCefrLexicon } from './englishCefrLexicon';
+import { englishLexicon, englishSentences } from './englishLexiconExtra';
 import { getGeneratedArabicLesson } from '../../pages/module/arabic/beginner/generatedBeginnerArabicContent';
 import { elementaryGrammar, pemulaGrammar } from '../../pages/module/arabic/foundation/arabicFoundationGrammar';
 import { getFoundationLevelSentences } from '../../pages/module/arabic/foundation/arabicFoundationSentences';
@@ -58,7 +58,7 @@ function arabicUpperLessons(level: string) {
 export function getLevelWords(language: StudyLanguage, level: string): StudyWord[] {
   return memo(`words:${language}:${level}`, () => {
     if (language === 'english') {
-      return toWords(language, level, (englishCefrLexicon[level] ?? []).map(([term, meaning]) => ({ term, meaning })));
+      return toWords(language, level, (englishLexicon[level] ?? []).map(([term, meaning]) => ({ term, meaning })));
     }
     if (language === 'japanese') {
       return toWords(language, level, getJapaneseLevelWords(level as 'beginner').map((word) => ({ term: word.japanese, reading: word.romaji, meaning: word.meaning })));
@@ -79,7 +79,7 @@ export function getLevelWords(language: StudyLanguage, level: string): StudyWord
 
 export function getLevelSentences(language: StudyLanguage, level: string): StudySentence[] {
   return memo(`sentences:${language}:${level}`, () => {
-    if (language === 'english') return [];
+    if (language === 'english') return (englishSentences[level] ?? []).map(([term, meaning]) => ({ term, meaning, level }));
     if (language === 'japanese') {
       return japaneseGrammarBank[level as 'beginner'].flatMap((point) => point.examples).map((item) => ({ term: item.japanese, reading: item.romaji, meaning: item.meaning, level }));
     }
@@ -108,7 +108,7 @@ export function getLevelPatterns(language: StudyLanguage, level: string): StudyP
 export function getLevelCloze(language: StudyLanguage, level: string): StudyCloze[] {
   if (language !== 'english') return [];
   return memo(`cloze:${level}`, () =>
-    (englishCefrLexicon[level] ?? []).flatMap(([word, , example]) => {
+    (englishLexicon[level] ?? []).flatMap(([word, , example]) => {
       const pattern = new RegExp(`\\b${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
       if (!pattern.test(example)) return [];
       return [{ sentence: example.replace(pattern, '_____'), answer: word, level }];

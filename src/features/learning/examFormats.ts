@@ -37,11 +37,12 @@ const kindSection: Record<PartKind, ExamSection> = {
 export const examFormats: Record<StudyLanguage, ExamFormat> = {
   english: {
     name: 'Simulasi CEFR',
-    minutes: 25,
+    minutes: 30,
     parts: [
-      { id: 'listening', native: 'Listening', label: 'Menyimak (dikte)', kind: 'listening', count: 6 },
-      { id: 'vocabulary', native: 'Vocabulary', label: 'Kosakata', kind: 'vocabulary', count: 12 },
-      { id: 'grammar', native: 'Grammar', label: 'Tata bahasa', kind: 'grammar', count: 12 },
+      { id: 'listening', native: 'Listening', label: 'Menyimak', kind: 'listening', count: 8 },
+      { id: 'reading', native: 'Reading', label: 'Membaca', kind: 'reading', count: 8 },
+      { id: 'vocabulary', native: 'Vocabulary', label: 'Kosakata', kind: 'vocabulary', count: 8 },
+      { id: 'grammar', native: 'Grammar', label: 'Tata bahasa', kind: 'grammar', count: 8 },
     ],
   },
   japanese: {

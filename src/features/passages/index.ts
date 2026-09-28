@@ -1,10 +1,12 @@
 import { arabicUpperPassages } from '../../pages/module/arabic/upper/passages';
 import { arabicUpperThemes, type ArabicUpperLevel } from '../../pages/module/arabic/upper/arabicUpperThemes';
+import { englishPassagesLower } from './englishPassagesLower';
+import { englishPassagesUpper } from './englishPassagesUpper';
 import { japanesePassages } from './japanesePassages';
 import { mandarinPassages } from './mandarinPassages';
 import type { PassageSource } from './types';
 
-export type PassageLanguage = 'japanese' | 'mandarin' | 'arabic';
+export type PassageLanguage = 'english' | 'japanese' | 'mandarin' | 'arabic';
 export type PassageSentence = { text: string; reading: string; meaning: string };
 export type PassageQuestion = { question: string; answer: string; distractors: string[] };
 export type Passage = {
@@ -18,10 +20,11 @@ export type Passage = {
   questions: PassageQuestion[];
 };
 
-export const passageLanguages: PassageLanguage[] = ['japanese', 'mandarin', 'arabic'];
+export const passageLanguages: PassageLanguage[] = ['english', 'japanese', 'mandarin', 'arabic'];
 
 /** Level id -> short label, in course order. */
 export const passageLevelLabels: Record<PassageLanguage, Array<[level: string, label: string]>> = {
+  english: [['a1', 'A1'], ['a2', 'A2'], ['b1', 'B1'], ['b2', 'B2'], ['c1', 'C1'], ['c2', 'C2']],
   japanese: [['intermediate', 'N3'], ['advanced', 'N2'], ['proficiency', 'N1']],
   mandarin: [['intermediate', 'HSK 3'], ['upper-intermediate', 'HSK 4'], ['advanced', 'HSK 5'], ['proficiency', 'HSK 6']],
   arabic: [
@@ -66,6 +69,7 @@ let cache: Record<PassageLanguage, Passage[]> | null = null;
 
 function all(): Record<PassageLanguage, Passage[]> {
   cache ??= {
+    english: [...englishPassagesLower, ...englishPassagesUpper].map((source) => fromSource('english', source)),
     japanese: japanesePassages.map((source) => fromSource('japanese', source)),
     mandarin: mandarinPassages.map((source) => fromSource('mandarin', source)),
     arabic: arabicPassages(),
@@ -83,5 +87,5 @@ export function getPassage(language: PassageLanguage, id: string): Passage | und
 }
 
 export function isPassageLanguage(value?: string): value is PassageLanguage {
-  return value === 'japanese' || value === 'mandarin' || value === 'arabic';
+  return value === 'english' || value === 'japanese' || value === 'mandarin' || value === 'arabic';
 }

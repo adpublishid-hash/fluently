@@ -35,7 +35,7 @@ const langs = new Set(option('lang', 'en,ja,zh,ar').split(',') as AudioLang[]);
 const limit = Number(option('limit', '0')) || Infinity;
 const outDir = option('out', 'public/audio');
 const concurrency = Math.max(1, Number(option('concurrency', '2')) || 2);
-const passageLang: Record<string, AudioLang> = { japanese: 'ja', mandarin: 'zh', arabic: 'ar' };
+const passageLang: Record<string, AudioLang> = { english: 'en', japanese: 'ja', mandarin: 'zh', arabic: 'ar' };
 const rubricLang: Record<RubricLanguage, AudioLang> = { english: 'en', japanese: 'ja', mandarin: 'zh', arabic: 'ar' };
 
 type Item = { lang: AudioLang; text: string };
@@ -54,7 +54,7 @@ passageLanguages.forEach((language) => {
     passage.sentences.forEach((sentence) => add(lang, sentence.text));
     passage.glossary.forEach((word) => add(lang, word.text));
     // Exam listening plays the whole passage as one utterance.
-    add(lang, passage.sentences.map((sentence) => sentence.text).join(language === 'arabic' ? ' ' : ''));
+    add(lang, passage.sentences.map((sentence) => sentence.text).join(language === 'japanese' || language === 'mandarin' ? '' : ' '));
   });
 });
 (['advanced', 'proficiency', 'hsk-7', 'hsk-8', 'hsk-9'] as MandarinLevelId[]).forEach((level) =>
