@@ -1,4 +1,4 @@
-import rubricData from '../../../server/data/rubrics.json';
+import rubricData from '../../../server/content/rubrics.json';
 
 export type RubricLanguage = 'english' | 'japanese' | 'mandarin' | 'arabic';
 export type RubricSkill = 'speaking' | 'writing';

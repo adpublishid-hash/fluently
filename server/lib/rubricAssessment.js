@@ -1,5 +1,5 @@
 // Level rubrics for speaking/writing assessment (shared with the client UI).
-const rubrics = require('../data/rubrics.json');
+const rubrics = require('../content/rubrics.json');
 
 const SKILLS = new Set(['speaking', 'writing']);
 const LANGUAGE_NAMES = { english: 'English', japanese: 'Japanese', mandarin: 'Mandarin Chinese', arabic: 'Modern Standard Arabic' };
