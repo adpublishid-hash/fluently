@@ -105,6 +105,21 @@ const wordOrder = (index: number): Generator => ({ sentences }, random) => {
   return buildChoiceQuestion(`Susunan kata yang benar untuk "${sentence.meaning}" adalah...`, sentence.hanzi, distractors, random);
 };
 
+const heardMeaning = (index: number): Generator => ({ sentences, levelSentences }, random) => {
+  const sentence = sentences[index];
+  if (!sentence?.pinyin) return null;
+  return buildChoiceQuestion(`Kamu mendengar: "${sentence.pinyin}" Artinya...`, sentence.meaning, levelSentences.map((item) => item.meaning), random);
+};
+
+const wordInSentence = (index: number): Generator => ({ sentences, words, levelSentences }, random) => {
+  const word = words[index];
+  if (!word) return null;
+  const sentence = sentences.find((item) => item.hanzi.includes(word.hanzi));
+  if (!sentence) return null;
+  const pool = levelSentences.filter((item) => !item.hanzi.includes(word.hanzi)).map((item) => item.hanzi);
+  return buildChoiceQuestion(`Kalimat mana yang memakai kata「${word.hanzi}」(${word.meaning})?`, sentence.hanzi, pool, random);
+};
+
 const wordForMeaning = (index: number): Generator => ({ words, levelWords }, random) => {
   const word = words[index];
   if (!word) return null;
@@ -127,13 +142,13 @@ const wordMeaning = (index: number): Generator => ({ words, levelWords }, random
 // is used by two skills), so the seven skill lessons that share a lesson
 // number never repeat a question.
 const skillPlan: Record<MandarinSkillId, Generator[]> = {
-  grammar: [wordOrder(0), fillBlank(1), wordOrder(2), wordOrder(3), fillBlank(5)],
-  speaking: [sentencePinyin(1), sentenceForMeaning(2), wordOrder(1), sentenceForMeaning(4)],
-  listening: [sentenceForMeaning(0), sentenceMeaning(2), sentenceForMeaning(1), sentenceMeaning(5)],
-  reading: [sentenceMeaning(0), sentenceMeaning(1), wordMeaning(3), wordMeaning(4), sentenceMeaning(3)],
-  writing: [fillBlank(0), fillBlank(2), wordForMeaning(4), fillBlank(4), wordOrder(5)],
-  vocabulary: [wordForMeaning(0), wordForMeaning(1), wordForMeaning(2), wordForMeaning(3), wordMeaning(5), fillBlank(3)],
-  pronunciation: [wordTone(0), wordTone(1), sentencePinyin(0), wordTone(2), sentencePinyin(2), sentencePinyin(4)],
+  grammar: [wordOrder(0), fillBlank(1), wordOrder(2), wordOrder(3), fillBlank(5), wordOrder(4), wordInSentence(0), wordInSentence(1)],
+  speaking: [sentencePinyin(1), sentenceForMeaning(2), wordOrder(1), sentenceForMeaning(4), sentenceForMeaning(3), sentencePinyin(3), sentenceForMeaning(5)],
+  listening: [sentenceForMeaning(0), sentenceMeaning(2), sentenceForMeaning(1), sentenceMeaning(5), heardMeaning(0), heardMeaning(1), heardMeaning(3), heardMeaning(4)],
+  reading: [sentenceMeaning(0), sentenceMeaning(1), wordMeaning(3), wordMeaning(4), sentenceMeaning(3), sentenceMeaning(4), wordMeaning(0), wordInSentence(2)],
+  writing: [fillBlank(0), fillBlank(2), wordForMeaning(4), fillBlank(4), wordOrder(5), wordForMeaning(5), wordInSentence(3)],
+  vocabulary: [wordForMeaning(0), wordForMeaning(1), wordForMeaning(2), wordForMeaning(3), wordMeaning(5), fillBlank(3), wordMeaning(1), wordMeaning(2), wordInSentence(4), wordInSentence(5)],
+  pronunciation: [wordTone(0), wordTone(1), sentencePinyin(0), wordTone(2), sentencePinyin(2), sentencePinyin(4), wordTone(3), wordTone(4), wordTone(5), sentencePinyin(5), heardMeaning(2), heardMeaning(5)],
 };
 
 export function buildLessonPractice(skillId: MandarinSkillId, material: PracticeMaterial, seed: number): ChoiceQuestion[] {

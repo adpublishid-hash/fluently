@@ -23,11 +23,12 @@ describe('Mandarin lesson-specific practice', () => {
     expect(new Set(all).size / all.length).toBeGreaterThan(0.2);
   });
 
-  it.each(themedLevels)('%s: every theme lesson has 3 real sentences using a theme word', (level) => {
-    expect(getMandarinLevelThemeSentences(level)).toHaveLength(60);
+  it.each(themedLevels)('%s: every theme lesson has 6 real sentences using theme words', (level) => {
+    expect(getMandarinLevelThemeSentences(level)).toHaveLength(120);
     for (let lesson = 1; lesson <= 20; lesson += 1) {
       const sentences = getMandarinThemeSentences(level, lesson);
-      expect(sentences).toHaveLength(3);
+      expect(sentences).toHaveLength(6);
+      expect(new Set(sentences.map((sentence) => sentence.hanzi)).size).toBe(6);
       sentences.forEach((sentence) => {
         expect(sentence.pinyin, sentence.hanzi).toMatch(/[āáǎàēéěèīíǐìōóǒòūúǔù]/);
         expect(sentence.hanzi).not.toMatch(/[A-Za-z]{4,}/);
@@ -35,7 +36,7 @@ describe('Mandarin lesson-specific practice', () => {
       const theme = getMandarinTheme(level, lesson);
       if (theme) {
         const used = sentences.filter((sentence) => theme.vocabulary.some((word) => sentence.hanzi.includes(word.hanzi)));
-        expect(used.length, `${level} lesson ${lesson}`).toBeGreaterThanOrEqual(2);
+        expect(used.length, `${level} lesson ${lesson}`).toBeGreaterThanOrEqual(4);
       }
       const examples = getMandarinLesson('reading', lesson, level).examples.map((example) => example.hanzi);
       expect(examples).toContain(sentences[0].hanzi);

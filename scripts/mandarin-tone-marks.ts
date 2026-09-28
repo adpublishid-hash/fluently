@@ -30,8 +30,27 @@ customPinyin({
   报道了: 'bào dào le',
   都可: 'dōu kě',
   慢慢地: 'màn màn de',
+  参加: 'cān jiā',
+  调整: 'tiáo zhěng',
+  只为: 'zhǐ wèi',
+  只靠: 'zhǐ kào',
+  只停留: 'zhǐ tíng liú',
+  只调查: 'zhǐ diào chá',
+  相互: 'xiāng hù',
+  所处: 'suǒ chǔ',
+  视为: 'shì wéi',
+  尤为: 'yóu wéi',
+  为基础: 'wéi jī chǔ',
+  不当: 'bù dàng',
+  不应: 'bù yīng',
+  而应: 'ér yīng',
+  倒逼: 'dào bī',
+  清楚地: 'qīng chu de',
+  经得起: 'jīng de qǐ',
+  // Adverbial 地 (read as dì by pinyin-pro).
+  ...Object.fromEntries(['更多', '更快', '更好', '勇敢', '有根据'].map((adverb) => [`${adverb}地`, `${pinyin(adverb)} de`])),
   // Verb + 得 complements (pinyin-pro reads them as dé).
-  ...Object.fromEntries(['唱', '跑', '写', '忙', '考', '做', '学', '听', '走', '吃', '睡', '来', '讲', '准备', '提炼'].map((verb) => [`${verb}得`, `${pinyin(verb)} de`])),
+  ...Object.fromEntries(['唱', '跑', '写', '忙', '考', '做', '学', '听', '走', '吃', '睡', '来', '讲', '准备', '提炼', '控制'].map((verb) => [`${verb}得`, `${pinyin(verb)} de`])),
   长得: 'zhǎng de',
   // Neutral-tone suffixes.
   东西: 'dōng xi',
@@ -114,6 +133,7 @@ const files = [
   'src/pages/module/mandarin/mandarinLessonContent.ts',
   'src/pages/module/mandarin/mandarinThemeBank.ts',
   'src/pages/module/mandarin/mandarinThemeSentences.ts',
+  'src/pages/module/mandarin/mandarinThemeSentencesExtra.ts',
   'src/pages/module/mandarin/mandarinPackSentences.ts',
   'src/features/passages/mandarinPassages.ts',
   'src/features/passages/mandarinPassagesBasic.ts',
@@ -134,7 +154,7 @@ for (const file of files) {
   );
   // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi'] (sentence tuples in
   // mandarinThemeSentences.ts and mandarinPassages.ts are always regenerated).
-  const sentenceFile = /mandarin(ThemeSentences|PackSentences|Passages\w*)\.ts$/.test(file);
+  const sentenceFile = /mandarin(ThemeSentences\w*|PackSentences|Passages\w*)\.ts$/.test(file);
   next = next.replace(/\['([^'\\]+)', '([^'\\]*)', '/g, (match, hanzi, old) => {
     if (!HANZI.test(hanzi) || (!sentenceFile && !/^[\p{L} ']+$/u.test(old))) return match;
     const updated = toTonePinyin(hanzi).replace(/'/g, "\\'");

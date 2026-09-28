@@ -1,9 +1,10 @@
 import type { MandarinLevelId } from './mandarinModuleData';
+import { extraThemeSentences } from './mandarinThemeSentencesExtra';
 
 export type MandarinThemeSentence = { hanzi: string; pinyin: string; meaning: string };
 type SentenceTuple = [hanzi: string, pinyin: string, meaning: string];
 
-// Three example sentences per theme lesson (1-20) for HSK 5-9. Each sentence
+// Three core example sentences per theme lesson (1-20) for HSK 5-9. Each sentence
 // uses at least one word from the lesson theme so quizzes can blank it out.
 // Pinyin is generated from the Hanzi: npm run content:pinyin
 const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
@@ -176,7 +177,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
       ['如果机会结构长期不变，就可能出现阶层固化。', 'Rú guǒ jī huì jié gòu cháng qī bú biàn, jiù kě néng chū xiàn jiē céng gù huà.', 'Jika struktur peluang tidak berubah dalam jangka panjang, pengerasan kelas sosial dapat terjadi.'],
     ],
     [
-      ['环境正义要求污染负担不应落在弱势群体身上。', 'Huán jìng zhèng yì yāo qiú wū rǎn fù dān bú yìng luò zài ruò shì qún tǐ shēn shàng.', 'Keadilan lingkungan menuntut agar beban polusi tidak jatuh pada kelompok rentan.'],
+      ['环境正义要求污染负担不应落在弱势群体身上。', 'Huán jìng zhèng yì yāo qiú wū rǎn fù dān bù yīng luò zài ruò shì qún tǐ shēn shàng.', 'Keadilan lingkungan menuntut agar beban polusi tidak jatuh pada kelompok rentan.'],
       ['受影响的村民应该通过补偿机制获得赔偿。', 'Shòu yǐng xiǎng de cūn mín yīng gāi tōng guò bǔ cháng jī zhì huò dé péi cháng.', 'Warga desa yang terdampak harus mendapat ganti rugi melalui mekanisme kompensasi.'],
       ['企业必须承担相应的生态责任。', 'Qǐ yè bì xū chéng dān xiāng yìng de shēng tài zé rèn.', 'Perusahaan harus memikul tanggung jawab ekologis yang sesuai.'],
     ],
@@ -213,7 +214,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
   ],
   'hsk-7': [
     [
-      ['城市更新不应只追求高楼，而应重视居民的生活质量。', 'Chéng shì gēng xīn bú yìng zhǐ zhuī qiú gāo lóu, ér yìng zhòng shì jū mín de shēng huó zhì liàng.', 'Pembaruan kota tidak seharusnya hanya mengejar gedung tinggi, tetapi harus mementingkan kualitas hidup warga.'],
+      ['城市更新不应只追求高楼，而应重视居民的生活质量。', 'Chéng shì gēng xīn bù yīng zhǐ zhuī qiú gāo lóu, ér yīng zhòng shì jū mín de shēng huó zhì liàng.', 'Pembaruan kota tidak seharusnya hanya mengejar gedung tinggi, tetapi harus mementingkan kualitas hidup warga.'],
       ['旧城改造过程中，如何保护历史街区是一大难题。', 'Jiù chéng gǎi zào guò chéng zhōng, rú hé bǎo hù lì shǐ jiē qū shì yí dà nán tí.', 'Dalam renovasi kota lama, cara melindungi kawasan bersejarah adalah masalah besar.'],
       ['增加公共空间有助于增强社区参与。', 'Zēng jiā gōng gòng kōng jiān yǒu zhù yú zēng qiáng shè qū cān yù.', 'Menambah ruang publik membantu meningkatkan partisipasi komunitas.'],
     ],
@@ -345,7 +346,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
       ['企业在处理数据跨境流动时必须确保合规。', 'Qǐ yè zài chǔ lǐ shù jù kuà jìng liú dòng shí bì xū què bǎo hé guī.', 'Perusahaan harus memastikan kepatuhan regulasi saat menangani aliran data lintas batas.'],
     ],
     [
-      ['科研评价不应只看影响因子。', 'Kē yán píng jià bú yìng zhǐ kàn yǐng xiǎng yīn zǐ.', 'Evaluasi riset tidak seharusnya hanya melihat faktor dampak.'],
+      ['科研评价不应只看影响因子。', 'Kē yán píng jià bù yīng zhǐ kàn yǐng xiǎng yīn zǐ.', 'Evaluasi riset tidak seharusnya hanya melihat faktor dampak.'],
       ['破除唯论文倾向，才能鼓励长期的原创研究。', 'Pò chú wéi lùn wén qīng xiàng, cái néng gǔ lì cháng qī de yuán chuàng yán jiū.', 'Hanya dengan menghapus orientasi semata pada publikasi, riset orisinal jangka panjang dapat didorong.'],
       ['同行评议的质量决定了学术评价的公信力。', 'Tóng háng píng yì de zhì liàng jué dìng le xué shù píng jià de gōng xìn lì.', 'Kualitas penilaian sejawat menentukan kredibilitas evaluasi akademik.'],
     ],
@@ -457,9 +458,9 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
       ['解构并不是否定一切，而是揭示意义的不稳定性。', 'Jiě gòu bìng bú shì fǒu dìng yí qiè, ér shì jiē shì yì yì de bù wěn dìng xìng.', 'Dekonstruksi bukan menyangkal segalanya, melainkan mengungkap ketidakstabilan makna.'],
     ],
     [
-      ['经典之所以是经典，是因为它经得起反复阅读。', 'Jīng diǎn zhī suǒ yǐ shì jīng diǎn, shì yīn wèi tā jīng dé qǐ fǎn fù yuè dú.', 'Karya klasik menjadi klasik karena tahan dibaca berulang kali.'],
+      ['经典之所以是经典，是因为它经得起反复阅读。', 'Jīng diǎn zhī suǒ yǐ shì jīng diǎn, shì yīn wèi tā jīng de qǐ fǎn fù yuè dú.', 'Karya klasik menjadi klasik karena tahan dibaca berulang kali.'],
       ['每一代读者都会对经典作出新的阐释。', 'Měi yí dài dú zhě dōu huì duì jīng diǎn zuò chū xīn de chǎn shì.', 'Setiap generasi pembaca akan memberikan interpretasi baru atas karya klasik.'],
-      ['语境化的阅读帮助我们理解作者所处的时代。', 'Yǔ jìng huà de yuè dú bāng zhù wǒ men lǐ jiě zuò zhě suǒ chù de shí dài.', 'Pembacaan yang dikontekstualisasi membantu kita memahami zaman pengarang.'],
+      ['语境化的阅读帮助我们理解作者所处的时代。', 'Yǔ jìng huà de yuè dú bāng zhù wǒ men lǐ jiě zuò zhě suǒ chǔ de shí dài.', 'Pembacaan yang dikontekstualisasi membantu kita memahami zaman pengarang.'],
     ],
     [
       ['复杂系统中的整体行为无法简单还原为部分之和。', 'Fù zá xì tǒng zhōng de zhěng tǐ xíng wéi wú fǎ jiǎn dān huán yuán wèi bù fen zhī hé.', 'Perilaku keseluruhan dalam sistem kompleks tidak bisa direduksi menjadi jumlah bagian-bagiannya.'],
@@ -519,10 +520,13 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
   ],
 };
 
+const toSentence = ([hanzi, pinyin, meaning]: SentenceTuple): MandarinThemeSentence => ({ hanzi, pinyin, meaning });
+
+/** Six sentences per theme lesson: the core three, then three more (mandarinThemeSentencesExtra.ts). */
 export function getMandarinThemeSentences(level: MandarinLevelId, lesson: number): MandarinThemeSentence[] {
-  return (sentenceBank[level]?.[lesson - 1] ?? []).map(([hanzi, pinyin, meaning]) => ({ hanzi, pinyin, meaning }));
+  return [...(sentenceBank[level]?.[lesson - 1] ?? []), ...(extraThemeSentences[level]?.[lesson - 1] ?? [])].map(toSentence);
 }
 
 export function getMandarinLevelThemeSentences(level: MandarinLevelId): MandarinThemeSentence[] {
-  return (sentenceBank[level] ?? []).flat().map(([hanzi, pinyin, meaning]) => ({ hanzi, pinyin, meaning }));
+  return Array.from({ length: sentenceBank[level]?.length ?? 0 }, (_, index) => getMandarinThemeSentences(level, index + 1)).flat();
 }
