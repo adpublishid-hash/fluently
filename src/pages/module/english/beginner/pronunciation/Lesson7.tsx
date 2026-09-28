@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Mic, Star } from 'lucide-react';
+import { Volume2, CheckCircle2, XCircle, BookOpen, Mic, Star } from 'lucide-react';
 import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
 import { playAudio } from '../../../../../services/ttsService';
 

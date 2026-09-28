@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Boxes, CheckCircle2, Crown, MapPin, Package, RefreshCw, Settings as SettingsIcon, Shield, ShoppingBag, Trash2, UserCog, Users } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { useAuth } from '../../auth/AuthContext';
@@ -337,6 +336,22 @@ export default function AdminPage() {
 
   const filteredOrders = useMemo(() => orders.slice(0, 50), [orders]);
 
+  useEffect(() => {
+    if (activeTab !== 'settings') return;
+    const keyword = settingsSearchKeyword.trim();
+    if (keyword.length < 3) { setSettingsSearchResults([]); return; }
+    const handle = setTimeout(async () => {
+      setSettingsSearchLoading(true);
+      try {
+        const res = await fetch(`/api/shop/rajaongkir/search?keyword=${encodeURIComponent(keyword)}`);
+        const data = await res.json();
+        if (res.ok) setSettingsSearchResults(data.results || []);
+      } catch { /* ignore */ }
+      finally { setSettingsSearchLoading(false); }
+    }, 280);
+    return () => clearTimeout(handle);
+  }, [settingsSearchKeyword, activeTab]);
+
   if (!isAdmin) {
     return <Navigate to="/modul" replace />;
   }
@@ -563,21 +578,6 @@ export default function AdminPage() {
     }
   };
 
-  useEffect(() => {
-    if (activeTab !== 'settings') return;
-    const keyword = settingsSearchKeyword.trim();
-    if (keyword.length < 3) { setSettingsSearchResults([]); return; }
-    const handle = setTimeout(async () => {
-      setSettingsSearchLoading(true);
-      try {
-        const res = await fetch(`/api/shop/rajaongkir/search?keyword=${encodeURIComponent(keyword)}`);
-        const data = await res.json();
-        if (res.ok) setSettingsSearchResults(data.results || []);
-      } catch { /* ignore */ }
-      finally { setSettingsSearchLoading(false); }
-    }, 280);
-    return () => clearTimeout(handle);
-  }, [settingsSearchKeyword, activeTab]);
 
   const updateOrder = async (order: AdminOrder, patch: { status?: string; paymentStatus?: string }) => {
     if (!user) return;

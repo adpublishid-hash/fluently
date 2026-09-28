@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, BookOpen, Brain, Lightbulb } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, BookOpen, Lightbulb } from 'lucide-react';
 
 const THEORY_LINES = [
     "**Advanced comparison structures** at C1 go beyond simple comparative/superlative to include sophisticated structures.",

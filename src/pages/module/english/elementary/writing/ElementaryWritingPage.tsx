@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { CheckCircleIcon } from '../../../../../components/Icons';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const WRITING_STORAGE_KEY = 'talky_elementary_writing_completed';
 
@@ -180,6 +181,7 @@ export default function ElementaryWritingPage() {
             );
           })}
         </div>
+          <ExtraLessonsList level="elementary" skill="writing" color="#D97706" />
       </div>
     </PageContainer>
   );

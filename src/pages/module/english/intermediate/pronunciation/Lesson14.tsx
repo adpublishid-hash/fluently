@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LessonShell from '../../../../../components/shared/LessonShell';
-import { Mic, BookOpen, PenTool, CheckCircle2, XCircle, Trophy, Lightbulb, Sparkles, Star, Volume2, Target, TrendingUp, BarChart, Zap } from 'lucide-react';
+import { Mic, BookOpen, PenTool, CheckCircle2, XCircle, Star } from 'lucide-react';
 import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';

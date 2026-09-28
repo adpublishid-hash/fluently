@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, BookOpen, Brain, Lightbulb } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, BookOpen, Lightbulb } from 'lucide-react';
 
 const THEORY_LINES = [
     "**Discourse markers** are words and phrases that organise text, signal relationships between ideas, and guide the reader/listener.",

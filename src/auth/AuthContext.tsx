@@ -1,5 +1,8 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import { recordDailyXp } from '../utils/dailyXp';
+import { clearLocalProgress, flushProgress, startProgressSync } from '../services/progressSync';
+
+export type XpActivity = 'lesson' | 'practice' | 'exam' | 'game' | 'chat' | 'general';
 
 interface User {
   id: number;
@@ -47,7 +50,7 @@ interface AuthContextType {
   userExists: (email: string) => Promise<boolean>;
   refreshUser: () => Promise<{ success: boolean; error?: string }>;
   upgradePlan: (plan: 'pro' | 'lifetime') => Promise<{ success: boolean; error?: string }>;
-  awardXp: (xp: number, activity?: string) => Promise<{ success: boolean; error?: string }>;
+  awardXp: (xp: number, activity?: XpActivity, sourceKey?: string) => Promise<{ success: boolean; awarded?: number; duplicate?: boolean; error?: string }>;
   authHeaders: () => Record<string, string>;
 }
 
@@ -116,11 +119,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [token]);
 
   const logout = useCallback(() => {
+    const previousToken = token;
     setUser(null);
     setToken(null);
     localStorage.removeItem(SESSION_KEY);
     localStorage.removeItem(TOKEN_KEY);
-  }, []);
+    // Progress is backed up on the server; clear it locally so the next account
+    // on this device does not inherit (and upload) it.
+    if (previousToken) {
+      void flushProgress(API, previousToken).then((stored) => {
+        if (stored) clearLocalProgress();
+      });
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) return;
+    return startProgressSync(API, token);
+  }, [token]);
 
   const refreshUser = useCallback(async (): Promise<{ success: boolean; error?: string }> => {
     if (!token) return { success: false, error: 'User session not found' };
@@ -384,19 +400,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [user, token, persistSession]);
 
-  const awardXp = useCallback(async (xp: number, activity = 'general'): Promise<{ success: boolean; error?: string }> => {
+  const awardXp = useCallback(async (
+    xp: number,
+    activity: XpActivity = 'general',
+    sourceKey?: string,
+  ): Promise<{ success: boolean; awarded?: number; duplicate?: boolean; error?: string }> => {
     if (!user || !token) return { success: false, error: 'User session not found' };
     try {
       const res = await fetch(`${API}/users/xp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify({ xp, activity }),
+        body: JSON.stringify({ xp, activity, sourceKey }),
       });
       const data = await res.json();
       if (!res.ok) return { success: false, error: data.error };
       persistSession(normalizeUser(data.user));
-      if (xp > 0) recordDailyXp(xp);
-      return { success: true };
+      // The server may grant less than requested (duplicate lesson, daily cap).
+      const awarded = Number(data.awarded ?? 0);
+      if (awarded > 0) recordDailyXp(awarded);
+      return { success: true, awarded, duplicate: Boolean(data.duplicate) };
     } catch {
       return { success: false, error: 'Server tidak dapat dihubungi' };
     }

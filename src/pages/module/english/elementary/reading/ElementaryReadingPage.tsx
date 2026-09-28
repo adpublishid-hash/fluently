@@ -3,6 +3,7 @@ import PageContainer from '../../../../../components/layout/PageContainer';
 import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { CheckCircleIcon } from '../../../../../components/Icons';
 import { getCompletedReadingLessons } from './readingUtils';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const LESSONS = [
   { title: 'Iklan Sederhana', textType: 'Iklan promosi', focus: 'Menemukan produk, harga, diskon, tanggal akhir promo, dan penawaran khusus.' },
@@ -98,6 +99,7 @@ export default function ElementaryReadingPage() {
             );
           })}
         </div>
+          <ExtraLessonsList level="elementary" skill="reading" color="#10B981" />
       </div>
     </PageContainer>
   );

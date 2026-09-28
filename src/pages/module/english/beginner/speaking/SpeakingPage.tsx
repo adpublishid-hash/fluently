@@ -7,6 +7,7 @@ import { PageHeader } from '../../../../../components/shared/NavComponents';
 import { useLanguage } from '../../../../../i18n/LanguageContext';
 import { BEGINNER_SPEAKING_LESSONS } from './speakingData';
 import { getCompletedSpeakingLessons } from './components/BeginnerSpeakingLesson';
+import ExtraLessonsList from '../../extra/ExtraLessonsList';
 
 const SKILL = {
   id: 'speaking',
@@ -159,6 +160,7 @@ export default function SpeakingPage() {
               );
             })}
           </div>
+          <ExtraLessonsList level="beginner" skill="speaking" color="#E74C3C" />
         </div>
       </div>
     </PageContainer>

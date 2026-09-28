@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import LessonShell from '../../../../../components/shared/LessonShell';
-import { BookOpen, PenTool, CheckCircle2, XCircle, Trophy, Lightbulb, Sparkles, Star, Volume2 } from 'lucide-react';
+import { BookOpen, PenTool, CheckCircle2, XCircle, Lightbulb, Sparkles, Star, Volume2 } from 'lucide-react';
 import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';

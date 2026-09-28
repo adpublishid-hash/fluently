@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Volume2, PlayCircle, Lightbulb, Sparkles, Info, CheckCircle2, XCircle, MessageSquare, BookOpen, PenTool, Mic, ChevronLeft, MoreHorizontal, BarChart3, Flame, Hand, History, Home, Star, TrendingUp, Trophy, User } from 'lucide-react';
+import { Lightbulb, CheckCircle2, XCircle, BookOpen, PenTool, Flame, Star, TrendingUp } from 'lucide-react';
 import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
 import { playAudio } from '../../../../../services/ttsService';
 

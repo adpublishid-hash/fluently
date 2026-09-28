@@ -10,7 +10,6 @@ import {
 } from 'lucide-react';
 import LessonShell, { sectionVariants } from '../../../../../../components/shared/LessonShell';
 import { BEGINNER_SPEAKING_LESSONS } from '../speakingData';
-import type { Scenario, Question } from '../speakingData';
 import { playAudio } from '../../../../../../services/ttsService';
 
 /* ─── Completion Storage Helpers ─── */
@@ -44,7 +43,6 @@ interface BeginnerSpeakingLessonProps {
 }
 
 export const BeginnerSpeakingLesson: React.FC<BeginnerSpeakingLessonProps> = ({ lessonId }) => {
-    const navigate = useNavigate();
     const lessonData = BEGINNER_SPEAKING_LESSONS[lessonId];
 
     if (!lessonData) {
@@ -55,6 +53,15 @@ export const BeginnerSpeakingLesson: React.FC<BeginnerSpeakingLessonProps> = ({ 
         );
     }
 
+    // Keyed by lesson so per-lesson state resets when navigating between lessons.
+    return <BeginnerSpeakingLessonContent key={lessonId} lessonId={lessonId} lessonData={lessonData} />;
+};
+
+const BeginnerSpeakingLessonContent: React.FC<{
+    lessonId: number;
+    lessonData: (typeof BEGINNER_SPEAKING_LESSONS)[number];
+}> = ({ lessonId, lessonData }) => {
+    const navigate = useNavigate();
     const { title, scenarios, practiceQuestions } = lessonData;
     const [activeScenarioId, setActiveScenarioId] = useState<string>(scenarios[0].id);
     const [practiceStep, setPracticeStep] = useState(0);

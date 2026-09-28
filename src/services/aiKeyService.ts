@@ -1,7 +1,7 @@
 export const AI_CHAT_API_KEY_STORAGE = 'fluently_ai_chat_api_key';
 export const AI_CHAT_MODEL_STORAGE = 'fluently_ai_chat_model';
 export const DEFAULT_CHAT_AI_MODEL = 'gemini-2.5-flash';
-export const DEFAULT_CHAT_AI_PROVIDER = 'KIE Gemini Flash 2.5';
+export const DEFAULT_CHAT_AI_PROVIDER = 'Kie AI · Gemini 3.8 Flash';
 const SESSION_KEY = 'talky_session';
 const TOKEN_KEY = 'talky_token';
 
@@ -58,10 +58,6 @@ export function hasChatAiApiKey(): boolean {
 
 export function hasUsableChatAiAccess(_plan: unknown = getCurrentUserPlan()): boolean {
   return true;
-}
-
-export function getRequestChatAiApiKey(_plan: unknown = getCurrentUserPlan()): string | null {
-  return null;
 }
 
 export function getMaskedChatAiKey(): string {

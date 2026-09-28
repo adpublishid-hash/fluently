@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, BookOpen, Brain, Lightbulb } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, BookOpen, Lightbulb } from 'lucide-react';
 
 const THEORY_LINES = [
     "The **subjunctive** expresses hypothetical, wished-for, or formally required states. It is more common in formal writing and American English.",

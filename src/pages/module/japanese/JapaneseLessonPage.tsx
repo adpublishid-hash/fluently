@@ -3,37 +3,28 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BookOpen, CheckCircle, ChevronLeft, ClipboardCheck, Layers, ListChecks, MessageCircle, PenLine, Sparkles, Target, Volume2 } from 'lucide-react';
 import { getJapaneseLesson } from './japaneseLessonContent';
 import { isJapaneseSkill, japaneseLessonCounts, japaneseLevels, japaneseSkills, normalizeJapaneseLevel, type JapaneseSkillId } from './japaneseModuleData';
+import { useAuth } from '../../../auth/AuthContext';
+import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
+import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
+import RubricCard from '../../../components/shared/RubricCard';
+import { speak } from '../../../utils/speech';
+import WordIllustration from '../../../components/shared/WordIllustration';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
   return Number(match?.[0] ?? 1);
 }
 
-function getCompleted(levelId: string, skillId: string): number[] {
-  try {
-    return JSON.parse(localStorage.getItem(`talky_japanese_${levelId}_${skillId}_completed`) || '[]');
-  } catch {
-    return [];
-  }
-}
-
 function markComplete(levelId: string, skillId: string, lessonId: number) {
-  const completed = getCompleted(levelId, skillId);
-  if (!completed.includes(lessonId)) {
-    localStorage.setItem(`talky_japanese_${levelId}_${skillId}_completed`, JSON.stringify([...completed, lessonId]));
-  }
+  return markCompletedId(languageCompletionKey('japanese', levelId, skillId), lessonId);
 }
 
 function speakJapanese(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ja-JP';
-  utterance.rate = 0.86;
-  window.speechSynthesis.speak(utterance);
+  speak(text, 'ja-JP', { rate: 0.86 });
 }
 
 export default function JapaneseLessonPage() {
+  const { awardXp } = useAuth();
   const navigate = useNavigate();
   const params = useParams();
   const levelId = normalizeJapaneseLevel(params.levelId);
@@ -49,6 +40,7 @@ export default function JapaneseLessonPage() {
   const goBack = () => navigate(`/modul/japanese/${levelId}/${skillId}`);
   const completeAndContinue = () => {
     markComplete(levelId, skillId, lessonId);
+    void awardXp(50, 'lesson', `modul/japanese/${levelId}/${skillId}/lesson-${lessonId}`);
     if (lessonId < totalLessons) navigate(`/modul/japanese/${levelId}/${skillId}/lesson-${lessonId + 1}`);
     else goBack();
   };
@@ -220,7 +212,8 @@ export default function JapaneseLessonPage() {
             </h2>
             <div className="grid gap-3 sm:grid-cols-2">
               {lesson.vocabulary.map((word) => (
-                <button key={`${word.japanese}-${word.romaji}`} onClick={() => speakJapanese(word.japanese)} className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-left hover:bg-rose-50/60 transition" title="Dengarkan Jepang">
+                <button key={`${word.japanese}-${word.romaji}`} onClick={() => speakJapanese(word.japanese)} className="relative rounded-xl border border-slate-100 bg-slate-50 p-4 pr-12 text-left hover:bg-rose-50/60 transition" title="Dengarkan Jepang">
+                  <WordIllustration meaning={word.meaning} className="absolute right-3 top-3" />
                   <p lang="ja-JP" className="text-2xl font-bold text-slate-900 leading-relaxed">{word.japanese}</p>
                   <p className="mt-1 text-xs font-semibold text-slate-500">{word.romaji}</p>
                   <p className="mt-1 text-sm text-slate-700">{word.meaning}</p>
@@ -228,6 +221,10 @@ export default function JapaneseLessonPage() {
               ))}
             </div>
           </div>
+          {(skillId === 'speaking' || skillId === 'writing') && <RubricCard language="japanese" level={levelId} skill={skillId} />}
+          {(skillId === 'writing' || skillId === 'vocabulary' || skillId === 'reading') && (
+            <StrokeOrderPanel text={lesson.vocabulary.map((word) => word.japanese).join('')} color={skill.color} lang="ja" />
+          )}
         </section>
 
         <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">

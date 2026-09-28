@@ -4,7 +4,7 @@ import { useLessonCompletion } from '../../../../../components/shared/lessonComp
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
 import LessonShell from '../../../../../components/shared/LessonShell';
-import { BookOpen, PenTool, CheckCircle2, XCircle, Volume2, Trophy, RefreshCw } from 'lucide-react';
+import { BookOpen, PenTool, CheckCircle2, XCircle, Trophy } from 'lucide-react';
 
 
 const QUIZ_QUESTIONS = [

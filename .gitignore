@@ -13,6 +13,11 @@ dist-ssr
 *.local
 .env
 server/data
+# Dev mail outbox (contains recipient addresses)
+server/.outbox
+# Source material for content authoring; keep it out of the repo
+/*.docx
+/*.mp3
 .npm-cache
 Microsoft
 

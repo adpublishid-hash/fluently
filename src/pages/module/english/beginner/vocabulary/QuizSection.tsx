@@ -4,8 +4,7 @@ import {
     XCircleIcon, 
     LightBulbIcon, 
     RefreshIcon,
-    ChevronLeftIcon,
-    PlayCircleIcon, 
+    ChevronLeftIcon, 
     TrendUpIcon,
     InfoIcon
 } from '../../../../../components/Icons';

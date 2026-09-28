@@ -11,10 +11,9 @@ export default defineConfig([
     'node_modules',
     'server/node_modules',
     '*.cjs',
-    '*.js',
+    '/*.js',
     '*.ps1',
     'scripts',
-    'src/pages/ai-kamus',
   ]),
   {
     files: ['**/*.{ts,tsx}'],
@@ -42,6 +41,22 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'no-constant-condition': 'warn',
       'no-shadow-restricted-names': 'warn',
+      'no-useless-escape': 'warn',
+    },
+  },
+  {
+    // API server (CommonJS). no-undef catches missing requires between modules.
+    files: ['server/**/*.js'],
+    ignores: ['server/node_modules/**'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'commonjs',
+      globals: globals.node,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      'no-unused-vars': ['warn', { args: 'none' }],
+      'no-empty': ['warn', { allowEmptyCatch: true }],
       'no-useless-escape': 'warn',
     },
   },

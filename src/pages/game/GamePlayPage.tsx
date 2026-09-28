@@ -5,22 +5,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Check, ChevronRight, Headphones, Keyboard, RotateCcw, Timer, Trophy, Volume2, X } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
 import { useAuth } from '../../auth/AuthContext';
-import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
-import {
-  arabicArticleDashQuestions,
-  arabicConditionalRunQuestions,
-  arabicErrorFixQuestions,
-  arabicGameCategoryCopy,
-  arabicGameModeCopy,
-  arabicLetterQuestQuestions,
-  arabicListenTapQuestions,
-  arabicModalQuestQuestions,
-  arabicQuestionBuilderQuestions,
-  arabicSentenceBuilderQuestions,
-  arabicTenseMasterQuestions,
-  arabicVerbFormsQuestions,
-  arabicWordBank,
-} from '../../features/game/arabicGameContent';
+import { getGamePack, normalizeTypedAnswer } from '../../features/game/gamePacks';
 
 type GameStats = {
   xp: number;
@@ -1034,8 +1019,8 @@ function modeTitle(modeId?: string) {
   return 'Word Match';
 }
 
-function localizedModeTitle(modeId: string | undefined, isArabicGame: boolean) {
-  if (isArabicGame && modeId && arabicGameModeCopy[modeId]) return arabicGameModeCopy[modeId].title;
+function localizedModeTitle(modeId: string | undefined, pack: ReturnType<typeof getGamePack>) {
+  if (pack && modeId && pack.modeCopy[modeId]) return pack.modeCopy[modeId].title;
   return modeTitle(modeId);
 }
 
@@ -1398,7 +1383,12 @@ function makeWordSearchGrid(words: string[], size: number) {
   });
 
   const hasArabic = words.some((word) => /[\u0600-\u06FF]/.test(word));
-  const alphabet = hasArabic ? 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي' : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const hasCjk = words.some((word) => /[\u3040-\u30FF\u4E00-\u9FFF]/.test(word));
+  const alphabet = hasArabic
+    ? 'ابتثجحخدذرزسشصضطظعغفقكلمنهوي'
+    : hasCjk
+      ? [...new Set([...words.join(''), ...'的一是不了人我在有他这中大来上国个到说们为子和你地出道也时年日本学生先'])].join('')
+      : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   return grid.map((row, rowIndex) =>
     row.map((cell, colIndex) => cell || alphabet[(rowIndex * 7 + colIndex * 11 + words.join('').length) % alphabet.length])
   );
@@ -1409,7 +1399,8 @@ export default function GamePlayPage() {
   const { user, awardXp } = useAuth();
   const { categoryId = 'vocabulary', modeId = 'word-match' } = useParams<{ categoryId: string; modeId: string }>();
   const [searchParams] = useSearchParams();
-  const isArabicGame = normalizeTargetLanguage(user?.persona?.targetLanguage) === 'Arabic';
+  const gamePack = getGamePack(user?.persona?.targetLanguage);
+  const isArabicGame = gamePack?.language === 'Arabic';
   const difficulty = searchParams.get('difficulty') || 'medium';
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
@@ -1468,18 +1459,18 @@ export default function GamePlayPage() {
   const isSpeedQuiz = modeId === 'speed-quiz' || modeId === 'clan-battle';
   const isListenTap = modeId === 'listen-tap' || categoryId === 'listening';
   const isTyping = modeId === 'crossword' || modeId === 'typing-sprint';
-  const title = localizedModeTitle(modeId, isArabicGame);
-  const activeWordBank = isArabicGame ? arabicWordBank : wordBank;
-  const activeListenTapQuestions = isArabicGame ? arabicListenTapQuestions : listenTapQuestions;
-  const activeLetterQuestQuestions = isArabicGame ? arabicLetterQuestQuestions : letterQuestQuestions;
-  const activeSentenceBuilderQuestions = isArabicGame ? arabicSentenceBuilderQuestions : sentenceBuilderQuestions;
-  const activeTenseMasterQuestions = isArabicGame ? arabicTenseMasterQuestions : tenseMasterQuestions;
-  const activeVerbFormsQuestions = isArabicGame ? arabicVerbFormsQuestions : verbFormsQuestions;
-  const activeArticleDashQuestions = isArabicGame ? arabicArticleDashQuestions : articleDashQuestions;
-  const activeModalQuestQuestions = isArabicGame ? arabicModalQuestQuestions : modalQuestQuestions;
-  const activeConditionalRunQuestions = isArabicGame ? arabicConditionalRunQuestions : conditionalRunQuestions;
-  const activeQuestionBuilderQuestions = isArabicGame ? arabicQuestionBuilderQuestions : questionBuilderQuestions;
-  const activeErrorFixQuestions = isArabicGame ? arabicErrorFixQuestions : errorFixQuestions;
+  const title = localizedModeTitle(modeId, gamePack);
+  const activeWordBank = gamePack?.banks.wordBank ?? wordBank;
+  const activeListenTapQuestions = gamePack?.banks.listenTapQuestions ?? listenTapQuestions;
+  const activeLetterQuestQuestions = gamePack?.banks.letterQuestQuestions ?? letterQuestQuestions;
+  const activeSentenceBuilderQuestions = gamePack?.banks.sentenceBuilderQuestions ?? sentenceBuilderQuestions;
+  const activeTenseMasterQuestions = gamePack?.banks.tenseMasterQuestions ?? tenseMasterQuestions;
+  const activeVerbFormsQuestions = gamePack?.banks.verbFormsQuestions ?? verbFormsQuestions;
+  const activeArticleDashQuestions = gamePack?.banks.articleDashQuestions ?? articleDashQuestions;
+  const activeModalQuestQuestions = gamePack?.banks.modalQuestQuestions ?? modalQuestQuestions;
+  const activeConditionalRunQuestions = gamePack?.banks.conditionalRunQuestions ?? conditionalRunQuestions;
+  const activeQuestionBuilderQuestions = gamePack?.banks.questionBuilderQuestions ?? questionBuilderQuestions;
+  const activeErrorFixQuestions = gamePack?.banks.errorFixQuestions ?? errorFixQuestions;
   const activeDifficulty = isLetterQuest ? currentLetterLevel : isVisualWordMatch ? currentWordMatchLevel : isTenseMaster ? currentTenseLevel : isVerbForms ? currentVerbFormsLevel : isArticleDash ? currentArticleDashLevel : isModalQuest ? currentModalQuestLevel : isConditionalRun ? currentConditionalRunLevel : isQuestionBuilder ? currentQuestionBuilderLevel : isErrorFix ? currentErrorFixLevel : isSentenceBuilder ? currentSentenceLevel : isListenTap ? currentListenLevel : isSpeedQuiz ? currentSpeedLevel : isTyping ? currentTypingLevel : isMemoryCard ? currentMemoryLevel : isFindWords ? currentFindWordsLevel : difficulty;
 
   const questions = useMemo(() => {
@@ -1637,7 +1628,7 @@ export default function GamePlayPage() {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = isArabicGame ? 'ar-SA' : 'en-US';
+    utterance.lang = gamePack?.speechLang ?? 'en-US';
     utterance.rate = 0.82;
     window.speechSynthesis.speak(utterance);
   };
@@ -1807,7 +1798,8 @@ export default function GamePlayPage() {
 
   const checkTyping = () => {
     if (feedback) return;
-    const correct = typedAnswer.trim().toLowerCase() === current.word.toLowerCase();
+    const accepted = [current.word, ...(gamePack?.acceptsRomanization && current.hint ? [current.hint] : [])];
+    const correct = accepted.some((answer) => normalizeTypedAnswer(typedAnswer) === normalizeTypedAnswer(String(answer)));
     const nextScore = correct ? score + 1 : score;
     if (correct) setScore(nextScore);
     setFeedback(correct ? 'correct' : 'wrong');
@@ -2161,7 +2153,7 @@ export default function GamePlayPage() {
             </button>
             <div className="text-center min-w-0">
               <p className="text-[10px] uppercase tracking-[0.18em] text-[#7EC3E6] font-black">
-                {isArabicGame ? `${arabicGameCategoryCopy[categoryId] || 'Arabic'} game` : `${categoryId} game`}
+                {gamePack ? `${gamePack.categoryCopy[categoryId] || gamePack.language} game` : `${categoryId} game`}
               </p>
               <h1 className="text-[18px] font-black text-[#1A1A2E] truncate">{title}</h1>
             </div>

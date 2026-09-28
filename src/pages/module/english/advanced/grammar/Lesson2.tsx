@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, BookOpen, Brain, Lightbulb } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, BookOpen, Lightbulb } from 'lucide-react';
 
 const THEORY_LINES = [
     "**Inverted conditionals** are a formal alternative to standard if-clauses. They are formed by placing the auxiliary verb before the subject, omitting \"if\".",

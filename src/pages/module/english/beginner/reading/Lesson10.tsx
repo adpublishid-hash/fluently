@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLessons, markReadingComplete } from './readingUtils';
+import { QuizEngine, ComprehensionSection, getCompletedReadingLessons, markReadingComplete } from './readingUtils';
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const FINAL_QUIZ: QuizItem[] = [

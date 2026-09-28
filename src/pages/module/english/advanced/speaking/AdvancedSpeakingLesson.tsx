@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, CheckCircle2, ChevronLeft, ClipboardCheck, Mic, Volume2 } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, ClipboardCheck, Mic, Volume2 } from 'lucide-react';
 import { playAudio } from '../../../../../services/ttsService';
 import { getAdvancedSpeakingLesson, getAdvancedSpeakingQuiz } from './advancedSpeakingContent';
 

@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
+import LessonShell from '../../../../../components/shared/LessonShell';
 import { BookOpen, PenTool, CheckCircle2, XCircle, Volume2, Lightbulb, Smile, TrendingUp, Star } from 'lucide-react';
 import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';

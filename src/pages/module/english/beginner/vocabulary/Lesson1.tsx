@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
     ChevronLeftIcon, MoreIcon, VolumeIcon, InfoIcon,
-    CheckCircleIcon, XCircleIcon, PlayCircleIcon, LightBulbIcon,
-    Sparkles, TrendUpIcon, BookIcon, PuzzleIcon
+    CheckCircleIcon, XCircleIcon, LightBulbIcon,
+    Sparkles, BookIcon, PuzzleIcon
 } from '../../../../../components/Icons';
 import { QuizSection } from './QuizSection';
 import { LESSON_EXERCISES } from './exercises';

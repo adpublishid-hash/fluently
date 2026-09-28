@@ -1,0 +1,800 @@
+{
+ "scale": [
+  {
+   "score": 4,
+   "label": "Sangat baik",
+   "descriptor": "Memenuhi semua harapan level dengan kesalahan kecil yang tidak mengganggu makna."
+  },
+  {
+   "score": 3,
+   "label": "Baik",
+   "descriptor": "Memenuhi sebagian besar harapan level; ada beberapa kesalahan tetapi pesan tetap jelas."
+  },
+  {
+   "score": 2,
+   "label": "Cukup",
+   "descriptor": "Memenuhi sebagian harapan; kesalahan cukup sering dan kadang mengaburkan makna."
+  },
+  {
+   "score": 1,
+   "label": "Perlu latihan",
+   "descriptor": "Belum memenuhi harapan level; pesan sulit dipahami atau tugas tidak selesai."
+  }
+ ],
+ "criteria": {
+  "writing": [
+   {
+    "id": "task",
+    "label": "Pemenuhan tugas"
+   },
+   {
+    "id": "organization",
+    "label": "Organisasi & koherensi"
+   },
+   {
+    "id": "vocabulary",
+    "label": "Kosakata"
+   },
+   {
+    "id": "grammar",
+    "label": "Akurasi tata bahasa"
+   }
+  ],
+  "speaking": [
+   {
+    "id": "fluency",
+    "label": "Kelancaran"
+   },
+   {
+    "id": "pronunciation",
+    "label": "Pelafalan & prosodi"
+   },
+   {
+    "id": "vocabulary",
+    "label": "Kosakata"
+   },
+   {
+    "id": "grammar",
+    "label": "Tata bahasa & interaksi"
+   }
+  ]
+ },
+ "languages": {
+  "english": [
+   {
+    "id": "a1",
+    "label": "A1",
+    "writing": {
+     "target": "30–50 kata · 5–7 kalimat sederhana",
+     "expectations": [
+      "Kalimat lengkap subjek + kata kerja (I am, I have, I like)",
+      "Informasi pribadi dasar: nama, asal, keluarga, kegiatan",
+      "Huruf kapital dan titik di setiap kalimat"
+     ],
+     "prompt": "Write about yourself and your family.",
+     "model": "Hi! My name is Dina. I am 20 years old and I am from Bogor. I live with my parents and my brother. My brother is a student. I like cooking and music. Every Sunday I cook fried rice for my family.",
+     "translation": "Hai! Nama saya Dina. Saya 20 tahun dan berasal dari Bogor. Saya tinggal dengan orang tua dan kakak/adik laki-laki. Dia pelajar. Saya suka memasak dan musik. Setiap Minggu saya memasak nasi goreng untuk keluarga."
+    },
+    "speaking": {
+     "target": "30–45 detik · 4–6 kalimat",
+     "expectations": [
+      "Salam dan perkenalan yang jelas",
+      "Kalimat pendek tanpa jeda panjang",
+      "Bunyi akhir kata terdengar (-s, -ed)"
+     ],
+     "prompt": "Introduce yourself: name, home, family, and a hobby.",
+     "model": "Hello, I'm Arif. I'm from Medan, but I live in Jakarta now. I have two sisters. I work in a shop. In my free time, I play football. Nice to meet you!",
+     "translation": "Halo, saya Arif. Saya dari Medan, tapi sekarang tinggal di Jakarta. Saya punya dua saudara perempuan. Saya bekerja di toko. Di waktu luang saya main sepak bola. Senang bertemu kamu!"
+    }
+   },
+   {
+    "id": "a2",
+    "label": "A2",
+    "writing": {
+     "target": "60–90 kata · 1–2 paragraf",
+     "expectations": [
+      "Past simple dan rencana (going to) dipakai tepat",
+      "Kata penghubung and, but, because, so",
+      "Urutan kejadian jelas (first, then, after that)"
+     ],
+     "prompt": "Write an email to a friend about your last weekend and your plans for next weekend.",
+     "model": "Hi Tom,\nHow are you? Last weekend I went to Bandung with my cousins. First, we visited a tea plantation, then we ate strawberries at a small farm. It was cold but really fun. Next weekend I'm going to stay at home because I have an exam on Monday. Do you want to study together on Saturday?\nBest, Rani",
+     "translation": "Hai Tom, apa kabar? Akhir pekan lalu aku ke Bandung dengan sepupu. Pertama kami mengunjungi kebun teh, lalu makan stroberi di kebun kecil. Dingin tapi seru. Akhir pekan depan aku di rumah karena ada ujian hari Senin. Mau belajar bareng hari Sabtu?"
+    },
+    "speaking": {
+     "target": "45–75 detik",
+     "expectations": [
+      "Menceritakan pengalaman dengan past simple",
+      "Memberi alasan sederhana (because)",
+      "Intonasi pertanyaan dan pernyataan tepat"
+     ],
+     "prompt": "Talk about a memorable trip: where, who, what you did, and how you felt.",
+     "model": "Last year I went to Lombok with my best friend. We stayed near the beach for three days. We swam, we rented bikes, and we ate a lot of grilled fish. On the last day it rained, so we played cards in the hotel. It was my favorite trip because it was relaxing and cheap.",
+     "translation": "Tahun lalu saya ke Lombok dengan sahabat. Kami menginap dekat pantai tiga hari. Kami berenang, menyewa sepeda, dan makan banyak ikan bakar. Hari terakhir hujan, jadi kami main kartu di hotel. Itu perjalanan favorit saya karena santai dan murah."
+    }
+   },
+   {
+    "id": "b1",
+    "label": "B1",
+    "writing": {
+     "target": "120–160 kata · 3 paragraf",
+     "expectations": [
+      "Opini dengan alasan dan contoh",
+      "Paragraf pembuka, isi, penutup",
+      "Variasi tense dan kata penghubung (however, for example, in my opinion)"
+     ],
+     "prompt": "Is it better to live in a big city or a small town? Give your opinion with reasons.",
+     "model": "Many young people move to big cities, but I think a small town is a better place to live.\n\nFirst, life in a small town is cheaper. Rent and food cost much less, so people can save money. Second, it is quieter and safer. For example, in my hometown children can walk to school alone.\n\nHowever, big cities offer more jobs and better universities. In my opinion, the best choice is to study in a city and then return home with new skills.",
+     "translation": "Banyak anak muda pindah ke kota besar, tapi menurut saya kota kecil lebih baik untuk ditinggali. Pertama, hidup di kota kecil lebih murah... Namun kota besar menawarkan lebih banyak pekerjaan dan universitas yang lebih baik. Menurut saya, pilihan terbaik adalah kuliah di kota lalu pulang membawa keterampilan baru."
+    },
+    "speaking": {
+     "target": "1–2 menit",
+     "expectations": [
+      "Menyampaikan opini terstruktur (point–reason–example)",
+      "Menggunakan penanda wacana (firstly, on the other hand)",
+      "Kelancaran dengan sedikit jeda dan koreksi diri"
+     ],
+     "prompt": "Describe a skill you want to learn and explain why.",
+     "model": "One skill I really want to learn is public speaking. At the moment, I get nervous when I present in class, and my voice becomes very quiet. I think this skill is important because most jobs need clear communication. For example, my sister became a team leader partly because she speaks confidently in meetings. So, I'm planning to join a speaking club next month and practise every week.",
+     "translation": "Satu keterampilan yang sangat ingin saya pelajari adalah berbicara di depan umum... Jadi saya berencana ikut klub berbicara bulan depan dan berlatih setiap minggu."
+    }
+   },
+   {
+    "id": "b2",
+    "label": "B2",
+    "writing": {
+     "target": "200–250 kata · esai argumentatif",
+     "expectations": [
+      "Tesis jelas dengan argumen dan kontra-argumen",
+      "Kohesi antarparagraf dan referensi yang rapi",
+      "Kosakata topik dan struktur kompleks (relative clauses, conditionals)"
+     ],
+     "prompt": "Some people say social media does more harm than good. Discuss both sides and give your opinion.",
+     "model": "Social media has transformed the way we communicate, yet its overall impact remains controversial.\n\nOn the one hand, platforms connect people across distances and give small businesses affordable access to customers. They also allow ordinary citizens to share information that traditional media might ignore.\n\nOn the other hand, constant comparison with carefully edited images can damage self-esteem, particularly among teenagers. Moreover, false information spreads faster than corrections, which can influence public opinion.\n\nIn my view, social media itself is neutral; the harm comes from how it is designed and used. If platforms were more transparent about their algorithms and users set clear limits, the benefits would clearly outweigh the risks.",
+     "translation": "Media sosial telah mengubah cara kita berkomunikasi, namun dampaknya masih diperdebatkan... Menurut saya media sosial itu netral; bahayanya berasal dari cara ia dirancang dan digunakan."
+    },
+    "speaking": {
+     "target": "2–3 menit",
+     "expectations": [
+      "Mengembangkan argumen dengan contoh spesifik",
+      "Menanggapi pandangan lain secara sopan",
+      "Intonasi dan penekanan mendukung makna"
+     ],
+     "prompt": "Should university education be free? Present your view.",
+     "model": "I'd argue that university education should be free, or at least much cheaper than it is now. The main reason is fairness: talented students from poor families often give up simply because they can't pay. Some people say free education would be too expensive for the government, and that's a fair point. However, educated citizens usually earn more and pay more tax later, so it's an investment rather than a cost. A realistic first step might be free tuition for students from low-income families.",
+     "translation": "Menurut saya pendidikan universitas seharusnya gratis, atau setidaknya jauh lebih murah... Langkah realistis pertama mungkin kuliah gratis bagi mahasiswa dari keluarga berpenghasilan rendah."
+    }
+   },
+   {
+    "id": "c1",
+    "label": "C1",
+    "writing": {
+     "target": "250–320 kata · laporan/esai formal",
+     "expectations": [
+      "Argumen bernuansa dengan hedging (arguably, to some extent)",
+      "Organisasi yang canggih dan transisi halus",
+      "Register formal konsisten dan kolokasi akademik"
+     ],
+     "prompt": "Write a report evaluating remote work for your company and make recommendations.",
+     "model": "Introduction\nThis report evaluates the company's six-month remote-work trial and recommends a policy for the coming year.\n\nFindings\nProductivity, measured by completed tickets, rose by roughly eight per cent, although the gain was concentrated in teams with clearly defined tasks. Staff surveys indicate improved work–life balance; however, newer employees reported feeling isolated and less confident about asking for help.\n\nRecommendations\nIt is recommended that the company adopt a hybrid model, with two fixed office days per team to support collaboration and mentoring. Managers should receive training in leading distributed teams, and onboarding should remain largely in person. On balance, a structured hybrid approach appears to preserve the benefits of remote work while mitigating its drawbacks.",
+     "translation": "Laporan ini mengevaluasi uji coba kerja jarak jauh enam bulan dan merekomendasikan kebijakan... Secara keseluruhan, pendekatan hibrida terstruktur tampaknya mempertahankan manfaat kerja jarak jauh sambil mengurangi kekurangannya."
+    },
+    "speaking": {
+     "target": "3–4 menit",
+     "expectations": [
+      "Mengelola topik kompleks secara spontan",
+      "Parafrase dan klarifikasi tanpa kehilangan alur",
+      "Prosodi natural: chunking, penekanan kontras"
+     ],
+     "prompt": "Discuss the extent to which technology has made us less patient.",
+     "model": "It's tempting to say technology has made us impatient, and to some extent I think that's true. When a video takes more than a few seconds to load, most of us simply give up. That said, I'd be careful about blaming the technology itself. What's really changed are our expectations: services compete on speed, so speed becomes the norm. Interestingly, the same technology also enables very patient activities, like learning a language over months with an app. So perhaps the question isn't whether we're less patient, but where we choose to invest our patience.",
+     "translation": "Mudah untuk mengatakan teknologi membuat kita tidak sabar, dan sampai batas tertentu itu benar... Jadi mungkin pertanyaannya bukan apakah kita kurang sabar, tetapi di mana kita memilih menginvestasikan kesabaran."
+    }
+   },
+   {
+    "id": "c2",
+    "label": "C2",
+    "writing": {
+     "target": "300–400 kata · esai/ulasan tingkat tinggi",
+     "expectations": [
+      "Argumen orisinal dengan sintesis beberapa perspektif",
+      "Kontrol retorika: gaya, nada, dan presisi leksikal",
+      "Hampir tanpa kesalahan; kalimat kompleks tetap jernih"
+     ],
+     "prompt": "'Progress is measured by what we preserve as much as by what we invent.' Discuss.",
+     "model": "We tend to equate progress with novelty: the faster device, the newer policy, the bolder skyline. Yet a society that measures itself only by what it invents risks mistaking motion for direction.\n\nConsider the historic city centre bulldozed for a motorway in the 1960s. At the time it was hailed as modernisation; decades later, many cities are spending fortunes to undo precisely such schemes. What was lost was not merely architecture but a pattern of life that had evolved to fit human scale.\n\nThis is not an argument for nostalgia. Preservation, properly understood, is itself an act of judgement: deciding which inheritances still serve us and which should be let go. The most durable forms of progress, from constitutional rights to scientific method, are precisely those that combine continuity with the capacity for revision.",
+     "translation": "Kita cenderung menyamakan kemajuan dengan kebaruan... Bentuk kemajuan yang paling tahan lama justru yang menggabungkan kesinambungan dengan kemampuan untuk direvisi."
+    },
+    "speaking": {
+     "target": "4–5 menit",
+     "expectations": [
+      "Wacana panjang yang koheren dan persuasif",
+      "Nuansa, ironi, dan register disesuaikan audiens",
+      "Pengucapan dan prosodi setara penutur mahir"
+     ],
+     "prompt": "Give a short talk on whether expertise still matters in the age of the internet.",
+     "model": "We're often told that the internet has democratised knowledge, and in a sense it has: a teenager with a phone can read the same research papers as a professor. But access to information is not the same as the ability to weigh it. Expertise, at its best, isn't a collection of facts; it's a trained sense of what counts as good evidence, of where the uncertainties lie, and of which questions are worth asking. Ironically, the more information we have, the more we need people who can tell us what it means. The real challenge, then, is not whether expertise matters, but how experts can earn trust in an environment where everyone sounds equally confident.",
+     "translation": "Kita sering diberi tahu bahwa internet telah mendemokratisasi pengetahuan... Tantangan sebenarnya bukan apakah keahlian penting, tetapi bagaimana para ahli dapat memperoleh kepercayaan di lingkungan tempat semua orang terdengar sama yakinnya."
+    }
+   }
+  ],
+  "japanese": [
+   {
+    "id": "beginner",
+    "label": "N5",
+    "writing": {
+     "target": "100–150 karakter · 5–6 kalimat です/ます",
+     "expectations": [
+      "Bentuk です/ます konsisten",
+      "Partikel は、を、に、で dipakai tepat",
+      "Informasi diri: nama, asal, pekerjaan, hobi"
+     ],
+     "prompt": "じこしょうかいを かいて ください。",
+     "model": "はじめまして。リナです。インドネシアの スラバヤから きました。だいがくせいです。まいにち にほんごを べんきょうします。しゅみは りょうりです。どうぞ よろしく おねがいします。",
+     "translation": "Salam kenal. Saya Rina. Saya datang dari Surabaya, Indonesia. Saya mahasiswa. Setiap hari saya belajar bahasa Jepang. Hobi saya memasak. Mohon bantuannya."
+    },
+    "speaking": {
+     "target": "30–45 detik",
+     "expectations": [
+      "Salam pembuka dan penutup (よろしくおねがいします)",
+      "Pelafalan vokal pendek/panjang jelas",
+      "Kalimat pendek tanpa terputus"
+     ],
+     "prompt": "Perkenalkan dirimu dan ceritakan kegiatan harianmu.",
+     "model": "はじめまして、ダニです。ジャカルタに すんでいます。かいしゃいんです。あさ 七じに おきて、でんしゃで かいしゃに いきます。よる、ときどき アニメを みます。よろしく おねがいします。",
+     "translation": "Salam kenal, saya Dani. Saya tinggal di Jakarta. Saya pegawai kantor. Saya bangun jam 7 pagi dan pergi ke kantor naik kereta. Malam hari kadang menonton anime. Mohon bantuannya."
+    }
+   },
+   {
+    "id": "elementary",
+    "label": "N4",
+    "writing": {
+     "target": "200–250 karakter",
+     "expectations": [
+      "Bentuk て、たことがある、たい dipakai tepat",
+      "Menghubungkan kalimat dengan から、けど、それから",
+      "Menceritakan pengalaman berurutan"
+     ],
+     "prompt": "さいきん いった ところについて かいて ください。",
+     "model": "先週の日曜日、友だちと鎌倉へ行きました。電車で一時間ぐらいかかりました。まず大仏を見て、それから海の近くのレストランで魚を食べました。天気がよかったから、とても楽しかったです。また行きたいです。",
+     "translation": "Minggu lalu saya ke Kamakura dengan teman. Naik kereta sekitar satu jam. Pertama melihat Daibutsu, lalu makan ikan di restoran dekat laut. Cuacanya bagus jadi sangat menyenangkan. Saya ingin pergi lagi."
+    },
+    "speaking": {
+     "target": "45–75 detik",
+     "expectations": [
+      "Menceritakan pengalaman dengan bentuk lampau",
+      "Memberi alasan dengan から/ので",
+      "Intonasi alami, tidak membaca per suku kata"
+     ],
+     "prompt": "Ceritakan hobi atau pengalaman yang berkesan.",
+     "model": "わたしの しゅみは しゃしんを とることです。きょねん はじめて ふじさんの しゃしんを とりました。あさ はやく おきたので ねむかったですが、とても きれいでした。こんど、きょうとの おてらを とりに いきたいです。",
+     "translation": "Hobi saya memotret. Tahun lalu pertama kali memotret Gunung Fuji. Karena bangun pagi-pagi saya mengantuk, tapi sangat indah. Lain kali saya ingin memotret kuil di Kyoto."
+    }
+   },
+   {
+    "id": "intermediate",
+    "label": "N3",
+    "writing": {
+     "target": "300–400 karakter · opini sederhana",
+     "expectations": [
+      "Menyatakan pendapat: と思います、〜べきだ",
+      "Struktur 〜ために、〜ようにする、〜ば",
+      "Paragraf pembuka–alasan–kesimpulan"
+     ],
+     "prompt": "スマートフォンは子どもに必要だと思いますか。",
+     "model": "私は、小学生にはスマートフォンはまだ必要ないと思います。\n\n理由は二つあります。まず、長い時間画面を見ると、目が悪くなったり、勉強に集中できなくなったりするからです。次に、インターネットには子どもにとって危ない情報も多いからです。\n\nもちろん、連絡のために携帯電話が必要な場合もあります。その場合は、電話とメッセージだけ使える簡単な携帯電話を持たせればいいと思います。",
+     "translation": "Menurut saya anak SD belum perlu ponsel pintar. Ada dua alasan... Tentu ada kalanya perlu ponsel untuk berkomunikasi; dalam hal itu cukup ponsel sederhana untuk telepon dan pesan."
+    },
+    "speaking": {
+     "target": "1–2 menit",
+     "expectations": [
+      "Menjelaskan pendapat dengan alasan dan contoh",
+      "Memakai kata penghubung (それに、でも、つまり)",
+      "Kelancaran dengan jeda alami"
+     ],
+     "prompt": "日本の生活でびっくりしたことについて話してください。",
+     "model": "日本に来て一番びっくりしたのは、電車がとても静かなことです。インドネシアでは友だちと大きい声で話しますが、日本では電話で話す人もいません。最初は少し寂しいと思いましたが、今は静かな電車で本を読むのが好きになりました。つまり、ルールを守ると、みんなが気持ちよく過ごせるんだと思います。",
+     "translation": "Yang paling mengejutkan setelah datang ke Jepang adalah keretanya sangat sunyi... Intinya, kalau aturan dipatuhi, semua orang bisa merasa nyaman."
+    }
+   },
+   {
+    "id": "advanced",
+    "label": "N2",
+    "writing": {
+     "target": "400–600 karakter · esai argumentatif",
+     "expectations": [
+      "Argumen dua sisi: 〜一方で、〜とはいえ",
+      "Gaya tulisan である consistent",
+      "Kosakata abstrak dan kesimpulan yang jelas"
+     ],
+     "prompt": "在宅勤務のメリットとデメリットについて、あなたの考えを書きなさい。",
+     "model": "近年、在宅勤務を導入する企業が増えている。通勤時間がなくなることで、家族と過ごす時間や自己学習の時間が増えるのは大きなメリットである。\n\n一方で、同僚との何気ない会話が減り、孤独を感じる人も少なくない。また、仕事と私生活の境目があいまいになり、かえって長時間働いてしまうという問題もある。\n\nとはいえ、これらの問題は工夫次第で解決できると考える。例えば、週に一度は出社日を設けたり、勤務時間を明確に決めたりすることが有効だろう。働き方の選択肢が増えること自体は、歓迎すべき変化である。",
+     "translation": "Belakangan perusahaan yang menerapkan kerja dari rumah bertambah... Bertambahnya pilihan cara bekerja itu sendiri adalah perubahan yang patut disambut."
+    },
+    "speaking": {
+     "target": "2–3 menit",
+     "expectations": [
+      "Mengembangkan argumen dengan contoh konkret",
+      "Register sopan (です・ます) yang stabil",
+      "Menanggapi pandangan lain (確かに〜が)"
+     ],
+     "prompt": "若者の読書離れについて意見を述べてください。",
+     "model": "最近、若者が本を読まなくなったと言われています。確かに、スマートフォンで短い記事や動画を見る時間は増えています。しかし、私は若者が文字を読まなくなったわけではないと思います。問題は、長い文章をじっくり読む機会が減っていることです。そこで、学校で毎朝十分間の読書時間を作るなど、小さな習慣から始めることが大切だと考えます。",
+     "translation": "Belakangan dikatakan anak muda tidak lagi membaca buku... Karena itu, penting untuk memulai dari kebiasaan kecil seperti waktu membaca 10 menit setiap pagi di sekolah."
+    }
+   },
+   {
+    "id": "proficiency",
+    "label": "N1",
+    "writing": {
+     "target": "600–800 karakter · esai tingkat tinggi",
+     "expectations": [
+      "Argumentasi bernuansa dengan ungkapan N1 (〜にほかならない、〜ざるを得ない)",
+      "Struktur logis dan kohesi antarparagraf",
+      "Kosakata abstrak tepat dan gaya である konsisten"
+     ],
+     "prompt": "「便利さは人を幸せにするか」について論じなさい。",
+     "model": "技術の進歩によって、私たちの生活はかつてないほど便利になった。しかし、便利さが増すほど人は幸せになると言い切れるだろうか。\n\n確かに、家事や移動にかかる時間が減ったことで、自由に使える時間は増えた。だが、その時間がスマートフォンの画面に吸い込まれているのだとすれば、便利さは新たな忙しさを生んだにすぎない。\n\n幸福とは、手間を省くことではなく、何に手間をかけるかを自ら選べることにほかならない。便利さはそのための手段であって、目的ではない。この区別を見失ったとき、私たちは便利さに使われる側に回らざるを得ないのである。",
+     "translation": "Berkat kemajuan teknologi hidup kita lebih praktis dari sebelumnya... Kebahagiaan tidak lain adalah mampu memilih sendiri pada apa kita mencurahkan upaya."
+    },
+    "speaking": {
+     "target": "3–4 menit",
+     "expectations": [
+      "Wacana panjang yang terstruktur dan persuasif",
+      "Keigo dan register formal sesuai konteks",
+      "Prosodi alami, jeda retoris tepat"
+     ],
+     "prompt": "「空気を読む」文化について、職場の視点から話してください。",
+     "model": "日本では「空気を読む」ことが大切にされてきました。言葉にしない期待を察して行動することで、無用な衝突を避けられるという利点があります。しかし、多様な背景を持つ人が働く職場では、暗黙の了解に頼るだけでは限界があります。少数意見が出にくくなり、問題の発見が遅れることもあるからです。私は、察する力を大切にしつつも、大事なことは言葉で確認し合う文化を育てるべきだと考えます。",
+     "translation": "Di Jepang 'membaca suasana' dijunjung tinggi... Menurut saya, sambil menghargai kemampuan menangkap isyarat, kita perlu menumbuhkan budaya saling memastikan hal penting dengan kata-kata."
+    }
+   }
+  ],
+  "mandarin": [
+   {
+    "id": "beginner",
+    "label": "HSK 1",
+    "writing": {
+     "target": "30–50 Hanzi · 4–5 kalimat",
+     "expectations": [
+      "Pola dasar 是、有、喜欢 dipakai benar",
+      "Kata tanya/angka dasar dan urutan kata S-V-O",
+      "Hanzi HSK 1 ditulis benar"
+     ],
+     "prompt": "介绍一下你自己。",
+     "model": "你好！我叫王丽。我是印度尼西亚人。我是学生。我家有四个人：爸爸、妈妈、哥哥和我。我喜欢喝茶。",
+     "translation": "Halo! Nama saya Wang Li. Saya orang Indonesia. Saya pelajar. Keluarga saya empat orang: ayah, ibu, kakak laki-laki, dan saya. Saya suka minum teh."
+    },
+    "speaking": {
+     "target": "20–40 detik",
+     "expectations": [
+      "Empat nada utama terdengar jelas",
+      "Salam dan kalimat pendek lengkap",
+      "Tidak mencampur bahasa lain"
+     ],
+     "prompt": "用中文说说你的名字、国家和爱好。",
+     "model": "大家好，我叫安迪。我是印度尼西亚人，我在雅加达工作。我喜欢看电影，也喜欢吃中国菜。谢谢！",
+     "translation": "Halo semua, nama saya Andi. Saya orang Indonesia, bekerja di Jakarta. Saya suka menonton film dan makanan Tiongkok. Terima kasih!"
+    }
+   },
+   {
+    "id": "elementary",
+    "label": "HSK 2",
+    "writing": {
+     "target": "60–80 Hanzi",
+     "expectations": [
+      "Keterangan waktu dan tempat di posisi yang benar",
+      "Pola 了、过、在 dasar",
+      "Kalimat dihubungkan dengan 因为…所以…"
+     ],
+     "prompt": "写一写你的周末。",
+     "model": "上个周末我和朋友去公园了。天气很好，我们一起跑步、拍照。中午我们在饭馆吃了面条。因为下午下雨了，所以我们早早回家了。我觉得这个周末很快乐。",
+     "translation": "Akhir pekan lalu saya ke taman bersama teman. Cuaca bagus, kami berlari dan berfoto. Siang kami makan mi di restoran. Karena sore hujan, kami pulang lebih awal. Menurut saya akhir pekan ini sangat menyenangkan."
+    },
+    "speaking": {
+     "target": "30–60 detik",
+     "expectations": [
+      "Menceritakan kegiatan dengan 了/过",
+      "Nada dan nada netral cukup jelas",
+      "Menjawab pertanyaan lanjutan sederhana"
+     ],
+     "prompt": "说说你每天做什么。",
+     "model": "我每天早上六点半起床，七点吃早饭，然后坐地铁去公司。我下午五点下班，晚上常常做饭、看书。周末我喜欢去超市买东西。",
+     "translation": "Setiap hari saya bangun 06.30, sarapan jam tujuh, lalu naik kereta bawah tanah ke kantor. Pulang kerja jam lima; malam sering memasak dan membaca. Akhir pekan saya suka berbelanja ke supermarket."
+    }
+   },
+   {
+    "id": "intermediate",
+    "label": "HSK 3",
+    "writing": {
+     "target": "100–150 Hanzi · 1 paragraf",
+     "expectations": [
+      "Opini sederhana dengan alasan (我觉得…因为…)",
+      "Complement hasil/arah dan 比 dipakai tepat",
+      "Kohesi: 首先、然后、最后"
+     ],
+     "prompt": "你喜欢在城市生活还是在农村生活？为什么？",
+     "model": "我更喜欢在城市生活。首先，城市的交通很方便，坐地铁去哪儿都很快。然后，城市里有很多工作机会，也有好的大学。不过，城市的空气没有农村好，房子也比农村贵得多。最后我觉得，年轻的时候在城市工作，老了以后回农村生活，是最好的选择。",
+     "translation": "Saya lebih suka tinggal di kota. Pertama, transportasi kota praktis... Namun udara kota tidak sebaik desa dan rumah jauh lebih mahal. Akhirnya menurut saya, bekerja di kota saat muda lalu tinggal di desa saat tua adalah pilihan terbaik."
+    },
+    "speaking": {
+     "target": "1–1,5 menit",
+     "expectations": [
+      "Menyampaikan pengalaman dengan urutan jelas",
+      "Memakai 比、跟…一样、越来越",
+      "Pelafalan nada stabil dalam kalimat panjang"
+     ],
+     "prompt": "说一次难忘的旅行。",
+     "model": "去年夏天，我和家人去了云南旅行。我们先到了昆明，那儿的天气跟春天一样，不冷也不热。然后我们去了大理，在湖边骑自行车。当地的菜有点儿辣，可是非常好吃。这次旅行让我越来越喜欢中国文化。",
+     "translation": "Musim panas lalu saya dan keluarga berwisata ke Yunnan... Perjalanan ini membuat saya semakin menyukai budaya Tiongkok."
+    }
+   },
+   {
+    "id": "upper-intermediate",
+    "label": "HSK 4",
+    "writing": {
+     "target": "150–200 Hanzi",
+     "expectations": [
+      "Argumen dengan contoh (比如、另外、总之)",
+      "Struktur 把/被 dan 虽然…但是… tepat",
+      "Paragraf terorganisasi dengan kesimpulan"
+     ],
+     "prompt": "网上购物有哪些好处和坏处？",
+     "model": "现在越来越多的人喜欢在网上购物。网上购物的好处很明显：不用出门，选择多，价格往往比商店便宜。比如，我上个月在网上买的运动鞋比商场便宜了一百块。\n另外，网上购物也有一些问题。有时候照片和真实的商品不一样，退货也比较麻烦。\n总之，我觉得网上购物很方便，但是买东西以前应该先看看别人的评价。",
+     "translation": "Sekarang semakin banyak orang suka belanja daring... Kesimpulannya, belanja daring praktis, tetapi sebelum membeli sebaiknya melihat ulasan orang lain."
+    },
+    "speaking": {
+     "target": "1,5–2 menit",
+     "expectations": [
+      "Menjelaskan pendapat dengan dua alasan",
+      "Kelancaran dengan penanda wacana",
+      "Nada dan tekanan kalimat natural"
+     ],
+     "prompt": "你认为学外语最好的方法是什么？",
+     "model": "我认为学外语最好的方法是多用。很多人只背单词、做练习，但是不敢说。其实，语言是用来交流的。我每天用中文写日记，周末跟中国朋友视频聊天。虽然开始的时候常常说错，但是朋友们都很耐心。现在我的口语比以前流利多了。",
+     "translation": "Menurut saya cara terbaik belajar bahasa asing adalah banyak memakainya... Sekarang bahasa lisan saya jauh lebih lancar daripada sebelumnya."
+    }
+   },
+   {
+    "id": "advanced",
+    "label": "HSK 5",
+    "writing": {
+     "target": "220–320 Hanzi · esai",
+     "expectations": [
+      "Tesis, dua sisi argumen, sanggahan ringan, kesimpulan",
+      "Kosakata HSK 5 dan konektor (尽管、由此可见、与其…不如…)",
+      "Register tulis yang konsisten"
+     ],
+     "prompt": "谈谈你对“短视频”的看法。",
+     "model": "短视频已经成为很多人生活中不可缺少的一部分。它让人们在几十秒内获得大量信息，也为普通人提供了表达自己的机会。\n然而，长期观看碎片化的内容，可能会降低人的专注能力。尽管有人认为这只是个人习惯的问题，但平台的推荐机制确实在不断延长我们的使用时间。\n由此可见，短视频本身并没有好坏之分，关键在于如何使用。与其完全拒绝，不如给自己设定合理的使用时间，把它变成学习和放松的工具。",
+     "translation": "Video pendek telah menjadi bagian tak terpisahkan dari hidup banyak orang... Daripada menolak sepenuhnya, lebih baik menetapkan batas waktu wajar dan menjadikannya alat belajar dan bersantai."
+    },
+    "speaking": {
+     "target": "2–3 menit",
+     "expectations": [
+      "Presentasi terstruktur dengan contoh",
+      "Memakai ungkapan formal (从…来看、不可否认)",
+      "Prosodi wacana panjang stabil"
+     ],
+     "prompt": "城市化给年轻人带来了什么？",
+     "model": "从经济的角度来看，城市化给年轻人带来了更多的工作机会和更好的教育资源。不可否认，大城市的生活节奏很快，房价也很高，很多年轻人每天通勤两三个小时。尽管如此，城市仍然是他们实现梦想的地方。我认为，政府应该发展公共交通，建设更多租得起的住房，让年轻人在城市里既能工作，也能生活。",
+     "translation": "Dari sudut ekonomi, urbanisasi memberi anak muda lebih banyak peluang kerja dan sumber daya pendidikan... Menurut saya pemerintah harus mengembangkan transportasi umum dan perumahan terjangkau."
+    }
+   },
+   {
+    "id": "proficiency",
+    "label": "HSK 6",
+    "writing": {
+     "target": "350–500 Hanzi",
+     "expectations": [
+      "Sintesis beberapa posisi dan premis tersembunyi",
+      "Idiom/ungkapan HSK 6 tanpa dipaksakan",
+      "Kohesi antarparagraf dan kesimpulan strategis"
+     ],
+     "prompt": "论“效率与公平”在公共决策中的关系。",
+     "model": "一个成熟的公共决策不应只追求短期效率，还必须考虑公平与社会韧性。\n不可否认，快速行动有助于解决眼前问题。然而，如果决策过程缺乏沟通，政策即便方向正确，也可能难以获得公众支持，最终反而降低执行效率。\n从长远来看，效率与公平并非此消彼长的关系。透明的程序能够减少猜疑，合理的补偿机制能够化解阻力，这些都是提高效率的前提。\n归根结底，公共决策需要在效率、公平和韧性之间权衡利弊，而不是简单地二选一。",
+     "translation": "Keputusan publik yang matang tidak boleh hanya mengejar efisiensi jangka pendek... Pada akhirnya keputusan publik perlu menimbang untung-rugi antara efisiensi, keadilan, dan resiliensi, bukan sekadar memilih salah satu."
+    },
+    "speaking": {
+     "target": "3 menit · briefing",
+     "expectations": [
+      "Briefing profesional: konteks, tesis, trade-off, rekomendasi",
+      "Menangani sanggahan dengan nada profesional",
+      "Jeda retoris dan penekanan idiom"
+     ],
+     "prompt": "就“人工智能与就业”做一个简短汇报。",
+     "model": "各位好，今天我想简要谈谈人工智能对就业的影响。首先，不可否认，自动化会替代一部分重复性岗位。但从历史来看，技术进步同样会创造新的职业。关键问题不在于岗位是否消失，而在于劳动者能否及时完成技能转型。因此，我建议企业与政府共同投入职业培训，同时完善社会保障，为转型期的劳动者提供缓冲。谢谢大家。",
+     "translation": "Selamat siang semua, hari ini saya ingin membahas singkat dampak AI terhadap lapangan kerja... Karena itu saya menyarankan perusahaan dan pemerintah bersama-sama berinvestasi dalam pelatihan kerja serta menyempurnakan jaminan sosial."
+    }
+   },
+   {
+    "id": "hsk-7",
+    "label": "HSK 7",
+    "writing": {
+     "target": "500–650 Hanzi · esai akademik",
+     "expectations": [
+      "Definisi konsep dan sintesis dua sumber",
+      "Kritik argumen dengan bukti",
+      "Register akademik yang presisi"
+     ],
+     "prompt": "评述“城市更新”中的公共空间问题。",
+     "model": "所谓城市更新，并不仅仅是拆旧建新，而是对城市功能与社会关系的重新组织。已有研究多从经济效益角度评估更新项目，却较少关注公共空间的分配。\n以旧城改造为例，改造后的街区往往环境更加整洁，但原有的集市、广场等日常交往场所随之消失，居民的社区参与反而下降。由此可见，空间质量的提升并不必然带来社会活力。\n因此，本文认为，评价城市更新应引入“可及性”与“参与度”两项指标，使公共空间真正服务于多数居民，而不是少数消费者。",
+     "translation": "Yang disebut pembaruan kota bukan sekadar membongkar yang lama dan membangun yang baru... Karena itu, evaluasi pembaruan kota perlu memasukkan indikator aksesibilitas dan partisipasi."
+    },
+    "speaking": {
+     "target": "4 menit · seminar",
+     "expectations": [
+      "Presentasi seminar dengan struktur akademik",
+      "Menjawab pertanyaan dengan argumen balik",
+      "Kontrol register lisan-akademik"
+     ],
+     "prompt": "在研讨会上介绍你对“数字鸿沟”的研究观点。",
+     "model": "我的发言主要围绕数字鸿沟的两个层面展开。第一个层面是接入差距，也就是基础设施是否覆盖；第二个层面是使用差距，即人们是否具备足够的信息素养。现有政策多集中在前者，而我的观察表明，即使网络已经普及，老年人和低收入群体仍然难以享受数字服务。因此，我主张把培训与社区支持纳入普惠政策的核心。",
+     "translation": "Paparan saya berfokus pada dua lapisan kesenjangan digital... Karena itu saya mengusulkan pelatihan dan dukungan komunitas menjadi inti kebijakan inklusif."
+    }
+   },
+   {
+    "id": "hsk-8",
+    "label": "HSK 8",
+    "writing": {
+     "target": "650–800 Hanzi · policy paper",
+     "expectations": [
+      "Metodologi dan bukti empiris dijelaskan",
+      "Implikasi kebijakan dan keterbatasan dinyatakan",
+      "Terminologi kebijakan yang tepat"
+     ],
+     "prompt": "撰写一份关于“产业补贴政策”的简要政策建议。",
+     "model": "一、问题提出：近年来，地方政府普遍采用补贴手段扶持新兴产业，但补贴效果差异明显。\n二、主要发现：基于三个行业的案例比较，补贴在市场失灵明显、技术外部性强的领域效果较好；而在竞争充分的领域，长期补贴容易削弱企业的创新动力。\n三、政策建议：第一，补贴应设定明确的退出机制；第二，以研发投入和成果转化为考核指标；第三，建立独立的政策效果评估。\n四、局限性：本研究样本有限，结论的推广仍需更多实证依据。",
+     "translation": "1. Rumusan masalah... 3. Rekomendasi: subsidi perlu mekanisme keluar yang jelas; indikator litbang dan hilirisasi; evaluasi dampak independen. 4. Keterbatasan: sampel terbatas."
+    },
+    "speaking": {
+     "target": "5 menit · briefing profesional",
+     "expectations": [
+      "Briefing ringkas dengan prioritas dan risiko kunci",
+      "Menjawab pertanyaan pembuat kebijakan",
+      "Presisi istilah dan kelancaran tinggi"
+     ],
+     "prompt": "向决策者汇报“数据跨境流动”的监管建议。",
+     "model": "各位领导，我的汇报分三点。第一，数据跨境流动已经成为数字贸易的基础，一刀切的限制会显著提高企业的合规成本。第二，风险主要集中在个人敏感信息和重要数据，因此监管应分类分级。第三，建议建立白名单与安全评估相结合的机制，并加强与主要贸易伙伴的规则对接。以上建议在保障安全的同时，也为企业留下了发展空间。",
+     "translation": "Bapak/Ibu pimpinan, paparan saya terdiri dari tiga poin... Rekomendasi ini menjaga keamanan sekaligus memberi ruang berkembang bagi perusahaan."
+    }
+   },
+   {
+    "id": "hsk-9",
+    "label": "HSK 9",
+    "writing": {
+     "target": "800–1000 Hanzi · esai akademik mastery",
+     "expectations": [
+      "Argumen orisinal dan kontribusi teoretis",
+      "Analisis wacana dan sintesis multidisipliner",
+      "Kontrol retorika setara penulis akademik"
+     ],
+     "prompt": "论“现代性反思”对当代社会的意义。",
+     "model": "现代性所承诺的理性与进步，在带来效率的同时，也伴随着人的异化。韦伯所说的理性化，使社会运转日益可计算，却也让意义问题被悬置。\n然而，将现代性简单地视为危机，同样是一种片面。反思性恰恰是现代社会自身的特征：制度能够审视自身的前提，并在批评中修正方向。\n本文认为，现代性反思的意义不在于回到前现代，而在于重建工具理性与价值理性之间的平衡。只有当技术进步重新接受公共讨论的检验，现代性才能真正兑现其解放的承诺。",
+     "translation": "Rasionalitas dan kemajuan yang dijanjikan modernitas membawa efisiensi sekaligus alienasi... Hanya ketika kemajuan teknologi kembali diuji oleh diskusi publik, modernitas dapat benar-benar menepati janji pembebasannya."
+    },
+    "speaking": {
+     "target": "6 menit · colloquium",
+     "expectations": [
+      "Wacana akademik lisan yang orisinal",
+      "Menanggapi kritik dengan argumen balik yang kuat",
+      "Prosodi retoris tingkat tinggi"
+     ],
+     "prompt": "在学术讨论会上阐述你对“跨学科研究”的看法。",
+     "model": "我想从一个问题开始：为什么越来越多的重大课题无法由单一学科回答？气候、公共卫生、人工智能，这些问题本身就是跨界的。跨学科研究的价值，不在于把不同方法简单相加，而在于以问题为导向，重新组织知识。当然，学科壁垒依然存在，评价体系也往往奖励单一领域的成果。因此，我认为学术共同体需要调整评价标准，为真正的方法融合留出空间。",
+     "translation": "Saya ingin mulai dari satu pertanyaan: mengapa semakin banyak persoalan besar tidak bisa dijawab satu disiplin?... Karena itu komunitas akademik perlu menyesuaikan standar evaluasi agar ada ruang bagi integrasi metode yang sejati."
+    }
+   }
+  ],
+  "arabic": [
+   {
+    "id": "pemula",
+    "label": "Pemula (A1)",
+    "writing": {
+     "target": "4–6 kalimat nominal/verbal pendek",
+     "expectations": [
+      "Jumlah ismiyyah sederhana dengan mubtada'–khabar yang serasi",
+      "Kata ganti dan kata tunjuk (هٰذَا/هٰذِهِ) sesuai jenis",
+      "Harakat pada kata-kata kunci"
+     ],
+     "prompt": "اُكْتُبْ عَنْ نَفْسِكَ.",
+     "model": "اِسْمِي أَحْمَدُ. أَنَا مِنْ إِنْدُونِيسِيَا. أَنَا طَالِبٌ فِي الْجَامِعَةِ. بَيْتِي كَبِيرٌ وَجَمِيلٌ. أُحِبُّ اللُّغَةَ الْعَرَبِيَّةَ.",
+     "translation": "Nama saya Ahmad. Saya dari Indonesia. Saya mahasiswa di universitas. Rumah saya besar dan indah. Saya suka bahasa Arab."
+    },
+    "speaking": {
+     "target": "20–40 detik",
+     "expectations": [
+      "Salam dan perkenalan (السَّلَامُ عَلَيْكُمْ، اِسْمِي…)",
+      "Makhraj huruf ع ح خ ق jelas",
+      "Kalimat pendek tanpa jeda panjang"
+     ],
+     "prompt": "عَرِّفْ نَفْسَكَ.",
+     "model": "السَّلَامُ عَلَيْكُمْ. اِسْمِي فَاطِمَةُ. أَنَا مِنْ جَاكَرْتَا. أَنَا مُدَرِّسَةٌ. هِوَايَتِي الْقِرَاءَةُ. شُكْرًا.",
+     "translation": "Assalamu'alaikum. Nama saya Fatimah. Saya dari Jakarta. Saya guru. Hobi saya membaca. Terima kasih."
+    }
+   },
+   {
+    "id": "elementary",
+    "label": "Elementary (A2)",
+    "writing": {
+     "target": "6–8 kalimat · rutinitas/pengalaman",
+     "expectations": [
+      "Fi'il madhi dan mudhari' untuk kegiatan",
+      "Huruf jar dan keterangan waktu (فِي الصَّبَاحِ، بَعْدَ ذٰلِكَ)",
+      "Kesesuaian mudzakkar–muannats"
+     ],
+     "prompt": "اُكْتُبْ عَنْ يَوْمِكَ.",
+     "model": "أَسْتَيْقِظُ فِي السَّاعَةِ الْخَامِسَةِ صَبَاحًا. أُصَلِّي الْفَجْرَ ثُمَّ أَتَنَاوَلُ الْفَطُورَ مَعَ أُسْرَتِي. أَذْهَبُ إِلَى الْجَامِعَةِ بِالْحَافِلَةِ. أَدْرُسُ حَتَّى السَّاعَةِ الثَّانِيَةِ. بَعْدَ ذٰلِكَ أَرْجِعُ إِلَى الْبَيْتِ وَأُرَاجِعُ دُرُوسِي. فِي اللَّيْلِ أَقْرَأُ كِتَابًا ثُمَّ أَنَامُ.",
+     "translation": "Saya bangun jam lima pagi. Saya shalat Subuh lalu sarapan bersama keluarga. Saya pergi ke kampus naik bus. Saya belajar sampai jam dua. Setelah itu saya pulang dan mengulang pelajaran. Malam hari saya membaca buku lalu tidur."
+    },
+    "speaking": {
+     "target": "30–60 detik",
+     "expectations": [
+      "Menceritakan kegiatan dengan urutan (ثُمَّ، بَعْدَ ذٰلِكَ)",
+      "Pelafalan panjang-pendek vokal",
+      "Menjawab pertanyaan sederhana lawan bicara"
+     ],
+     "prompt": "تَحَدَّثْ عَنْ عُطْلَتِكَ الْمَاضِيَةِ.",
+     "model": "فِي الْعُطْلَةِ الْمَاضِيَةِ سَافَرْتُ إِلَى بَانْدُونْغ مَعَ عَائِلَتِي. زُرْنَا حَدِيقَةَ الشَّايِ وَأَكَلْنَا طَعَامًا لَذِيذًا. كَانَ الْجَوُّ بَارِدًا وَجَمِيلًا. رَجَعْنَا إِلَى الْبَيْتِ مَسْرُورِينَ.",
+     "translation": "Pada liburan lalu saya bepergian ke Bandung bersama keluarga. Kami mengunjungi kebun teh dan makan makanan lezat. Cuacanya dingin dan indah. Kami pulang dengan gembira."
+    }
+   },
+   {
+    "id": "intermediate",
+    "label": "Intermediate (B1)",
+    "writing": {
+     "target": "80–120 kata · paragraf opini",
+     "expectations": [
+      "Opini dengan alasan (أَرَى أَنَّ… لِأَنَّ…)",
+      "Kata sambung لٰكِنَّ، لِذٰلِكَ، أَيْضًا",
+      "I'rab dasar (marfu'/manshub) pada kata kunci"
+     ],
+     "prompt": "مَا رَأْيُكَ فِي التَّعَلُّمِ عَنْ بُعْدٍ؟",
+     "model": "أَرَى أَنَّ التَّعَلُّمَ عَنْ بُعْدٍ مُفِيدٌ فِي بَعْضِ الْأَحْوَالِ. فَهُوَ يُوَفِّرُ الْوَقْتَ وَالْمَالَ، وَيَسْتَطِيعُ الطَّالِبُ أَنْ يَدْرُسَ مِنْ أَيِّ مَكَانٍ. لٰكِنَّهُ يَحْتَاجُ إِلَى انْضِبَاطٍ ذَاتِيٍّ كَبِيرٍ، وَقَدْ يَشْعُرُ الطَّالِبُ بِالْوَحْدَةِ لِأَنَّهُ لَا يَلْتَقِي بِأَصْدِقَائِهِ. لِذٰلِكَ أُفَضِّلُ الْجَمْعَ بَيْنَ الدِّرَاسَةِ فِي الْفَصْلِ وَالدِّرَاسَةِ عَبْرَ الْإِنْتَرْنِتِ.",
+     "translation": "Menurut saya belajar jarak jauh bermanfaat dalam beberapa keadaan... Karena itu saya lebih suka menggabungkan belajar di kelas dan belajar lewat internet."
+    },
+    "speaking": {
+     "target": "1–1,5 menit",
+     "expectations": [
+      "Menyampaikan pendapat dengan contoh",
+      "Kelancaran dengan penanda wacana (أَوَّلًا، ثَانِيًا)",
+      "Makhraj dan tajwid dasar terjaga"
+     ],
+     "prompt": "تَحَدَّثْ عَنْ أَهَمِّيَّةِ اللُّغَةِ الْعَرَبِيَّةِ لَكَ.",
+     "model": "اللُّغَةُ الْعَرَبِيَّةُ مُهِمَّةٌ لِي لِأَسْبَابٍ كَثِيرَةٍ. أَوَّلًا، هِيَ لُغَةُ الْقُرْآنِ، وَأُرِيدُ أَنْ أَفْهَمَهُ بِدُونِ تَرْجَمَةٍ. ثَانِيًا، أُرِيدُ أَنْ أَعْمَلَ فِي مَجَالِ السِّيَاحَةِ، وَكَثِيرٌ مِنَ السُّيَّاحِ يَأْتُونَ مِنَ الدُّوَلِ الْعَرَبِيَّةِ. لِذٰلِكَ أَدْرُسُهَا كُلَّ يَوْمٍ.",
+     "translation": "Bahasa Arab penting bagi saya karena banyak alasan. Pertama, ia bahasa Al-Qur'an dan saya ingin memahaminya tanpa terjemahan. Kedua, saya ingin bekerja di bidang pariwisata... Karena itu saya mempelajarinya setiap hari."
+    }
+   },
+   {
+    "id": "upper-intermediate",
+    "label": "Upper-Intermediate (B2)",
+    "writing": {
+     "target": "150–200 kata · esai argumentatif",
+     "expectations": [
+      "Argumen dan kontra-argumen (مِنْ جِهَةٍ… وَمِنْ جِهَةٍ أُخْرَى)",
+      "Kosakata tematik B2 dan struktur إِنَّ/أَنَّ",
+      "Kesimpulan yang jelas (وَخُلَاصَةُ الْقَوْلِ)"
+     ],
+     "prompt": "هَلْ وَسَائِلُ التَّوَاصُلِ الِاجْتِمَاعِيِّ نِعْمَةٌ أَمْ نِقْمَةٌ؟",
+     "model": "أَصْبَحَتْ وَسَائِلُ التَّوَاصُلِ الِاجْتِمَاعِيِّ جُزْءًا مِنْ حَيَاتِنَا الْيَوْمِيَّةِ. فَمِنْ جِهَةٍ، تُسَاعِدُنَا عَلَى التَّوَاصُلِ مَعَ الْأَهْلِ وَالْأَصْدِقَاءِ، وَتُتِيحُ لِلْمَشَارِيعِ الصَّغِيرَةِ الْوُصُولَ إِلَى الزَّبَائِنِ.\nوَمِنْ جِهَةٍ أُخْرَى، تَنْتَشِرُ فِيهَا الشَّائِعَاتُ بِسُرْعَةٍ، وَقَدْ يُضَيِّعُ الشَّبَابُ فِيهَا سَاعَاتٍ طَوِيلَةً.\nوَخُلَاصَةُ الْقَوْلِ إِنَّهَا سِلَاحٌ ذُو حَدَّيْنِ؛ فَإِذَا اسْتَخْدَمْنَاهَا بِوَعْيٍ كَانَتْ نِعْمَةً، وَإِذَا أَسَأْنَا اسْتِخْدَامَهَا صَارَتْ نِقْمَةً.",
+     "translation": "Media sosial telah menjadi bagian hidup sehari-hari... Kesimpulannya, ia pedang bermata dua: jika dipakai dengan sadar menjadi nikmat, jika disalahgunakan menjadi bencana."
+    },
+    "speaking": {
+     "target": "2–3 menit",
+     "expectations": [
+      "Presentasi terstruktur dengan pembuka dan penutup",
+      "Menanggapi pertanyaan dengan sopan",
+      "Intonasi dan jeda sesuai makna"
+     ],
+     "prompt": "قَدِّمْ عَرْضًا قَصِيرًا عَنْ مُشْكِلَةٍ بِيئِيَّةٍ فِي مَدِينَتِكَ.",
+     "model": "أَيُّهَا الْحُضُورُ الْكِرَامُ، أَوَدُّ أَنْ أَتَحَدَّثَ عَنْ مُشْكِلَةِ النُّفَايَاتِ الْبِلَاسْتِيكِيَّةِ فِي مَدِينَتِي. تُلْقَى أَطْنَانٌ مِنَ الْبِلَاسْتِيكِ فِي الْأَنْهَارِ كُلَّ يَوْمٍ، مِمَّا يُسَبِّبُ الْفَيَضَانَاتِ. وَالْحَلُّ يَبْدَأُ مِنَ الْبَيْتِ: أَنْ نُقَلِّلَ اسْتِخْدَامَ الْأَكْيَاسِ، وَأَنْ نَفْرِزَ النُّفَايَاتِ. شُكْرًا لِحُسْنِ اسْتِمَاعِكُمْ.",
+     "translation": "Hadirin yang terhormat, saya ingin membahas masalah sampah plastik di kota saya... Solusinya dimulai dari rumah: mengurangi kantong plastik dan memilah sampah. Terima kasih atas perhatiannya."
+    }
+   },
+   {
+    "id": "advanced",
+    "label": "Advanced (C1)",
+    "writing": {
+     "target": "200–280 kata · laporan/esai formal",
+     "expectations": [
+      "Register formal (يُعَدُّ، يُلَاحَظُ، تَجْدُرُ الْإِشَارَةُ)",
+      "Organisasi: pendahuluan–analisis–rekomendasi",
+      "Ketepatan i'rab dan kosakata kebijakan"
+     ],
+     "prompt": "اُكْتُبْ مَقَالًا عَنْ دَوْرِ التَّعْلِيمِ فِي التَّنْمِيَةِ.",
+     "model": "يُعَدُّ التَّعْلِيمُ الرَّكِيزَةَ الْأُولَى لِأَيِّ تَنْمِيَةٍ حَقِيقِيَّةٍ؛ إِذْ لَا يُمْكِنُ بِنَاءُ اقْتِصَادٍ قَوِيٍّ دُونَ رَأْسِ مَالٍ بَشَرِيٍّ مُؤَهَّلٍ.\nوَيُلَاحَظُ أَنَّ الدُّوَلَ الَّتِي اسْتَثْمَرَتْ فِي جَوْدَةِ التَّعْلِيمِ حَقَّقَتْ نُمُوًّا أَسْرَعَ، غَيْرَ أَنَّ الْمُشْكِلَةَ لَا تَكْمُنُ فِي عَدَدِ الْمَدَارِسِ بَلْ فِي مُسْتَوَى الْمُعَلِّمِينَ وَالْمَنَاهِجِ.\nوَتَجْدُرُ الْإِشَارَةُ إِلَى أَنَّ تَكَافُؤَ الْفُرَصِ بَيْنَ الرِّيفِ وَالْمَدِينَةِ شَرْطٌ أَسَاسِيٌّ لِتَحْقِيقِ الْعَدَالَةِ. لِذَا يُوصَى بِتَأْهِيلِ الْمُعَلِّمِينَ وَرَبْطِ الْمَنَاهِجِ بِحَاجَاتِ سُوقِ الْعَمَلِ.",
+     "translation": "Pendidikan dianggap pilar pertama setiap pembangunan sejati... Karena itu direkomendasikan peningkatan kualifikasi guru dan pengaitan kurikulum dengan kebutuhan pasar kerja."
+    },
+    "speaking": {
+     "target": "3–4 menit",
+     "expectations": [
+      "Diskusi spontan tentang isu kompleks",
+      "Parafrase dan argumen balik",
+      "Prosodi formal (khutbah/presentasi)"
+     ],
+     "prompt": "نَاقِشْ: هَلِ الذَّكَاءُ الِاصْطِنَاعِيُّ خَطَرٌ عَلَى الْوَظَائِفِ؟",
+     "model": "لَا شَكَّ أَنَّ الذَّكَاءَ الِاصْطِنَاعِيَّ سَيُغَيِّرُ سُوقَ الْعَمَلِ تَغْيِيرًا جِذْرِيًّا. فَبَعْضُ الْوَظَائِفِ الرُّوتِينِيَّةِ سَتَخْتَفِي، هٰذَا أَمْرٌ لَا مَفَرَّ مِنْهُ. وَلٰكِنَّ التَّارِيخَ يُعَلِّمُنَا أَنَّ كُلَّ ثَوْرَةٍ تِقْنِيَّةٍ تَخْلُقُ مِهَنًا جَدِيدَةً. فَالسُّؤَالُ الْحَقِيقِيُّ لَيْسَ: هَلْ سَنَفْقِدُ وَظَائِفَنَا؟ بَلْ: هَلْ نَحْنُ مُسْتَعِدُّونَ لِتَعَلُّمِ مَهَارَاتٍ جَدِيدَةٍ؟",
+     "translation": "Tidak diragukan AI akan mengubah pasar kerja secara mendasar... Pertanyaan sebenarnya bukan 'apakah kita akan kehilangan pekerjaan?' melainkan 'apakah kita siap mempelajari keterampilan baru?'"
+    }
+   },
+   {
+    "id": "proficiency",
+    "label": "Superior (C2)",
+    "writing": {
+     "target": "280–380 kata · esai bernuansa",
+     "expectations": [
+      "Sintesis gagasan dan analisis premis",
+      "Uslub balaghah yang terkendali (تَقْدِيمٌ وَتَأْخِيرٌ، إِيجَازٌ)",
+      "Hampir tanpa kesalahan nahwu–sharaf"
+     ],
+     "prompt": "اُكْتُبْ مَقَالَةً عَنِ الْعَلَاقَةِ بَيْنَ الْأَصَالَةِ وَالْمُعَاصَرَةِ.",
+     "model": "كَثِيرًا مَا تُطْرَحُ الْأَصَالَةُ وَالْمُعَاصَرَةُ بِوَصْفِهِمَا نَقِيضَيْنِ لَا يَلْتَقِيَانِ، وَكَأَنَّ عَلَى الْمُجْتَمَعِ أَنْ يَخْتَارَ بَيْنَ مَاضِيهِ وَمُسْتَقْبَلِهِ.\nغَيْرَ أَنَّ هٰذَا التَّقَابُلَ يَقُومُ عَلَى تَصَوُّرٍ جَامِدٍ لِلتُّرَاثِ؛ فَالتُّرَاثُ لَمْ يَكُنْ يَوْمًا كُتْلَةً وَاحِدَةً، بَلْ كَانَ حِوَارًا مُسْتَمِرًّا بَيْنَ الْأَجْيَالِ، يُضِيفُ كُلُّ جِيلٍ إِلَيْهِ وَيَنْقُدُ مِنْهُ.\nوَعَلَيْهِ، فَالْأَصَالَةُ الْحَقَّةُ لَيْسَتْ فِي تَكْرَارِ أَشْكَالِ الْمَاضِي، وَإِنَّمَا فِي اسْتِلْهَامِ رُوحِهِ النَّقْدِيَّةِ لِمُوَاجَهَةِ أَسْئِلَةِ الْحَاضِرِ.",
+     "translation": "Keaslian dan kemodernan sering diajukan sebagai dua hal yang bertentangan... Maka keaslian sejati bukan mengulang bentuk masa lalu, melainkan mengambil inspirasi dari semangat kritisnya untuk menghadapi pertanyaan masa kini."
+    },
+    "speaking": {
+     "target": "4–5 menit",
+     "expectations": [
+      "Wacana panjang persuasif dan koheren",
+      "Register fusha tinggi dengan retorika",
+      "Pelafalan fasih dan intonasi khitabah"
+     ],
+     "prompt": "أَلْقِ كَلِمَةً قَصِيرَةً عَنْ قِيمَةِ الْحِوَارِ.",
+     "model": "أَيُّهَا الْإِخْوَةُ وَالْأَخَوَاتُ، إِنَّ الْحِوَارَ لَيْسَ تَرَفًا فِكْرِيًّا، بَلْ هُوَ ضَرُورَةٌ لِبَقَاءِ الْمُجْتَمَعَاتِ. فَحِينَ يَغِيبُ الْحِوَارُ يَحْضُرُ سُوءُ الظَّنِّ، وَحِينَ يَحْضُرُ تَتَّسِعُ الْمَسَاحَاتُ الْمُشْتَرَكَةُ. وَلَيْسَ الْمَطْلُوبُ أَنْ نَتَّفِقَ فِي كُلِّ شَيْءٍ، وَإِنَّمَا أَنْ نَخْتَلِفَ دُونَ أَنْ نَتَفَرَّقَ.",
+     "translation": "Saudara-saudari, dialog bukanlah kemewahan intelektual, melainkan kebutuhan bagi kelangsungan masyarakat... Yang dituntut bukan sepakat dalam segala hal, melainkan berbeda tanpa bercerai-berai."
+    }
+   },
+   {
+    "id": "mastery",
+    "label": "Mastery",
+    "writing": {
+     "target": "400–500 kata · analisis teks/balaghah",
+     "expectations": [
+      "Analisis balaghah (tasybih, isti'arah, kinayah) dengan contoh",
+      "Penulisan akademik bergaya turats–modern",
+      "Ketepatan istilah dan rujukan"
+     ],
+     "prompt": "حَلِّلْ صُورَةً بَلَاغِيَّةً مِنْ نَصٍّ أَدَبِيٍّ تَخْتَارُهُ.",
+     "model": "فِي قَوْلِ الشَّاعِرِ: «وَالْعِلْمُ نُورٌ»، يُشَبِّهُ الْعِلْمَ بِالنُّورِ تَشْبِيهًا بَلِيغًا حُذِفَتْ مِنْهُ الْأَدَاةُ وَوَجْهُ الشَّبَهِ، فَاكْتَسَبَ الْكَلَامُ قُوَّةً وَإِيجَازًا.\nوَوَجْهُ الشَّبَهِ الْمُقَدَّرُ هُوَ الْهِدَايَةُ وَكَشْفُ الْخَفَاءِ؛ فَكَمَا يُبَدِّدُ النُّورُ الظَّلَامَ، يُبَدِّدُ الْعِلْمُ الْجَهْلَ.\nوَلَوْ قَالَ: «الْعِلْمُ كَالنُّورِ فِي الْهِدَايَةِ» لَصَحَّ الْمَعْنَى، وَلٰكِنْ لَضَعُفَ الْأَثَرُ؛ إِذْ إِنَّ حَذْفَ الْأَدَاةِ يُوهِمُ اتِّحَادَ الطَّرَفَيْنِ، وَهٰذَا مِنْ أَسْرَارِ الْبَلَاغَةِ الْعَرَبِيَّةِ.",
+     "translation": "Dalam ucapan penyair 'dan ilmu adalah cahaya', ilmu diserupakan dengan cahaya melalui tasybih baligh tanpa perangkat dan segi keserupaan... Pembuangan perangkat memberi kesan kesatuan kedua unsur, dan ini termasuk rahasia balaghah Arab."
+    },
+    "speaking": {
+     "target": "5 menit · khutbah/ceramah ilmiah",
+     "expectations": [
+      "Struktur khutbah/ceramah: muqaddimah–isi–khatimah",
+      "Kutipan dan istidlal yang tepat",
+      "Penyampaian berwibawa dan jelas"
+     ],
+     "prompt": "أَلْقِ مُحَاضَرَةً قَصِيرَةً عَنْ مَنْهَجِ الْعُلَمَاءِ فِي طَلَبِ الْعِلْمِ.",
+     "model": "الْحَمْدُ لِلّٰهِ، وَبَعْدُ: فَقَدْ عُرِفَ عُلَمَاؤُنَا بِمَنْهَجٍ دَقِيقٍ فِي طَلَبِ الْعِلْمِ، يَقُومُ عَلَى التَّدَرُّجِ وَالتَّوْثِيقِ. فَكَانُوا يَبْدَؤُونَ بِحِفْظِ الْمُتُونِ، ثُمَّ يَقْرَؤُونَ الشُّرُوحَ عَلَى الشُّيُوخِ، ثُمَّ يُنَاظِرُونَ وَيَنْقُدُونَ. وَلَمْ يَكُونُوا يَقْبَلُونَ خَبَرًا إِلَّا بِسَنَدٍ. وَمَا أَحْوَجَنَا الْيَوْمَ، فِي زَمَنِ فَيْضِ الْمَعْلُومَاتِ، إِلَى هٰذَا الْمَنْهَجِ الرَّصِينِ.",
+     "translation": "Segala puji bagi Allah; adapun kemudian: ulama kita dikenal dengan metode yang cermat dalam menuntut ilmu, berdasar pada bertahap dan verifikasi... Betapa kita hari ini, di zaman banjir informasi, membutuhkan metode yang kokoh ini."
+    }
+   },
+   {
+    "id": "scholar",
+    "label": "Scholar",
+    "writing": {
+     "target": "500–700 kata · abstrak/pendahuluan riset",
+     "expectations": [
+      "Problematika, pertanyaan, dan hipotesis riset jelas",
+      "Tinjauan pustaka dan celah penelitian",
+      "Bahasa akademik Arab yang presisi dan sitasi rapi"
+     ],
+     "prompt": "اُكْتُبْ مُقَدِّمَةَ بَحْثٍ عِلْمِيٍّ فِي مَجَالِ تَعْلِيمِ الْعَرَبِيَّةِ.",
+     "model": "تَتَنَاوَلُ هٰذِهِ الدِّرَاسَةُ إِشْكَالِيَّةَ ضَعْفِ مَهَارَةِ الْكَلَامِ لَدَى مُتَعَلِّمِي الْعَرَبِيَّةِ النَّاطِقِينَ بِالْإِنْدُونِيسِيَّةِ، عَلَى الرَّغْمِ مِنْ تَمَكُّنِهِمْ النِّسْبِيِّ مِنَ الْقَوَاعِدِ.\nوَقَدْ رَكَّزَتِ الدِّرَاسَاتُ السَّابِقَةُ عَلَى تَحْلِيلِ الْأَخْطَاءِ النَّحْوِيَّةِ، فِي حِينِ ظَلَّ الْبُعْدُ التَّوَاصُلِيُّ أَقَلَّ حُضُورًا؛ وَهُنَا تَكْمُنُ الْفَجْوَةُ الْبَحْثِيَّةُ.\nوَعَلَيْهِ، تَسْعَى الدِّرَاسَةُ إِلَى الْإِجَابَةِ عَنِ السُّؤَالِ الْآتِي: مَا أَثَرُ التَّعَلُّمِ الْقَائِمِ عَلَى الْمَهَامِّ فِي تَنْمِيَةِ الطَّلَاقَةِ؟ وَتَفْتَرِضُ وُجُودَ فَرْقٍ دَالٍّ إِحْصَائِيًّا لِصَالِحِ الْمَجْمُوعَةِ التَّجْرِيبِيَّةِ.",
+     "translation": "Penelitian ini membahas problematika lemahnya keterampilan berbicara pembelajar bahasa Arab berbahasa Indonesia... dan berhipotesis adanya perbedaan signifikan secara statistik yang menguntungkan kelompok eksperimen."
+    },
+    "speaking": {
+     "target": "6 menit · presentasi seminar/sidang",
+     "expectations": [
+      "Presentasi temuan riset dengan struktur akademik",
+      "Menanggapi penguji secara argumentatif dan santun",
+      "Kefasihan dan presisi istilah"
+     ],
+     "prompt": "اِعْرِضْ نَتَائِجَ بَحْثِكَ أَمَامَ لَجْنَةِ الْمُنَاقَشَةِ.",
+     "model": "أَصْحَابَ الْفَضِيلَةِ أَعْضَاءَ اللَّجْنَةِ، يَسُرُّنِي أَنْ أَعْرِضَ خُلَاصَةَ بَحْثِي. لَقَدْ أَظْهَرَتِ النَّتَائِجُ أَنَّ الْمَجْمُوعَةَ التَّجْرِيبِيَّةَ تَفَوَّقَتْ فِي الطَّلَاقَةِ بِفَارِقٍ دَالٍّ إِحْصَائِيًّا. وَأُقِرُّ بِأَنَّ حَجْمَ الْعَيِّنَةِ مَحْدُودٌ، مِمَّا يَسْتَدْعِي الْحَذَرَ فِي التَّعْمِيمِ. وَأَقْتَرِحُ لِلْبُحُوثِ الْقَادِمَةِ دِرَاسَةً طُولِيَّةً عَلَى عَيِّنَةٍ أَوْسَعَ. وَالشُّكْرُ لَكُمْ عَلَى مُلَاحَظَاتِكُمُ الْقَيِّمَةِ.",
+     "translation": "Para anggota komite yang terhormat, saya senang memaparkan ringkasan penelitian saya... Saya mengusulkan penelitian longitudinal dengan sampel lebih luas. Terima kasih atas masukan yang berharga."
+    }
+   }
+  ]
+ }
+}

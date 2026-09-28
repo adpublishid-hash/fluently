@@ -1,20 +1,49 @@
 # Fluently Production Checklist
 
+Step-by-step guides (Bahasa Indonesia):
+
+- [docs/DEPLOY_VPS.md](docs/DEPLOY_VPS.md): deploy ke VPS Ubuntu (PostgreSQL, systemd, nginx, HTTPS, backup)
+- [docs/AUDIO_GENERATION.md](docs/AUDIO_GENERATION.md): membuat audio rekaman TTS untuk konten
+
 ## Local validation
 
-Run these before deploying:
+Run these before deploying (CI runs the same checks on every pull request):
 
 ```bash
 npm run typecheck
 npm run lint
+npm test                 # Vitest: content audit gate, quiz/SRS/game/progress unit tests
 npm run build
+npm --prefix server test # node:test for the server XP policy
+npm run content:audit    # per language/level report: invalid questions, duplicates, answer bias
 ```
+
+With the API running against Postgres, `npm --prefix server run smoke` exercises
+registration, XP rules and progress sync end to end.
 
 Frontend output is generated in `dist/`. The API server is in `server/` and starts with:
 
 ```bash
 npm run server:start
 ```
+
+## Pre-generated audio
+
+Lesson pages play a recorded file when one exists for the exact text and fall
+back to live TTS otherwise (`src/services/audioLibrary.ts`). To record the
+course content with Gemini TTS:
+
+```bash
+npm run audio:generate -- --dry-run            # count texts/characters per language
+GEMINI_API_KEY=... npm run audio:generate      # core: passages, theme sentences, rubric models, English extras (~2.8k)
+GEMINI_API_KEY=... npm run audio:generate -- --scope all --lang zh,ja --limit 500
+```
+
+Files are named by a content hash, so the script resumes where it stopped and
+the service worker caches them permanently. MP3 output needs `ffmpeg` (WAV
+otherwise). The files go to `public/audio/` with `manifest.json`; for a large
+set, upload that folder to object storage/CDN and set `VITE_AUDIO_BASE_URL`
+instead of committing thousands of files.
 
 ## Required production environment
 
@@ -27,6 +56,12 @@ Copy `server/.env.example` to your hosting provider's environment variables and 
 - `QRIS_IMAGE_URL`: public QRIS image URL.
 - `SMTP_*`: email sending credentials.
 - `ONESENDER_*`: WhatsApp notification credentials.
+- `JWT_SECRET`: long random secret for session tokens.
+- `KIE_API_KEY`, `KIE_MODEL` (default `gemini-3-8-flash`), `KIE_BASE_URL`: server-paid AI via Kie AI.
+- `AI_DAILY_QUOTA_FREE` / `_PRO` / `_LIFETIME`: AI requests per user per day on the server key (reset 00:00 WIB).
+  When the quota is used up, learners can add their own free Google AI Studio key in the app; it is sent per
+  request (`X-Gemini-Key`), used with `BYOK_GEMINI_MODEL`, and never stored on the server.
+- `DAILY_XP_CAP`: maximum XP a user can earn per UTC day (default 3000).
 
 Do not commit real `.env` values or API keys.
 

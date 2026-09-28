@@ -3,37 +3,28 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BookOpen, CheckCircle, ChevronLeft, ClipboardCheck, Layers, ListChecks, Target, Volume2 } from 'lucide-react';
 import { getMandarinLesson } from './mandarinLessonContent';
 import { isMandarinSkill, mandarinLessonCounts, mandarinLevels, mandarinSkills, normalizeMandarinLevel, type MandarinSkillId } from './mandarinModuleData';
+import { useAuth } from '../../../auth/AuthContext';
+import { languageCompletionKey, markCompletedId } from '../../../utils/lessonProgress';
+import StrokeOrderPanel from '../../../components/shared/StrokeOrderPanel';
+import RubricCard from '../../../components/shared/RubricCard';
+import { speak } from '../../../utils/speech';
+import WordIllustration from '../../../components/shared/WordIllustration';
 
 function parseLessonId(raw?: string) {
   const match = (raw ?? 'lesson-1').match(/\d+/);
   return Number(match?.[0] ?? 1);
 }
 
-function getCompleted(levelId: string, skillId: string): number[] {
-  try {
-    return JSON.parse(localStorage.getItem(`talky_mandarin_${levelId}_${skillId}_completed`) || '[]');
-  } catch {
-    return [];
-  }
-}
-
 function markComplete(levelId: string, skillId: string, lessonId: number) {
-  const completed = getCompleted(levelId, skillId);
-  if (!completed.includes(lessonId)) {
-    localStorage.setItem(`talky_mandarin_${levelId}_${skillId}_completed`, JSON.stringify([...completed, lessonId]));
-  }
+  return markCompletedId(languageCompletionKey('mandarin', levelId, skillId), lessonId);
 }
 
 function speakMandarin(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'zh-CN';
-  utterance.rate = 0.82;
-  window.speechSynthesis.speak(utterance);
+  speak(text, 'zh-CN', { rate: 0.82 });
 }
 
 export default function MandarinLessonPage() {
+  const { awardXp } = useAuth();
   const navigate = useNavigate();
   const params = useParams();
   const levelId = normalizeMandarinLevel(params.levelId);
@@ -49,6 +40,7 @@ export default function MandarinLessonPage() {
   const goBack = () => navigate(`/modul/mandarin/${levelId}/${skillId}`);
   const completeAndContinue = () => {
     markComplete(levelId, skillId, lessonId);
+    void awardXp(50, 'lesson', `modul/mandarin/${levelId}/${skillId}/lesson-${lessonId}`);
     if (lessonId < totalLessons) navigate(`/modul/mandarin/${levelId}/${skillId}/lesson-${lessonId + 1}`);
     else goBack();
   };
@@ -183,9 +175,10 @@ export default function MandarinLessonPage() {
                 <button
                   key={`${word.hanzi}-${word.pinyin}`}
                   onClick={() => speakMandarin(word.hanzi)}
-                  className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-left hover:bg-red-50/60 transition"
+                  className="relative rounded-xl border border-slate-100 bg-slate-50 p-4 pr-12 text-left hover:bg-red-50/60 transition"
                   title="Dengarkan Mandarin"
                 >
+                  <WordIllustration meaning={word.meaning} className="absolute right-3 top-3" />
                   <p lang="zh-CN" className="text-2xl font-bold text-slate-900 leading-relaxed">{word.hanzi}</p>
                   <p className="mt-1 text-xs font-semibold text-slate-500">{word.pinyin}</p>
                   <p className="mt-1 text-sm text-slate-700">{word.meaning}</p>
@@ -193,6 +186,9 @@ export default function MandarinLessonPage() {
               ))}
             </div>
           </div>
+          {(skillId === 'writing' || skillId === 'vocabulary' || skillId === 'reading') && (
+            <StrokeOrderPanel text={lesson.vocabulary.map((word) => word.hanzi).join('')} color={skill.color} lang="zh-CN" />
+          )}
         </section>
 
         <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">
@@ -264,6 +260,7 @@ export default function MandarinLessonPage() {
           </div>
         </section>
 
+        {(skillId === 'speaking' || skillId === 'writing') && <RubricCard language="mandarin" level={levelId} skill={skillId} accentColor="#DC2626" />}
         {lesson.rubric && (
           <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">
             <h2 className="font-black text-slate-900 mb-4 flex items-center gap-2">

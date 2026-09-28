@@ -2,14 +2,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  X, ShoppingBag, BarChart3, Target, NotebookPen, GraduationCap,
-  Trophy, Sparkles, Settings, FileText, User, LogOut, ChevronRight, Shield,
-  Video,
+  X, ShoppingBag, BarChart3, Target, NotebookPen, GraduationCap, Trophy, Sparkles, Settings, FileText, User, LogOut, ChevronRight, Shield, Video, Brain, Compass, BookOpenText, ClipboardCheck,
 } from 'lucide-react';
 import { useCart } from '../../shop/CartContext';
 import { useAuth } from '../../auth/AuthContext';
 import { useLanguage } from '../../i18n/LanguageContext';
 import AppLanguageSwitcher from '../shared/AppLanguageSwitcher';
+import { studyLanguageFor } from '../../features/learning/studyLanguages';
 
 const fallbackAvatar = (name: string) =>
   `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(name || 'Learner')}&backgroundColor=b6e3f4`;
@@ -36,6 +35,8 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
   const { user } = useAuth();
   const { t } = useLanguage();
   const isAdmin = user?.role === 'admin';
+  const studyLanguage = studyLanguageFor(user?.persona?.targetLanguage);
+  const examPath = studyLanguage === 'english' ? '/ujian/english' : `/simulasi/${studyLanguage}`;
   const displayName = user?.displayName || user?.name || 'Learner';
   const avatarUrl = user?.avatarUrl || fallbackAvatar(displayName);
   const xp = user?.xp ?? 0;
@@ -64,7 +65,11 @@ export default function MoreSheet({ open, onClose, onLogout }: Props) {
     { id: 'leaderboard',   label: t('nav.leaderboard'),   icon: Trophy,       color: '#F39C12', bgColor: '#FEF3C7', path: '/rank' },
     { id: 'goals',         label: t('nav.goals'),         icon: Target,          color: '#E74C3C', bgColor: '#FDEDEC', path: '/goals' },
     { id: 'notes',         label: t('nav.notes'),         icon: NotebookPen,     color: '#4FA3D1', bgColor: '#EAF7FC', path: '/notes' },
-    { id: 'exam',          label: t('nav.exam'),          icon: GraduationCap,   color: '#9B59B6', bgColor: '#F4ECF7', path: '/ujian/english' },
+    { id: 'review',        label: 'Review Harian',        icon: Brain,           color: '#7C3AED', bgColor: '#EDE9FE', path: '/review' },
+    { id: 'passages',      label: 'Bacaan & Simakan',     icon: BookOpenText,    color: '#4F46E5', bgColor: '#EEF2FF', path: studyLanguage === 'english' ? '/bacaan' : `/bacaan/${studyLanguage}` },
+    { id: 'assessment',    label: 'Penilaian AI',         icon: ClipboardCheck,  color: '#0F766E', bgColor: '#CCFBF1', path: `/nilai/${studyLanguage}` },
+    { id: 'placement',     label: 'Tes Penempatan',       icon: Compass,         color: '#0284C7', bgColor: '#E0F2FE', path: '/placement' },
+    { id: 'exam',          label: t('nav.exam'),          icon: GraduationCap,   color: '#9B59B6', bgColor: '#F4ECF7', path: examPath },
     { id: 'analytics',     label: t('nav.analytics'),     icon: BarChart3,       color: '#2980B9', bgColor: '#D6EAF8', path: '/analytics' },
     { id: 'settings',      label: t('nav.settings.short'),      icon: Settings,        color: '#6B7280', bgColor: '#F3F4F6', path: '/profile' },
   ];

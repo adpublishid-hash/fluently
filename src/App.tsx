@@ -104,6 +104,13 @@ const GamePlayPage = lazy(() => import('./pages/game/GamePlayPage'));
 // Latihan pages (folder: pages/latihan/)
 const LatihanPage = lazy(() => import('./pages/latihan/LatihanPage'));
 const LatihanSkillPage = lazy(() => import('./pages/latihan/LatihanSkillPage'));
+const ReviewPage = lazy(() => import('./pages/learning/ReviewPage'));
+const PlacementTestPage = lazy(() => import('./pages/learning/PlacementTestPage'));
+const MockExamPage = lazy(() => import('./pages/learning/MockExamPage'));
+const PassageLabPage = lazy(() => import('./pages/learning/PassageLabPage'));
+const AssessmentPage = lazy(() => import('./pages/learning/AssessmentPage'));
+const JapanesePracticeTopicsPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeTopicsPage })));
+const JapanesePracticeSessionPage = lazy(() => import('./pages/latihan/japanese/JapanesePracticePage').then((module) => ({ default: module.JapanesePracticeSessionPage })));
 const ArabicMufradatTopikPages = [
   lazy(() => import('./pages/latihan/arabic/mufradat/topik1')),
   lazy(() => import('./pages/latihan/arabic/mufradat/topik2')),
@@ -570,6 +577,7 @@ import ComingSoonPage from './pages/ComingSoonPage';
 import { getPremiumBlock } from './utils/accessControl';
 
 import TTSNotice from './components/shared/TTSNotice';
+import AiKeyPrompt from './components/shared/AiKeyPrompt';
 import GlobalFocusTimer from './components/shared/GlobalFocusTimer';
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
@@ -724,6 +732,7 @@ function AppContent() {
   return (
     <div className={`relative min-h-screen bg-transparent ${isExamPage ? '' : 'md:pl-[260px]'}`}>
       <TTSNotice />
+      <AiKeyPrompt />
       {/* Left sidebar: always visible on desktop, hidden on mobile for deep pages */}
       <div className={isExamPage ? 'hidden' : isDeepPage ? 'hidden md:block' : ''}>
         <SidebarNav onLogout={handleLogout} />
@@ -763,91 +772,15 @@ function AppContent() {
                   <Route path="/modul/english/beginner/grammar" element={<BeginnerGrammarPage />} />
                   <Route path="/modul/english/beginner/speaking" element={<BeginnerSpeakingPage />} />
                   <Route path="/modul/english/beginner/pronunciation" element={<BeginnerPronunciationPage />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/vocabulary/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/grammar/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/speaking/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/pronunciation/lesson-10" element={<EnglishLessonRoute />} />
 
                   {/* Beginner Writing */}
                   <Route path="/modul/english/beginner/writing" element={<BeginnerWritingPage />} />
-                  <Route path="/modul/english/beginner/writing/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/writing/lesson-10" element={<EnglishLessonRoute />} />
 
                   {/* Beginner Reading */}
                   <Route path="/modul/english/beginner/reading" element={<BeginnerReadingPage />} />
-                  <Route path="/modul/english/beginner/reading/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/reading/lesson-10" element={<EnglishLessonRoute />} />
 
                   {/* Beginner Listening */}
                   <Route path="/modul/english/beginner/listening" element={<BeginnerListeningPage />} />
-                  <Route path="/modul/english/beginner/listening/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/beginner/listening/lesson-10" element={<EnglishLessonRoute />} />
 
                   <Route path="/modul/english/beginner/:skillId" element={<ComingSoonPage />} />
 
@@ -856,129 +789,24 @@ function AppContent() {
 
                   {/* Elementary Grammar */}
                   <Route path="/modul/english/elementary/grammar" element={<GrammarPage />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/grammar/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Elementary Pronunciation */}
                   <Route path="/modul/english/elementary/pronunciation" element={<ElemPronunciationPage />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/pronunciation/lesson-15" element={<EnglishLessonRoute />} />
 
                   {/* Elementary Speaking */}
                   <Route path="/modul/english/elementary/speaking" element={<ElemSpeakingPage />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/speaking/lesson-15" element={<EnglishLessonRoute />} />
 
                   {/* Elementary Vocabulary */}
                   <Route path="/modul/english/elementary/vocabulary" element={<ElemVocabularyPage />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/vocabulary/lesson-15" element={<EnglishLessonRoute />} />
 
                   {/* Elementary Writing */}
                   <Route path="/modul/english/elementary/writing" element={<ElementaryWritingPage />} />
-                  <Route path="/modul/english/elementary/writing/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/writing/lesson-15" element={<EnglishLessonRoute />} />
 
                   {/* Elementary Reading */}
                   <Route path="/modul/english/elementary/reading" element={<ElementaryReadingPage />} />
-                  <Route path="/modul/english/elementary/reading/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/reading/lesson-15" element={<EnglishLessonRoute />} />
 
                   {/* Elementary — Listening (A2) */}
                   <Route path="/modul/english/elementary/listening" element={<ElementaryListeningPage />} />
-                  <Route path="/modul/english/elementary/listening/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/elementary/listening/lesson-10" element={<EnglishLessonRoute />} />
 
                   {/* Other elementary skills â†’ Coming Soon */}
                   <Route path="/modul/english/elementary/:skillId" element={<ComingSoonPage />} />
@@ -993,159 +821,19 @@ function AppContent() {
                   <Route path="/modul/english/intermediate/listening" element={<InterListeningPage />} />
 
                   {/* Intermediate Grammar */}
-                  <Route path="/modul/english/intermediate/grammar/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/grammar/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Intermediate Speaking */}
-                  <Route path="/modul/english/intermediate/speaking/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/speaking/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Intermediate Vocabulary */}
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/vocabulary/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Intermediate Pronunciation */}
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/pronunciation/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Intermediate Reading */}
-                  <Route path="/modul/english/intermediate/reading/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/reading/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Intermediate Listening */}
-                  <Route path="/modul/english/intermediate/listening/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/listening/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Intermediate Writing */}
                   <Route path="/modul/english/intermediate/writing" element={<InterWritingPage />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/intermediate/writing/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* Other intermediate skills â†’ Coming Soon */}
                   <Route path="/modul/english/intermediate/:skillId" element={<ComingSoonPage />} />
@@ -1496,6 +1184,8 @@ function AppContent() {
                   <Route path="/latihan/mandarin/kǒuyǔ" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
                   <Route path="/latihan/mandarin/Kǒuyǔ" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
                   <Route path="/latihan/mandarin/speaking" element={<Navigate to="/latihan/mandarin/kouyu" replace />} />
+                  <Route path="/latihan/japanese/:skillId" element={<JapanesePracticeTopicsPage />} />
+                  <Route path="/latihan/japanese/:skillId/:topicSlug" element={<JapanesePracticeSessionPage />} />
                   <Route path="/latihan/:skillId" element={<LatihanSkillPage />} />
                   <Route path="/latihan/:skillId/start" element={<ComingSoonPage />} />
                   <Route path="/latihan/:levelId/:skillId" element={<LatihanSkillPage />} />
@@ -1529,421 +1219,40 @@ function AppContent() {
                   <Route path="/upgrade"   element={<UpgradePage />} />
                   <Route path="/analytics" element={<AnalyticsPage />} />
                   <Route path="/goals"     element={<GoalsPage />} />
+                  <Route path="/review" element={<ReviewPage />} />
+                  <Route path="/placement" element={<PlacementTestPage />} />
+                  <Route path="/simulasi/:language" element={<MockExamPage />} />
+                  <Route path="/bacaan" element={<PassageLabPage />} />
+                  <Route path="/bacaan/:language" element={<PassageLabPage />} />
+                  <Route path="/nilai" element={<AssessmentPage />} />
+                  <Route path="/nilai/:language" element={<AssessmentPage />} />
                   <Route path="/notes"     element={<NotesPage />} />
                   {/* Default redirect */}
                   <Route path="*" element={<Navigate to="/modul" replace />} />
                 // ============================================================
                   <Route path="/modul/english/upper-intermediate" element={<UpperInterPage />} />
                   <Route path="/modul/english/upper-intermediate/grammar" element={<UpperInterGrammarPage />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/grammar/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/upper-intermediate/speaking" element={<UpperInterSpeakingPage />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/speaking/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/upper-intermediate/vocabulary" element={<UpperInterVocabularyPage />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/vocabulary/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/upper-intermediate/pronunciation" element={<UpperInterPronunciationPage />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/pronunciation/lesson-20" element={<EnglishLessonRoute />} />
                   
                   <Route path="/modul/english/advanced/grammar" element={<AdvancedGrammarPage />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/grammar/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/advanced/speaking" element={<AdvancedSpeakingPage />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/speaking/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/advanced/listening" element={<AdvancedListeningPage />} />
-                  <Route path="/modul/english/advanced/listening/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/listening/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/advanced/reading" element={<AdvancedReadingPage />} />
-                  <Route path="/modul/english/advanced/reading/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/reading/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/advanced/writing" element={<AdvancedWritingPage />} />
-                  <Route path="/modul/english/advanced/writing/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/writing/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/advanced/vocabulary" element={<AdvancedVocabularyPage />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-20" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-21" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-22" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-23" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-24" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-25" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-26" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-27" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-28" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-29" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-30" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-31" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-32" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-33" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-34" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-35" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-36" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-37" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-38" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-39" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-40" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-41" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-42" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-43" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-44" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-45" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-46" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-47" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-48" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-49" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/vocabulary/lesson-50" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/advanced/pronunciation" element={<AdvancedPronunciationPage />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/advanced/pronunciation/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency" element={<ProficiencyPage />} />
                   <Route path="/modul/english/proficiency/grammar" element={<ProficiencyGrammarPage />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/grammar/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency/speaking" element={<ProficiencySpeakingPage />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/speaking/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency/reading" element={<ProficiencyReadingPage />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/reading/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency/writing" element={<ProficiencyWritingPage />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/writing/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency/pronunciation" element={<ProficiencyPronunciationPage />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/pronunciation/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency/vocabulary" element={<ProficiencyVocabularyPage />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/vocabulary/lesson-20" element={<EnglishLessonRoute />} />
                   <Route path="/modul/english/proficiency/listening" element={<ProficiencyListeningPage />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/proficiency/listening/lesson-20" element={<EnglishLessonRoute />} />
+                  {/* English lesson files are resolved from the path (see EnglishLessonRoute). */}
+                  <Route path="/modul/english/:levelId/:skillId/:lessonSlug" element={<EnglishLessonRoute />} />
                   <Route path="/modul/arabic/:levelId" element={<ArabicLevelPage />} />
                   <Route path="/modul/arabic/:levelId/:skillId" element={<ArabicSkillPage />} />
                   <Route path="/modul/arabic/:levelId/:skillId/:lessonSlug" element={<ArabicLessonBridge />} />
@@ -1957,72 +1266,12 @@ function AppContent() {
 
                   {/* ── Upper-Intermediate Listening Routes ── */}
                   <Route path="/modul/english/upper-intermediate/listening" element={<UpperInterListeningPage />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/listening/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* ── Upper-Intermediate Reading Routes ── */}
                   <Route path="/modul/english/upper-intermediate/reading" element={<UpperInterReadingPage />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/reading/lesson-20" element={<EnglishLessonRoute />} />
 
                   {/* ── Upper-Intermediate Writing Routes ── */}
                   <Route path="/modul/english/upper-intermediate/writing" element={<UpperInterWritingPage />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-1" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-2" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-3" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-4" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-5" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-6" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-7" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-8" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-9" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-10" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-11" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-12" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-13" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-14" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-15" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-16" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-17" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-18" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-19" element={<EnglishLessonRoute />} />
-                  <Route path="/modul/english/upper-intermediate/writing/lesson-20" element={<EnglishLessonRoute />} />
 
                 </Routes>
                 </Suspense>

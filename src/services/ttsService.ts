@@ -10,6 +10,7 @@ import {
   saveChatAiApiKey,
   removeChatAiApiKey,
 } from './aiKeyService';
+import { findPregeneratedAudio } from './audioLibrary';
 
 export const TTS_API_KEY_STORAGE = 'fluently_ai_chat_api_key';
 const LEGACY_TTS_KEY_STORAGE = 'talky_legacy_tts_api_key';
@@ -183,6 +184,23 @@ export async function speakText(
   onEnd?: () => void,
   onError?: (err: string) => void,
 ): Promise<void> {
+  const recorded = await findPregeneratedAudio(text);
+  if (recorded) {
+    stopCurrentAudio();
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+    const audio = new Audio(recorded);
+    currentAudio = audio;
+    onStart?.();
+    audio.onended = () => { currentAudio = null; onEnd?.(); };
+    audio.onerror = () => {
+      // A missing/corrupt file falls back to live speech.
+      currentAudio = null;
+      speakWithBrowserVoice(text, undefined, onEnd, onError);
+    };
+    void audio.play().catch(() => undefined);
+    return;
+  }
+
   const apiKey = getApiKey();
   if (!apiKey) {
     speakWithBrowserVoice(text, onStart, onEnd, onError);

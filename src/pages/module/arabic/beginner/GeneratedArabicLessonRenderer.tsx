@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { BookOpen, CheckCircle, ClipboardCheck, Layers, ListChecks, Target, Volume2 } from 'lucide-react';
+import { BookOpen, CheckCircle, ClipboardCheck, Eye, EyeOff, Headphones, Layers, ListChecks, Target, Volume2 } from 'lucide-react';
 import type { ViewState } from '../../../../types';
 import type { ArabicSkillId } from '../arabicModuleData';
 import { getGeneratedArabicLesson, type GeneratedArabicContentLevel } from './generatedBeginnerArabicContent';
+import RubricCard from '../../../../components/shared/RubricCard';
+import { speak } from '../../../../utils/speech';
+import WordIllustration from '../../../../components/shared/WordIllustration';
 
 type GeneratedArabicLessonRendererProps = {
   skillId: ArabicSkillId;
@@ -14,18 +17,16 @@ type GeneratedArabicLessonRendererProps = {
 };
 
 function speakArabic(text: string) {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ar-SA';
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
+  speak(text, 'ar-SA', { rate: 0.85 });
 }
 
 export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onComplete, contentLevel = 'beginner', levelLabel = 'Beginner', initialTab = 'materi' }: GeneratedArabicLessonRendererProps) {
   const lesson = getGeneratedArabicLesson(skillId, lessonId, contentLevel);
   const [answers, setAnswers] = useState<Record<number, string>>({});
   const [activeTab, setActiveTab] = useState<'materi' | 'latihan'>(initialTab);
+  const [showPassageText, setShowPassageText] = useState(false);
+  const [showPassageMeaning, setShowPassageMeaning] = useState(false);
+  const passageVisible = !lesson.passage?.listenFirst || showPassageText;
   const isIntermediate = contentLevel === 'intermediate' || contentLevel === 'upper-intermediate';
   const levelCode = contentLevel === 'scholar'
     ? 'Research'
@@ -139,9 +140,10 @@ export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onCom
                   <button
                     key={word.arabic}
                     onClick={() => speakArabic(word.arabic)}
-                    className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-left hover:border-teal-200 hover:bg-teal-50/50 transition"
+                    className="relative rounded-xl border border-slate-100 bg-slate-50 p-4 pl-12 text-left hover:border-teal-200 hover:bg-teal-50/50 transition"
                     title="Dengarkan kosakata"
                   >
+                    <WordIllustration meaning={word.meaning} className="absolute left-3 top-3" />
                     <p dir="rtl" lang="ar" className="text-2xl font-bold text-slate-900 leading-relaxed">{word.arabic}</p>
                     <p className="mt-1 text-xs font-semibold text-slate-500">{word.transliteration}</p>
                     <p className="mt-1 text-sm text-slate-700">{word.meaning}</p>
@@ -149,6 +151,66 @@ export default function GeneratedArabicLessonRenderer({ skillId, lessonId, onCom
                 ))}
               </div>
             </div>
+          )}
+        </section>
+      )}
+
+      {(skillId === 'kalam' || skillId === 'kitabah') && <RubricCard language="arabic" level={contentLevel} skill={skillId === 'kalam' ? 'speaking' : 'writing'} accentColor="#0F766E" />}
+      {lesson.passage && (
+        <section className="rounded-2xl bg-white border border-slate-200 p-5 md:p-6 shadow-sm">
+          <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+            <h2 className="font-black text-slate-900 flex items-center gap-2">
+              {lesson.passage.listenFirst ? <Headphones size={18} className="text-[#0F766E]" /> : <BookOpen size={18} className="text-[#0F766E]" />}
+              {lesson.passage.listenFirst ? 'Teks Simakan' : 'Teks Bacaan'}: {lesson.passage.title}
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => speakArabic(lesson.passage!.sentences.map((sentence) => sentence.arabic).join(' '))}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#0F766E] px-3 py-1.5 text-xs font-bold text-white hover:bg-teal-800 transition"
+              >
+                <Volume2 size={14} /> Putar semua
+              </button>
+              {lesson.passage.listenFirst && (
+                <button
+                  onClick={() => setShowPassageText((value) => !value)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
+                >
+                  {showPassageText ? <EyeOff size={14} /> : <Eye size={14} />} {showPassageText ? 'Sembunyikan teks' : 'Tampilkan teks'}
+                </button>
+              )}
+              {passageVisible && (
+                <button
+                  onClick={() => setShowPassageMeaning((value) => !value)}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition"
+                >
+                  {showPassageMeaning ? 'Sembunyikan arti' : 'Tampilkan arti'}
+                </button>
+              )}
+            </div>
+          </div>
+          {passageVisible ? (
+            <div className="space-y-2">
+              {lesson.passage.sentences.map((sentence) => (
+                <button
+                  key={sentence.arabic}
+                  onClick={() => speakArabic(sentence.arabic)}
+                  className="block w-full rounded-xl border border-slate-100 bg-slate-50 p-3 text-left hover:border-teal-200 hover:bg-teal-50/50 transition"
+                  title="Dengarkan kalimat"
+                >
+                  <p dir="rtl" lang="ar" className="text-xl md:text-2xl font-bold text-slate-900 leading-loose">{sentence.arabic}</p>
+                  {showPassageMeaning && (
+                    <>
+                      <p className="mt-1 text-xs font-semibold text-slate-500">{sentence.transliteration}</p>
+                      <p className="mt-1 text-sm text-slate-700">{sentence.meaning}</p>
+                    </>
+                  )}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className="rounded-xl bg-slate-50 p-4 text-sm text-slate-600">
+              Putar audio 2–3 kali dan catat kata kunci. Jawab pertanyaan bacaan di tab latihan sebelum membuka teks.
+            </p>
           )}
         </section>
       )}

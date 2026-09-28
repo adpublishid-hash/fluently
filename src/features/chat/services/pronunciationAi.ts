@@ -1,4 +1,4 @@
-import { getAuthHeaders, getChatAiModel, getCurrentUserPlan, getRequestChatAiApiKey } from '../../../services/aiKeyService';
+import { aiFetch } from '../../../services/aiClient';
 import type { PronunciationSentenceRow } from '../types';
 
 type PronunciationLessonRequest = {
@@ -41,15 +41,8 @@ export async function requestPronunciationLesson({
   topic,
   levelId,
 }: PronunciationLessonRequest): Promise<PronunciationLessonResult | null> {
-  const plan = getCurrentUserPlan();
-  const apiKey = getRequestChatAiApiKey(plan);
-
   try {
-    const response = await fetch('/api/ai/pronunciation-lesson', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
-      body: JSON.stringify({ name, topic, levelId, apiKey, model: getChatAiModel(), plan }),
-    });
+    const response = await aiFetch('/api/ai/pronunciation-lesson', { name, topic, levelId });
 
     if (!response.ok) return null;
     const data = await response.json();
@@ -97,25 +90,15 @@ export async function requestPronunciationFeedback({
   turn,
   hasNextBatch,
 }: PronunciationFeedbackRequest): Promise<string | null> {
-  const plan = getCurrentUserPlan();
-  const apiKey = getRequestChatAiApiKey(plan);
-
   try {
-    const response = await fetch('/api/ai/pronunciation-feedback', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name,
-        answer,
-        topic,
-        levelId,
-        sentences,
-        turn,
-        hasNextBatch,
-        apiKey,
-        model: getChatAiModel(),
-        plan,
-      }),
+    const response = await aiFetch('/api/ai/pronunciation-feedback', {
+      name,
+      answer,
+      topic,
+      levelId,
+      sentences,
+      turn,
+      hasNextBatch,
     });
 
     if (!response.ok) return null;

@@ -2,13 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-    Volume2, PlayCircle, Lightbulb, Sparkles, Info, CheckCircle2,
+    Volume2, Lightbulb, Sparkles, Info, CheckCircle2,
     BookOpen, PenTool, Trophy, Star, TrendingUp, RefreshCw, Award
 } from 'lucide-react';
 import LessonShell, { sectionVariants } from '../../../../../components/shared/LessonShell';
 import { QuizSection } from './QuizSection';
 import { LESSON_EXERCISES } from './exercises';
-import VocabWordList from './VocabWordList';
 import { playAudio } from '../../../../../services/ttsService';
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, CheckCircle2, ChevronLeft, Brain } from 'lucide-react';
+import { BookOpen, CheckCircle2, ChevronLeft } from 'lucide-react';
 
 const VOCAB = [
   { en: "Curriculum reform", id: "Reformasi kurikulum – perubahan sistematik isi pendidikan" },

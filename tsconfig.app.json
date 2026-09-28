@@ -22,18 +22,8 @@
     "noUnusedParameters": false,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "resolveJsonModule": true
   },
-  "include": ["src"],
-  "exclude": [
-    "src/pages/ai-kamus",
-    "src/pages/module/arabic/beginner/grammar/Lesson*.tsx",
-    "src/pages/module/arabic/beginner/kalam/Lesson*.tsx",
-    "src/pages/module/arabic/beginner/mufradat/Lesson*.tsx",
-    "src/pages/module/arabic/beginner/pronunciation/Lesson*.tsx",
-    "src/pages/module/arabic/elementary/grammar/Lesson*.tsx",
-    "src/pages/module/arabic/elementary/kalam/Lesson*.tsx",
-    "src/pages/module/arabic/elementary/mufradat/Lesson*.tsx",
-    "src/pages/module/arabic/elementary/pronunciation/Lesson*.tsx"
-  ]
+  "include": ["src"]
 }

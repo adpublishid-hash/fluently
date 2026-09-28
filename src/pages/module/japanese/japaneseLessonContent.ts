@@ -1,9 +1,13 @@
+import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, type ChoiceQuestion } from '../../../utils/quiz';
+import { japaneseGrammarBank, type JapaneseGrammarPoint } from './japaneseGrammarBank';
 import { japaneseLevels, type JapaneseLevelId, type JapaneseSkillId } from './japaneseModuleData';
+import { getJapaneseLevelWords, getJapaneseVocabularySet, type JapaneseWord } from './japaneseVocabularyBank';
+import { buildJapanesePractice } from './japanesePracticeGenerator';
+import { japanesePassages } from '../../../features/passages/japanesePassages';
+import { japanesePassagesBasic } from '../../../features/passages/japanesePassagesBasic';
 
-type JapaneseWord = { japanese: string; romaji: string; meaning: string };
 type JapanesePattern = { label: string; japanese: string; romaji: string; meaning: string };
 type JapaneseExample = { japanese: string; romaji: string; meaning: string };
-type JapaneseQuestion = { question: string; options: string[]; answer: string };
 
 export type JapaneseLesson = {
   title: string;
@@ -21,7 +25,7 @@ export type JapaneseLesson = {
   shadowingDrill: string[];
   culturalNotes: string[];
   productionSteps: string[];
-  practice: JapaneseQuestion[];
+  practice: ChoiceQuestion[];
   task: string;
   modelOutput?: JapaneseExample & { title: string };
   rubric?: string[];
@@ -84,49 +88,6 @@ const levelTopics: Record<JapaneseLevelId, Record<JapaneseSkillId, string[]>> = 
     vocabulary: ['academic nouns', 'policy terms', 'research verbs', 'rhetorical connectors', 'legal register', 'media critique', 'ethics', 'economy', 'technology', 'environment', 'literature', 'philosophy', 'high keigo', 'idioms N1', 'yojijukugo', 'kanji N1', 'stance markers', 'nuance adjectives', 'abstract verbs', 'N1 vocab review'],
     pronunciation: ['native-like flow', 'academic speech rhythm', 'rhetorical pauses', 'conference Q&A', 'high keigo pitch', 'rapid discourse', 'stance intonation', 'subtle emotion', 'expert presentation', 'panel discussion', 'argument emphasis', 'long-form shadowing', 'register switching', 'native repair', 'media commentary', 'literary reading', 'breath control', 'pitch audit', 'fluency benchmark', 'N1 pronunciation review'],
   },
-};
-
-const baseVocabulary: Record<JapaneseLevelId, JapaneseWord[]> = {
-  beginner: [
-    { japanese: '私', romaji: 'watashi', meaning: 'saya' },
-    { japanese: '学生', romaji: 'gakusei', meaning: 'pelajar' },
-    { japanese: '日本語', romaji: 'nihongo', meaning: 'bahasa Jepang' },
-    { japanese: '食べます', romaji: 'tabemasu', meaning: 'makan' },
-    { japanese: '行きます', romaji: 'ikimasu', meaning: 'pergi' },
-    { japanese: '好きです', romaji: 'suki desu', meaning: 'suka' },
-  ],
-  elementary: [
-    { japanese: '経験', romaji: 'keiken', meaning: 'pengalaman' },
-    { japanese: '予約', romaji: 'yoyaku', meaning: 'reservasi' },
-    { japanese: '説明します', romaji: 'setsumei shimasu', meaning: 'menjelaskan' },
-    { japanese: '必要です', romaji: 'hitsuyou desu', meaning: 'perlu' },
-    { japanese: '便利です', romaji: 'benri desu', meaning: 'praktis' },
-    { japanese: '困ります', romaji: 'komarimasu', meaning: 'kesulitan' },
-  ],
-  intermediate: [
-    { japanese: '意見', romaji: 'iken', meaning: 'pendapat' },
-    { japanese: '理由', romaji: 'riyuu', meaning: 'alasan' },
-    { japanese: '課題', romaji: 'kadai', meaning: 'masalah/tugas' },
-    { japanese: '提案', romaji: 'teian', meaning: 'usulan' },
-    { japanese: '比較', romaji: 'hikaku', meaning: 'perbandingan' },
-    { japanese: '影響', romaji: 'eikyou', meaning: 'pengaruh' },
-  ],
-  advanced: [
-    { japanese: '社会問題', romaji: 'shakai mondai', meaning: 'isu sosial' },
-    { japanese: '分析', romaji: 'bunseki', meaning: 'analisis' },
-    { japanese: '根拠', romaji: 'konkyo', meaning: 'dasar bukti' },
-    { japanese: '改善策', romaji: 'kaizensaku', meaning: 'solusi perbaikan' },
-    { japanese: '一方で', romaji: 'ippou de', meaning: 'di sisi lain' },
-    { japanese: 'にもかかわらず', romaji: 'nimo kakawarazu', meaning: 'meskipun' },
-  ],
-  proficiency: [
-    { japanese: '論点', romaji: 'ronten', meaning: 'pokok argumen' },
-    { japanese: '妥当性', romaji: 'datousei', meaning: 'validitas' },
-    { japanese: '示唆', romaji: 'shisa', meaning: 'implikasi' },
-    { japanese: '批判的に', romaji: 'hihanteki ni', meaning: 'secara kritis' },
-    { japanese: '包括的', romaji: 'houkatsuteki', meaning: 'komprehensif' },
-    { japanese: '再定義', romaji: 'saiteigi', meaning: 'redefinisi' },
-  ],
 };
 
 const levelPattern: Record<JapaneseLevelId, JapanesePattern[]> = {
@@ -241,21 +202,126 @@ const cultureByLevel: Record<JapaneseLevelId, string[]> = {
   ],
 };
 
-function buildDialogue(level: JapaneseLevelId, topic: string): JapaneseLesson['dialogue'] {
-  const pattern = levelPattern[level];
+const QUIZ_LENGTH = 12;
+
+/** Grammar focus for a lesson; lesson 20 (review) samples the level's points. */
+function getGrammarPoint(level: JapaneseLevelId, lessonId: number): JapaneseGrammarPoint {
+  const points = japaneseGrammarBank[level];
+  const point = points[lessonId - 1];
+  if (point) return point;
+  const first = points[0];
+  const middle = points[Math.floor(points.length / 2)];
+  return {
+    pattern: `Review ${japaneseLevels[level].badge}`,
+    meaning: `mengulang pola utama ${japaneseLevels[level].badge}`,
+    formation: points.map((item) => item.pattern).join(' · '),
+    examples: [first.examples[0], middle.examples[0]],
+  };
+}
+
+const topicWords = (text: string) => text.toLowerCase().split(/[^a-z]+/).filter((word) => word.length > 3);
+
+/**
+ * Vocabulary lesson n uses theme n. Other skills use the vocabulary theme whose
+ * title shares a keyword with the lesson topic, falling back to lesson order.
+ */
+function vocabularyThemeFor(level: JapaneseLevelId, skill: JapaneseSkillId, lessonId: number, topic: string): number {
+  if (skill === 'vocabulary') return lessonId;
+  const keywords = topicWords(topic);
+  const themes = levelTopics[level].vocabulary;
+  const match = themes.findIndex((theme, index) => index < themes.length - 1 && topicWords(theme).some((word) => keywords.includes(word)));
+  return match >= 0 ? match + 1 : lessonId;
+}
+
+function buildDialogue(point: JapaneseGrammarPoint, word: JapaneseWord): JapaneseLesson['dialogue'] {
+  const [first, second] = point.examples;
   return [
-    { speaker: 'A', japanese: pattern[0].japanese, romaji: pattern[0].romaji, meaning: pattern[0].meaning },
-    { speaker: 'B', japanese: pattern[1].japanese, romaji: pattern[1].romaji, meaning: pattern[1].meaning },
-    { speaker: 'A', japanese: `このテーマは「${topic}」です。`, romaji: `Kono teema wa "${topic}" desu.`, meaning: `Topik ini adalah ${topic}.` },
+    { speaker: 'A', ...first },
+    { speaker: 'B', ...second },
+    {
+      speaker: 'A',
+      japanese: `「${word.japanese}」という言葉も使ってみましょう。`,
+      romaji: `"${word.romaji}" to iu kotoba mo tsukatte mimashou.`,
+      meaning: `Ayo coba pakai juga kata "${word.meaning}".`,
+    },
   ];
 }
 
-function buildShadowing(level: JapaneseLevelId): string[] {
-  return [
-    levelPattern[level][0].japanese,
-    levelPattern[level][1].japanese,
-    levelPattern[level][2].japanese,
-  ];
+function buildPractice(
+  level: JapaneseLevelId,
+  skill: JapaneseSkillId,
+  lessonId: number,
+  point: JapaneseGrammarPoint,
+  words: JapaneseWord[],
+): ChoiceQuestion[] {
+  const random = seededRandom(hashSeed('japanese', level, skill, lessonId));
+  const levelWords = getJapaneseLevelWords(level);
+  const levelPoints = japaneseGrammarBank[level];
+  const levelSentences = levelPoints.flatMap((item) => item.examples);
+  const questions: Array<ChoiceQuestion | null> = [];
+
+  seededShuffle(words, random).slice(0, 5).forEach((word) => {
+    questions.push(buildChoiceQuestion(`Apa arti「${word.japanese}」?`, word.meaning, levelWords.map((item) => item.meaning), random));
+  });
+  seededShuffle(words, random).slice(0, 3).forEach((word) => {
+    questions.push(buildChoiceQuestion(`Kata Jepang untuk "${word.meaning}" adalah...`, word.japanese, levelWords.map((item) => item.japanese), random));
+  });
+  seededShuffle(words, random).slice(0, 2).forEach((word) => {
+    questions.push(buildChoiceQuestion(`Cara membaca「${word.japanese}」adalah...`, word.romaji, levelWords.map((item) => item.romaji), random));
+  });
+  point.examples.forEach((example) => {
+    questions.push(buildChoiceQuestion(`Arti kalimat「${example.japanese}」adalah...`, example.meaning, levelSentences.map((item) => item.meaning), random));
+  });
+  if (!point.pattern.startsWith('Review')) {
+    questions.push(buildChoiceQuestion(`Pola「${point.pattern}」dipakai untuk...`, point.meaning, levelPoints.map((item) => item.meaning), random));
+  } else {
+    seededShuffle(levelPoints, random).slice(0, 3).forEach((item) => {
+      questions.push(buildChoiceQuestion(`Pola「${item.pattern}」dipakai untuk...`, item.meaning, levelPoints.map((other) => other.meaning), random));
+    });
+  }
+
+  return seededShuffle(questions.filter((item): item is ChoiceQuestion => item !== null), random).slice(0, QUIZ_LENGTH);
+}
+
+const passageSentenceCache = new Map<JapaneseLevelId, Array<{ japanese: string; meaning: string }>>();
+function levelPassageSentences(level: JapaneseLevelId) {
+  if (!passageSentenceCache.has(level)) {
+    passageSentenceCache.set(level, [...japanesePassagesBasic, ...japanesePassages]
+      .filter((passage) => passage.level === level)
+      .flatMap((passage) => passage.sentences.map(([japanese, , meaning]) => ({ japanese, meaning }))));
+  }
+  return passageSentenceCache.get(level)!;
+}
+
+/** Skill-specific questions first; the shared lesson drills fill the rest of the quiz. */
+function lessonPractice(
+  level: JapaneseLevelId,
+  skill: JapaneseSkillId,
+  lessonId: number,
+  point: JapaneseGrammarPoint,
+  words: JapaneseWord[],
+  signature: JapanesePattern,
+): ChoiceQuestion[] {
+  const passageSentences = levelPassageSentences(level);
+  // Each lesson number gets its own two passage sentences.
+  const passage = passageSentences.length
+    ? [0, 1].map((offset) => passageSentences[((lessonId - 1) * 2 + offset) % passageSentences.length])
+    : [];
+  const specific = buildJapanesePractice(skill, {
+    pattern: point.pattern,
+    examples: point.examples,
+    signature,
+    passage,
+    words,
+    levelPatterns: japaneseGrammarBank[level].map((item) => item.pattern),
+    levelSentences: [...japaneseGrammarBank[level].flatMap((item) => item.examples), ...levelPattern[level], ...passageSentences],
+    levelWords: getJapaneseLevelWords(level),
+  }, hashSeed('japanese-practice', level, skill, lessonId));
+  const seen = new Set<string>();
+  const merged = [...specific, ...buildPractice(level, skill, lessonId, point, words)]
+    .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
+    .slice(0, QUIZ_LENGTH);
+  return seededShuffle(merged, seededRandom(hashSeed('japanese-order', level, skill, lessonId)));
 }
 
 function buildSkillExplanation(skill: JapaneseSkillId, topic: string, level: JapaneseLevelId) {
@@ -272,6 +338,10 @@ function buildSkillExplanation(skill: JapaneseSkillId, topic: string, level: Jap
   return map[skill];
 }
 
+export function getJapaneseTopicList(level: JapaneseLevelId, skill: JapaneseSkillId): string[] {
+  return levelTopics[level][skill];
+}
+
 export function getJapaneseLessonPreview(skill: JapaneseSkillId, lessonId: number, level: JapaneseLevelId) {
   return `${japaneseLevels[level].badge} ${skillTitle[skill]} - ${levelTopics[level][skill][lessonId - 1] ?? 'review'}`;
 }
@@ -280,53 +350,53 @@ export function getJapaneseLesson(skill: JapaneseSkillId, lessonId: number, leve
   const topic = levelTopics[level][skill][lessonId - 1] ?? 'review';
   const levelInfo = japaneseLevels[level];
   const title = `${levelInfo.badge} ${skillTitle[skill]}: ${topic}`;
-  const quizAnswer = level === 'beginner' ? '私は学生です。' : level === 'elementary' ? '少し待ってください。' : level === 'intermediate' ? '便利だと思います。' : level === 'advanced' ? '根拠に基づいて' : '批判的に再検討します';
+  const point = getGrammarPoint(level, lessonId);
+  const words = getJapaneseVocabularySet(level, vocabularyThemeFor(level, skill, lessonId, topic));
+  const signature = levelPattern[level][(lessonId - 1) % levelPattern[level].length];
+  const [first, second] = point.examples;
 
   return {
     title,
     subtitle: `${skillTitle[skill]} lesson ${lessonId} - ${levelInfo.title}`,
-    objective: `Menguasai ${topic} pada standar ${levelInfo.badge}, lalu memakai pola tersebut dalam konteks ${skillTitle[skill].toLowerCase()} yang realistis.`,
+    objective: `Menguasai ${topic} pada standar ${levelInfo.badge}, dengan pola fokus「${point.pattern}」dan ${words.length} kosakata tematik.`,
     explanation: [
-      `Materi ini dirancang mengikuti beban ${levelInfo.badge}: mulai dari bentuk, fungsi, contoh, lalu produksi mandiri.`,
+      `Pola fokus lesson ini adalah「${point.pattern}」: ${point.meaning}. Rumus: ${point.formation}`,
       buildSkillExplanation(skill, topic, level),
       `Fokus utamanya adalah memahami kapan pola dipakai, bukan hanya menerjemahkan kata per kata.`,
       `Saat membaca atau mendengar contoh Jepang, perhatikan partikel, urutan informasi, level kesopanan, dan kata kunci topik.`,
     ],
     focus: [
-      `Kenali fungsi utama ${topic}.`,
-      `Latih bentuk Jepang, romaji, dan arti secara bersamaan.`,
-      `Gunakan contoh untuk membuat jawaban pribadi.`,
+      `Kenali fungsi「${point.pattern}」.`,
+      `Kuasai ${words.slice(0, 3).map((word) => word.japanese).join('、')} dan kosakata tematik lainnya.`,
+      `Gunakan contoh untuk membuat jawaban pribadi tentang ${topic}.`,
       `Review dengan suara keras agar ritme Jepang terasa natural.`,
     ],
-    patterns: levelPattern[level],
-    vocabulary: baseVocabulary[level],
-    examples: [
-      { japanese: levelPattern[level][0].japanese, romaji: levelPattern[level][0].romaji, meaning: levelPattern[level][0].meaning },
-      { japanese: levelPattern[level][1].japanese, romaji: levelPattern[level][1].romaji, meaning: levelPattern[level][1].meaning },
-      { japanese: levelPattern[level][2].japanese, romaji: levelPattern[level][2].romaji, meaning: levelPattern[level][2].meaning },
+    patterns: [
+      { label: point.pattern, ...first },
+      { label: point.pattern, ...second },
+      signature,
     ],
-    grammarNotes: grammarFocusByLevel[level],
+    vocabulary: words,
+    examples: [first, second, { japanese: signature.japanese, romaji: signature.romaji, meaning: signature.meaning }],
+    grammarNotes: [
+      { title: point.pattern, detail: `${point.meaning}. ${point.formation}`, example: first.japanese },
+      ...grammarFocusByLevel[level],
+    ],
     kanjiFocus: kanjiFocusByLevel[level],
-    dialogue: buildDialogue(level, topic),
+    dialogue: buildDialogue(point, words[(lessonId - 1) % words.length]),
     listeningScript: {
-      japanese: `${levelPattern[level][0].japanese}${levelPattern[level][1].japanese}${levelPattern[level][2].japanese}`,
-      romaji: `${levelPattern[level][0].romaji} ${levelPattern[level][1].romaji} ${levelPattern[level][2].romaji}`,
-      meaning: `Dengarkan tiga kalimat inti untuk topik ${topic}, lalu catat predikat akhir dan kata kunci.`,
+      japanese: `${first.japanese}${second.japanese}`,
+      romaji: `${first.romaji} ${second.romaji}`,
+      meaning: `Dengarkan dua kalimat inti untuk topik ${topic}, lalu catat predikat akhir dan kata kunci.`,
     },
-    shadowingDrill: buildShadowing(level),
+    shadowingDrill: [first.japanese, second.japanese, signature.japanese],
     culturalNotes: cultureByLevel[level],
     productionSteps: ['Pahami pola', 'Tiru contoh dengan suara', 'Ganti kosakata sesuai topik', 'Buat output pribadi'],
-    practice: Array.from({ length: 20 }, (_, index) => ({
-      question: `${index + 1}. Pilih ekspresi yang paling sesuai untuk ${topic}.`,
-      options: [quizAnswer, 'これは赤いです。', '昨日は雨でした。'],
-      answer: quizAnswer,
-    })),
-    task: `Buat 5-8 kalimat Jepang bertema ${topic}. Sertakan minimal 3 kosakata ${levelInfo.badge}, satu pola utama, romaji, dan arti Bahasa Indonesia.`,
+    practice: lessonPractice(level, skill, lessonId, point, words, signature),
+    task: `Buat 5-8 kalimat Jepang bertema ${topic}. Pakai pola「${point.pattern}」, minimal 3 kosakata dari lesson ini (${words.slice(0, 3).map((word) => word.japanese).join('、')}), romaji, dan arti Bahasa Indonesia.`,
     modelOutput: {
       title: `Model Output ${levelInfo.badge}`,
-      japanese: levelPattern[level][0].japanese,
-      romaji: levelPattern[level][0].romaji,
-      meaning: levelPattern[level][0].meaning,
+      ...first,
     },
     rubric: [
       'Pola kalimat sesuai level.',
