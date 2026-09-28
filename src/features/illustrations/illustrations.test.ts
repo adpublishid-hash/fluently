@@ -23,6 +23,14 @@ describe('vocabulary illustrations', () => {
     expect(illustrate('marahnya')).toBeNull();
   });
 
+  it('prefers phrases over single words that would flip the meaning', () => {
+    expect(illustrate('tegas / tanpa ragu')).toBe('🎯');
+    expect(illustrate('mudah bergejolak')).toBe('🌊');
+    expect(illustrate('hal yang tak relevan lagi')).toBe('🚫');
+    expect(illustrate('musim semi')).toBe('🌸');
+    expect(illustrate('tajuk rencana')).toBe('📰');
+  });
+
   it.each(['english', 'japanese', 'mandarin', 'arabic'] as StudyLanguage[])('%s: reports coverage per level', (language) => {
     const coverage = getStudyLevels(language).map((level) => {
       const words = getLevelWords(language, level.id);
@@ -30,6 +38,6 @@ describe('vocabulary illustrations', () => {
       return Math.round((hits / Math.max(1, words.length)) * 100);
     });
     console.log(language, coverage.join('% '), '%');
-    expect(Math.max(...coverage)).toBeGreaterThan(25);
+    expect(Math.min(...coverage)).toBeGreaterThan(50);
   });
 });
