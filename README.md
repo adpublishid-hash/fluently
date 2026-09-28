@@ -1,5 +1,10 @@
 # Fluently Production Checklist
 
+Step-by-step guides (Bahasa Indonesia):
+
+- [docs/DEPLOY_VPS.md](docs/DEPLOY_VPS.md): deploy ke VPS Ubuntu (PostgreSQL, systemd, nginx, HTTPS, backup)
+- [docs/AUDIO_GENERATION.md](docs/AUDIO_GENERATION.md): membuat audio rekaman TTS untuk konten
+
 ## Local validation
 
 Run these before deploying (CI runs the same checks on every pull request):
