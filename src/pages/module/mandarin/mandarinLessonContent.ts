@@ -909,7 +909,7 @@ const elementaryLessonPacks: Array<{
     ],
     examples: [
       { hanzi: '服务员，请给我菜单。', pinyin: 'Fú wù yuán, qǐng gěi wǒ cài dān.', meaning: 'Pelayan, tolong beri saya menu.' },
-      { hanzi: '我要米饭和一点儿菜。', pinyin: 'Wǒ yào mǐ fàn hé yì diǎn ér cài.', meaning: 'Saya mau nasi dan sedikit lauk/sayur.' },
+      { hanzi: '我要米饭和一点儿菜。', pinyin: 'Wǒ yào mǐ fàn hé yì diǎnr cài.', meaning: 'Saya mau nasi dan sedikit lauk/sayur.' },
       { hanzi: '这个菜很好吃。', pinyin: 'Zhè ge cài hěn hǎo chī.', meaning: 'Masakan ini enak.' },
     ],
     quiz: [
@@ -929,7 +929,7 @@ const elementaryLessonPacks: Array<{
     ],
     examples: [
       { hanzi: '这个太贵了。', pinyin: 'Zhè ge tài guì le.', meaning: 'Ini terlalu mahal.' },
-      { hanzi: '有没有便宜一点儿的？', pinyin: 'Yǒu méi yǒu pián yi yì diǎn ér de?', meaning: 'Ada yang sedikit lebih murah?' },
+      { hanzi: '有没有便宜一点儿的？', pinyin: 'Yǒu méi yǒu pián yi yì diǎnr de?', meaning: 'Ada yang sedikit lebih murah?' },
       { hanzi: '我想买这个。', pinyin: 'Wǒ xiǎng mǎi zhè ge.', meaning: 'Saya ingin membeli ini.' },
     ],
     quiz: [
@@ -1130,7 +1130,7 @@ const elementaryLessonPacks: Array<{
     examples: [
       { hanzi: '他说中文说得很好。', pinyin: 'Tā shuō zhōng wén shuō de hěn hǎo.', meaning: 'Dia berbicara Mandarin dengan sangat baik.' },
       { hanzi: '你写汉字写得很快。', pinyin: 'Nǐ xiě hàn zì xiě dé hěn kuài.', meaning: 'Kamu menulis Hanzi dengan cepat.' },
-      { hanzi: '请说慢一点儿。', pinyin: 'Qǐng shuō màn yì diǎn ér.', meaning: 'Tolong bicara sedikit lebih pelan.' },
+      { hanzi: '请说慢一点儿。', pinyin: 'Qǐng shuō màn yì diǎnr.', meaning: 'Tolong bicara sedikit lebih pelan.' },
     ],
     quiz: [
       { question: '说得很好 berarti...', options: ['berbicara dengan baik', 'membeli dengan murah', 'pergi ke sekolah'], answer: 'berbicara dengan baik' },
@@ -1396,7 +1396,7 @@ const intermediateLessonPacks: Array<{
       { hanzi: '试试', pinyin: 'shìshì', meaning: 'mencoba' },
     ],
     examples: [
-      { hanzi: '这个问题有点儿麻烦。', pinyin: 'Zhè ge wèn tí yǒu diǎn er má fán.', meaning: 'Masalah ini agak merepotkan.' },
+      { hanzi: '这个问题有点儿麻烦。', pinyin: 'Zhè ge wèn tí yǒu diǎnr má fán.', meaning: 'Masalah ini agak merepotkan.' },
       { hanzi: '你应该试试这个办法。', pinyin: 'Nǐ yīng gāi shì shì zhè ge bàn fǎ.', meaning: 'Kamu seharusnya mencoba cara ini.' },
       { hanzi: '谢谢你的建议。', pinyin: 'Xiè xiè nǐ de jiàn yì.', meaning: 'Terima kasih atas saranmu.' },
     ],
@@ -1766,7 +1766,7 @@ const upperIntermediateLessonPacks: Array<{
     examples: [
       { hanzi: '环境污染会影响我们的生活。', pinyin: 'Huán jìng wū rǎn huì yǐng xiǎng wǒ men de shēng huó.', meaning: 'Polusi lingkungan akan memengaruhi hidup kita.' },
       { hanzi: '减少垃圾是保护环境的一个办法。', pinyin: 'Jiǎn shǎo lā jī shì bǎo hù huán jìng de yí gè bàn fǎ.', meaning: 'Mengurangi sampah adalah salah satu cara melindungi lingkungan.' },
-      { hanzi: '每个人都可以做一点儿。', pinyin: 'Měi gè rén dōu kě yǐ zuò yì diǎn ér.', meaning: 'Setiap orang bisa melakukan sedikit.' },
+      { hanzi: '每个人都可以做一点儿。', pinyin: 'Měi gè rén dōu kě yǐ zuò yì diǎnr.', meaning: 'Setiap orang bisa melakukan sedikit.' },
     ],
     quiz: [
       { question: '污染 berarti...', options: ['polusi', 'efisiensi', 'kebiasaan'], answer: 'polusi' },
@@ -2799,7 +2799,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     reading: {
       title: 'Model strategi membaca HSK 4',
       hanzi: '阅读这类文章时，先找作者的态度，再找理由和例子。如果文章里出现“因此”“不过”“总之”，这些词通常会帮助我们理解逻辑。最后，用一两句话总结主要观点。',
-      pinyin: 'Yuè dú zhè lèi wén zhāng shí, xiān zhǎo zuò zhě de tài dù, zài zhǎo lǐ yóu hé lì zǐ. rú guǒ wén zhāng lǐ chū xiàn"yīn cǐ""bú guò""zǒng zhī", zhè xiē cí tōng cháng huì bāng zhù wǒ men lǐ jiě luó jí. zuì hòu, yòng yì liǎng jù huà zǒng jié zhǔ yào guān diǎn.',
+      pinyin: 'Yuè dú zhè lèi wén zhāng shí, xiān zhǎo zuò zhě de tài dù, zài zhǎo lǐ yóu hé lì zǐ. rú guǒ wén zhāng lǐ chū xiàn "yīn cǐ" "bú guò" "zǒng zhī", zhè xiē cí tōng cháng huì bāng zhù wǒ men lǐ jiě luó jí. zuì hòu, yòng yì liǎng jù huà zǒng jié zhǔ yào guān diǎn.',
       meaning: 'Saat membaca artikel seperti ini, cari dulu sikap penulis, lalu alasan dan contoh. Jika muncul kata seperti “karena itu”, “namun”, dan “kesimpulannya”, kata-kata ini biasanya membantu memahami logika. Terakhir, rangkum pandangan utama dalam satu atau dua kalimat.',
     },
     writing: {

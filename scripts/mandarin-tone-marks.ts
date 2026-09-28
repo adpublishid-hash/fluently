@@ -19,11 +19,20 @@ customPinyin({
   只想: 'zhǐ xiǎng',
   中都: 'zhōng dōu',
   不少: 'bù shǎo',
+  中国: 'zhōng guó',
+  玩得: 'wán de',
+  听得懂: 'tīng de dǒng',
+  快乐地: 'kuài lè de',
+  此消彼长: 'cǐ xiāo bǐ zhǎng',
+  // Erhua: the r joins the previous syllable after conversion.
+  那儿: 'nà r',
+  一点儿: 'yì diǎn r',
+  有点儿: 'yǒu diǎn r',
 });
 
 const PUNCTUATION: Record<string, string> = {
   '。': '.', '，': ',', '？': '?', '！': '!', '；': ';', '：': ':', '、': ',',
-  '“': '"', '”': '"', '‘': "'", '’': "'", '（': '(', '）': ')', '…': '...', '—': '-',
+  '‘': "'", '’': "'", '（': '(', '）': ')', '…': '...', '—': '-',
 };
 const HANZI = /[一-鿿]/;
 const VOWEL_START = /^[aeoāáǎàēéěèōóǒò]/;
@@ -70,8 +79,14 @@ export function toTonePinyin(hanzi: string): string {
   let text = pinyin(hanzi, { toneType: 'symbol', type: 'array', nonZh: 'consecutive' })
     .map((part) => [...part].map((char) => PUNCTUATION[char] ?? char).join(''))
     .join(' ')
-    .replace(/\s+([.,?!;:)"])/g, '$1')
-    .replace(/([("])\s+/g, '$1')
+    .replace(/\s+([.,?!;:)])/g, '$1')
+    .replace(/\(\s+/g, '(')
+    // Opening/closing quotes keep a space on the outside only.
+    .replace(/\s*“\s*/g, ' "')
+    .replace(/\s*”\s*/g, '" ')
+    .replace(/"\s+([.,?!;:)])/g, '"$1')
+    // Erhua overrides produce a separate "r" syllable; join it to the previous one.
+    .replace(/ r(?=[\s.,?!;:)"]|$)/g, 'r')
     .replace(/\s{2,}/g, ' ')
     .trim();
   if (/[.?!]$/.test(text)) text = text.charAt(0).toUpperCase() + text.slice(1);
@@ -83,6 +98,7 @@ const files = [
   'src/pages/module/mandarin/mandarinThemeBank.ts',
   'src/pages/module/mandarin/mandarinThemeSentences.ts',
   'src/features/passages/mandarinPassages.ts',
+  'src/features/passages/mandarinPassagesBasic.ts',
 ];
 const check = process.argv.includes('--check');
 let changed = 0;
@@ -100,7 +116,7 @@ for (const file of files) {
   );
   // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi'] (sentence tuples in
   // mandarinThemeSentences.ts and mandarinPassages.ts are always regenerated).
-  const sentenceFile = file.endsWith('mandarinThemeSentences.ts') || file.endsWith('mandarinPassages.ts');
+  const sentenceFile = /mandarin(ThemeSentences|Passages\w*)\.ts$/.test(file);
   next = next.replace(/\['([^'\\]+)', '([^'\\]*)', '/g, (match, hanzi, old) => {
     if (!HANZI.test(hanzi) || (!sentenceFile && !/^[\p{L} ']+$/u.test(old))) return match;
     const updated = toTonePinyin(hanzi).replace(/'/g, "\\'");

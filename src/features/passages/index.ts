@@ -2,8 +2,11 @@ import { arabicUpperPassages } from '../../pages/module/arabic/upper/passages';
 import { arabicUpperThemes, type ArabicUpperLevel } from '../../pages/module/arabic/upper/arabicUpperThemes';
 import { englishPassagesLower } from './englishPassagesLower';
 import { englishPassagesUpper } from './englishPassagesUpper';
+import { arabicFoundationPassages } from './arabicFoundationPassages';
 import { japanesePassages } from './japanesePassages';
+import { japanesePassagesBasic } from './japanesePassagesBasic';
 import { mandarinPassages } from './mandarinPassages';
+import { mandarinPassagesBasic } from './mandarinPassagesBasic';
 import type { PassageSource } from './types';
 
 export type PassageLanguage = 'english' | 'japanese' | 'mandarin' | 'arabic';
@@ -25,10 +28,13 @@ export const passageLanguages: PassageLanguage[] = ['english', 'japanese', 'mand
 /** Level id -> short label, in course order. */
 export const passageLevelLabels: Record<PassageLanguage, Array<[level: string, label: string]>> = {
   english: [['a1', 'A1'], ['a2', 'A2'], ['b1', 'B1'], ['b2', 'B2'], ['c1', 'C1'], ['c2', 'C2']],
-  japanese: [['intermediate', 'N3'], ['advanced', 'N2'], ['proficiency', 'N1']],
-  mandarin: [['intermediate', 'HSK 3'], ['upper-intermediate', 'HSK 4'], ['advanced', 'HSK 5'], ['proficiency', 'HSK 6']],
+  japanese: [['beginner', 'N5'], ['elementary', 'N4'], ['intermediate', 'N3'], ['advanced', 'N2'], ['proficiency', 'N1']],
+  mandarin: [
+    ['beginner', 'HSK 1'], ['elementary', 'HSK 2'], ['intermediate', 'HSK 3'], ['upper-intermediate', 'HSK 4'],
+    ['advanced', 'HSK 5'], ['proficiency', 'HSK 6'], ['hsk-7-9', 'HSK 7-9'],
+  ],
   arabic: [
-    ['intermediate', 'B1'], ['upper-intermediate', 'B2'], ['advanced', 'C1'],
+    ['beginner', 'Pemula'], ['elementary', 'Elementary'], ['intermediate', 'B1'], ['upper-intermediate', 'B2'], ['advanced', 'C1'],
     ['proficiency', 'C2'], ['mastery', 'Mastery'], ['scholar', 'Scholar'],
   ],
 };
@@ -70,9 +76,9 @@ let cache: Record<PassageLanguage, Passage[]> | null = null;
 function all(): Record<PassageLanguage, Passage[]> {
   cache ??= {
     english: [...englishPassagesLower, ...englishPassagesUpper].map((source) => fromSource('english', source)),
-    japanese: japanesePassages.map((source) => fromSource('japanese', source)),
-    mandarin: mandarinPassages.map((source) => fromSource('mandarin', source)),
-    arabic: arabicPassages(),
+    japanese: [...japanesePassagesBasic, ...japanesePassages].map((source) => fromSource('japanese', source)),
+    mandarin: [...mandarinPassagesBasic, ...mandarinPassages].map((source) => fromSource('mandarin', source)),
+    arabic: [...arabicFoundationPassages.map((source) => fromSource('arabic', source)), ...arabicPassages()],
   };
   return cache;
 }
