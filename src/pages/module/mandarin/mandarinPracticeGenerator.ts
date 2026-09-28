@@ -127,13 +127,13 @@ const wordMeaning = (index: number): Generator => ({ words, levelWords }, random
 // is used by two skills), so the seven skill lessons that share a lesson
 // number never repeat a question.
 const skillPlan: Record<MandarinSkillId, Generator[]> = {
-  grammar: [wordOrder(0), fillBlank(1), wordOrder(2)],
-  speaking: [sentencePinyin(1), sentenceForMeaning(2), wordOrder(1)],
-  listening: [sentenceForMeaning(0), sentenceMeaning(2), sentenceForMeaning(1)],
-  reading: [sentenceMeaning(0), sentenceMeaning(1), wordMeaning(3), wordMeaning(4)],
-  writing: [fillBlank(0), fillBlank(2), wordForMeaning(4)],
-  vocabulary: [wordForMeaning(0), wordForMeaning(1), wordForMeaning(2), wordForMeaning(3), wordMeaning(5)],
-  pronunciation: [wordTone(0), wordTone(1), sentencePinyin(0), wordTone(2), sentencePinyin(2)],
+  grammar: [wordOrder(0), fillBlank(1), wordOrder(2), wordOrder(3), fillBlank(5)],
+  speaking: [sentencePinyin(1), sentenceForMeaning(2), wordOrder(1), sentenceForMeaning(4)],
+  listening: [sentenceForMeaning(0), sentenceMeaning(2), sentenceForMeaning(1), sentenceMeaning(5)],
+  reading: [sentenceMeaning(0), sentenceMeaning(1), wordMeaning(3), wordMeaning(4), sentenceMeaning(3)],
+  writing: [fillBlank(0), fillBlank(2), wordForMeaning(4), fillBlank(4), wordOrder(5)],
+  vocabulary: [wordForMeaning(0), wordForMeaning(1), wordForMeaning(2), wordForMeaning(3), wordMeaning(5), fillBlank(3)],
+  pronunciation: [wordTone(0), wordTone(1), sentencePinyin(0), wordTone(2), sentencePinyin(2), sentencePinyin(4)],
 };
 
 export function buildLessonPractice(skillId: MandarinSkillId, material: PracticeMaterial, seed: number): ChoiceQuestion[] {

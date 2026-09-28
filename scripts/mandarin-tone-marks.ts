@@ -24,7 +24,24 @@ customPinyin({
   听得懂: 'tīng de dǒng',
   快乐地: 'kuài lè de',
   此消彼长: 'cǐ xiāo bǐ zhǎng',
+  看中文: 'kàn zhōng wén',
+  因为: 'yīn wèi',
+  为环境: 'wèi huán jìng',
+  报道了: 'bào dào le',
+  都可: 'dōu kě',
+  慢慢地: 'màn màn de',
+  // Verb + 得 complements (pinyin-pro reads them as dé).
+  ...Object.fromEntries(['唱', '跑', '写', '忙', '考', '做', '学', '听', '走', '吃', '睡', '来', '讲', '准备', '提炼'].map((verb) => [`${verb}得`, `${pinyin(verb)} de`])),
+  长得: 'zhǎng de',
+  // Neutral-tone suffixes.
+  东西: 'dōng xi',
+  意思: 'yì si',
+  清楚: 'qīng chu',
+  箱子: 'xiāng zi',
+  例子: 'lì zi',
+  饺子: 'jiǎo zi',
   // Erhua: the r joins the previous syllable after conversion.
+  点儿: 'diǎn r',
   那儿: 'nà r',
   一点儿: 'yì diǎn r',
   有点儿: 'yǒu diǎn r',
@@ -97,6 +114,7 @@ const files = [
   'src/pages/module/mandarin/mandarinLessonContent.ts',
   'src/pages/module/mandarin/mandarinThemeBank.ts',
   'src/pages/module/mandarin/mandarinThemeSentences.ts',
+  'src/pages/module/mandarin/mandarinPackSentences.ts',
   'src/features/passages/mandarinPassages.ts',
   'src/features/passages/mandarinPassagesBasic.ts',
 ];
@@ -116,7 +134,7 @@ for (const file of files) {
   );
   // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi'] (sentence tuples in
   // mandarinThemeSentences.ts and mandarinPassages.ts are always regenerated).
-  const sentenceFile = /mandarin(ThemeSentences|Passages\w*)\.ts$/.test(file);
+  const sentenceFile = /mandarin(ThemeSentences|PackSentences|Passages\w*)\.ts$/.test(file);
   next = next.replace(/\['([^'\\]+)', '([^'\\]*)', '/g, (match, hanzi, old) => {
     if (!HANZI.test(hanzi) || (!sentenceFile && !/^[\p{L} ']+$/u.test(old))) return match;
     const updated = toTonePinyin(hanzi).replace(/'/g, "\\'");

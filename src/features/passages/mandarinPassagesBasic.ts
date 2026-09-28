@@ -41,7 +41,7 @@ export const mandarinPassagesBasic: PassageSource[] = [
   {
     id: 'hsk1-maidongxi', level: 'beginner', title: 'Berbelanja', native: '买东西',
     sentences: [
-      ['昨天下午我和妈妈去商店买东西。', 'Zuó tiān xià wǔ wǒ hé mā ma qù shāng diàn mǎi dōng xī.', 'Kemarin sore saya dan ibu pergi berbelanja ke toko.'],
+      ['昨天下午我和妈妈去商店买东西。', 'Zuó tiān xià wǔ wǒ hé mā ma qù shāng diàn mǎi dōng xi.', 'Kemarin sore saya dan ibu pergi berbelanja ke toko.'],
       ['妈妈想买一些水果。', 'Mā ma xiǎng mǎi yì xiē shuǐ guǒ.', 'Ibu ingin membeli buah.'],
       ['苹果很好，一斤十块钱。', 'Píng guǒ hěn hǎo, yì jīn shí kuài qián.', 'Apelnya bagus, satu jin sepuluh yuan.'],
       ['我们买了三斤苹果。', 'Wǒ men mǎi le sān jīn píng guǒ.', 'Kami membeli tiga jin apel.'],
@@ -233,7 +233,7 @@ export const mandarinPassagesBasic: PassageSource[] = [
       ['她在一家大公司卖电脑。', 'Tā zài yì jiā dà gōng sī mài diàn nǎo.', 'Dia menjual komputer di sebuah perusahaan besar.'],
       ['公司离她家很近，她每天走路去上班。', 'Gōng sī lí tā jiā hěn jìn, tā měi tiān zǒu lù qù shàng bān.', 'Kantornya dekat rumah, jadi setiap hari dia berjalan kaki ke kantor.'],
       ['工作有点儿忙，但是同事们都对她很好。', 'Gōng zuò yǒu diǎnr máng, dàn shì tóng shì men dōu duì tā hěn hǎo.', 'Pekerjaannya agak sibuk, tetapi rekan-rekan kerja baik kepadanya.'],
-      ['她说这个工作比以前的工作有意思。', 'Tā shuō zhè ge gōng zuò bǐ yǐ qián de gōng zuò yǒu yì sī.', 'Dia bilang pekerjaan ini lebih menarik daripada pekerjaan sebelumnya.'],
+      ['她说这个工作比以前的工作有意思。', 'Tā shuō zhè ge gōng zuò bǐ yǐ qián de gōng zuò yǒu yì si.', 'Dia bilang pekerjaan ini lebih menarik daripada pekerjaan sebelumnya.'],
       ['我希望她能一直快乐地工作。', 'Wǒ xī wàng tā néng yì zhí kuài lè de gōng zuò.', 'Saya berharap dia bisa terus bekerja dengan bahagia.'],
     ],
     glossary: [['开始', 'kāishǐ', 'mulai'], ['电脑', 'diànnǎo', 'komputer'], ['同事', 'tóngshì', 'rekan kerja'], ['希望', 'xīwàng', 'berharap']],

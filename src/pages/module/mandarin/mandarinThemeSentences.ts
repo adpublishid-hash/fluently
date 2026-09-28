@@ -39,8 +39,8 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
       ['每个人都有偏见，关键是要意识到它。', 'Měi gè rén dōu yǒu piān jiàn, guān jiàn shì yào yì shí dào tā.', 'Setiap orang punya bias; kuncinya adalah menyadarinya.'],
     ],
     [
-      ['很多消费者买东西时更重视性价比。', 'Hěn duō xiāo fèi zhě mǎi dōng xī shí gèng zhòng shì xìng jià bǐ.', 'Banyak konsumen lebih mementingkan rasio harga dan kualitas saat berbelanja.'],
-      ['广告常常让我们买一些并不需要的东西。', 'Guǎng gào cháng cháng ràng wǒ men mǎi yì xiē bìng bù xū yào de dōng xī.', 'Iklan sering membuat kita membeli barang yang sebenarnya tidak dibutuhkan.'],
+      ['很多消费者买东西时更重视性价比。', 'Hěn duō xiāo fèi zhě mǎi dōng xi shí gèng zhòng shì xìng jià bǐ.', 'Banyak konsumen lebih mementingkan rasio harga dan kualitas saat berbelanja.'],
+      ['广告常常让我们买一些并不需要的东西。', 'Guǎng gào cháng cháng ràng wǒ men mǎi yì xiē bìng bù xū yào de dōng xi.', 'Iklan sering membuat kita membeli barang yang sebenarnya tidak dibutuhkan.'],
       ['年轻人越来越喜欢支持本土品牌。', 'Nián qīng rén yuè lái yuè xǐ huan zhī chí běn tǔ pǐn pái.', 'Anak muda semakin suka mendukung merek lokal.'],
     ],
     [
@@ -95,7 +95,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
     ],
     [
       ['正式的信件要注意称呼和格式。', 'Zhèng shì de xìn jiàn yào zhù yì chēng hu hé gé shì.', 'Surat formal harus memperhatikan sapaan dan format.'],
-      ['每个段落最好只讨论一个中心意思。', 'Měi gè duàn luò zuì hǎo zhǐ tǎo lùn yí gè zhōng xīn yì sī.', 'Setiap paragraf sebaiknya hanya membahas satu gagasan pokok.'],
+      ['每个段落最好只讨论一个中心意思。', 'Měi gè duàn luò zuì hǎo zhǐ tǎo lùn yí gè zhōng xīn yì si.', 'Setiap paragraf sebaiknya hanya membahas satu gagasan pokok.'],
       ['文章的结论应该回应开头提出的问题。', 'Wén zhāng de jié lùn yīng gāi huí yìng kāi tóu tí chū de wèn tí.', 'Kesimpulan tulisan harus menjawab pertanyaan yang diajukan di awal.'],
     ],
     [
@@ -310,7 +310,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
     [
       ['答辩时，要先用一句话说明研究的核心论点。', 'Dá biàn shí, yào xiān yòng yí jù huà shuō míng yán jiū de hé xīn lùn diǎn.', 'Saat sidang pembelaan, jelaskan dulu argumen inti penelitian dalam satu kalimat.'],
       ['这份学术报告对已有研究做了综合评述。', 'Zhè fèn xué shù bào gào duì yǐ yǒu yán jiū zuò le zōng hé píng shù.', 'Presentasi akademik ini menyajikan tinjauan komprehensif atas penelitian terdahulu.'],
-      ['论点提炼得越清楚，听众越容易理解。', 'Lùn diǎn tí liàn dé yuè qīng chǔ, tīng zhòng yuè róng yì lǐ jiě.', 'Semakin tajam argumen dirumuskan, semakin mudah pendengar memahaminya.'],
+      ['论点提炼得越清楚，听众越容易理解。', 'Lùn diǎn tí liàn de yuè qīng chu, tīng zhòng yuè róng yì lǐ jiě.', 'Semakin tajam argumen dirumuskan, semakin mudah pendengar memahaminya.'],
     ],
   ],
   'hsk-8': [

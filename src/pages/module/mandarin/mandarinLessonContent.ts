@@ -2,6 +2,7 @@ import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, shuffleQues
 import { getMandarinLevelThemeWords, getMandarinTheme } from './mandarinThemeBank';
 import { getMandarinLevelThemeSentences, getMandarinThemeSentences } from './mandarinThemeSentences';
 import { buildLessonPractice, type PracticeMaterial } from './mandarinPracticeGenerator';
+import { getMandarinPackSentences } from './mandarinPackSentences';
 import type { MandarinLevelId, MandarinSkillId } from './mandarinModuleData';
 
 export type MandarinLesson = {
@@ -333,7 +334,7 @@ const skillPatterns: Record<MandarinSkillId, MandarinLesson['patterns']> = {
     { label: 'Opinion', hanzi: '我认为... 因为...', pinyin: 'Wǒ rèn wéi... yīn wèi...', meaning: 'Saya berpendapat... karena...' },
   ],
   vocabulary: [
-    { label: 'Definition', hanzi: '这个词的意思是...', pinyin: 'Zhè ge cí de yì sī shì...', meaning: 'Arti kata ini adalah...' },
+    { label: 'Definition', hanzi: '这个词的意思是...', pinyin: 'Zhè ge cí de yì si shì...', meaning: 'Arti kata ini adalah...' },
     { label: 'Collocation', hanzi: '常用搭配是...', pinyin: 'Cháng yòng dā pèi shì...', meaning: 'Kolokasi yang sering dipakai adalah...' },
   ],
   pronunciation: [
@@ -817,7 +818,7 @@ const upperIntermediateExtraLessonPacks: Array<{
       { hanzi: '首先', pinyin: 'shǒuxiān', meaning: 'pertama-tama' },
       { hanzi: '其次', pinyin: 'qícì', meaning: 'selanjutnya' },
       { hanzi: '总之', pinyin: 'zǒngzhī', meaning: 'singkatnya/kesimpulannya' },
-      { hanzi: '例子', pinyin: 'lìzǐ', meaning: 'contoh' },
+      { hanzi: '例子', pinyin: 'lìzi', meaning: 'contoh' },
     ],
     examples: [
       { hanzi: '今天我演讲的主题是如何提高学习效率。', pinyin: 'Jīn tiān wǒ yǎn jiǎng de zhǔ tí shì rú hé tí gāo xué xí xiào lǜ.', meaning: 'Tema presentasi saya hari ini adalah cara meningkatkan efisiensi belajar.' },
@@ -1129,7 +1130,7 @@ const elementaryLessonPacks: Array<{
     ],
     examples: [
       { hanzi: '他说中文说得很好。', pinyin: 'Tā shuō zhōng wén shuō de hěn hǎo.', meaning: 'Dia berbicara Mandarin dengan sangat baik.' },
-      { hanzi: '你写汉字写得很快。', pinyin: 'Nǐ xiě hàn zì xiě dé hěn kuài.', meaning: 'Kamu menulis Hanzi dengan cepat.' },
+      { hanzi: '你写汉字写得很快。', pinyin: 'Nǐ xiě hàn zì xiě de hěn kuài.', meaning: 'Kamu menulis Hanzi dengan cepat.' },
       { hanzi: '请说慢一点儿。', pinyin: 'Qǐng shuō màn yì diǎnr.', meaning: 'Tolong bicara sedikit lebih pelan.' },
     ],
     quiz: [
@@ -1216,7 +1217,7 @@ const intermediateLessonPacks: Array<{
       { hanzi: '坚持', pinyin: 'jiānchí', meaning: 'konsisten/bertahan' },
     ],
     examples: [
-      { hanzi: '我觉得学中文不容易，但是很有意思。', pinyin: 'Wǒ jué de xué zhōng wén bù róng yì, dàn shì hěn yǒu yì sī.', meaning: 'Menurut saya belajar Mandarin tidak mudah, tetapi menarik.' },
+      { hanzi: '我觉得学中文不容易，但是很有意思。', pinyin: 'Wǒ jué de xué zhōng wén bù róng yì, dàn shì hěn yǒu yì si.', meaning: 'Menurut saya belajar Mandarin tidak mudah, tetapi menarik.' },
       { hanzi: '如果每天练习，进步会很快。', pinyin: 'Rú guǒ měi tiān liàn xí, jìn bù huì hěn kuài.', meaning: 'Jika berlatih setiap hari, kemajuan akan cepat.' },
       { hanzi: '这个方法对我很有帮助。', pinyin: 'Zhè ge fāng fǎ duì wǒ hěn yǒu bāng zhù.', meaning: 'Metode ini sangat membantu saya.' },
     ],
@@ -1271,13 +1272,13 @@ const intermediateLessonPacks: Array<{
       { hanzi: '越来越', pinyin: 'yuèláiyuè', meaning: 'semakin lama semakin' },
       { hanzi: '比以前', pinyin: 'bǐ yǐqián', meaning: 'dibanding sebelumnya' },
       { hanzi: '流利', pinyin: 'liúlì', meaning: 'lancar' },
-      { hanzi: '清楚', pinyin: 'qīngchǔ', meaning: 'jelas' },
+      { hanzi: '清楚', pinyin: 'qīngchu', meaning: 'jelas' },
       { hanzi: '习惯', pinyin: 'xíguàn', meaning: 'terbiasa/kebiasaan' },
       { hanzi: '改变', pinyin: 'gǎibiàn', meaning: 'berubah/mengubah' },
     ],
     examples: [
       { hanzi: '我的中文越来越流利。', pinyin: 'Wǒ de zhōng wén yuè lái yuè liú lì.', meaning: 'Mandarin saya semakin lancar.' },
-      { hanzi: '现在我比以前说得清楚。', pinyin: 'Xiàn zài wǒ bǐ yǐ qián shuō de qīng chǔ.', meaning: 'Sekarang saya berbicara lebih jelas daripada sebelumnya.' },
+      { hanzi: '现在我比以前说得清楚。', pinyin: 'Xiàn zài wǒ bǐ yǐ qián shuō de qīng chu.', meaning: 'Sekarang saya berbicara lebih jelas daripada sebelumnya.' },
       { hanzi: '每天练习已经成为我的习惯。', pinyin: 'Měi tiān liàn xí yǐ jīng chéng wéi wǒ de xí guàn.', meaning: 'Latihan setiap hari sudah menjadi kebiasaan saya.' },
     ],
     quiz: [
@@ -1433,12 +1434,12 @@ const intermediateLessonPacks: Array<{
       { hanzi: '经常', pinyin: 'jīngcháng', meaning: 'sering' },
       { hanzi: '偶尔', pinyin: 'ǒu\'ěr', meaning: 'sesekali' },
       { hanzi: '放松', pinyin: 'fàngsōng', meaning: 'rileks' },
-      { hanzi: '有意思', pinyin: 'yǒuyìsī', meaning: 'menarik' },
+      { hanzi: '有意思', pinyin: 'yǒuyìsi', meaning: 'menarik' },
     ],
     examples: [
-      { hanzi: '我平时经常看中文电影。', pinyin: 'Wǒ píng shí jīng cháng kàn zhòng wén diàn yǐng.', meaning: 'Saya biasanya sering menonton film Mandarin.' },
+      { hanzi: '我平时经常看中文电影。', pinyin: 'Wǒ píng shí jīng cháng kàn zhōng wén diàn yǐng.', meaning: 'Saya biasanya sering menonton film Mandarin.' },
       { hanzi: '这个爱好让我很放松。', pinyin: 'Zhè ge ài hào ràng wǒ hěn fàng sōng.', meaning: 'Hobi ini membuat saya rileks.' },
-      { hanzi: '我觉得学习汉字很有意思。', pinyin: 'Wǒ jué de xué xí hàn zì hěn yǒu yì sī.', meaning: 'Menurut saya belajar Hanzi menarik.' },
+      { hanzi: '我觉得学习汉字很有意思。', pinyin: 'Wǒ jué de xué xí hàn zì hěn yǒu yì si.', meaning: 'Menurut saya belajar Hanzi menarik.' },
     ],
     quiz: [
       { question: '平时 berarti...', options: ['biasanya', 'selain', 'pasif'], answer: 'biasanya' },
@@ -1531,7 +1532,7 @@ const intermediateLessonPacks: Array<{
       { hanzi: '总结', pinyin: 'zǒngjié', meaning: 'meringkas/ringkasan' },
       { hanzi: '主要', pinyin: 'zhǔyào', meaning: 'utama' },
       { hanzi: '内容', pinyin: 'nèiróng', meaning: 'isi/konten' },
-      { hanzi: '意思', pinyin: 'yìsī', meaning: 'makna/maksud' },
+      { hanzi: '意思', pinyin: 'yìsi', meaning: 'makna/maksud' },
       { hanzi: '重点', pinyin: 'zhòngdiǎn', meaning: 'poin penting' },
       { hanzi: '最后', pinyin: 'zuìhòu', meaning: 'akhirnya/terakhir' },
     ],
@@ -1666,7 +1667,7 @@ const upperIntermediateLessonPacks: Array<{
     examples: [
       { hanzi: '这个应用既实用又有趣。', pinyin: 'Zhè ge yìng yòng jì shí yòng yòu yǒu qù.', meaning: 'Aplikasi ini praktis sekaligus menarik.' },
       { hanzi: '中文语法有时候既简单又复杂。', pinyin: 'Zhōng wén yǔ fǎ yǒu shí hòu jì jiǎn dān yòu fù zá.', meaning: 'Grammar Mandarin kadang sederhana sekaligus kompleks.' },
-      { hanzi: '这个解释很清楚。', pinyin: 'Zhè ge jiě shì hěn qīng chǔ.', meaning: 'Penjelasan ini jelas.' },
+      { hanzi: '这个解释很清楚。', pinyin: 'Zhè ge jiě shì hěn qīng chu.', meaning: 'Penjelasan ini jelas.' },
     ],
     quiz: [
       { question: '既...又... menyatakan...', options: ['dua kualitas sekaligus', 'urutan waktu', 'harga'], answer: 'dua kualitas sekaligus' },
@@ -1785,7 +1786,7 @@ const upperIntermediateLessonPacks: Array<{
     ],
     examples: [
       { hanzi: '保持健康需要规律的饮食和锻炼。', pinyin: 'Bǎo chí jiàn kāng xū yào guī lǜ de yǐn shí hé duàn liàn.', meaning: 'Menjaga kesehatan membutuhkan pola makan dan olahraga yang teratur.' },
-      { hanzi: '睡得好，精神就会更好。', pinyin: 'Shuì dé hǎo, jīng shén jiù huì gèng hǎo.', meaning: 'Jika tidur baik, energi/mental akan lebih baik.' },
+      { hanzi: '睡得好，精神就会更好。', pinyin: 'Shuì de hǎo, jīng shén jiù huì gèng hǎo.', meaning: 'Jika tidur baik, energi/mental akan lebih baik.' },
       { hanzi: '我打算每天锻炼半个小时。', pinyin: 'Wǒ dǎ suàn měi tiān duàn liàn bàn gè xiǎo shí.', meaning: 'Saya berencana berolahraga setengah jam setiap hari.' },
     ],
     quiz: [
@@ -1866,7 +1867,7 @@ const upperIntermediateLessonPacks: Array<{
     examples: [
       { hanzi: '长时间看手机会导致眼睛不舒服。', pinyin: 'Cháng shí jiān kàn shǒu jī huì dǎo zhì yǎn jīng bù shū fú.', meaning: 'Melihat ponsel terlalu lama dapat menyebabkan mata tidak nyaman.' },
       { hanzi: '这个问题越来越严重，因此需要改变。', pinyin: 'Zhè ge wèn tí yuè lái yuè yán zhòng, yīn cǐ xū yào gǎi biàn.', meaning: 'Masalah ini semakin serius, oleh karena itu perlu perubahan.' },
-      { hanzi: '原因和结果都很清楚。', pinyin: 'Yuán yīn hé jié guǒ dōu hěn qīng chǔ.', meaning: 'Penyebab dan hasilnya sama-sama jelas.' },
+      { hanzi: '原因和结果都很清楚。', pinyin: 'Yuán yīn hé jié guǒ dōu hěn qīng chu.', meaning: 'Penyebab dan hasilnya sama-sama jelas.' },
     ],
     quiz: [
       { question: '导致 berarti...', options: ['menyebabkan', 'menghormati', 'menyimpan'], answer: 'menyebabkan' },
@@ -1924,7 +1925,7 @@ const upperIntermediateLessonPacks: Array<{
       { hanzi: '自然', pinyin: 'zìrán', meaning: 'natural' },
     ],
     examples: [
-      { hanzi: '复习的重点是表达清楚、结构自然。', pinyin: 'Fù xí de zhòng diǎn shì biǎo dá qīng chǔ, jié gòu zì rán.', meaning: 'Fokus review adalah ekspresi jelas dan struktur natural.' },
+      { hanzi: '复习的重点是表达清楚、结构自然。', pinyin: 'Fù xí de zhòng diǎn shì biǎo dá qīng chu, jié gòu zì rán.', meaning: 'Fokus review adalah ekspresi jelas dan struktur natural.' },
       { hanzi: '写作时要注意逻辑。', pinyin: 'Xiě zuò shí yào zhù yì luó jí.', meaning: 'Saat menulis perlu memperhatikan logika.' },
       { hanzi: '我可以总结一篇短文的主要内容。', pinyin: 'Wǒ kě yǐ zǒng jié yì piān duǎn wén de zhǔ yào nèi róng.', meaning: 'Saya bisa merangkum isi utama sebuah teks pendek.' },
     ],
@@ -2093,6 +2094,17 @@ export function getMandarinLessonPreview(skillId: MandarinSkillId, lesson: numbe
 }
 
 type LessonPack = { vocabulary: MandarinLesson['vocabulary']; examples: MandarinLesson['examples'] };
+
+// HSK 1-4 packs carry three extra example sentences each (mandarinPackSentences.ts).
+([
+  ['beginner', beginnerLessonPacks],
+  ['elementary', elementaryLessonPacks],
+  ['intermediate', intermediateLessonPacks],
+  ['upper-intermediate', [...upperIntermediateLessonPacks, ...upperIntermediateExtraLessonPacks]],
+] as const).forEach(([level, packs]) => packs.forEach((pack, index) => {
+  const known = new Set(pack.examples.map((item) => item.hanzi));
+  pack.examples.push(...getMandarinPackSentences(level, index + 1).filter((item) => !known.has(item.hanzi)));
+}));
 
 function packsFor(level: MandarinLevelId): LessonPack[] | null {
   if (level === 'beginner') return beginnerLessonPacks;
@@ -2410,7 +2422,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     ],
     vocabulary: [
       { label: 'Time collocation', hanzi: '早上起床 / 下午见面 / 晚上复习', pinyin: 'zǎo shàng qǐ chuáng / xià wǔ jiàn miàn / wǎn shàng fù xí', meaning: 'bangun pagi / bertemu sore / review malam' },
-      { label: 'Daily verb-object', hanzi: '吃早饭 / 看电影 / 坐车 / 买东西', pinyin: 'chī zǎo fàn / kàn diàn yǐng / zuò chē / mǎi dōng xī', meaning: 'sarapan / menonton film / naik kendaraan / belanja' },
+      { label: 'Daily verb-object', hanzi: '吃早饭 / 看电影 / 坐车 / 买东西', pinyin: 'chī zǎo fàn / kàn diàn yǐng / zuò chē / mǎi dōng xi', meaning: 'sarapan / menonton film / naik kendaraan / belanja' },
       { label: 'Reason words', hanzi: '因为 / 所以 / 但是 / 也 / 都', pinyin: 'yīn wèi / suǒ yǐ / dàn shì / yě / dōu', meaning: 'karena / jadi / tetapi / juga / semua' },
       { label: 'Direction words', hanzi: '左边 / 右边 / 前面 / 后面', pinyin: 'zuǒ biān / yòu biān / qián miàn / hòu miàn', meaning: 'kiri / kanan / depan / belakang' },
     ],
@@ -2439,7 +2451,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       { label: 'Listen for result complement', hanzi: '你听懂了吗？', pinyin: 'Nǐ tīng dǒng le ma?', meaning: 'Dengarkan hasil dari aksi: sudah paham atau belum.' },
       { label: 'Listen for passive', hanzi: '钱包被人拿走了。', pinyin: 'Qián bāo bèi rén ná zǒu le.', meaning: 'Dengarkan siapa/apa yang mengalami aksi.' },
       { label: 'Listen for sequence', hanzi: '先...然后...最后...', pinyin: 'Xiān... rán hòu... zuì hòu...', meaning: 'Dengarkan urutan kejadian.' },
-      { label: 'Listen for comparison', hanzi: '现在比以前清楚。', pinyin: 'Xiàn zài bǐ yǐ qián qīng chǔ.', meaning: 'Dengarkan perubahan dibanding sebelumnya.' },
+      { label: 'Listen for comparison', hanzi: '现在比以前清楚。', pinyin: 'Xiàn zài bǐ yǐ qián qīng chu.', meaning: 'Dengarkan perubahan dibanding sebelumnya.' },
     ],
     reading: [
       { label: 'Main content', hanzi: '这段话的主要内容是...', pinyin: 'Zhè duàn huà de zhǔ yào nèi róng shì...', meaning: 'Isi utama paragraf ini adalah...' },
@@ -2787,19 +2799,19 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     speaking: {
       title: 'Model presentasi 1 menit',
       hanzi: '大家好，今天我想谈谈科技对学习的影响。我认为科技让学习变得更方便，因为我们可以随时找到资料。不过，如果没有清楚的计划，网络也会浪费我们的时间。因此，我建议大家先确定目标，再选择合适的工具。',
-      pinyin: 'Dà jiā hǎo, jīn tiān wǒ xiǎng tán tán kē jì duì xué xí de yǐng xiǎng. wǒ rèn wéi kē jì ràng xué xí biàn de gèng fāng biàn, yīn wèi wǒ men kě yǐ suí shí zhǎo dào zī liào. bú guò, rú guǒ méi yǒu qīng chǔ de jì huà, wǎng luò yě huì làng fèi wǒ men de shí jiān. yīn cǐ, wǒ jiàn yì dà jiā xiān què dìng mù biāo, zài xuǎn zé hé shì de gōng jù.',
+      pinyin: 'Dà jiā hǎo, jīn tiān wǒ xiǎng tán tán kē jì duì xué xí de yǐng xiǎng. wǒ rèn wéi kē jì ràng xué xí biàn de gèng fāng biàn, yīn wèi wǒ men kě yǐ suí shí zhǎo dào zī liào. bú guò, rú guǒ méi yǒu qīng chu de jì huà, wǎng luò yě huì làng fèi wǒ men de shí jiān. yīn cǐ, wǒ jiàn yì dà jiā xiān què dìng mù biāo, zài xuǎn zé hé shì de gōng jù.',
       meaning: 'Halo semuanya, hari ini saya ingin membahas pengaruh teknologi terhadap belajar. Saya berpendapat teknologi membuat belajar lebih praktis karena kita bisa menemukan materi kapan saja. Namun, jika tidak ada rencana yang jelas, internet juga akan membuang waktu kita. Karena itu, saya menyarankan untuk menentukan target dulu, lalu memilih alat yang cocok.',
     },
     listening: {
       title: 'Model ringkasan listening',
       hanzi: '这段录音主要讨论工作压力。说话人认为压力不一定是坏事，关键是我们怎么处理。首先，要把任务分清楚；其次，要及时和同事沟通。总之，好的合作可以减少压力。',
-      pinyin: 'Zhè duàn lù yīn zhǔ yào tǎo lùn gōng zuò yā lì. shuō huà rén rèn wéi yā lì bù yí dìng shì huài shì, guān jiàn shì wǒ men zěn me chǔ lǐ. shǒu xiān, yào bǎ rèn wu fēn qīng chǔ; qí cì, yào jí shí hé tóng shì gōu tōng. zǒng zhī, hǎo de hé zuò kě yǐ jiǎn shǎo yā lì.',
+      pinyin: 'Zhè duàn lù yīn zhǔ yào tǎo lùn gōng zuò yā lì. shuō huà rén rèn wéi yā lì bù yí dìng shì huài shì, guān jiàn shì wǒ men zěn me chǔ lǐ. shǒu xiān, yào bǎ rèn wu fēn qīng chu; qí cì, yào jí shí hé tóng shì gōu tōng. zǒng zhī, hǎo de hé zuò kě yǐ jiǎn shǎo yā lì.',
       meaning: 'Audio ini terutama membahas tekanan kerja. Pembicara berpendapat tekanan tidak selalu buruk; kuncinya adalah bagaimana kita menanganinya. Pertama, tugas perlu dipisahkan dengan jelas; kedua, perlu berkomunikasi tepat waktu dengan rekan kerja. Kesimpulannya, kerja sama yang baik dapat mengurangi tekanan.',
     },
     reading: {
       title: 'Model strategi membaca HSK 4',
       hanzi: '阅读这类文章时，先找作者的态度，再找理由和例子。如果文章里出现“因此”“不过”“总之”，这些词通常会帮助我们理解逻辑。最后，用一两句话总结主要观点。',
-      pinyin: 'Yuè dú zhè lèi wén zhāng shí, xiān zhǎo zuò zhě de tài dù, zài zhǎo lǐ yóu hé lì zǐ. rú guǒ wén zhāng lǐ chū xiàn "yīn cǐ" "bú guò" "zǒng zhī", zhè xiē cí tōng cháng huì bāng zhù wǒ men lǐ jiě luó jí. zuì hòu, yòng yì liǎng jù huà zǒng jié zhǔ yào guān diǎn.',
+      pinyin: 'Yuè dú zhè lèi wén zhāng shí, xiān zhǎo zuò zhě de tài dù, zài zhǎo lǐ yóu hé lì zi. rú guǒ wén zhāng lǐ chū xiàn "yīn cǐ" "bú guò" "zǒng zhī", zhè xiē cí tōng cháng huì bāng zhù wǒ men lǐ jiě luó jí. zuì hòu, yòng yì liǎng jù huà zǒng jié zhǔ yào guān diǎn.',
       meaning: 'Saat membaca artikel seperti ini, cari dulu sikap penulis, lalu alasan dan contoh. Jika muncul kata seperti “karena itu”, “namun”, dan “kesimpulannya”, kata-kata ini biasanya membantu memahami logika. Terakhir, rangkum pandangan utama dalam satu atau dua kalimat.',
     },
     writing: {
@@ -2842,7 +2854,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     speaking: [
       { label: 'Academic opening', hanzi: '关于这个话题，我想从三个方面来分析。', pinyin: 'Guān yú zhè ge huà tí, wǒ xiǎng cóng sān gè fāng miàn lái fēn xī.', meaning: 'Tentang topik ini, saya ingin menganalisis dari tiga sisi.' },
       { label: 'Balanced stance', hanzi: '我不完全反对这个观点，但我认为还需要考虑实际情况。', pinyin: 'Wǒ bù wán quán fǎn duì zhè ge guān diǎn, dàn wǒ rèn wéi hái xū yào kǎo lǜ shí jì qíng kuàng.', meaning: 'Saya tidak sepenuhnya menolak pandangan ini, tetapi situasi nyata tetap perlu dipertimbangkan.' },
-      { label: 'Evidence cue', hanzi: '一个明显的例子是...', pinyin: 'Yí gè míng xiǎn de lì zǐ shì...', meaning: 'Contoh yang jelas adalah...' },
+      { label: 'Evidence cue', hanzi: '一个明显的例子是...', pinyin: 'Yí gè míng xiǎn de lì zi shì...', meaning: 'Contoh yang jelas adalah...' },
       { label: 'Synthesis close', hanzi: '综合来看，最合理的做法是...', pinyin: 'Zōng hé lái kàn, zuì hé lǐ de zuò fǎ shì...', meaning: 'Secara menyeluruh, cara paling masuk akal adalah...' },
     ],
     listening: [
@@ -2937,7 +2949,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     reading: {
       title: 'Model inferensi reading HSK 5',
       hanzi: '文章表面上讨论消费选择，实际上关注的是现代人的价值观变化。作者并不反对消费，而是批评盲目追求品牌的现象。因此，阅读时要区分事实、例子和作者真正的态度。',
-      pinyin: 'Wén zhāng biǎo miàn shàng tǎo lùn xiāo fèi xuǎn zé, shí jì shang guān zhù de shì xiàn dài rén de jià zhí guān biàn huà. zuò zhě bìng bù fǎn duì xiāo fèi, ér shì pī píng máng mù zhuī qiú pǐn pái de xiàn xiàng. yīn cǐ, yuè dú shí yào qū fēn shì shí, lì zǐ hé zuò zhě zhēn zhèng de tài dù.',
+      pinyin: 'Wén zhāng biǎo miàn shàng tǎo lùn xiāo fèi xuǎn zé, shí jì shang guān zhù de shì xiàn dài rén de jià zhí guān biàn huà. zuò zhě bìng bù fǎn duì xiāo fèi, ér shì pī píng máng mù zhuī qiú pǐn pái de xiàn xiàng. yīn cǐ, yuè dú shí yào qū fēn shì shí, lì zi hé zuò zhě zhēn zhèng de tài dù.',
       meaning: 'Artikel tampaknya membahas pilihan konsumsi, tetapi sebenarnya memperhatikan perubahan nilai manusia modern. Penulis tidak menolak konsumsi, melainkan mengkritik fenomena mengejar merek secara buta. Pembaca harus membedakan fakta, contoh, dan sikap penulis.',
     },
     writing: {
@@ -3165,7 +3177,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     ],
     patterns: isBeginner ? beginnerPatterns[skillId] : isElementary ? elementaryPatterns[skillId] : isIntermediate ? intermediatePatterns[skillId] : isUpperIntermediate ? upperIntermediatePatterns[skillId] : isAdvanced ? advancedPatterns[skillId] : (isProficiency || isPostHsk) ? proficiencyPatterns[skillId] : skillPatterns[skillId],
     vocabulary: isBeginner ? [...beginnerPack.vocabulary, ...beginnerVocabulary].slice(0, 20) : isElementary ? [...elementaryPack.vocabulary, ...levelVocabulary.elementary, ...levelVocabulary.beginner.slice(0, 4)].slice(0, 20) : isIntermediate ? [...intermediatePack.vocabulary, ...levelVocabulary.intermediate, ...levelVocabulary.elementary.slice(0, 4)].slice(0, 20) : isUpperIntermediate ? [...upperIntermediatePack.vocabulary, ...levelVocabulary['upper-intermediate'], ...levelVocabulary.intermediate.slice(0, 4)].slice(0, 22) : isAdvanced ? [...advancedPack.vocabulary, ...levelVocabulary.advanced, ...levelVocabulary['upper-intermediate'].slice(0, 4)].slice(0, 24) : isProficiency ? [...proficiencyPack.vocabulary, ...levelVocabulary.proficiency, ...levelVocabulary.advanced.slice(0, 4)].slice(0, 26) : isPostHsk ? [...postHskPack.vocabulary, ...(levelVocabulary[level] ?? []), ...levelVocabulary.proficiency.slice(0, 4)].slice(0, 30) : [...(levelVocabulary[level] ?? levelVocabulary.beginner), ...levelVocabulary.beginner.slice(0, 4)],
-    examples: isBeginner ? [...beginnerPack.examples, ...beginnerExamples[skillId]].slice(0, 6) : isElementary ? [...elementaryPack.examples, ...skillExamples[skillId]].slice(0, 6) : isIntermediate ? [...intermediatePack.examples, ...skillExamples[skillId]].slice(0, 6) : isUpperIntermediate ? [...upperIntermediatePack.examples, ...skillExamples[skillId]].slice(0, 7) : isAdvanced ? [...advancedPack.examples, ...skillExamples[skillId]].slice(0, 8) : isProficiency ? [...proficiencyPack.examples, ...skillExamples[skillId]].slice(0, 8) : isPostHsk ? [...postHskPack.examples, ...skillExamples[skillId]].slice(0, 9) : skillExamples[skillId],
+    examples: isBeginner ? [...beginnerPack.examples, ...beginnerExamples[skillId]].slice(0, 8) : isElementary ? [...elementaryPack.examples, ...skillExamples[skillId]].slice(0, 8) : isIntermediate ? [...intermediatePack.examples, ...skillExamples[skillId]].slice(0, 8) : isUpperIntermediate ? [...upperIntermediatePack.examples, ...skillExamples[skillId]].slice(0, 9) : isAdvanced ? [...advancedPack.examples, ...skillExamples[skillId]].slice(0, 8) : isProficiency ? [...proficiencyPack.examples, ...skillExamples[skillId]].slice(0, 8) : isPostHsk ? [...postHskPack.examples, ...skillExamples[skillId]].slice(0, 9) : skillExamples[skillId],
     productionSteps: isBeginner ? ['Dengarkan TTS pelan', 'Tirukan tone per syllable', 'Baca Hanzi + pinyin', 'Buat 3 kalimat HSK 1'] : isElementary ? ['Dengarkan dialog TTS', 'Tandai pola HSK 2', 'Ganti subjek/waktu/tempat', 'Buat dialog atau paragraf pendek'] : isIntermediate ? ['Analisis pola HSK 3', 'Shadowing contoh TTS', 'Ganti konteks dan kosakata', 'Buat paragraf/dialog mandiri'] : isUpperIntermediate ? ['Analisis argumen HSK 4', 'Tandai konektor dan sikap', 'Shadowing TTS dengan chunking', 'Buat output argumentatif'] : isAdvanced ? ['Identifikasi tesis HSK 5', 'Analisis bukti dan sikap tersirat', 'Latih prosodi wacana panjang', 'Buat esai/presentasi formal'] : isProficiency ? ['Bongkar premis HSK 6', 'Sintesis beberapa posisi', 'Latih briefing 3 menit', 'Buat portfolio profesional'] : isPostHsk ? ['Definisikan konsep kunci', 'Uji validitas argumen', 'Sintesis lintas sumber', 'Presentasikan kontribusi sendiri'] : ['Dengarkan contoh TTS', 'Tandai Hanzi dan pinyin', 'Latih pola inti', 'Buat output mandiri'],
     practice: isBeginner ? [...beginnerPack.quiz, ...practiceBase, ...skillPractice[skillId]].slice(0, 12) : isElementary ? [...elementaryPack.quiz, ...elementarySkillPractice[skillId], ...practiceBase, ...skillPractice[skillId]].slice(0, 14) : isIntermediate ? [...intermediatePack.quiz, ...intermediateSkillPractice[skillId], ...practiceBase, ...skillPractice[skillId]].slice(0, 16) : isUpperIntermediate ? [...upperIntermediatePack.quiz, ...upperIntermediateSkillPractice[skillId], ...practiceBase, ...skillPractice[skillId]].slice(0, 18) : isAdvanced ? [...advancedPack.quiz, ...advancedSkillPractice[skillId], ...practiceBase, ...skillPractice[skillId]].slice(0, 20) : isProficiency ? [...proficiencyPack.quiz, ...proficiencySkillPractice[skillId], ...practiceBase, ...skillPractice[skillId]].slice(0, 20) : isPostHsk ? [...postHskPack.quiz, ...proficiencySkillPractice[skillId], ...practiceBase, ...skillPractice[skillId]].slice(0, 20) : [...practiceBase, ...skillPractice[skillId]],
     modelOutput: isUpperIntermediate ? upperIntermediateModelOutput[skillId] : isAdvanced ? advancedModelOutput[skillId] : isProficiency ? proficiencyModelOutput[skillId] : isPostHsk ? postHskModelOutput : undefined,
