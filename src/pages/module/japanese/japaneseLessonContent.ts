@@ -2,6 +2,9 @@ import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, type Choice
 import { japaneseGrammarBank, type JapaneseGrammarPoint } from './japaneseGrammarBank';
 import { japaneseLevels, type JapaneseLevelId, type JapaneseSkillId } from './japaneseModuleData';
 import { getJapaneseLevelWords, getJapaneseVocabularySet, type JapaneseWord } from './japaneseVocabularyBank';
+import { buildJapanesePractice } from './japanesePracticeGenerator';
+import { japanesePassages } from '../../../features/passages/japanesePassages';
+import { japanesePassagesBasic } from '../../../features/passages/japanesePassagesBasic';
 
 type JapanesePattern = { label: string; japanese: string; romaji: string; meaning: string };
 type JapaneseExample = { japanese: string; romaji: string; meaning: string };
@@ -280,6 +283,47 @@ function buildPractice(
   return seededShuffle(questions.filter((item): item is ChoiceQuestion => item !== null), random).slice(0, QUIZ_LENGTH);
 }
 
+const passageSentenceCache = new Map<JapaneseLevelId, Array<{ japanese: string; meaning: string }>>();
+function levelPassageSentences(level: JapaneseLevelId) {
+  if (!passageSentenceCache.has(level)) {
+    passageSentenceCache.set(level, [...japanesePassagesBasic, ...japanesePassages]
+      .filter((passage) => passage.level === level)
+      .flatMap((passage) => passage.sentences.map(([japanese, , meaning]) => ({ japanese, meaning }))));
+  }
+  return passageSentenceCache.get(level)!;
+}
+
+/** Skill-specific questions first; the shared lesson drills fill the rest of the quiz. */
+function lessonPractice(
+  level: JapaneseLevelId,
+  skill: JapaneseSkillId,
+  lessonId: number,
+  point: JapaneseGrammarPoint,
+  words: JapaneseWord[],
+  signature: JapanesePattern,
+): ChoiceQuestion[] {
+  const passageSentences = levelPassageSentences(level);
+  // Each lesson number gets its own two passage sentences.
+  const passage = passageSentences.length
+    ? [0, 1].map((offset) => passageSentences[((lessonId - 1) * 2 + offset) % passageSentences.length])
+    : [];
+  const specific = buildJapanesePractice(skill, {
+    pattern: point.pattern,
+    examples: point.examples,
+    signature,
+    passage,
+    words,
+    levelPatterns: japaneseGrammarBank[level].map((item) => item.pattern),
+    levelSentences: [...japaneseGrammarBank[level].flatMap((item) => item.examples), ...levelPattern[level], ...passageSentences],
+    levelWords: getJapaneseLevelWords(level),
+  }, hashSeed('japanese-practice', level, skill, lessonId));
+  const seen = new Set<string>();
+  const merged = [...specific, ...buildPractice(level, skill, lessonId, point, words)]
+    .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
+    .slice(0, QUIZ_LENGTH);
+  return seededShuffle(merged, seededRandom(hashSeed('japanese-order', level, skill, lessonId)));
+}
+
 function buildSkillExplanation(skill: JapaneseSkillId, topic: string, level: JapaneseLevelId) {
   const badge = japaneseLevels[level].badge;
   const map: Record<JapaneseSkillId, string> = {
@@ -348,7 +392,7 @@ export function getJapaneseLesson(skill: JapaneseSkillId, lessonId: number, leve
     shadowingDrill: [first.japanese, second.japanese, signature.japanese],
     culturalNotes: cultureByLevel[level],
     productionSteps: ['Pahami pola', 'Tiru contoh dengan suara', 'Ganti kosakata sesuai topik', 'Buat output pribadi'],
-    practice: buildPractice(level, skill, lessonId, point, words),
+    practice: lessonPractice(level, skill, lessonId, point, words, signature),
     task: `Buat 5-8 kalimat Jepang bertema ${topic}. Pakai pola「${point.pattern}」, minimal 3 kosakata dari lesson ini (${words.slice(0, 3).map((word) => word.japanese).join('、')}), romaji, dan arti Bahasa Indonesia.`,
     modelOutput: {
       title: `Model Output ${levelInfo.badge}`,
