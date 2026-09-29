@@ -19,7 +19,7 @@ export type ThemePracticeMaterial = {
 const TRAILING = /([.؟!،,?]+)$/;
 
 /** Word-order distractors: swap two neighbouring words (final punctuation stays put). */
-function scrambledOrders(arabic: string, random: () => number): string[] {
+export function scrambledOrders(arabic: string, random: () => number): string[] {
   const match = arabic.match(TRAILING);
   const end = match?.[1] ?? '';
   const words = arabic.slice(0, arabic.length - end.length).split(/\s+/).filter(Boolean);

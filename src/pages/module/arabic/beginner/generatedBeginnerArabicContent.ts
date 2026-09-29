@@ -5,6 +5,8 @@ import { getFoundationLesson, getFoundationTopic } from '../foundation/arabicFou
 import { getArabicUpperPassage, type ArabicPassageSentence } from '../upper/passages';
 import { buildArabicThemePractice } from '../upper/arabicThemePractice';
 import { arabicThemeSentences, getArabicThemeSentences } from '../upper/themeSentences';
+import { getArabicLessonCore, getArabicLessonCorePool } from '../upper/lessonCore';
+import { buildLessonCorePractice } from '../upper/lessonCore/practice';
 
 export type GeneratedArabicContentLevel = 'beginner' | 'elementary' | 'intermediate' | 'upper-intermediate' | 'advanced' | 'proficiency' | 'mastery' | 'scholar';
 
@@ -1749,6 +1751,16 @@ const MIN_UPPER_PRACTICE = 12;
 // Spreads the theme-word and passage questions over the seven skills that
 // share a lesson number, instead of asking all of them in every skill.
 const skillSlot: Record<ArabicSkillId, number> = { mufradat: 0, qiraah: 0, istima: 1, kalam: 1, kitabah: 2, grammar: 3, pronunciation: 2 };
+// Skill-wide patterns, vocabulary and examples are the same for all 20 lessons;
+// each lesson shows a rotating window so its own material leads.
+// Lessons with authored core material need less of the shared bank.
+const SHARED_BANK_WINDOW = { withCore: { patterns: 1, words: 2, examples: 1 }, withoutCore: { patterns: 2, words: 4, examples: 3 } };
+
+function rotatingWindow<T>(items: T[] | undefined, lessonNumber: number, size: number): T[] {
+  if (!items?.length) return [];
+  if (items.length <= size) return items;
+  return Array.from({ length: size }, (_, index) => items[((lessonNumber - 1) * size + index) % items.length]);
+}
 
 function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, lessonId: number, level: GeneratedArabicContentLevel): GeneratedArabicLesson {
   if (!isArabicUpperLevel(level)) return lesson;
@@ -1791,9 +1803,14 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
     pairedSentences: themeSentences.length,
   }, hashSeed('arabic-theme-practice', level, skillId, lessonNumber));
 
+  const core = getArabicLessonCore(level, skillId, lessonNumber);
+  const coreQuiz = core
+    ? buildLessonCorePractice(skillId, core, getArabicLessonCorePool(level), hashSeed('arabic-lesson-core', level, skillId, lessonNumber))
+    : [];
+
   const seen = new Set<string>();
   const fresh = (item: ChoiceQuestion) => (seen.has(item.question) ? false : (seen.add(item.question), true));
-  const lessonSpecific = [...specific, ...themeQuiz, ...passageQuiz].filter(fresh);
+  const lessonSpecific = [...coreQuiz, ...specific, ...themeQuiz, ...passageQuiz].filter(fresh);
   // Shared drills that mention this lesson's topic are lesson-specific too.
   const topicDrills = lesson.practice.filter((item) => item.question.includes(lesson.subtitle)).filter(fresh);
   const sharedDrills = lesson.practice.filter(fresh);
@@ -1811,11 +1828,22 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
       ? `Dengarkan teks "${theme.title}" dulu tanpa melihat tulisan, jawab pertanyaan bacaan, lalu buka teks untuk mengecek.`
       : `Baca teks pendek "${theme.title}", garis bawahi istilah tema, lalu jawab pertanyaan pemahaman di tab latihan.`]
     : [];
+  const corePatterns = (core?.phrases ?? []).map((phrase) => ({ label: 'Ungkapan kunci', ...phrase }));
+  const shared = core ? SHARED_BANK_WINDOW.withCore : SHARED_BANK_WINDOW.withoutCore;
   return {
     ...lesson,
-    explanation: [`Tema kosakata lesson ini: ${theme.title}. Pakai keempat istilah tema dalam latihan dan tugas akhir.`, ...passageNote, ...(lesson.explanation ?? [])],
-    vocabulary: [...theme.vocabulary, ...(lesson.vocabulary ?? [])],
-    examples: [...themeSentences, ...lesson.examples.filter((item) => !exampleKeys.has(item.arabic))],
+    explanation: [
+      ...(core?.points ?? []),
+      `Tema kosakata lesson ini: ${theme.title}. Pakai keempat istilah tema dalam latihan dan tugas akhir.`,
+      ...passageNote,
+      ...(lesson.explanation ?? []),
+    ],
+    patterns: [...corePatterns, ...rotatingWindow(lesson.patterns, lessonNumber, shared.patterns)],
+    vocabulary: [...theme.vocabulary, ...rotatingWindow(lesson.vocabulary, lessonNumber, shared.words)],
+    examples: [
+      ...themeSentences,
+      ...rotatingWindow(lesson.examples.filter((item) => !exampleKeys.has(item.arabic)), lessonNumber, shared.examples),
+    ],
     passage: passage ? { title: theme.title, sentences: passage.sentences, listenFirst: skillId === 'istima' } : undefined,
     practice,
   };
