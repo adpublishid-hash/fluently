@@ -6,6 +6,7 @@ import { advancedCore } from './advanced';
 import { intermediateCore } from './intermediate';
 import { masteryCore } from './mastery';
 import { proficiencyCore } from './proficiency';
+import { scholarCore } from './scholar';
 import { upperIntermediateCore } from './upperIntermediate';
 
 export type ArabicLessonCore = {
@@ -20,6 +21,7 @@ export const arabicLessonCore: Partial<Record<ArabicUpperLevel, Partial<Record<A
   advanced: advancedCore,
   proficiency: proficiencyCore,
   mastery: masteryCore,
+  scholar: scholarCore,
 };
 
 export function getArabicLessonCore(level: ArabicUpperLevel, skillId: ArabicSkillId, lesson: number): ArabicLessonCore | null {
