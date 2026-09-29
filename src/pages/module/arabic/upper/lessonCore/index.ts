@@ -2,6 +2,7 @@ import type { ArabicSkillId } from '../../arabicModuleData';
 import type { ArabicUpperLevel } from '../arabicUpperThemes';
 import type { CorePool } from './practice';
 import type { LessonCoreTuple } from './types';
+import { advancedCore } from './advanced';
 import { intermediateCore } from './intermediate';
 import { upperIntermediateCore } from './upperIntermediate';
 
@@ -14,6 +15,7 @@ export type ArabicLessonCore = {
 export const arabicLessonCore: Partial<Record<ArabicUpperLevel, Partial<Record<ArabicSkillId, LessonCoreTuple[]>>>> = {
   intermediate: intermediateCore,
   'upper-intermediate': upperIntermediateCore,
+  advanced: advancedCore,
 };
 
 export function getArabicLessonCore(level: ArabicUpperLevel, skillId: ArabicSkillId, lesson: number): ArabicLessonCore | null {
