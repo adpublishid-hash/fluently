@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
-import { Settings, ChevronRight, BookOpen, Flame, Trophy, Zap, Star, Bell, Globe, LogOut, Shield, HelpCircle, Activity, CheckCircle2, XCircle, Pencil, Mail, UserRound, Upload, Image as ImageIcon, Link2, Sparkles, Trash2, Camera, MessageSquare, Send, Bug, LifeBuoy } from 'lucide-react';
+import { Settings, ChevronRight, ChevronDown, BookOpen, Flame, Trophy, Zap, Star, Bell, Globe, LogOut, Shield, HelpCircle, Activity, CheckCircle2, XCircle, Pencil, Mail, UserRound, Upload, Image as ImageIcon, Link2, Sparkles, Trash2, Camera, MessageSquare, Send, Bug, LifeBuoy, KeyRound, Lock, X } from 'lucide-react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import PageContainer from '../components/layout/PageContainer';
 import { useLanguage } from '../i18n/LanguageContext';
 import { useAuth } from '../auth/AuthContext';
 import { getTargetLanguageLabel, targetLanguageOptions, type TargetLanguage } from '../features/chat/targetLanguage';
 import AppLanguageSwitcher, { getAppLanguageLabel } from '../components/shared/AppLanguageSwitcher';
 import ActivityYearModal from '../components/shared/ActivityYearModal';
-import { FOCUS_SESSION_EVENT, getFocusSessions, getTodayFocusMinutes, type FocusSession } from '../utils/focusTimer';
+import { FOCUS_SESSION_EVENT, getFocusSessions, getTodayFocusMinutes, getTotalFocusMinutes, type FocusSession } from '../utils/focusTimer';
+import { AI_QUOTA_CHANGED_EVENT, getStudioKey, openAiKeyPrompt } from '../services/aiClient';
 
 // Local-only preferences (notifications/privacy/rating). Profile fields (displayName/avatarUrl)
 // now live on the server and are read/written via AuthContext.updateProfile.
@@ -21,12 +23,13 @@ type LocalPrefs = {
   rating: number;
 };
 
-type ProfilePanel = 'edit-profile' | 'language' | 'target-language' | 'notifications' | 'privacy' | 'rate' | 'help' | null;
+type ProfilePanel = 'edit-profile' | 'language' | 'target-language' | 'notifications' | 'privacy' | 'rate' | 'help' | 'logout' | null;
 type SupportCategory = 'support' | 'bug' | 'feedback' | 'billing';
 type SendStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 const LOCAL_PREFS_KEY = 'fluently_profile_prefs_v2';
 const SUPPORT_EMAIL = 'support@fluently.id';
+const XP_PER_LEVEL = 3000;
 
 const defaultLocalPrefs: LocalPrefs = {
   emailDigest: true,
@@ -154,19 +157,49 @@ function StatCard({ icon: Icon, label, value, color, delay }: {
   );
 }
 
-function MenuItem({ icon: Icon, label, value, color, onClick, badge }: {
-  icon: React.ElementType; label: string; value?: string; color: string; onClick?: () => void; badge?: React.ReactNode;
+function MenuItem({ icon: Icon, label, description, value, status, color, onClick }: {
+  icon: React.ElementType;
+  label: string;
+  description?: string;
+  value?: string;
+  // Coloured pill for on/off style values; plain muted text otherwise.
+  status?: { label: string; tone: 'on' | 'off' };
+  color: string;
+  onClick?: () => void;
 }) {
   return (
-    <button onClick={onClick} className="flex items-center gap-3.5 w-full px-5 py-3.5 hover:bg-gray-50 transition-colors cursor-pointer group">
-      <div className="w-9 h-9 rounded-xl flex shrink-0 items-center justify-center transition-transform group-hover:scale-105" style={{ backgroundColor: `${color}15` }}>
+    <button
+      type="button"
+      onClick={onClick}
+      className="group flex w-full cursor-pointer items-center gap-3 rounded-2xl px-3 py-2.5 text-left transition-colors hover:bg-gray-50 focus-visible:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+    >
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{ backgroundColor: `${color}1A` }}>
         <Icon size={17} style={{ color }} />
       </div>
-      <span className="min-w-0 flex-1 text-[14px] font-black text-text-primary text-left group-hover:text-primary transition-colors">{label}</span>
-      {badge}
-      {value && <span className="max-w-[130px] truncate text-[12px] font-bold text-text-muted mr-1 bg-gray-100 px-2 py-0.5 rounded">{value}</span>}
-      <ChevronRight size={17} className="shrink-0 text-text-muted group-hover:text-primary transition-colors group-hover:translate-x-1" />
+      <span className="min-w-0 flex-1">
+        <span className="block truncate text-[14px] font-bold text-text-primary">{label}</span>
+        {description && <span className="mt-0.5 block truncate text-[11.5px] font-medium text-text-muted">{description}</span>}
+      </span>
+      {status && (
+        <span className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-2 py-0.5 text-[11px] font-bold ${
+          status.tone === 'on' ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-text-muted'
+        }`}>
+          <span className={`h-1.5 w-1.5 rounded-full ${status.tone === 'on' ? 'bg-emerald-500' : 'bg-gray-300'}`} />
+          {status.label}
+        </span>
+      )}
+      {value && <span className="max-w-[120px] shrink-0 truncate text-[12.5px] font-semibold text-text-muted">{value}</span>}
+      <ChevronRight size={16} className="shrink-0 text-gray-300 transition-all group-hover:translate-x-0.5 group-hover:text-primary-dark" />
     </button>
+  );
+}
+
+function SettingsSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <p className="px-3 pb-1 text-[10.5px] font-black uppercase tracking-[0.08em] text-text-muted">{title}</p>
+      <div className="flex flex-col">{children}</div>
+    </div>
   );
 }
 
@@ -174,16 +207,21 @@ function ToggleRow({ label, description, checked, onChange }: {
   label: string; description: string; checked: boolean; onChange: (checked: boolean) => void;
 }) {
   return (
-    <label className="flex items-center justify-between gap-4 rounded-2xl border border-gray-100 bg-gray-50 p-4">
+    <label className="flex cursor-pointer items-center justify-between gap-4 rounded-2xl border border-gray-100 bg-gray-50 p-4 transition-colors hover:border-primary/30">
       <span>
         <span className="block text-sm font-black text-text-primary">{label}</span>
         <span className="mt-0.5 block text-xs font-semibold text-text-muted">{description}</span>
       </span>
       <input
         type="checkbox"
+        role="switch"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="h-5 w-5 shrink-0 accent-primary"
+        className="peer sr-only"
+      />
+      <span
+        aria-hidden="true"
+        className="relative h-6 w-11 shrink-0 rounded-full bg-gray-300 transition-colors peer-checked:bg-primary-dark peer-focus-visible:ring-2 peer-focus-visible:ring-primary/50 peer-focus-visible:ring-offset-2 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-transform peer-checked:after:translate-x-5"
       />
     </label>
   );
@@ -437,23 +475,59 @@ function AvatarEditor({
   );
 }
 
-function ProfileModal({ title, children, onClose }: { title: string; children: React.ReactNode; onClose: () => void }) {
-  return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-900/30 px-4 pb-4 pt-20 backdrop-blur-sm md:items-center md:p-6">
+function ProfileModal({ title, children, onClose, size = 'lg' }: {
+  title: string; children: React.ReactNode; onClose: () => void; size?: 'sm' | 'lg';
+}) {
+  const { t } = useLanguage();
+  const titleId = React.useId();
+
+  // Esc closes the sheet, and the page behind it stops scrolling while it is open.
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [onClose]);
+
+  // Portal to <body>: PageContainer animates transform/filter, which would otherwise
+  // trap this fixed overlay inside the page box instead of covering the viewport.
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-900/40 px-3 pb-3 pt-16 backdrop-blur-sm md:items-center md:p-6"
+      onClick={onClose}
+    >
       <motion.div
-        initial={{ opacity: 0, y: 18, scale: 0.98 }}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
-        className="max-h-[84vh] w-full max-w-lg overflow-y-auto rounded-3xl bg-white shadow-2xl"
+        transition={{ type: 'spring', damping: 26, stiffness: 320 }}
+        onClick={(event) => event.stopPropagation()}
+        className={`max-h-[88vh] w-full ${size === 'sm' ? 'max-w-sm' : 'max-w-lg'} overflow-y-auto rounded-[28px] bg-white shadow-2xl`}
       >
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white/95 px-5 py-4 backdrop-blur">
-          <h3 className="text-lg font-black text-text-primary">{title}</h3>
-          <button onClick={onClose} className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-black text-text-secondary hover:bg-gray-200">
-            Close
+        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-gray-100 bg-white/95 px-5 py-4 backdrop-blur">
+          <h3 id={titleId} className="text-lg font-black text-text-primary">{title}</h3>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={t('profile.close')}
+            autoFocus
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-text-secondary transition-colors hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          >
+            <X size={17} />
           </button>
         </div>
         <div className="p-5">{children}</div>
       </motion.div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 
@@ -463,6 +537,7 @@ function AchievementBadge({
   unlocked,
   progress,
   requirement,
+  highlight,
   delay,
 }: {
   emoji: string;
@@ -470,95 +545,66 @@ function AchievementBadge({
   unlocked: boolean;
   progress: number;
   requirement: string;
+  highlight?: boolean;
   delay: number;
 }) {
+  const { t } = useLanguage();
   return (
     <motion.div
-      className={`group relative min-w-[132px] overflow-hidden rounded-3xl border p-3 text-left transition-all duration-300 ${
+      className={`relative flex flex-col overflow-hidden rounded-3xl border p-3.5 text-left transition-all duration-300 ${
         unlocked
-          ? 'border-primary/20 bg-gradient-to-br from-sky-50 via-white to-white shadow-sm hover:-translate-y-1 hover:shadow-md'
-          : 'border-gray-100 bg-white/70 shadow-sm hover:border-primary/15'
+          ? 'border-primary/25 bg-gradient-to-br from-sky-50 via-white to-white shadow-sm hover:-translate-y-0.5 hover:shadow-md'
+          : highlight
+            ? 'border-amber-200 bg-amber-50/40'
+            : 'border-gray-100 bg-white'
       }`}
       initial={{ opacity: 0, y: 10, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay }}
     >
-      <div className={`absolute -right-6 -top-8 h-20 w-20 rounded-full ${unlocked ? 'bg-primary/10' : 'bg-gray-100'}`} />
-      <div className="relative flex items-start justify-between gap-2">
-        <div className={`flex h-14 w-14 items-center justify-center rounded-2xl border text-[30px] ${
-          unlocked
-            ? 'border-primary/20 bg-white shadow-sm'
-            : 'border-gray-100 bg-gray-50 grayscale'
+      <div className="flex items-start justify-between gap-2">
+        <div className={`flex h-12 w-12 items-center justify-center rounded-2xl text-[26px] ${
+          unlocked ? 'bg-white shadow-sm ring-1 ring-primary/20' : 'bg-gray-50 opacity-60 grayscale'
         }`}>
           {emoji}
         </div>
-        <span className={`rounded-full px-2 py-1 text-[10px] font-black ${
-          unlocked ? 'bg-emerald-50 text-emerald-600' : 'bg-gray-100 text-text-muted'
-        }`}>
-          {unlocked ? 'Unlocked' : 'Locked'}
-        </span>
+        {unlocked ? (
+          <CheckCircle2 size={18} className="text-emerald-500" aria-label={t('profile.unlocked')} />
+        ) : highlight ? (
+          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-black text-amber-700">{t('profile.nextTarget')}</span>
+        ) : (
+          <Lock size={14} className="text-gray-300" aria-label={t('profile.badgeLocked')} />
+        )}
       </div>
-      <div className="relative mt-3 min-h-[52px]">
-        <p className={`text-sm font-black leading-tight ${unlocked ? 'text-text-primary' : 'text-text-secondary'}`}>{label}</p>
-        <p className="mt-1 text-[11px] font-semibold leading-snug text-text-muted">{requirement}</p>
-      </div>
-      <div className="relative mt-3">
-        <div className="mb-1 flex items-center justify-between text-[10px] font-black text-text-muted">
-          <span>Progress</span>
-          <span>{progress}%</span>
-        </div>
-        <div className="h-2 overflow-hidden rounded-full bg-gray-100">
+      <p className={`mt-3 text-[13.5px] font-black leading-tight ${unlocked ? 'text-text-primary' : 'text-text-secondary'}`}>{label}</p>
+      <p className="mt-1 flex-1 text-[11px] font-semibold leading-snug text-text-muted">{requirement}</p>
+      <div className="mt-3 flex items-center gap-2">
+        <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-gray-100">
           <motion.div
-            className={`h-full rounded-full ${unlocked ? 'bg-primary' : 'bg-gray-300'}`}
+            className={`h-full rounded-full ${unlocked ? 'bg-emerald-500' : highlight ? 'bg-amber-400' : 'bg-primary'}`}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ delay: delay + 0.15, duration: 0.7, ease: 'easeOut' }}
           />
         </div>
+        <span className="w-8 text-right text-[10.5px] font-black text-text-muted">{progress}%</span>
       </div>
     </motion.div>
   );
 }
 
-function ProgressList({ total, completed }: { total: number, completed: number }) {
-  const { t } = useLanguage();
-  return (
-    <div className="bg-white rounded-3xl p-5 desktop-card flex flex-col justify-center border-none h-full">
-      <div className="flex items-center gap-3 mb-5"><Activity size={20} className="text-primary" /><h3 className="font-extrabold text-lg text-text-primary">{t('profile.learningStats')}</h3></div>
-      <div className="space-y-5">
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-[13px] font-bold text-text-secondary">{t('profile.overallProgress')}</span>
-            <span className="text-[13px] font-black text-primary">{Math.round((completed/total)*100)}%</span>
-          </div>
-          <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden shadow-inner">
-            <motion.div className="h-full rounded-full bg-primary relative" initial={{ width: 0 }} animate={{ width: `${(completed/total)*100}%` }} transition={{ duration: 1 }}>
-              <div className="absolute top-0 right-0 bottom-0 w-8 bg-white/20 skew-x-[-20deg]" />
-            </motion.div>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-3">
-          <div className="bg-gray-50 rounded-2xl p-4"><p className="text-[10px] font-black text-text-muted mb-1 uppercase tracking-wider">{t('profile.coursesActive')}</p><p className="text-2xl font-black text-text-primary">{total - completed}</p></div>
-          <div className="bg-primary/5 rounded-2xl p-4 border border-primary/10"><p className="text-[10px] font-black text-primary mb-1 uppercase tracking-wider">{t('profile.completed')}</p><p className="text-2xl font-black text-primary">{completed}</p></div>
-        </div>
-        <div className="flex items-center justify-between bg-white border border-gray-100 rounded-2xl p-4 shadow-sm">
-          <span className="text-[13px] font-bold text-text-secondary">{t('profile.timeSpent')}</span>
-          <span className="text-[15px] font-black text-text-primary bg-primary/10 px-3 py-1 rounded-lg">24h 30m</span>
-        </div>
-      </div>
-    </div>
-  );
+function formatMinutes(total: number) {
+  const hours = Math.floor(total / 60);
+  const minutes = total % 60;
+  if (!hours) return `${minutes}m`;
+  return minutes ? `${hours}h ${minutes}m` : `${hours}h`;
 }
 
-function ActivityHeatmapCard({ streak }: { streak: number }) {
-  const { t, language } = useLanguage();
+// Lessons/modules from localStorage plus focus sessions, refreshed whenever another tab,
+// the focus timer, or a return to this window may have changed them.
+function useLearningSnapshot() {
   const [summary, setSummary] = useState(() => countStoredLearningProgress());
   const [focusSessions, setFocusSessions] = useState<FocusSession[]>(getFocusSessions);
-  const [showYearModal, setShowYearModal] = useState(false);
-  const days = language === 'id' ? ['S', 'S', 'R', 'K', 'J', 'S', 'M'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-  const grid = buildActivityGrid(focusSessions);
-  const todayFocus = getTodayFocusMinutes(focusSessions);
-  const flameCount = todayFocus || streak;
 
   useEffect(() => {
     const refresh = () => {
@@ -575,87 +621,103 @@ function ActivityHeatmapCard({ streak }: { streak: number }) {
     };
   }, []);
 
-  const getColor = (levelValue: number) => {
-    if (levelValue === 0) return '#F3F4F6';
-    if (levelValue === 1) return '#BBF7D0';
-    if (levelValue === 2) return '#86EFAC';
-    if (levelValue === 3) return '#4ADE80';
-    if (levelValue === 4) return '#22C55E';
-    return '#16A34A';
-  };
+  return { summary, focusSessions };
+}
+
+const HEATMAP_COLORS = ['#F3F4F6', '#BBF7D0', '#86EFAC', '#4ADE80', '#22C55E'];
+
+function ActivityHeatmapCard({ streak, sessions, modules }: { streak: number; sessions: FocusSession[]; modules: number }) {
+  const { t, language } = useLanguage();
+  const [showYearModal, setShowYearModal] = useState(false);
+  const grid = buildActivityGrid(sessions);
+  const todayFocus = getTodayFocusMinutes(sessions);
+  const totalFocus = getTotalFocusMinutes(sessions);
+  // The grid's last column is today, so label each column with its real weekday.
+  const dayLabels = Array.from({ length: 7 }, (_, index) => {
+    const date = new Date();
+    date.setDate(date.getDate() - (6 - index));
+    return new Intl.DateTimeFormat(language === 'id' ? 'id-ID' : 'en-US', { weekday: 'narrow' }).format(date);
+  });
 
   return (
     <>
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={() => setShowYearModal(true)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          setShowYearModal(true);
-        }
-      }}
-      className="bg-white rounded-3xl p-5 desktop-card border-none cursor-pointer transition-shadow hover:shadow-[0_10px_30px_rgba(15,23,42,0.08)]"
-    >
+    <div className="bg-white rounded-3xl p-5 desktop-card border-none">
       <div className="mb-4 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <Activity size={18} className="text-emerald-500" />
           <h3 className="text-base font-extrabold text-text-primary">{t('sidebar.activity')}</h3>
         </div>
-        <div className="flex items-center gap-1 rounded-full bg-amber-100 px-3 py-1">
-          <Flame size={14} className="text-amber-500" />
-          <span className="text-xs font-black text-amber-600">{flameCount}</span>
+        <div className="flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1" title={`${streak} ${t('profile.dayStreakLabel')}`}>
+          <Flame size={14} className="text-orange-500" />
+          <span className="text-xs font-black text-orange-600">{streak} {t('profile.dayStreakLabel')}</span>
         </div>
       </div>
 
-      <div className="mb-2 grid grid-cols-7 gap-2">
-        {days.map((day, index) => (
-          <span key={`${day}-${index}`} className="text-center text-[11px] font-black text-text-muted">
-            {day}
-          </span>
-        ))}
-      </div>
-      <div className="space-y-2">
-        {grid.map((week, weekIndex) => (
-          <div key={weekIndex} className="grid grid-cols-7 gap-2">
-            {week.map((levelValue, dayIndex) => (
-              <motion.div
-                key={`${weekIndex}-${dayIndex}`}
-                title={levelValue ? `${levelValue} activity points` : t('activity.noActivity')}
-                className="aspect-square rounded-xl"
-                style={{ backgroundColor: getColor(levelValue) }}
-                initial={{ scale: 0.75, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: (weekIndex * 7 + dayIndex) * 0.025 }}
-              />
+      <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)] md:items-center">
+        <div>
+          <div className="mb-2 grid grid-cols-7 gap-1.5">
+            {dayLabels.map((day, index) => (
+              <span key={`${day}-${index}`} className="text-center text-[10.5px] font-black text-text-muted">
+                {day}
+              </span>
             ))}
           </div>
-        ))}
+          <div className="space-y-1.5">
+            {grid.map((week, weekIndex) => (
+              <div key={weekIndex} className="grid grid-cols-7 gap-1.5">
+                {week.map((levelValue, dayIndex) => {
+                  const isToday = weekIndex === grid.length - 1 && dayIndex === 6;
+                  return (
+                    <motion.div
+                      key={`${weekIndex}-${dayIndex}`}
+                      title={levelValue ? `${t('sidebar.activity')} ${levelValue}/4` : t('activity.noActivity')}
+                      className={`aspect-square max-h-10 w-full rounded-lg ${isToday ? 'ring-2 ring-emerald-500 ring-offset-1' : ''}`}
+                      style={{ backgroundColor: HEATMAP_COLORS[levelValue] ?? HEATMAP_COLORS[4] }}
+                      initial={{ scale: 0.75, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: (weekIndex * 7 + dayIndex) * 0.02 }}
+                    />
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+          <div className="mt-2 flex items-center justify-end gap-1 text-[10px] font-bold text-text-muted">
+            <span>{t('activity.less')}</span>
+            {HEATMAP_COLORS.map((color) => <span key={color} className="h-2.5 w-2.5 rounded-[4px]" style={{ backgroundColor: color }} />)}
+            <span>{t('activity.more')}</span>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-2 md:grid-cols-1">
+          {[
+            { label: t('profile.focusToday'), value: formatMinutes(todayFocus), tone: 'bg-emerald-50 text-emerald-700' },
+            { label: t('profile.focusTotal'), value: formatMinutes(totalFocus), tone: 'bg-sky-50 text-sky-700' },
+            { label: t('profile.modulesStarted'), value: String(modules), tone: 'bg-violet-50 text-violet-700' },
+          ].map((item) => (
+            <div key={item.label} className={`rounded-2xl px-3 py-2.5 ${item.tone}`}>
+              <p className="text-lg font-black leading-tight">{item.value}</p>
+              <p className="mt-0.5 text-[10.5px] font-bold leading-tight opacity-80">{item.label}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl bg-emerald-50 p-3">
-          <p className="text-[10px] font-black uppercase tracking-wider text-emerald-600">Lessons</p>
-          <p className="mt-1 text-xl font-black text-emerald-700">{summary.lessons}</p>
-        </div>
-        <div className="rounded-2xl bg-sky-50 p-3">
-          <p className="text-[10px] font-black uppercase tracking-wider text-sky-600">Modules</p>
-          <p className="mt-1 text-xl font-black text-sky-700">{summary.sources}</p>
-        </div>
-      </div>
-
-      <div className="mt-4 flex items-center justify-center gap-1 text-[11px] font-bold text-text-muted">
+      <button
+        type="button"
+        onClick={() => setShowYearModal(true)}
+        className="mt-4 flex w-full items-center justify-center gap-1 rounded-xl py-2 text-[12px] font-bold text-text-secondary transition-colors hover:bg-gray-50 hover:text-primary-dark"
+      >
         <span>{t('activity.viewYear')}</span>
-        <ChevronRight size={13} />
-      </div>
+        <ChevronRight size={14} />
+      </button>
     </div>
 
     <ActivityYearModal
       open={showYearModal}
       onClose={() => setShowYearModal(false)}
-      sessions={focusSessions}
-      streak={flameCount}
+      sessions={sessions}
+      streak={streak}
     />
     </>
   );
@@ -689,17 +751,22 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   const xp = user?.xp ?? 0;
   const streak = user?.streak ?? 0;
   const level = user?.level ?? 1;
-  const xpInLevel = xp % 3000;
+  const xpInLevel = xp % XP_PER_LEVEL;
 
   const [profileDraft, setProfileDraft] = useState({ displayName, avatarUrl });
   const [passwordDraft, setPasswordDraft] = useState({ current: '', next: '', confirm: '' });
   const [profileError, setProfileError] = useState('');
   const [profileSaved, setProfileSaved] = useState(false);
 
-  const completedCourses = 3;
-  const totalCourses = 12;
+  const [showAllBadges, setShowAllBadges] = useState(false);
+  const [hasStudioKey, setHasStudioKey] = useState(() => Boolean(getStudioKey()));
+  const { summary, focusSessions } = useLearningSnapshot();
+  const settingsRef = useRef<HTMLDivElement | null>(null);
+  const closePanel = useCallback(() => setActivePanel(null), []);
+
   const targetLanguage = user?.persona?.targetLanguage || 'English';
   const targetLanguageLabel = getTargetLanguageLabel(targetLanguage);
+  const targetLanguageShort = targetLanguageOptions.find((item) => item.value === targetLanguage)?.label ?? targetLanguageLabel;
   const planLabel = user?.plan === 'lifetime'
     ? t('profile.planLifetime')
     : user?.plan === 'pro'
@@ -709,6 +776,17 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
   useEffect(() => {
     saveLocalPrefs(localPrefs);
   }, [localPrefs]);
+
+  // The AI key is managed by the global AiKeyPrompt; keep the settings row status in sync.
+  useEffect(() => {
+    const sync = () => setHasStudioKey(Boolean(getStudioKey()));
+    window.addEventListener(AI_QUOTA_CHANGED_EVENT, sync);
+    window.addEventListener('storage', sync);
+    return () => {
+      window.removeEventListener(AI_QUOTA_CHANGED_EVENT, sync);
+      window.removeEventListener('storage', sync);
+    };
+  }, []);
 
   // Reset draft whenever the modal opens or the server-side user changes.
   useEffect(() => {
@@ -869,30 +947,43 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
     setSavingLanguage(false);
   };
 
+  const pct = (current: number, target: number) => Math.min(100, Math.round((current / target) * 100));
   const achievements = [
-    { emoji: '🔥', label: t('achievement.7DayStreak'),  unlocked: false, progress: 0, requirement: '7 hari aktif berturut-turut' },
-    { emoji: '📚', label: t('achievement.bookworm'),    unlocked: false, progress: 0, requirement: 'Selesaikan 3 materi belajar' },
-    { emoji: '⭐', label: t('achievement.starStudent'), unlocked: false, progress: 0, requirement: 'Raih 2.000+ XP belajar' },
-    { emoji: '🏆', label: t('achievement.top10'),       unlocked: false, progress: 0, requirement: 'Masuk peringkat 10 besar' },
-    { emoji: '💎', label: t('achievement.diamond'),     unlocked: false, progress: 0, requirement: 'Kumpulkan 5.000 XP total' },
-    { emoji: '🚀', label: t('achievement.speedLearner'),unlocked: false, progress: 0, requirement: 'Selesaikan 5 latihan cepat' },
-    { emoji: '🎯', label: t('achievement.perfectScore'),unlocked: false, progress: 0, requirement: 'Dapatkan skor 100% di quiz' },
-    { emoji: '👑', label: t('achievement.master'),      unlocked: false, progress: 0, requirement: 'Tamatkan semua skill utama' },
-  ];
+    { emoji: '🔥', label: t('achievement.7DayStreak'),   progress: pct(streak, 7),                requirement: t('achievement.req.7DayStreak') },
+    { emoji: '📚', label: t('achievement.bookworm'),     progress: pct(summary.lessons, 3),       requirement: t('achievement.req.bookworm') },
+    { emoji: '⭐', label: t('achievement.starStudent'),  progress: pct(xp, 2000),                 requirement: t('achievement.req.starStudent') },
+    { emoji: '🏆', label: t('achievement.top10'),        progress: 0,                             requirement: t('achievement.req.top10') },
+    { emoji: '💎', label: t('achievement.diamond'),      progress: pct(xp, 5000),                 requirement: t('achievement.req.diamond') },
+    { emoji: '🚀', label: t('achievement.speedLearner'), progress: pct(focusSessions.length, 5),  requirement: t('achievement.req.speedLearner') },
+    { emoji: '🎯', label: t('achievement.perfectScore'), progress: 0,                             requirement: t('achievement.req.perfectScore') },
+    { emoji: '👑', label: t('achievement.master'),       progress: 0,                             requirement: t('achievement.req.master') },
+  ]
+    .map((badge) => ({ ...badge, unlocked: badge.progress >= 100 }))
+    // Unlocked first, then the closest targets, so the useful cards lead.
+    .sort((a, b) => Number(b.unlocked) - Number(a.unlocked) || b.progress - a.progress);
+  const unlockedCount = achievements.filter((a) => a.unlocked).length;
+  const nextTarget = achievements.find((a) => !a.unlocked && a.progress > 0) ?? achievements.find((a) => !a.unlocked);
+  const visibleBadges = showAllBadges ? achievements : achievements.slice(0, 4);
+
+  const scrollToSettings = () => {
+    settingsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <PageContainer>
-      <div className="grid h-full gap-6 pb-8 md:px-5 lg:grid-cols-[minmax(0,1fr)_360px] lg:px-8">
+      <div className="grid h-full gap-6 pb-8 md:px-5 lg:grid-cols-[minmax(0,1fr)_380px] lg:px-8">
 
         {/* Main Column */}
         <div className="min-w-0 flex flex-col gap-5 pt-4 md:pt-0">
 
-          <div className="flex items-center justify-between px-5 pt-6 md:pt-0 md:px-0 mb-2">
+          <div className="flex items-center justify-between px-5 pt-6 md:pt-0 md:px-0">
             <h1 className="text-2xl font-extrabold text-text-primary">{t('profile.title')}</h1>
             <motion.button
+              type="button"
               whileTap={{ scale: 0.9 }}
-              onClick={() => setActivePanel('edit-profile')}
-              className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors md:hidden"
+              onClick={scrollToSettings}
+              aria-label={t('profile.settings')}
+              className="w-10 h-10 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors lg:hidden"
             >
               <Settings size={20} className="text-text-secondary" />
             </motion.button>
@@ -901,49 +992,66 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
           {/* Profile Card */}
           <motion.div className="mx-5 md:mx-0 bg-white rounded-[30px] p-5 md:p-6 relative overflow-hidden desktop-card border-none"
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <div className="absolute top-0 right-0 h-full w-1/2 bg-gradient-to-l from-primary/10 flex items-center justify-end pr-8 opacity-50 pointer-events-none">
-              <Trophy size={112} className="text-primary/20 blur-[2px] transform rotate-12" />
-            </div>
-            <div className="relative grid gap-5 z-10 md:grid-cols-[128px_1fr] md:items-center">
-              <div className="mx-auto h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-white shadow-xl ring-4 ring-primary/20 md:mx-0">
-                <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
+            <div className="pointer-events-none absolute -right-16 -top-20 h-56 w-56 rounded-full bg-primary/10" />
+            <div className="pointer-events-none absolute -right-4 top-16 h-24 w-24 rounded-full bg-primary/5" />
+            <div className="relative z-10 flex flex-col items-center gap-5 md:flex-row md:items-center">
+              <div className="relative shrink-0">
+                <div className="h-24 w-24 overflow-hidden rounded-full border-4 border-white bg-white shadow-xl ring-4 ring-primary/20 md:h-28 md:w-28">
+                  <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActivePanel('edit-profile')}
+                  aria-label={t('profile.changePhoto')}
+                  className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-primary-dark text-white shadow-md ring-[3px] ring-white transition-transform hover:scale-105"
+                >
+                  <Camera size={14} />
+                </button>
               </div>
-              <div className="min-w-0">
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+
+              <div className="w-full min-w-0 flex-1">
+                <div className="flex flex-col items-center gap-3 md:flex-row md:items-start md:justify-between">
                   <div className="min-w-0 text-center md:text-left">
-                    <h2 className="truncate text-2xl md:text-3xl font-black text-text-primary tracking-tight">{displayName}</h2>
-                    <p className="text-[13px] md:text-sm font-semibold text-text-secondary mt-1">{t('profile.levelProgress')} {level} {t('profile.levelLearner')} • {planLabel}</p>
-                    {user?.email && <p className="mt-1 text-xs font-semibold text-text-muted">{user.email}</p>}
-                  </div>
-                  <div className="hidden shrink-0 md:flex items-center gap-2 bg-white/85 backdrop-blur rounded-2xl p-2 border border-primary/20 shadow-sm">
-                    <button
-                      type="button"
-                      onClick={() => setActivePanel('edit-profile')}
-                      className="flex h-9 items-center gap-1.5 rounded-xl bg-primary/10 px-3 text-[12px] font-black text-primary hover:bg-primary/15"
-                    >
-                      <Pencil size={14} />
-                      {t('profile.editShort')}
-                    </button>
-                    <div className="flex h-9 items-center gap-1.5 rounded-xl bg-orange-50 px-3">
-                      <Flame size={16} className="text-orange-500" />
-                      <span className="text-[13px] font-black text-orange-600">{streak} {t('profile.streak')}</span>
+                    <h2 className="truncate text-2xl md:text-[28px] font-black text-text-primary tracking-tight">{displayName}</h2>
+                    {user?.email && <p className="mt-0.5 truncate text-[13px] font-semibold text-text-muted">{user.email}</p>}
+                    <div className="mt-2.5 flex flex-wrap items-center justify-center gap-1.5 md:justify-start">
+                      <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-black text-primary-dark">
+                        {t('profile.levelProgress')} {level} · {t('profile.levelLearner')}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-black ${
+                        user?.plan && user.plan !== 'free' ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-text-secondary'
+                      }`}>
+                        {user?.plan && user.plan !== 'free' && <Sparkles size={11} />}
+                        {planLabel}
+                      </span>
                     </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setActivePanel('edit-profile')}
+                    className="flex h-10 shrink-0 items-center gap-1.5 rounded-xl border border-primary/25 bg-white px-4 text-[13px] font-black text-primary-dark shadow-sm transition-colors hover:bg-primary/10"
+                  >
+                    <Pencil size={14} />
+                    {t('profile.editProfile')}
+                  </button>
                 </div>
-                <div className="flex md:hidden items-center gap-1 mt-3">
-                  <div className="flex items-center gap-1 bg-orange-50 px-3 py-1.5 rounded-lg border border-orange-100">
-                    <Flame size={14} className="text-orange-500" />
-                    <span className="text-xs font-black text-orange-600">{streak} {t('profile.dayStreakLabel')}</span>
+
+                <div className="mt-5 border-t border-gray-100 pt-4">
+                  <div className="flex items-center justify-between text-[13px] mb-2">
+                    <span className="font-bold text-text-secondary">
+                      {(XP_PER_LEVEL - xpInLevel).toLocaleString()} {t('profile.xpToLevel')} {level + 1}
+                    </span>
+                    <span className="font-black text-primary-dark">{xpInLevel.toLocaleString()} <span className="text-text-muted font-semibold">/ {XP_PER_LEVEL.toLocaleString()} XP</span></span>
                   </div>
-                </div>
-                <div className="mt-5 border-t border-gray-100/70 pt-5">
-                  <div className="flex items-center justify-between text-sm mb-2">
-                    <span className="font-bold text-text-secondary">{t('profile.levelProgress')} {level}</span>
-                    <span className="font-black text-primary">{xpInLevel.toLocaleString()} <span className="text-text-muted font-semibold">/ 3000 XP</span></span>
-                  </div>
-                  <div className="h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner">
+                  <div
+                    className="h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner"
+                    role="progressbar"
+                    aria-valuemin={0}
+                    aria-valuemax={XP_PER_LEVEL}
+                    aria-valuenow={xpInLevel}
+                  >
                     <motion.div className="h-full rounded-full relative" style={{ background: 'linear-gradient(90deg, #4FA3D1, #1E6F9F)' }}
-                      initial={{ width: 0 }} animate={{ width: `${(xpInLevel / 3000) * 100}%` }} transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}>
+                      initial={{ width: 0 }} animate={{ width: `${(xpInLevel / XP_PER_LEVEL) * 100}%` }} transition={{ duration: 1, ease: 'easeOut', delay: 0.3 }}>
                       <div className="absolute top-0 right-0 bottom-0 w-8 bg-white/20 skew-x-[-20deg]" />
                     </motion.div>
                   </div>
@@ -952,73 +1060,145 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
             </div>
           </motion.div>
 
-          {/* Stats Grid */}
+          {/* Stats Grid — real numbers only */}
           <div className="grid grid-cols-2 gap-3 px-5 md:grid-cols-4 md:px-0">
-            <StatCard icon={BookOpen} label={t('profile.coursesDone')} value={completedCourses} color="#4FA3D1" delay={0.1} />
+            <StatCard icon={BookOpen} label={t('profile.lessonsDone')} value={summary.lessons} color="#4FA3D1" delay={0.1} />
             <StatCard icon={Zap} label={t('profile.totalXP')} value={xp >= 1000 ? `${(xp / 1000).toFixed(1)}k` : String(xp)} color="#F39C12" delay={0.2} />
             <StatCard icon={Flame} label={t('profile.dayStreak')} value={streak} color="#E74C3C" delay={0.3} />
-            <StatCard icon={Trophy} label={t('profile.globalRank')} value="#6" color="#3498DB" delay={0.4} />
+            <StatCard icon={Trophy} label={t('profile.currentLevel')} value={level} color="#8B5CF6" delay={0.4} />
+          </div>
+
+          <div className="px-5 md:px-0">
+            <ActivityHeatmapCard streak={streak} sessions={focusSessions} modules={summary.sources} />
           </div>
 
           {/* Achievements */}
           <div className="px-5 md:px-0">
-            <div className="flex items-center justify-between mb-4">
-              <div>
+            <div className="flex items-end justify-between gap-3 mb-3">
+              <div className="min-w-0">
                 <h3 className="font-extrabold text-lg text-text-primary">{t('profile.yourBadges')}</h3>
-                <p className="mt-0.5 text-xs font-semibold text-text-muted">{t('profile.badgesSubtitle')}</p>
+                <p className="mt-0.5 text-xs font-semibold text-text-muted">
+                  {nextTarget ? `${t('profile.nextTarget')}: ${nextTarget.label}` : t('profile.badgesSubtitle')}
+                </p>
               </div>
-              <span className="shrink-0 text-[13px] bg-primary/10 text-primary font-bold px-3 py-1 rounded-full shadow-sm">
-                {achievements.filter(a => a.unlocked).length}/{achievements.length} {t('profile.unlocked')}
+              <span className="shrink-0 text-[12px] bg-primary/10 text-primary-dark font-black px-3 py-1 rounded-full">
+                {unlockedCount}/{achievements.length} {t('profile.unlocked')}
               </span>
             </div>
-            <div className="grid grid-cols-1 gap-3 rounded-[28px] bg-white p-4 desktop-card border-none sm:grid-cols-2 xl:grid-cols-4">
-              {achievements.map((a, i) => (<AchievementBadge key={a.label} {...a} delay={0.05 * i + 0.5} />))}
+            <div className="rounded-[28px] bg-white p-3 desktop-card border-none sm:p-4">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3 xl:grid-cols-4">
+                {visibleBadges.map((a, i) => (
+                  <AchievementBadge key={a.label} {...a} highlight={a === nextTarget} delay={0.04 * i + 0.3} />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowAllBadges((current) => !current)}
+                aria-expanded={showAllBadges}
+                className="mt-3 flex w-full items-center justify-center gap-1 rounded-xl py-2 text-[12px] font-bold text-text-secondary transition-colors hover:bg-gray-50 hover:text-primary-dark"
+              >
+                {showAllBadges ? t('profile.showFewerBadges') : `${t('profile.showAllBadges')} (${achievements.length})`}
+                <ChevronDown size={14} className={`transition-transform ${showAllBadges ? 'rotate-180' : ''}`} />
+              </button>
             </div>
           </div>
 
         </div>
 
-        {/* Right Sidebar */}
-        <div className="flex min-w-0 flex-col gap-5 px-5 md:px-0">
-
-          <div className="hidden lg:block h-[280px]">
-            <ProgressList total={totalCourses} completed={completedCourses} />
-          </div>
-
-          <ActivityHeatmapCard streak={streak} />
-
-          {/* Settings Menu */}
-          <div className="bg-white rounded-3xl overflow-hidden desktop-card border-none">
-            <div className="px-5 py-4 border-b border-gray-50 bg-gradient-to-r from-gray-50 to-white">
+        {/* Settings column — sticky on desktop so it is always one glance away */}
+        <div className="min-w-0 px-5 md:px-0">
+          <div
+            ref={settingsRef}
+            id="profile-settings"
+            className="scroll-mt-4 bg-white rounded-3xl desktop-card border-none lg:sticky lg:top-6"
+          >
+            <div className="px-5 pt-5 pb-3">
               <h3 className="font-extrabold text-lg text-text-primary">{t('profile.settings')}</h3>
+              <p className="mt-0.5 text-xs font-semibold text-text-muted">{t('profile.settingsSubtitle')}</p>
             </div>
-            <div className="divide-y divide-gray-50">
-              <MenuItem icon={UserRound} label={t('profile.editProfile')} value={displayName} color="#4FA3D1" onClick={() => setActivePanel('edit-profile')} />
-              <MenuItem icon={Globe} label={t('profile.appLanguage')} value={getAppLanguageLabel(language)} color="#3498DB" onClick={() => setActivePanel('language')} />
-              <MenuItem icon={BookOpen} label={t('profile.learningLanguage')} value={targetLanguageLabel} color="#0F766E" onClick={() => setActivePanel('target-language')} />
-              <MenuItem icon={Bell} label={t('profile.notifications')} value={localPrefs.pushReminder ? t('profile.notificationsOn') : t('profile.notificationsOff')} color="#F39C12" onClick={() => setActivePanel('notifications')} />
-              <MenuItem icon={Shield} label={t('profile.privacy')} value={localPrefs.profilePublic ? t('profile.privacyPublic') : t('profile.privacyPrivate')} color="#4FA3D1" onClick={() => setActivePanel('privacy')} />
-              <MenuItem icon={Star} label={t('profile.rateUs')} value={localPrefs.rating ? `${localPrefs.rating}/5` : undefined} color="#FFD700" onClick={() => setActivePanel('rate')} />
-              <MenuItem icon={MessageSquare} label={t('profile.supportFeedback')} value={SUPPORT_EMAIL} color="#10B981" onClick={() => setActivePanel('help')} />
-              <MenuItem icon={HelpCircle} label={t('profile.helpCenter')} color="#9B59B6" onClick={() => setActivePanel('help')} />
-              <div className="p-2">
-                <button onClick={onLogout} className="w-full mt-2 bg-red-50 text-red-600 hover:bg-red-100 font-bold py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer">
-                  <LogOut size={18} /> {t('profile.logOut')}
-                </button>
-              </div>
-            </div>
-          </div>
 
-          {/* Mobile Progress List */}
-          <div className="lg:hidden">
-            <ProgressList total={totalCourses} completed={completedCourses} />
+            <div className="flex flex-col gap-4 px-2 pb-2">
+              <SettingsSection title={t('profile.sectionAccount')}>
+                <MenuItem icon={UserRound} label={t('profile.editProfile')} description={t('profile.editProfileHint')} color="#4FA3D1" onClick={() => setActivePanel('edit-profile')} />
+              </SettingsSection>
+
+              <SettingsSection title={t('profile.sectionPreferences')}>
+                <MenuItem icon={Globe} label={t('profile.appLanguage')} value={getAppLanguageLabel(language)} color="#3498DB" onClick={() => setActivePanel('language')} />
+                <MenuItem icon={BookOpen} label={t('profile.learningLanguage')} value={targetLanguageShort} color="#0F766E" onClick={() => setActivePanel('target-language')} />
+                <MenuItem
+                  icon={Bell}
+                  label={t('profile.notifications')}
+                  status={localPrefs.pushReminder
+                    ? { label: t('profile.notificationsOn'), tone: 'on' }
+                    : { label: t('profile.notificationsOff'), tone: 'off' }}
+                  color="#F39C12"
+                  onClick={() => setActivePanel('notifications')}
+                />
+                <MenuItem icon={Shield} label={t('profile.privacy')} value={localPrefs.profilePublic ? t('profile.privacyPublic') : t('profile.privacyPrivate')} color="#6366F1" onClick={() => setActivePanel('privacy')} />
+              </SettingsSection>
+
+              <SettingsSection title={t('profile.sectionAi')}>
+                <MenuItem
+                  icon={KeyRound}
+                  label={t('profile.aiKey')}
+                  description={t('profile.aiKeyHint')}
+                  status={hasStudioKey
+                    ? { label: t('profile.aiKeyActive'), tone: 'on' }
+                    : { label: t('profile.aiKeyNotSet'), tone: 'off' }}
+                  color="#7C3AED"
+                  onClick={() => openAiKeyPrompt()}
+                />
+              </SettingsSection>
+
+              <SettingsSection title={t('profile.sectionSupport')}>
+                <MenuItem icon={HelpCircle} label={t('profile.supportFeedback')} description={t('profile.helpHint')} color="#10B981" onClick={() => setActivePanel('help')} />
+                <MenuItem icon={Star} label={t('profile.rateUs')} value={localPrefs.rating ? `${localPrefs.rating}/5 ★` : undefined} color="#EAB308" onClick={() => setActivePanel('rate')} />
+              </SettingsSection>
+            </div>
+
+            <div className="border-t border-gray-100 p-3">
+              <button
+                type="button"
+                onClick={() => setActivePanel('logout')}
+                className="flex w-full items-center justify-center gap-2 rounded-2xl py-3 text-[14px] font-bold text-red-500 transition-colors hover:bg-red-50 cursor-pointer"
+              >
+                <LogOut size={17} /> {t('profile.logOut')}
+              </button>
+            </div>
           </div>
         </div>
 
       </div>
 
+      {activePanel === 'logout' && (
+        <ProfileModal title={t('profile.logOut')} onClose={closePanel} size="sm">
+          <div className="text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-500">
+              <LogOut size={24} />
+            </div>
+            <p className="mt-4 text-base font-black text-text-primary">{t('profile.logOutConfirm')}</p>
+            <p className="mt-1 text-sm font-semibold leading-relaxed text-text-muted">{t('profile.logOutConfirmDesc')}</p>
+            <div className="mt-5 grid grid-cols-2 gap-2">
+              <button
+                type="button"
+                onClick={closePanel}
+                className="h-11 rounded-2xl border border-gray-200 bg-white text-sm font-black text-text-secondary hover:bg-gray-50"
+              >
+                {t('profile.cancel')}
+              </button>
+              <button
+                type="button"
+                onClick={() => { closePanel(); onLogout?.(); }}
+                className="h-11 rounded-2xl bg-red-500 text-sm font-black text-white hover:bg-red-600"
+              >
+                {t('profile.logOut')}
+              </button>
+            </div>
+          </div>
+        </ProfileModal>
+      )}
       {activePanel === 'edit-profile' && (
-        <ProfileModal title={t('profile.editProfile')} onClose={() => { setProfileSaved(false); setActivePanel(null); }}>
+        <ProfileModal title={t('profile.editProfile')} onClose={closePanel}>
           <div className="space-y-5">
             <div className="flex items-center gap-2 rounded-2xl bg-primary/5 px-4 py-2.5 text-[11px] font-semibold text-primary">
               <Mail size={12} /> {user?.email || ''}
@@ -1116,13 +1296,13 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
       )}
 
       {activePanel === 'language' && (
-        <ProfileModal title={t('profile.appLanguage')} onClose={() => setActivePanel(null)}>
-          <AppLanguageSwitcher variant="card" onChange={() => setActivePanel(null)} />
+        <ProfileModal title={t('profile.appLanguage')} onClose={closePanel}>
+          <AppLanguageSwitcher variant="card" onChange={closePanel} />
         </ProfileModal>
       )}
 
       {activePanel === 'target-language' && (
-        <ProfileModal title={t('profile.learningLanguage')} onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.learningLanguage')} onClose={closePanel}>
           <div className="grid grid-cols-2 gap-3">
             {targetLanguageOptions.map((item) => (
               <button
@@ -1141,11 +1321,11 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
       )}
 
       {activePanel === 'notifications' && (
-        <ProfileModal title="Notifications" onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.notifications')} onClose={closePanel}>
           <div className="space-y-3">
-            <ToggleRow label="Daily reminder" description="Ingatkan jadwal belajar harian." checked={localPrefs.pushReminder} onChange={(checked) => updateLocalPrefs({ pushReminder: checked })} />
-            <ToggleRow label="Streak warning" description="Beri peringatan sebelum streak putus." checked={localPrefs.streakReminder} onChange={(checked) => updateLocalPrefs({ streakReminder: checked })} />
-            <ToggleRow label="Weekly digest" description="Kirim ringkasan progres mingguan." checked={localPrefs.emailDigest} onChange={(checked) => updateLocalPrefs({ emailDigest: checked })} />
+            <ToggleRow label={t('profile.dailyReminder')} description={t('profile.dailyReminderDesc')} checked={localPrefs.pushReminder} onChange={(checked) => updateLocalPrefs({ pushReminder: checked })} />
+            <ToggleRow label={t('profile.streakWarning')} description={t('profile.streakWarningDesc')} checked={localPrefs.streakReminder} onChange={(checked) => updateLocalPrefs({ streakReminder: checked })} />
+            <ToggleRow label={t('profile.weeklyDigest')} description={t('profile.weeklyDigestDesc')} checked={localPrefs.emailDigest} onChange={(checked) => updateLocalPrefs({ emailDigest: checked })} />
             <button
               type="button"
               onClick={() => {
@@ -1161,30 +1341,30 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
               }}
               className="flex h-11 w-full items-center justify-center gap-2 rounded-2xl bg-primary text-sm font-black text-white hover:bg-primary-dark"
             >
-              <Bell size={16} /> Test browser notification
+              <Bell size={16} /> {t('profile.testNotification')}
             </button>
           </div>
         </ProfileModal>
       )}
 
       {activePanel === 'privacy' && (
-        <ProfileModal title="Privacy" onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.privacy')} onClose={closePanel}>
           <div className="space-y-3">
-            <ToggleRow label="Public profile" description="Izinkan learner lain melihat profil kamu." checked={localPrefs.profilePublic} onChange={(checked) => updateLocalPrefs({ profilePublic: checked })} />
-            <ToggleRow label="Show on leaderboard" description="Tampilkan namamu di papan peringkat." checked={localPrefs.showLeaderboard} onChange={(checked) => updateLocalPrefs({ showLeaderboard: checked })} />
-            <ToggleRow label="Share progress" description="Izinkan badge/progres tampil di komunitas." checked={localPrefs.shareProgress} onChange={(checked) => updateLocalPrefs({ shareProgress: checked })} />
+            <ToggleRow label={t('profile.publicProfile')} description={t('profile.publicProfileDesc')} checked={localPrefs.profilePublic} onChange={(checked) => updateLocalPrefs({ profilePublic: checked })} />
+            <ToggleRow label={t('profile.showLeaderboard')} description={t('profile.showLeaderboardDesc')} checked={localPrefs.showLeaderboard} onChange={(checked) => updateLocalPrefs({ showLeaderboard: checked })} />
+            <ToggleRow label={t('profile.shareProgress')} description={t('profile.shareProgressDesc')} checked={localPrefs.shareProgress} onChange={(checked) => updateLocalPrefs({ shareProgress: checked })} />
             <a
               href="https://fluently.id/privacy.html"
               className="flex h-11 w-full items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white text-sm font-black text-text-secondary hover:border-primary hover:text-primary"
             >
-              <Shield size={16} /> Open privacy policy
+              <Shield size={16} /> {t('profile.openPrivacyPolicy')}
             </a>
           </div>
         </ProfileModal>
       )}
 
       {activePanel === 'rate' && (
-        <ProfileModal title="Rate Fluently" onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.rateUs')} onClose={closePanel}>
           <div className="text-center">
             <p className="text-sm font-semibold text-text-secondary">Bagaimana pengalaman belajarmu sejauh ini?</p>
             <div className="mt-5 flex justify-center gap-2">
@@ -1248,7 +1428,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
       )}
 
       {activePanel === 'help' && (
-        <ProfileModal title="Help Center" onClose={() => setActivePanel(null)}>
+        <ProfileModal title={t('profile.supportFeedback')} onClose={closePanel}>
           <div className="space-y-4">
             <div className="rounded-3xl border border-primary/10 bg-primary/5 p-4">
               <div className="flex items-start gap-3">
@@ -1337,7 +1517,7 @@ export default function ProfilePage({ onLogout }: { onLogout?: () => void }) {
 
             {[
               ['Bagaimana mengganti bahasa modul?', 'Buka Bahasa yang dipelajari, pilih bahasa baru, lalu halaman Modul akan mengikuti pilihan itu.'],
-              ['Apakah perlu API key sendiri?', 'Tidak. Semua fitur AI memakai default key Kie dari Fluently lewat backend.'],
+              ['Apakah perlu API key sendiri?', 'Tidak wajib. Fluently memberi kuota AI harian. Kalau kuota habis, tambahkan key gratis Google AI Studio lewat Pengaturan → Key Google AI Studio.'],
               ['Di mana data profile disimpan?', 'Preferensi profile disimpan lokal di browser ini. Data akun utama tetap memakai session login.'],
             ].map(([q, a]) => (
               <div key={q} className="rounded-2xl bg-gray-50 p-4">
