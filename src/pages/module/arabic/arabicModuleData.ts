@@ -149,8 +149,8 @@ export const arabicLessonCounts: Record<ArabicLevelId, Record<ArabicSkillId, num
     istima: 20,
     qiraah: 20,
     kitabah: 20,
-    mufradat: 21,
-    grammar: 10,
+    mufradat: 20,
+    grammar: 20,
     pronunciation: 20,
   },
   intermediate: {

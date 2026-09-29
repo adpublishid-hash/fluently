@@ -38,8 +38,8 @@ export const foundationTopics: Record<FoundationLevel, Record<ArabicSkillId, str
     istima: ['Dialog perkenalan', 'Rutinitas harian', 'Instruksi kelas', 'Percakapan keluarga', 'Dialog sekolah', 'Dialog rumah', 'Belanja sederhana', 'Pesanan restoran', 'Arah jalan', 'Janji bertemu', 'Cuaca harian', 'Hobi dan waktu luang', 'Pengumuman pendek', 'Cerita lampau sederhana', 'Rencana akhir pekan', 'Deskripsi orang', 'Lokasi tempat umum', 'Pesan suara pendek', 'Wawancara mini', 'Review listening A2'],
     qiraah: ['Paragraf perkenalan', 'Kegiatan harian', 'Keluarga dan profesi', 'Sekolah dan jadwal', 'Rumah dan lingkungan', 'Berbelanja', 'Makanan dan restoran', 'Perjalanan kota', 'Arah dan lokasi', 'Kesehatan ringan', 'Hobi dan kebiasaan', 'Cuaca dan musim', 'Undangan dan janji', 'Cerita masa lalu sederhana', 'Rencana besok', 'Deskripsi orang', 'Tempat umum', 'Pesan singkat', 'Cerita cita-cita', 'Review bacaan A2'],
     kitabah: ['Paragraf identitas diri', 'Rutinitas harian', 'Email sederhana', 'Deskripsi keluarga', 'Deskripsi rumah', 'Menulis jadwal', 'Catatan belanja', 'Dialog tertulis', 'Instruksi arah', 'Pesan permintaan maaf', 'Kalimat lampau sederhana', 'Kalimat rencana', 'Menghubungkan kalimat', 'Deskripsi tempat', 'Pendapat sederhana', 'Cerita 5 kalimat', 'Formulir data diri', 'Undangan pendek', 'Balasan pesan', 'Portfolio tulisan A2'],
-    mufradat: ['Rutinitas harian', 'Sekolah dan jadwal', 'Keluarga dan profesi', 'Belanja dan harga', 'Restoran', 'Rumah dan ruangan', 'Kota dan arah', 'Kesehatan', 'Hobi dan olahraga', 'Cuaca dan musim', 'Perjalanan', 'Teknologi sederhana', 'Perasaan dan pendapat', 'Kata kerja lampau', 'Kata kerja rencana', 'Deskripsi orang', 'Tempat umum', 'Undangan', 'Pengalaman', 'Review tematik', 'Portfolio kosakata'],
-    grammar: ['Jumlah ismiyyah lanjutan', 'Jumlah fi\'liyyah lanjutan', 'Fi\'il madhi dan pelaku', 'Fi\'il mudhari\' dan pelaku', 'Huruf jar dalam kalimat', 'Idhafah dalam konteks', 'Na\'at man\'ut lanjutan', 'Kana dan saudaranya', 'Inna dan saudaranya', 'Review grammar A2'],
+    mufradat: ['Rutinitas harian', 'Sekolah dan jadwal', 'Keluarga dan profesi', 'Belanja dan harga', 'Restoran', 'Rumah dan ruangan', 'Kota dan arah', 'Kesehatan', 'Hobi dan olahraga', 'Cuaca dan musim', 'Perjalanan', 'Teknologi sederhana', 'Perasaan dan pendapat', 'Kata kerja lampau', 'Kata kerja rencana', 'Deskripsi orang', 'Tempat umum', 'Undangan', 'Pengalaman', 'Review & portfolio kosakata A2'],
+    grammar: ['Jumlah ismiyyah lanjutan', 'Jumlah fi\'liyyah lanjutan', 'Fi\'il madhi dan pelaku', 'Fi\'il mudhari\' dan pelaku', 'Huruf jar dalam kalimat', 'Idhafah dalam konteks', 'Na\'at man\'ut lanjutan', 'Kana dan saudaranya', 'Inna dan saudaranya', 'Dhamir muttashil', 'Isyarah mutsanna dan jamak', 'Isim maushul', 'Sa- dan saufa', 'Negasi lan dan lam', 'Laisa', 'Bilangan dan ma\'dud', 'Zharaf waktu dan tempat', 'Larangan (fi\'il nahyi)', 'Huruf \'athaf', 'Review grammar A2'],
     pronunciation: ['Kontras bunyi sulit', 'Mad yang stabil', 'Tekanan kata', 'Intonasi tanya', 'Intonasi dialog', 'Waqaf pada kalimat', 'Ghunnah', 'Idgham ringan', 'Ikhfa\' ringan', 'Qalqalah', 'Ritme bacaan', 'Pengucapan frasa', 'Lam syamsiyyah & qamariyyah', 'Minimal pair', 'Koreksi mandiri', 'Membaca dialog', 'Membaca paragraf', 'Rekam ulang', 'Fluency pendek', 'Review pronunciation A2'],
   },
 };
@@ -63,7 +63,7 @@ const sentencePlan: SentencePlan = {
     istima: ['perkenalan', 'rutinitas', 'jadwal', 'profesi', 'wawancara', 'lingkungan', 'belanja', 'restoran', 'arahJalan', 'undangan', 'musim', 'hobi', 'tempatUmum', 'pengalaman', 'akhirPekan', 'deskripsi', 'arahJalan', 'telepon', 'wawancara', REVIEW],
     qiraah: ['perkenalan', 'rutinitas', 'profesi', 'jadwal', 'lingkungan', 'belanja', 'restoran', 'pengalaman', 'arahJalan', 'kesehatan', 'hobi', 'musim', 'undangan', 'pengalaman', 'akhirPekan', 'deskripsi', 'tempatUmum', 'telepon', 'masaDepan', REVIEW],
     kitabah: ['perkenalan', 'rutinitas', 'telepon', 'profesi', 'lingkungan', 'jadwal', 'belanja', 'restoran', 'arahJalan', 'permintaanMaaf', 'pengalaman', 'akhirPekan', 'kesehatan', 'tempatUmum', 'hobi', 'masaDepan', 'wawancara', 'undangan', 'undangan', REVIEW],
-    mufradat: ['rutinitas', 'jadwal', 'profesi', 'belanja', 'restoran', 'lingkungan', 'arahJalan', 'kesehatan', 'hobi', 'musim', 'pengalaman', 'telepon', 'wawancara', 'pengalaman', 'masaDepan', 'deskripsi', 'tempatUmum', 'undangan', 'pengalaman', REVIEW, REVIEW],
+    mufradat: ['rutinitas', 'jadwal', 'profesi', 'belanja', 'restoran', 'lingkungan', 'arahJalan', 'kesehatan', 'hobi', 'musim', 'pengalaman', 'telepon', 'wawancara', 'pengalaman', 'masaDepan', 'deskripsi', 'tempatUmum', 'undangan', 'pengalaman', REVIEW],
   },
 };
 
@@ -83,7 +83,7 @@ const vocabularyPlan: Record<FoundationLevel, Record<Exclude<ArabicSkillId, 'muf
     istima: [0, 0, 1, 2, 12, 5, 3, 4, 6, 17, 9, 8, 16, 13, 14, 15, 16, 11, 12, 20],
     qiraah: [2, 0, 2, 1, 5, 3, 4, 10, 6, 7, 8, 9, 17, 13, 14, 15, 16, 11, 18, 19],
     kitabah: [15, 0, 11, 2, 5, 1, 3, 4, 6, 12, 13, 14, 7, 16, 12, 18, 15, 17, 11, 20],
-    grammar: [1, 3, 13, 0, 10, 5, 15, 9, 12, 19],
+    grammar: [1, 3, 13, 0, 10, 5, 15, 9, 12, 5, 2, 16, 14, 18, 7, 4, 6, 8, 11, 19],
     pronunciation: [15, 14, 16, 12, 13, 18, 1, 6, 10, 8, 0, 3, 9, 7, 11, 4, 5, 2, 17, 20],
   },
 };

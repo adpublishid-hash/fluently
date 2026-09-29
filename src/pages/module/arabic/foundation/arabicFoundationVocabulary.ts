@@ -1,7 +1,7 @@
 export type ArabicWord = { arabic: string; transliteration: string; meaning: string };
 type WordTuple = [arabic: string, transliteration: string, meaning: string];
 
-// Themed word sets. Pemula follows the 40 mufradat topics, elementary the 21
+// Themed word sets. Pemula follows the 40 mufradat topics, elementary the 20
 // elementary mufradat topics (the last one or two are review sets built below).
 const pemula: WordTuple[][] = [
   [['السَّلَامُ عَلَيْكُمْ', "as-salamu 'alaikum", 'semoga keselamatan atasmu'], ['مَرْحَبًا', 'marhaban', 'halo / selamat datang'], ['صَبَاحُ الْخَيْرِ', 'shabahul khair', 'selamat pagi'], ['مَسَاءُ الْخَيْرِ', "masa'ul khair", 'selamat sore'], ['مَعَ السَّلَامَةِ', "ma'as salamah", 'selamat jalan'], ['أَهْلًا وَسَهْلًا', 'ahlan wa sahlan', 'selamat datang']],

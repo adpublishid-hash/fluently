@@ -96,14 +96,16 @@ const wordReading = (index: number): Generator => ({ words, levelWords }, random
 
 // Each skill asks different things about the lesson's theme sentences and
 // words, so the seven skills that share a lesson number rarely repeat.
+// Sentences 0-2 are theme sentences, 3+ come from the lesson passage; every
+// (generator, index) pair belongs to one skill only.
 const skillPlan: Record<ArabicSkillId, Generator[]> = {
-  mufradat: [wordForMeaning(0), wordForMeaning(1), wordForMeaning(2), wordForMeaning(3), themeWordInSentence(0)],
-  qiraah: [sentenceMeaning(0), sentenceMeaning(1), wordInContext(2), sentenceMeaning(4)],
-  istima: [heardMeaning(0), heardMeaning(1), heardMeaning(2), heardMeaning(5)],
-  kalam: [sentenceForMeaning(0), sentenceForMeaning(1), sentenceForMeaning(2), sentenceForMeaning(3)],
-  kitabah: [wordOrder(0), themeWordInSentence(1), themeWordInSentence(2), wordOrder(3)],
-  grammar: [wordOrder(1), wordOrder(2), wordInContext(0), wordOrder(4)],
-  pronunciation: [wordReading(0), wordReading(1), wordReading(2), wordReading(3), sentenceReading(0), sentenceReading(1)],
+  mufradat: [wordForMeaning(0), wordForMeaning(1), wordForMeaning(2), wordForMeaning(3), themeWordInSentence(0), wordInContext(1)],
+  qiraah: [sentenceMeaning(0), sentenceMeaning(1), wordInContext(2), sentenceMeaning(4), sentenceMeaning(5), sentenceMeaning(6)],
+  istima: [heardMeaning(0), heardMeaning(1), heardMeaning(2), heardMeaning(5), heardMeaning(3), heardMeaning(6)],
+  kalam: [sentenceForMeaning(0), sentenceForMeaning(1), sentenceForMeaning(2), sentenceForMeaning(3), sentenceForMeaning(4), sentenceForMeaning(5)],
+  kitabah: [wordOrder(0), themeWordInSentence(1), themeWordInSentence(2), wordOrder(3), wordOrder(5)],
+  grammar: [wordOrder(1), wordOrder(2), wordInContext(0), wordOrder(4), wordOrder(6)],
+  pronunciation: [wordReading(0), wordReading(1), wordReading(2), wordReading(3), sentenceReading(0), sentenceReading(1), sentenceReading(2), sentenceReading(3)],
 };
 
 export function buildArabicThemePractice(skillId: ArabicSkillId, material: ThemePracticeMaterial, seed: number): ChoiceQuestion[] {

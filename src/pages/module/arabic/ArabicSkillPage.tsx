@@ -34,7 +34,9 @@ export default function ArabicSkillPage() {
     setCompleted(getCompleted(levelId, skillId));
   }, [levelId, skillId]);
 
-  const pct = totalLessons ? (completed.length / totalLessons) * 100 : 0;
+  // Ignore stale ids beyond the current lesson count (e.g. a lesson that was merged away).
+  const completedCount = completed.filter((id) => id <= totalLessons).length;
+  const pct = totalLessons ? (completedCount / totalLessons) * 100 : 0;
 
   if (!totalLessons) {
     return (
@@ -66,7 +68,7 @@ export default function ArabicSkillPage() {
             </div>
             <div>
               <h3 className="font-bold text-[15px] text-[#1A1A2E]">{skill.label}</h3>
-              <p className="text-xs text-[#6B7280]">{completed.length}/{totalLessons} Pelajaran</p>
+              <p className="text-xs text-[#6B7280]">{completedCount}/{totalLessons} Pelajaran</p>
             </div>
             <div className="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold text-white" style={{ backgroundColor: level.color }}>
               Arabic {level.badge}
