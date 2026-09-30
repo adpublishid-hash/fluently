@@ -74,6 +74,12 @@ customPinyin({
   用量: 'yòng liàng',
   干嘛: 'gàn má',
   请假: 'qǐng jià',
+  只会: 'zhǐ huì',
+  只能: 'zhǐ néng',
+  只好: 'zhǐ hǎo',
+  得懂: 'de dǒng',
+  切成: 'qiē chéng',
+  词汇量: 'cí huì liàng',
   病假: 'bìng jià',
   假期: 'jià qī',
   // Degree/result complement 得 before an adverb or evaluation is neutral "de", not dé.
