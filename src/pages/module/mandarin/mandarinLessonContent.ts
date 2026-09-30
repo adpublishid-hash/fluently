@@ -834,6 +834,93 @@ const upperIntermediateExtraLessonPacks: Array<{
   },
 ];
 
+// HSK 2 and HSK 3 have 18 main packs; these cover lessons 19-20 so they do not fall back to lesson 1.
+const elementaryExtraLessonPacks: typeof upperIntermediateExtraLessonPacks = [
+  {
+    goal: 'Bicarakan rencana liburan memakai 放假, 打算, dan 旅游.',
+    vocabulary: [
+      { hanzi: '放假', pinyin: 'fàngjià', meaning: 'libur' },
+      { hanzi: '打算', pinyin: 'dǎsuàn', meaning: 'berencana' },
+      { hanzi: '旅游', pinyin: 'lǚyóu', meaning: 'berwisata' },
+      { hanzi: '宾馆', pinyin: 'bīnguǎn', meaning: 'hotel' },
+      { hanzi: '机票', pinyin: 'jīpiào', meaning: 'tiket pesawat' },
+      { hanzi: '行李', pinyin: 'xíngli', meaning: 'barang bawaan' },
+    ],
+    examples: [
+      { hanzi: '放假以后你打算做什么？', pinyin: 'Fàng jià yǐ hòu nǐ dǎ suàn zuò shén me?', meaning: 'Setelah libur mulai, kamu berencana melakukan apa?' },
+      { hanzi: '我打算和家人去海南旅游。', pinyin: 'Wǒ dǎ suàn hé jiā rén qù hǎi nán lǚ yóu.', meaning: 'Saya berencana berwisata ke Hainan bersama keluarga.' },
+      { hanzi: '我们已经买好去海南的机票了。', pinyin: 'Wǒ men yǐ jīng mǎi hǎo qù hǎi nán de jī piào le.', meaning: 'Kami sudah membeli tiket pesawat ke Hainan.' },
+    ],
+    quiz: [
+      { question: '放假 berarti...', options: ['libur', 'bekerja lembur', 'pindah rumah'], answer: 'libur' },
+      { question: '打算 dipakai untuk menyatakan...', options: ['rencana', 'perbandingan', 'harga'], answer: 'rencana' },
+    ],
+  },
+  {
+    goal: 'Review HSK 2: tetapkan target ujian dan ceritakan kemajuan belajar.',
+    vocabulary: [
+      { hanzi: '考试', pinyin: 'kǎoshì', meaning: 'ujian' },
+      { hanzi: '准备', pinyin: 'zhǔnbèi', meaning: 'mempersiapkan' },
+      { hanzi: '希望', pinyin: 'xīwàng', meaning: 'berharap' },
+      { hanzi: '已经', pinyin: 'yǐjīng', meaning: 'sudah' },
+      { hanzi: '进步', pinyin: 'jìnbù', meaning: 'kemajuan' },
+      { hanzi: '努力', pinyin: 'nǔlì', meaning: 'berusaha keras' },
+    ],
+    examples: [
+      { hanzi: '下个月我要参加汉语考试。', pinyin: 'Xià gè yuè wǒ yào cān jiā hàn yǔ kǎo shì.', meaning: 'Bulan depan saya akan ikut ujian bahasa Mandarin.' },
+      { hanzi: '我已经准备了两个月。', pinyin: 'Wǒ yǐ jīng zhǔn bèi le liǎng gè yuè.', meaning: 'Saya sudah mempersiapkannya selama dua bulan.' },
+      { hanzi: '希望我能考得好一点儿。', pinyin: 'Xī wàng wǒ néng kǎo de hǎo yì diǎnr.', meaning: 'Semoga saya bisa mendapat nilai yang lebih baik.' },
+    ],
+    quiz: [
+      { question: '进步 berarti...', options: ['kemajuan', 'kemunduran', 'liburan'], answer: 'kemajuan' },
+      { question: '已经 menandakan sesuatu...', options: ['sudah terjadi', 'belum pernah terjadi', 'sedang ditawar'], answer: 'sudah terjadi' },
+    ],
+  },
+];
+
+const intermediateExtraLessonPacks: typeof upperIntermediateExtraLessonPacks = [
+  {
+    goal: 'Ceritakan tradisi dan perayaan memakai 节日, 习惯, dan 庆祝.',
+    vocabulary: [
+      { hanzi: '节日', pinyin: 'jiérì', meaning: 'hari raya' },
+      { hanzi: '习惯', pinyin: 'xíguàn', meaning: 'kebiasaan / terbiasa' },
+      { hanzi: '传统', pinyin: 'chuántǒng', meaning: 'tradisi' },
+      { hanzi: '庆祝', pinyin: 'qìngzhù', meaning: 'merayakan' },
+      { hanzi: '礼物', pinyin: 'lǐwù', meaning: 'hadiah' },
+      { hanzi: '团圆', pinyin: 'tuányuán', meaning: 'berkumpul kembali (keluarga)' },
+    ],
+    examples: [
+      { hanzi: '春节是中国最重要的节日。', pinyin: 'Chūn jié shì zhōng guó zuì zhòng yào de jié rì.', meaning: 'Tahun Baru Imlek adalah hari raya terpenting di Tiongkok.' },
+      { hanzi: '过节的时候，家人要一起吃团圆饭。', pinyin: 'Guò jié de shí hòu, jiā rén yào yì qǐ chī tuán yuán fàn.', meaning: 'Saat hari raya, keluarga makan malam bersama untuk berkumpul.' },
+      { hanzi: '中秋节大家习惯吃月饼。', pinyin: 'Zhōng qiū jié dà jiā xí guàn chī yuè bǐng.', meaning: 'Saat Festival Pertengahan Musim Gugur orang terbiasa makan kue bulan.' },
+    ],
+    quiz: [
+      { question: '庆祝 berarti...', options: ['merayakan', 'membersihkan', 'menunda'], answer: 'merayakan' },
+      { question: '团圆饭 adalah...', options: ['makan malam keluarga saat berkumpul', 'makanan cepat saji', 'sarapan di kantor'], answer: 'makan malam keluarga saat berkumpul' },
+    ],
+  },
+  {
+    goal: 'Buat portfolio HSK 3: refleksi kemajuan, kesulitan, dan rencana belajar berikutnya.',
+    vocabulary: [
+      { hanzi: '总结', pinyin: 'zǒngjié', meaning: 'merangkum / rangkuman' },
+      { hanzi: '经验', pinyin: 'jīngyàn', meaning: 'pengalaman' },
+      { hanzi: '提高', pinyin: 'tígāo', meaning: 'meningkatkan' },
+      { hanzi: '坚持', pinyin: 'jiānchí', meaning: 'tekun / bertahan' },
+      { hanzi: '计划', pinyin: 'jìhuà', meaning: 'rencana' },
+      { hanzi: '成绩', pinyin: 'chéngjì', meaning: 'nilai / prestasi' },
+    ],
+    examples: [
+      { hanzi: '这个学期我的成绩提高了不少。', pinyin: 'Zhè ge xué qī wǒ de chéng jì tí gāo le bù shǎo.', meaning: 'Semester ini nilai saya meningkat cukup banyak.' },
+      { hanzi: '我的经验是每天坚持听和说。', pinyin: 'Wǒ de jīng yàn shì měi tiān jiān chí tīng hé shuō.', meaning: 'Pengalaman saya adalah tekun menyimak dan berbicara setiap hari.' },
+      { hanzi: '下个学期我计划准备更高级的考试。', pinyin: 'Xià gè xué qī wǒ jì huà zhǔn bèi gèng gāo jí de kǎo shì.', meaning: 'Semester depan saya berencana mempersiapkan ujian tingkat lebih tinggi.' },
+    ],
+    quiz: [
+      { question: '坚持 berarti...', options: ['tekun / bertahan', 'menyerah', 'lupa'], answer: 'tekun / bertahan' },
+      { question: '总结 dipakai untuk...', options: ['merangkum hasil', 'memesan makanan', 'menanyakan arah'], answer: 'merangkum hasil' },
+    ],
+  },
+];
+
 const elementaryLessonPacks: Array<{
   goal: string;
   vocabulary: MandarinLesson['vocabulary'];
@@ -863,7 +950,7 @@ const elementaryLessonPacks: Array<{
   {
     goal: 'Buat janji sederhana memakai 今天, 明天, 现在, dan 有空.',
     vocabulary: [
-      { hanzi: '有空', pinyin: 'yǒukōng', meaning: 'punya waktu luang' },
+      { hanzi: '有空', pinyin: 'yǒukòng', meaning: 'punya waktu luang' },
       { hanzi: '见面', pinyin: 'jiànmiàn', meaning: 'bertemu' },
       { hanzi: '现在', pinyin: 'xiànzài', meaning: 'sekarang' },
       { hanzi: '明天', pinyin: 'míngtiān', meaning: 'besok' },
@@ -871,7 +958,7 @@ const elementaryLessonPacks: Array<{
       { hanzi: '可以', pinyin: 'kěyǐ', meaning: 'boleh/bisa' },
     ],
     examples: [
-      { hanzi: '你明天下午有空吗？', pinyin: 'Nǐ míng tiān xià wǔ yǒu kōng ma?', meaning: 'Apakah kamu punya waktu besok sore?' },
+      { hanzi: '你明天下午有空吗？', pinyin: 'Nǐ míng tiān xià wǔ yǒu kòng ma?', meaning: 'Apakah kamu punya waktu besok sore?' },
       { hanzi: '我们可以三点见面。', pinyin: 'Wǒ men kě yǐ sān diǎn jiàn miàn.', meaning: 'Kita bisa bertemu jam tiga.' },
       { hanzi: '现在不可以，明天可以。', pinyin: 'Xiàn zài bù kě yǐ, míng tiān kě yǐ.', meaning: 'Sekarang tidak bisa, besok bisa.' },
     ],
@@ -1480,7 +1567,7 @@ const intermediateLessonPacks: Array<{
     ],
     examples: [
       { hanzi: '如果你不能来，请联系老师。', pinyin: 'Rú guǒ nǐ bù néng lái, qǐng lián xì lǎo shī.', meaning: 'Jika kamu tidak bisa datang, hubungi guru.' },
-      { hanzi: '我想请假一天，因为我生病了。', pinyin: 'Wǒ xiǎng qǐng jiǎ yī tiān, yīn wèi wǒ shēng bìng le.', meaning: 'Saya ingin izin satu hari karena saya sakit.' },
+      { hanzi: '我想请假一天，因为我生病了。', pinyin: 'Wǒ xiǎng qǐng jià yì tiān, yīn wèi wǒ shēng bìng le.', meaning: 'Saya ingin izin satu hari karena saya sakit.' },
       { hanzi: '这个通知很重要。', pinyin: 'Zhè ge tōng zhī hěn zhòng yào.', meaning: 'Pengumuman ini penting.' },
     ],
     quiz: [
@@ -2102,8 +2189,8 @@ type LessonPack = { vocabulary: MandarinLesson['vocabulary']; examples: Mandarin
 // HSK 1-4 packs carry three extra example sentences each (mandarinPackSentences.ts).
 ([
   ['beginner', beginnerLessonPacks],
-  ['elementary', elementaryLessonPacks],
-  ['intermediate', intermediateLessonPacks],
+  ['elementary', [...elementaryLessonPacks, ...elementaryExtraLessonPacks]],
+  ['intermediate', [...intermediateLessonPacks, ...intermediateExtraLessonPacks]],
   ['upper-intermediate', [...upperIntermediateLessonPacks, ...upperIntermediateExtraLessonPacks]],
 ] as const).forEach(([level, packs]) => packs.forEach((pack, index) => {
   const known = new Set(pack.examples.map((item) => item.hanzi));
@@ -2112,8 +2199,8 @@ type LessonPack = { vocabulary: MandarinLesson['vocabulary']; examples: Mandarin
 
 function packsFor(level: MandarinLevelId): LessonPack[] | null {
   if (level === 'beginner') return beginnerLessonPacks;
-  if (level === 'elementary') return elementaryLessonPacks;
-  if (level === 'intermediate') return intermediateLessonPacks;
+  if (level === 'elementary') return [...elementaryLessonPacks, ...elementaryExtraLessonPacks];
+  if (level === 'intermediate') return [...intermediateLessonPacks, ...intermediateExtraLessonPacks];
   if (level === 'upper-intermediate') return [...upperIntermediateLessonPacks, ...upperIntermediateExtraLessonPacks];
   return null;
 }
@@ -2185,8 +2272,10 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
   const isHsk9 = level === 'hsk-9';
   const isPostHsk = isHsk7 || isHsk8 || isHsk9;
   const beginnerPack = beginnerLessonPacks[safeLesson - 1] ?? beginnerLessonPacks[0];
-  const elementaryPack = elementaryLessonPacks[safeLesson - 1] ?? elementaryLessonPacks[0];
-  const intermediatePack = intermediateLessonPacks[safeLesson - 1] ?? intermediateLessonPacks[0];
+  const elementaryPacks = [...elementaryLessonPacks, ...elementaryExtraLessonPacks];
+  const elementaryPack = elementaryPacks[safeLesson - 1] ?? elementaryPacks[0];
+  const intermediatePacks = [...intermediateLessonPacks, ...intermediateExtraLessonPacks];
+  const intermediatePack = intermediatePacks[safeLesson - 1] ?? intermediatePacks[0];
   const upperIntermediatePacks = [...upperIntermediateLessonPacks, ...upperIntermediateExtraLessonPacks];
   const upperIntermediatePack = upperIntermediatePacks[safeLesson - 1] ?? upperIntermediatePacks[0];
   const advancedThemes = [
@@ -2410,7 +2499,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       { label: 'Degree complement', hanzi: '动词 + 得 + 很好 / 很快 / 很慢', pinyin: 'dòng cí + dé + hěn hǎo / hěn kuài / hěn màn', meaning: 'Menjelaskan bagaimana sebuah aksi dilakukan.' },
     ],
     speaking: [
-      { label: 'Making appointment', hanzi: '你明天下午有空吗？', pinyin: 'Nǐ míng tiān xià wǔ yǒu kōng ma?', meaning: 'Apakah kamu punya waktu besok sore?' },
+      { label: 'Making appointment', hanzi: '你明天下午有空吗？', pinyin: 'Nǐ míng tiān xià wǔ yǒu kòng ma?', meaning: 'Apakah kamu punya waktu besok sore?' },
       { label: 'Giving reason', hanzi: '因为我很忙，所以我不能去。', pinyin: 'Yīn wèi wǒ hěn máng, suǒ yǐ wǒ bù néng qù.', meaning: 'Karena saya sibuk, jadi saya tidak bisa pergi.' },
       { label: 'Polite request', hanzi: '请再说一遍。', pinyin: 'Qǐng zài shuō yí biàn.', meaning: 'Tolong katakan sekali lagi.' },
       { label: 'Suggestion with 吧', hanzi: '我们一起去吧。', pinyin: 'Wǒ men yì qǐ qù ba.', meaning: 'Ayo kita pergi bersama.' },

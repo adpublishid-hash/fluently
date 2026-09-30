@@ -59,6 +59,7 @@ customPinyin({
   箱子: 'xiāng zi',
   例子: 'lì zi',
   饺子: 'jiǎo zi',
+  粽子: 'zòng zi',
   // Erhua: the r joins the previous syllable after conversion.
   点儿: 'diǎn r',
   那儿: 'nà r',
@@ -66,6 +67,17 @@ customPinyin({
   有点儿: 'yǒu diǎn r',
   哪儿: 'nǎ r',
   一会儿: 'yí huì r',
+  有空: 'yǒu kòng',
+  有空调: 'yǒu kōng tiáo',
+  有空气: 'yǒu kōng qì',
+  只听: 'zhǐ tīng',
+  用量: 'yòng liàng',
+  干嘛: 'gàn má',
+  请假: 'qǐng jià',
+  病假: 'bìng jià',
+  假期: 'jià qī',
+  // Degree/result complement 得 before an adverb or evaluation is neutral "de", not dé.
+  ...Object.fromEntries(['很', '真', '非常', '太', '越来越', '比', '特别', '挺', '十分', '更', '相当', '又', '让', '这么', '那么', '不错', '不好', '清楚', '流利', '厉害', '远', '近', '早', '晚', '快', '慢'].map((next) => [`得${next}`, `de ${pinyin(next)}`])),
 });
 
 const PUNCTUATION: Record<string, string> = {

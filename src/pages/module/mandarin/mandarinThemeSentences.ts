@@ -236,7 +236,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
     [
       ['减少碳排放已经成为各国的共同目标。', 'Jiǎn shǎo tàn pái fàng yǐ jīng chéng wéi gè guó de gòng tóng mù biāo.', 'Mengurangi emisi karbon telah menjadi tujuan bersama berbagai negara.'],
       ['实现碳中和离不开可再生能源的大规模应用。', 'Shí xiàn tàn zhōng hé lí bù kāi kě zài shēng néng yuán de dà guī mó yìng yòng.', 'Mencapai netralitas karbon tidak lepas dari penggunaan energi terbarukan secara besar-besaran.'],
-      ['近年来，极端天气出现得越来越频繁。', 'Jìn nián lái, jí duān tiān qì chū xiàn dé yuè lái yuè pín fán.', 'Dalam beberapa tahun terakhir, cuaca ekstrem semakin sering terjadi.'],
+      ['近年来，极端天气出现得越来越频繁。', 'Jìn nián lái, jí duān tiān qì chū xiàn de yuè lái yuè pín fán.', 'Dalam beberapa tahun terakhir, cuaca ekstrem semakin sering terjadi.'],
     ],
     [
       ['算法偏见可能在招聘中造成隐性歧视。', 'Suàn fǎ piān jiàn kě néng zài zhāo pìn zhōng zào chéng yǐn xìng qí shì.', 'Bias algoritma dapat menimbulkan diskriminasi terselubung dalam rekrutmen.'],

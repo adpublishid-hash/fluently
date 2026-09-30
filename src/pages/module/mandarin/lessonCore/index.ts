@@ -2,6 +2,7 @@ import type { MandarinLevelId, MandarinSkillId } from '../mandarinModuleData';
 import type { CorePool } from './practice';
 import type { LessonCoreTuple } from './types';
 import { beginnerCore } from './beginner';
+import { elementaryCore } from './elementary';
 
 export type MandarinLessonCore = {
   title: string | null;
@@ -12,6 +13,7 @@ export type MandarinLessonCore = {
 // Authored per-skill lesson material, one entry per lesson (index = lesson - 1).
 export const mandarinLessonCore: Partial<Record<MandarinLevelId, Partial<Record<MandarinSkillId, LessonCoreTuple[]>>>> = {
   beginner: beginnerCore,
+  elementary: elementaryCore,
 };
 
 export function getMandarinLessonCore(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): MandarinLessonCore | null {
