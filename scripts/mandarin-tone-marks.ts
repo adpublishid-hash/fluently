@@ -1,6 +1,6 @@
 // Rewrites Mandarin `pinyin` fields from their Hanzi with tone marks (pinyin-pro).
 // Usage: npx vite-node scripts/mandarin-tone-marks.ts [--check]
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { customPinyin, pinyin } from 'pinyin-pro';
 
 // Context readings pinyin-pro gets wrong in this content.
@@ -64,6 +64,8 @@ customPinyin({
   那儿: 'nà r',
   一点儿: 'yì diǎn r',
   有点儿: 'yǒu diǎn r',
+  哪儿: 'nǎ r',
+  一会儿: 'yí huì r',
 });
 
 const PUNCTUATION: Record<string, string> = {
@@ -106,9 +108,9 @@ function segments(text: string, isTerm: boolean): string[] {
 // Standalone grammar particles are taught with their neutral-tone reading.
 const TERM_OVERRIDES: Record<string, string> = { 了: 'le', 得: 'de', 着: 'zhe', '越…越…': 'yuè... yuè...' };
 
-export function toTonePinyin(hanzi: string): string {
-  if (TERM_OVERRIDES[hanzi]) return TERM_OVERRIDES[hanzi];
-  const isTerm = [...hanzi].every((char) => HANZI.test(char));
+export function toTonePinyin(hanzi: string, asSentence = false): string {
+  if (!asSentence && TERM_OVERRIDES[hanzi]) return TERM_OVERRIDES[hanzi];
+  const isTerm = !asSentence && [...hanzi].every((char) => HANZI.test(char));
   if (isTerm) return segments(hanzi, true).map(wordPinyin).join(' ');
   // Sentences: syllables from the whole sentence (polyphones resolved in
   // context), one syllable per token so no word-segmentation mistakes appear.
@@ -137,6 +139,10 @@ const files = [
   'src/pages/module/mandarin/mandarinPackSentences.ts',
   'src/features/passages/mandarinPassages.ts',
   'src/features/passages/mandarinPassagesBasic.ts',
+  // Authored lesson cores: src/pages/module/mandarin/lessonCore/<level>/<skill>.ts
+  ...readdirSync('src/pages/module/mandarin/lessonCore', { recursive: true, encoding: 'utf8' })
+    .filter((path) => /^[\w-]+\/[a-z]+\.ts$/.test(path.replace(/\\/g, '/')) && !path.endsWith('index.ts'))
+    .map((path) => `src/pages/module/mandarin/lessonCore/${path.replace(/\\/g, '/')}`),
 ];
 const check = process.argv.includes('--check');
 let changed = 0;
@@ -154,10 +160,12 @@ for (const file of files) {
   );
   // Theme bank tuples: ['城市化', 'cheng shi hua', 'urbanisasi'] (sentence tuples in
   // mandarinThemeSentences.ts and mandarinPassages.ts are always regenerated).
-  const sentenceFile = /mandarin(ThemeSentences\w*|PackSentences|Passages\w*)\.ts$/.test(file);
+  const coreFile = /\/lessonCore\//.test(file);
+  const sentenceFile = coreFile || /mandarin(ThemeSentences\w*|PackSentences|Passages\w*)\.ts$/.test(file);
   next = next.replace(/\['([^'\\]+)', '([^'\\]*)', '/g, (match, hanzi, old) => {
     if (!HANZI.test(hanzi) || (!sentenceFile && !/^[\p{L} ']+$/u.test(old))) return match;
-    const updated = toTonePinyin(hanzi).replace(/'/g, "\\'");
+    // Lesson-core phrases (words, phrases or sentences) are all read syllable by syllable.
+    const updated = toTonePinyin(hanzi, coreFile).replace(/'/g, "\\'");
     if (updated !== old) changed += 1;
     return `['${hanzi}', '${updated}', '`;
   });

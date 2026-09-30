@@ -3,6 +3,8 @@ import { getMandarinLevelThemeWords, getMandarinTheme } from './mandarinThemeBan
 import { getMandarinLevelThemeSentences, getMandarinThemeSentences } from './mandarinThemeSentences';
 import { buildLessonPractice, type PracticeMaterial } from './mandarinPracticeGenerator';
 import { getMandarinPackSentences } from './mandarinPackSentences';
+import { getMandarinLessonCore, getMandarinLessonCorePool } from './lessonCore';
+import { buildMandarinCorePractice } from './lessonCore/practice';
 import type { MandarinLevelId, MandarinSkillId } from './mandarinModuleData';
 
 export type MandarinLesson = {
@@ -1001,7 +1003,7 @@ const elementaryLessonPacks: Array<{
   {
     goal: 'Tanyakan arah dan lokasi memakai 在哪儿 dan 怎么走.',
     vocabulary: [
-      { hanzi: '哪儿', pinyin: 'nǎ\'ér', meaning: 'di mana' },
+      { hanzi: '哪儿', pinyin: 'nǎr', meaning: 'di mana' },
       { hanzi: '怎么走', pinyin: 'zěnme zǒu', meaning: 'bagaimana jalannya' },
       { hanzi: '左边', pinyin: 'zuǒbiān', meaning: 'sebelah kiri' },
       { hanzi: '右边', pinyin: 'yòubiān', meaning: 'sebelah kanan' },
@@ -1009,7 +1011,7 @@ const elementaryLessonPacks: Array<{
       { hanzi: '后面', pinyin: 'hòumiàn', meaning: 'belakang' },
     ],
     examples: [
-      { hanzi: '学校在哪儿？', pinyin: 'Xué xiào zài nǎ ér?', meaning: 'Sekolah di mana?' },
+      { hanzi: '学校在哪儿？', pinyin: 'Xué xiào zài nǎr?', meaning: 'Sekolah di mana?' },
       { hanzi: '商店在左边。', pinyin: 'Shāng diàn zài zuǒ biān.', meaning: 'Toko ada di sebelah kiri.' },
       { hanzi: '去医院怎么走？', pinyin: 'Qù yī yuàn zěn me zǒu?', meaning: 'Bagaimana jalan ke rumah sakit?' },
     ],
@@ -2083,6 +2085,8 @@ function themeQuestions(level: MandarinLevelId, skillId: MandarinSkillId, lesson
 
 export function getMandarinLessonPreview(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId = 'beginner') {
   const safeLesson = Math.max(1, Math.min(20, lesson));
+  const coreTitle = getMandarinLessonCore(level, skillId, safeLesson)?.title;
+  if (coreTitle) return coreTitle;
   if (level === 'beginner') return beginnerTopics[skillId][safeLesson - 1] ?? `HSK 1 ${skillId} Lesson ${safeLesson}`;
   if (level === 'advanced') return advancedTopics[skillId][safeLesson - 1] ?? `HSK 5 ${skillId} Lesson ${safeLesson}`;
   if (level === 'proficiency') return proficiencyTopics[skillId][safeLesson - 1] ?? `HSK 6 ${skillId} Lesson ${safeLesson}`;
@@ -2149,11 +2153,20 @@ export function getMandarinLesson(skillId: MandarinSkillId, lesson: number, leve
   const generated = buildMandarinLesson(skillId, safeLesson, level);
   // Lesson-specific questions go first; shared drills fill the rest up to the original length.
   const specific = buildLessonPractice(skillId, practiceMaterial(level, safeLesson), hashSeed('mandarin-practice', level, skillId, safeLesson));
+  // Authored material for this exact skill lesson comes before everything else.
+  const core = getMandarinLessonCore(level, skillId, safeLesson);
+  const coreQuiz = core ? buildMandarinCorePractice(skillId, core, getMandarinLessonCorePool(level), hashSeed('mandarin-core', level, skillId, safeLesson)) : [];
   const seen = new Set<string>();
-  const practice = [...specific, ...generated.practice]
+  const practice = [...coreQuiz, ...specific, ...generated.practice]
     .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
     .slice(0, Math.max(generated.practice.length, specific.length, packsFor(level) ? 0 : 20));
-  return { ...generated, practice: shuffleQuestionOptions(practice, hashSeed('mandarin', level, skillId, safeLesson)) };
+  return {
+    ...generated,
+    explanation: core ? [...core.points, ...generated.explanation] : generated.explanation,
+    // Core phrases lead the TTS examples so every skill lesson opens with its own sentences.
+    examples: core ? [...core.phrases, ...generated.examples.filter((example) => !core.phrases.some((phrase) => phrase.hanzi === example.hanzi))] : generated.examples,
+    practice: shuffleQuestionOptions(practice, hashSeed('mandarin', level, skillId, safeLesson)),
+  };
 }
 
 function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId): MandarinLesson {

@@ -35,13 +35,18 @@ function shiftTone(pinyin: string, random: () => number): string | null {
   return chars.join('');
 }
 
-function toneVariants(pinyin: string, random: () => number, count = 3): string[] {
+// 不 and 一 change tone by context (bù/bú, yī/yí/yì); a distractor that only
+// differs there could still be read as correct, so such variants are skipped.
+const sandhiFree = (pinyin: string) => pinyin.toLowerCase().replace(/\bb[ùú]/g, 'bu').replace(/\by[īíì]/g, 'yi');
+
+export function toneVariants(pinyin: string, random: () => number, count = 3): string[] {
   const variants = new Set<string>();
+  const base = sandhiFree(pinyin);
   for (let attempt = 0; attempt < 24 && variants.size < count; attempt += 1) {
     let variant = shiftTone(pinyin, random);
     // Longer strings get a second change so the distractor is not a one-letter diff at random.
     if (variant && pinyin.length > 12 && random() < 0.5) variant = shiftTone(variant, random);
-    if (variant && variant !== pinyin) variants.add(variant);
+    if (variant && variant !== pinyin && sandhiFree(variant) !== base) variants.add(variant);
   }
   return [...variants];
 }
@@ -49,7 +54,7 @@ function toneVariants(pinyin: string, random: () => number, count = 3): string[]
 const segmenter = typeof Intl !== 'undefined' && 'Segmenter' in Intl ? new Intl.Segmenter('zh', { granularity: 'word' }) : null;
 
 /** Word-order distractors: swap two neighbouring words (punctuation stays put). */
-function scrambledOrders(hanzi: string, random: () => number): string[] {
+export function scrambledOrders(hanzi: string, random: () => number): string[] {
   if (!segmenter) return [];
   const parts = [...segmenter.segment(hanzi)].map((item) => item.segment);
   const movable = parts.flatMap((part, index) => (PUNCTUATION.test(part) ? [] : [index]));
