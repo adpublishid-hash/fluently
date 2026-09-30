@@ -224,7 +224,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
       ['偏远地区的网络基础设施仍然相对薄弱。', 'Piān yuǎn dì qū de wǎng luò jī chǔ shè shī réng rán xiāng duì bó ruò.', 'Infrastruktur jaringan di daerah terpencil masih relatif lemah.'],
     ],
     [
-      ['人口老龄化将对养老保障体系形成长期压力。', 'Rén kǒu lǎo líng huà jiāng duì yǎng lǎo bǎo zhàng tǐ xì xíng chéng zhǎng qī yā lì.', 'Penuaan penduduk akan memberi tekanan jangka panjang pada sistem jaminan hari tua.'],
+      ['人口老龄化将对养老保障体系形成长期压力。', 'Rén kǒu lǎo líng huà jiāng duì yǎng lǎo bǎo zhàng tǐ xì xíng chéng cháng qī yā lì.', 'Penuaan penduduk akan memberi tekanan jangka panjang pada sistem jaminan hari tua.'],
       ['家庭规模缩小，改变了传统的代际关系。', 'Jiā tíng guī mó suō xiǎo, gǎi biàn le chuán tǒng de dài jì guān xì.', 'Mengecilnya ukuran keluarga mengubah relasi antargenerasi yang tradisional.'],
       ['一些行业已经出现了劳动力短缺的现象。', 'Yì xiē háng yè yǐ jīng chū xiàn le láo dòng lì duǎn quē de xiàn xiàng.', 'Beberapa sektor sudah mengalami kekurangan tenaga kerja.'],
     ],

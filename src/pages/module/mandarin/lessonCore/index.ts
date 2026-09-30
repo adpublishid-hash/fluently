@@ -4,6 +4,7 @@ import type { LessonCoreTuple } from './types';
 import { beginnerCore } from './beginner';
 import { elementaryCore } from './elementary';
 import { intermediateCore } from './intermediate';
+import { upperIntermediateCore } from './upperIntermediate';
 
 export type MandarinLessonCore = {
   title: string | null;
@@ -16,6 +17,7 @@ export const mandarinLessonCore: Partial<Record<MandarinLevelId, Partial<Record<
   beginner: beginnerCore,
   elementary: elementaryCore,
   intermediate: intermediateCore,
+  'upper-intermediate': upperIntermediateCore,
 };
 
 export function getMandarinLessonCore(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): MandarinLessonCore | null {

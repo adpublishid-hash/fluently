@@ -50,7 +50,7 @@ customPinyin({
   // Adverbial 地 (read as dì by pinyin-pro).
   ...Object.fromEntries(['更多', '更快', '更好', '勇敢', '有根据'].map((adverb) => [`${adverb}地`, `${pinyin(adverb)} de`])),
   // Verb + 得 complements (pinyin-pro reads them as dé).
-  ...Object.fromEntries(['唱', '跑', '写', '忙', '考', '做', '学', '听', '走', '吃', '睡', '来', '讲', '准备', '提炼', '控制'].map((verb) => [`${verb}得`, `${pinyin(verb)} de`])),
+  ...Object.fromEntries(['唱', '跑', '写', '忙', '考', '做', '学', '听', '走', '吃', '睡', '来', '讲', '准备', '提炼', '控制', '演', '累', '激动', '害羞'].map((verb) => [`${verb}得`, `${pinyin(verb)} de`])),
   长得: 'zhǎng de',
   // Neutral-tone suffixes.
   东西: 'dōng xi',
@@ -80,6 +80,14 @@ customPinyin({
   得懂: 'de dǒng',
   切成: 'qiē chéng',
   词汇量: 'cí huì liàng',
+  下载量: 'xià zài liàng',
+  得多: 'de duō',
+  得连: 'de lián',
+  看得出: 'kàn de chū',
+  长期: 'cháng qī',
+  倒茶: 'dào chá',
+  取舍: 'qǔ shě',
+  只占: 'zhǐ zhàn',
   病假: 'bìng jià',
   假期: 'jià qī',
   // Degree/result complement 得 before an adverb or evaluation is neutral "de", not dé.
