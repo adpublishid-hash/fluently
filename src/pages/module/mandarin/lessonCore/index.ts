@@ -1,6 +1,7 @@
 import type { MandarinLevelId, MandarinSkillId } from '../mandarinModuleData';
 import type { CorePool } from './practice';
 import type { LessonCoreTuple } from './types';
+import { advancedCore } from './advanced';
 import { beginnerCore } from './beginner';
 import { elementaryCore } from './elementary';
 import { intermediateCore } from './intermediate';
@@ -18,6 +19,7 @@ export const mandarinLessonCore: Partial<Record<MandarinLevelId, Partial<Record<
   elementary: elementaryCore,
   intermediate: intermediateCore,
   'upper-intermediate': upperIntermediateCore,
+  advanced: advancedCore,
 };
 
 export function getMandarinLessonCore(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): MandarinLessonCore | null {
