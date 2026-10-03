@@ -17,6 +17,17 @@ const kindsBySkill: Record<MandarinSkillId, Kind[]> = {
   pronunciation: ['pinyin', 'pinyin', 'heard', 'pinyin'],
 };
 
+// A second, different question type per phrase, so the authored material fills more of the drill.
+const followUpKindsBySkill: Record<MandarinSkillId, Kind[]> = {
+  grammar: ['meaning', 'hanzi', 'hanzi', 'meaning'],
+  speaking: ['pinyin', 'heard', 'hanzi', 'pinyin'],
+  listening: ['meaning', 'hanzi', 'heard', 'meaning'],
+  reading: ['order', 'hanzi', 'meaning', 'hanzi'],
+  writing: ['hanzi', 'order', 'meaning', 'meaning'],
+  vocabulary: ['hanzi', 'meaning', 'pinyin', 'pinyin'],
+  pronunciation: ['heard', 'meaning', 'pinyin', 'heard'],
+};
+
 export type CorePool = { meanings: string[]; hanzi: string[] };
 
 function ask(kind: Kind, phrase: Phrase, pool: CorePool, random: () => number): ChoiceQuestion | null {
@@ -36,7 +47,7 @@ function ask(kind: Kind, phrase: Phrase, pool: CorePool, random: () => number): 
 
 export function buildMandarinCorePractice(skillId: MandarinSkillId, core: MandarinLessonCore, pool: CorePool, seed: number): ChoiceQuestion[] {
   const random = seededRandom(seed);
-  return core.phrases
-    .map((phrase, index) => ask(kindsBySkill[skillId][index % kindsBySkill[skillId].length], phrase, pool, random))
+  return [kindsBySkill, followUpKindsBySkill]
+    .flatMap((kinds) => core.phrases.map((phrase, index) => ask(kinds[skillId][index % kinds[skillId].length], phrase, pool, random)))
     .filter((question): question is ChoiceQuestion => question !== null);
 }
