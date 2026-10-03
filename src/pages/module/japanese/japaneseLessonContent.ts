@@ -3,6 +3,8 @@ import { japaneseGrammarBank, type JapaneseGrammarPoint } from './japaneseGramma
 import { japaneseLevels, type JapaneseLevelId, type JapaneseSkillId } from './japaneseModuleData';
 import { getJapaneseLevelWords, getJapaneseVocabularySet, type JapaneseWord } from './japaneseVocabularyBank';
 import { buildJapanesePractice } from './japanesePracticeGenerator';
+import { getJapaneseLessonCore, getJapaneseLessonCorePool, type JapaneseLessonCore } from './lessonCore';
+import { buildJapaneseCorePractice } from './lessonCore/practice';
 import { japanesePassages } from '../../../features/passages/japanesePassages';
 import { japanesePassagesBasic } from '../../../features/passages/japanesePassagesBasic';
 
@@ -301,6 +303,7 @@ function lessonPractice(
   point: JapaneseGrammarPoint,
   words: JapaneseWord[],
   signature: JapanesePattern,
+  core: JapaneseLessonCore | null,
 ): ChoiceQuestion[] {
   const passageSentences = levelPassageSentences(level);
   // Each lesson number gets its own two passage sentences.
@@ -317,11 +320,22 @@ function lessonPractice(
     levelSentences: [...japaneseGrammarBank[level].flatMap((item) => item.examples), ...levelPattern[level], ...passageSentences],
     levelWords: getJapaneseLevelWords(level),
   }, hashSeed('japanese-practice', level, skill, lessonId));
+  // Authored material for this exact skill lesson comes before everything else.
+  const coreQuiz = core ? buildJapaneseCorePractice(skill, core, getJapaneseLessonCorePool(level), hashSeed('japanese-core', level, skill, lessonId)) : [];
   const seen = new Set<string>();
-  const merged = [...specific, ...buildPractice(level, skill, lessonId, point, words)]
+  const merged = [...coreQuiz, ...specific, ...buildPractice(level, skill, lessonId, point, words)]
     .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
     .slice(0, QUIZ_LENGTH);
   return seededShuffle(merged, seededRandom(hashSeed('japanese-order', level, skill, lessonId)));
+}
+
+/** Reads a lesson's core phrases as one continuous passage. */
+function joinPhrases(phrases: JapaneseExample[]): JapaneseExample {
+  return {
+    japanese: phrases.map((phrase) => phrase.japanese).join(''),
+    romaji: phrases.map((phrase) => phrase.romaji).join(' '),
+    meaning: phrases.map((phrase) => phrase.meaning).join(' '),
+  };
 }
 
 function buildSkillExplanation(skill: JapaneseSkillId, topic: string, level: JapaneseLevelId) {
@@ -339,27 +353,34 @@ function buildSkillExplanation(skill: JapaneseSkillId, topic: string, level: Jap
 }
 
 export function getJapaneseTopicList(level: JapaneseLevelId, skill: JapaneseSkillId): string[] {
-  return levelTopics[level][skill];
+  return levelTopics[level][skill].map((topic, index) => getJapaneseLessonCore(level, skill, index + 1)?.title ?? topic);
 }
 
 export function getJapaneseLessonPreview(skill: JapaneseSkillId, lessonId: number, level: JapaneseLevelId) {
+  const coreTitle = getJapaneseLessonCore(level, skill, lessonId)?.title;
+  if (coreTitle) return `${japaneseLevels[level].badge} ${skillTitle[skill]} - ${coreTitle}`;
   return `${japaneseLevels[level].badge} ${skillTitle[skill]} - ${levelTopics[level][skill][lessonId - 1] ?? 'review'}`;
 }
 
 export function getJapaneseLesson(skill: JapaneseSkillId, lessonId: number, level: JapaneseLevelId): JapaneseLesson {
-  const topic = levelTopics[level][skill][lessonId - 1] ?? 'review';
+  const core = getJapaneseLessonCore(level, skill, lessonId);
+  const baseTopic = levelTopics[level][skill][lessonId - 1] ?? 'review';
+  const topic = core?.title ?? baseTopic;
   const levelInfo = japaneseLevels[level];
   const title = `${levelInfo.badge} ${skillTitle[skill]}: ${topic}`;
   const point = getGrammarPoint(level, lessonId);
-  const words = getJapaneseVocabularySet(level, vocabularyThemeFor(level, skill, lessonId, topic));
+  const words = getJapaneseVocabularySet(level, vocabularyThemeFor(level, skill, lessonId, baseTopic));
   const signature = levelPattern[level][(lessonId - 1) % levelPattern[level].length];
   const [first, second] = point.examples;
+  const baseExamples = [first, second, { japanese: signature.japanese, romaji: signature.romaji, meaning: signature.meaning }];
+  const phrases = core?.phrases ?? [];
 
   return {
     title,
     subtitle: `${skillTitle[skill]} lesson ${lessonId} - ${levelInfo.title}`,
     objective: `Menguasai ${topic} pada standar ${levelInfo.badge}, dengan pola fokus「${point.pattern}」dan ${words.length} kosakata tematik.`,
     explanation: [
+      ...(core?.points ?? []),
       `Pola fokus lesson ini adalah「${point.pattern}」: ${point.meaning}. Rumus: ${point.formation}`,
       buildSkillExplanation(skill, topic, level),
       `Fokus utamanya adalah memahami kapan pola dipakai, bukan hanya menerjemahkan kata per kata.`,
@@ -377,27 +398,30 @@ export function getJapaneseLesson(skill: JapaneseSkillId, lessonId: number, leve
       signature,
     ],
     vocabulary: words,
-    examples: [first, second, { japanese: signature.japanese, romaji: signature.romaji, meaning: signature.meaning }],
+    // Core phrases lead the TTS examples so every skill lesson opens with its own sentences.
+    examples: [...phrases, ...baseExamples.filter((example) => !phrases.some((phrase) => phrase.japanese === example.japanese))],
     grammarNotes: [
       { title: point.pattern, detail: `${point.meaning}. ${point.formation}`, example: first.japanese },
       ...grammarFocusByLevel[level],
     ],
     kanjiFocus: kanjiFocusByLevel[level],
-    dialogue: buildDialogue(point, words[(lessonId - 1) % words.length]),
-    listeningScript: {
+    // Speaking cores are written as a two-person exchange.
+    dialogue: core && skill === 'speaking'
+      ? phrases.map((phrase, index) => ({ speaker: index % 2 === 0 ? 'A' : 'B', ...phrase }))
+      : buildDialogue(point, words[(lessonId - 1) % words.length]),
+    listeningScript: core ? joinPhrases(phrases) : {
       japanese: `${first.japanese}${second.japanese}`,
       romaji: `${first.romaji} ${second.romaji}`,
       meaning: `Dengarkan dua kalimat inti untuk topik ${topic}, lalu catat predikat akhir dan kata kunci.`,
     },
-    shadowingDrill: [first.japanese, second.japanese, signature.japanese],
+    shadowingDrill: core ? [...phrases.map((phrase) => phrase.japanese), first.japanese] : [first.japanese, second.japanese, signature.japanese],
     culturalNotes: cultureByLevel[level],
     productionSteps: ['Pahami pola', 'Tiru contoh dengan suara', 'Ganti kosakata sesuai topik', 'Buat output pribadi'],
-    practice: lessonPractice(level, skill, lessonId, point, words, signature),
+    practice: lessonPractice(level, skill, lessonId, point, words, signature, core),
     task: `Buat 5-8 kalimat Jepang bertema ${topic}. Pakai pola「${point.pattern}」, minimal 3 kosakata dari lesson ini (${words.slice(0, 3).map((word) => word.japanese).join('、')}), romaji, dan arti Bahasa Indonesia.`,
-    modelOutput: {
-      title: `Model Output ${levelInfo.badge}`,
-      ...first,
-    },
+    modelOutput: core && skill === 'writing'
+      ? { title: `Model Output ${levelInfo.badge}`, ...joinPhrases(phrases) }
+      : { title: `Model Output ${levelInfo.badge}`, ...first },
     rubric: [
       'Pola kalimat sesuai level.',
       'Partikel dan konjugasi diperiksa.',

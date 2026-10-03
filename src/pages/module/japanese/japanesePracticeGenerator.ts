@@ -18,13 +18,13 @@ export type JapanesePracticeMaterial = {
   levelWords: JapaneseWord[];
 };
 
-const PARTICLES = ['は', 'が', 'を', 'に', 'で', 'へ', 'と', 'も', 'から', 'まで'];
+export const PARTICLES = ['は', 'が', 'を', 'に', 'で', 'へ', 'と', 'も', 'から', 'まで'];
 // Pairs that are often both acceptable; never offered against each other.
-const CLOSE: Record<string, string[]> = { は: ['が', 'も'], が: ['は', 'も'], も: ['は', 'が'], に: ['へ'], へ: ['に'] };
-const segmenter = typeof Intl !== 'undefined' && 'Segmenter' in Intl ? new Intl.Segmenter('ja', { granularity: 'word' }) : null;
+export const CLOSE: Record<string, string[]> = { は: ['が', 'も'], が: ['は', 'も'], も: ['は', 'が'], に: ['へ'], へ: ['に'] };
+export const segmenter = typeof Intl !== 'undefined' && 'Segmenter' in Intl ? new Intl.Segmenter('ja', { granularity: 'word' }) : null;
 
 /** Near-miss romaji: dropped/added small tsu and shortened/lengthened vowels. */
-function romajiVariants(romaji: string, random: () => number): string[] {
+export function romajiVariants(romaji: string, random: () => number): string[] {
   const edits: Array<(text: string) => string> = [
     (text) => text.replace(/(kk|tt|pp|ss|tch)/, (match) => match.slice(1)),
     (text) => text.replace(/([ksp])([aiueo])/, '$1$1$2'),
