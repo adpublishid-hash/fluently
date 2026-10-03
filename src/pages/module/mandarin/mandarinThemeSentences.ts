@@ -463,7 +463,7 @@ const sentenceBank: Partial<Record<MandarinLevelId, SentenceTuple[][]>> = {
       ['语境化的阅读帮助我们理解作者所处的时代。', 'Yǔ jìng huà de yuè dú bāng zhù wǒ men lǐ jiě zuò zhě suǒ chǔ de shí dài.', 'Pembacaan yang dikontekstualisasi membantu kita memahami zaman pengarang.'],
     ],
     [
-      ['复杂系统中的整体行为无法简单还原为部分之和。', 'Fù zá xì tǒng zhōng de zhěng tǐ xíng wéi wú fǎ jiǎn dān huán yuán wèi bù fen zhī hé.', 'Perilaku keseluruhan dalam sistem kompleks tidak bisa direduksi menjadi jumlah bagian-bagiannya.'],
+      ['复杂系统中的整体行为无法简单还原为部分之和。', 'Fù zá xì tǒng zhōng de zhěng tǐ xíng wéi wú fǎ jiǎn dān huán yuán wéi bù fen zhī hé.', 'Perilaku keseluruhan dalam sistem kompleks tidak bisa direduksi menjadi jumlah bagian-bagiannya.'],
       ['蚁群的秩序是一种典型的涌现现象。', 'Yǐ qún de zhì xù shì yì zhǒng diǎn xíng de yǒng xiàn xiàn xiàng.', 'Keteraturan koloni semut adalah fenomena emergensi yang khas.'],
       ['在非线性系统中，微小的变化可能引起巨大的后果。', 'Zài fēi xiàn xìng xì tǒng zhōng, wēi xiǎo de biàn huà kě néng yǐn qǐ jù dà de hòu guǒ.', 'Dalam sistem nonlinear, perubahan kecil dapat menimbulkan akibat besar.'],
     ],

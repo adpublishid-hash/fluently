@@ -6,6 +6,7 @@ import { beginnerCore } from './beginner';
 import { elementaryCore } from './elementary';
 import { hsk7Core } from './hsk7';
 import { hsk8Core } from './hsk8';
+import { hsk9Core } from './hsk9';
 import { intermediateCore } from './intermediate';
 import { proficiencyCore } from './proficiency';
 import { upperIntermediateCore } from './upperIntermediate';
@@ -26,6 +27,7 @@ export const mandarinLessonCore: Partial<Record<MandarinLevelId, Partial<Record<
   proficiency: proficiencyCore,
   'hsk-7': hsk7Core,
   'hsk-8': hsk8Core,
+  'hsk-9': hsk9Core,
 };
 
 export function getMandarinLessonCore(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): MandarinLessonCore | null {

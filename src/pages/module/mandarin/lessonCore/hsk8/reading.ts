@@ -40,7 +40,7 @@ export const reading: LessonCoreTuple[] = [
   ]],
   [null, ['Bacaan kritis evaluasi riset: data peringkat universitas dan apa yang tidak diukurnya.', 'Indikator membentuk perilaku.'], [
     ['大学排名高度依赖论文和引用数据。', 'Dà xué pái míng gāo dù yī lài lùn wén hé yǐn yòng shù jù.', 'Peringkat universitas sangat bergantung pada data makalah dan sitasi.'],
-    ['教学质量和社会服务很难被量化。', 'Jiào xué zhì liàng hé shè huì fú wù hěn nán bèi liáng huà.', 'Kualitas pengajaran dan layanan masyarakat sulit dikuantifikasi.'],
+    ['教学质量和社会服务很难被量化。', 'Jiào xué zhì liàng hé shè huì fú wù hěn nán bèi liàng huà.', 'Kualitas pengajaran dan layanan masyarakat sulit dikuantifikasi.'],
     ['于是高校纷纷把资源投向发表论文。', 'Yú shì gāo xiào fēn fēn bǎ zī yuán tóu xiàng fā biǎo lùn wén.', 'Akibatnya perguruan tinggi ramai-ramai mengarahkan sumber daya ke publikasi.'],
     ['指标本身改变了被测量的对象。', 'Zhǐ biāo běn shēn gǎi biàn le bèi cè liáng de duì xiàng.', 'Indikator itu sendiri mengubah objek yang diukur.'],
   ]],

@@ -9,8 +9,8 @@ export const reading: LessonCoreTuple[] = [
     ['学校、家庭与社会应当形成合力。', 'Xué xiào, jiā tíng yǔ shè huì yīng dāng xíng chéng hé lì.', 'Sekolah, keluarga, dan masyarakat seharusnya bersinergi.'],
   ]],
   [null, ['Pembingkaian ideologis: pilihan kata menentukan bagaimana pembaca melihat isu.', 'Bandingkan: 改革 vs 折腾, 灵活就业 vs 不稳定就业.'], [
-    ['同样的现象，有人称之为"灵活就业"。', 'Tóng yàng de xiàn xiàng, yǒu rén chēng zhī wèi " líng huó jiù yè ".', 'Fenomena yang sama, ada yang menyebutnya "kerja fleksibel".'],
-    ['也有人称之为"不稳定就业"。', 'Yě yǒu rén chēng zhī wèi " bù wěn dìng jiù yè ".', 'Ada juga yang menyebutnya "kerja tidak stabil".'],
+    ['同样的现象，有人称之为"灵活就业"。', 'Tóng yàng de xiàn xiàng, yǒu rén chēng zhī wéi " líng huó jiù yè ".', 'Fenomena yang sama, ada yang menyebutnya "kerja fleksibel".'],
+    ['也有人称之为"不稳定就业"。', 'Yě yǒu rén chēng zhī wéi " bù wěn dìng jiù yè ".', 'Ada juga yang menyebutnya "kerja tidak stabil".'],
     ['用词的不同反映了立场的差异。', 'Yòng cí de bù tóng fǎn yìng le lì chǎng de chā yì.', 'Perbedaan kata mencerminkan perbedaan sikap.'],
     ['读者需要警惕措辞背后的价值判断。', 'Dú zhě xū yào jǐng tì cuò cí bèi hòu de jià zhí pàn duàn.', 'Pembaca perlu waspada terhadap penilaian nilai di balik pilihan kata.'],
   ]],
