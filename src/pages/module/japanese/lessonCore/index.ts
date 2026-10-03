@@ -5,6 +5,7 @@ import { advancedCore } from './advanced';
 import { beginnerCore } from './beginner';
 import { elementaryCore } from './elementary';
 import { intermediateCore } from './intermediate';
+import { proficiencyCore } from './proficiency';
 
 export type JapaneseLessonCore = {
   title: string | null;
@@ -18,6 +19,7 @@ export const japaneseLessonCore: Partial<Record<JapaneseLevelId, Partial<Record<
   elementary: elementaryCore,
   intermediate: intermediateCore,
   advanced: advancedCore,
+  proficiency: proficiencyCore,
 };
 
 export function getJapaneseLessonCore(level: JapaneseLevelId, skillId: JapaneseSkillId, lesson: number): JapaneseLessonCore | null {
