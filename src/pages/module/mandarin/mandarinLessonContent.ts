@@ -3119,7 +3119,7 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       { label: 'Governance set', hanzi: '治理 / 制度 / 监督 / 透明度 / 问责', pinyin: 'zhì lǐ / zhì dù / jiān dū / tòu míng dù / wèn zé', meaning: 'tata kelola / sistem / pengawasan / transparansi / akuntabilitas' },
       { label: 'Critical stance', hanzi: '质疑 / 反思 / 批判 / 保留 / 前提', pinyin: 'zhì yí / fǎn sī / pī pàn / bǎo liú / qián tí', meaning: 'mempertanyakan / refleksi / kritik / keberatan / premis' },
       { label: 'Synthesis verbs', hanzi: '整合 / 权衡 / 推导 / 概括 / 论证', pinyin: 'zhěng hé / quán héng / tuī dǎo / gài kuò / lùn zhèng', meaning: 'mengintegrasi / menimbang / menurunkan kesimpulan / merangkum / berargumen' },
-      { label: 'Nuance markers', hanzi: '未必 / 不见得 / 某种程度上 / 归根结底', pinyin: 'wèi bì / bú jiàn dé / mǒu zhǒng chéng dù shàng / guī gēn jié dǐ', meaning: 'belum tentu / tidak selalu / dalam tingkat tertentu / pada akhirnya' },
+      { label: 'Nuance markers', hanzi: '未必 / 不见得 / 某种程度上 / 归根结底', pinyin: 'wèi bì / bú jiàn de / mǒu zhǒng chéng dù shàng / guī gēn jié dǐ', meaning: 'belum tentu / tidak selalu / dalam tingkat tertentu / pada akhirnya' },
     ],
     pronunciation: [
       { label: 'Executive cadence', hanzi: '从长远来看 / 真正的挑战 / 并不在于资源不足 / 而在于制度安排。', pinyin: 'Cóng cháng yuǎn lái kàn / zhēn zhèng de tiǎo zhàn / bìng bú zài yú zī yuán bù zú / ér zài yú zhì dù ān pái.', meaning: 'Jeda seperti briefing profesional.' },
