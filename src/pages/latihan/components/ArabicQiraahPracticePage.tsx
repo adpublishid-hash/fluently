@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Award, BookOpen, CheckCircle2, FileText, RotateCcw, Search, Target, Volume2 } from 'lucide-react';
 import PageContainer from '../../../components/layout/PageContainer';
+import { arabicQuizBanks } from '../arabic/quiz';
+import { ArabicTopicQuizPage } from './ArabicTopicQuizPage';
 
 type QuizLevel = 'Basic' | 'Intermediate' | 'Advanced';
 
@@ -77,7 +79,7 @@ function speakArabicText(text: string) {
   window.speechSynthesis.speak(utterance);
 }
 
-export function ArabicQiraahPracticePage({
+function ArabicQiraahDrillPage({
   material,
   drills,
 }: {
@@ -177,6 +179,15 @@ export function ArabicQiraahPracticePage({
                   </span>
                   <h1 className="mt-3 text-3xl font-black leading-tight text-[#0F172A] sm:text-4xl">{material.title}</h1>
                   <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-slate-500">{material.description}</p>
+                  {arabicQuizBanks.qiraah && (
+                    <button
+                      type="button"
+                      onClick={() => navigate('?mode=kuis')}
+                      className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-[#2563EB] px-5 text-xs font-black text-white shadow-sm transition hover:bg-[#1D4ED8]"
+                    >
+                      Kerjakan Kuis 30 Soal
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -363,4 +374,11 @@ export function ArabicQiraahPracticePage({
       </div>
     </PageContainer>
   );
+}
+
+/** Flashcard drills by default; `?mode=kuis` opens the topic's scored multiple-choice quiz. */
+export function ArabicQiraahPracticePage(props: Parameters<typeof ArabicQiraahDrillPage>[0]) {
+  const [params] = useSearchParams();
+  if (params.get('mode') === 'kuis') return <ArabicTopicQuizPage skill="qiraah" material={props.material} />;
+  return <ArabicQiraahDrillPage {...props} />;
 }

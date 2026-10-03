@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Award, CheckCircle2, Ear, Headphones, RotateCcw, Target, Volume2 } from 'lucide-react';
 import PageContainer from '../../../components/layout/PageContainer';
+import { arabicQuizBanks } from '../arabic/quiz';
+import { ArabicTopicQuizPage } from './ArabicTopicQuizPage';
 
 type QuizLevel = 'Basic' | 'Intermediate' | 'Advanced';
 
@@ -76,7 +78,7 @@ function speakArabicText(text: string, slow = false) {
   window.speechSynthesis.speak(utterance);
 }
 
-export function ArabicIstimaPracticePage({
+function ArabicIstimaDrillPage({
   material,
   drills,
 }: {
@@ -176,6 +178,15 @@ export function ArabicIstimaPracticePage({
                   </span>
                   <h1 className="mt-3 text-3xl font-black leading-tight text-[#0F172A] sm:text-4xl">{material.title}</h1>
                   <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-slate-500">{material.description}</p>
+                  {arabicQuizBanks.istima && (
+                    <button
+                      type="button"
+                      onClick={() => navigate('?mode=kuis')}
+                      className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-[#2563EB] px-5 text-xs font-black text-white shadow-sm transition hover:bg-[#1D4ED8]"
+                    >
+                      Kerjakan Kuis 30 Soal
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -372,4 +383,11 @@ export function ArabicIstimaPracticePage({
       </div>
     </PageContainer>
   );
+}
+
+/** Flashcard drills by default; `?mode=kuis` opens the topic's scored multiple-choice quiz. */
+export function ArabicIstimaPracticePage(props: Parameters<typeof ArabicIstimaDrillPage>[0]) {
+  const [params] = useSearchParams();
+  if (params.get('mode') === 'kuis') return <ArabicTopicQuizPage skill="istima" material={props.material} />;
+  return <ArabicIstimaDrillPage {...props} />;
 }
