@@ -3,6 +3,7 @@ import { japaneseGrammarBank } from '../../module/japanese/japaneseGrammarBank';
 import { getJapaneseLesson } from '../../module/japanese/japaneseLessonContent';
 import type { JapaneseLevelId, JapaneseSkillId } from '../../module/japanese/japaneseModuleData';
 import { getJapaneseLevelWords } from '../../module/japanese/japaneseVocabularyBank';
+import { getJapaneseLessonCorePool } from '../../module/japanese/lessonCore';
 
 export type JapanesePracticeQuestion = ChoiceQuestion & {
   /** Japanese text read aloud with TTS before answering (listening / pronunciation). */
@@ -24,10 +25,17 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
   const lesson = getJapaneseLesson(skill, topicNumber, level);
   const random = seededRandom(hashSeed('japanese-practice', level, skill, topicNumber));
   const words: Word[] = lesson.vocabulary;
-  const sentences: Word[] = lesson.examples;
+  // The first four examples are the lesson's own authored sentences; the rest are shared drills.
+  const sentences: Word[] = lesson.examples.slice(0, 4);
   const levelWords = getJapaneseLevelWords(level);
   const levelSentences = japaneseGrammarBank[level].flatMap((point) => point.examples);
   const levelPatterns = japaneseGrammarBank[level];
+  // Distractors for authored phrases come from other authored phrases of the same shape (phrase vs sentence).
+  const corePool = getJapaneseLessonCorePool(level);
+  const isSentence = (text: string) => /[。？！?!]$/.test(text);
+  const phrasePool = (phrase: Word) => corePool.japanese
+    .map((japanese, index) => ({ japanese, meaning: corePool.meanings[index] }))
+    .filter((item) => isSentence(item.japanese) === isSentence(phrase.japanese));
   const questions: Array<JapanesePracticeQuestion | null> = [];
 
   const withExplanation = (question: ChoiceQuestion | null, explanation: string, audio?: string): JapanesePracticeQuestion | null =>
@@ -47,6 +55,16 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
     withExplanation(
       buildChoiceQuestion(`Bagaimana cara membaca「${word.japanese}」?`, word.romaji, levelWords.map((item) => item.romaji), random),
       `「${word.japanese}」dibaca "${word.romaji}".`,
+    );
+  const phraseMeaning = (phrase: Word) =>
+    withExplanation(
+      buildChoiceQuestion(`Apa arti「${phrase.japanese}」?`, phrase.meaning, phrasePool(phrase).map((item) => item.meaning), random),
+      `「${phrase.japanese}」(${phrase.romaji}) berarti "${phrase.meaning}".`,
+    );
+  const phraseFor = (phrase: Word) =>
+    withExplanation(
+      buildChoiceQuestion(`Pilih ungkapan Jepang untuk "${phrase.meaning}".`, phrase.japanese, phrasePool(phrase).map((item) => item.japanese), random),
+      `"${phrase.meaning}" dalam bahasa Jepang adalah「${phrase.japanese}」(${phrase.romaji}).`,
     );
   const sentenceMeaning = (sentence: Word) =>
     withExplanation(
@@ -89,6 +107,8 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
 
   const plans: Record<JapaneseSkillId, () => void> = {
     vocabulary: () => {
+      shuffledSentences().forEach((phrase) => questions.push(phraseMeaning(phrase)));
+      shuffledSentences().slice(0, 2).forEach((phrase) => questions.push(phraseFor(phrase)));
       shuffledWords().forEach((word) => questions.push(meaningOf(word)));
       shuffledWords().slice(0, 3).forEach((word) => questions.push(wordFor(word)));
       shuffledWords().slice(0, 2).forEach((word) => questions.push(readingOf(word)));
@@ -120,6 +140,7 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
       questions.push(patternUse());
     },
     pronunciation: () => {
+      shuffledSentences().forEach((sentence) => questions.push(listenSentence(sentence)));
       shuffledWords().forEach((word) => questions.push(hearReading(word)));
       shuffledWords().slice(0, 4).forEach((word) => questions.push(readingOf(word)));
     },
