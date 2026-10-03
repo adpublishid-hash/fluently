@@ -20,7 +20,7 @@ describe('Japanese lesson core', () => {
         expect(phrases, where).toHaveLength(4);
         phrases.forEach(([japanese, romaji, meaning]) => {
           expect(japanese, where).toMatch(JAPANESE);
-          expect(romaji, `${where} ${japanese}`).toMatch(/^[A-Za-z0-9][A-Za-z0-9 ,.?!:;"()~-]*$/);
+          expect(romaji, `${where} ${japanese}`).toMatch(/^["A-Za-z0-9][A-Za-z0-9 ,.?!:;"()/~-]*$/);
           expect(meaning.trim().length, where).toBeGreaterThan(0);
           expect(seen.get(japanese), `${where}: ${japanese} repeats`).toBeUndefined();
           seen.set(japanese, where);
