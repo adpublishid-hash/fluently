@@ -3,6 +3,7 @@ import type { CorePool } from './practice';
 import type { LessonCoreTuple } from './types';
 import { beginnerCore } from './beginner';
 import { elementaryCore } from './elementary';
+import { intermediateCore } from './intermediate';
 
 export type JapaneseLessonCore = {
   title: string | null;
@@ -14,6 +15,7 @@ export type JapaneseLessonCore = {
 export const japaneseLessonCore: Partial<Record<JapaneseLevelId, Partial<Record<JapaneseSkillId, LessonCoreTuple[]>>>> = {
   beginner: beginnerCore,
   elementary: elementaryCore,
+  intermediate: intermediateCore,
 };
 
 export function getJapaneseLessonCore(level: JapaneseLevelId, skillId: JapaneseSkillId, lesson: number): JapaneseLessonCore | null {
