@@ -14,7 +14,9 @@ import {
   type JapaneseLevelId,
   type JapaneseSkillId,
 } from '../../module/japanese/japaneseModuleData';
+import { JapaneseTopicQuizPage } from '../components/JapaneseTopicQuizPage';
 import { buildJapanesePractice } from './japanesePracticeContent';
+import { japaneseQuizBanks } from './quiz';
 
 const SCORES_KEY = 'fluently_japanese_practice_scores_v1';
 const HISTORY_KEY = 'fluently-practice-history-v1';
@@ -137,7 +139,7 @@ export function JapanesePracticeTopicsPage() {
   );
 }
 
-export function JapanesePracticeSessionPage() {
+function JapanesePracticeDrillSession() {
   const navigate = useNavigate();
   const { skillId, topicSlug } = useParams();
   const { awardXp } = useAuth();
@@ -236,6 +238,14 @@ export function JapanesePracticeSessionPage() {
     <PageContainer>
       <div className="mx-auto max-w-2xl px-5 pb-28 md:px-0 md:pb-10">
         <PageHeader title={topicTitle} subtitle={`Japanese ${japaneseLevels[level].badge} · soal ${index + 1}/${questions.length}`} onBack={backToTopics} />
+        {japaneseQuizBanks[level]?.[skill] && (
+          <button
+            onClick={() => navigate(`?level=${level}&mode=kuis`)}
+            className="mb-4 inline-flex h-10 items-center gap-2 rounded-full bg-[#2563EB] px-5 text-xs font-black text-white shadow-sm transition hover:bg-[#1D4ED8]"
+          >
+            Kerjakan Kuis 30 Soal
+          </button>
+        )}
         <div className="mb-5 h-2 overflow-hidden rounded-full bg-slate-100">
           <div className="h-full rounded-full bg-slate-900 transition-all" style={{ width: `${((index + (selected ? 1 : 0)) / questions.length) * 100}%` }} />
         </div>
@@ -288,4 +298,17 @@ export function JapanesePracticeSessionPage() {
       </div>
     </PageContainer>
   );
+}
+
+export function JapanesePracticeSessionPage() {
+  const { skillId, topicSlug } = useParams();
+  const [searchParams] = useSearchParams();
+  const [level] = useLevel();
+  const skill: JapaneseSkillId = isJapaneseSkill(skillId) ? skillId : 'vocabulary';
+  const topicNumber = Math.max(1, Number((topicSlug || '').match(/\d+/)?.[0] ?? 1));
+  if (searchParams.get('mode') === 'kuis') {
+    const topicTitle = getJapaneseTopicList(level, skill)[topicNumber - 1] ?? `Topik ${topicNumber}`;
+    return <JapaneseTopicQuizPage level={level} skill={skill} topicNumber={topicNumber} topicTitle={topicTitle} />;
+  }
+  return <JapanesePracticeDrillSession key={`${level}-${skill}-${topicNumber}`} />;
 }

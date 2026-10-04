@@ -3,7 +3,8 @@ import type { JapaneseSkillId } from '../japaneseModuleData';
 import { CLOSE, PARTICLES, romajiVariants, segmenter } from '../japanesePracticeGenerator';
 import type { JapaneseLessonCore } from './index';
 
-type Kind = 'meaning' | 'japanese' | 'heard' | 'romaji' | 'particle' | 'order';
+export type JapaneseQuestionKind = 'meaning' | 'japanese' | 'heard' | 'romaji' | 'particle' | 'order';
+type Kind = JapaneseQuestionKind;
 type Phrase = JapaneseLessonCore['phrases'][number];
 
 // Question type per phrase, so each skill practises its own lesson material its own way.
@@ -38,7 +39,8 @@ const isSentence = (text: string) => SENTENCE_END.test(text);
 
 /** Keeps distractors the same shape as the answer: full sentences against sentences, phrases against phrases. */
 function sameShape(pool: CorePool, phrase: Phrase): CorePool {
-  const keep = pool.japanese.map((japanese) => isSentence(japanese) === isSentence(phrase.japanese));
+  // Items with the answer's exact meaning are left out, so only one option can be right.
+  const keep = pool.japanese.map((japanese, index) => isSentence(japanese) === isSentence(phrase.japanese) && pool.meanings[index] !== phrase.meaning);
   return { japanese: pool.japanese.filter((_, index) => keep[index]), meanings: pool.meanings.filter((_, index) => keep[index]) };
 }
 
@@ -74,9 +76,13 @@ function scrambled(japanese: string, random: () => number): string[] {
   if (parts.length < 3) return [];
   const end = japanese.match(SENTENCE_END)?.[0] ?? '';
   const variants = new Set<string>();
-  for (let attempt = 0; attempt < 12 && variants.size < 3; attempt += 1) {
-    const candidate = seededShuffle(parts, random).join('') + end;
-    if (candidate !== japanese) variants.add(candidate);
+  // Japanese word order is free except that the predicate comes last, so only orders that move the
+  // final chunk away from the end are certainly wrong; other shuffles can still be correct sentences.
+  const predicate = parts[parts.length - 1];
+  for (let attempt = 0; attempt < 24 && variants.size < 3; attempt += 1) {
+    const shuffled = seededShuffle(parts, random);
+    if (shuffled[shuffled.length - 1] === predicate) continue;
+    variants.add(shuffled.join('') + end);
   }
   return [...variants];
 }
@@ -93,18 +99,19 @@ function blankParticle(phrase: Phrase, random: () => number): ChoiceQuestion | n
   return buildChoiceQuestion(`Partikel yang tepat: ${blanked} (${phrase.meaning})`, answer, pool, random);
 }
 
-function ask(kind: Kind, phrase: Phrase, fullPool: CorePool, random: () => number): ChoiceQuestion | null {
+/** One question of the given kind about a phrase; falls back to a related kind when the phrase does not fit. */
+export function askJapaneseQuestion(kind: Kind, phrase: Phrase, fullPool: CorePool, random: () => number): ChoiceQuestion | null {
   const pool = sameShape(fullPool, phrase);
-  if (kind === 'particle') return blankParticle(phrase, random) ?? ask('order', phrase, pool, random);
+  if (kind === 'particle') return blankParticle(phrase, random) ?? askJapaneseQuestion('order', phrase, pool, random);
   if (kind === 'order') {
     const distractors = scrambled(phrase.japanese, random);
     if (distractors.length >= 2) return buildChoiceQuestion(`Susunan yang benar untuk "${phrase.meaning}" adalah...`, phrase.japanese, distractors, random);
-    return ask('japanese', phrase, pool, random);
+    return askJapaneseQuestion('japanese', phrase, pool, random);
   }
   if (kind === 'romaji') {
     const variants = romajiVariants(phrase.romaji, random);
     if (variants.length >= 2) return buildChoiceQuestion(`Romaji yang tepat untuk「${phrase.japanese}」adalah...`, phrase.romaji, variants, random);
-    return ask('meaning', phrase, pool, random);
+    return askJapaneseQuestion('meaning', phrase, pool, random);
   }
   if (kind === 'japanese') return buildChoiceQuestion(`Ungkapan Jepang untuk "${phrase.meaning}" adalah...`, phrase.japanese, pool.japanese, random);
   if (kind === 'heard') return buildChoiceQuestion(`Kamu mendengar: "${phrase.romaji}". Maksudnya...`, phrase.meaning, pool.meanings, random);
@@ -119,7 +126,7 @@ export function buildJapaneseCorePractice(skillId: JapaneseSkillId, core: Japane
     // When a fallback repeats an earlier question, try the remaining kinds instead.
     const preferred = kinds[skillId][index % kinds[skillId].length];
     for (const kind of [preferred, ...BACKUP_KINDS]) {
-      const question = ask(kind, phrase, pool, random);
+      const question = askJapaneseQuestion(kind, phrase, pool, random);
       if (question && !seen.has(question.question)) {
         seen.add(question.question);
         questions.push(question);
