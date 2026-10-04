@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Award, CheckCircle2, Mic, RotateCcw, Target, Volume2, Waves } from 'lucide-react';
 import PageContainer from '../../../components/layout/PageContainer';
+import { mandarinQuizBanks } from '../mandarin/quiz';
+import { MandarinTopicQuizPage } from './MandarinTopicQuizPage';
 
 type QuizLevel = 'Basic' | 'Intermediate' | 'Advanced';
 
@@ -79,7 +81,7 @@ function speakMandarinText(text: string, slow = false) {
   window.speechSynthesis.speak(utterance);
 }
 
-export function MandarinPinyinPracticePage({
+function MandarinPinyinDrillPage({
   material,
   drills,
 }: {
@@ -179,6 +181,15 @@ export function MandarinPinyinPracticePage({
                   </span>
                   <h1 className="mt-3 text-3xl font-black leading-tight text-[#0F172A] sm:text-4xl">{material.title}</h1>
                   <p className="mt-2 max-w-2xl text-sm font-semibold leading-relaxed text-slate-500">{material.description}</p>
+                  {mandarinQuizBanks.pinyin && (
+                    <button
+                      type="button"
+                      onClick={() => navigate('?mode=kuis')}
+                      className="mt-4 inline-flex h-10 items-center gap-2 rounded-full bg-[#2563EB] px-5 text-xs font-black text-white shadow-sm transition hover:bg-[#1D4ED8]"
+                    >
+                      Kerjakan Kuis 30 Soal
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -369,4 +380,10 @@ export function MandarinPinyinPracticePage({
       </div>
     </PageContainer>
   );
+}
+
+export function MandarinPinyinPracticePage(props: Parameters<typeof MandarinPinyinDrillPage>[0]) {
+  const [params] = useSearchParams();
+  if (params.get('mode') === 'kuis') return <MandarinTopicQuizPage skill="pinyin" material={props.material} />;
+  return <MandarinPinyinDrillPage {...props} />;
 }

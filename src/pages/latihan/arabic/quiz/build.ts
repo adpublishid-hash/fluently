@@ -87,7 +87,8 @@ function ask(kind: Kind, item: QuizItem, pool: QuizPool, random: () => number): 
   const [arabic, transliteration, meaning] = item;
   // Distractors keep the answer's shape: words against words, phrases against phrases, sentences against sentences.
   const shape = shapeOf(arabic);
-  const sameShape = (values: string[]) => values.filter((_, index) => pool.shape[index] === shape);
+  // A distractor never shares the answer's meaning, so only one option can be right.
+  const sameShape = (values: string[]) => values.filter((_, index) => pool.shape[index] === shape && pool.meanings[index] !== meaning);
   if (kind === 'spelling') {
     const variants = spellingVariants(arabic, random);
     if (variants.length >= 2) return buildChoiceQuestion(`Tulisan Arab yang benar untuk "${transliteration}" (${meaning}) adalah...`, arabic, variants, random);
