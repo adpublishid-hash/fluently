@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { japaneseLessonCounts, type JapaneseLevelId, type JapaneseSkillId } from '../../../module/japanese/japaneseModuleData';
+import { japaneseLessonCounts, japaneseLevels, type JapaneseLevelId, type JapaneseSkillId } from '../../../module/japanese/japaneseModuleData';
 import { japaneseLessonCore } from '../../../module/japanese/lessonCore';
 import { QUESTIONS_PER_LEVEL } from './build';
 import { getJapaneseTopicQuiz, japaneseQuizBanks } from './index';
@@ -8,6 +8,10 @@ const levels = Object.keys(japaneseQuizBanks) as JapaneseLevelId[];
 const JAPANESE = /[぀-ヿ一-鿿]/;
 
 describe('Japanese practice quiz banks', () => {
+  it('covers every JLPT level', () => {
+    expect([...levels].sort()).toEqual(Object.keys(japaneseLevels).sort());
+  });
+
   it('every registered level covers all seven skills', () => {
     levels.forEach((level) => {
       expect(Object.keys(japaneseQuizBanks[level] ?? {}).sort(), level).toEqual(Object.keys(japaneseLessonCounts[level]).sort());

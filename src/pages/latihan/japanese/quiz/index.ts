@@ -6,6 +6,7 @@ import { beginnerQuiz } from './beginner';
 import { elementaryQuiz } from './elementary';
 import { intermediateQuiz } from './intermediate';
 import { advancedQuiz } from './advanced';
+import { proficiencyQuiz } from './proficiency';
 import { buildJapaneseTopicQuiz } from './build';
 import type { JapaneseQuizTopic, QuizItem } from './types';
 
@@ -15,6 +16,7 @@ export const japaneseQuizBanks: Partial<Record<JapaneseLevelId, Partial<Record<J
   elementary: elementaryQuiz,
   intermediate: intermediateQuiz,
   advanced: advancedQuiz,
+  proficiency: proficiencyQuiz,
 };
 
 const poolCache = new Map<JapaneseLevelId, CorePool>();
