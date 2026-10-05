@@ -3,12 +3,14 @@ import { japaneseLessonCore } from '../../../module/japanese/lessonCore';
 import type { CorePool } from '../../../module/japanese/lessonCore/practice';
 import type { VocabQuestion } from '../../components/PracticeQuizPage';
 import { beginnerQuiz } from './beginner';
+import { elementaryQuiz } from './elementary';
 import { buildJapaneseTopicQuiz } from './build';
 import type { JapaneseQuizTopic, QuizItem } from './types';
 
 // Practice-only items per level and skill, one entry per topic (index = topic - 1).
 export const japaneseQuizBanks: Partial<Record<JapaneseLevelId, Partial<Record<JapaneseSkillId, JapaneseQuizTopic[]>>>> = {
   beginner: beginnerQuiz,
+  elementary: elementaryQuiz,
 };
 
 const poolCache = new Map<JapaneseLevelId, CorePool>();
