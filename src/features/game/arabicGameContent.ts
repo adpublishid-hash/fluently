@@ -1,3 +1,25 @@
+import { hashSeed, seededRandom, seededShuffle } from '../../utils/quiz';
+import { easyErrors, hardErrors, mediumErrors, type ErrorFixTuple } from './arabic/errorFix';
+import { easyTense, easyVerbs, hardTense, hardVerbs, mediumTense, mediumVerbDistractors, mediumVerbs, type TenseTuple, type VerbTuple } from './arabic/fiil';
+import { arabicNormalize, formOneVariants, otherWaznForms, type FormKey } from './arabic/sharaf';
+import {
+  easyArticles,
+  easyConditionals,
+  easyModals,
+  easyQuestions,
+  hardArticles,
+  hardConditionals,
+  hardModals,
+  hardQuestions,
+  mediumArticles,
+  mediumConditionals,
+  mediumModals,
+  mediumQuestions,
+  questionRules,
+  type ChoiceTuple,
+} from './arabic/particles';
+import { easySentences, hardSentences, mediumSentences, type SentenceTuple } from './arabic/sentences';
+
 type LevelLabel = 'Easy' | 'Medium' | 'Hard';
 
 type ArabicVocabEntry = {
@@ -104,168 +126,170 @@ const vocabByLevel: Record<LevelLabel, ArabicVocabEntry[]> = {
   Hard: hardVocab,
 };
 
-const optionsFor = (answer: string, source: ArabicVocabEntry[]) => [
-  answer,
-  ...source.filter((item) => item.meaning !== answer).slice(0, 3).map((item) => item.meaning),
-];
+const LEVELS: LevelLabel[] = ['Easy', 'Medium', 'Hard'];
+
+/** Deterministic shuffle so every build serves the same, non-predictable option order. */
+function shuffleFor<T>(items: T[], ...seed: Array<string | number>) {
+  return seededShuffle(items, seededRandom(hashSeed('arabic-game', ...seed)));
+}
 
 const makeListenItems = (level: LevelLabel) =>
   vocabByLevel[level].map((item, index, source) => ({
     word: item.word,
     answer: item.meaning,
-    options: optionsFor(item.meaning, [...source.slice(index + 1), ...source.slice(0, index)]),
+    options: shuffleFor(
+      [item.meaning, ...[...source.slice(index + 1), ...source.slice(0, index)].slice(0, 3).map((other) => other.meaning)],
+      level,
+      item.word,
+    ),
     hint: item.hint,
     level,
   }));
 
-export const arabicWordBank = makeListenItems('Easy').slice(0, 8);
-export const arabicListenTapQuestions = [
-  ...makeListenItems('Easy'),
-  ...makeListenItems('Medium'),
-  ...makeListenItems('Hard'),
-];
+export const arabicListenTapQuestions = LEVELS.flatMap(makeListenItems);
+export const arabicWordBank = arabicListenTapQuestions.filter((item) => item.level === 'Easy').slice(0, 8);
 
 function makeArabicLetterQuestItem(item: ArabicVocabEntry, level: LevelLabel) {
   const cleanWord = item.word.replace(/\s+/g, '');
-  const distractors = arabicAlphabet.filter((letter) => !cleanWord.includes(letter));
-  const letters = [...cleanWord.split(''), ...distractors.slice(0, Math.max(8, 15 - cleanWord.length))].slice(0, 15);
+  const distractors = shuffleFor(arabicAlphabet.filter((letter) => !cleanWord.includes(letter)), 'letters', item.word);
+  const letters = shuffleFor([...cleanWord.split(''), ...distractors.slice(0, Math.max(8, 15 - cleanWord.length))].slice(0, 15), 'board', item.word);
   return { word: cleanWord, icon: item.icon, color: item.color, level, letters };
 }
 
-export const arabicLetterQuestQuestions = (Object.entries(vocabByLevel) as Array<[LevelLabel, ArabicVocabEntry[]]>)
-  .flatMap(([level, words]) => words.map((item) => makeArabicLetterQuestItem(item, level)));
+export const arabicLetterQuestQuestions = LEVELS.flatMap((level) => vocabByLevel[level].map((item) => makeArabicLetterQuestItem(item, level)));
 
-function makeSentence(prompt: string, answer: string, level: LevelLabel) {
-  const words = answer.split(' ');
-  const mixed = [...words.slice(1), words[0]].reverse();
-  return { prompt, answer: words, words: mixed, level };
+function makeSentence([prompt, tokens]: SentenceTuple, level: LevelLabel) {
+  const answer = tokens.split(' ');
+  let words = shuffleFor(answer, 'sentence', tokens);
+  // Never hand out the puzzle already solved.
+  for (let shift = 1; words.join(' ') === answer.join(' ') && shift < answer.length; shift += 1) {
+    words = [...answer.slice(shift), ...answer.slice(0, shift)];
+  }
+  return { prompt, answer, words, level };
 }
 
-export const arabicSentenceBuilderQuestions = [
-  ...[
-    ['Saya seorang siswa.', 'أنا طالب'], ['Ini rumah saya.', 'هذا بيتي'], ['Saya suka bahasa Arab.', 'أحب اللغة العربية'],
-    ['Dia membaca buku.', 'هو يقرأ كتابا'], ['Kami pergi ke sekolah.', 'نذهب إلى المدرسة'], ['Air ini dingin.', 'الماء بارد'],
-    ['Guru ada di kelas.', 'المعلم في الفصل'], ['Saya punya pulpen.', 'عندي قلم'], ['Rumah itu dekat.', 'البيت قريب'],
-    ['Temanku baik.', 'صديقي لطيف'],
-  ].map(([prompt, answer]) => makeSentence(prompt, answer, 'Easy')),
-  ...[
-    ['Saya belajar bahasa Arab setiap pagi.', 'أتعلم العربية كل صباح'], ['Dia pergi ke kantor dengan mobil.', 'يذهب إلى المكتب بالسيارة'],
-    ['Kami makan di restoran baru.', 'نأكل في مطعم جديد'], ['Mereka tinggal di kota besar.', 'يسكنون في مدينة كبيرة'],
-    ['Saya ingin membeli tiket kereta.', 'أريد شراء تذكرة القطار'], ['Apakah kamu berbicara bahasa Arab?', 'هل تتكلم العربية'],
-    ['Saya tidak mengerti pertanyaan ini.', 'لا أفهم هذا السؤال'], ['Kami akan bertemu besok pagi.', 'سنلتقي غدا صباحا'],
-    ['Dia sudah menyelesaikan latihan.', 'أنهى التدريب بنجاح'], ['Saya belajar karena Arabic indah.', 'أتعلم لأنها لغة جميلة'],
-  ].map(([prompt, answer]) => makeSentence(prompt, answer, 'Medium')),
-  ...[
-    ['Meskipun topiknya sulit, saya akan mencoba.', 'رغم أن الموضوع صعب سأحاول'], ['Jika saya punya waktu, saya akan membaca teks Arab.', 'إذا كان عندي وقت سأقرأ النص العربي'],
-    ['Guru menjelaskan kaidah itu dengan jelas.', 'شرح المعلم القاعدة بوضوح'], ['Saya ingin meningkatkan kemampuan berbicara saya.', 'أريد تحسين مهارة الكلام عندي'],
-    ['Setelah latihan, saya menjadi lebih percaya diri.', 'بعد التدريب أصبحت أكثر ثقة'], ['Kalimat yang benar membantu makna menjadi jelas.', 'الجملة الصحيحة تجعل المعنى واضحا'],
-    ['Kami perlu mengulang mufradat sebelum ujian.', 'نحتاج إلى مراجعة المفردات قبل الاختبار'], ['Dia bertanya mengapa saya belajar Arabic.', 'سأل لماذا أتعلم العربية'],
-    ['Saya memilih jawaban yang paling sesuai.', 'اخترت الجواب الأنسب'], ['Kita akan melanjutkan diskusi setelah istirahat.', 'سنواصل النقاش بعد الاستراحة'],
-  ].map(([prompt, answer]) => makeSentence(prompt, answer, 'Hard')),
-];
+const sentencesByLevel: Record<LevelLabel, SentenceTuple[]> = { Easy: easySentences, Medium: mediumSentences, Hard: hardSentences };
+export const arabicSentenceBuilderQuestions = LEVELS.flatMap((level) => sentencesByLevel[level].map((item) => makeSentence(item, level)));
 
-const repeatToThirty = <T,>(items: T[]) => Array.from({ length: 30 }, (_, index) => items[index % items.length]);
+type ChoiceExtra = { tense?: string; formula?: string; type?: string; tone?: string; rule?: string };
 
-function choiceItem(prompt: string, translation: string, answer: string, options: string[], level: LevelLabel, extra = {}) {
-  return { word: prompt, prompt, translation, answer, options: [answer, ...options].slice(0, 4), level, hint: translation, ...extra };
-}
-
-export const arabicTenseMasterQuestions = [
-  ...repeatToThirty([
-    choiceItem('أنا ____ العربية الآن.', 'Saya sedang belajar Arabic sekarang.', 'أتعلم', ['تعلمت', 'اُدْرُسْ', 'درس'], 'Easy', { tense: 'Mudhari', formula: "fi'il mudhari untuk kegiatan sekarang" }),
-    choiceItem('هو ____ إلى المدرسة أمس.', 'Dia pergi ke sekolah kemarin.', 'ذهب', ['يذهب', 'اذهب', 'يذهبون'], 'Easy', { tense: 'Madhi', formula: "fi'il madhi untuk masa lalu" }),
-    choiceItem('____ الكتاب يا أحمد.', 'Bacalah buku itu, Ahmad.', 'اقرأ', ['قرأ', 'يقرأ', 'نقرأ'], 'Easy', { tense: 'Amr', formula: "fi'il amr untuk perintah" }),
-  ]),
-  ...repeatToThirty([
-    choiceItem('نحن ____ الدرس كل يوم.', 'Kami mempelajari pelajaran setiap hari.', 'ندرس', ['درسنا', 'ادرس', 'يدرس'], 'Medium', { tense: 'Mudhari', formula: 'prefiks نـ untuk نحن' }),
-    choiceItem('سارة ____ الرسالة أمس.', 'Sarah menulis pesan kemarin.', 'كتبت', ['تكتب', 'اكتب', 'نكتب'], 'Medium', { tense: 'Madhi', formula: 'madhi muannats memakai ـت' }),
-    choiceItem('سوف ____ غدا.', 'Saya akan datang besok.', 'آتي', ['أتيت', 'تعال', 'جاء'], 'Medium', { tense: 'Mustaqbal', formula: 'سوف + mudhari' }),
-  ]),
-  ...repeatToThirty([
-    choiceItem('لو ____ الوقت لراجعت الدرس.', 'Seandainya ada waktu, saya meninjau pelajaran.', 'كان', ['يكون', 'كن', 'كانت'], 'Hard', { tense: 'Syarat', formula: 'لو + madhi untuk pengandaian' }),
-    choiceItem('لم ____ السؤال جيدا.', 'Saya belum memahami pertanyaan dengan baik.', 'أفهم', ['فهمت', 'افهم', 'يفهمون'], 'Hard', { tense: 'Jazm', formula: 'لم + mudhari majzum' }),
-    choiceItem('كان الطالب ____ في الفصل.', 'Siswa itu sedang menulis di kelas.', 'يكتب', ['كتب', 'اكتب', 'مكتوب'], 'Hard', { tense: 'Kana + Mudhari', formula: 'كان + mudhari untuk aktivitas berlangsung di masa lalu' }),
-  ]),
-];
-
-const verbs = [
-  { root: 'درس', forms: { BASE: 'درس', V2: 'دَرَسَ', V3: 'يَدْرُسُ', ING: 'اُدْرُسْ' }, meaning: 'belajar' },
-  { root: 'كتب', forms: { BASE: 'كتب', V2: 'كَتَبَ', V3: 'يَكْتُبُ', ING: 'اُكْتُبْ' }, meaning: 'menulis' },
-  { root: 'قرأ', forms: { BASE: 'قرأ', V2: 'قَرَأَ', V3: 'يَقْرَأُ', ING: 'اِقْرَأْ' }, meaning: 'membaca' },
-  { root: 'ذهب', forms: { BASE: 'ذهب', V2: 'ذَهَبَ', V3: 'يَذْهَبُ', ING: 'اِذْهَبْ' }, meaning: 'pergi' },
-  { root: 'فتح', forms: { BASE: 'فتح', V2: 'فَتَحَ', V3: 'يَفْتَحُ', ING: 'اِفْتَحْ' }, meaning: 'membuka' },
-];
-
-export const arabicVerbFormsQuestions = (['Easy', 'Medium', 'Hard'] as LevelLabel[]).flatMap((level) =>
-  repeatToThirty(verbs).map((verb, index) => {
-    const target = level === 'Easy' ? 'V2' : level === 'Medium' ? 'V3' : 'ING';
-    return {
-      word: verb.root,
-      prompt: `Pilih bentuk ${target === 'V2' ? "fi'il madhi" : target === 'V3' ? "fi'il mudhari" : "fi'il amr"} dari root ${verb.root}.`,
-      translation: verb.meaning,
-      answer: verb.forms[target],
-      options: Object.values(verb.forms).slice(1),
-      forms: verb.forms,
-      formLabel: `${target} Arabic`,
-      pattern: target === 'V2' ? 'masa lalu' : target === 'V3' ? 'sekarang/kebiasaan' : 'perintah',
-      level,
-      hint: verb.meaning,
-      id: `${level}-${verb.root}-${index}`,
-    };
-  })
-);
-
-export const arabicArticleDashQuestions = (['Easy', 'Medium', 'Hard'] as LevelLabel[]).flatMap((level) =>
-  repeatToThirty([
-    choiceItem('هذا ____كتاب جديد.', 'Ini adalah buku baru.', 'بدون ال', ['ال', 'في', 'من'], level, { rule: 'Nakirah tidak memakai ال untuk benda umum.' }),
-    choiceItem('____كتاب على الطاولة.', 'Buku itu ada di atas meja.', 'ال', ['بدون ال', 'إلى', 'مع'], level, { rule: 'Marifah memakai ال: الكتاب.' }),
-    choiceItem('أنا في ____مدرسة.', 'Saya di sekolah itu.', 'ال', ['بدون ال', 'من', 'على'], level, { rule: 'Tempat spesifik memakai ال.' }),
-  ])
-);
-
-export const arabicModalQuestQuestions = (['Easy', 'Medium', 'Hard'] as LevelLabel[]).flatMap((level) =>
-  repeatToThirty([
-    choiceItem('____ أقرأ العربية.', 'Saya bisa membaca Arabic.', 'أستطيع أن', ['يجب أن', 'أريد أن', 'من فضلك'], level, { tone: 'Ability', rule: 'أستطيع أن + fi’il mudhari' }),
-    choiceItem('____ أراجع الدرس.', 'Saya harus meninjau pelajaran.', 'يجب أن', ['أستطيع أن', 'هل يمكن', 'من فضلك'], level, { tone: 'Obligation', rule: 'يجب أن untuk kewajiban' }),
-    choiceItem('____ أتعلم كل يوم.', 'Saya ingin belajar setiap hari.', 'أريد أن', ['لا بد أن', 'هل يمكن', 'مع'], level, { tone: 'Intention', rule: 'أريد أن untuk keinginan' }),
-  ])
-);
-
-export const arabicConditionalRunQuestions = (['Easy', 'Medium', 'Hard'] as LevelLabel[]).flatMap((level) =>
-  repeatToThirty([
-    choiceItem('إذا ____ الوقت سأدرس.', 'Jika ada waktu, saya akan belajar.', 'كان عندي', ['ذهبت إلى', 'اكتب', 'في البيت'], level, { type: 'إذا الشرطية', rule: 'إذا + kondisi + hasil' }),
-    choiceItem('إذا ____ مبكرا سنصل في الوقت.', 'Jika kita berangkat awal, kita sampai tepat waktu.', 'خرجنا', ['نخرجون', 'اخرج', 'خرج'], level, { type: 'First condition', rule: 'fi’il madhi setelah إذا sering dipakai untuk syarat' }),
-    choiceItem('لو ____ أكثر لنجحت.', 'Seandainya kamu belajar lebih banyak, kamu berhasil.', 'درست', ['تدرس', 'ادرس', 'يدرس'], level, { type: 'لو', rule: 'لو untuk pengandaian' }),
-  ])
-);
-
-export const arabicQuestionBuilderQuestions = (['Easy', 'Medium', 'Hard'] as LevelLabel[]).flatMap((level) =>
-  repeatToThirty([
-    choiceItem('____ اسمك؟', 'Siapa namamu?', 'ما', ['أين', 'متى', 'كم'], level, { type: 'Question word', rule: 'ما untuk menanyakan nama/benda.' }),
-    choiceItem('____ تسكن؟', 'Di mana kamu tinggal?', 'أين', ['هل', 'كم', 'من'], level, { type: 'Place question', rule: 'أين untuk tempat.' }),
-    choiceItem('____ تتعلم العربية؟', 'Mengapa kamu belajar Arabic?', 'لماذا', ['متى', 'كم', 'هل'], level, { type: 'Reason question', rule: 'لماذا untuk alasan.' }),
-  ])
-);
-
-function errorFixArabic(wrong: string, correct: string, translation: string, type: string, rule: string, level: LevelLabel) {
-  const fallbackOptions = ['أنا طالب جيد.', 'البيت قريب من المدرسة.', 'ذهب الطالب إلى الفصل.'];
+function choiceItem(prompt: string, translation: string, answer: string, wrong: string[], level: LevelLabel, extra: ChoiceExtra = {}) {
   return {
+    word: prompt,
+    prompt,
+    translation,
+    answer,
+    options: shuffleFor([answer, ...wrong.slice(0, 3)], level, prompt, translation),
+    level,
+    hint: translation,
+    ...extra,
+  };
+}
+
+const tenseByLevel: Record<LevelLabel, TenseTuple[]> = { Easy: easyTense, Medium: mediumTense, Hard: hardTense };
+export const arabicTenseMasterQuestions = LEVELS.flatMap((level) =>
+  tenseByLevel[level].map(([prompt, translation, answer, wrong, tense, formula]) => choiceItem(prompt, translation, answer, wrong, level, { tense, formula })),
+);
+
+const FORM_LABELS: Record<FormKey, { label: string; pattern: string }> = {
+  Madhi: { label: "fi'il madhi", pattern: 'masa lampau' },
+  Mudhari: { label: "fi'il mudhari", pattern: 'sekarang / kebiasaan' },
+  Amr: { label: "fi'il amr", pattern: 'perintah' },
+  Masdar: { label: 'masdar', pattern: 'kata benda dari kata kerja' },
+};
+const FORM_KEYS = Object.keys(FORM_LABELS) as FormKey[];
+
+const verbsByLevel: Record<LevelLabel, VerbTuple[]> = { Easy: easyVerbs, Medium: mediumVerbs, Hard: hardVerbs };
+
+function verbForms([, , madhi, mudhari, amr, masdar]: VerbTuple): Record<FormKey, string> {
+  return {
+    Madhi: arabicNormalize(madhi),
+    Mudhari: arabicNormalize(mudhari),
+    Amr: arabicNormalize(amr),
+    Masdar: arabicNormalize(masdar),
+  };
+}
+
+function targetForm(level: LevelLabel, index: number): FormKey {
+  if (level === 'Easy') return index % 2 === 0 ? 'Madhi' : 'Mudhari';
+  if (level === 'Medium') return index % 2 === 0 ? 'Amr' : 'Mudhari';
+  return FORM_KEYS[index % FORM_KEYS.length];
+}
+
+/**
+ * Wrong options that test morphology rather than root matching:
+ * Easy uses the other bab vowels and the passive, Medium the classic weak-verb slips,
+ * Hard the same root in other wazns. Other verbs' forms only top up a short list.
+ */
+function verbDistractors(level: LevelLabel, verb: VerbTuple, target: FormKey, source: VerbTuple[], index: number) {
+  const [root, , madhi, , , , wazn] = verb;
+  const answer = verbForms(verb)[target];
+  let own: string[] = [];
+  if (level === 'Easy' && (target === 'Madhi' || target === 'Mudhari')) {
+    const variants = formOneVariants(root, target);
+    own = variants.includes(answer) ? variants : [];
+  } else if (level === 'Medium') {
+    own = (mediumVerbDistractors[madhi]?.[target as 'Mudhari' | 'Amr'] ?? []).map(arabicNormalize);
+  } else if (level === 'Hard') {
+    own = shuffleFor(otherWaznForms(root, arabicNormalize(wazn), target), 'wazn', root, wazn, index);
+  }
+  const fallback = shuffleFor(source.filter((other) => other !== verb), 'verb', level, root, index).map((other) => verbForms(other)[target]);
+  return [...own, ...fallback].filter((form, position, list) => form !== answer && list.indexOf(form) === position).slice(0, 3);
+}
+
+export const arabicVerbFormsQuestions = LEVELS.flatMap((level) =>
+  verbsByLevel[level].map((verb, index, source) => {
+    const [root, meaning, , , , , wazn] = verb;
+    const target = targetForm(level, index);
+    const forms = verbForms(verb);
+    const answer = forms[target];
+    const { label, pattern } = FORM_LABELS[target];
+    return {
+      word: root,
+      prompt: `Pilih ${label} dari akar ${root} (${level === 'Hard' ? `wazn ${wazn}, ` : ''}${meaning}).`,
+      translation: meaning,
+      answer,
+      options: shuffleFor([answer, ...verbDistractors(level, verb, target, source, index)], 'verb-options', level, root, index),
+      forms,
+      activeForm: target,
+      formLabel: label,
+      pattern,
+      level,
+      hint: meaning,
+      id: `${level}-${root}-${index}`,
+    };
+  }),
+);
+
+function choiceBank(byLevel: Record<LevelLabel, ChoiceTuple[]>, labelKey: 'type' | 'tone', ruleFor?: (answer: string, rule: string) => string) {
+  return LEVELS.flatMap((level) =>
+    byLevel[level].map(([prompt, translation, answer, wrong, label, rule]) =>
+      choiceItem(prompt, translation, answer, wrong, level, { [labelKey]: label, rule: ruleFor ? ruleFor(answer, rule) : rule }),
+    ),
+  );
+}
+
+export const arabicArticleDashQuestions = choiceBank({ Easy: easyArticles, Medium: mediumArticles, Hard: hardArticles }, 'type');
+export const arabicModalQuestQuestions = choiceBank({ Easy: easyModals, Medium: mediumModals, Hard: hardModals }, 'tone');
+export const arabicConditionalRunQuestions = choiceBank({ Easy: easyConditionals, Medium: mediumConditionals, Hard: hardConditionals }, 'type');
+export const arabicQuestionBuilderQuestions = choiceBank(
+  { Easy: easyQuestions, Medium: mediumQuestions, Hard: hardQuestions },
+  'type',
+  // The rule is shown before answering, so drop the leading question word it explains.
+  (answer, rule) => (rule || questionRules[answer] || '').replace(/^[^A-Za-z"]+/, '').replace(/^./, (first) => first.toUpperCase()),
+);
+
+const errorsByLevel: Record<LevelLabel, ErrorFixTuple[]> = { Easy: easyErrors, Medium: mediumErrors, Hard: hardErrors };
+export const arabicErrorFixQuestions = LEVELS.flatMap((level) =>
+  errorsByLevel[level].map(([wrong, correct, translation, type, rule, alternatives]) => ({
     word: wrong,
     prompt: wrong,
     translation,
     answer: correct,
-    options: Array.from(new Set([correct, wrong, ...fallbackOptions.filter((option) => option !== correct)])).slice(0, 4),
+    options: shuffleFor([correct, wrong, ...alternatives], 'fix', level, wrong),
     type,
     rule,
     level,
     hint: translation,
-  };
-}
-
-export const arabicErrorFixQuestions = (['Easy', 'Medium', 'Hard'] as LevelLabel[]).flatMap((level) =>
-  repeatToThirty([
-    errorFixArabic('أنا طالبة جيد.', 'أنا طالبة جيدة.', 'Saya siswi yang baik.', 'Gender agreement', 'Sifat mengikuti isim dalam mudzakkar/muannats.', level),
-    errorFixArabic('البيت قريبة من المدرسة.', 'البيت قريب من المدرسة.', 'Rumah itu dekat dari sekolah.', 'Gender agreement', 'Khabar mengikuti mubtada mudzakkar: البيت قريب.', level),
-    errorFixArabic('ذهبت الطالب إلى الفصل.', 'ذهب الطالب إلى الفصل.', 'Siswa itu pergi ke kelas.', 'Fiil-fail', "Fi'il madhi mudzakkar untuk الطالب: ذهب.", level),
-  ])
+  })),
 );

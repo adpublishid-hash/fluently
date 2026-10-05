@@ -2616,7 +2616,7 @@ export default function GamePlayPage() {
                         </span>
                       </div>
                       <p className="text-[13px] text-gray-500 font-semibold mb-2">{isArabicGame ? "Pilih bentuk fi'il yang tepat:" : 'Pilih bentuk verb yang tepat:'}</p>
-                      <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={isArabicGame ? 'ar' : undefined} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
+                      <h2 dir="auto" className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">Arti: {current.translation}</p>
                     </>
                   ) : isArticleDash ? (
@@ -2796,7 +2796,7 @@ export default function GamePlayPage() {
                           return (
                             <div key={level} className={`rounded-2xl border p-3 text-center ${active ? 'bg-emerald-50 border-emerald-200 text-emerald-700' : 'bg-gray-50 border-gray-100 text-gray-400'}`}>
                               <p className="text-[10px] uppercase tracking-wider font-black">{level}</p>
-                              <p className="text-[11px] font-bold mt-1">{level === 'Easy' ? 'V2' : level === 'Medium' ? 'V3 + ing' : 'mixed'}</p>
+                              <p className="text-[11px] font-bold mt-1">{isArabicGame ? (level === 'Easy' ? 'Madhi + Mudhari' : level === 'Medium' ? 'Amr + Masdar' : "Fi'il mazid") : level === 'Easy' ? 'V2' : level === 'Medium' ? 'V3 + ing' : 'mixed'}</p>
                             </div>
                           );
                         })}
@@ -2804,7 +2804,7 @@ export default function GamePlayPage() {
 
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                         {Object.entries(current.forms).map(([label, value]) => {
-                          const active = (label === 'V2' && current.formLabel.includes('V2')) || (label === 'V3' && current.formLabel.includes('V3')) || (label === 'ING' && current.formLabel.includes('ing'));
+                          const active = current.activeForm ? label === current.activeForm : (label === 'V2' && current.formLabel.includes('V2')) || (label === 'V3' && current.formLabel.includes('V3')) || (label === 'ING' && current.formLabel.includes('ing'));
                           return (
                             <div key={label} className={`rounded-2xl border p-4 text-center ${active ? 'border-emerald-300 bg-emerald-50 shadow-sm' : 'border-gray-100 bg-[#F8FAFC]'}`}>
                               <p className={`text-[10px] uppercase tracking-wider font-black ${active ? 'text-emerald-600' : 'text-gray-400'}`}>{label}</p>
