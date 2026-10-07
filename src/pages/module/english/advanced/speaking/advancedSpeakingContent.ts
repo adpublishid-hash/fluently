@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../shared/authoredQuiz';
+import { advancedSpeakingQuizBank } from './speakingQuizBank';
 export type SpeakingExpression = {
   label: string;
   phrase: string;
@@ -214,51 +216,9 @@ export function getAdvancedSpeakingLesson(id: number) {
   return advancedSpeakingLessons.find((lesson) => lesson.id === id);
 }
 
+// Fifteen authored questions per lesson, each practising this lesson's skill.
 function buildAdvancedSpeakingQuiz(lesson: SpeakingLesson): SpeakingQuizQuestion[] {
-  const base: SpeakingQuizQuestion[] = [
-    {
-      q: `What is the main outcome of "${lesson.title}"?`,
-      opts: [lesson.outcome, 'Speak as fast as possible with no pauses', 'Memorise isolated vocabulary only'],
-      ans: lesson.outcome,
-      exp: 'The outcome describes the C1 speaking skill this lesson trains.',
-    },
-    {
-      q: 'Which behaviour best reflects C1 speaking control?',
-      opts: ['Using signposting, examples, qualification, and repair strategies', 'Avoiding all complex ideas', 'Speaking quickly without organisation'],
-      ans: 'Using signposting, examples, qualification, and repair strategies',
-      exp: 'C1 speaking is flexible, organised, nuanced, and listener-aware.',
-    },
-  ];
-
-  const expressionQuestions = lesson.expressions.map((expression) => ({
-    q: `What is the function of "${expression.phrase}"?`,
-    opts: [expression.function, 'To end the conversation abruptly', 'To avoid answering completely'],
-    ans: expression.function,
-    exp: `${expression.phrase} is useful for: ${expression.function}`,
-  }));
-
-  const theoryQuestions = lesson.theory.map((line, index) => ({
-    q: `Which principle belongs to this lesson? (${index + 1})`,
-    opts: [line, 'C1 speaking should avoid examples and implications', 'Advanced speaking means never correcting yourself'],
-    ans: line,
-    exp: 'This principle supports advanced discourse management and spoken precision.',
-  }));
-
-  const assessmentQuestions = lesson.assessment.map((item, index) => ({
-    q: `Which self-assessment question is useful after the speaking task? (${index + 1})`,
-    opts: [item, 'Did I use only memorised sentences?', 'Did I avoid all interaction?'],
-    ans: item,
-    exp: 'Self-assessment helps you notice fluency, organisation, vocabulary, and repair strategies.',
-  }));
-
-  const drillQuestions = lesson.drills.map((item, index) => ({
-    q: `Which practice drill develops this C1 speaking lesson? (${index + 1})`,
-    opts: [item, 'Read silently without speaking', 'Translate word by word from Indonesian'],
-    ans: item,
-    exp: 'Speaking skill improves through active production, recording, and reflection.',
-  }));
-
-  return [...base, ...expressionQuestions, ...theoryQuestions, ...assessmentQuestions, ...drillQuestions].slice(0, 20);
+  return fromAuthored(advancedSpeakingQuizBank[lesson.id]);
 }
 
 // Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.

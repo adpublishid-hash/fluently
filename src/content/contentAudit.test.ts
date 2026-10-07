@@ -7,10 +7,6 @@ const audits = runContentAudit();
 
 const knownLowVariety: Record<string, number> = {
   'english/upper-intermediate/writing': 0.25,
-  'english/advanced/listening': 0.12,
-  'english/advanced/reading': 0.12,
-  'english/advanced/speaking': 0.12,
-  'english/advanced/writing': 0.12,
   'english/proficiency/vocabulary': 0.18,
 };
 

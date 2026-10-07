@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../shared/authoredQuiz';
+import { advancedReadingQuizBank } from './readingQuizBank';
 export type ReadingLesson = {
   id: number;
   title: string;
@@ -78,50 +80,9 @@ export function getAdvancedReadingLesson(id: number) {
   return advancedReadingLessons.find((lesson) => lesson.id === id);
 }
 
+// Fifteen authored questions per lesson, each practising this lesson's skill.
 function buildAdvancedReadingQuiz(lesson: ReadingLesson): ReadingQuizQuestion[] {
-  const base: ReadingQuizQuestion[] = [
-    {
-      q: `What is the main outcome of "${lesson.title}"?`,
-      opts: [lesson.outcome, 'Read only for pronunciation practice', 'Ignore implication and focus only on spelling'],
-      ans: lesson.outcome,
-      exp: 'The outcome defines the C1 reading skill trained in this lesson.',
-    },
-    {
-      q: 'What should an advanced reader evaluate beyond literal meaning?',
-      opts: ['Stance, implication, evidence, assumptions, and structure', 'Only the number of sentences', 'Only whether the text is long or short'],
-      ans: 'Stance, implication, evidence, assumptions, and structure',
-      exp: 'C1 reading requires interpretation and evaluation, not only comprehension.',
-    },
-    {
-      q: 'Which option best summarises the passage?',
-      opts: [lesson.passage.split('.').slice(0, 2).join('.') + '.', 'The passage gives unrelated random grammar rules.', 'The passage is only a list of vocabulary.'],
-      ans: lesson.passage.split('.').slice(0, 2).join('.') + '.',
-      exp: 'This option captures the core meaning of the reading passage.',
-    },
-  ];
-
-  const focusQuestions = lesson.readingFocus.map((item, index) => ({
-    q: `Which reading focus is useful in this lesson? (${index + 1})`,
-    opts: [item, 'Skip all transition words', 'Avoid thinking about the writer\'s purpose'],
-    ans: item,
-    exp: 'This focus supports advanced reading comprehension and analysis.',
-  }));
-
-  const conceptQuestions = lesson.keyConcepts.map((item, index) => ({
-    q: `Which key concept belongs to advanced reading analysis? (${index + 1})`,
-    opts: [item, 'Reading faster always means reading better', 'Every text is completely neutral'],
-    ans: item,
-    exp: 'Advanced reading requires attention to inference, stance, framing, cohesion, and evaluation.',
-  }));
-
-  const strategyQuestions = lesson.strategies.map((item, index) => ({
-    q: `Which strategy should you apply? (${index + 1})`,
-    opts: [item, 'Never summarise paragraphs', 'Stop reading whenever you find one unfamiliar word'],
-    ans: item,
-    exp: 'This strategy helps you manage dense C1 texts more accurately.',
-  }));
-
-  return [...base, ...focusQuestions, ...conceptQuestions, ...strategyQuestions].slice(0, 20);
+  return fromAuthored(advancedReadingQuizBank[lesson.id]);
 }
 
 // Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.

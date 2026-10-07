@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../shared/authoredQuiz';
+import { advancedListeningQuizBank } from './listeningQuizBank';
 export type ListeningLesson = {
   id: number;
   title: string;
@@ -78,50 +80,9 @@ export function getAdvancedListeningLesson(id: number) {
   return advancedListeningLessons.find((lesson) => lesson.id === id);
 }
 
+// Fifteen authored questions per lesson, each practising this lesson's skill.
 function buildAdvancedListeningQuiz(lesson: ListeningLesson): ListeningQuizQuestion[] {
-  const base: ListeningQuizQuestion[] = [
-    {
-      q: `What is the main outcome of "${lesson.title}"?`,
-      opts: [lesson.outcome, 'Memorise spelling rules only', 'Ignore tone and focus only on isolated words'],
-      ans: lesson.outcome,
-      exp: 'The outcome defines the advanced listening skill for this lesson.',
-    },
-    {
-      q: 'At C1 level, what should you listen for beyond literal words?',
-      opts: ['Speaker stance, implication, discourse structure, and evidence', 'Only individual vocabulary items', 'Only the first sentence'],
-      ans: 'Speaker stance, implication, discourse structure, and evidence',
-      exp: 'Advanced listening requires inference, structure tracking, and interpretation of attitude.',
-    },
-    {
-      q: 'Which sentence best summarises the transcript?',
-      opts: [lesson.transcript.split('.').slice(0, 2).join('.') + '.', 'The speaker only lists random vocabulary.', 'The speaker avoids giving any meaningful information.'],
-      ans: lesson.transcript.split('.').slice(0, 2).join('.') + '.',
-      exp: 'This option captures the central meaning from the transcript.',
-    },
-  ];
-
-  const focusQuestions = lesson.listeningFocus.map((item, index) => ({
-    q: `Which listening focus is useful in this lesson? (${index + 1})`,
-    opts: [item, 'Translate every word before understanding the message', 'Stop listening after one unknown word'],
-    ans: item,
-    exp: 'This focus helps you process authentic advanced speech more effectively.',
-  }));
-
-  const signalQuestions = lesson.keySignals.map((item, index) => ({
-    q: `What signal should advanced listeners recognise? (${index + 1})`,
-    opts: [item, 'All connectors mean the same thing', 'Tone never changes meaning'],
-    ans: item,
-    exp: 'Signal phrases help you predict meaning and follow the speaker\'s logic.',
-  }));
-
-  const strategyQuestions = lesson.strategies.map((item, index) => ({
-    q: `Which strategy should you apply? (${index + 1})`,
-    opts: [item, 'Focus only on accent and ignore meaning', 'Never summarise after listening'],
-    ans: item,
-    exp: 'Strategic listening improves comprehension under speed, accent, and complexity pressure.',
-  }));
-
-  return [...base, ...focusQuestions, ...signalQuestions, ...strategyQuestions].slice(0, 20);
+  return fromAuthored(advancedListeningQuizBank[lesson.id]);
 }
 
 // Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.

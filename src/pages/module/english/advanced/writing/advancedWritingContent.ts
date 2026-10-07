@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../shared/authoredQuiz';
+import { advancedWritingQuizBank } from './writingQuizBank';
 export type AdvancedWritingLesson = {
   id: number;
   title: string;
@@ -90,50 +92,9 @@ export function getAdvancedWritingLesson(id: number) {
   return advancedWritingLessons.find((lesson) => lesson.id === id);
 }
 
+// Fifteen authored questions per lesson, each practising this lesson's skill.
 function buildAdvancedWritingQuiz(lesson: AdvancedWritingLesson): AdvancedWritingQuizQuestion[] {
-  const base: AdvancedWritingQuizQuestion[] = [
-    {
-      q: `What is the main outcome of "${lesson.title}"?`,
-      opts: [lesson.outcome, 'Write only informal chat messages', 'Avoid planning and revision'],
-      ans: lesson.outcome,
-      exp: 'The outcome defines the C1 writing skill for this lesson.',
-    },
-    {
-      q: `Which genre best matches this lesson?`,
-      opts: [lesson.genre, 'Basic shopping note', 'Pronunciation drill'],
-      ans: lesson.genre,
-      exp: 'Genre controls structure, register, and language choices.',
-    },
-    {
-      q: 'Which feature is essential in C1 writing?',
-      opts: ['Purposeful complexity with precision and cohesion', 'Long sentences without control', 'Informal wording in every context'],
-      ans: 'Purposeful complexity with precision and cohesion',
-      exp: 'C1 writing should be sophisticated because it is precise and well organised, not simply because it is long.',
-    },
-  ];
-
-  const focusQuestions = lesson.writingFocus.map((item, index) => ({
-    q: `Which writing focus applies here? (${index + 1})`,
-    opts: [item, 'Ignore the reader and write randomly', 'Use transitions even when they do not show logic'],
-    ans: item,
-    exp: 'This focus improves task achievement, coherence, and control.',
-  }));
-
-  const languageQuestions = lesson.languageTools.map((item, index) => ({
-    q: `Which language tool is useful for C1 writing? (${index + 1})`,
-    opts: [item, 'Use vague words repeatedly', 'Avoid all academic vocabulary'],
-    ans: item,
-    exp: 'Advanced writing relies on precise language tools that show logic, stance, and register.',
-  }));
-
-  const checklistQuestions = lesson.revisionChecklist.map((item, index) => ({
-    q: `Which revision question should you ask? (${index + 1})`,
-    opts: [item, 'Did I add unrelated ideas at the end?', 'Did I avoid revising the first draft?'],
-    ans: item,
-    exp: 'Revision is a core part of advanced writing quality.',
-  }));
-
-  return [...base, ...focusQuestions, ...languageQuestions, ...checklistQuestions].slice(0, 20);
+  return fromAuthored(advancedWritingQuizBank[lesson.id]);
 }
 
 // Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
