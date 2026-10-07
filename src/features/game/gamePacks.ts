@@ -81,11 +81,6 @@ const arabicPack: GamePack = {
   },
 };
 
-const CJK_MODES = new Set([
-  'word-match', 'letter-quest', 'sentence-builder', 'tense-master', 'question-builder',
-  'listen-tap', 'memory-card', 'find-words', 'speed-quiz', 'typing-sprint', 'boss-challenge',
-]);
-
 type CjkCopy = {
   name: string;
   speechLang: string;
@@ -100,7 +95,7 @@ type CjkCopy = {
   script: string;
   romanization: string;
   ui: GameUiCopy;
-  /** Modes beyond CJK_MODES that this language has banks for; null means every mode. */
+  /** Modes this language has banks for; null means every mode. */
   supportedModes: Set<string> | null;
   extraModeCopy?: ModeCopy;
 };
@@ -232,7 +227,18 @@ const japanesePack = cjkPack('Japanese', japaneseGameContent, {
   tense: ['Verb Form Master', 'Pilih bentuk ます, た, て, ない, pasif, dan kausatif.'],
   script: 'Kana & Kanji',
   romanization: 'romaji',
-  supportedModes: CJK_MODES,
+  // Japanese has its own bank for every grammar mode, like English, Arabic and Mandarin.
+  supportedModes: null,
+  extraModeCopy: {
+    'verb-forms': { title: 'Conjugation Master', subtitle: 'Ubah kata kerja kamus ke bentuk ます, て, ない, potensial, pasif, dan kausatif.', status: 'Katsuyou' },
+    'article-dash': { title: 'Joshi Dash', subtitle: 'Pilih partikel: は, が, を, に, で, sampai に対して dan によると.', status: '助詞' },
+    'preposition-path': { title: 'Japanese Word Order Path', subtitle: 'Susun kalimat Jepang dengan urutan partikel yang benar.', status: 'Urutan' },
+    'modal-quest': { title: 'Japanese Expression Quest', subtitle: 'Bedakan たい, てもいい, なければならない, そうだ, はず, べき.', status: 'Hyougen' },
+    'conditional-run': { title: 'Japanese Conditional Run', subtitle: 'Pilih と, ば, たら, なら, ても, dan のに yang tepat.', status: 'Jouken' },
+    'error-fix': { title: 'Japanese Error Fix', subtitle: 'Temukan versi kalimat Jepang yang benar.', status: 'Koreksi' },
+    'clause-connect': { title: 'Japanese Clause Connect', subtitle: 'Hubungkan klausa dengan から, のに, ながら, dan lainnya.', status: 'Connect' },
+    'grammar-mix': { title: 'Japanese Grammar Mix', subtitle: 'Campuran bunpou Jepang untuk review cepat.', status: 'Mixed' },
+  },
   ui: cjkGameUi({
     name: 'Jepang',
     textLang: 'ja',
@@ -241,10 +247,24 @@ const japanesePack = cjkPack('Japanese', japaneseGameContent, {
     tensePrompt: 'Lengkapi kalimat dengan bentuk kata kerja yang tepat:',
     tenseLevels: ['Bentuk ます', 'て / た / ない', 'Pasif & kausatif'],
     verbFormsPrompt: 'Pilih bentuk kata kerja yang tepat:',
-    verbFormsLevels: ['ます', 'て / た', 'Lanjutan'],
+    verbFormsLevels: ['ます', 'て / た / ない', 'Potensial dst.'],
     modalChips: ['できる', 'たい', 'てもいい', 'なければならない', 'ほうがいい', 'でしょう'],
     questionParts: ['topik', 'kata tanya', 'です', 'か'],
-    extra: { findTitle: 'Find Japanese Words', wordMatchCheck: 'Cek Japanese Match' },
+    extra: {
+      findTitle: 'Find Japanese Words',
+      wordMatchCheck: 'Cek Japanese Match',
+      articleChip: 'Pilihan partikel',
+      articleRule: 'kata + partikel + predikat',
+      articlePrompt: 'Pilih partikel (joshi) yang tepat:',
+      articleSlotText: 'Isi bagian kosong dengan partikel yang benar.',
+      articleLevels: ['は / が / を / に', 'より / しか / ずつ', 'に対して / によると'],
+      modalRule: 'kata kerja + ungkapan',
+      modalPrompt: 'Pilih ungkapan Jepang yang tepat:',
+      modalLevels: ['たい / てもいい', 'はず / べき / よう', 'わけ / ざるを得ない'],
+      conditionalLevels: ['と / ば / たら', 'ても / のに / さえ', 'ものなら / 限り'],
+      questionLevels: ['何 / どこ / だれ', 'どれ / どの / どう', 'tak langsung'],
+      errorLevels: ['partikel dasar', 'bentuk kata kerja', 'keigo & pola'],
+    },
   }),
 });
 
