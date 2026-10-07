@@ -1,5 +1,9 @@
 // Labels the arcade shows around each game, per target language. English is the default;
 // language packs supply their own so a Mandarin learner is never told to "susun kalimat bahasa Inggris".
+/** Copy for the fill-in-the-blank games that share the Article Dash layout. */
+export type BlankModeCopy = { chip: string; rule: string; prompt: string; slotText: string; levels: [string, string, string] };
+export type BlankModeId = 'preposition-path' | 'clause-connect' | 'grammar-mix';
+
 export type GameUiCopy = {
   /** BCP-47 tag for target-language text (fonts, screen readers); undefined for English. */
   textLang?: string;
@@ -72,6 +76,7 @@ export type GameUiCopy = {
   correct: string;
   answer: string;
   typingPlaceholder: string;
+  blankModes: Record<BlankModeId, BlankModeCopy>;
 };
 
 export const englishGameUi: GameUiCopy = {
@@ -142,6 +147,11 @@ export const englishGameUi: GameUiCopy = {
   correct: 'Correct.',
   answer: 'Answer',
   typingPlaceholder: 'Type your answer...',
+  blankModes: {
+    'preposition-path': { chip: 'Preposition choice', rule: 'in / on / at / to / for …', prompt: 'Pilih preposition yang tepat:', slotText: 'Isi bagian kosong dengan preposition yang benar.', levels: ['place & time', 'verb + prep', 'collocations'] },
+    'clause-connect': { chip: 'Connector choice', rule: 'and / but / because / which …', prompt: 'Pilih kata penghubung yang tepat:', slotText: 'Isi bagian kosong dengan conjunction yang benar.', levels: ['and / but / so', 'although / whereas', 'inversion & formal'] },
+    'grammar-mix': { chip: 'Grammar mix', rule: 'tense · article · modal · preposition', prompt: 'Lengkapi kalimat dengan pilihan yang tepat:', slotText: 'Campuran semua game grammar.', levels: ['basic mix', 'daily mix', 'advanced mix'] },
+  },
 };
 
 const indonesianControls = {
@@ -210,6 +220,11 @@ export const arabicGameUi: GameUiCopy = {
   typingPrompt: 'Ketik kata Arab dari arti ini:',
   choosePrompt: 'Pilih arti mufradat yang paling tepat:',
   typingPlaceholder: 'اكتب الإجابة...',
+  blankModes: {
+    'preposition-path': { chip: 'Pilihan huruf jar', rule: 'في / على / إلى / من / عن', prompt: 'Pilih huruf jar yang tepat:', slotText: 'Isi bagian kosong dengan huruf jar yang benar.', levels: ['tempat & arah', "fi'il + jar", 'ungkapan lanjut'] },
+    'clause-connect': { chip: 'Pilihan penghubung', rule: 'و / ثم / لكن / لأن / الذي', prompt: 'Pilih kata penghubung Arab yang tepat:', slotText: 'Isi bagian kosong dengan penghubung yang benar.', levels: ["'athf & maushul", 'waktu & tujuan', 'istitsna & lanjut'] },
+    'grammar-mix': { chip: 'Campuran nahwu', rule: "fi'il · ال · huruf jar · syarat", prompt: 'Lengkapi kalimat Arab dengan pilihan yang tepat:', slotText: 'Campuran semua game nahwu.', levels: ['dasar', 'harian', 'lanjut'] },
+  },
 };
 
 /** Shared copy for Mandarin and Japanese; grammar-specific labels are passed in. */
@@ -278,6 +293,11 @@ export function cjkGameUi(copy: {
     typingPrompt: `Ketik kata ${name} (${script} atau ${romanization}) dari arti ini:`,
     choosePrompt: `Pilih arti kata ${name} yang paling tepat:`,
     typingPlaceholder: `Ketik ${script} atau ${romanization}...`,
+    blankModes: {
+      'preposition-path': { chip: 'Pilihan posisi', rule: 'tempat · arah · posisi', prompt: `Pilih kata posisi/arah ${name} yang tepat:`, slotText: 'Isi bagian kosong dengan kata yang benar.', levels: ['dasar', 'menengah', 'lanjut'] },
+      'clause-connect': { chip: 'Pilihan penghubung', rule: 'sebab · kontras · urutan', prompt: `Pilih kata penghubung ${name} yang tepat:`, slotText: 'Isi bagian kosong dengan penghubung yang benar.', levels: ['dasar', 'menengah', 'lanjut'] },
+      'grammar-mix': { chip: 'Campuran grammar', rule: 'semua game grammar', prompt: `Lengkapi kalimat ${name} dengan pilihan yang tepat:`, slotText: 'Campuran semua game grammar.', levels: ['dasar', 'harian', 'lanjut'] },
+    },
     ...copy.extra,
   };
 }

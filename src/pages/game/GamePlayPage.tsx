@@ -7,6 +7,7 @@ import PageContainer from '../../components/layout/PageContainer';
 import { useAuth } from '../../auth/AuthContext';
 import { getGamePack, normalizeTypedAnswer } from '../../features/game/gamePacks';
 import { englishGameUi } from '../../features/game/gameUiCopy';
+import { buildGrammarMix, englishClauseConnectQuestions, englishPrepositionPathQuestions } from '../../features/game/connectorBanks';
 
 type GameStats = {
   xp: number;
@@ -1182,9 +1183,16 @@ function nextVerbFormsLevel(level: LetterQuestLevel): LetterQuestLevel | null {
   return null;
 }
 
-function readArticleDashLevel(): LetterQuestLevel {
+/** Article Dash, Preposition Path, Clause Connect and Grammar Mix share one layout but keep their own level progress. */
+const BLANK_MODES = ['article-dash', 'preposition-path', 'clause-connect', 'grammar-mix'];
+
+function blankLevelKey(modeId: string) {
+  return `fluently_${modeId.replace(/-/g, '_')}_level`;
+}
+
+function readArticleDashLevel(modeId = 'article-dash'): LetterQuestLevel {
   try {
-    const saved = localStorage.getItem('fluently_article_dash_level') as LetterQuestLevel | null;
+    const saved = localStorage.getItem(blankLevelKey(modeId)) as LetterQuestLevel | null;
     return saved === 'medium' || saved === 'hard' ? saved : 'easy';
   } catch {
     return 'easy';
@@ -1428,7 +1436,7 @@ export default function GamePlayPage() {
   const [currentSentenceLevel, setCurrentSentenceLevel] = useState<LetterQuestLevel>(() => readSentenceBuilderLevel());
   const [currentTenseLevel, setCurrentTenseLevel] = useState<LetterQuestLevel>(() => readTenseMasterLevel());
   const [currentVerbFormsLevel, setCurrentVerbFormsLevel] = useState<LetterQuestLevel>(() => readVerbFormsLevel());
-  const [currentArticleDashLevel, setCurrentArticleDashLevel] = useState<LetterQuestLevel>(() => readArticleDashLevel());
+  const [currentArticleDashLevel, setCurrentArticleDashLevel] = useState<LetterQuestLevel>(() => readArticleDashLevel(modeId));
   const [currentModalQuestLevel, setCurrentModalQuestLevel] = useState<LetterQuestLevel>(() => readModalQuestLevel());
   const [currentConditionalRunLevel, setCurrentConditionalRunLevel] = useState<LetterQuestLevel>(() => readConditionalRunLevel());
   const [currentQuestionBuilderLevel, setCurrentQuestionBuilderLevel] = useState<LetterQuestLevel>(() => readQuestionBuilderLevel());
@@ -1449,12 +1457,12 @@ export default function GamePlayPage() {
   const isFindWords = modeId === 'find-words';
   const isTenseMaster = modeId === 'tense-master';
   const isVerbForms = modeId === 'verb-forms';
-  const isArticleDash = modeId === 'article-dash';
+  const isArticleDash = BLANK_MODES.includes(modeId);
   const isModalQuest = modeId === 'modal-quest';
   const isConditionalRun = modeId === 'conditional-run';
   const isQuestionBuilder = modeId === 'question-builder';
   const isErrorFix = modeId === 'error-fix';
-  const isSentenceBuilder = modeId === 'sentence-builder' || (categoryId === 'grammar' && modeId !== 'tense-master' && modeId !== 'verb-forms' && modeId !== 'article-dash' && modeId !== 'modal-quest' && modeId !== 'conditional-run' && modeId !== 'question-builder' && modeId !== 'error-fix' && modeId !== 'speed-quiz' && modeId !== 'memory-card');
+  const isSentenceBuilder = modeId === 'sentence-builder' || (categoryId === 'grammar' && modeId !== 'tense-master' && modeId !== 'verb-forms' && !BLANK_MODES.includes(modeId) && modeId !== 'modal-quest' && modeId !== 'conditional-run' && modeId !== 'question-builder' && modeId !== 'error-fix' && modeId !== 'speed-quiz' && modeId !== 'memory-card');
   const isMemoryCard = modeId === 'memory-card';
   const isLetterQuest = modeId === 'letter-quest';
   const isVisualWordMatch = modeId === 'word-match' && categoryId === 'vocabulary';
@@ -1468,11 +1476,30 @@ export default function GamePlayPage() {
   const activeSentenceBuilderQuestions = gamePack?.banks.sentenceBuilderQuestions ?? sentenceBuilderQuestions;
   const activeTenseMasterQuestions = gamePack?.banks.tenseMasterQuestions ?? tenseMasterQuestions;
   const activeVerbFormsQuestions = gamePack?.banks.verbFormsQuestions ?? verbFormsQuestions;
-  const activeArticleDashQuestions = gamePack?.banks.articleDashQuestions ?? articleDashQuestions;
+  const activeArticleOnlyQuestions = gamePack?.banks.articleDashQuestions ?? articleDashQuestions;
+  const activePrepositionPathQuestions = gamePack?.banks.prepositionPathQuestions ?? englishPrepositionPathQuestions;
+  const activeClauseConnectQuestions = gamePack?.banks.clauseConnectQuestions ?? englishClauseConnectQuestions;
   const activeModalQuestQuestions = gamePack?.banks.modalQuestQuestions ?? modalQuestQuestions;
   const activeConditionalRunQuestions = gamePack?.banks.conditionalRunQuestions ?? conditionalRunQuestions;
   const activeQuestionBuilderQuestions = gamePack?.banks.questionBuilderQuestions ?? questionBuilderQuestions;
   const activeErrorFixQuestions = gamePack?.banks.errorFixQuestions ?? errorFixQuestions;
+  const activeGrammarMixQuestions = useMemo(
+    () => buildGrammarMix([activeTenseMasterQuestions, activeArticleOnlyQuestions, activeModalQuestQuestions, activeConditionalRunQuestions, activeQuestionBuilderQuestions, activePrepositionPathQuestions, activeClauseConnectQuestions]),
+    [activeArticleOnlyQuestions, activeClauseConnectQuestions, activeConditionalRunQuestions, activeModalQuestQuestions, activePrepositionPathQuestions, activeQuestionBuilderQuestions, activeTenseMasterQuestions],
+  );
+  const activeArticleDashQuestions = modeId === 'preposition-path'
+    ? activePrepositionPathQuestions
+    : modeId === 'clause-connect'
+      ? activeClauseConnectQuestions
+      : modeId === 'grammar-mix'
+        ? activeGrammarMixQuestions
+        : activeArticleOnlyQuestions;
+  const blankCopy = ui.blankModes[modeId as keyof typeof ui.blankModes] ?? { chip: ui.articleChip, rule: ui.articleRule, prompt: ui.articlePrompt, slotText: ui.articleSlotText, levels: ui.articleLevels };
+
+  // The page is reused when switching between the blank-fill games, so reload that game's own level.
+  useEffect(() => {
+    if (BLANK_MODES.includes(modeId)) setCurrentArticleDashLevel(readArticleDashLevel(modeId));
+  }, [modeId]);
   const activeDifficulty = isLetterQuest ? currentLetterLevel : isVisualWordMatch ? currentWordMatchLevel : isTenseMaster ? currentTenseLevel : isVerbForms ? currentVerbFormsLevel : isArticleDash ? currentArticleDashLevel : isModalQuest ? currentModalQuestLevel : isConditionalRun ? currentConditionalRunLevel : isQuestionBuilder ? currentQuestionBuilderLevel : isErrorFix ? currentErrorFixLevel : isSentenceBuilder ? currentSentenceLevel : isListenTap ? currentListenLevel : isSpeedQuiz ? currentSpeedLevel : isTyping ? currentTypingLevel : isMemoryCard ? currentMemoryLevel : isFindWords ? currentFindWordsLevel : difficulty;
 
   const questions = useMemo(() => {
@@ -1683,7 +1710,7 @@ export default function GamePlayPage() {
     if (isArticleDash) {
       const nextLevel = nextArticleDashLevel(currentArticleDashLevel);
       if (nextLevel) {
-        localStorage.setItem('fluently_article_dash_level', nextLevel);
+        localStorage.setItem(blankLevelKey(modeId), nextLevel);
       }
     }
     if (isModalQuest) {
@@ -2042,7 +2069,7 @@ export default function GamePlayPage() {
       return;
     }
     setCurrentArticleDashLevel(nextLevel);
-    localStorage.setItem('fluently_article_dash_level', nextLevel);
+    localStorage.setItem(blankLevelKey(modeId), nextLevel);
     restart();
   };
 
@@ -2625,13 +2652,13 @@ export default function GamePlayPage() {
                     <>
                       <div className="flex flex-wrap items-center gap-2 mb-4">
                         <span className="px-3 py-1.5 rounded-full bg-white border border-orange-200 text-[11px] font-black text-orange-600">
-                          {ui.articleChip}
+                          {blankCopy.chip}
                         </span>
                         <span className="px-3 py-1.5 rounded-full bg-[#1A1A2E] text-white text-[11px] font-black">
-                          {ui.articleRule}
+                          {blankCopy.rule}
                         </span>
                       </div>
-                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{ui.articlePrompt}</p>
+                      <p className="text-[13px] text-gray-500 font-semibold mb-2">{blankCopy.prompt}</p>
                       <h2 dir={isArabicGame ? 'rtl' : 'auto'} lang={ui.textLang} className="text-[25px] md:text-[34px] leading-tight font-black text-[#1A1A2E]">{current.prompt}</h2>
                       <p className="text-sm text-gray-400 mt-3 font-semibold">{current.translation}</p>
                     </>
@@ -2854,7 +2881,7 @@ export default function GamePlayPage() {
                           return (
                             <div key={level} className={`rounded-2xl border p-3 text-center ${active ? 'bg-orange-50 border-orange-200 text-orange-700' : 'bg-gray-50 border-gray-100 text-gray-400'}`}>
                               <p className="text-[10px] uppercase tracking-wider font-black">{level}</p>
-                              <p className="text-[11px] font-bold mt-1">{ui.articleLevels[level === 'Easy' ? 0 : level === 'Medium' ? 1 : 2]}</p>
+                              <p className="text-[11px] font-bold mt-1">{blankCopy.levels[level === 'Easy' ? 0 : level === 'Medium' ? 1 : 2]}</p>
                             </div>
                           );
                         })}
@@ -2867,7 +2894,7 @@ export default function GamePlayPage() {
                           </div>
                           <div className="min-w-0">
                             <p className="text-[11px] uppercase tracking-wider font-black text-orange-600">{ui.articleSlotTitle}</p>
-                            <p className="text-sm font-bold text-gray-500">{ui.articleSlotText}</p>
+                            <p className="text-sm font-bold text-gray-500">{blankCopy.slotText}</p>
                           </div>
                         </div>
                         <div dir={isArabicGame ? 'rtl' : 'auto'} lang={ui.textLang} className="mt-4 rounded-2xl bg-white border border-orange-100 p-4 text-base sm:text-lg font-black text-[#1A1A2E]">
@@ -3381,7 +3408,7 @@ export default function GamePlayPage() {
                     : isVerbForms
                       ? (verbFormsNextLevel ? 'Selamat, Level Terbuka!' : 'Selamat, Verb Forms Selesai!')
                     : isArticleDash
-                      ? (articleDashNextLevel ? 'Selamat, Level Terbuka!' : 'Selamat, Article Dash Selesai!')
+                      ? (articleDashNextLevel ? 'Selamat, Level Terbuka!' : `Selamat, ${title} Selesai!`)
                     : isModalQuest
                       ? (modalQuestNextLevel ? 'Selamat, Level Terbuka!' : 'Selamat, Modal Quest Selesai!')
                     : isConditionalRun

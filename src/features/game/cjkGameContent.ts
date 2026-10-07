@@ -11,6 +11,7 @@ import { easyQuestions, hardQuestions, mediumQuestions, type ChoiceTuple } from 
 import { easySentences, hardSentences, mediumSentences, type SentenceTuple } from './mandarin/sentences';
 import { easyVocab, hardVocab, mediumVocab, type VocabTuple } from './mandarin/vocab';
 import * as ja from './japanese';
+import { japaneseClauseConnectQuestions, japanesePrepositionPathQuestions, mandarinClauseConnectQuestions, mandarinPrepositionPathQuestions, type BlankChoiceQuestion } from './connectorBanks';
 
 type LevelLabel = 'Easy' | 'Medium' | 'Hard';
 type ByLevel<T> = Record<LevelLabel, T[]>;
@@ -29,6 +30,8 @@ export type CjkGameContent = {
   modalQuestQuestions?: ChoiceQuestion[];
   conditionalRunQuestions?: ChoiceQuestion[];
   errorFixQuestions?: ReturnType<typeof buildErrorFix>;
+  prepositionPathQuestions?: BlankChoiceQuestion[];
+  clauseConnectQuestions?: BlankChoiceQuestion[];
   fillerCharacters: string;
 };
 
@@ -185,6 +188,8 @@ export const mandarinGameContent: CjkGameContent = {
   modalQuestQuestions: buildChoices({ Easy: easyModals, Medium: mediumModals, Hard: hardModals }),
   conditionalRunQuestions: buildChoices({ Easy: easyConditionals, Medium: mediumConditionals, Hard: hardConditionals }),
   errorFixQuestions: buildErrorFix({ Easy: easyErrors, Medium: mediumErrors, Hard: hardErrors }),
+  prepositionPathQuestions: mandarinPrepositionPathQuestions,
+  clauseConnectQuestions: mandarinClauseConnectQuestions,
 };
 
 export const japaneseGameContent: CjkGameContent = {
@@ -197,4 +202,6 @@ export const japaneseGameContent: CjkGameContent = {
   modalQuestQuestions: buildChoices({ Easy: ja.easyExpressions, Medium: ja.mediumExpressions, Hard: ja.hardExpressions }),
   conditionalRunQuestions: buildChoices({ Easy: ja.easyConditionals, Medium: ja.mediumConditionals, Hard: ja.hardConditionals }),
   errorFixQuestions: buildErrorFix({ Easy: ja.easyErrors, Medium: ja.mediumErrors, Hard: ja.hardErrors }),
+  prepositionPathQuestions: japanesePrepositionPathQuestions,
+  clauseConnectQuestions: japaneseClauseConnectQuestions,
 };

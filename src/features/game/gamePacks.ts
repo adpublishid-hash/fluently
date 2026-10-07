@@ -18,6 +18,7 @@ import {
 } from './arabicGameContent';
 import { japaneseGameContent, mandarinGameContent, type CjkGameContent } from './cjkGameContent';
 import { arabicGameUi, cjkGameUi, type GameUiCopy } from './gameUiCopy';
+import { arabicClauseConnectQuestions, arabicPrepositionPathQuestions } from './connectorBanks';
 
 type ModeCopy = Record<string, { title: string; subtitle: string; status: string }>;
 
@@ -34,6 +35,8 @@ export type GameBanks = {
   conditionalRunQuestions?: unknown[];
   questionBuilderQuestions?: unknown[];
   errorFixQuestions?: unknown[];
+  prepositionPathQuestions?: unknown[];
+  clauseConnectQuestions?: unknown[];
 };
 
 export type GamePack = {
@@ -78,6 +81,8 @@ const arabicPack: GamePack = {
     conditionalRunQuestions: arabicConditionalRunQuestions,
     questionBuilderQuestions: arabicQuestionBuilderQuestions,
     errorFixQuestions: arabicErrorFixQuestions,
+    prepositionPathQuestions: arabicPrepositionPathQuestions,
+    clauseConnectQuestions: arabicClauseConnectQuestions,
   },
 };
 
@@ -161,6 +166,8 @@ function cjkPack(language: 'Mandarin' | 'Japanese', content: CjkGameContent, cop
       modalQuestQuestions: content.modalQuestQuestions,
       conditionalRunQuestions: content.conditionalRunQuestions,
       errorFixQuestions: content.errorFixQuestions,
+      prepositionPathQuestions: content.prepositionPathQuestions,
+      clauseConnectQuestions: content.clauseConnectQuestions,
     },
   };
 }
@@ -183,11 +190,11 @@ const mandarinPack = cjkPack('Mandarin', mandarinGameContent, {
   extraModeCopy: {
     'verb-forms': { title: 'Complement Master', subtitle: 'Pilih komplemen hasil, potensial, dan arah: 听懂, 听不懂, 想起来.', status: 'Komplemen' },
     'article-dash': { title: 'Liangci Dash', subtitle: 'Pilih kata bantu bilangan: 本, 张, 只, 条, 件, dan lainnya.', status: '量词' },
-    'preposition-path': { title: 'Mandarin Word Order Path', subtitle: 'Susun kalimat dengan urutan waktu, tempat, dan cara yang benar.', status: 'Urutan' },
+    'preposition-path': { title: 'Coverb Path', subtitle: 'Pilih 在, 从, 往, 给, 对, 跟, 离 dan kata posisi yang tepat.', status: 'Jiècí' },
     'modal-quest': { title: 'Mandarin Modal Quest', subtitle: 'Bedakan 会, 能, 可以, 想, 应该, 得 dalam kalimat.', status: 'Néngyuàn' },
     'conditional-run': { title: 'Mandarin Conditional Run', subtitle: 'Bangun kalimat syarat: 如果…就, 只要…就, 只有…才, 即使…也.', status: 'Syarat' },
     'error-fix': { title: 'Mandarin Error Fix', subtitle: 'Temukan versi kalimat Mandarin yang benar.', status: 'Koreksi' },
-    'clause-connect': { title: 'Mandarin Clause Connect', subtitle: 'Hubungkan klausa dengan 因为, 虽然, 不但, dan lainnya.', status: 'Connect' },
+    'clause-connect': { title: 'Mandarin Clause Connect', subtitle: 'Hubungkan klausa dengan 因为…所以, 虽然…但是, 不但…而且, dan 的.', status: 'Connect' },
     'grammar-mix': { title: 'Mandarin Grammar Mix', subtitle: 'Campuran yǔfǎ Mandarin untuk review cepat.', status: 'Mixed' },
   },
   ui: cjkGameUi({
@@ -210,6 +217,11 @@ const mandarinPack = cjkPack('Mandarin', mandarinGameContent, {
       modalLevels: ['会 / 能 / 想', '必须 / 敢 / 可能', '不得不 / 值得'],
       conditionalLevels: ['如果 / 一…就', '只要 / 只有 / 即使', '要不是 / 既然'],
       questionLevels: ['什么 / 哪儿 / 吗', '怎么 / 为什么', 'retoris & tak tentu'],
+      blankModes: {
+        'preposition-path': { chip: 'Pilihan jiècí', rule: '在 / 从 / 往 / 给 / 对 / 离', prompt: 'Pilih coverb atau kata posisi yang tepat:', slotText: 'Isi bagian kosong dengan jiècí yang benar.', levels: ['在 / 从 / 上 / 里', '对 / 向 / 为了', '根据 / 随着 / 通过'] },
+        'clause-connect': { chip: 'Pilihan penghubung', rule: '因为 / 虽然 / 不但 / 的', prompt: 'Pilih kata penghubung Mandarin yang tepat:', slotText: 'Isi bagian kosong dengan penghubung yang benar.', levels: ['因为 / 但是 / 还是', '不但 / 而是 / 于是', '然而 / 既然 / 何况'] },
+        'grammar-mix': { chip: 'Campuran yǔfǎ', rule: 'aspek · liangci · modal · syarat', prompt: 'Lengkapi kalimat Mandarin dengan pilihan yang tepat:', slotText: 'Campuran semua game grammar Mandarin.', levels: ['dasar', 'harian', 'lanjut'] },
+      },
     },
   }),
 });
@@ -232,11 +244,11 @@ const japanesePack = cjkPack('Japanese', japaneseGameContent, {
   extraModeCopy: {
     'verb-forms': { title: 'Conjugation Master', subtitle: 'Ubah kata kerja kamus ke bentuk ます, て, ない, potensial, pasif, dan kausatif.', status: 'Katsuyou' },
     'article-dash': { title: 'Joshi Dash', subtitle: 'Pilih partikel: は, が, を, に, で, sampai に対して dan によると.', status: '助詞' },
-    'preposition-path': { title: 'Japanese Word Order Path', subtitle: 'Susun kalimat Jepang dengan urutan partikel yang benar.', status: 'Urutan' },
+    'preposition-path': { title: 'Position Path', subtitle: 'Pilih kata posisi dan arah: 上, 下, 中, 前, 隣, 間, sampai 沿いに dan 越しに.', status: 'Ichi' },
     'modal-quest': { title: 'Japanese Expression Quest', subtitle: 'Bedakan たい, てもいい, なければならない, そうだ, はず, べき.', status: 'Hyougen' },
     'conditional-run': { title: 'Japanese Conditional Run', subtitle: 'Pilih と, ば, たら, なら, ても, dan のに yang tepat.', status: 'Jouken' },
     'error-fix': { title: 'Japanese Error Fix', subtitle: 'Temukan versi kalimat Jepang yang benar.', status: 'Koreksi' },
-    'clause-connect': { title: 'Japanese Clause Connect', subtitle: 'Hubungkan klausa dengan から, のに, ながら, dan lainnya.', status: 'Connect' },
+    'clause-connect': { title: 'Japanese Clause Connect', subtitle: 'Hubungkan klausa dengan から, ので, のに, ながら, それで, dan lainnya.', status: 'Connect' },
     'grammar-mix': { title: 'Japanese Grammar Mix', subtitle: 'Campuran bunpou Jepang untuk review cepat.', status: 'Mixed' },
   },
   ui: cjkGameUi({
@@ -264,6 +276,11 @@ const japanesePack = cjkPack('Japanese', japaneseGameContent, {
       conditionalLevels: ['と / ば / たら', 'ても / のに / さえ', 'ものなら / 限り'],
       questionLevels: ['何 / どこ / だれ', 'どれ / どの / どう', 'tak langsung'],
       errorLevels: ['partikel dasar', 'bentuk kata kerja', 'keigo & pola'],
+      blankModes: {
+        'preposition-path': { chip: 'Pilihan posisi', rule: '上 / 下 / 中 / 前 / 隣 / 間', prompt: 'Pilih kata posisi atau arah yang tepat:', slotText: 'Isi bagian kosong dengan kata posisi yang benar.', levels: ['上 / 下 / 中 / 前', '奥 / 向かい / 手前', '沿いに / 越しに'] },
+        'clause-connect': { chip: 'Pilihan penghubung', rule: 'から / けど / て / ながら', prompt: 'Pilih penghubung Jepang yang tepat:', slotText: 'Isi bagian kosong dengan penghubung yang benar.', levels: ['から / けど / て', 'のに / それで / ため', 'ものの / からこそ'] },
+        'grammar-mix': { chip: 'Campuran bunpou', rule: 'bentuk · partikel · ungkapan · syarat', prompt: 'Lengkapi kalimat Jepang dengan pilihan yang tepat:', slotText: 'Campuran semua game grammar Jepang.', levels: ['dasar', 'harian', 'lanjut'] },
+      },
     },
   }),
 });

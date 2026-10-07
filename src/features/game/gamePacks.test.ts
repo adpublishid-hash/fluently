@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { getGamePack, isModeSupported, normalizeTypedAnswer } from './gamePacks';
+import * as connectors from './connectorBanks';
 import { japaneseGameContent, mandarinGameContent } from './cjkGameContent';
 import {
   arabicArticleDashQuestions,
@@ -286,5 +287,63 @@ describe('game packs', () => {
   it('accepts pinyin without tone marks', () => {
     expect(normalizeTypedAnswer(' Píngguǒ ')).toBe(normalizeTypedAnswer('pingguo'));
     expect(normalizeTypedAnswer('gyuu nyuu')).toBe('gyuunyuu');
+  });
+});
+
+const connectorBanks = {
+  englishPreposition: connectors.englishPrepositionPathQuestions,
+  englishClause: connectors.englishClauseConnectQuestions,
+  arabicPreposition: connectors.arabicPrepositionPathQuestions,
+  arabicClause: connectors.arabicClauseConnectQuestions,
+  mandarinPreposition: connectors.mandarinPrepositionPathQuestions,
+  mandarinClause: connectors.mandarinClauseConnectQuestions,
+  japanesePreposition: connectors.japanesePrepositionPathQuestions,
+  japaneseClause: connectors.japaneseClauseConnectQuestions,
+};
+
+describe('Preposition Path and Clause Connect banks', () => {
+  it.each(Object.entries(connectorBanks))('%s has 30 unique, answerable one-blank questions per level', (_, bank) => {
+    ['Easy', 'Medium', 'Hard'].forEach((level) => {
+      const items = bank.filter((item) => item.level === level);
+      expect(items, level).toHaveLength(30);
+      expect(new Set(items.map((item) => `${item.prompt}|${item.translation}`)).size, level).toBe(30);
+      items.forEach((item) => {
+        expect(item.prompt.split('____'), item.prompt).toHaveLength(2);
+        expect(item.options, item.prompt).toContain(item.answer);
+        expect(new Set(item.options).size, item.prompt).toBe(4);
+        expect(item.rule.length).toBeGreaterThan(0);
+      });
+    });
+  });
+
+  it('does not always place the answer first', () => {
+    Object.values(connectorBanks).forEach((bank) => {
+      expect(bank.filter((item) => item.options[0] === item.answer).length / bank.length).toBeLessThan(0.4);
+    });
+  });
+
+  it('is served by every language pack', () => {
+    ['Arabic', 'Mandarin', 'Japanese'].forEach((language) => {
+      const banks = getGamePack(language)?.banks;
+      expect(banks?.prepositionPathQuestions, language).toHaveLength(90);
+      expect(banks?.clauseConnectQuestions, language).toHaveLength(90);
+    });
+  });
+});
+
+describe('Grammar Mix', () => {
+  it.each(['Arabic', 'Mandarin', 'Japanese'])('mixes 30 unique fill-in questions per level for %s', (language) => {
+    const banks = getGamePack(language)!.banks;
+    const mix = connectors.buildGrammarMix([banks.tenseMasterQuestions!, banks.articleDashQuestions!, banks.modalQuestQuestions!, banks.conditionalRunQuestions!, banks.questionBuilderQuestions!, banks.prepositionPathQuestions!, banks.clauseConnectQuestions!]);
+    ['Easy', 'Medium', 'Hard'].forEach((level) => {
+      const items = mix.filter((item) => item.level === level);
+      expect(items).toHaveLength(30);
+      expect(new Set(items.map((item) => `${item.prompt}|${item.translation}`)).size).toBe(30);
+      expect(new Set(items.map((item) => item.type)).size).toBeGreaterThan(5);
+      items.forEach((item) => {
+        expect(item.prompt).toContain('____');
+        expect(item.options).toContain(item.answer);
+      });
+    });
   });
 });
