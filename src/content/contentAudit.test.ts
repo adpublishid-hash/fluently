@@ -23,9 +23,10 @@ describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] 
     expect(audit.answerFirstRatio).toBeLessThan(0.5);
   });
 
-  // Guards against shared drills flooding every lesson of a level again.
+  // Guards against shared drills flooding every lesson of a level again
+  // (every level is at 84% or more; this leaves a small margin).
   it('keeps most practice questions varied across lessons', () => {
-    expect(audit.uniqueQuestionRatio).toBeGreaterThan(0.35);
+    expect(audit.uniqueQuestionRatio).toBeGreaterThan(0.8);
   });
 });
 
