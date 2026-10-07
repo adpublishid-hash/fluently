@@ -147,6 +147,50 @@ function sentencesFor(level: FoundationLevel, theme: string): ArabicSentence[] {
   return theme === REVIEW ? reviewSentences(level) : getFoundationSentences(level, theme);
 }
 
+const PUNCTUATION = /[.؟?!،,]+$/;
+const stripPunctuation = (text: string) => text.replace(PUNCTUATION, '');
+const tokensOf = (sentence: ArabicSentence) => stripPunctuation(sentence.arabic).split(' ').filter(Boolean);
+
+/** Sentence with its longest word blanked out, for Kitabah cloze questions. */
+function clozeOf(sentence: ArabicSentence) {
+  const tokens = sentence.arabic.split(' ');
+  if (tokens.length < 2) return null;
+  let index = 0;
+  tokens.forEach((token, position) => {
+    if (stripPunctuation(token).length > stripPunctuation(tokens[index]).length) index = position;
+  });
+  const answer = stripPunctuation(tokens[index]);
+  const trailing = tokens[index].slice(answer.length);
+  // Isolate the sentence as right-to-left so the neutral blank stays in its place inside a Latin question.
+  const prompt = `\u2067${tokens.map((token, position) => (position === index ? `____${trailing}` : token)).join(' ')}\u2069`;
+  return { prompt, answer };
+}
+
+/** Three wrong word orders of the same words, for Kitabah and Nahwu ordering questions. */
+function scrambledOrders(sentence: ArabicSentence, random: () => number) {
+  const tokens = tokensOf(sentence);
+  if (tokens.length < 3) return [];
+  const answer = tokens.join(' ');
+  const orders = new Set<string>();
+  for (let attempt = 0; attempt < 30 && orders.size < 3; attempt += 1) {
+    const order = seededShuffle(tokens, random).join(' ');
+    if (order !== answer) orders.add(order);
+  }
+  return [...orders];
+}
+
+/**
+ * Each skill asks its own kind of question, so lessons that share a theme
+ * (Kalam, Istima', Qira'ah and Kitabah lesson 1 all use the greeting set)
+ * no longer repeat the same items:
+ * - Mufradat: word meaning both ways
+ * - Qira'ah: read a sentence (meaning, recognise it, read it aloud in Latin)
+ * - Istima': hear the transliteration (meaning, dictation, single words)
+ * - Kalam: say a word or sentence, continue the dialogue
+ * - Kitabah: fill the missing word, put words in order, spell what you hear
+ * - Nahwu: the lesson's pattern and rule, completing and ordering its examples
+ * - Makharij: transliteration and the sound focus of each drill word
+ */
 function buildPractice(
   level: FoundationLevel,
   skillId: ArabicSkillId,
@@ -155,27 +199,91 @@ function buildPractice(
   sentences: ArabicSentence[],
   grammarPoints: ArabicGrammarPoint[],
   point?: ArabicGrammarPoint,
+  drillFocus?: { focus: string; all: string[] },
 ): ChoiceQuestion[] {
   const random = seededRandom(hashSeed('arabic-foundation', level, skillId, lessonId));
   const levelWords = getFoundationLevelWords(level);
   const levelSentences = getFoundationLevelSentences(level);
   const questions: Array<ChoiceQuestion | null> = [];
+  const ask = (question: string, answer: string, pool: string[]) => questions.push(buildChoiceQuestion(question, answer, pool, random));
+  const pick = <T,>(items: T[], count: number) => seededShuffle(items, random).slice(0, count);
+  // Two word questions in one lesson use different words, so no word is asked twice.
+  const wordOrder = seededShuffle(words, random);
+  const firstWords = wordOrder.slice(0, 3);
+  const secondWords = wordOrder.length >= 6 ? wordOrder.slice(3, 6) : wordOrder.slice(0, 3);
 
-  seededShuffle(words, random).slice(0, 4).forEach((word) => {
-    questions.push(buildChoiceQuestion(`Apa arti「${word.arabic}」?`, word.meaning, levelWords.map((item) => item.meaning), random));
-  });
-  seededShuffle(words, random).slice(0, 3).forEach((word) => {
-    questions.push(buildChoiceQuestion(`Kata Arab untuk "${word.meaning}" adalah...`, word.arabic, levelWords.map((item) => item.arabic), random));
-  });
-  seededShuffle(sentences, random).slice(0, 3).forEach((sentence) => {
-    questions.push(buildChoiceQuestion(`Arti kalimat「${sentence.arabic}」adalah...`, sentence.meaning, levelSentences.map((item) => item.meaning), random));
-  });
-  if (point && !point.pattern.startsWith('Review')) {
-    questions.push(buildChoiceQuestion(`Pola "${point.pattern}" dipakai untuk...`, point.meaning, grammarPoints.map((item) => item.meaning), random));
+  const wordMeanings = levelWords.map((item) => item.meaning);
+  const wordArabic = levelWords.map((item) => item.arabic);
+  const wordLatin = levelWords.map((item) => item.transliteration);
+  const sentenceMeanings = levelSentences.map((item) => item.meaning);
+  const sentenceArabic = levelSentences.map((item) => item.arabic);
+  const sentenceLatin = levelSentences.map((item) => item.transliteration);
+  const levelTokens = [...new Set(levelSentences.flatMap(tokensOf))];
+
+  switch (skillId) {
+    case 'mufradat':
+      pick(words, 6).forEach((word) => ask(`Apa arti「${word.arabic}」?`, word.meaning, wordMeanings));
+      pick(words, 6).forEach((word) => ask(`Kata Arab untuk "${word.meaning}" adalah...`, word.arabic, wordArabic));
+      break;
+    case 'qiraah':
+      pick(sentences, 3).forEach((sentence) => ask(`Arti kalimat「${sentence.arabic}」adalah...`, sentence.meaning, sentenceMeanings));
+      pick(sentences, 3).forEach((sentence) => ask(`Kalimat Arab yang berarti "${sentence.meaning}" adalah...`, sentence.arabic, sentenceArabic));
+      pick(sentences, 3).forEach((sentence) => ask(`Bacaan latin yang tepat untuk「${sentence.arabic}」adalah...`, sentence.transliteration, sentenceLatin));
+      firstWords.forEach((word) => ask(`Dalam bacaan, kata「${word.arabic}」berarti...`, word.meaning, wordMeanings));
+      break;
+    case 'istima':
+      pick(sentences, 3).forEach((sentence) => ask(`Kamu mendengar: "${sentence.transliteration}". Artinya...`, sentence.meaning, sentenceMeanings));
+      pick(sentences, 3).forEach((sentence) => ask(`Tulisan Arab untuk kalimat yang terdengar "${sentence.transliteration}" adalah...`, sentence.arabic, sentenceArabic));
+      firstWords.forEach((word) => ask(`Kata yang terdengar "${word.transliteration}" artinya...`, word.meaning, wordMeanings));
+      secondWords.forEach((word) => ask(`Kamu mendengar kata "${word.transliteration}". Tulisan Arabnya adalah...`, word.arabic, wordArabic));
+      break;
+    case 'kalam':
+      firstWords.forEach((word) => ask(`Bagaimana mengucapkan "${word.meaning}" dalam bahasa Arab?`, word.transliteration, wordLatin));
+      pick(sentences, 3).forEach((sentence) => ask(`Ucapan yang tepat untuk menyampaikan "${sentence.meaning}" adalah...`, sentence.transliteration, sentenceLatin));
+      sentences.slice(0, -1).forEach((sentence, index) => {
+        const next = sentences[index + 1];
+        ask(`Dalam dialog, setelah「${sentence.arabic}」kalimat berikutnya adalah...`, next.arabic, sentenceArabic.filter((item) => item !== sentence.arabic));
+      });
+      secondWords.forEach((word) => ask(`Saat berbicara, kata「${word.arabic}」dipakai untuk menyatakan...`, word.meaning, wordMeanings));
+      break;
+    case 'kitabah':
+      pick(sentences, 3).forEach((sentence) => {
+        const cloze = clozeOf(sentence);
+        if (cloze) ask(`Lengkapi tulisan "${sentence.meaning}":「${cloze.prompt}」`, cloze.answer, levelTokens);
+      });
+      pick(sentences, 3).forEach((sentence) => {
+        const orders = scrambledOrders(sentence, random);
+        if (orders.length) ask(`Susunan kata yang benar untuk "${sentence.meaning}" adalah...`, tokensOf(sentence).join(' '), orders);
+      });
+      firstWords.forEach((word) => ask(`Tulisan Arab untuk bunyi "${word.transliteration}" (${word.meaning}) adalah...`, word.arabic, wordArabic));
+      secondWords.forEach((word) => ask(`Tulis kata "${word.meaning}" dengan huruf Arab:`, word.arabic, wordArabic));
+      break;
+    case 'grammar': {
+      if (point && !point.pattern.startsWith('Review')) {
+        ask(`Pola "${point.pattern}" dipakai untuk...`, point.meaning, grammarPoints.map((item) => item.meaning));
+        ask(`Rumus pola "${point.pattern}" adalah...`, point.formation, grammarPoints.map((item) => item.formation));
+      }
+      sentences.forEach((sentence) => {
+        const cloze = clozeOf(sentence);
+        if (cloze) ask(`Lengkapi contoh nahwu "${sentence.meaning}":「${cloze.prompt}」`, cloze.answer, levelTokens);
+      });
+      sentences.forEach((sentence) => ask(`Arti contoh nahwu「${sentence.arabic}」adalah...`, sentence.meaning, [...sentenceMeanings, ...grammarPoints.flatMap((item) => item.examples.map((example) => example.meaning))]));
+      sentences.forEach((sentence) => {
+        const orders = scrambledOrders(sentence, random);
+        if (orders.length) ask(`Urutan kata yang benar untuk contoh "${sentence.meaning}" adalah...`, tokensOf(sentence).join(' '), orders);
+      });
+      secondWords.forEach((word) => ask(`Kosakata pendukung nahwu: arti「${word.arabic}」adalah...`, word.meaning, wordMeanings));
+      break;
+    }
+    case 'pronunciation':
+      pick(words, 4).forEach((word) => ask(`Transliterasi yang tepat untuk「${word.arabic}」adalah...`, word.transliteration, wordLatin));
+      pick(words, 3).forEach((word) => ask(`Kata Arab yang dibaca "${word.transliteration}" adalah...`, word.arabic, wordArabic));
+      if (drillFocus) pick(words, 2).forEach((word) => ask(`Saat melafalkan「${word.arabic}」, bunyi yang dilatih adalah...`, drillFocus.focus, drillFocus.all));
+      pick(words, 3).forEach((word) => ask(`Kata latihan「${word.arabic}」artinya...`, word.meaning, wordMeanings));
+      break;
+    default:
+      break;
   }
-  seededShuffle(words, random).slice(0, 2).forEach((word) => {
-    questions.push(buildChoiceQuestion(`Transliterasi yang tepat untuk「${word.arabic}」adalah...`, word.transliteration, levelWords.map((item) => item.transliteration), random));
-  });
 
   return questions.filter((item): item is ChoiceQuestion => item !== null).slice(0, 12);
 }
@@ -196,6 +304,7 @@ export function getFoundationLesson(skillId: ArabicSkillId, lessonId: number, le
   let patterns: FoundationLesson['patterns'];
   let explanation: string[];
   let point: ArabicGrammarPoint | undefined;
+  let drillFocus: { focus: string; all: string[] } | undefined;
 
   if (skillId === 'grammar') {
     point = getFoundationGrammarPoint(grammarPoints, lessonId, info.label);
@@ -210,6 +319,7 @@ export function getFoundationLesson(skillId: ArabicSkillId, lessonId: number, le
   } else if (skillId === 'pronunciation') {
     const drill = drills[lessonId - 1];
     if (drill) {
+      drillFocus = { focus: drill.focus, all: drills.map((item) => item.focus) };
       words = drill.words;
       sentences = drill.words;
       patterns = drill.words.map((word) => ({ label: drill.focus, ...word }));
@@ -246,7 +356,7 @@ export function getFoundationLesson(skillId: ArabicSkillId, lessonId: number, le
     vocabulary: words,
     examples: sentences,
     productionSteps: ['Dengarkan contoh TTS', 'Tirukan dengan harakat lengkap', 'Ganti kata kunci dengan kosakata lesson', 'Buat kalimat atau dialog sendiri'],
-    practice: buildPractice(level, skillId, lessonId, words, sentences, grammarPoints, point),
+    practice: buildPractice(level, skillId, lessonId, words, sentences, grammarPoints, point, drillFocus),
     task: skillTask[skillId](topic),
   };
 }
