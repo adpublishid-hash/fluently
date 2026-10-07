@@ -17,6 +17,7 @@ import {
   arabicWordBank,
 } from './arabicGameContent';
 import { japaneseGameContent, mandarinGameContent, type CjkGameContent } from './cjkGameContent';
+import { arabicGameUi, cjkGameUi, type GameUiCopy } from './gameUiCopy';
 
 type ModeCopy = Record<string, { title: string; subtitle: string; status: string }>;
 
@@ -49,6 +50,7 @@ export type GamePack = {
   /** Typing games also accept pinyin/romaji (tone marks optional). */
   acceptsRomanization: boolean;
   fillerCharacters?: string;
+  ui: GameUiCopy;
   banks: GameBanks;
 };
 
@@ -63,6 +65,7 @@ const arabicPack: GamePack = {
   difficultyCopy: arabicGameDifficultyCopy,
   supportedModes: null,
   acceptsRomanization: false,
+  ui: arabicGameUi,
   banks: {
     wordBank: arabicWordBank,
     listenTapQuestions: arabicListenTapQuestions,
@@ -83,11 +86,26 @@ const CJK_MODES = new Set([
   'listen-tap', 'memory-card', 'find-words', 'speed-quiz', 'typing-sprint', 'boss-challenge',
 ]);
 
-function cjkPack(
-  language: 'Mandarin' | 'Japanese',
-  content: CjkGameContent,
-  copy: { name: string; speechLang: string; accent: string; accentSoft: string; vocabulary: string; grammar: string; listening: string; writing: string; speaking: string; tense: [string, string]; script: string; romanization: string },
-): GamePack {
+type CjkCopy = {
+  name: string;
+  speechLang: string;
+  accent: string;
+  accentSoft: string;
+  vocabulary: string;
+  grammar: string;
+  listening: string;
+  writing: string;
+  speaking: string;
+  tense: [string, string];
+  script: string;
+  romanization: string;
+  ui: GameUiCopy;
+  /** Modes beyond CJK_MODES that this language has banks for; null means every mode. */
+  supportedModes: Set<string> | null;
+  extraModeCopy?: ModeCopy;
+};
+
+function cjkPack(language: 'Mandarin' | 'Japanese', content: CjkGameContent, copy: CjkCopy): GamePack {
   const { name } = copy;
   return {
     language,
@@ -125,15 +143,17 @@ function cjkPack(
       crossword: { title: `${name} Typing Sprint`, subtitle: `Ketik kata dalam ${copy.romanization} atau ${copy.script}.`, status: copy.writing },
       'boss-challenge': { title: `${name} Boss Challenge`, subtitle: 'Mode cepat dengan tekanan waktu dan reward lebih besar.', status: 'Hard' },
       'clan-battle': { title: `${name} Boss Challenge`, subtitle: 'Mode cepat dengan tekanan waktu dan reward lebih besar.', status: 'Hard' },
+      ...copy.extraModeCopy,
     },
     difficultyCopy: {
       easy: { title: `Easy ${name}`, subtitle: 'Kosakata dan kalimat dasar.' },
       medium: { title: `Medium ${name}`, subtitle: 'Kosakata harian dan pola kalimat umum.' },
       hard: { title: `Hard ${name}`, subtitle: 'Kosakata abstrak dan struktur lebih panjang.' },
     },
-    supportedModes: CJK_MODES,
+    supportedModes: copy.supportedModes,
     acceptsRomanization: true,
     fillerCharacters: content.fillerCharacters,
+    ui: copy.ui,
     banks: {
       wordBank: content.wordBank,
       listenTapQuestions: content.listenTapQuestions,
@@ -141,6 +161,11 @@ function cjkPack(
       sentenceBuilderQuestions: content.sentenceBuilderQuestions,
       tenseMasterQuestions: content.tenseMasterQuestions,
       questionBuilderQuestions: content.questionBuilderQuestions,
+      verbFormsQuestions: content.verbFormsQuestions,
+      articleDashQuestions: content.articleDashQuestions,
+      modalQuestQuestions: content.modalQuestQuestions,
+      conditionalRunQuestions: content.conditionalRunQuestions,
+      errorFixQuestions: content.errorFixQuestions,
     },
   };
 }
@@ -158,6 +183,40 @@ const mandarinPack = cjkPack('Mandarin', mandarinGameContent, {
   tense: ['Aspect Master', 'Pilih 了, 过, 着, 在, dan komplemen yang tepat.'],
   script: 'Hanzi',
   romanization: 'pinyin',
+  // Mandarin has its own bank for every grammar mode, like English and Arabic.
+  supportedModes: null,
+  extraModeCopy: {
+    'verb-forms': { title: 'Complement Master', subtitle: 'Pilih komplemen hasil, potensial, dan arah: 听懂, 听不懂, 想起来.', status: 'Komplemen' },
+    'article-dash': { title: 'Liangci Dash', subtitle: 'Pilih kata bantu bilangan: 本, 张, 只, 条, 件, dan lainnya.', status: '量词' },
+    'preposition-path': { title: 'Mandarin Word Order Path', subtitle: 'Susun kalimat dengan urutan waktu, tempat, dan cara yang benar.', status: 'Urutan' },
+    'modal-quest': { title: 'Mandarin Modal Quest', subtitle: 'Bedakan 会, 能, 可以, 想, 应该, 得 dalam kalimat.', status: 'Néngyuàn' },
+    'conditional-run': { title: 'Mandarin Conditional Run', subtitle: 'Bangun kalimat syarat: 如果…就, 只要…就, 只有…才, 即使…也.', status: 'Syarat' },
+    'error-fix': { title: 'Mandarin Error Fix', subtitle: 'Temukan versi kalimat Mandarin yang benar.', status: 'Koreksi' },
+    'clause-connect': { title: 'Mandarin Clause Connect', subtitle: 'Hubungkan klausa dengan 因为, 虽然, 不但, dan lainnya.', status: 'Connect' },
+    'grammar-mix': { title: 'Mandarin Grammar Mix', subtitle: 'Campuran yǔfǎ Mandarin untuk review cepat.', status: 'Mixed' },
+  },
+  ui: cjkGameUi({
+    name: 'Mandarin',
+    textLang: 'zh-CN',
+    script: 'Hanzi',
+    romanization: 'pinyin',
+    tensePrompt: 'Lengkapi kalimat dengan aspek atau komplemen yang tepat:',
+    tenseLevels: ['Aspek dasar', 'Komplemen', 'Pola lanjutan'],
+    verbFormsPrompt: 'Pilih bentuk komplemen yang sesuai artinya:',
+    verbFormsLevels: ['Hasil', 'Potensial', 'Arah'],
+    modalChips: ['会', '能', '可以', '想', '应该', '得'],
+    questionParts: ['subjek', 'kata kerja', 'kata tanya', 'partikel'],
+    extra: {
+      articleChip: 'Pilihan liangci',
+      articleRule: 'bilangan + liangci + benda',
+      articlePrompt: 'Pilih kata bantu bilangan (liangci) yang tepat:',
+      articleSlotText: 'Isi bagian kosong dengan liangci yang benar.',
+      articleLevels: ['benda sehari-hari', 'wadah & frekuensi', 'abstrak'],
+      modalLevels: ['会 / 能 / 想', '必须 / 敢 / 可能', '不得不 / 值得'],
+      conditionalLevels: ['如果 / 一…就', '只要 / 只有 / 即使', '要不是 / 既然'],
+      questionLevels: ['什么 / 哪儿 / 吗', '怎么 / 为什么', 'retoris & tak tentu'],
+    },
+  }),
 });
 
 const japanesePack = cjkPack('Japanese', japaneseGameContent, {
@@ -173,6 +232,20 @@ const japanesePack = cjkPack('Japanese', japaneseGameContent, {
   tense: ['Verb Form Master', 'Pilih bentuk ます, た, て, ない, pasif, dan kausatif.'],
   script: 'Kana & Kanji',
   romanization: 'romaji',
+  supportedModes: CJK_MODES,
+  ui: cjkGameUi({
+    name: 'Jepang',
+    textLang: 'ja',
+    script: 'Kana & Kanji',
+    romanization: 'romaji',
+    tensePrompt: 'Lengkapi kalimat dengan bentuk kata kerja yang tepat:',
+    tenseLevels: ['Bentuk ます', 'て / た / ない', 'Pasif & kausatif'],
+    verbFormsPrompt: 'Pilih bentuk kata kerja yang tepat:',
+    verbFormsLevels: ['ます', 'て / た', 'Lanjutan'],
+    modalChips: ['できる', 'たい', 'てもいい', 'なければならない', 'ほうがいい', 'でしょう'],
+    questionParts: ['topik', 'kata tanya', 'です', 'か'],
+    extra: { findTitle: 'Find Japanese Words', wordMatchCheck: 'Cek Japanese Match' },
+  }),
 });
 
 export function getGamePack(targetLanguage?: string): GamePack | null {

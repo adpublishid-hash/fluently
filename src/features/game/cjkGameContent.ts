@@ -1,44 +1,57 @@
 // Game banks for Mandarin and Japanese, shaped like arabicGameContent so the
 // arcade can swap them in by target language.
 import { hashSeed, seededRandom, seededShuffle } from '../../utils/quiz';
+import { easyAspect, hardAspect, mediumAspect, type AspectTuple } from './mandarin/aspect';
+import { complementForm, contrastForms, easyComplements, hardComplements, mediumComplements, type ComplementForm, type ComplementTuple } from './mandarin/complements';
+import { easyConditionals, hardConditionals, mediumConditionals } from './mandarin/conditionals';
+import { easyErrors, hardErrors, mediumErrors, type ErrorFixTuple } from './mandarin/errorFix';
+import { easyMeasureWords, hardMeasureWords, mediumMeasureWords } from './mandarin/measureWords';
+import { easyModals, hardModals, mediumModals } from './mandarin/modals';
+import { easyQuestions, hardQuestions, mediumQuestions, type ChoiceTuple } from './mandarin/questions';
+import { easySentences, hardSentences, mediumSentences, type SentenceTuple } from './mandarin/sentences';
+import { easyVocab, hardVocab, mediumVocab, type VocabTuple } from './mandarin/vocab';
 
 type LevelLabel = 'Easy' | 'Medium' | 'Hard';
-type VocabTuple = [word: string, reading: string, meaning: string, icon: string, color: string];
-type SentenceTuple = [prompt: string, tokens: string];
-type ChoiceTuple = [prompt: string, translation: string, answer: string, distractors: string[], label: string, rule: string];
+type ByLevel<T> = Record<LevelLabel, T[]>;
+
+type ChoiceQuestion = ReturnType<typeof choiceItem>;
 
 export type CjkGameContent = {
   wordBank: Array<{ word: string; answer: string; options: string[]; hint: string }>;
   listenTapQuestions: Array<{ word: string; answer: string; options: string[]; hint: string; level: LevelLabel }>;
   letterQuestQuestions: Array<{ word: string; icon: string; color: string; level: LevelLabel; letters: string[] }>;
   sentenceBuilderQuestions: Array<{ prompt: string; answer: string[]; words: string[]; level: LevelLabel }>;
-  tenseMasterQuestions: ReturnType<typeof choiceItem>[];
-  questionBuilderQuestions: ReturnType<typeof choiceItem>[];
+  tenseMasterQuestions: ChoiceQuestion[];
+  questionBuilderQuestions: ChoiceQuestion[];
+  verbFormsQuestions?: ReturnType<typeof buildComplements>;
+  articleDashQuestions?: ChoiceQuestion[];
+  modalQuestQuestions?: ChoiceQuestion[];
+  conditionalRunQuestions?: ChoiceQuestion[];
+  errorFixQuestions?: ReturnType<typeof buildErrorFix>;
   fillerCharacters: string;
 };
 
 const LEVELS: LevelLabel[] = ['Easy', 'Medium', 'Hard'];
 
-function rotate<T>(items: T[], by: number) {
-  return [...items.slice(by), ...items.slice(0, by)];
+/** Deterministic shuffle so every build serves the same, non-predictable option order. */
+function shuffleFor<T>(items: T[], ...seed: Array<string | number>) {
+  return seededShuffle(items, seededRandom(hashSeed('cjk-game', ...seed)));
 }
 
-function buildVocabBanks(vocab: Record<LevelLabel, VocabTuple[]>) {
+function buildVocabBanks(vocab: ByLevel<VocabTuple>) {
   const listenTapQuestions = LEVELS.flatMap((level) =>
-    vocab[level].map(([word, reading, meaning], index, source) => ({
-      word,
-      answer: meaning,
-      // Distractors come from neighbouring words; the arcade shuffles options when rendering.
-      options: rotate([meaning, ...rotate(source, index + 1).slice(0, 3).map((item) => item[2])], index % 4),
-      hint: reading,
-      level,
-    })),
+    vocab[level].map(([word, reading, meaning]) => {
+      const others = shuffleFor(vocab[level].filter((item) => item[2] !== meaning).map((item) => item[2]), 'listen', level, word);
+      return { word, answer: meaning, options: shuffleFor([meaning, ...others.slice(0, 3)], 'listen-options', level, word), hint: reading, level };
+    }),
   );
   const allCharacters = [...new Set(LEVELS.flatMap((level) => vocab[level].flatMap(([word]) => word.split(''))))];
   const letterQuestQuestions = LEVELS.flatMap((level) =>
     vocab[level].map(([word, , , icon, color], index) => {
-      const distractors = rotate(allCharacters.filter((character) => !word.includes(character)), (index * 7) % allCharacters.length);
-      const letters = seededShuffle([...word.split(''), ...distractors.slice(0, Math.max(6, 10 - word.length))], seededRandom(hashSeed(word, level, index)));
+      const distractors = shuffleFor(allCharacters.filter((character) => !word.includes(character)), 'letters', level, word);
+      let letters = shuffleFor([...word.split(''), ...distractors.slice(0, Math.max(6, 10 - word.length))], 'board', level, word, index);
+      // Never spell the word out in the first tiles.
+      if (letters.slice(0, word.length).join('') === word) letters = [...letters.slice(word.length), ...letters.slice(0, word.length)];
       return { word, icon, color, level, letters };
     }),
   );
@@ -50,136 +63,94 @@ function buildVocabBanks(vocab: Record<LevelLabel, VocabTuple[]>) {
   };
 }
 
-function buildSentences(sentences: Record<LevelLabel, SentenceTuple[]>) {
+function buildSentences(sentences: ByLevel<SentenceTuple>) {
   return LEVELS.flatMap((level) =>
-    sentences[level].map(([prompt, tokens], index) => {
+    sentences[level].map(([prompt, tokens]) => {
       const answer = tokens.split(' ');
-      return { prompt, answer, words: rotate([...answer].reverse(), index % answer.length), level };
+      let words = shuffleFor(answer, 'sentence', level, tokens);
+      // Never hand out the puzzle already solved.
+      for (let shift = 1; words.join(' ') === tokens && shift < answer.length; shift += 1) {
+        words = [...answer.slice(shift), ...answer.slice(0, shift)];
+      }
+      return { prompt, answer, words, level };
     }),
   );
 }
 
-function choiceItem([prompt, translation, answer, distractors, label, rule]: ChoiceTuple, level: LevelLabel, index: number) {
+function choiceItem([prompt, translation, answer, distractors, label, rule]: ChoiceTuple, level: LevelLabel, extra: { time?: string } = {}) {
   return {
     word: prompt,
     prompt,
     translation,
     answer,
-    options: rotate([answer, ...distractors].slice(0, 4), index % 4),
+    options: shuffleFor([answer, ...distractors].slice(0, 4), 'choice', level, prompt, translation),
     level,
     hint: translation,
     tense: label,
+    tone: label,
     type: label,
     formula: rule,
     rule,
+    ...extra,
   };
 }
 
-function buildChoices(items: Record<LevelLabel, ChoiceTuple[]>) {
-  return LEVELS.flatMap((level) => items[level].map((item, index) => choiceItem(item, level, index)));
+function buildChoices(items: ByLevel<ChoiceTuple>) {
+  return LEVELS.flatMap((level) => items[level].map((item) => choiceItem(item, level)));
 }
 
-const mandarinVocab: Record<LevelLabel, VocabTuple[]> = {
-  Easy: [
-    ['书', 'shū', 'Buku', '📘', '#2563EB'], ['笔', 'bǐ', 'Pulpen', '🖊️', '#0EA5E9'], ['水', 'shuǐ', 'Air', '💧', '#0284C7'],
-    ['茶', 'chá', 'Teh', '🍵', '#16A34A'], ['米饭', 'mǐfàn', 'Nasi', '🍚', '#CA8A04'], ['苹果', 'píngguǒ', 'Apel', '🍎', '#EF4444'],
-    ['猫', 'māo', 'Kucing', '🐱', '#FBBF24'], ['狗', 'gǒu', 'Anjing', '🐶', '#F59E0B'], ['鱼', 'yú', 'Ikan', '🐟', '#38BDF8'],
-    ['鸟', 'niǎo', 'Burung', '🐦', '#0EA5E9'], ['家', 'jiā', 'Rumah', '🏠', '#64748B'], ['学校', 'xuéxiào', 'Sekolah', '🏫', '#4FA3D1'],
-    ['老师', 'lǎoshī', 'Guru', '👩‍🏫', '#0EA5E9'], ['学生', 'xuésheng', 'Pelajar', '🎓', '#7C3AED'], ['朋友', 'péngyou', 'Teman', '🤝', '#10B981'],
-    ['太阳', 'tàiyáng', 'Matahari', '☀️', '#F59E0B'], ['月亮', 'yuèliang', 'Bulan', '🌙', '#A78BFA'], ['花', 'huā', 'Bunga', '🌸', '#FB7185'],
-    ['树', 'shù', 'Pohon', '🌳', '#166534'], ['车', 'chē', 'Mobil', '🚗', '#DC2626'], ['门', 'mén', 'Pintu', '🚪', '#92400E'],
-    ['手', 'shǒu', 'Tangan', '✋', '#F97316'], ['眼睛', 'yǎnjing', 'Mata', '👁️', '#475569'], ['牛奶', 'niúnǎi', 'Susu', '🥛', '#94A3B8'],
-  ],
-  Medium: [
-    ['火车', 'huǒchē', 'Kereta', '🚆', '#475569'], ['飞机', 'fēijī', 'Pesawat', '✈️', '#38BDF8'], ['医院', 'yīyuàn', 'Rumah sakit', '🏥', '#DC2626'],
-    ['医生', 'yīshēng', 'Dokter', '🩺', '#EF4444'], ['饭店', 'fàndiàn', 'Restoran', '🍽️', '#EA580C'], ['超市', 'chāoshì', 'Supermarket', '🛒', '#F59E0B'],
-    ['手机', 'shǒujī', 'Ponsel', '📱', '#14B8A6'], ['电脑', 'diànnǎo', 'Komputer', '💻', '#2563EB'], ['钱', 'qián', 'Uang', '💰', '#CA8A04'],
-    ['衣服', 'yīfu', 'Pakaian', '👕', '#0EA5E9'], ['雨伞', 'yǔsǎn', 'Payung', '☂️', '#8B5CF6'], ['下雨', 'xiàyǔ', 'Hujan', '🌧️', '#64748B'],
-    ['生日', 'shēngrì', 'Ulang tahun', '🎂', '#EC4899'], ['电影', 'diànyǐng', 'Film', '🎬', '#1E293B'], ['音乐', 'yīnyuè', 'Musik', '🎵', '#7C3AED'],
-    ['足球', 'zúqiú', 'Sepak bola', '⚽', '#22C55E'], ['地图', 'dìtú', 'Peta', '🗺️', '#65A30D'], ['钥匙', 'yàoshi', 'Kunci', '🔑', '#CA8A04'],
-    ['咖啡', 'kāfēi', 'Kopi', '☕', '#92400E'], ['面条', 'miàntiáo', 'Mi', '🍜', '#F97316'], ['蛋糕', 'dàngāo', 'Kue', '🍰', '#FB7185'],
-    ['眼镜', 'yǎnjìng', 'Kacamata', '👓', '#334155'], ['自行车', 'zìxíngchē', 'Sepeda', '🚲', '#16A34A'], ['房间', 'fángjiān', 'Kamar', '🛏️', '#6366F1'],
-  ],
-  Hard: [
-    ['环境', 'huánjìng', 'Lingkungan', '🌿', '#16A34A'], ['经济', 'jīngjì', 'Ekonomi', '📈', '#0EA5E9'], ['文化', 'wénhuà', 'Budaya', '🏮', '#DC2626'],
-    ['历史', 'lìshǐ', 'Sejarah', '📜', '#A16207'], ['科学', 'kēxué', 'Sains', '🔬', '#2563EB'], ['技术', 'jìshù', 'Teknologi', '🛠️', '#475569'],
-    ['健康', 'jiànkāng', 'Kesehatan', '💪', '#EF4444'], ['交通', 'jiāotōng', 'Lalu lintas', '🚦', '#F59E0B'], ['旅游', 'lǚyóu', 'Wisata', '🧳', '#0EA5E9'],
-    ['机会', 'jīhuì', 'Kesempatan', '🚪', '#F59E0B'], ['成功', 'chénggōng', 'Sukses', '🏆', '#CA8A04'], ['问题', 'wèntí', 'Masalah', '❓', '#9333EA'],
-    ['办法', 'bànfǎ', 'Cara / solusi', '🔑', '#10B981'], ['经验', 'jīngyàn', 'Pengalaman', '🧭', '#7C3AED'], ['比赛', 'bǐsài', 'Pertandingan', '🏅', '#F97316'],
-    ['会议', 'huìyì', 'Rapat', '👥', '#0F766E'], ['新闻', 'xīnwén', 'Berita', '📰', '#334155'], ['图书馆', 'túshūguǎn', 'Perpustakaan', '📚', '#4FA3D1'],
-    ['博物馆', 'bówùguǎn', 'Museum', '🏛️', '#64748B'], ['大学', 'dàxué', 'Universitas', '🎓', '#6366F1'], ['城市', 'chéngshì', 'Kota', '🏙️', '#2563EB'],
-    ['季节', 'jìjié', 'Musim', '🍂', '#EA580C'], ['礼物', 'lǐwù', 'Hadiah', '🎁', '#EC4899'], ['护照', 'hùzhào', 'Paspor', '🛂', '#1E293B'],
-  ],
+function buildAspect(items: ByLevel<AspectTuple>) {
+  return LEVELS.flatMap((level) => items[level].map((item) => choiceItem(item.slice(0, 6) as ChoiceTuple, level, { time: item[6] })));
+}
+
+const FORM_COPY: Record<ComplementForm, { label: string; pattern: string }> = {
+  Hasil: { label: 'Komplemen hasil', pattern: 'V + komplemen (sudah / belum)' },
+  Belum: { label: 'Komplemen hasil', pattern: 'V + komplemen (sudah / belum)' },
+  Bisa: { label: 'Komplemen potensial', pattern: 'V + 得/不 + komplemen' },
+  'Tidak bisa': { label: 'Komplemen potensial', pattern: 'V + 得/不 + komplemen' },
 };
 
-const mandarinSentences: Record<LevelLabel, SentenceTuple[]> = {
-  Easy: [
-    ['Saya pelajar.', '我 是 学生'], ['Apa kabar?', '你 好 吗'], ['Saya suka minum teh.', '我 喜欢 喝 茶'],
-    ['Dia guru.', '他 是 老师'], ['Saya punya sebuah buku.', '我 有 一 本 书'], ['Ini kucing saya.', '这 是 我的 猫'],
-    ['Kami pergi ke sekolah.', '我们 去 学校'], ['Dia sangat senang.', '她 很 高兴'], ['Saya tidak makan daging.', '我 不 吃 肉'],
-    ['Hari ini sangat panas.', '今天 很 热'],
-  ],
-  Medium: [
-    ['Saya bangun jam tujuh setiap pagi.', '我 每天 早上 七点 起床'], ['Dia naik kereta ke Beijing.', '他 坐 火车 去 北京'],
-    ['Saya ingin membeli sepotong baju.', '我 想 买 一 件 衣服'], ['Kami makan malam di restoran.', '我们 在 饭店 吃 晚饭'],
-    ['Bisakah kamu berbahasa Mandarin?', '你 会 说 中文 吗'], ['Kemarin saya menonton sebuah film.', '昨天 我 看 了 一 部 电影'],
-    ['Rumah sakit ada di samping sekolah.', '医院 在 学校 旁边'], ['Saya lebih tinggi daripada dia.', '我 比 他 高'],
-    ['Besok mungkin akan hujan.', '明天 可能 会 下雨'], ['Saya sudah menyelesaikan PR.', '我 已经 做完 作业 了'],
-  ],
-  Hard: [
-    ['Walaupun capek, saya senang.', '虽然 很 累 但是 我 很 开心'], ['Jika besok hujan, kami tidak pergi.', '如果 明天 下雨 我们 就 不 去'],
-    ['Saya menaruh buku di atas meja.', '我 把 书 放在 桌子 上 了'], ['Dia dipuji oleh guru.', '他 被 老师 表扬 了'],
-    ['Karena macet, saya terlambat.', '因为 交通 很 堵 所以 我 迟到 了'], ['Semakin belajar, saya semakin suka Mandarin.', '我 越 学 越 喜欢 中文'],
-    ['Melindungi lingkungan adalah tanggung jawab semua orang.', '保护 环境 是 每个 人 的 责任'], ['Begitu pulang, dia langsung memasak.', '他 一 回家 就 开始 做饭'],
-    ['Buku ini sudah saya baca dua kali.', '这 本 书 我 已经 看了 两 遍'], ['Belajar Mandarin sangat membantu pekerjaan saya.', '学 中文 对 我 的 工作 很 有 帮助'],
-  ],
-};
+function buildComplements(items: ByLevel<ComplementTuple>) {
+  return LEVELS.flatMap((level) =>
+    items[level].map(([verb, pinyin, verbMeaning, complement, form, translation, wrongComplement], index) => {
+      const answer = complementForm(verb, complement, form);
+      // One option swaps the complement (meaning check), two keep it but change the structure (form check).
+      const wrong = [complementForm(verb, wrongComplement, form), ...contrastForms[form].map((other) => complementForm(verb, complement, other))];
+      const directional = complement.length > 1 && /[来去]$/.test(complement);
+      const copy = directional && FORM_COPY[form].label === 'Komplemen hasil' ? { label: 'Komplemen arah', pattern: 'V + arah (sudah / belum)' } : FORM_COPY[form];
+      return {
+        word: verb,
+        prompt: `${verb} (${pinyin}) — ${verbMeaning}`,
+        translation,
+        answer,
+        options: shuffleFor([answer, ...wrong], 'complement', level, verb, translation),
+        forms: { 'Kata kerja': verb, Pinyin: pinyin, Arti: verbMeaning, Bentuk: answer },
+        activeForm: 'Bentuk',
+        formLabel: copy.label,
+        pattern: copy.pattern,
+        level,
+        hint: translation,
+        id: `${level}-${verb}-${index}`,
+      };
+    }),
+  );
+}
 
-const mandarinAspect: Record<LevelLabel, ChoiceTuple[]> = {
-  Easy: [
-    ['我昨天买____一本书。', 'Kemarin saya membeli sebuah buku.', '了', ['过', '着', '在'], 'Aspek 了', 'V + 了 untuk tindakan yang sudah selesai'],
-    ['我____看书。', 'Saya sedang membaca buku.', '在', ['了', '过', '着'], 'Progresif 在', '在 + V untuk aktivitas yang sedang berlangsung'],
-    ['我去____北京。', 'Saya pernah ke Beijing.', '过', ['了', '在', '着'], 'Pengalaman 过', 'V + 过 untuk pengalaman'],
-    ['门开____。', 'Pintunya (dalam keadaan) terbuka.', '着', ['了', '过', '在'], 'Keadaan 着', 'V + 着 untuk keadaan yang berlanjut'],
-    ['我明天____去上海。', 'Besok saya akan ke Shanghai.', '要', ['了', '过', '着'], 'Rencana 要', '要 + V untuk rencana'],
-    ['他____在做作业。', 'Dia sedang mengerjakan PR.', '正', ['了', '过', '着'], 'Progresif 正在', '正在 + V untuk aktivitas yang sedang berlangsung'],
-  ],
-  Medium: [
-    ['我从来没去____日本。', 'Saya belum pernah ke Jepang.', '过', ['了', '着', '在'], 'Pengalaman 过', '没 + V + 过 = belum pernah'],
-    ['下雨____！', 'Hujan turun (sekarang)!', '了', ['过', '着', '在'], 'Perubahan 了', '了 di akhir kalimat untuk perubahan situasi'],
-    ['他笑____说：“好。”', 'Dia berkata sambil tersenyum: "Baik."', '着', ['了', '过', '在'], 'Cara 着', 'V1 + 着 + V2 = melakukan V2 sambil V1'],
-    ['我们快要到____。', 'Kita hampir sampai.', '了', ['过', '着', '在'], '快要…了', '快要 + V + 了 = hampir'],
-    ['作业我已经写____了。', 'PR-nya sudah selesai saya kerjakan.', '完', ['着', '在', '吗'], 'Komplemen 完', 'V + 完 = selesai melakukan'],
-    ['你听____我的话了吗？', 'Apakah kamu memahami ucapanku?', '懂', ['过', '在', '着'], 'Komplemen 懂', 'V + 懂 = memahami setelah mendengar/membaca'],
-  ],
-  Hard: [
-    ['我吃____饭就去。', 'Setelah makan saya langsung pergi.', '了', ['过', '着', '在'], 'V1了…就V2', 'V1 + 了 + 就 + V2 = setelah V1 langsung V2'],
-    ['你吃____北京烤鸭吗？', 'Pernahkah kamu makan bebek panggang Peking?', '过', ['了', '着', '在'], 'Pengalaman 过', 'V + 过 + 吗 menanyakan pengalaman'],
-    ['墙上挂____一幅画。', 'Di dinding tergantung sebuah lukisan.', '着', ['过', '在', '完'], 'Eksistensi 着', 'Tempat + V + 着 + benda'],
-    ['他把作业做____了。', 'Dia sudah menyelesaikan PR-nya.', '完', ['过', '着', '在'], '把 + komplemen', '把 + objek + V + komplemen hasil'],
-    ['我们一边吃饭一边____天。', 'Kami makan sambil mengobrol.', '聊', ['了', '过', '着'], '一边…一边', '一边 V1 一边 V2 = melakukan V1 sambil V2'],
-    ['我学中文学____三年了。', 'Saya sudah belajar Mandarin selama tiga tahun.', '了', ['过', '着', '在'], 'Durasi 了…了', 'V + 了 + durasi + 了 = sudah dan masih berlangsung'],
-  ],
-};
-
-const mandarinQuestions: Record<LevelLabel, ChoiceTuple[]> = {
-  Easy: [
-    ['你叫____名字？', 'Siapa namamu?', '什么', ['哪儿', '谁', '几'], 'Kata tanya 什么', '什么 = apa'],
-    ['你住在____？', 'Kamu tinggal di mana?', '哪儿', ['什么', '谁', '几'], 'Kata tanya 哪儿', '哪儿 = di mana'],
-    ['他是____？', 'Dia siapa?', '谁', ['什么', '哪儿', '几'], 'Kata tanya 谁', '谁 = siapa'],
-    ['你有____个哥哥？', 'Kamu punya berapa kakak laki-laki?', '几', ['什么', '谁', '哪儿'], 'Kata tanya 几', '几 + kata bantu bilangan untuk jumlah kecil'],
-  ],
-  Medium: [
-    ['你是学生____？', 'Apakah kamu pelajar?', '吗', ['呢', '吧', '什么'], 'Partikel 吗', 'Kalimat + 吗 = pertanyaan ya/tidak'],
-    ['我很好，你____？', 'Saya baik, kalau kamu?', '呢', ['吗', '什么', '谁'], 'Partikel 呢', '… 呢? = bagaimana dengan …?'],
-    ['这件衣服____钱？', 'Baju ini berapa harganya?', '多少', ['几', '什么', '谁'], 'Kata tanya 多少', '多少 untuk jumlah/harga'],
-  ],
-  Hard: [
-    ['你____学中文？', 'Mengapa kamu belajar Mandarin?', '为什么', ['什么', '哪儿', '谁'], 'Kata tanya 为什么', '为什么 = mengapa'],
-    ['你____去北京？', 'Kapan kamu pergi ke Beijing?', '什么时候', ['哪儿', '谁', '为什么'], 'Kata tanya 什么时候', '什么时候 = kapan'],
-    ['你____去学校？', 'Bagaimana (naik apa) kamu pergi ke sekolah?', '怎么', ['什么', '谁', '几'], 'Kata tanya 怎么', '怎么 + V = bagaimana caranya'],
-  ],
-};
+function buildErrorFix(items: ByLevel<ErrorFixTuple>) {
+  return LEVELS.flatMap((level) =>
+    items[level].map(([wrong, correct, translation, type, rule, alternatives]) => ({
+      word: wrong,
+      prompt: wrong,
+      translation,
+      answer: correct,
+      options: shuffleFor([correct, wrong, ...alternatives], 'fix', level, wrong),
+      type,
+      rule,
+      level,
+      hint: translation,
+    })),
+  );
+}
 
 const japaneseVocab: Record<LevelLabel, VocabTuple[]> = {
   Easy: [
@@ -284,10 +255,15 @@ const japaneseQuestions: Record<LevelLabel, ChoiceTuple[]> = {
 };
 
 export const mandarinGameContent: CjkGameContent = {
-  ...buildVocabBanks(mandarinVocab),
-  sentenceBuilderQuestions: buildSentences(mandarinSentences),
-  tenseMasterQuestions: buildChoices(mandarinAspect),
-  questionBuilderQuestions: buildChoices(mandarinQuestions),
+  ...buildVocabBanks({ Easy: easyVocab, Medium: mediumVocab, Hard: hardVocab }),
+  sentenceBuilderQuestions: buildSentences({ Easy: easySentences, Medium: mediumSentences, Hard: hardSentences }),
+  tenseMasterQuestions: buildAspect({ Easy: easyAspect, Medium: mediumAspect, Hard: hardAspect }),
+  questionBuilderQuestions: buildChoices({ Easy: easyQuestions, Medium: mediumQuestions, Hard: hardQuestions }),
+  verbFormsQuestions: buildComplements({ Easy: easyComplements, Medium: mediumComplements, Hard: hardComplements }),
+  articleDashQuestions: buildChoices({ Easy: easyMeasureWords, Medium: mediumMeasureWords, Hard: hardMeasureWords }),
+  modalQuestQuestions: buildChoices({ Easy: easyModals, Medium: mediumModals, Hard: hardModals }),
+  conditionalRunQuestions: buildChoices({ Easy: easyConditionals, Medium: mediumConditionals, Hard: hardConditionals }),
+  errorFixQuestions: buildErrorFix({ Easy: easyErrors, Medium: mediumErrors, Hard: hardErrors }),
 };
 
 export const japaneseGameContent: CjkGameContent = {

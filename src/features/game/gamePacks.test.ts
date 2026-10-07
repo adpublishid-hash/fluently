@@ -53,6 +53,94 @@ describe.each([
   });
 });
 
+const mandarinChoiceBanks = {
+  listenTap: mandarinGameContent.listenTapQuestions,
+  aspect: mandarinGameContent.tenseMasterQuestions,
+  complements: mandarinGameContent.verbFormsQuestions ?? [],
+  measureWords: mandarinGameContent.articleDashQuestions ?? [],
+  modals: mandarinGameContent.modalQuestQuestions ?? [],
+  conditionals: mandarinGameContent.conditionalRunQuestions ?? [],
+  questions: mandarinGameContent.questionBuilderQuestions,
+  errorFix: mandarinGameContent.errorFixQuestions ?? [],
+};
+
+describe('Mandarin game content', () => {
+  it.each(Object.entries(mandarinChoiceBanks))('%s has 30 unique, answerable questions per level', (_, bank) => {
+    ['Easy', 'Medium', 'Hard'].forEach((level) => {
+      const items = bank.filter((item) => item.level === level);
+      expect(items, level).toHaveLength(30);
+      const keys = items.map((item) => { const question = item as { word: string; prompt?: string; translation?: string }; return question.prompt ? `${question.prompt}|${question.translation}` : question.word; });
+      expect(new Set(keys).size, level).toBe(30);
+      items.forEach((item) => {
+        expect(item.options, item.word).toContain(item.answer);
+        expect(item.options, item.word).toHaveLength(4);
+        expect(new Set(item.options).size, item.word).toBe(4);
+      });
+    });
+  });
+
+  it('does not always place the answer first', () => {
+    Object.values(mandarinChoiceBanks).forEach((bank) => {
+      const first = bank.filter((item) => item.options[0] === item.answer).length;
+      expect(first / bank.length).toBeLessThan(0.4);
+    });
+  });
+
+  it('gives every fill-in question a blank, a label and a rule', () => {
+    [mandarinChoiceBanks.aspect, mandarinChoiceBanks.measureWords, mandarinChoiceBanks.modals, mandarinChoiceBanks.conditionals, mandarinChoiceBanks.questions].forEach((bank) => {
+      bank.forEach((item) => {
+        expect(item.prompt).toContain('____');
+        expect(item.type.length).toBeGreaterThan(0);
+        expect(item.rule.length).toBeGreaterThan(0);
+      });
+    });
+  });
+
+  it('never names the answer in the clues shown before answering', () => {
+    [mandarinChoiceBanks.aspect, mandarinChoiceBanks.modals, mandarinChoiceBanks.conditionals, mandarinChoiceBanks.questions].forEach((bank) => {
+      bank.forEach((item) => expect(`${item.type} ${item.rule}`, `${item.prompt} → ${item.answer}`).not.toContain(item.answer));
+    });
+  });
+
+  it('places every aspect question on the timeline', () => {
+    mandarinChoiceBanks.aspect.forEach((item) => expect(['Past', 'Now', 'Future']).toContain(item.time));
+  });
+
+  it('builds complement options from the same verb and hides the asked form', () => {
+    mandarinChoiceBanks.complements.forEach((item) => {
+      item.options.forEach((option) => expect(option, item.answer).toContain(item.word));
+      expect(item.forms[item.activeForm as keyof typeof item.forms]).toBe(item.answer);
+      expect(item.prompt).not.toContain(item.answer);
+    });
+  });
+
+  it('builds sentence puzzles that are scrambled and use the answer tokens', () => {
+    ['Easy', 'Medium', 'Hard'].forEach((level) => {
+      const items = mandarinGameContent.sentenceBuilderQuestions.filter((item) => item.level === level);
+      expect(items).toHaveLength(30);
+      expect(new Set(items.map((item) => item.answer.join(' '))).size).toBe(30);
+    });
+    mandarinGameContent.sentenceBuilderQuestions.forEach((item) => {
+      expect([...item.words].sort()).toEqual([...item.answer].sort());
+      expect(item.words.join(' ')).not.toBe(item.answer.join(' '));
+    });
+  });
+
+  it('has 30 unique words per level whose meanings never repeat within a level', () => {
+    ['Easy', 'Medium', 'Hard'].forEach((level) => {
+      const items = mandarinGameContent.listenTapQuestions.filter((item) => item.level === level);
+      expect(new Set(items.map((item) => item.word)).size).toBe(30);
+      expect(new Set(items.map((item) => item.answer)).size).toBe(30);
+    });
+  });
+
+  it('builds letter quests that never spell the word out', () => {
+    mandarinGameContent.letterQuestQuestions.forEach((item) => {
+      expect(item.letters.slice(0, item.word.length).join('')).not.toBe(item.word);
+    });
+  });
+});
+
 const arabicChoiceBanks = {
   listenTap: arabicListenTapQuestions,
   tenseMaster: arabicTenseMasterQuestions,
@@ -167,11 +255,19 @@ describe('game packs', () => {
     expect(getGamePack('English')).toBeNull();
   });
 
-  it('hides English-only grammar modes for Mandarin and Japanese', () => {
-    expect(isModeSupported(getGamePack('Mandarin'), 'article-dash')).toBe(false);
+  it('hides grammar modes Japanese has no bank for, but opens every mode for Mandarin', () => {
+    expect(isModeSupported(getGamePack('Japanese'), 'article-dash')).toBe(false);
+    ['verb-forms', 'article-dash', 'modal-quest', 'conditional-run', 'error-fix', 'grammar-mix'].forEach((mode) => expect(isModeSupported(getGamePack('Mandarin'), mode), mode).toBe(true));
     expect(isModeSupported(getGamePack('Japanese'), 'listen-tap')).toBe(true);
     expect(isModeSupported(getGamePack('Arabic'), 'article-dash')).toBe(true);
     expect(isModeSupported(null, 'article-dash')).toBe(true);
+  });
+
+  it('labels the arcade in the learner\'s target language', () => {
+    expect(getGamePack('Mandarin')?.ui.sentencePrompt).toBe('Susun kalimat bahasa Mandarin:');
+    expect(getGamePack('Japanese')?.ui.sentencePrompt).toBe('Susun kalimat bahasa Jepang:');
+    expect(getGamePack('Arabic')?.ui.sentencePrompt).toBe('Susun kalimat bahasa Arab:');
+    expect(getGamePack('Mandarin')?.ui.textLang).toBe('zh-CN');
   });
 
   it('accepts pinyin without tone marks', () => {
