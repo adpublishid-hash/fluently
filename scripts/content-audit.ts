@@ -5,11 +5,11 @@ import { runContentAudit } from '../src/content/contentAudit';
 const rows = runContentAudit();
 const percent = (value: number) => `${Math.round(value * 100)}%`;
 
-console.log('language   level                lessons  questions  invalid  dup-lessons  answer-first  unique-q');
+console.log('language         level                lessons  questions  invalid  dup-lessons  answer-first  unique-q');
 rows.forEach((row) => {
   console.log(
     [
-      row.language.padEnd(10),
+      row.language.padEnd(16),
       row.level.padEnd(20),
       String(row.lessons).padStart(7),
       String(row.questions).padStart(10),

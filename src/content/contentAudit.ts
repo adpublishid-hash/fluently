@@ -6,6 +6,9 @@ import { getJapaneseLesson, getJapaneseTopicList } from '../pages/module/japanes
 import { buildJapanesePractice } from '../pages/latihan/japanese/japanesePracticeContent';
 import { japaneseLessonCounts, japaneseSkills, type JapaneseLevelId } from '../pages/module/japanese/japaneseModuleData';
 import { getMandarinLesson } from '../pages/module/mandarin/mandarinLessonContent';
+import { getMandarinTopicQuiz, mandarinQuizBanks } from '../pages/latihan/mandarin/quiz';
+import { arabicQuizBanks, getArabicTopicQuiz } from '../pages/latihan/arabic/quiz';
+import type { VocabQuestion } from '../pages/latihan/components/PracticeQuizPage';
 import { mandarinLessonCounts, mandarinSkills, type MandarinLevelId } from '../pages/module/mandarin/mandarinModuleData';
 
 export type AuditQuestion = { question: string; options: string[]; answer: string };
@@ -92,6 +95,22 @@ export function collectLessons(): Array<{ language: string; level: string; lesso
     });
     groups.push({ language: 'arabic', level, lessons });
   });
+
+  // Practice-menu topic quizzes, one group per skill (topics stand in for lessons).
+  const topicQuizGroups = (
+    language: string,
+    banks: Partial<Record<string, unknown[]>>,
+    build: (skill: string, topic: number, id: string) => VocabQuestion[] | null,
+  ) => Object.entries(banks).forEach(([skill, topics]) => {
+    const lessons = (topics ?? []).map((_, index): AuditLesson => {
+      const practice = (build(skill, index + 1, `${skill}-${index + 1}`) ?? [])
+        .map((item) => ({ question: item.prompt, options: item.options, answer: item.answer }));
+      return { key: `${skill}/${index + 1}`, title: `${skill} ${index + 1}`, practice, fingerprint: JSON.stringify(practiceKey(practice)) };
+    });
+    groups.push({ language, level: skill, lessons });
+  });
+  topicQuizGroups('mandarin-latihan', mandarinQuizBanks, (skill, topic, id) => getMandarinTopicQuiz(skill as never, topic, id));
+  topicQuizGroups('arabic-latihan', arabicQuizBanks, (skill, topic, id) => getArabicTopicQuiz(skill as never, topic, id));
 
   return groups;
 }
