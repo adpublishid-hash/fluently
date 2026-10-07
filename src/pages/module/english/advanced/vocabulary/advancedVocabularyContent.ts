@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type AdvancedVocabularyWord = {
   word: string;
   type: string;
@@ -149,7 +150,7 @@ export function getAdvancedVocabularyLesson(id: number) {
   return getAdvancedVocabularyLessons().find((lesson) => lesson.id === id);
 }
 
-export function getAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson) {
+function buildAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson) {
   const meaningQuestions = lesson.words.slice(0, 10).map((item, index) => {
     const a = lesson.words[(index + 3) % lesson.words.length];
     const b = lesson.words[(index + 9) % lesson.words.length];
@@ -169,4 +170,9 @@ export function getAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson) {
   }));
 
   return [...meaningQuestions, ...collocationQuestions];
+}
+
+// Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
+export function getAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson) {
+  return shuffleOpts(buildAdvancedVocabularyQuiz(lesson), hashSeed('getAdvancedVocabularyQuiz', lesson.title));
 }

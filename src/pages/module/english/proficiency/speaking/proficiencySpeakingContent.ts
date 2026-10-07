@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type SpeakingModel = {
   prompt: string;
   response: string;
@@ -190,7 +191,8 @@ export const proficiencySpeakingLessons: ProficiencySpeakingLessonContent[] = le
       'I repaired unclear ideas smoothly while speaking.',
       'My final sentence synthesised the answer.',
     ],
-    quiz: makeQuiz(id, title, expressions, models),
+    // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(id, title, expressions, models), hashSeed('proficiencySpeakingContent', title)),
   };
 });
 

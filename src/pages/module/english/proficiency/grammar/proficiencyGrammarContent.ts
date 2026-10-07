@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ProficiencyGrammarExample = {
   sentence: string;
   explanation: string;
@@ -154,7 +155,8 @@ export const proficiencyGrammarLessons: ProficiencyGrammarLessonContent[] = less
       'Find one possible ambiguity and revise it for clarity.',
     ],
     masteryTask: `Write a 120-word paragraph using at least three structures from this lesson. The paragraph must include one contrast, one cautious claim, and one emphatic sentence.`,
-    quiz: makeQuiz(id, title),
+    // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(id, title), hashSeed('proficiencyGrammarContent', title)),
   };
 });
 

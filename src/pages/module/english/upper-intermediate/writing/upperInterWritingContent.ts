@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type WritingExample = {
   label: string;
   text: string;
@@ -280,7 +281,7 @@ export function getUpperInterWritingLesson(id: number) {
   return upperInterWritingLessons.find((lesson) => lesson.id === id);
 }
 
-export function getUpperInterWritingQuiz(lesson: WritingLesson): WritingQuizQuestion[] {
+function buildUpperInterWritingQuiz(lesson: WritingLesson): WritingQuizQuestion[] {
   const base: WritingQuizQuestion[] = [
     {
       q: `What is the main outcome of "${lesson.title}"?`,
@@ -331,4 +332,9 @@ export function getUpperInterWritingQuiz(lesson: WritingLesson): WritingQuizQues
   }));
 
   return [...base, ...structureQuestions, ...languageQuestions, ...checklistQuestions, ...exampleQuestions].slice(0, 20);
+}
+
+// Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
+export function getUpperInterWritingQuiz(lesson: WritingLesson): WritingQuizQuestion[] {
+  return shuffleOpts(buildUpperInterWritingQuiz(lesson), hashSeed('getUpperInterWritingQuiz', lesson.title));
 }

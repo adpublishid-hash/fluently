@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type AdvancedWritingLesson = {
   id: number;
   title: string;
@@ -89,7 +90,7 @@ export function getAdvancedWritingLesson(id: number) {
   return advancedWritingLessons.find((lesson) => lesson.id === id);
 }
 
-export function getAdvancedWritingQuiz(lesson: AdvancedWritingLesson): AdvancedWritingQuizQuestion[] {
+function buildAdvancedWritingQuiz(lesson: AdvancedWritingLesson): AdvancedWritingQuizQuestion[] {
   const base: AdvancedWritingQuizQuestion[] = [
     {
       q: `What is the main outcome of "${lesson.title}"?`,
@@ -133,4 +134,9 @@ export function getAdvancedWritingQuiz(lesson: AdvancedWritingLesson): AdvancedW
   }));
 
   return [...base, ...focusQuestions, ...languageQuestions, ...checklistQuestions].slice(0, 20);
+}
+
+// Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
+export function getAdvancedWritingQuiz(lesson: AdvancedWritingLesson): AdvancedWritingQuizQuestion[] {
+  return shuffleOpts(buildAdvancedWritingQuiz(lesson), hashSeed('getAdvancedWritingQuiz', lesson.title));
 }

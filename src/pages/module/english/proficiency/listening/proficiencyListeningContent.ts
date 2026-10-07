@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ProficiencyListeningQuiz = {
   q: string;
   opts: string[];
@@ -144,7 +145,8 @@ export const proficiencyListeningLessons: ProficiencyListeningLessonContent[] = 
       'Recover from missed words by using surrounding context and the next sentence.',
       'Summarise the extract in one sentence without copying the transcript.',
     ],
-    quiz: makeQuiz(index + 1, title, transcript),
+    // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(index + 1, title, transcript), hashSeed('proficiencyListeningContent', title)),
   };
 });
 

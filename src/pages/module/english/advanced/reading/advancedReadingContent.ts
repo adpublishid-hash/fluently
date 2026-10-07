@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ReadingLesson = {
   id: number;
   title: string;
@@ -77,7 +78,7 @@ export function getAdvancedReadingLesson(id: number) {
   return advancedReadingLessons.find((lesson) => lesson.id === id);
 }
 
-export function getAdvancedReadingQuiz(lesson: ReadingLesson): ReadingQuizQuestion[] {
+function buildAdvancedReadingQuiz(lesson: ReadingLesson): ReadingQuizQuestion[] {
   const base: ReadingQuizQuestion[] = [
     {
       q: `What is the main outcome of "${lesson.title}"?`,
@@ -121,4 +122,9 @@ export function getAdvancedReadingQuiz(lesson: ReadingLesson): ReadingQuizQuesti
   }));
 
   return [...base, ...focusQuestions, ...conceptQuestions, ...strategyQuestions].slice(0, 20);
+}
+
+// Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
+export function getAdvancedReadingQuiz(lesson: ReadingLesson): ReadingQuizQuestion[] {
+  return shuffleOpts(buildAdvancedReadingQuiz(lesson), hashSeed('getAdvancedReadingQuiz', lesson.title));
 }

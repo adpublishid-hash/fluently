@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ProficiencyReadingQuiz = {
   q: string;
   opts: string[];
@@ -142,7 +143,8 @@ export const proficiencyReadingLessons: ProficiencyReadingLessonContent[] = less
     'Separate what the writer states from what the writer implies.',
     'Summarise the text in one sentence without copying the original wording.',
   ],
-  quiz: makeQuiz(index + 1, title),
+  // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(index + 1, title), hashSeed('proficiencyReadingContent', title)),
 }));
 
 export function getProficiencyReadingLesson(id: number) {

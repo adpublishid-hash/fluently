@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ProficiencyWritingQuiz = {
   q: string;
   opts: string[];
@@ -152,7 +153,8 @@ export const proficiencyWritingLessons: ProficiencyWritingLessonContent[] = less
     'Is the register appropriate for a C2 academic or professional reader?',
     'Does the conclusion synthesise rather than repeat?',
   ],
-  quiz: makeQuiz(index + 1, title),
+  // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(index + 1, title), hashSeed('proficiencyWritingContent', title)),
 }));
 
 export function getProficiencyWritingLesson(id: number) {

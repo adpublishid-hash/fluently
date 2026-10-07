@@ -1,3 +1,4 @@
+import { hashSeed, shuffleQuestionOptions } from '../../../../../utils/quiz';
 export type FormulaBlock = {
   label: string;
   pattern: string;
@@ -86,7 +87,7 @@ export function getExpandedGrammarExamples(lesson: IntermediateGrammarLesson): G
   });
 }
 
-export function getInteractivePracticeSet(lesson: IntermediateGrammarLesson): PracticeQuestion[] {
+function buildInteractivePracticeSet(lesson: IntermediateGrammarLesson): PracticeQuestion[] {
   const questions: PracticeQuestion[] = [...lesson.practice];
 
   lesson.formulas.forEach((formula, index) => {
@@ -800,3 +801,8 @@ export const intermediateGrammarLessons: IntermediateGrammarLesson[] = [
 ];
 
 export const getIntermediateGrammarLesson = (id: number) => intermediateGrammarLessons.find((lesson) => lesson.id === id);
+
+// Most options are written answer-first; shuffle them (seeded per lesson).
+export function getInteractivePracticeSet(lesson: IntermediateGrammarLesson): PracticeQuestion[] {
+  return shuffleQuestionOptions(buildInteractivePracticeSet(lesson), hashSeed('intermediate-grammar', lesson.id));
+}

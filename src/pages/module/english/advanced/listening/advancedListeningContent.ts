@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ListeningLesson = {
   id: number;
   title: string;
@@ -77,7 +78,7 @@ export function getAdvancedListeningLesson(id: number) {
   return advancedListeningLessons.find((lesson) => lesson.id === id);
 }
 
-export function getAdvancedListeningQuiz(lesson: ListeningLesson): ListeningQuizQuestion[] {
+function buildAdvancedListeningQuiz(lesson: ListeningLesson): ListeningQuizQuestion[] {
   const base: ListeningQuizQuestion[] = [
     {
       q: `What is the main outcome of "${lesson.title}"?`,
@@ -121,4 +122,9 @@ export function getAdvancedListeningQuiz(lesson: ListeningLesson): ListeningQuiz
   }));
 
   return [...base, ...focusQuestions, ...signalQuestions, ...strategyQuestions].slice(0, 20);
+}
+
+// Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
+export function getAdvancedListeningQuiz(lesson: ListeningLesson): ListeningQuizQuestion[] {
+  return shuffleOpts(buildAdvancedListeningQuiz(lesson), hashSeed('getAdvancedListeningQuiz', lesson.title));
 }

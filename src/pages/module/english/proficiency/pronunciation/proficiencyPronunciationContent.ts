@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ProficiencyPronunciationLine = {
   text: string;
   focus: string;
@@ -148,7 +149,8 @@ export const proficiencyPronunciationLessons: ProficiencyPronunciationLessonCont
       'My final consonants and grammar endings remain audible.',
       'My tone matches the stance: certain, cautious, diplomatic, or emphatic.',
     ],
-    quiz: makeQuiz(id, title, lines),
+    // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(id, title, lines), hashSeed('proficiencyPronunciationContent', title)),
   };
 });
 

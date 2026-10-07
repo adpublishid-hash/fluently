@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type ProficiencyVocabularyWord = {
   word: string;
   type: string;
@@ -168,7 +169,8 @@ export const proficiencyVocabularyLessons: ProficiencyVocabularyLessonContent[] 
     focus: `Master C2 vocabulary for ${title.toLowerCase()} with meaning, collocation, example usage, and register awareness.`,
     words,
     usageTask: `Write a 180-word paragraph about ${title.toLowerCase()} using at least eight words from this lesson. Include one contrast, one qualification, and one synthesis sentence.`,
-    quiz: makeQuiz(index + 1, words),
+    // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(index + 1, words), hashSeed('proficiencyVocabularyContent', title)),
   };
 });
 

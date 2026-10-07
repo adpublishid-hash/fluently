@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type SpeakingExpression = {
   label: string;
   phrase: string;
@@ -213,7 +214,7 @@ export function getAdvancedSpeakingLesson(id: number) {
   return advancedSpeakingLessons.find((lesson) => lesson.id === id);
 }
 
-export function getAdvancedSpeakingQuiz(lesson: SpeakingLesson): SpeakingQuizQuestion[] {
+function buildAdvancedSpeakingQuiz(lesson: SpeakingLesson): SpeakingQuizQuestion[] {
   const base: SpeakingQuizQuestion[] = [
     {
       q: `What is the main outcome of "${lesson.title}"?`,
@@ -258,4 +259,9 @@ export function getAdvancedSpeakingQuiz(lesson: SpeakingLesson): SpeakingQuizQue
   }));
 
   return [...base, ...expressionQuestions, ...theoryQuestions, ...assessmentQuestions, ...drillQuestions].slice(0, 20);
+}
+
+// Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
+export function getAdvancedSpeakingQuiz(lesson: SpeakingLesson): SpeakingQuizQuestion[] {
+  return shuffleOpts(buildAdvancedSpeakingQuiz(lesson), hashSeed('getAdvancedSpeakingQuiz', lesson.title));
 }
