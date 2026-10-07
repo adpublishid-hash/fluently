@@ -10,7 +10,6 @@ const knownLowVariety: Record<string, number> = {
   'english/advanced/listening': 0.12,
   'english/advanced/reading': 0.12,
   'english/advanced/speaking': 0.12,
-  'english/advanced/vocabulary': 0.08,
   'english/advanced/writing': 0.12,
   'english/proficiency/vocabulary': 0.18,
 };

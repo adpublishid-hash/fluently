@@ -45,7 +45,7 @@ export default function AdvancedVocabularyPage() {
             </div>
             <div>
               <h3 className="font-bold text-[15px] text-[#1A1A2E]">{SKILL.label}</h3>
-              <p className="text-xs text-[#6B7280]">{count}/{lessons.length} Pelajaran - 30 vocab per lesson</p>
+              <p className="text-xs text-[#6B7280]">{count}/{lessons.length} Pelajaran - 12 kosakata topikal per lesson</p>
             </div>
             <div className="ml-auto inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold text-white" style={{ backgroundColor: SKILL.color }}>
               Advanced
@@ -69,7 +69,7 @@ export default function AdvancedVocabularyPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path - 50 Lessons</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">Setiap lesson berisi 30 vocabulary C1/C2 lengkap dengan meaning, example sentence, collocation, AI Voice, dan kuis 20 soal.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">Setiap lesson berisi 12 kosakata C1/C2 sesuai topiknya, lengkap dengan meaning, example sentence, collocation, AI Voice, dan kuis 20 soal.</p>
           <div className="space-y-3">
             {lessons.map((lesson, i) => {
               const done = completedIds.includes(lesson.id);

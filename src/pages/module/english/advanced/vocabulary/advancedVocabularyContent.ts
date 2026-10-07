@@ -1,4 +1,10 @@
-import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { hashSeed, seededRandom, seededShuffle, shuffleOpts } from '../../../../../utils/quiz';
+import { vocabBankPart1 } from './bank/part1';
+import { vocabBankPart2 } from './bank/part2';
+import { vocabBankPart3 } from './bank/part3';
+import { vocabBankPart4 } from './bank/part4';
+import type { VocabEntry } from './bank/types';
+
 export type AdvancedVocabularyWord = {
   word: string;
   type: string;
@@ -13,6 +19,8 @@ export type AdvancedVocabularyLesson = {
   focus: string;
   words: AdvancedVocabularyWord[];
 };
+
+export type AdvancedVocabularyQuizQuestion = { q: string; opts: string[]; ans: string; exp: string };
 
 const lessonTitles = [
   'Academic Excellence',
@@ -67,112 +75,89 @@ const lessonTitles = [
   'C1/C2 Master Vocabulary Test',
 ];
 
-const wordBank: Array<[string, string, string, string[]]> = [
-  ['paradigm', 'Noun', 'a model, framework, or dominant way of thinking', ['paradigm shift', 'dominant paradigm', 'new paradigm']],
-  ['ubiquitous', 'Adjective', 'present or found almost everywhere', ['ubiquitous presence', 'increasingly ubiquitous', 'seemingly ubiquitous']],
-  ['mitigate', 'Verb', 'to make a problem, risk, or impact less severe', ['mitigate risk', 'mitigate damage', 'mitigate the impact']],
-  ['scrutinise', 'Verb', 'to examine something carefully and critically', ['scrutinise evidence', 'scrutinise closely', 'come under scrutiny']],
-  ['inherent', 'Adjective', 'existing as a natural or essential part of something', ['inherent risk', 'inherent limitation', 'inherent value']],
-  ['empirical', 'Adjective', 'based on observation, data, or experiment', ['empirical evidence', 'empirical research', 'empirical findings']],
-  ['nuanced', 'Adjective', 'showing subtle distinctions and complexity', ['nuanced argument', 'nuanced view', 'nuanced understanding']],
-  ['substantiate', 'Verb', 'to support a claim with evidence', ['substantiate a claim', 'substantiate allegations', 'substantiate findings']],
-  ['plausible', 'Adjective', 'reasonable or believable', ['plausible explanation', 'plausible scenario', 'plausible argument']],
-  ['contentious', 'Adjective', 'likely to cause disagreement or debate', ['contentious issue', 'contentious claim', 'highly contentious']],
-  ['detrimental', 'Adjective', 'harmful or damaging', ['detrimental effect', 'detrimental impact', 'detrimental consequences']],
-  ['exacerbate', 'Verb', 'to make an existing problem worse', ['exacerbate inequality', 'exacerbate tensions', 'exacerbate the crisis']],
-  ['constrain', 'Verb', 'to limit or restrict', ['constrain growth', 'constrain behaviour', 'constrain choice']],
-  ['facilitate', 'Verb', 'to make a process easier or more effective', ['facilitate cooperation', 'facilitate access', 'facilitate change']],
-  ['prevalent', 'Adjective', 'common or widespread in a particular context', ['highly prevalent', 'prevalent among', 'prevalent belief']],
-  ['ambiguous', 'Adjective', 'open to more than one interpretation', ['ambiguous wording', 'ambiguous evidence', 'remain ambiguous']],
-  ['coherent', 'Adjective', 'clear, logical, and well organised', ['coherent strategy', 'coherent argument', 'coherent account']],
-  ['robust', 'Adjective', 'strong, reliable, and able to withstand challenge', ['robust evidence', 'robust framework', 'robust debate']],
-  ['tangible', 'Adjective', 'clear, definite, and able to be noticed or measured', ['tangible benefits', 'tangible progress', 'tangible outcome']],
-  ['profound', 'Adjective', 'very great, deep, or significant', ['profound effect', 'profound implications', 'profound change']],
-  ['incremental', 'Adjective', 'happening gradually in small steps', ['incremental change', 'incremental improvement', 'incremental progress']],
-  ['viable', 'Adjective', 'able to work successfully or be practical', ['viable option', 'viable solution', 'commercially viable']],
-  ['integrate', 'Verb', 'to combine parts into a whole', ['integrate data', 'integrate systems', 'integrate knowledge']],
-  ['undermine', 'Verb', 'to weaken or damage gradually', ['undermine trust', 'undermine confidence', 'undermine authority']],
-  ['bolster', 'Verb', 'to support or strengthen', ['bolster confidence', 'bolster evidence', 'bolster security']],
-  ['notwithstanding', 'Adverb', 'despite something; nevertheless', ['notwithstanding concerns', 'notwithstanding evidence', 'notwithstanding the fact']],
-  ['ostensibly', 'Adverb', 'apparently, but perhaps not actually', ['ostensibly neutral', 'ostensibly designed', 'ostensibly simple']],
-  ['predicated', 'Adjective', 'based on or dependent on something', ['predicated on assumptions', 'predicated on evidence', 'predicated on growth']],
-  ['salient', 'Adjective', 'most noticeable or important', ['salient feature', 'salient point', 'salient issue']],
-  ['ramification', 'Noun', 'a complex consequence of an action or decision', ['legal ramifications', 'political ramifications', 'far-reaching ramifications']],
-  ['discrepancy', 'Noun', 'a difference between things that should match', ['significant discrepancy', 'data discrepancy', 'explain the discrepancy']],
-  ['convergence', 'Noun', 'the process of coming together or becoming similar', ['policy convergence', 'technological convergence', 'convergence of ideas']],
-  ['divergence', 'Noun', 'the process of becoming different', ['ideological divergence', 'market divergence', 'divergence between groups']],
-  ['resilient', 'Adjective', 'able to recover from difficulty', ['resilient system', 'resilient community', 'remain resilient']],
-  ['volatile', 'Adjective', 'likely to change suddenly and unpredictably', ['volatile market', 'volatile situation', 'politically volatile']],
-  ['equitable', 'Adjective', 'fair and impartial', ['equitable access', 'equitable distribution', 'equitable system']],
-  ['legitimate', 'Adjective', 'reasonable, lawful, or justified', ['legitimate concern', 'legitimate authority', 'legitimate claim']],
-  ['anomaly', 'Noun', 'something that differs from what is normal or expected', ['statistical anomaly', 'market anomaly', 'apparent anomaly']],
-  ['corroborate', 'Verb', 'to confirm or support with additional evidence', ['corroborate testimony', 'corroborate findings', 'corroborate evidence']],
-  ['allocate', 'Verb', 'to distribute resources for a purpose', ['allocate resources', 'allocate funding', 'allocate time']],
-  ['deviation', 'Noun', 'a departure from a standard or expected pattern', ['standard deviation', 'minor deviation', 'deviation from norms']],
-  ['synthesis', 'Noun', 'a combination of ideas into a coherent whole', ['critical synthesis', 'synthesis of evidence', 'theoretical synthesis']],
-  ['trajectory', 'Noun', 'the path or development of something over time', ['growth trajectory', 'career trajectory', 'future trajectory']],
-  ['pervasive', 'Adjective', 'spreading widely through an area or system', ['pervasive influence', 'pervasive problem', 'pervasive culture']],
-  ['conducive', 'Adjective', 'making a result more likely', ['conducive to growth', 'conducive environment', 'conducive conditions']],
-  ['tenuous', 'Adjective', 'weak, uncertain, or not strongly supported', ['tenuous link', 'tenuous evidence', 'tenuous relationship']],
-  ['impartial', 'Adjective', 'fair and not biased', ['impartial assessment', 'impartial observer', 'remain impartial']],
-  ['precedent', 'Noun', 'an earlier example used as a guide', ['set a precedent', 'legal precedent', 'historical precedent']],
-  ['decentralise', 'Verb', 'to move power away from a central authority', ['decentralise authority', 'decentralise services', 'decentralise decision-making']],
-  ['reconcile', 'Verb', 'to make opposing ideas compatible', ['reconcile differences', 'reconcile interests', 'reconcile data']],
-];
+const bank: Record<number, VocabEntry[]> = { ...vocabBankPart1, ...vocabBankPart2, ...vocabBankPart3, ...vocabBankPart4 };
 
-function makeExample(word: string, topic: string) {
-  return `In discussions of ${topic.toLowerCase()}, the term "${word}" helps express a precise advanced idea without relying on vague language.`;
-}
+/** Review lessons revisit one word from each earlier topic lesson instead of adding new words. */
+const REVIEW_LESSONS: Record<number, number[]> = {
+  20: Array.from({ length: 19 }, (_, index) => index + 1),
+  50: Array.from({ length: 29 }, (_, index) => index + 21),
+};
+
+const toWord = ([word, type, meaning, example, collocations]: VocabEntry): AdvancedVocabularyWord => ({ word, type, meaning, example, collocations });
+
+/** Position of a review word inside its source lesson, so review quizzes can use the forms that lesson skipped. */
+const reviewIndex = (sourceLesson: number) => sourceLesson % 12;
+
+let lessonsCache: AdvancedVocabularyLesson[] | null = null;
 
 export function getAdvancedVocabularyLessons(): AdvancedVocabularyLesson[] {
-  return lessonTitles.map((title, index) => {
-    const words = Array.from({ length: 30 }, (_, i) => {
-      const [word, type, meaning, collocations] = wordBank[(index * 7 + i) % wordBank.length];
-      return {
-        word,
-        type,
-        meaning,
-        example: makeExample(word, title),
-        collocations,
-      };
-    });
-
+  lessonsCache ??= lessonTitles.map((title, index) => {
+    const id = index + 1;
+    const sources = REVIEW_LESSONS[id];
+    const words = sources
+      ? sources.map((source) => toWord(bank[source][reviewIndex(source)]))
+      : (bank[id] ?? []).map(toWord);
     return {
-      id: index + 1,
+      id,
       title,
-      focus: `30 advanced C1/C2 vocabulary items for ${title.toLowerCase()}, with meaning, example sentence, and collocations.`,
+      focus: sources
+        ? `Review: ${words.length} key words from lessons ${sources[0]}-${sources[sources.length - 1]}, tested in new ways.`
+        : `${words.length} topical C1/C2 words for ${title.toLowerCase()}, with meaning, example sentence, and collocations.`,
       words,
     };
   });
+  return lessonsCache;
 }
 
 export function getAdvancedVocabularyLesson(id: number) {
   return getAdvancedVocabularyLessons().find((lesson) => lesson.id === id);
 }
 
-function buildAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson) {
-  const meaningQuestions = lesson.words.slice(0, 10).map((item, index) => {
-    const a = lesson.words[(index + 3) % lesson.words.length];
-    const b = lesson.words[(index + 9) % lesson.words.length];
-    return {
-      q: `What does "${item.word}" mean?`,
-      opts: [item.meaning, a.meaning, b.meaning],
-      ans: item.meaning,
-      exp: `"${item.word}" means ${item.meaning}.`,
-    };
+type Form = 'meaning' | 'define' | 'gap' | 'collocation';
+const FORMS: Form[] = ['meaning', 'define', 'gap', 'collocation'];
+
+const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const blankOut = (text: string, word: string) => text.replace(new RegExp(escape(word), 'i'), '_____');
+
+function ask(form: Form, item: AdvancedVocabularyWord, others: AdvancedVocabularyWord[], random: () => number): AdvancedVocabularyQuizQuestion | null {
+  // Distractors of the same part of speech first, so options are grammatically plausible.
+  const pool = seededShuffle([...others.filter((other) => other.type === item.type), ...others.filter((other) => other.type !== item.type)], random)
+    .filter((other, index, list) => list.findIndex((entry) => entry.word === other.word) === index)
+    .slice(0, 3);
+  if (pool.length < 2) return null;
+  if (form === 'meaning') {
+    return { q: `What does "${item.word}" mean?`, opts: [item.meaning, ...pool.map((other) => other.meaning)], ans: item.meaning, exp: `"${item.word}" (${item.type.toLowerCase()}) means ${item.meaning}.` };
+  }
+  if (form === 'define') {
+    return { q: `Which word means "${item.meaning}"?`, opts: [item.word, ...pool.map((other) => other.word)], ans: item.word, exp: `"${item.word}" means ${item.meaning}. Example: ${item.example}` };
+  }
+  if (form === 'gap') {
+    if (!item.example.toLowerCase().includes(item.word.toLowerCase())) return null;
+    return { q: `Complete the sentence: ${blankOut(item.example, item.word)}`, opts: [item.word, ...pool.map((other) => other.word)], ans: item.word, exp: `"${item.example}"` };
+  }
+  const collocation = item.collocations.find((entry) => entry.toLowerCase().includes(item.word.toLowerCase()));
+  if (!collocation) return null;
+  return { q: `Complete the collocation: "${blankOut(collocation, item.word)}"`, opts: [item.word, ...pool.map((other) => other.word)], ans: item.word, exp: `"${collocation}" is a natural collocation with "${item.word}".` };
+}
+
+const QUIZ_LENGTH = 20;
+
+function buildAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson): AdvancedVocabularyQuizQuestion[] {
+  const random = seededRandom(hashSeed('advanced-vocabulary-quiz', lesson.id));
+  const sources = REVIEW_LESSONS[lesson.id];
+  // Topic lessons ask each word in two forms; review lessons use the two forms its own lesson skipped.
+  const plan = lesson.words.flatMap((item, index) => {
+    const position = sources ? reviewIndex(sources[index]) + 1 : index;
+    return [FORMS[position % 4], FORMS[(position + 2) % 4]].map((form) => ({ form, item }));
   });
-
-  const collocationQuestions = lesson.words.slice(10, 20).map((item, index) => ({
-    q: `Which collocation is natural with "${item.word}"?`,
-    opts: [item.collocations[0], `make ${item.word}`, `do ${item.word}`],
-    ans: item.collocations[0],
-    exp: `"${item.collocations[0]}" is a natural collocation.`,
-  }));
-
-  return [...meaningQuestions, ...collocationQuestions];
+  const rounds = [plan.filter((_, index) => index % 2 === 0), plan.filter((_, index) => index % 2 === 1)].flat();
+  return rounds
+    .map(({ form, item }) => ask(form, item, lesson.words.filter((other) => other.word !== item.word), random))
+    .filter((question): question is AdvancedVocabularyQuizQuestion => question !== null)
+    .slice(0, QUIZ_LENGTH);
 }
 
 // Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.
-export function getAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson) {
+export function getAdvancedVocabularyQuiz(lesson: AdvancedVocabularyLesson): AdvancedVocabularyQuizQuestion[] {
   return shuffleOpts(buildAdvancedVocabularyQuiz(lesson), hashSeed('getAdvancedVocabularyQuiz', lesson.title));
 }
