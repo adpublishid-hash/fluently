@@ -167,3 +167,86 @@ export function buildLessonPractice(skillId: MandarinSkillId, material: Practice
       return true;
     });
 }
+
+type WordDrill = (word: PracticeWord, material: PracticeMaterial, random: () => number, used: Set<string>) => ChoiceQuestion | null;
+
+const sameLengthHanzi = (word: PracticeWord, levelWords: PracticeWord[]) => {
+  const same = levelWords.filter((item) => item.hanzi.length === word.hanzi.length).map((item) => item.hanzi);
+  return same.length >= 3 ? same : levelWords.map((item) => item.hanzi);
+};
+
+// Grammar's own fillBlank uses sentences 1 and 5, so the drill blanks other sentences,
+// each only once so one blank never shows the answer to another.
+const wordDrills: Record<MandarinSkillId, WordDrill> = {
+  grammar: (word, { sentences, levelSentences, levelWords }, random, used) => {
+    const sentence = [...sentences.filter((_, index) => index !== 1 && index !== 5), ...levelSentences]
+      .find((item) => item.hanzi.includes(word.hanzi) && !used.has(item.hanzi));
+    if (sentence) used.add(sentence.hanzi);
+    if (!sentence) return buildChoiceQuestion(`Kata kunci untuk konsep "${word.meaning}" adalah...`, word.hanzi, sameLengthHanzi(word, levelWords), random);
+    return buildChoiceQuestion(`Kata yang tepat untuk「${sentence.hanzi.replace(word.hanzi, '＿＿')}」adalah... (${sentence.meaning})`, word.hanzi, sameLengthHanzi(word, levelWords), random);
+  },
+  speaking: (word, { levelWords }, random) =>
+    buildChoiceQuestion(`Saat berdiskusi, kata「${word.hanzi}」dipakai untuk menyatakan...`, word.meaning, levelWords.map((item) => item.meaning), random),
+  listening: (word, { levelWords }, random) =>
+    buildChoiceQuestion(`Kamu mendengar kata "${word.pinyin}". Artinya...`, word.meaning, levelWords.map((item) => item.meaning), random),
+  reading: (word, { levelWords }, random) =>
+    buildChoiceQuestion(`Kata yang dibaca "${word.pinyin}" ditulis...`, word.hanzi, sameLengthHanzi(word, levelWords), random),
+  writing: (word, { levelWords }, random) =>
+    buildChoiceQuestion(`Tulis dalam Hanzi kata yang berarti "${word.meaning}".`, word.hanzi, sameLengthHanzi(word, levelWords), random),
+  vocabulary: (word, { levelWords }, random) =>
+    buildChoiceQuestion(`Pinyin kata「${word.hanzi}」adalah...`, word.pinyin, levelWords.map((item) => item.pinyin), random),
+  pronunciation: (word, { levelWords }, random) =>
+    buildChoiceQuestion(`Kamu mendengar "${word.pinyin}". Kata yang diucapkan adalah...`, word.hanzi, sameLengthHanzi(word, levelWords), random),
+};
+
+const sayIt = (index: number): Generator => ({ sentences, levelSentences }, random) => {
+  const sentence = sentences[index];
+  if (!sentence) return null;
+  return buildChoiceQuestion(`Untuk menyampaikan "${sentence.meaning}", kamu berkata...`, sentence.hanzi, levelSentences.map((item) => item.hanzi), random);
+};
+
+const readPinyin = (index: number): Generator => ({ sentences, levelSentences }, random) => {
+  const sentence = sentences[index];
+  if (!sentence?.pinyin) return null;
+  return buildChoiceQuestion(`Kalimat yang dibaca "${sentence.pinyin}" ditulis...`, sentence.hanzi, levelSentences.map((item) => item.hanzi), random);
+};
+
+const dictation = (index: number): Generator => ({ sentences, levelSentences }, random) => {
+  const sentence = sentences[index];
+  if (!sentence?.pinyin) return null;
+  return buildChoiceQuestion(`Dikte: tulis kalimat yang dibacakan "${sentence.pinyin}"`, sentence.hanzi, levelSentences.map((item) => item.hanzi), random);
+};
+
+const spotWord = (index: number): Generator => ({ sentences, words, levelWords }, random) => {
+  const sentence = sentences[index];
+  const word = sentence && words.find((item) => sentence.hanzi.includes(item.hanzi));
+  if (!sentence || !word) return null;
+  const pool = levelWords.filter((item) => !sentence.hanzi.includes(item.hanzi)).map((item) => item.hanzi);
+  return buildChoiceQuestion(`Kosakata tema yang muncul dalam「${sentence.hanzi}」adalah...`, word.hanzi, pool, random);
+};
+
+// Sentence questions in forms each skill's plan does not use yet, so a lesson
+// with only four theme words still fills its drill with its own material.
+const drillExtras: Record<MandarinSkillId, Generator[]> = {
+  grammar: [],
+  speaking: [sayIt(0), sayIt(1)],
+  listening: [],
+  reading: [readPinyin(2), readPinyin(5)],
+  writing: [dictation(1), dictation(3), dictation(5), dictation(0)],
+  vocabulary: [spotWord(0), spotWord(1), spotWord(2)],
+  pronunciation: [],
+};
+
+/**
+ * One question per lesson word, in a form that belongs to the skill, so the
+ * seven skill lessons sharing a theme drill its words in seven different ways.
+ */
+export function buildWordDrill(skillId: MandarinSkillId, material: PracticeMaterial, seed: number): ChoiceQuestion[] {
+  const random = seededRandom(seed);
+  const used = new Set<string>();
+  return [
+    ...material.words.map((word) => wordDrills[skillId](word, material, random, used)),
+    ...drillExtras[skillId].map((generate) => generate(material, random)),
+  ]
+    .filter((question): question is ChoiceQuestion => question !== null);
+}

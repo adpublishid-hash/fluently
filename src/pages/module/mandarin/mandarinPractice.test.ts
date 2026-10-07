@@ -23,6 +23,13 @@ describe('Mandarin lesson-specific practice', () => {
     expect(new Set(all).size / all.length).toBeGreaterThan(0.2);
   });
 
+  it.each(themedLevels)('%s: skills that share a theme never ask the same question', (level) => {
+    const all = mandarinSkills.flatMap(({ id }) =>
+      Array.from({ length: 20 }, (_, index) => getMandarinLesson(id, index + 1, level).practice.map((item) => `${item.question}→${item.answer}`)).flat());
+    expect(all).toHaveLength(140 * 20);
+    expect(new Set(all).size / all.length).toBeGreaterThan(0.98);
+  });
+
   it.each(themedLevels)('%s: every theme lesson has 6 real sentences using theme words', (level) => {
     expect(getMandarinLevelThemeSentences(level)).toHaveLength(120);
     for (let lesson = 1; lesson <= 20; lesson += 1) {
