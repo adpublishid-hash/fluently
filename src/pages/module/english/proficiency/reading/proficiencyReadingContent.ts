@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { proficiencyReadingQuizBank } from './readingQuizBank';
 export type ProficiencyReadingQuiz = {
   q: string;
   opts: string[];
@@ -86,47 +88,6 @@ const conceptBank = [
   'Implication: meaning suggested indirectly rather than stated explicitly.',
 ];
 
-function makeQuiz(id: number, title: string): ProficiencyReadingQuiz[] {
-  const base: ProficiencyReadingQuiz[] = [
-    {
-      q: `In "${title}", what should a C2 reader prioritise?`,
-      opts: ['inference, argument structure, stance, and precise evidence', 'reading only the first sentence', 'memorising every word without interpretation'],
-      ans: 'inference, argument structure, stance, and precise evidence',
-      exp: 'C2 reading requires evaluation of meaning, not only surface comprehension.',
-    },
-    {
-      q: 'What does hedging usually show in complex texts?',
-      opts: ['caution or limited certainty', 'a spelling mistake', 'a command to the reader'],
-      ans: 'caution or limited certainty',
-      exp: 'Words like "may", "appears", and "arguably" signal careful qualification.',
-    },
-    {
-      q: 'Which reading action best reveals implied stance?',
-      opts: ['checking emphasis, contrast, examples, and omission', 'ignoring repeated vocabulary', 'choosing the shortest paragraph'],
-      ans: 'checking emphasis, contrast, examples, and omission',
-      exp: 'Writers often reveal attitude through patterning rather than direct statements.',
-    },
-    {
-      q: 'A representative example is:',
-      opts: ['an example that fairly reflects a wider pattern', 'the most dramatic example only', 'an unrelated anecdote'],
-      ans: 'an example that fairly reflects a wider pattern',
-      exp: 'C2 readers should question whether examples prove the wider claim.',
-    },
-  ];
-
-  const generated = Array.from({ length: 16 }, (_, index) => {
-    const focus = focusBank[index % focusBank.length];
-    return {
-      q: `Lesson ${id} analysis ${index + 5}: which strategy is most useful?`,
-      opts: [focus, 'skip all qualifying words', 'treat every example as proof'],
-      ans: focus,
-      exp: `${focus} This prevents oversimplified reading.`,
-    };
-  });
-
-  return [...base, ...generated];
-}
-
 export const proficiencyReadingLessons: ProficiencyReadingLessonContent[] = lessonSeeds.map(([title, subtitle], index) => ({
   id: index + 1,
   title,
@@ -143,8 +104,8 @@ export const proficiencyReadingLessons: ProficiencyReadingLessonContent[] = less
     'Separate what the writer states from what the writer implies.',
     'Summarise the text in one sentence without copying the original wording.',
   ],
-  // Options are written answer-first; shuffled per lesson so the answer is not always A.
-    quiz: shuffleOpts(makeQuiz(index + 1, title), hashSeed('proficiencyReadingContent', title)),
+  // Fifteen authored questions per lesson; options shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(fromAuthored(proficiencyReadingQuizBank[index + 1]), hashSeed('proficiencyReadingContent', title)),
 }));
 
 export function getProficiencyReadingLesson(id: number) {

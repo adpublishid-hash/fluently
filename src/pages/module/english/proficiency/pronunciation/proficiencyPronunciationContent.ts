@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { proficiencyPronunciationQuizBank } from './pronunciationQuizBank';
 export type ProficiencyPronunciationLine = {
   text: string;
   focus: string;
@@ -82,47 +84,6 @@ function makeLines(lesson: number): ProficiencyPronunciationLine[] {
   }));
 }
 
-function makeQuiz(id: number, title: string, lines: ProficiencyPronunciationLine[]): ProficiencyPronunciationQuiz[] {
-  const base: ProficiencyPronunciationQuiz[] = [
-    {
-      q: `What is the main target in "${title}"?`,
-      opts: ['clear meaning, controlled prosody, and listener comfort', 'copying one native accent perfectly', 'speaking as fast as possible'],
-      ans: 'clear meaning, controlled prosody, and listener comfort',
-      exp: 'C2 pronunciation focuses on intelligibility, nuance, rhythm, and rhetorical control.',
-    },
-    {
-      q: 'What should happen to function words in natural English rhythm?',
-      opts: ['They are often reduced unless they carry contrast', 'They must always be stressed equally', 'They should be deleted from every sentence'],
-      ans: 'They are often reduced unless they carry contrast',
-      exp: 'Weak forms help English rhythm, but important grammar must remain understandable.',
-    },
-    {
-      q: `Which sentence is a model line for this lesson?`,
-      opts: [lines[0].text, 'My name is John.', 'This is a table.'],
-      ans: lines[0].text,
-      exp: `The line practises ${lines[0].focus}.`,
-    },
-    {
-      q: 'A C2 speaker uses pauses to:',
-      opts: ['organise thought groups and guide listener attention', 'interrupt every word', 'avoid pronunciation completely'],
-      ans: 'organise thought groups and guide listener attention',
-      exp: 'Strategic pausing makes complex speech easier to process.',
-    },
-  ];
-
-  const generated = Array.from({ length: 16 }, (_, index) => {
-    const line = lines[index % lines.length];
-    return {
-      q: `Lesson ${id} practice ${index + 5}: how should you deliver "${line.text}"?`,
-      opts: [`Focus on ${line.focus}`, 'stress every syllable equally', 'remove all pauses and endings'],
-      ans: `Focus on ${line.focus}`,
-      exp: line.note,
-    };
-  });
-
-  return [...base, ...generated];
-}
-
 export const proficiencyPronunciationLessons: ProficiencyPronunciationLessonContent[] = lessonSeeds.map(([title, subtitle], index) => {
   const id = index + 1;
   const lines = makeLines(id);
@@ -149,8 +110,8 @@ export const proficiencyPronunciationLessons: ProficiencyPronunciationLessonCont
       'My final consonants and grammar endings remain audible.',
       'My tone matches the stance: certain, cautious, diplomatic, or emphatic.',
     ],
-    // Options are written answer-first; shuffled per lesson so the answer is not always A.
-    quiz: shuffleOpts(makeQuiz(id, title, lines), hashSeed('proficiencyPronunciationContent', title)),
+    // Fifteen authored questions per lesson; options shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(fromAuthored(proficiencyPronunciationQuizBank[id]), hashSeed('proficiencyPronunciationContent', title)),
   };
 });
 

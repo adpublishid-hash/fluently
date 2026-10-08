@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { proficiencyListeningQuizBank } from './listeningQuizBank';
 export type ProficiencyListeningQuiz = {
   q: string;
   opts: string[];
@@ -86,47 +88,6 @@ function makeTranscript(index: number) {
   return `In this extract, the speaker discusses ${topic}. The argument is not delivered as a simple list of facts; it unfolds through qualification, contrast, and selective emphasis. At first, the speaker appears to support the main proposal, but a longer pause before the word "feasible" suggests hesitation. The phrase "in principle" also limits the endorsement, implying that the idea may be attractive in theory but difficult in practice. Later, the speaker introduces an example not to prove the claim absolutely, but to show why the issue is more contingent than it first appears. A C2 listener should therefore identify the central claim, the speaker's implied reservation, the evidence used, and the point at which the speaker moves from description to evaluation.`;
 }
 
-function makeQuiz(id: number, title: string, transcript: string): ProficiencyListeningQuiz[] {
-  const base: ProficiencyListeningQuiz[] = [
-    {
-      q: `What is the main C2 listening skill in "${title}"?`,
-      opts: ['tracking stance, implication, structure, and evidence', 'hearing only isolated words', 'ignoring tone and hesitation'],
-      ans: 'tracking stance, implication, structure, and evidence',
-      exp: 'C2 listening requires interpretation of structure, attitude, implication, and detail.',
-    },
-    {
-      q: 'What does "in principle" often signal?',
-      opts: ['limited or qualified agreement', 'complete rejection', 'a spelling correction'],
-      ans: 'limited or qualified agreement',
-      exp: '"In principle" often means the speaker accepts an idea theoretically but may doubt the practical reality.',
-    },
-    {
-      q: 'Which listening clue can show hesitation or reservation?',
-      opts: ['pause, stress, hedging, and cautious adjectives', 'only volume', 'the first word alone'],
-      ans: 'pause, stress, hedging, and cautious adjectives',
-      exp: 'Advanced listeners combine verbal and prosodic clues.',
-    },
-    {
-      q: 'Which summary best fits the transcript?',
-      opts: [transcript.split('.').slice(0, 2).join('.') + '.', 'The speaker lists random vocabulary.', 'The speaker refuses to discuss the topic.'],
-      ans: transcript.split('.').slice(0, 2).join('.') + '.',
-      exp: 'This captures the topic and structure of the extract.',
-    },
-  ];
-
-  const generated = Array.from({ length: 16 }, (_, index) => {
-    const strategy = focus[index % focus.length];
-    return {
-      q: `Lesson ${id} listening check ${index + 5}: what should you do?`,
-      opts: [strategy, 'stop listening after one missed word', 'treat every phrase as literal'],
-      ans: strategy,
-      exp: `${strategy} This is essential for C2-level listening accuracy.`,
-    };
-  });
-
-  return [...base, ...generated];
-}
-
 export const proficiencyListeningLessons: ProficiencyListeningLessonContent[] = lessonSeeds.map(([title, subtitle], index) => {
   const transcript = makeTranscript(index);
   return {
@@ -145,8 +106,8 @@ export const proficiencyListeningLessons: ProficiencyListeningLessonContent[] = 
       'Recover from missed words by using surrounding context and the next sentence.',
       'Summarise the extract in one sentence without copying the transcript.',
     ],
-    // Options are written answer-first; shuffled per lesson so the answer is not always A.
-    quiz: shuffleOpts(makeQuiz(index + 1, title, transcript), hashSeed('proficiencyListeningContent', title)),
+    // Fifteen authored questions per lesson; options shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(fromAuthored(proficiencyListeningQuizBank[index + 1]), hashSeed('proficiencyListeningContent', title)),
   };
 });
 

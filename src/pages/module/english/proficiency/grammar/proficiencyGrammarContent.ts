@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { proficiencyGrammarQuizBank } from './grammarQuizBank';
 export type ProficiencyGrammarExample = {
   sentence: string;
   explanation: string;
@@ -88,48 +90,6 @@ function makeExamples(id: number, title: string): ProficiencyGrammarExample[] {
   ];
 }
 
-function makeQuiz(id: number, title: string): ProficiencyGrammarQuiz[] {
-  const formulas = formulaBank[id - 1];
-  const base: ProficiencyGrammarQuiz[] = [
-    {
-      q: `What is the main grammar target in "${title}"?`,
-      opts: ['precision, emphasis, register, and controlled complexity', 'basic word order only', 'memorising unrelated vocabulary'],
-      ans: 'precision, emphasis, register, and controlled complexity',
-      exp: 'C2 grammar is strategic: it controls meaning, style, caution, and emphasis.',
-    },
-    {
-      q: `Which formula belongs to this lesson?`,
-      opts: [formulas[0], 'subject + be + adjective only', 'noun + noun + noun with no grammar'],
-      ans: formulas[0],
-      exp: `${formulas[0]} is one of the lesson structures.`,
-    },
-    {
-      q: 'Which sentence sounds most C2?',
-      opts: ['What the argument overlooks is the distinction between feasibility and desirability.', 'This thing is good and also bad.', 'I am very very agree.'],
-      ans: 'What the argument overlooks is the distinction between feasibility and desirability.',
-      exp: 'The cleft structure focuses the key point precisely and formally.',
-    },
-    {
-      q: 'Why should C2 writers avoid unnecessary complexity?',
-      opts: ['because complexity must serve meaning and clarity', 'because advanced grammar is always wrong', 'because short sentences are always better'],
-      ans: 'because complexity must serve meaning and clarity',
-      exp: 'C2 grammar is purposeful, not decorative.',
-    },
-  ];
-
-  const generated = Array.from({ length: 16 }, (_, index) => {
-    const formula = formulas[index % formulas.length];
-    return {
-      q: `Lesson ${id} check ${index + 5}: when should you use "${formula}"?`,
-      opts: ['when it improves precision, emphasis, or register', 'when it makes the sentence harder for no reason', 'when you want to avoid grammar completely'],
-      ans: 'when it improves precision, emphasis, or register',
-      exp: `"${formula}" is useful only when it supports meaning and reader/listener clarity.`,
-    };
-  });
-
-  return [...base, ...generated];
-}
-
 export const proficiencyGrammarLessons: ProficiencyGrammarLessonContent[] = lessonSeeds.map(([title, subtitle], index) => {
   const id = index + 1;
   const formulas = formulaBank[index];
@@ -155,8 +115,8 @@ export const proficiencyGrammarLessons: ProficiencyGrammarLessonContent[] = less
       'Find one possible ambiguity and revise it for clarity.',
     ],
     masteryTask: `Write a 120-word paragraph using at least three structures from this lesson. The paragraph must include one contrast, one cautious claim, and one emphatic sentence.`,
-    // Options are written answer-first; shuffled per lesson so the answer is not always A.
-    quiz: shuffleOpts(makeQuiz(id, title), hashSeed('proficiencyGrammarContent', title)),
+    // Fifteen authored questions per lesson; options shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(fromAuthored(proficiencyGrammarQuizBank[id]), hashSeed('proficiencyGrammarContent', title)),
   };
 });
 

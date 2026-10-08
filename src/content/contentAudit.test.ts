@@ -6,7 +6,6 @@ import { arabicLessonCounts } from '../pages/module/arabic/arabicModuleData';
 const audits = runContentAudit();
 
 const knownLowVariety: Record<string, number> = {
-  'english/upper-intermediate/writing': 0.25,
 };
 
 describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] as const))('%s', (_, audit) => {

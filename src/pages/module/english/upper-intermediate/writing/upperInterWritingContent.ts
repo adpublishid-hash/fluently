@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { upperInterWritingQuizBank } from './writingQuizBank';
 export type WritingExample = {
   label: string;
   text: string;
@@ -281,57 +283,9 @@ export function getUpperInterWritingLesson(id: number) {
   return upperInterWritingLessons.find((lesson) => lesson.id === id);
 }
 
+// Fifteen authored B2 questions per lesson, each practising this lesson's genre.
 function buildUpperInterWritingQuiz(lesson: WritingLesson): WritingQuizQuestion[] {
-  const base: WritingQuizQuestion[] = [
-    {
-      q: `What is the main outcome of "${lesson.title}"?`,
-      opts: [lesson.outcome, 'Memorise unrelated vocabulary only', 'Avoid planning and write as quickly as possible', 'Use only simple sentences'],
-      ans: lesson.outcome,
-      exp: 'The lesson outcome defines the writing skill you should be able to produce by the end of the lesson.',
-    },
-    {
-      q: `Which genre best matches this lesson?`,
-      opts: [lesson.genre, 'Informal chat message', 'Shopping list', 'Pronunciation drill'],
-      ans: lesson.genre,
-      exp: 'Identifying genre helps you choose structure, register, and language features.',
-    },
-    {
-      q: 'Which option is the stronger B2 sentence?',
-      opts: [lesson.examples[1].text, lesson.examples[0].text, 'This thing is nice and I like it.', 'People have many opinions about this.'],
-      ans: lesson.examples[1].text,
-      exp: 'The improved version is more precise, controlled, and appropriate for B2 writing.',
-    },
-  ];
-
-  const structureQuestions = lesson.structure.map((item, index) => ({
-    q: `Which planning/structure principle is useful for this lesson? (${index + 1})`,
-    opts: [item, 'Write one long paragraph without transitions', 'Ignore the reader and focus only on word count', 'Use informal abbreviations throughout'],
-    ans: item,
-    exp: 'This step supports organisation, coherence, and task achievement.',
-  }));
-
-  const languageQuestions = lesson.languageFocus.map((item, index) => ({
-    q: `Which language focus belongs to this B2 writing lesson? (${index + 1})`,
-    opts: [item, 'Use random idioms even when they do not fit', 'Avoid all connectors', 'Use vague words repeatedly'],
-    ans: item,
-    exp: 'B2 writing requires precise language choices that match purpose and audience.',
-  }));
-
-  const checklistQuestions = lesson.checklist.map((item, index) => ({
-    q: `Which revision checklist item should you apply? (${index + 1})`,
-    opts: [item, 'Never revise after drafting', 'Add new unrelated ideas in the conclusion', 'Remove all examples from body paragraphs'],
-    ans: item,
-    exp: 'Revision is part of the writing process, not an optional extra.',
-  }));
-
-  const exampleQuestions = lesson.examples.map((example) => ({
-    q: `What does this example demonstrate: "${example.text}"?`,
-    opts: [example.note, 'A sentence that should always be copied exactly', 'A pronunciation-only exercise', 'A grammar rule unrelated to writing'],
-    ans: example.note,
-    exp: example.note,
-  }));
-
-  return [...base, ...structureQuestions, ...languageQuestions, ...checklistQuestions, ...exampleQuestions].slice(0, 20);
+  return fromAuthored(upperInterWritingQuizBank[lesson.id]);
 }
 
 // Options are written answer-first; shuffle them (seeded per lesson) so the answer is not always A.

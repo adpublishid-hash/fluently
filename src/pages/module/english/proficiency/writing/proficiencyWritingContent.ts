@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { proficiencyWritingQuizBank } from './writingQuizBank';
 export type ProficiencyWritingQuiz = {
   q: string;
   opts: string[];
@@ -88,47 +90,6 @@ const languageTools = [
   'Style control: avoid vague intensifiers; prefer exact nouns, active verbs, and purposeful abstraction.',
 ];
 
-function makeQuiz(id: number, title: string): ProficiencyWritingQuiz[] {
-  const base: ProficiencyWritingQuiz[] = [
-    {
-      q: `What is the main writing goal in "${title}"?`,
-      opts: ['precise, cohesive, genre-aware C2 control', 'long sentences with no purpose', 'informal chat style only'],
-      ans: 'precise, cohesive, genre-aware C2 control',
-      exp: 'C2 writing values control: clarity, sophistication, register, evidence, and revision.',
-    },
-    {
-      q: 'Which feature best improves a C2 paragraph?',
-      opts: ['claim, evidence, analysis, qualification, and link', 'random examples without logic', 'repeating the same sentence'],
-      ans: 'claim, evidence, analysis, qualification, and link',
-      exp: 'A C2 paragraph develops meaning rather than simply adding information.',
-    },
-    {
-      q: 'A strong conclusion should:',
-      opts: ['synthesise the argument and sharpen the final implication', 'copy the introduction word for word', 'introduce several unrelated claims'],
-      ans: 'synthesise the argument and sharpen the final implication',
-      exp: 'C2 conclusions explain what the reader should understand differently.',
-    },
-    {
-      q: 'Which phrase is useful for qualification?',
-      opts: ['It would be premature to conclude...', 'Very good and nice...', 'I like it so much...'],
-      ans: 'It would be premature to conclude...',
-      exp: 'Qualification keeps advanced writing intellectually honest.',
-    },
-  ];
-
-  const generated = Array.from({ length: 16 }, (_, index) => {
-    const focus = writingFocus[index % writingFocus.length];
-    return {
-      q: `Lesson ${id} writing check ${index + 5}: which revision move is strongest?`,
-      opts: [focus, 'add more vague adjectives', 'remove all paragraph structure'],
-      ans: focus,
-      exp: `${focus} This supports C2-level control and reader clarity.`,
-    };
-  });
-
-  return [...base, ...generated];
-}
-
 export const proficiencyWritingLessons: ProficiencyWritingLessonContent[] = lessonSeeds.map(([title, genre], index) => ({
   id: index + 1,
   title,
@@ -153,8 +114,8 @@ export const proficiencyWritingLessons: ProficiencyWritingLessonContent[] = less
     'Is the register appropriate for a C2 academic or professional reader?',
     'Does the conclusion synthesise rather than repeat?',
   ],
-  // Options are written answer-first; shuffled per lesson so the answer is not always A.
-    quiz: shuffleOpts(makeQuiz(index + 1, title), hashSeed('proficiencyWritingContent', title)),
+  // Fifteen authored questions per lesson; options shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(fromAuthored(proficiencyWritingQuizBank[index + 1]), hashSeed('proficiencyWritingContent', title)),
 }));
 
 export function getProficiencyWritingLesson(id: number) {

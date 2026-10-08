@@ -1,4 +1,6 @@
 import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
+import { fromAuthored } from '../../advanced/shared/authoredQuiz';
+import { proficiencySpeakingQuizBank } from './speakingQuizBank';
 export type SpeakingModel = {
   prompt: string;
   response: string;
@@ -116,47 +118,6 @@ function makeModels(index: number): SpeakingModel[] {
   ];
 }
 
-function makeQuiz(lesson: number, title: string, expressions: string[], models: SpeakingModel[]): SpeakingQuiz[] {
-  const base: SpeakingQuiz[] = [
-    {
-      q: `What is the main C2 speaking target in "${title}"?`,
-      opts: ['nuanced, coherent, listener-aware spoken control', 'memorising fixed scripts only', 'speaking quickly without pausing'],
-      ans: 'nuanced, coherent, listener-aware spoken control',
-      exp: 'C2 speaking requires flexible control of meaning, register, structure, and interaction.',
-    },
-    {
-      q: 'Which phrase is best for refining an idea?',
-      opts: [expressions[2], 'I do not know grammar.', 'Very very good.'],
-      ans: expressions[2],
-      exp: 'Refinement phrases help speakers repair and sharpen meaning naturally.',
-    },
-    {
-      q: `Which technique appears in the model response: "${models[0].response.slice(0, 80)}..."?`,
-      opts: [models[0].technique, 'basic self-introduction', 'word-by-word translation'],
-      ans: models[0].technique,
-      exp: `The model demonstrates ${models[0].technique}.`,
-    },
-    {
-      q: 'A strong proficiency-level spoken answer should include:',
-      opts: ['a clear position, qualification, examples, and controlled delivery', 'only one short sentence', 'no hesitation management'],
-      ans: 'a clear position, qualification, examples, and controlled delivery',
-      exp: 'Proficiency speaking is not only fluent; it is organised, precise, and responsive.',
-    },
-  ];
-
-  const generated = Array.from({ length: 16 }, (_, index) => {
-    const expression = expressions[index % expressions.length];
-    return {
-      q: `Lesson ${lesson} practice ${index + 5}: when is "${expression}" useful?`,
-      opts: ['when developing a nuanced spoken response', 'when avoiding the question completely', 'when replacing structure with speed'],
-      ans: 'when developing a nuanced spoken response',
-      exp: `"${expression}" helps manage C2-level discourse with precision and control.`,
-    };
-  });
-
-  return [...base, ...generated];
-}
-
 export const proficiencySpeakingLessons: ProficiencySpeakingLessonContent[] = lessonSeeds.map(([title, subtitle], index) => {
   const id = index + 1;
   const expressions = expressionBank[index];
@@ -191,8 +152,8 @@ export const proficiencySpeakingLessons: ProficiencySpeakingLessonContent[] = le
       'I repaired unclear ideas smoothly while speaking.',
       'My final sentence synthesised the answer.',
     ],
-    // Options are written answer-first; shuffled per lesson so the answer is not always A.
-    quiz: shuffleOpts(makeQuiz(id, title, expressions, models), hashSeed('proficiencySpeakingContent', title)),
+    // Fifteen authored questions per lesson; options shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(fromAuthored(proficiencySpeakingQuizBank[id]), hashSeed('proficiencySpeakingContent', title)),
   };
 });
 

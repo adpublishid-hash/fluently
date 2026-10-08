@@ -82,7 +82,7 @@ export default function ProficiencySpeakingLesson({ lessonId }: { lessonId: numb
         {([
           ['materi', 'Materi & Model'],
           ['latihan', 'Latihan Speaking'],
-          ['kuis', 'Kuis 20 Soal'],
+          ['kuis', 'Kuis 15 Soal'],
         ] as const).map(([value, label]) => (
           <button
             key={value}

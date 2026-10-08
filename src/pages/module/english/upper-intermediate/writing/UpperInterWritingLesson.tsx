@@ -87,7 +87,7 @@ export default function UpperInterWritingLesson({ lessonId }: Props) {
 
       <div className="flex bg-white border-b border-slate-100 sticky top-[65px] z-10 p-2 gap-2">
         {(['belajar', 'kuis'] as const).map((tab) => {
-          const labels = { belajar: 'Materi', kuis: 'Kuis 20 Soal' };
+          const labels = { belajar: 'Materi', kuis: 'Kuis 15 Soal' };
           const isActive = activeTab === tab;
           return (
             <button key={tab} onClick={() => setActiveTab(tab)}
