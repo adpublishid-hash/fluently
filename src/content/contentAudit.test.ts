@@ -14,7 +14,6 @@ const knownLowVariety: Record<string, number> = {
   'english/intermediate/speaking': 0.59,
   'english/upper-intermediate/grammar': 0.13,
   'english/upper-intermediate/pronunciation': 0.13,
-  'english/upper-intermediate/speaking': 0.08,
   'english/upper-intermediate/vocabulary': 0.18,
   'english-latihan/grammar': 0.72,
   'english-latihan/reading': 0.67,
