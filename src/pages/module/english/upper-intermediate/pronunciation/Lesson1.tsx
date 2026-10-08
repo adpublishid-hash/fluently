@@ -211,7 +211,7 @@ const QUIZ: QuizItem[] = [
       "ad-VER-tise",
       "AD-ver-tise",
       "ad-ver-TISE",
-      "ad-VER-tise"
+      "AD-VER-tise"
     ],
     "ans": "AD-ver-tise",
     "exp": "ADvertise – akhiran -ise (dalam kata 3 suku) ditekan pada suku pertama."

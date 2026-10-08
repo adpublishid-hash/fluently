@@ -254,7 +254,7 @@ const QUIZ: QuizItem[] = [
     "opts": [
       "/duː juː/",
       "/dʒuː/ or /djə/",
-      "/duː juː/",
+      "/dəʊ juː/",
       "/dɪd juː/"
     ],
     "ans": "/dʒuː/ or /djə/",

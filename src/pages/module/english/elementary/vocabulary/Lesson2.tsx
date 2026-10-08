@@ -114,7 +114,7 @@ const QUIZ_QUESTIONS = [
     id: 10,
     question: "Choose the correct sentence.",
     options: ["She has tall.","She is tall.","She is long hair."],
-    answer: "the woman is tall.",
+    answer: "She is tall.",
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   },
   {
@@ -149,7 +149,7 @@ const QUIZ_QUESTIONS = [
     id: 15,
     question: "Identify the right sentence.",
     options: ["She has tall.","She is tall.","She is long hair."],
-    answer: "he is tall.",
+    answer: "She is tall.",
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   },
   {
@@ -184,7 +184,7 @@ const QUIZ_QUESTIONS = [
     id: 20,
     question: "Which sentence is correct?",
     options: ["She has tall.","She is tall.","She is long hair."],
-    answer: "He is tall.",
+    answer: "She is tall.",
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   }
 ];

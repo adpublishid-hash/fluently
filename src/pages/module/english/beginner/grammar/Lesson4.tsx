@@ -197,7 +197,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "Bentuk jamak dari 'Leaf'?",
-    options: ['Leafs', 'Leaves', 'Leaves'],
+    options: ['Leafs', 'Leaves', 'Leafes'],
     answer: 'Leaves',
     explanation: "Akhiran 'f'/'fe' sering berubah menjadi 'ves'."
   },
