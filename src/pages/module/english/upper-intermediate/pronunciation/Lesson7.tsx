@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { upperInterPronunciationQuizBank } from './quizBank';
 interface ExampleItem { word: string; ipa: string; meaning: string; }
 interface QuizItem { q: string; opts: string[]; ans: string; exp: string; }
 
@@ -52,7 +54,7 @@ const EXAMPLES: ExampleItem[] = [
   },
   {
     "word": "my opinion",
-    "ipa": "/maɪˈjəpɪnjən/",
+    "ipa": "/maɪ jəˈpɪnjən/",
     "meaning": "Linking /j/ setelah /aɪ/ sebelum vokal"
   },
   {
@@ -61,228 +63,7 @@ const EXAMPLES: ExampleItem[] = [
     "meaning": "Dalam beberapa kasus formal, dua vowal dipisahkan dengan glottal stop /ʔ/"
   }
 ];
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Why is mastering Linking Sounds in Natural Speech important at B2 level?",
-    "opts": [
-      "It is not important",
-      "It only matters for writing",
-      "It is only for advanced learners",
-      "It helps you sound natural and be easily understood"
-    ],
-    "ans": "It helps you sound natural and be easily understood",
-    "exp": "Menguasai Linking Sounds in Natural Speech di level B2 membuat Anda terdengar lebih alami dan mudah dipahami oleh penutur asli."
-  },
-  {
-    "q": "What does \"IPA\" stand for in pronunciation?",
-    "opts": [
-      "Internal Pronunciation Aid",
-      "International Pronunciation Application",
-      "Important Phonics Assessment",
-      "International Phonetic Alphabet"
-    ],
-    "ans": "International Phonetic Alphabet",
-    "exp": "IPA (International Phonetic Alphabet) adalah sistem simbol standar untuk merepresentasikan bunyi bahasa."
-  },
-  {
-    "q": "The best way to improve pronunciation is to ___",
-    "opts": [
-      "Memorize all phonetic rules",
-      "Listen to and mimic native speakers' natural speech",
-      "Only read textbooks",
-      "Speak only in your first language"
-    ],
-    "ans": "Listen to and mimic native speakers' natural speech",
-    "exp": "Mendengarkan dan meniru penutur asli (shadowing) adalah teknik paling efektif untuk pronunciation."
-  },
-  {
-    "q": "A \"minimal pair\" is ___",
-    "opts": [
-      "Two words that differ by only one sound",
-      "Two words from the same word family",
-      "Two words with identical pronunciation",
-      "Two words with the same spelling"
-    ],
-    "ans": "Two words that differ by only one sound",
-    "exp": "Contoh minimal pair: ship/sheep, bad/bed, cat/cut – hanya satu bunyi yang berbeda."
-  },
-  {
-    "q": "In English, stress usually falls on ___",
-    "opts": [
-      "The last syllable always",
-      "Only prepositions and articles",
-      "Content words (nouns, verbs, adjectives)",
-      "Every third word"
-    ],
-    "ans": "Content words (nouns, verbs, adjectives)",
-    "exp": "Dalam kalimat, kata konten (noun, verb, adjective, adverb) biasanya mendapat tekanan lebih kuat."
-  },
-  {
-    "q": "Rising intonation at the end of a sentence typically signals ___",
-    "opts": [
-      "A statement of fact",
-      "A completed thought",
-      "An exclamation",
-      "A yes/no question or uncertainty"
-    ],
-    "ans": "A yes/no question or uncertainty",
-    "exp": "Intonasi naik di akhir kalimat umumnya menandakan pertanyaan yes/no atau ekspresi ketidakpastian."
-  },
-  {
-    "q": "The schwa sound /ə/ is ___",
-    "opts": [
-      "The loudest vowel sound",
-      "Found only in stressed syllables",
-      "The most common unstressed vowel in English",
-      "Never found in connected speech"
-    ],
-    "ans": "The most common unstressed vowel in English",
-    "exp": "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, selalu muncul dalam suku kata tidak bertekanan."
-  },
-  {
-    "q": "Which tool helps you check the pronunciation of an unfamiliar word?",
-    "opts": [
-      "A spell checker",
-      "A grammar book",
-      "A phonetic dictionary with IPA",
-      "A synonym finder"
-    ],
-    "ans": "A phonetic dictionary with IPA",
-    "exp": "Kamus fonetik dengan tulisan IPA (seperti Cambridge Dictionary online) membantu verifikasi pengucapan."
-  },
-  {
-    "q": "Recording yourself practice is useful because ___",
-    "opts": [
-      "It replaces teacher feedback completely",
-      "It is required for B2 certification",
-      "It is entertaining only",
-      "You can identify errors you cannot hear when speaking"
-    ],
-    "ans": "You can identify errors you cannot hear when speaking",
-    "exp": "Merekam dan mendengarkan kembali bicara Anda membantu mendeteksi kesalahan yang tidak terasa saat berbicara."
-  },
-  {
-    "q": "Which element of speech makes English sound natural and rhythmic?",
-    "opts": [
-      "Stress-timed rhythm (stressed syllables at regular intervals)",
-      "Syllable counting",
-      "Pronouncing every syllable equally",
-      "Speaking very slowly"
-    ],
-    "ans": "Stress-timed rhythm (stressed syllables at regular intervals)",
-    "exp": "English adalah bahasa stress-timed: suku kata bertekanan muncul pada interval yang relatif teratur."
-  },
-  {
-    "q": "Which sound is a voiced fricative?",
-    "opts": [
-      "/t/",
-      "/p/",
-      "/k/",
-      "/v/"
-    ],
-    "ans": "/v/",
-    "exp": "/v/ adalah konsonan frikatif bersuara. Pasangannya yang tidak bersuara adalah /f/."
-  },
-  {
-    "q": "In \"butter\", the \"t\" in American English is often pronounced as ___",
-    "opts": [
-      "/d/ (flapped)",
-      "/r/ (rhotic)",
-      "/θ/ (th sound)",
-      "/t/ (full stop)"
-    ],
-    "ans": "/d/ (flapped)",
-    "exp": "Dalam American English, /t/ di antara dua vokal sering diucapkan sebagai flap /d/: \"butter\" → \"budder\"."
-  },
-  {
-    "q": "The word \"beautiful\" has how many syllables?",
-    "opts": [
-      "3",
-      "2",
-      "5",
-      "4"
-    ],
-    "ans": "3",
-    "exp": "\"Beautiful\" = beau-ti-ful = 3 suku kata, dengan tekanan pada BEAUtiful."
-  },
-  {
-    "q": "Which is a correct IPA transcription for \"thought\"?",
-    "opts": [
-      "/θaʊt/",
-      "/θuːt/",
-      "/ðɒt/",
-      "/θɒt/"
-    ],
-    "ans": "/θɒt/",
-    "exp": "\"Thought\" = /θɒt/ – pengucapan dengan /θ/ (tidak bersuara) dan vokal pendek /ɒ/."
-  },
-  {
-    "q": "The difference between /iː/ (sheep) and /ɪ/ (ship) is ___",
-    "opts": [
-      "Stress placement",
-      "Vowel length and position",
-      "Consonant type",
-      "Number of syllables"
-    ],
-    "ans": "Vowel length and position",
-    "exp": "/iː/ adalah vowel panjang, /ɪ/ adalah vowel pendek. Lidah lebih tinggi untuk /iː/ daripada /ɪ/."
-  },
-  {
-    "q": "Falling intonation in English typically indicates ___",
-    "opts": [
-      "A completed statement or an information question (WH)",
-      "Agreement",
-      "Uncertainty",
-      "A question needing a yes/no answer"
-    ],
-    "ans": "A completed statement or an information question (WH)",
-    "exp": "Intonasi turun biasanya menandakan kalimat berita yang selesai atau pertanyaan information (wh-question)."
-  },
-  {
-    "q": "Which word has a SILENT consonant?",
-    "opts": [
-      "Know",
-      "Table",
-      "Garden",
-      "Speak"
-    ],
-    "ans": "Know",
-    "exp": "\"Know\" /noʊ/ – huruf \"k\" tidak diucapkan. Pola /kn-/ di awal kata selalu hanya /n/ dalam bahasa Inggris modern."
-  },
-  {
-    "q": "B2 pronunciation competence means you can ___",
-    "opts": [
-      "Never make pronunciation mistakes",
-      "Speak clearly enough to be consistently understood with occasional errors",
-      "Speak with a perfect native accent",
-      "Only speak slowly and carefully"
-    ],
-    "ans": "Speak clearly enough to be consistently understood with occasional errors",
-    "exp": "CEFR B2: dapat berbicara dengan jelas dan konsisten dipahami, meski dengan sedikit aksen."
-  },
-  {
-    "q": "What is \"shadowing\" in language learning?",
-    "opts": [
-      "Writing pronunciation notes",
-      "Speaking simultaneously with or immediately after a recording",
-      "Repeating word lists",
-      "Reading texts aloud slowly"
-    ],
-    "ans": "Speaking simultaneously with or immediately after a recording",
-    "exp": "Shadowing adalah teknik di mana Anda mengikuti/meniru speaker secara langsung untuk melatih pronunciation dan ritme."
-  },
-  {
-    "q": "To make /θ/ (as in \"think\"), you place your tongue ___",
-    "opts": [
-      "Between or behind your teeth with air flowing over it",
-      "Against your lower teeth",
-      "At the roof of your mouth",
-      "Behind your upper teeth"
-    ],
-    "ans": "Between or behind your teeth with air flowing over it",
-    "exp": "/θ/ dibuat dengan meletakkan lidah di atau di belakang gigi atas, memungkinkan udara mengalir – bunyi \"th\" tidak bersuara."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(upperInterPronunciationQuizBank[7], 'upper-intermediate/pronunciation/7');
 const POINTS: string[] = [
   "**Bahasa Inggris selalu bertendensi menghindari hiatus** (dua vokal berdekatan tanpa konsonan). Itulah mengapa linking sounds muncul secara alami.",
   "**Linking C→V paling umum:** Konsonan akhir kata pertama 'bergabung' dengan vokal awal kata berikutnya: 'fill_it_in' → /ˈfɪ.lɪ.tɪn/",

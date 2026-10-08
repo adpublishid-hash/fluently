@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { upperInterPronunciationQuizBank } from './quizBank';
 interface ExampleItem { word: string; ipa: string; meaning: string; }
 interface QuizItem { q: string; opts: string[]; ans: string; exp: string; }
 
@@ -26,7 +28,7 @@ const EXAMPLES: ExampleItem[] = [
     "meaning": "Fotografis – tekanan pada suku KETIGA (sebelum -ic)"
   },
   {
-    "word": "ECOnomy",
+    "word": "eCONomy",
     "ipa": "/ɪˈkɒnəmi/",
     "meaning": "Ekonomi – tekanan suku kedua"
   },
@@ -61,228 +63,7 @@ const EXAMPLES: ExampleItem[] = [
     "meaning": "Sintetis – tekanan geser ke suku dua (-ic rule)"
   }
 ];
-const QUIZ: QuizItem[] = [
-  {
-    "q": "In the word \"photography\", which syllable is stressed?",
-    "opts": [
-      "pho-to-GRA-phy",
-      "pho-TO-gra-phy",
-      "PHO-to-gra-phy",
-      "pho-to-gra-PHY"
-    ],
-    "ans": "pho-TO-gra-phy",
-    "exp": "\"Photography\" → phOtography. Akhiran -phy mengikuti pola tekanan pada suku ketiga dari belakang."
-  },
-  {
-    "q": "The word \"REBEL\" (noun) vs \"reBEL\" (verb) demonstrates ___",
-    "opts": [
-      "Stress shift between noun and verb forms",
-      "Change in meaning only",
-      "Different number of syllables",
-      "Different spelling"
-    ],
-    "ans": "Stress shift between noun and verb forms",
-    "exp": "Banyak kata 2 suku berubah tekanan tergantung kata benda (suku 1) atau kata kerja (suku 2)."
-  },
-  {
-    "q": "Where is the stress in \"communication\"?",
-    "opts": [
-      "com-MU-ni-ca-tion",
-      "com-mu-NI-ca-tion",
-      "com-mu-ni-CA-tion",
-      "COM-mu-ni-ca-tion"
-    ],
-    "ans": "com-mu-NI-ca-tion",
-    "exp": "\"Communication\" → comMUNication. Akhiran -tion diikuti tekanan pada suku sebelumnya."
-  },
-  {
-    "q": "Which pair shows CORRECT stress shift?",
-    "opts": [
-      "inCREASE (noun) / INcrease (verb)",
-      "inCREASE (noun) / inCREASE (verb)",
-      "INcrease (noun) / INcrease (verb)",
-      "INcrease (noun) / inCREASE (verb)"
-    ],
-    "ans": "INcrease (noun) / inCREASE (verb)",
-    "exp": "INcrease (noun: kenaikan) / inCREASE (verb: meningkat) → stress shift pada 2-syllable words."
-  },
-  {
-    "q": "The suffix \"-ic\" (as in \"economic\") shifts stress to ___",
-    "opts": [
-      "Two syllables before -ic",
-      "The first syllable always",
-      "The syllable directly before -ic",
-      "The last syllable"
-    ],
-    "ans": "The syllable directly before -ic",
-    "exp": "Akhiran \"-ic\" menarik tekanan ke suku kata tepat sebelumnya: ecoNOmic, photoGRAPHic."
-  },
-  {
-    "q": "How many syllables does \"university\" have?",
-    "opts": [
-      "6",
-      "5",
-      "4",
-      "3"
-    ],
-    "ans": "5",
-    "exp": "u-ni-VER-si-ty = 5 suku kata, dengan tekanan utama pada suku ketiga (VER)."
-  },
-  {
-    "q": "In \"photograph\" vs \"photography\", the stress ___",
-    "opts": [
-      "Shifts from syllable 1 to syllable 2",
-      "Stays on the same syllable",
-      "Disappears entirely",
-      "Shifts from syllable 2 to syllable 1"
-    ],
-    "ans": "Shifts from syllable 1 to syllable 2",
-    "exp": "PHOtograph (suku 1) → phoTOgraphy (suku 2). Akhiran -y menggeser tekanan."
-  },
-  {
-    "q": "Which word has stress on the FINAL syllable?",
-    "opts": [
-      "Compress (verb)",
-      "Interesting",
-      "Beautiful",
-      "Yesterday"
-    ],
-    "ans": "Compress (verb)",
-    "exp": "comPRESS – kata kerja 2 suku biasanya ditekan pada suku kedua (terakhir)."
-  },
-  {
-    "q": "The word \"analyze\" has stress on ___",
-    "opts": [
-      "AN-a-lyze",
-      "an-AL-yze",
-      "a-NA-lyze",
-      "an-a-LYZE"
-    ],
-    "ans": "AN-a-lyze",
-    "exp": "ANalyze – akhiran -ize: tekanan pada suku KETIGA dari belakang (AN-a-lyze)."
-  },
-  {
-    "q": "Incorrect word stress will most likely cause ___",
-    "opts": [
-      "Grammar mistakes",
-      "Difficulty being understood",
-      "Spelling errors",
-      "Vocabulary gaps"
-    ],
-    "ans": "Difficulty being understood",
-    "exp": "Tekanan kata yang salah dapat membuat penutur asli sulit memahami ucapan Anda."
-  },
-  {
-    "q": "\"Technology\" is stressed on which syllable?",
-    "opts": [
-      "TECH-no-lo-gy",
-      "tech-no-LO-gy",
-      "tech-NO-lo-gy",
-      "tech-no-lo-GY"
-    ],
-    "ans": "tech-NO-lo-gy",
-    "exp": "techNOlogy – akhiran -ogy mengikuti pola tekanan pada suku ketiga dari belakang."
-  },
-  {
-    "q": "Which suffixes attract stress to the syllable DIRECTLY BEFORE them?",
-    "opts": [
-      "-ing, -er, -ed",
-      "-ful, -less, -ness",
-      "-able, -ible, -al",
-      "-tion, -sion, -ic"
-    ],
-    "ans": "-tion, -sion, -ic",
-    "exp": "Akhiran -tion, -sion, -ic secara konsisten menarik tekanan ke suku tepat sebelum mereka."
-  },
-  {
-    "q": "In \"PERMIT\" (noun) vs \"perMIT\" (verb), meaning is ___",
-    "opts": [
-      "Unclear",
-      "The same",
-      "Slightly different",
-      "Completely different"
-    ],
-    "ans": "Completely different",
-    "exp": "PERMIT = izin (kata benda); perMIT = mengizinkan (kata kerja) – maknanya berbeda sesuai fungsi."
-  },
-  {
-    "q": "Which word is stressed correctly as \"ADvertise\"?",
-    "opts": [
-      "AD-ver-tise",
-      "ad-VER-tise",
-      "AD-VER-tise",
-      "ad-ver-TISE"
-    ],
-    "ans": "AD-ver-tise",
-    "exp": "ADvertise – akhiran -ise (dalam kata 3 suku) ditekan pada suku pertama."
-  },
-  {
-    "q": "Compound nouns usually have stress on ___",
-    "opts": [
-      "Both parts equally",
-      "The second part",
-      "The final syllable",
-      "The first part"
-    ],
-    "ans": "The first part",
-    "exp": "Kata benda gabungan (compound noun): BLACKboard, AIRport – tekanan pada bagian pertama."
-  },
-  {
-    "q": "\"Academic\" has its stress on which syllable?",
-    "opts": [
-      "AC-a-dem-ic",
-      "ac-a-dem-IC",
-      "ac-a-DEM-ic",
-      "ac-A-dem-ic"
-    ],
-    "ans": "ac-a-DEM-ic",
-    "exp": "acaDEMic – akhiran -ic menarik tekanan ke suku tepat sebelumnya: acaDEMic."
-  },
-  {
-    "q": "Where is stress in \"OBject\" vs \"obJECT\"?",
-    "opts": [
-      "Both on first syllable",
-      "OBject=noun, obJECT=verb",
-      "OBject=verb, obJECT=noun",
-      "Both on second syllable"
-    ],
-    "ans": "OBject=noun, obJECT=verb",
-    "exp": "OBject (keberatan/benda, noun/disuse) vs obJECT (menolak, verb) – classic stress shift."
-  },
-  {
-    "q": "Which sentence demonstrates CORRECT stress use?",
-    "opts": [
-      "He gave me a PERmit to enter.",
-      "She wants to REbel against the rules.",
-      "The conFLICT caused many problems.",
-      "They need to adVANce quickly."
-    ],
-    "ans": "He gave me a PERmit to enter.",
-    "exp": "PERmit (noun, suku 1). REbel sebagai verb harus reBEL; adVANce memang benar. conFLICT bisa noun atau verb."
-  },
-  {
-    "q": "In \"information\", where is the primary stress?",
-    "opts": [
-      "in-for-MA-tion",
-      "in-FOR-ma-tion",
-      "IN-for-ma-tion",
-      "in-for-ma-TION"
-    ],
-    "ans": "in-for-MA-tion",
-    "exp": "inforMAtion – akhiran -tion menarik tekanan ke suku tepat sebelumnya: inforMAtion."
-  },
-  {
-    "q": "Which is NOT a rule for English word stress?",
-    "opts": [
-      "All words end in stressed syllables",
-      "Nouns of 2 syllables often stress syllable 1",
-      "Verbs of 2 syllables often stress syllable 2",
-      "-tion suffixes attract stress before them"
-    ],
-    "ans": "All words end in stressed syllables",
-    "exp": "Tidak ada aturan bahwa semua kata berakhir dengan suku tertekan – ini bukan pola umum bahasa Inggris."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(upperInterPronunciationQuizBank[1], 'upper-intermediate/pronunciation/1');
 const POINTS: string[] = [
   "**Prinsip Dasar:** Word stress bersifat tetap dan mempengaruhi makna. Kata yang sama bisa berganti makna saat stressnya berubah.",
   "**Noun/Adjective vs Verb:** Banyak kata 2 suku dapat berubah stress: **RE**cord (n) → re**CORD** (v) | **PRE**sent (n) → pre**SENT** (v)",
