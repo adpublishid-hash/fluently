@@ -59,7 +59,7 @@ export default function ProficiencyVocabularyLesson({ lessonId }: { lessonId: nu
       </header>
 
       <div className="flex bg-white border-b border-slate-100 p-2 gap-2 sticky top-[65px] z-10">
-        {([['materi', '30 Vocab'], ['kuis', 'Kuis 20 Soal']] as const).map(([key, label]) => (
+        {([['materi', `${lesson.words.length} Vocab`], ['kuis', `Kuis ${lesson.quiz.length} Soal`]] as const).map(([key, label]) => (
           <button key={key} onClick={() => setTab(key)} className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${tab === key ? 'text-white shadow-md' : 'text-slate-500'}`} style={tab === key ? { background: ACCENT } : undefined}>
             {label}
           </button>
@@ -72,7 +72,7 @@ export default function ProficiencyVocabularyLesson({ lessonId }: { lessonId: nu
             <>
               <section className="rounded-3xl p-6 text-white relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${ACCENT}, #38BDF8)` }}>
                 <BookOpen className="absolute top-4 right-4 w-20 h-20 opacity-10" />
-                <span className="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">30 C2 words</span>
+                <span className="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">{lesson.words.length} C2 words</span>
                 <h2 className="text-xl font-black mt-3 mb-1">{lesson.title}</h2>
                 <p className="text-sm text-white/85 leading-relaxed">{lesson.focus}</p>
               </section>

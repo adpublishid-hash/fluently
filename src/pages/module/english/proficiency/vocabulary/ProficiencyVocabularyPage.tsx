@@ -52,7 +52,7 @@ export default function ProficiencyVocabularyPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">Materi vocabulary C2 dengan 30 kata per lesson, collocation, example TTS, usage task, dan kuis.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">Materi vocabulary C2 dengan 12 kata topikal per lesson, collocation, example TTS, usage task, dan kuis.</p>
 
           <div className="space-y-3">
             {proficiencyVocabularyLessons.map((lesson, index) => {

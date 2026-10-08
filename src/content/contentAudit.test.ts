@@ -7,7 +7,6 @@ const audits = runContentAudit();
 
 const knownLowVariety: Record<string, number> = {
   'english/upper-intermediate/writing': 0.25,
-  'english/proficiency/vocabulary': 0.18,
 };
 
 describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] as const))('%s', (_, audit) => {
