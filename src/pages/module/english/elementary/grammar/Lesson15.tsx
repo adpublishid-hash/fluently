@@ -58,28 +58,28 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ['heat', 'will heat', 'heated'],
+    options: ['will heat', 'heated', 'heat'],
     answer: 'heat',
     explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
   },
   {
     id: 2,
     question: "First: If it rains, I ___ (stay) home.",
-    options: ['stay', 'will stay', 'staying'],
+    options: ['stay', 'staying', 'will stay'],
     answer: 'will stay',
     explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
   },
   {
     id: 3,
     question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ['get', 'will get', 'got'],
+    options: ['will get', 'get', 'got'],
     answer: 'get',
     explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
   },
   {
     id: 4,
     question: "First: If she ___ (study), she will pass.",
-    options: ['study', 'studies', 'will study'],
+    options: ['will study', 'study', 'studies'],
     answer: 'studies',
     explanation: "Klausa 'If' selalu menggunakan Present Simple. 'She studies'."
   },
@@ -93,28 +93,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ["heat","will heat","heated"],
+    options: ["will heat", "heated", "heat"],
     answer: "heat",
     explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
   },
   {
     id: 7,
     question: "First: If it rains, I ___ (stay) home.",
-    options: ["stay","will stay","staying"],
+    options: ["stay", "staying", "will stay"],
     answer: "will stay",
     explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
   },
   {
     id: 8,
     question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ["get","will get","got"],
+    options: ["will get", "get", "got"],
     answer: "get",
     explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
   },
   {
     id: 9,
     question: "First: If she ___ (study), she will pass.",
-    options: ["study","studies","will study"],
+    options: ["will study", "study", "studies"],
     answer: "studies",
     explanation: "Klausa 'If' selalu menggunakan Present Simple. 'My sister studies'."
   },
@@ -128,28 +128,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ["heat","will heat","heated"],
+    options: ["will heat", "heated", "heat"],
     answer: "heat",
     explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
   },
   {
     id: 12,
     question: "First: If it rains, I ___ (stay) home.",
-    options: ["stay","will stay","staying"],
+    options: ["stay", "staying", "will stay"],
     answer: "will stay",
     explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
   },
   {
     id: 13,
     question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ["get","will get","got"],
+    options: ["will get", "get", "got"],
     answer: "get",
     explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
   },
   {
     id: 14,
     question: "First: If the girl ___ (study), the girl will pass.",
-    options: ["study","studies","will study"],
+    options: ["studies", "will study", "study"],
     answer: "studies",
     explanation: "Klausa 'If' selalu menggunakan Present Simple. 'She studies'."
   },
@@ -163,28 +163,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ["heat","will heat","heated"],
+    options: ["will heat", "heated", "heat"],
     answer: "heat",
     explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
   },
   {
     id: 17,
     question: "First: If it rains, I ___ (stay) home.",
-    options: ["stay","will stay","staying"],
+    options: ["stay", "staying", "will stay"],
     answer: "will stay",
     explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
   },
   {
     id: 18,
     question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ["get","will get","got"],
+    options: ["will get", "get", "got"],
     answer: "get",
     explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
   },
   {
     id: 19,
     question: "First: If she ___ (study), she will pass.",
-    options: ["study","studies","will study"],
+    options: ["will study", "study", "studies"],
     answer: "studies",
     explanation: "Klausa 'If' selalu menggunakan Present Simple. 'My sister studies'."
   },

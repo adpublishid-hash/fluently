@@ -63,7 +63,7 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Which sentence is correct?",
-    options: ['I am agree with you.', 'I agree with you.', 'I agreeing with you.'],
+    options: ['I agreeing with you.', 'I am agree with you.', 'I agree with you.'],
     answer: 'I agree with you.',
     explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
   },
@@ -77,28 +77,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "I ___ the bus this morning.",
-    options: ['lost', 'missed', 'losed'],
+    options: ['missed', 'losed', 'lost'],
     answer: 'missed',
     explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
   },
   {
     id: 4,
     question: "He plays football very ___.",
-    options: ['good', 'goodly', 'well'],
+    options: ['good', 'well', 'goodly'],
     answer: 'well',
     explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
   },
   {
     id: 5,
     question: "It depends ___ the price.",
-    options: ['of', 'from', 'on'],
+    options: ['from', 'on', 'of'],
     answer: 'on',
     explanation: "Selalu 'Depends ON'."
   },
   {
     id: 6,
     question: "Which sentence is correct?",
-    options: ["I am agree with you.","I agree with you.","I agreeing with you."],
+    options: ["I agreeing with you.", "I am agree with you.", "I agree with you."],
     answer: "I agree with you.",
     explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
   },
@@ -112,7 +112,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "I ___ the bus this morning.",
-    options: ["lost","missed","losed"],
+    options: ["missed", "losed", "lost"],
     answer: "missed",
     explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
   },
@@ -126,14 +126,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "It depends ___ the price.",
-    options: ["of","from","on"],
+    options: ["from", "on", "of"],
     answer: "on",
     explanation: "Selalu 'Depends ON'."
   },
   {
     id: 11,
     question: "Which sentence is correct?",
-    options: ["I am agree with you.","I agree with you.","I agreeing with you."],
+    options: ["I agreeing with you.", "I am agree with you.", "I agree with you."],
     answer: "I agree with you.",
     explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
   },
@@ -147,28 +147,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "I ___ the bus this morning.",
-    options: ["lost","missed","losed"],
+    options: ["missed", "losed", "lost"],
     answer: "missed",
     explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
   },
   {
     id: 14,
     question: "Mark plays football very ___.",
-    options: ["good","goodly","well"],
+    options: ["well", "goodly", "good"],
     answer: "well",
     explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
   },
   {
     id: 15,
     question: "It depends ___ the price.",
-    options: ["of","from","on"],
+    options: ["from", "on", "of"],
     answer: "on",
     explanation: "Selalu 'Depends ON'."
   },
   {
     id: 16,
     question: "Which sentence is correct?",
-    options: ["I am agree with you.","I agree with you.","I agreeing with you."],
+    options: ["I agreeing with you.", "I am agree with you.", "I agree with you."],
     answer: "I agree with you.",
     explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
   },
@@ -182,21 +182,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "I ___ the bus this morning.",
-    options: ["lost","missed","losed"],
+    options: ["missed", "losed", "lost"],
     answer: "missed",
     explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
   },
   {
     id: 19,
     question: "He plays football very ___.",
-    options: ["great","goodly","well"],
+    options: ["great", "well", "goodly"],
     answer: "well",
     explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
   },
   {
     id: 20,
     question: "It depends ___ the price.",
-    options: ["of","from","on"],
+    options: ["from", "on", "of"],
     answer: "on",
     explanation: "Selalu 'Depends ON'."
   }

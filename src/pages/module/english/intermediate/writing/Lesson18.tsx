@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why does the writer use \"Dear Customer Service Manager,\" rather than \"Hi Manager,\"?",
     "opts": [
-      "He forgot the manager's name",
-      "It sets a strict, formal, and professional tone",
       "He is trying to be funny",
-      "It is shorter"
+      "It is shorter",
+      "He forgot the manager's name",
+      "It sets a strict, formal, and professional tone"
     ],
     "ans": "It sets a strict, formal, and professional tone",
     "exp": "Formal business complaints must use professional honorifics."
@@ -19,10 +19,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What phrase states the PURPOSE of the letter clearly in the opening?",
     "opts": [
-      "\"I am writing to formally express my extreme dissatisfaction...\"",
       "\"Last Tuesday, I purchased...\"",
-      "\"I have attached photographs...\"",
-      "\"I look forward to...\""
+      "\"I am writing to formally express my extreme dissatisfaction...\"",
+      "\"I look forward to...\"",
+      "\"I have attached photographs...\""
     ],
     "ans": "\"I am writing to formally express my extreme dissatisfaction...\"",
     "exp": "Standard formal letters state their objective immediately in the first sentence."
@@ -30,10 +30,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the strong vocabulary used to express anger diplomatically:",
     "opts": [
-      "Mad, bad, sad",
       "Extreme dissatisfaction, dismissive, unacceptable",
+      "Brand new, fully functional",
       "Broken, missing, cracked",
-      "Brand new, fully functional"
+      "Mad, bad, sad"
     ],
     "ans": "Extreme dissatisfaction, dismissive, unacceptable",
     "exp": "These academic words convey anger professionally without using insults or slang."
@@ -41,10 +41,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the effect of using \"I expect\" in the final paragraph?",
     "opts": [
-      "It begs for mercy",
-      "It firmly states a demand without being abusive",
       "It states a future prediction",
-      "It asks a question"
+      "It asks a question",
+      "It begs for mercy",
+      "It firmly states a demand without being abusive"
     ],
     "ans": "It firmly states a demand without being abusive",
     "exp": "\"I expect\" is a strong diplomatic imperative commanding action."
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why is \"Yours faithfully\" used instead of \"Yours sincerely\"?",
     "opts": [
+      "Because the letter is sent by email",
       "Because the writer is religious",
       "Because the writer does not know the specific name of the recipient",
-      "It is an informal phrase",
-      "Because the letter is sent by email"
+      "It is an informal phrase"
     ],
     "ans": "Because the writer does not know the specific name of the recipient",
     "exp": "UK/International standard: If starting with Dear Manager/Sir/Madam, close with Yours faithfully. If you know the name (Dear Mr. Smith), use Yours sincerely."
@@ -64,8 +64,8 @@ const QUIZ: QuizItem[] = [
     "q": "How would you combine these sentences with a relative clause? \"The man called the police. His car was stolen.\"",
     "opts": [
       "The man called the police whose car was stolen.",
-      "The man whose car was stolen called the police.",
       "The man whom car was stolen called the police.",
+      "The man whose car was stolen called the police.",
       "The man whom called the police had his car stolen."
     ],
     "ans": "The man whose car was stolen called the police.",
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Due to\" is primarily used to indicate...",
     "opts": [
-      "Addition",
       "Time",
-      "Cause or Reason",
-      "Condition"
+      "Addition",
+      "Condition",
+      "Cause or Reason"
     ],
     "ans": "Cause or Reason",
     "exp": "\"Due to\" (= because of) digunakan untuk menunjukkan alasan/penyebab dari sesuatu."
@@ -85,9 +85,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
     "opts": [
-      "immediately",
-      "action",
       "goverment",
+      "action",
+      "immediately",
       "should"
     ],
     "ans": "goverment",
@@ -96,10 +96,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How do you make this formal? \"Send me the files ASAP.\"",
     "opts": [
-      "Please dispatch the files really quick.",
       "I require the files immediately.",
       "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
+      "Shoot the documents to me.",
+      "Please dispatch the files really quick."
     ],
     "ans": "Please send the documents at your earliest convenience.",
     "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
@@ -108,9 +108,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is the purpose of a thesis statement in an essay?",
     "opts": [
       "To greet the reader",
-      "To state the main argument or focus of the essay",
       "To ask a rhetorical question",
-      "To give a dictionary definition"
+      "To give a dictionary definition",
+      "To state the main argument or focus of the essay"
     ],
     "ans": "To state the main argument or focus of the essay",
     "exp": "Thesis statement berada di paragraf pertama untuk menjabarkan argumen/titik berat esai."
@@ -119,8 +119,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence uses the PASSIVE voice correctly?",
     "opts": [
       "The report was finished by Anna yesterday.",
-      "The report finished Anna yesterday.",
       "Anna was finished the report yesterday.",
+      "The report finished Anna yesterday.",
       "The report was finish by Anna."
     ],
     "ans": "The report was finished by Anna yesterday.",
@@ -129,10 +129,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the most FORMAL word to replace \"but\":",
     "opts": [
-      "However",
-      "Also",
       "So",
-      "And"
+      "And",
+      "However",
+      "Also"
     ],
     "ans": "However",
     "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
@@ -140,10 +140,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence adds INFORMATION?",
     "opts": [
-      "Moreover, the city has excellent public transport.",
       "Despite this, the city is loud.",
+      "As a result, prices increased.",
       "Therefore, we left early.",
-      "As a result, prices increased."
+      "Moreover, the city has excellent public transport."
     ],
     "ans": "Moreover, the city has excellent public transport.",
     "exp": "\"Moreover\" (lebih lanjut lagi) digunakan untuk memberikan informasi tambahan yang mendukung argumen."
@@ -152,8 +152,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which option is less formal? \"Commence\"",
     "opts": [
       "Begin",
-      "Terminate",
       "Execute",
+      "Terminate",
       "Finalize"
     ],
     "ans": "Begin",
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word means \"in addition\"?",
     "opts": [
-      "However",
       "Instead",
-      "Furthermore",
-      "Whereas"
+      "However",
+      "Whereas",
+      "Furthermore"
     ],
     "ans": "Furthermore",
     "exp": "\"Furthermore\" adalah adverb formal yang fungsinya menambah argumen atau informasi."
@@ -184,10 +184,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the error: \"I look forward to hear from you soon.\"",
     "opts": [
-      "look forward",
       "to hear",
       "from you",
-      "soon"
+      "soon",
+      "look forward"
     ],
     "ans": "to hear",
     "exp": "Aturan baku: \"look forward to\" selalu diikuti oleh Gerund (V-ing), sehingga seharusnya \"to hearing\"."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is best for SUMMARISING an essay?",
     "opts": [
-      "First of all",
       "In contrast",
       "To conclude",
-      "For instance"
+      "For instance",
+      "First of all"
     ],
     "ans": "To conclude",
     "exp": "\"To conclude\" (atau In conclusion) secara spesifik digunakan di paragraf terakhir untuk merangkum tulisan."
@@ -206,10 +206,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is most appropriate for a formal email greeting?",
     "opts": [
-      "Hi mate,",
-      "Hey there,",
       "Dear Mr. Smith,",
-      "What’s up Smith,"
+      "What’s up Smith,",
+      "Hey there,",
+      "Hi mate,"
     ],
     "ans": "Dear Mr. Smith,",
     "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
@@ -217,9 +217,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
     "opts": [
-      "for",
-      "from",
       "with",
+      "from",
+      "for",
       "about"
     ],
     "ans": "for",
@@ -240,18 +240,18 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What is the purpose of Jonathan's letter?",
     "opts": [
       "To apply for a job as a manager",
-      "To complain about a defective product and rude service",
+      "To ask for technical support for software",
       "To write a positive review",
-      "To ask for technical support for software"
+      "To complain about a defective product and rude service"
     ],
     "ans": "To complain about a defective product and rude service"
   },
   {
     "q": "What two physical issues did the laptop have?",
     "opts": [
-      "A cracked screen and a missing charging cable",
-      "A virus and a broken keyboard",
       "Wrong color and dead battery",
+      "A virus and a broken keyboard",
+      "A cracked screen and a missing charging cable",
       "It was too heavy and too expensive"
     ],
     "ans": "A cracked screen and a missing charging cable"
@@ -259,19 +259,19 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "How did the staff react when Jonathan requested an exchange?",
     "opts": [
-      "They apologized profusely",
       "They gave him a refund instantly",
       "They were dismissive and refused to help",
-      "They offered him a discount on another item"
+      "They offered him a discount on another item",
+      "They apologized profusely"
     ],
     "ans": "They were dismissive and refused to help"
   },
   {
     "q": "What resolution is the writer demanding?",
     "opts": [
-      "A free phone",
-      "A prompt replacement or full refund",
       "For the staff member to be fired",
+      "A prompt replacement or full refund",
+      "A free phone",
       "A discount voucher"
     ],
     "ans": "A prompt replacement or full refund"
@@ -279,10 +279,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What action will he take if not resolved?",
     "opts": [
-      "He will break the laptop",
-      "He will elevate the issue to the Consumer Protection Board",
       "He will never buy laptops again",
-      "He will call the police immediately"
+      "He will call the police immediately",
+      "He will elevate the issue to the Consumer Protection Board",
+      "He will break the laptop"
     ],
     "ans": "He will elevate the issue to the Consumer Protection Board"
   }

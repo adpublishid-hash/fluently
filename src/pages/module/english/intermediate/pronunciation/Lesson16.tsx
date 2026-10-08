@@ -81,41 +81,41 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Jika Anda menceritakan adegan aksi (misalnya, kejar-kejaran mobil), bagaimana seharusnya Anda berbicara?",
-    options: ['Perlahan dan pelan', 'Cepat dan energik', 'Monoton'],
+    options: ['Cepat dan energik', 'Monoton', 'Perlahan dan pelan'],
     answer: 'Cepat dan energik',
     explanation: "Kecepatan menciptakan rasa urgensi dan kegembiraan."
   },
   {
     id: 2,
     question: "Apa tujuan dari 'Jeda Dramatis'?",
-    options: ['Untuk mengingat baris Anda', 'Untuk membosankan audiens', 'Untuk membangun ketegangan/perhatian'],
+    options: ['Untuk membangun ketegangan/perhatian', 'Untuk mengingat baris Anda', 'Untuk membosankan audiens'],
     answer: 'Untuk membangun ketegangan/perhatian',
     explanation: "Keheningan membuat pendengar mencondongkan tubuh dan menunggu apa yang akan terjadi selanjutnya."
   },
   {
     id: 3,
     question: "Jika Anda menyuarakan karakter 'Raksasa', Anda kemungkinan akan menggunakan nada ___.",
-    options: ['Tinggi', 'Rendah', 'Normal'],
+    options: ['Normal', 'Rendah', 'Tinggi'],
     answer: 'Rendah',
     explanation: "Karakter yang lebih besar atau nada serius biasanya dikaitkan dengan suara yang lebih dalam dan lebih rendah."
   },
   { id: 4, question: "Untuk menunjukkan bahwa karakter takut, Anda mungkin...", options: ['Berteriak keras', 'Berbisik atau menggunakan suara gemetar', 'Berbicara sangat jelas'], answer: 'Berbisik atau menggunakan suara gemetar', explanation: "Ketakutan sering diekspresikan melalui napas, nada tinggi, atau bisikan." },
-  { id: 5, question: "Untuk character child/anak kecil, gunakan pitch...", options: ['Higher/lebih tinggi', 'Lower/lebih rendah', 'Normal'], answer: 'Higher/lebih tinggi', explanation: "Children have higher voices, so raise your pitch." },
-  { id: 6, question: "Dramatic pause digunakan...", options: ['After important reveals', 'Setiap detik', 'Tidak pernah'], answer: 'After important reveals', explanation: "Pause creates suspense and gives weight to key moments." },
+  { id: 5, question: "Untuk character child/anak kecil, gunakan pitch...", options: ['Normal', 'Higher/lebih tinggi', 'Lower/lebih rendah'], answer: 'Higher/lebih tinggi', explanation: "Children have higher voices, so raise your pitch." },
+  { id: 6, question: "Dramatic pause digunakan...", options: ['Setiap detik', 'Tidak pernah', 'After important reveals'], answer: 'After important reveals', explanation: "Pause creates suspense and gives weight to key moments." },
   { id: 7, question: "Untuk scene sadness/kesedihan, use...", options: ['Fast pace', 'Slow pace, lower pitch', 'Loud volume'], answer: 'Slow pace, lower pitch', explanation: "Sadness = slow, low, soft delivery." },
-  { id: 8, question: "Untuk excitement/kegembiraan, use...", options: ['Higher pitch, faster pace', 'Lower pitch, slower', 'Monotone'], answer: 'Higher pitch, faster pace', explanation: "Energy = faster tempo + higher pitch." },
-  { id: 9, question: "Whisper digunakan untuk...", options: ['Secrets, fear, intimacy', 'Anger', 'Joy'], answer: 'Secrets, fear, intimacy', explanation: "Whisper creates closeness atau menunjukkan ketakutan." },
-  { id: 10, question: "Volume variety membantu...", options: ['Confuse listeners', 'Create emotional dynamics', 'Nothing'], answer: 'Create emotional dynamics', explanation: "Loud vs soft = drama and interest." },
-  { id: 11, question: "Untuk villain character, gunakan...", options: ['Low pitch, slow, menacing', 'High pitch, fast', 'Whisper'], answer: 'Low pitch, slow, menacing', explanation: "Villains often sound deep, controlled, threatening." },
-  { id: 12, question: "Story pacing: slow down untuk...", options: ['Action scenes', 'Important details, tension', 'Filler'], answer: 'Important details, tension', explanation: "Slow = emphasize, build suspense." },
+  { id: 8, question: "Untuk excitement/kegembiraan, use...", options: ['Monotone', 'Higher pitch, faster pace', 'Lower pitch, slower'], answer: 'Higher pitch, faster pace', explanation: "Energy = faster tempo + higher pitch." },
+  { id: 9, question: "Whisper digunakan untuk...", options: ['Anger', 'Secrets, fear, intimacy', 'Joy'], answer: 'Secrets, fear, intimacy', explanation: "Whisper creates closeness atau menunjukkan ketakutan." },
+  { id: 10, question: "Volume variety membantu...", options: ['Create emotional dynamics', 'Confuse listeners', 'Nothing'], answer: 'Create emotional dynamics', explanation: "Loud vs soft = drama and interest." },
+  { id: 11, question: "Untuk villain character, gunakan...", options: ['Whisper', 'High pitch, fast', 'Low pitch, slow, menacing'], answer: 'Low pitch, slow, menacing', explanation: "Villains often sound deep, controlled, threatening." },
+  { id: 12, question: "Story pacing: slow down untuk...", options: ['Filler', 'Action scenes', 'Important details, tension'], answer: 'Important details, tension', explanation: "Slow = emphasize, build suspense." },
   { id: 13, question: "Story pacing: speed up untuk...", options: ['Action, excitement', 'Sad moments', 'Endings'], answer: 'Action, excitement', explanation: "Fast = urgency, energy, movement." },
-  { id: 14, question: "Onomatopoeia (sound words like BOOM) harus...", options: ['Said quietly', 'Exaggerated dengan emosi', 'Skipped'], answer: 'Exaggerated dengan emosi', explanation: "Sound words are fun! Make them dramatic." },
-  { id: 15, question: "Untuk narrator voice, gunakan...", options: ['Neutral, clear, steady', 'Extreme emotions', 'Monotone'], answer: 'Neutral, clear, steady', explanation: "Narrator = balanced, authoritative tone." },
+  { id: 14, question: "Onomatopoeia (sound words like BOOM) harus...", options: ['Exaggerated dengan emosi', 'Said quietly', 'Skipped'], answer: 'Exaggerated dengan emosi', explanation: "Sound words are fun! Make them dramatic." },
+  { id: 15, question: "Untuk narrator voice, gunakan...", options: ['Extreme emotions', 'Neutral, clear, steady', 'Monotone'], answer: 'Neutral, clear, steady', explanation: "Narrator = balanced, authoritative tone." },
   { id: 16, question: "Dialogue tags ('she said') harus...", options: ['Loud', 'Soft, de-emphasized', 'Skipped'], answer: 'Soft, de-emphasized', explanation: "Focus on dialogue, not tags." },
-  { id: 17, question: "Untuk cliffhanger ending, use...", options: ['Rising intonation ↗ + pause', 'Falling intonation ↘', 'Fast finish'], answer: 'Rising intonation ↗ + pause', explanation: "Rising tone = unresolved, suspenseful." },
-  { id: 18, question: "Eye contact with audience membantu...", options: ['Nothing', 'Connection and engagement', 'You forget lines'], answer: 'Connection and engagement', explanation: "Looking at listeners makes story come alive." },
+  { id: 17, question: "Untuk cliffhanger ending, use...", options: ['Fast finish', 'Falling intonation ↘', 'Rising intonation ↗ + pause'], answer: 'Rising intonation ↗ + pause', explanation: "Rising tone = unresolved, suspenseful." },
+  { id: 18, question: "Eye contact with audience membantu...", options: ['You forget lines', 'Connection and engagement', 'Nothing'], answer: 'Connection and engagement', explanation: "Looking at listeners makes story come alive." },
   { id: 19, question: "Practice storytelling dengan...", options: ['Silent reading', 'Reading aloud dengan emotions', 'Speed reading'], answer: 'Reading aloud dengan emotions', explanation: "Practice vocal variety OUT LOUD." },
-  { id: 20, question: "Best storytelling pronunciation goal?", options: ['Perfect accent', 'Emotional clarity and variety', 'Speed'], answer: 'Emotional clarity and variety', explanation: "Make listeners FEEL the story through your voice!" }
+  { id: 20, question: "Best storytelling pronunciation goal?", options: ['Emotional clarity and variety', 'Perfect accent', 'Speed'], answer: 'Emotional clarity and variety', explanation: "Make listeners FEEL the story through your voice!" }
 ];
 
 const InterPronunLesson16: React.FC = () => {

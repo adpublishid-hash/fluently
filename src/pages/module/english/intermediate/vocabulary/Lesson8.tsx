@@ -53,26 +53,26 @@ const INFO_SOCIETY_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "The title at the top of a newspaper article is the ___.", options: ['Caption', 'Headline', 'Deadline'], answer: 'Headline', explanation: "Headline (Judul berita) adalah judul di bagian atas artikel atau halaman di surat kabar atau majalah." },
-  { id: 2, question: "False information spread deliberately is often called ___.", options: ['Misinformation', 'Broadcasting', 'Coverage'], answer: 'Misinformation', explanation: "Misinformation (Informasi yang salah) mengacu pada informasi yang salah atau tidak akurat." },
-  { id: 3, question: "The person who reads the news on TV is the ___.", options: ['Editor', 'Anchor', 'Actor'], answer: 'Anchor', explanation: "News Anchor (Pembawa berita) adalah orang yang menyajikan berita selama program berita." },
-  { id: 4, question: "This news channel is ___ because it favors one political party.", options: ['reliable', 'biased', 'live'], answer: 'biased', explanation: "Bias (Bias) berarti menunjukkan preferensi yang tidak adil untuk atau terhadap sesuatu." },
-  { id: 5, question: "We interrupt this program for a ___ news report.", options: ['live', 'dead', 'sleep'], answer: 'live', explanation: "Live (Langsung) berarti disiarkan pada saat kejadian." },
+  { id: 1, question: "The title at the top of a newspaper article is the ___.", options: ['Headline', 'Deadline', 'Caption'], answer: 'Headline', explanation: "Headline (Judul berita) adalah judul di bagian atas artikel atau halaman di surat kabar atau majalah." },
+  { id: 2, question: "False information spread deliberately is often called ___.", options: ['Misinformation', 'Coverage', 'Broadcasting'], answer: 'Misinformation', explanation: "Misinformation (Informasi yang salah) mengacu pada informasi yang salah atau tidak akurat." },
+  { id: 3, question: "The person who reads the news on TV is the ___.", options: ['Editor', 'Actor', 'Anchor'], answer: 'Anchor', explanation: "News Anchor (Pembawa berita) adalah orang yang menyajikan berita selama program berita." },
+  { id: 4, question: "This news channel is ___ because it favors one political party.", options: ['live', 'biased', 'reliable'], answer: 'biased', explanation: "Bias (Bias) berarti menunjukkan preferensi yang tidak adil untuk atau terhadap sesuatu." },
+  { id: 5, question: "We interrupt this program for a ___ news report.", options: ['sleep', 'live', 'dead'], answer: 'live', explanation: "Live (Langsung) berarti disiarkan pada saat kejadian." },
   { id: 6, question: "A person who writes news articles is a ___.", options: ['journalist', 'anchor', 'audience'], answer: 'journalist', explanation: "Journalist (Wartawan) menulis berita untuk koran, majalah, atau situs web." },
   { id: 7, question: "The reporter interviewed several ___ for the story.", options: ['broadcasts', 'sources', 'channels'], answer: 'sources', explanation: "Source (Sumber) adalah orang atau tempat dari mana informasi berasal." },
   { id: 8, question: "The ___ wrote an opinion piece about politics.", options: ['press', 'column', 'headline'], answer: 'column', explanation: "Column (Kolom) adalah artikel reguler di surat kabar atau majalah." },
   { id: 9, question: "The TV ___ will air the new show at 8 PM.", options: ['source', 'channel', 'rumor'], answer: 'channel', explanation: "Channel (Saluran) adalah stasiun TV atau radio tertentu." },
-  { id: 10, question: "The ___ for the football match was excellent.", options: ['coverage', 'censorship', 'propaganda'], answer: 'coverage', explanation: "Coverage (Liputan) adalah cara sebuah subjek dilaporkan oleh media." },
-  { id: 11, question: "There's a short ___ break every 15 minutes.", options: ['commercial', 'episode', 'network'], answer: 'commercial', explanation: "Commercial (Iklan) adalah iklan di TV atau radio." },
-  { id: 12, question: "The final ___ of the series was amazing.", options: ['broadcast', 'episode', 'statement'], answer: 'episode', explanation: "Episode adalah satu bagian dari serial TV atau radio." },
-  { id: 13, question: "You should always ___ information before sharing it.", options: ['gossip', 'fact-check', 'broadcast'], answer: 'fact-check', explanation: "Fact-check (Cek fakta) berarti memverifikasi kebenaran informasi." },
-  { id: 14, question: "Don't believe every ___ you hear.", options: ['rumor', 'interview', 'report'], answer: 'rumor', explanation: "Rumor (Gosip) adalah cerita yang menyebar tanpa bukti jelas." },
-  { id: 15, question: "The government issued an official ___.", options: ['rumor', 'statement', 'commercial'], answer: 'statement', explanation: "Statement (Pernyataan) adalah pernyataan resmi fakta atau pendapat." },
-  { id: 16, question: "The ___ has the power to shape public opinion.", options: ['studio', 'press', 'series'], answer: 'press', explanation: "Press (Pers) mengacu pada wartawan dan organisasi berita." },
-  { id: 17, question: "Some countries practice ___ of the media.", options: ['censorship', 'influence', 'interview'], answer: 'censorship', explanation: "Censorship (Penyensoran) adalah penekanan atau larangan informasi." },
-  { id: 18, question: "This is a ___ source of information.", options: ['biased', 'reliable', 'rumored'], answer: 'reliable', explanation: "Reliable (Dapat dipercaya) berarti dapat diandalkan sebagai jujur atau akurat." },
-  { id: 19, question: "The ___ watched the debate on TV.", options: ['anchor', 'audience', 'editor'], answer: 'audience', explanation: "Audience (Penonton) adalah orang-orang yang menonton atau mendengarkan sesuatu." },
-  { id: 20, question: "The ___ will ___ the documentary tonight.", options: ['network, broadcast', 'rumor, fact-check', 'bias, influence'], answer: 'network, broadcast', explanation: "Network (Jaringan) akan broadcast (menyiarkan) acara." }
+  { id: 10, question: "The ___ for the football match was excellent.", options: ['propaganda', 'coverage', 'censorship'], answer: 'coverage', explanation: "Coverage (Liputan) adalah cara sebuah subjek dilaporkan oleh media." },
+  { id: 11, question: "There's a short ___ break every 15 minutes.", options: ['episode', 'network', 'commercial'], answer: 'commercial', explanation: "Commercial (Iklan) adalah iklan di TV atau radio." },
+  { id: 12, question: "The final ___ of the series was amazing.", options: ['episode', 'statement', 'broadcast'], answer: 'episode', explanation: "Episode adalah satu bagian dari serial TV atau radio." },
+  { id: 13, question: "You should always ___ information before sharing it.", options: ['broadcast', 'fact-check', 'gossip'], answer: 'fact-check', explanation: "Fact-check (Cek fakta) berarti memverifikasi kebenaran informasi." },
+  { id: 14, question: "Don't believe every ___ you hear.", options: ['interview', 'report', 'rumor'], answer: 'rumor', explanation: "Rumor (Gosip) adalah cerita yang menyebar tanpa bukti jelas." },
+  { id: 15, question: "The government issued an official ___.", options: ['rumor', 'commercial', 'statement'], answer: 'statement', explanation: "Statement (Pernyataan) adalah pernyataan resmi fakta atau pendapat." },
+  { id: 16, question: "The ___ has the power to shape public opinion.", options: ['series', 'studio', 'press'], answer: 'press', explanation: "Press (Pers) mengacu pada wartawan dan organisasi berita." },
+  { id: 17, question: "Some countries practice ___ of the media.", options: ['interview', 'influence', 'censorship'], answer: 'censorship', explanation: "Censorship (Penyensoran) adalah penekanan atau larangan informasi." },
+  { id: 18, question: "This is a ___ source of information.", options: ['biased', 'rumored', 'reliable'], answer: 'reliable', explanation: "Reliable (Dapat dipercaya) berarti dapat diandalkan sebagai jujur atau akurat." },
+  { id: 19, question: "The ___ watched the debate on TV.", options: ['audience', 'editor', 'anchor'], answer: 'audience', explanation: "Audience (Penonton) adalah orang-orang yang menonton atau mendengarkan sesuatu." },
+  { id: 20, question: "The ___ will ___ the documentary tonight.", options: ['network, broadcast', 'bias, influence', 'rumor, fact-check'], answer: 'network, broadcast', explanation: "Network (Jaringan) akan broadcast (menyiarkan) acara." }
 
 ];
 

@@ -5,25 +5,25 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - What is the dog\'s name?', opts: ["Goldie","Max","Rex","Buddy"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - What breed is the dog?', opts: ["Bulldog","Beagle","Poodle","Golden Retriever"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - What color is the dog\'s collar?', opts: ["Blue","Green","Light Brown","Red"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - Where was the dog lost?', opts: ["In the mall","At home","At the beach","Near Central Park"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - How much is the reward?', opts: ["$100","$50","No reward","$200"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - What is the dog\'s name?', opts: ["Max","Buddy","Rex","Goldie"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - What breed is the dog?', opts: ["Beagle","Bulldog","Poodle","Golden Retriever"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - What color is the dog\'s collar?', opts: ["Green","Light Brown","Red","Blue"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - Where was the dog lost?', opts: ["At home","Near Central Park","At the beach","In the mall"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - How much is the reward?', opts: ["No reward","$200","$50","$100"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - What is the dog\'s name?', opts: ["Max","Goldie","Buddy","Rex"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - What breed is the dog?', opts: ["Bulldog","Poodle","Beagle","Golden Retriever"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - What is the dog\'s name?', opts: ["Goldie", "Buddy", "Rex", "Max"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - What breed is the dog?', opts: ["Beagle", "Golden Retriever", "Poodle", "Bulldog"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - What color is the dog\'s collar?', opts: ["Blue", "Light Brown", "Red", "Green"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - Where was the dog lost?', opts: ["In the mall", "Near Central Park", "At the beach", "At home"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - How much is the reward?', opts: ["$50", "No reward", "$200", "$100"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - What is the dog\'s name?', opts: ["Max", "Rex", "Buddy", "Goldie"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - What breed is the dog?', opts: ["Poodle", "Golden Retriever", "Beagle", "Bulldog"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - What color is the dog\'s collar?', opts: ["Red", "Light Brown", "Green", "Blue"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - Where was the dog lost?', opts: ["Near Central Park", "In the mall", "At home", "At the beach"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - How much is the reward?', opts: ["No reward", "$50", "$200", "$100"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - What is the dog\'s name?', opts: ["Max", "Buddy", "Rex", "Goldie"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - What breed is the dog?', opts: ["Poodle", "Bulldog", "Golden Retriever", "Beagle"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Review) Latihan 13 - What color is the dog\'s collar?', opts: ["Green","Light Brown","Red","Blue"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - Where was the dog lost?', opts: ["Near Central Park","At the beach","In the mall","At home"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - How much is the reward?', opts: ["$50","$200","No reward","$100"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - What is the dog\'s name?', opts: ["Buddy","Rex","Goldie","Max"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - Where was the dog lost?', opts: ["Near Central Park", "In the mall", "At home", "At the beach"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - How much is the reward?', opts: ["$200", "No reward", "$100", "$50"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - What is the dog\'s name?', opts: ["Buddy", "Goldie", "Max", "Rex"], ans: "Max", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Review) Latihan 17 - What breed is the dog?', opts: ["Golden Retriever","Poodle","Bulldog","Beagle"], ans: "Golden Retriever", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - What color is the dog\'s collar?', opts: ["Blue","Red","Light Brown","Green"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - Where was the dog lost?', opts: ["Near Central Park","At the beach","In the mall","At home"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - What color is the dog\'s collar?', opts: ["Blue", "Light Brown", "Red", "Green"], ans: "Blue", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - Where was the dog lost?', opts: ["At home", "Near Central Park", "At the beach", "In the mall"], ans: "Near Central Park", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Mencari Fakta) Latihan 20 - How much is the reward?', opts: ["$200","$50","No reward","$100"], ans: "$100", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'What is the dog\'s name?', opts: ["Goldie","Rex","Buddy","Max"], ans: 'Max' },
-    { q: 'What breed is the dog?', opts: ["Beagle","Poodle","Bulldog","Golden Retriever"], ans: 'Golden Retriever' },
-    { q: 'What color is the dog\'s collar?', opts: ["Light Brown","Green","Red","Blue"], ans: 'Blue' },
-    { q: 'Where was the dog lost?', opts: ["Near Central Park","In the mall","At the beach","At home"], ans: 'Near Central Park' },
-    { q: 'How much is the reward?', opts: ["No reward","$200","$50","$100"], ans: '$100' },
+    { q: 'What is the dog\'s name?', opts: ["Goldie", "Buddy", "Rex", "Max"], ans: 'Max' },
+    { q: 'What breed is the dog?', opts: ["Poodle", "Golden Retriever", "Bulldog", "Beagle"], ans: 'Golden Retriever' },
+    { q: 'What color is the dog\'s collar?', opts: ["Green", "Blue", "Light Brown", "Red"], ans: 'Blue' },
+    { q: 'Where was the dog lost?', opts: ["At the beach", "At home", "In the mall", "Near Central Park"], ans: 'Near Central Park' },
+    { q: 'How much is the reward?', opts: ["$200", "$100", "No reward", "$50"], ans: '$100' },
   ],
 };
 

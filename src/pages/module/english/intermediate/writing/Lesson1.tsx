@@ -8,9 +8,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of the FIRST sentence in paragraph two?",
     "opts": [
-      "To conclude the essay",
-      "To introduce the main topic of that paragraph (culinary & fashion)",
       "To ask a question",
+      "To introduce the main topic of that paragraph (culinary & fashion)",
+      "To conclude the essay",
       "To provide a specific example"
     ],
     "ans": "To introduce the main topic of that paragraph (culinary & fashion)",
@@ -20,9 +20,9 @@ const QUIZ: QuizItem[] = [
     "q": "In the text, what does the phrase \"flock to the city\" mean?",
     "opts": [
       "To leave a place",
-      "To gather or travel in large numbers",
+      "To complain loudly",
       "To fly like birds",
-      "To complain loudly"
+      "To gather or travel in large numbers"
     ],
     "ans": "To gather or travel in large numbers",
     "exp": "\"Flock\" means people travel there in large groups."
@@ -30,10 +30,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which cohesive device is used to contrast traffic with people's warmth?",
     "opts": [
+      "Furthermore",
       "Also",
       "Despite",
-      "Because",
-      "Furthermore"
+      "Because"
     ],
     "ans": "Despite",
     "exp": "\"Despite the heavy traffic... people remain warm\" contrasts a negative with a positive."
@@ -41,9 +41,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the adjective used to describe the mountains:",
     "opts": [
-      "Trendy",
-      "Volcanic",
       "Traditional",
+      "Volcanic",
+      "Trendy",
       "Vibrant"
     ],
     "ans": "Volcanic",
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What happens to the structure of the last paragraph?",
     "opts": [
-      "It only talks about food",
       "It summarizes personal feelings and closes the text logically",
       "It introduces a totally new city",
-      "It ends without a clear point"
+      "It ends without a clear point",
+      "It only talks about food"
     ],
     "ans": "It summarizes personal feelings and closes the text logically",
     "exp": "The conclusion shares feelings (\"proud\") and summarizes the balance of the city."
@@ -63,9 +63,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In writing, what does \"proofreading\" mean?",
     "opts": [
-      "Writing the first draft wildly",
-      "Finding academic sources",
       "Carefully checking for grammatical and spelling errors",
+      "Finding academic sources",
+      "Writing the first draft wildly",
       "Outlining paragraphs"
     ],
     "ans": "Carefully checking for grammatical and spelling errors",
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence adds INFORMATION?",
     "opts": [
+      "As a result, prices increased.",
       "Moreover, the city has excellent public transport.",
       "Despite this, the city is loud.",
-      "Therefore, we left early.",
-      "As a result, prices increased."
+      "Therefore, we left early."
     ],
     "ans": "Moreover, the city has excellent public transport.",
     "exp": "\"Moreover\" (lebih lanjut lagi) digunakan untuk memberikan informasi tambahan yang mendukung argumen."
@@ -85,10 +85,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the sentence with correct parallel structure:",
     "opts": [
-      "I like swimming, to read, and hike.",
       "I like to swim, reading, and to hike.",
+      "I like swim, read, and hike.",
       "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
+      "I like swimming, to read, and hike."
     ],
     "ans": "I like swimming, reading, and hiking.",
     "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
@@ -96,10 +96,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which option is less formal? \"Commence\"",
     "opts": [
-      "Begin",
-      "Terminate",
       "Execute",
-      "Finalize"
+      "Finalize",
+      "Begin",
+      "Terminate"
     ],
     "ans": "Begin",
     "exp": "\"Commence\" adalah bentuk sangat formal untuk kata \"begin\" atau \"start\"."
@@ -107,10 +107,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
     "opts": [
+      "having",
       "have",
       "had",
-      "have had",
-      "having"
+      "have had"
     ],
     "ans": "had",
     "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
@@ -118,9 +118,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the most FORMAL word to replace \"but\":",
     "opts": [
-      "However",
-      "Also",
       "So",
+      "Also",
+      "However",
       "And"
     ],
     "ans": "However",
@@ -129,10 +129,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How would you combine these sentences with a relative clause? \"The man called the police. His car was stolen.\"",
     "opts": [
-      "The man called the police whose car was stolen.",
-      "The man whose car was stolen called the police.",
       "The man whom car was stolen called the police.",
-      "The man whom called the police had his car stolen."
+      "The man whom called the police had his car stolen.",
+      "The man called the police whose car was stolen.",
+      "The man whose car was stolen called the police."
     ],
     "ans": "The man whose car was stolen called the police.",
     "exp": "\"Whose\" digunakan untuk kepemilikan. Klausul relative disematkan langsung setelah \"The man\"."
@@ -140,10 +140,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct structure: \"Not only ___ fast, but she is also strong.\"",
     "opts": [
-      "she runs",
-      "runs she",
       "is she running",
-      "does she run"
+      "does she run",
+      "she runs",
+      "runs she"
     ],
     "ans": "does she run",
     "exp": "Struktur Inversion: Saat kalimat diawali \"Not only\", dilanjutkan dengan auxiliary + subjek (does she run)."
@@ -152,9 +152,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence is an opinion, not a fact?",
     "opts": [
       "Water boils at 100 degrees.",
-      "The population of Tokyo is huge.",
       "Pineapples are the most delicious fruit.",
-      "Paris is the capital of France."
+      "Paris is the capital of France.",
+      "The population of Tokyo is huge."
     ],
     "ans": "Pineapples are the most delicious fruit.",
     "exp": "\"The most delicious\" adalah penilaian subjektif atau opini."
@@ -163,9 +163,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is a \"Topic Sentence\"?",
     "opts": [
       "The last sentence of a text",
-      "A sentence that explains the main idea of a paragraph",
+      "The title of an essay",
       "A famous quote",
-      "The title of an essay"
+      "A sentence that explains the main idea of a paragraph"
     ],
     "ans": "A sentence that explains the main idea of a paragraph",
     "exp": "Topic sentence (kalimat utama) memberi tahu pembaca apa gagasan pokok dari paragraf tersebut."
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is most appropriate for a formal email greeting?",
     "opts": [
+      "What’s up Smith,",
       "Hi mate,",
       "Hey there,",
-      "Dear Mr. Smith,",
-      "What’s up Smith,"
+      "Dear Mr. Smith,"
     ],
     "ans": "Dear Mr. Smith,",
     "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
@@ -184,10 +184,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"therefore\"?",
     "opts": [
-      "To add a point",
       "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
+      "To give an example",
+      "To add a point",
+      "To show a result or consequence"
     ],
     "ans": "To show a result or consequence",
     "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word means \"in addition\"?",
     "opts": [
-      "However",
       "Instead",
+      "Whereas",
       "Furthermore",
-      "Whereas"
+      "However"
     ],
     "ans": "Furthermore",
     "exp": "\"Furthermore\" adalah adverb formal yang fungsinya menambah argumen atau informasi."
@@ -206,10 +206,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How do you make this formal? \"Send me the files ASAP.\"",
     "opts": [
+      "Shoot the documents to me.",
       "Please dispatch the files really quick.",
       "I require the files immediately.",
-      "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
+      "Please send the documents at your earliest convenience."
     ],
     "ans": "Please send the documents at your earliest convenience.",
     "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
     "opts": [
-      "for",
-      "from",
       "with",
-      "about"
+      "about",
+      "for",
+      "from"
     ],
     "ans": "for",
     "exp": "\"Apologise\" selalu diikut oleh \"for\" ketika merujuk pada alasan (apologise for something)."
@@ -240,49 +240,49 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why is Bandung called the \"Paris of Java\"?",
     "opts": [
       "Because it is in France",
-      "Due to its cool climate and historical architecture",
       "Because it is extremely hot",
-      "Because of its traffic"
+      "Because of its traffic",
+      "Due to its cool climate and historical architecture"
     ],
     "ans": "Due to its cool climate and historical architecture"
   },
   {
     "q": "What is mentioned as a geographical feature of Bandung?",
     "opts": [
-      "A large ocean",
       "A huge desert",
-      "Surrounded by volcanic mountains",
-      "A flat prairie"
+      "A large ocean",
+      "A flat prairie",
+      "Surrounded by volcanic mountains"
     ],
     "ans": "Surrounded by volcanic mountains"
   },
   {
     "q": "What can tourists find along Dago and Riau streets?",
     "opts": [
+      "Schools and universities",
       "Government offices",
       "Trendy cafes and factory outlets",
-      "Farms and barns",
-      "Schools and universities"
+      "Farms and barns"
     ],
     "ans": "Trendy cafes and factory outlets"
   },
   {
     "q": "What negative aspect of Bandung is mentioned in the text?",
     "opts": [
-      "Poor food quality",
-      "Heavy traffic congestion",
       "Unfriendly people",
-      "Lack of art galleries"
+      "Lack of art galleries",
+      "Poor food quality",
+      "Heavy traffic congestion"
     ],
     "ans": "Heavy traffic congestion"
   },
   {
     "q": "How does the writer feel about their hometown?",
     "opts": [
-      "Indifferent",
-      "Ashamed",
       "Disappointed",
-      "Immensely proud"
+      "Immensely proud",
+      "Indifferent",
+      "Ashamed"
     ],
     "ans": "Immensely proud"
   }

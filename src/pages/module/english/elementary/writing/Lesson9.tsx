@@ -38,8 +38,8 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah ",
     opts: [
-      "ate",
       "eated",
+      "ate",
       "eats"
     ],
     ans: "ate",
@@ -48,9 +48,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R2)",
     opts: [
-      "eats",
+      "eated",
       "ate",
-      "eated"
+      "eats"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -58,9 +58,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R3)",
     opts: [
+      "eated",
       "eats",
-      "ate",
-      "eated"
+      "ate"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -69,8 +69,8 @@ const QUIZ = [
     q: "Verb past tense dari \"eat\" adalah  (R4)",
     opts: [
       "eats",
-      "ate",
-      "eated"
+      "eated",
+      "ate"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -78,9 +78,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R5)",
     opts: [
-      "eated",
       "ate",
-      "eats"
+      "eats",
+      "eated"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -88,9 +88,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R6)",
     opts: [
-      "eated",
+      "eats",
       "ate",
-      "eats"
+      "eated"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -98,9 +98,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R7)",
     opts: [
+      "eats",
       "ate",
-      "eated",
-      "eats"
+      "eated"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -109,8 +109,8 @@ const QUIZ = [
     q: "Verb past tense dari \"eat\" adalah  (R8)",
     opts: [
       "ate",
-      "eated",
-      "eats"
+      "eats",
+      "eated"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -118,9 +118,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R9)",
     opts: [
+      "eats",
       "eated",
-      "ate",
-      "eats"
+      "ate"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -128,9 +128,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R10)",
     opts: [
+      "eats",
       "ate",
-      "eated",
-      "eats"
+      "eated"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -148,8 +148,8 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R12)",
     opts: [
-      "eated",
       "ate",
+      "eated",
       "eats"
     ],
     ans: "ate",
@@ -168,8 +168,8 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R14)",
     opts: [
-      "eats",
       "ate",
+      "eats",
       "eated"
     ],
     ans: "ate",
@@ -179,8 +179,8 @@ const QUIZ = [
     q: "Verb past tense dari \"eat\" adalah  (R15)",
     opts: [
       "ate",
-      "eats",
-      "eated"
+      "eated",
+      "eats"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -188,8 +188,8 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R16)",
     opts: [
-      "eated",
       "ate",
+      "eated",
       "eats"
     ],
     ans: "ate",
@@ -199,8 +199,8 @@ const QUIZ = [
     q: "Verb past tense dari \"eat\" adalah  (R17)",
     opts: [
       "eats",
-      "ate",
-      "eated"
+      "eated",
+      "ate"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -208,8 +208,8 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R18)",
     opts: [
-      "eated",
       "ate",
+      "eated",
       "eats"
     ],
     ans: "ate",
@@ -219,8 +219,8 @@ const QUIZ = [
     q: "Verb past tense dari \"eat\" adalah  (R19)",
     opts: [
       "eats",
-      "ate",
-      "eated"
+      "eated",
+      "ate"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."
@@ -228,9 +228,9 @@ const QUIZ = [
   {
     q: "Verb past tense dari \"eat\" adalah  (R20)",
     opts: [
-      "eats",
+      "eated",
       "ate",
-      "eated"
+      "eats"
     ],
     ans: "ate",
     exp: "Eat adalah irregular verb, bentuk ke-2 nya ate."

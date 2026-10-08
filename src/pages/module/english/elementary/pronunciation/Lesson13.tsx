@@ -66,21 +66,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Apa itu 'Thought Group'?",
-    options: ['Sekelompok orang yang berpikir', 'Kata-kata yang diucapkan bersama dalam satu napas', 'Daftar kosakata'],
+    options: ['Kata-kata yang diucapkan bersama dalam satu napas', 'Daftar kosakata', 'Sekelompok orang yang berpikir'],
     answer: 'Kata-kata yang diucapkan bersama dalam satu napas',
     explanation: "Thought groups (penggalan) memungkinkanmu bernapas dan membantu pendengar memahami maknanya."
   },
   {
     id: 2,
     question: "Di mana tempat terbaik untuk jeda dalam: 'I am hungry so I will eat.'",
-    options: ['Setelah "I"', 'Sebelum "so"', 'Setelah "will"'],
+    options: ['Setelah "will"', 'Sebelum "so"', 'Setelah "I"'],
     answer: 'Sebelum "so"',
     explanation: "'So' adalah penghubung. Itu memulai pemikiran baru."
   },
   {
     id: 3,
     question: "Bicara seperti robot terjadi saat kamu...",
-    options: ['Terlalu banyak jeda (setiap kata)', 'Bicara terlalu cepat', 'Menggunakan kata-kata besar'],
+    options: ['Terlalu banyak jeda (setiap kata)', 'Menggunakan kata-kata besar', 'Bicara terlalu cepat'],
     answer: 'Terlalu banyak jeda (setiap kata)',
     explanation: "Memutus aliran setelah setiap kata membuatmu terdengar seperti robot."
   },
@@ -94,105 +94,105 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Apa itu 'Thought Group'...",
-    options: ["Sekelompok orang yang berpikir","Kata-kata yang diucapkan bersama dalam satu napas","Daftar kosakata"],
+    options: ["Sekelompok orang yang berpikir", "Daftar kosakata", "Kata-kata yang diucapkan bersama dalam satu napas"],
     answer: "Kata-kata yang diucapkan bersama dalam satu napas",
     explanation: "Thought groups (penggalan) memungkinkanmu bernapas dan membantu pendengar memahami maknanya."
   },
   {
     id: 6,
     question: "Di mana tempat terbaik untuk jeda dalam: 'I am hungry so I will eat.'",
-    options: ["Setelah \"I\"","Sebelum \"so\"","Setelah \"will\""],
+    options: ["Setelah \"will\"", "Sebelum \"so\"", "Setelah \"I\""],
     answer: "Sebelum \"so\"",
     explanation: "'So' adalah penghubung. Itu memulai pemikiran baru."
   },
   {
     id: 7,
     question: "Bicara seperti robot terjadi saat kamu...",
-    options: ["Terlalu banyak jeda (setiap kata)","Bicara terlalu cepat","Menggunakan kata-kata besar"],
+    options: ["Terlalu banyak jeda (setiap kata)", "Menggunakan kata-kata besar", "Bicara terlalu cepat"],
     answer: "Terlalu banyak jeda (setiap kata)",
     explanation: "Memutus aliran setelah setiap kata membuatmu terdengar seperti robot."
   },
   {
     id: 8,
     question: "Penggalan mana yang lebih baik...",
-    options: ["My friend / lives in / London.","My friend lives / in London."],
+    options: ["My friend lives / in London.", "My friend / lives in / London."],
     answer: "My friend lives / in London.",
     explanation: "Memisahkan kata depan seperti 'in' dari objeknya ('London') biasanya buruk."
   },
   {
     id: 9,
     question: "Apa itu 'Thought Group'?",
-    options: ["Sekelompok orang yang berpikir","Kata-kata yang diucapkan bersama dalam satu napas","Daftar kosakata"],
+    options: ["Kata-kata yang diucapkan bersama dalam satu napas", "Daftar kosakata", "Sekelompok orang yang berpikir"],
     answer: "Kata-kata yang diucapkan bersama dalam satu napas",
     explanation: "Thought groups (penggalan) memungkinkanmu bernapas dan membantu pendengar memahami maknanya."
   },
   {
     id: 10,
     question: "Di mana tempat terbaik untuk jeda dalam: 'I am hungry so I will eat.'",
-    options: ["Setelah \"I\"","Sebelum \"so\"","Setelah \"will\""],
+    options: ["Setelah \"will\"", "Sebelum \"so\"", "Setelah \"I\""],
     answer: "Sebelum \"so\"",
     explanation: "'So' adalah penghubung. Itu memulai pemikiran baru."
   },
   {
     id: 11,
     question: "Bicara seperti robot terjadi saat kamu... ?",
-    options: ["Terlalu banyak jeda (setiap kata)","Bicara terlalu cepat","Menggunakan kata-kata besar"],
+    options: ["Bicara terlalu cepat", "Menggunakan kata-kata besar", "Terlalu banyak jeda (setiap kata)"],
     answer: "Terlalu banyak jeda (setiap kata)",
     explanation: "Memutus aliran setelah setiap kata membuatmu terdengar seperti robot."
   },
   {
     id: 12,
     question: "Penggalan mana yang lebih baik...",
-    options: ["My friend / lives in / London.","My friend lives / in London."],
+    options: ["My friend lives / in London.", "My friend / lives in / London."],
     answer: "My friend lives / in London.",
     explanation: "Memisahkan kata depan seperti 'in' dari objeknya ('London') biasanya buruk."
   },
   {
     id: 13,
     question: "Apa itu 'Thought Group'?",
-    options: ["Sekelompok orang yang berpikir","Kata-kata yang diucapkan bersama dalam satu napas","Daftar kosakata"],
+    options: ["Kata-kata yang diucapkan bersama dalam satu napas", "Daftar kosakata", "Sekelompok orang yang berpikir"],
     answer: "Kata-kata yang diucapkan bersama dalam satu napas",
     explanation: "Thought groups (penggalan) memungkinkanmu bernapas dan membantu pendengar memahami maknanya."
   },
   {
     id: 14,
     question: "Di mana tempat terbaik untuk jeda dalam: 'I am hungry so I will eat.'",
-    options: ["Setelah \"I\"","Sebelum \"so\"","Setelah \"will\""],
+    options: ["Setelah \"will\"", "Sebelum \"so\"", "Setelah \"I\""],
     answer: "Sebelum \"so\"",
     explanation: "'So' adalah penghubung. Itu memulai pemikiran baru."
   },
   {
     id: 15,
     question: "Bicara seperti robot terjadi saat kamu:",
-    options: ["Terlalu banyak jeda (setiap kata)","Bicara terlalu cepat","Menggunakan kata-kata besar"],
+    options: ["Terlalu banyak jeda (setiap kata)", "Menggunakan kata-kata besar", "Bicara terlalu cepat"],
     answer: "Terlalu banyak jeda (setiap kata)",
     explanation: "Memutus aliran setelah setiap kata membuatmu terdengar seperti robot."
   },
   {
     id: 16,
     question: "Penggalan mana yang lebih baik...",
-    options: ["My friend / lives in / London.","My friend lives / in London."],
+    options: ["My friend lives / in London.", "My friend / lives in / London."],
     answer: "My friend lives / in London.",
     explanation: "Memisahkan kata depan seperti 'in' dari objeknya ('London') biasanya buruk."
   },
   {
     id: 17,
     question: "Apa itu 'Thought Group'...",
-    options: ["Sekelompok orang yang berpikir","Kata-kata yang diucapkan bersama dalam satu napas","Daftar kosakata"],
+    options: ["Sekelompok orang yang berpikir", "Daftar kosakata", "Kata-kata yang diucapkan bersama dalam satu napas"],
     answer: "Kata-kata yang diucapkan bersama dalam satu napas",
     explanation: "Thought groups (penggalan) memungkinkanmu bernapas dan membantu pendengar memahami maknanya."
   },
   {
     id: 18,
     question: "Di mana tempat terbaik untuk jeda dalam: 'I am hungry so I will eat.'",
-    options: ["Setelah \"I\"","Sebelum \"so\"","Setelah \"will\""],
+    options: ["Setelah \"will\"", "Sebelum \"so\"", "Setelah \"I\""],
     answer: "Sebelum \"so\"",
     explanation: "'So' adalah penghubung. Itu memulai pemikiran baru."
   },
   {
     id: 19,
     question: "Bicara seperti robot terjadi saat kamu...",
-    options: ["Terlalu banyak jeda (setiap kata)","Bicara terlalu cepat","Menggunakan kata-kata besar"],
+    options: ["Terlalu banyak jeda (setiap kata)", "Menggunakan kata-kata besar", "Bicara terlalu cepat"],
     answer: "Terlalu banyak jeda (setiap kata)",
     explanation: "Memutus aliran setelah setiap kata membuatmu terdengar seperti robot."
   },

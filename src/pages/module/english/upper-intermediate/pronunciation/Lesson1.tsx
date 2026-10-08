@@ -65,9 +65,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In the word \"photography\", which syllable is stressed?",
     "opts": [
-      "PHO-to-gra-phy",
-      "pho-TO-gra-phy",
       "pho-to-GRA-phy",
+      "pho-TO-gra-phy",
+      "PHO-to-gra-phy",
       "pho-to-gra-PHY"
     ],
     "ans": "pho-TO-gra-phy",
@@ -76,10 +76,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The word \"REBEL\" (noun) vs \"reBEL\" (verb) demonstrates ___",
     "opts": [
-      "Change in meaning only",
       "Stress shift between noun and verb forms",
-      "Different spelling",
-      "Different number of syllables"
+      "Change in meaning only",
+      "Different number of syllables",
+      "Different spelling"
     ],
     "ans": "Stress shift between noun and verb forms",
     "exp": "Banyak kata 2 suku berubah tekanan tergantung kata benda (suku 1) atau kata kerja (suku 2)."
@@ -88,9 +88,9 @@ const QUIZ: QuizItem[] = [
     "q": "Where is the stress in \"communication\"?",
     "opts": [
       "com-MU-ni-ca-tion",
-      "COM-mu-ni-ca-tion",
+      "com-mu-NI-ca-tion",
       "com-mu-ni-CA-tion",
-      "com-mu-NI-ca-tion"
+      "COM-mu-ni-ca-tion"
     ],
     "ans": "com-mu-NI-ca-tion",
     "exp": "\"Communication\" → comMUNication. Akhiran -tion diikuti tekanan pada suku sebelumnya."
@@ -98,10 +98,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which pair shows CORRECT stress shift?",
     "opts": [
-      "INcrease (noun) / INcrease (verb)",
-      "INcrease (noun) / inCREASE (verb)",
       "inCREASE (noun) / INcrease (verb)",
-      "inCREASE (noun) / inCREASE (verb)"
+      "inCREASE (noun) / inCREASE (verb)",
+      "INcrease (noun) / INcrease (verb)",
+      "INcrease (noun) / inCREASE (verb)"
     ],
     "ans": "INcrease (noun) / inCREASE (verb)",
     "exp": "INcrease (noun: kenaikan) / inCREASE (verb: meningkat) → stress shift pada 2-syllable words."
@@ -109,10 +109,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The suffix \"-ic\" (as in \"economic\") shifts stress to ___",
     "opts": [
-      "The last syllable",
       "Two syllables before -ic",
+      "The first syllable always",
       "The syllable directly before -ic",
-      "The first syllable always"
+      "The last syllable"
     ],
     "ans": "The syllable directly before -ic",
     "exp": "Akhiran \"-ic\" menarik tekanan ke suku kata tepat sebelumnya: ecoNOmic, photoGRAPHic."
@@ -120,9 +120,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How many syllables does \"university\" have?",
     "opts": [
-      "4",
-      "5",
       "6",
+      "5",
+      "4",
       "3"
     ],
     "ans": "5",
@@ -131,10 +131,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In \"photograph\" vs \"photography\", the stress ___",
     "opts": [
-      "Stays on the same syllable",
       "Shifts from syllable 1 to syllable 2",
-      "Shifts from syllable 2 to syllable 1",
-      "Disappears entirely"
+      "Stays on the same syllable",
+      "Disappears entirely",
+      "Shifts from syllable 2 to syllable 1"
     ],
     "ans": "Shifts from syllable 1 to syllable 2",
     "exp": "PHOtograph (suku 1) → phoTOgraphy (suku 2). Akhiran -y menggeser tekanan."
@@ -142,9 +142,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word has stress on the FINAL syllable?",
     "opts": [
-      "Beautiful",
-      "Interesting",
       "Compress (verb)",
+      "Interesting",
+      "Beautiful",
       "Yesterday"
     ],
     "ans": "Compress (verb)",
@@ -153,10 +153,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The word \"analyze\" has stress on ___",
     "opts": [
-      "a-NA-lyze",
       "AN-a-lyze",
-      "an-a-LYZE",
-      "an-AL-yze"
+      "an-AL-yze",
+      "a-NA-lyze",
+      "an-a-LYZE"
     ],
     "ans": "AN-a-lyze",
     "exp": "ANalyze – akhiran -ize: tekanan pada suku KETIGA dari belakang (AN-a-lyze)."
@@ -164,9 +164,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Incorrect word stress will most likely cause ___",
     "opts": [
-      "Spelling errors",
-      "Difficulty being understood",
       "Grammar mistakes",
+      "Difficulty being understood",
+      "Spelling errors",
       "Vocabulary gaps"
     ],
     "ans": "Difficulty being understood",
@@ -176,8 +176,8 @@ const QUIZ: QuizItem[] = [
     "q": "\"Technology\" is stressed on which syllable?",
     "opts": [
       "TECH-no-lo-gy",
-      "tech-NO-lo-gy",
       "tech-no-LO-gy",
+      "tech-NO-lo-gy",
       "tech-no-lo-GY"
     ],
     "ans": "tech-NO-lo-gy",
@@ -186,10 +186,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which suffixes attract stress to the syllable DIRECTLY BEFORE them?",
     "opts": [
-      "-tion, -sion, -ic",
       "-ing, -er, -ed",
       "-ful, -less, -ness",
-      "-able, -ible, -al"
+      "-able, -ible, -al",
+      "-tion, -sion, -ic"
     ],
     "ans": "-tion, -sion, -ic",
     "exp": "Akhiran -tion, -sion, -ic secara konsisten menarik tekanan ke suku tepat sebelum mereka."
@@ -197,10 +197,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In \"PERMIT\" (noun) vs \"perMIT\" (verb), meaning is ___",
     "opts": [
+      "Unclear",
       "The same",
       "Slightly different",
-      "Completely different",
-      "Unclear"
+      "Completely different"
     ],
     "ans": "Completely different",
     "exp": "PERMIT = izin (kata benda); perMIT = mengizinkan (kata kerja) – maknanya berbeda sesuai fungsi."
@@ -208,10 +208,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word is stressed correctly as \"ADvertise\"?",
     "opts": [
-      "ad-VER-tise",
       "AD-ver-tise",
-      "ad-ver-TISE",
-      "AD-VER-tise"
+      "ad-VER-tise",
+      "AD-VER-tise",
+      "ad-ver-TISE"
     ],
     "ans": "AD-ver-tise",
     "exp": "ADvertise – akhiran -ise (dalam kata 3 suku) ditekan pada suku pertama."
@@ -219,10 +219,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Compound nouns usually have stress on ___",
     "opts": [
-      "The second part",
       "Both parts equally",
-      "The first part",
-      "The final syllable"
+      "The second part",
+      "The final syllable",
+      "The first part"
     ],
     "ans": "The first part",
     "exp": "Kata benda gabungan (compound noun): BLACKboard, AIRport – tekanan pada bagian pertama."
@@ -231,9 +231,9 @@ const QUIZ: QuizItem[] = [
     "q": "\"Academic\" has its stress on which syllable?",
     "opts": [
       "AC-a-dem-ic",
-      "ac-A-dem-ic",
+      "ac-a-dem-IC",
       "ac-a-DEM-ic",
-      "ac-a-dem-IC"
+      "ac-A-dem-ic"
     ],
     "ans": "ac-a-DEM-ic",
     "exp": "acaDEMic – akhiran -ic menarik tekanan ke suku tepat sebelumnya: acaDEMic."
@@ -252,10 +252,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence demonstrates CORRECT stress use?",
     "opts": [
-      "She wants to REbel against the rules.",
       "He gave me a PERmit to enter.",
-      "They need to adVANce quickly.",
-      "The conFLICT caused many problems."
+      "She wants to REbel against the rules.",
+      "The conFLICT caused many problems.",
+      "They need to adVANce quickly."
     ],
     "ans": "He gave me a PERmit to enter.",
     "exp": "PERmit (noun, suku 1). REbel sebagai verb harus reBEL; adVANce memang benar. conFLICT bisa noun atau verb."
@@ -263,9 +263,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In \"information\", where is the primary stress?",
     "opts": [
-      "IN-for-ma-tion",
-      "in-FOR-ma-tion",
       "in-for-MA-tion",
+      "in-FOR-ma-tion",
+      "IN-for-ma-tion",
       "in-for-ma-TION"
     ],
     "ans": "in-for-MA-tion",
@@ -274,10 +274,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is NOT a rule for English word stress?",
     "opts": [
+      "All words end in stressed syllables",
       "Nouns of 2 syllables often stress syllable 1",
       "Verbs of 2 syllables often stress syllable 2",
-      "-tion suffixes attract stress before them",
-      "All words end in stressed syllables"
+      "-tion suffixes attract stress before them"
     ],
     "ans": "All words end in stressed syllables",
     "exp": "Tidak ada aturan bahwa semua kata berakhir dengan suku tertekan – ini bukan pola umum bahasa Inggris."

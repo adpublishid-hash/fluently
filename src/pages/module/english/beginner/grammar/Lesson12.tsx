@@ -70,70 +70,70 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Pilih kalimat yang benar:",
-    options: ['I didn\'t went to school.', 'I didn\'t go to school.', 'I not go to school.'],
+    options: ['I didn\'t go to school.', 'I not go to school.', 'I didn\'t went to school.'],
     answer: 'I didn\'t go to school.',
     explanation: "Setelah 'didn't', kata kerja kembali ke bentuk DASAR (Go)."
   },
   {
     id: 2,
     question: "Apa bentuk lampau dari 'Buy'?",
-    options: ['Buyed', 'Bought', 'Brought'],
+    options: ['Brought', 'Buyed', 'Bought'],
     answer: 'Bought',
     explanation: "'Buy' itu tidak beraturan. Bentuk lampaunya adalah 'Bought'."
   },
   {
     id: 3,
     question: "___ they at the party last night?",
-    options: ['Was', 'Did', 'Were'],
+    options: ['Did', 'Were', 'Was'],
     answer: 'Were',
     explanation: "Untuk pertanyaan 'To Be' (They), kita gunakan 'Were'. (Did untuk kata kerja aksi)."
   },
   {
     id: 4,
     question: "She ___ English yesterday.",
-    options: ['studyed', 'studied', 'study'],
+    options: ['studyed', 'study', 'studied'],
     answer: 'studied',
     explanation: "Aturan Konsonan + y: Ubah 'y' menjadi 'i' dan tambah 'ed' (Studied)."
   },
   {
     id: 5,
     question: "Did you ___ the game?",
-    options: ['win', 'won', 'winning'],
+    options: ['winning', 'won', 'win'],
     answer: 'win',
     explanation: "Setelah 'Did', gunakan kata kerja DASAR (Win)."
   },
   {
     id: 6,
     question: "He ___ football last Sunday.",
-    options: ['play', 'played', 'plaied'],
+    options: ['plaied', 'played', 'play'],
     answer: 'played',
     explanation: "Regular verb: play + ed = played."
   },
   {
     id: 7,
     question: "I ___ happy yesterday.",
-    options: ['was', 'were', 'am'],
+    options: ['am', 'was', 'were'],
     answer: 'was',
     explanation: "Past Tense to be 'I' adalah 'was'."
   },
   {
     id: 8,
     question: "We ___ to the cinema.",
-    options: ['go', 'goed', 'went'],
+    options: ['goed', 'go', 'went'],
     answer: 'went',
     explanation: "Past Tense 'go' adalah 'went' (Irregular)."
   },
   {
     id: 9,
     question: "They ___ not watch TV.",
-    options: ['did', 'do', 'were'],
+    options: ['did', 'were', 'do'],
     answer: 'did',
     explanation: "Negatif lampau menggunakan 'did not' (didn't)."
   },
   {
     id: 10,
     question: "Where ___ you last night?",
-    options: ['was', 'were', 'did'],
+    options: ['were', 'was', 'did'],
     answer: 'were',
     explanation: "Pertanyaan to be 'You' = 'Were'."
   },
@@ -147,14 +147,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "She ___ pizza.",
-    options: ['ate', 'eat', 'eated'],
+    options: ['eated', 'eat', 'ate'],
     answer: 'ate',
     explanation: "Past Tense 'eat' = 'ate'."
   },
   {
     id: 13,
     question: "___ he work yesterday?",
-    options: ['Did', 'Was', 'Do'],
+    options: ['Was', 'Do', 'Did'],
     answer: 'Did',
     explanation: "Pertanyaan aksi lampau menggunakan 'Did'."
   },
@@ -182,28 +182,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "She ___ angry.",
-    options: ['was', 'were', 'did'],
+    options: ['were', 'was', 'did'],
     answer: 'was',
     explanation: "She + was."
   },
   {
     id: 18,
     question: "They ___ late.",
-    options: ['was', 'were', 'did'],
+    options: ['did', 'were', 'was'],
     answer: 'were',
     explanation: "They + were."
   },
   {
     id: 19,
     question: "What ___ you do?",
-    options: ['did', 'were', 'was'],
+    options: ['were', 'did', 'was'],
     answer: 'did',
     explanation: "What did you do? (Apa yang kamu lakukan?)."
   },
   {
     id: 20,
     question: "It ___ yesterday.",
-    options: ['rain', 'rained', 'raining'],
+    options: ['rained', 'rain', 'raining'],
     answer: 'rained',
     explanation: "Regular verb: rain + ed = rained."
   }

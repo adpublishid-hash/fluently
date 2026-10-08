@@ -87,14 +87,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Bagaimana 'Should have' biasanya diucapkan dalam pembicaraan cepat?",
-    options: ['Should-of', 'Should-a', 'Should-have'],
+    options: ['Should-of', 'Should-have', 'Should-a'],
     answer: 'Should-a',
     explanation: "Dalam pembicaraan alami, 'have' berkurang menjadi bunyi lemah /ə/, terdengar seperti 'Shoulda'."
   },
   {
     id: 2,
     question: "Jika seseorang berkata 'Whatcha doing?', apa tata bahasa lengkapnya?",
-    options: ['What are you doing?', 'What do you doing?', 'What you do?'],
+    options: ['What do you doing?', 'What are you doing?', 'What you do?'],
     answer: 'What are you doing?',
     explanation: "'Whatcha' adalah reduksi umum dari 'What are you' atau 'What do you'."
   },
@@ -106,22 +106,22 @@ const QUIZ_QUESTIONS = [
     explanation: "'Can' positif hampir selalu direduksi menjadi /kən/ kecuali ditekankan. Negatif 'can\'t' tetap kuat."
   },
   { id: 4, question: "Kata mana yang membutuhkan bibir BULAT: Want atau Won't?", options: ['Want', 'Won\'t'], answer: 'Won\'t', explanation: "'Won't' /woʊnt/ berima dengan 'Don't' dan membutuhkan gerakan bibir yang membulat." },
-  { id: 5, question: "'Could have' berubah menjadi...", options: ['Couldhave', 'Coulda / Could\'ve', 'Cooda'], answer: 'Coulda / Could\'ve', explanation: "'Have' berkurang menjadi /ə/ atau contracted /'ve/." },
+  { id: 5, question: "'Could have' berubah menjadi...", options: ['Cooda', 'Coulda / Could\'ve', 'Couldhave'], answer: 'Coulda / Could\'ve', explanation: "'Have' berkurang menjadi /ə/ atau contracted /'ve/." },
   { id: 6, question: "'Would have' berubah menjadi...", options: ['Woulda / Would\'ve', 'Woodhave', 'Wuda'], answer: 'Woulda / Would\'ve', explanation: "Past modals semua mengikuti pola yang sama: modal + 'a' atau +'ve'." },
   { id: 7, question: "'Must have' berubah menjadi...", options: ['Musthave', 'Musta / Must\'ve', 'Moosta'], answer: 'Musta / Must\'ve', explanation: "'Must have' = 'Musta' dalam casual speech." },
   { id: 8, question: "'Did you' terdengar seperti...", options: ['Did you', 'Did-ja / Didja', 'Di-you'], answer: 'Did-ja / Didja', explanation: "D + Y = /dʒ/ sound (j) dalam connected speech." },
-  { id: 9, question: "'Don't you' terdengar seperti...", options: ['Don-tyou', 'Don-choo / Doncha', 'Don-joo'], answer: 'Don-choo / Doncha', explanation: "T + Y = /tʃ/ sound (ch) dalam assimilation." },
-  { id: 10, question: "'What do you' berubah menjadi...", options: ['Whatdoyou', 'Whatcha / Whacha', 'Whaddyou'], answer: 'Whatcha / Whacha', explanation: "'What do you' → 'Whatcha' sangat umum dalam casual speech." },
-  { id: 11, question: "'Going to' berubah menjadi...", options: ['Goingto', 'Gonna', 'Gonta'], answer: 'Gonna', explanation: "Reduksi paling umum dalam bahasa Inggris spoken." },
-  { id: 12, question: "Bagaimana cara membedakan 'Can' vs 'Can't'?", options: ['Can = lemah /kən/, Can\'t = kuat /kænt/', 'Sama saja', 'Can = kuat, Can\'t = lemah'], answer: 'Can = lemah /kən/, Can\'t = kuat /kænt/', explanation: "Positive modals lemah, negative modals kuat dan jelas." },
-  { id: 13, question: "'Want' memiliki vokal...", options: ['/ɑː/ atau /ɒ/ (open mouth)', '/oʊ/ (rounded lips)'], answer: '/ɑː/ atau /ɒ/ (open mouth)', explanation: "'Want' = /wɑːnt/, buka mulut lebar." },
+  { id: 9, question: "'Don't you' terdengar seperti...", options: ['Don-choo / Doncha', 'Don-tyou', 'Don-joo'], answer: 'Don-choo / Doncha', explanation: "T + Y = /tʃ/ sound (ch) dalam assimilation." },
+  { id: 10, question: "'What do you' berubah menjadi...", options: ['Whatcha / Whacha', 'Whatdoyou', 'Whaddyou'], answer: 'Whatcha / Whacha', explanation: "'What do you' → 'Whatcha' sangat umum dalam casual speech." },
+  { id: 11, question: "'Going to' berubah menjadi...", options: ['Goingto', 'Gonta', 'Gonna'], answer: 'Gonna', explanation: "Reduksi paling umum dalam bahasa Inggris spoken." },
+  { id: 12, question: "Bagaimana cara membedakan 'Can' vs 'Can't'?", options: ['Can = kuat, Can\'t = lemah', 'Sama saja', 'Can = lemah /kən/, Can\'t = kuat /kænt/'], answer: 'Can = lemah /kən/, Can\'t = kuat /kænt/', explanation: "Positive modals lemah, negative modals kuat dan jelas." },
+  { id: 13, question: "'Want' memiliki vokal...", options: ['/oʊ/ (rounded lips)', '/ɑː/ atau /ɒ/ (open mouth)'], answer: '/ɑː/ atau /ɒ/ (open mouth)', explanation: "'Want' = /wɑːnt/, buka mulut lebar." },
   { id: 14, question: "'Won't' memiliki vokal...", options: ['/ɑː/ (open)', '/oʊ/ (rounded lips)'], answer: '/oʊ/ (rounded lips)', explanation: "'Won't' = /woʊnt/, bulatkan bibir." },
   { id: 15, question: "Apakah 'Coulda', 'Shoulda', 'Woulda' boleh ditulis dalam formal writing?", options: ['Ya', 'Tidak, hanya untuk speaking'], answer: 'Tidak, hanya untuk speaking', explanation: "Ini hanya untuk spoken English atau sangat informal texting." },
-  { id: 16, question: "'Have to' berubah menjadi...", options: ['Haveto', 'Hafta / Gotta', 'Havta'], answer: 'Hafta / Gotta', explanation: "'Have to' → 'hafta' atau 'gotta' dalam casual speech." },
+  { id: 16, question: "'Have to' berubah menjadi...", options: ['Havta', 'Hafta / Gotta', 'Haveto'], answer: 'Hafta / Gotta', explanation: "'Have to' → 'hafta' atau 'gotta' dalam casual speech." },
   { id: 17, question: "Dalam 'I can't see', bunyi /t/ di akhir 'can't' biasanya...", options: ['Sangat jelas', 'Stopped/unreleased (di AS)', 'Hilang'], answer: 'Stopped/unreleased (di AS)', explanation: "Dalam American English, /t/ akhir sering unreleased (glottal stop)." },
-  { id: 18, question: "'Should have done' berubah menjadi...", options: ['Should-have-done', 'Shoulda done / Should\'ve done', 'Shoodadone'], answer: 'Shoulda done / Should\'ve done', explanation: "Pola yang sama: modal + 'a/ve' + past participle." },
-  { id: 19, question: "Mengapa penting memahami reduced forms?", options: ['Untuk terdengar lebih pintar', 'Untuk memahami native speakers', 'Tidak penting'], answer: 'Untuk memahami native speakers', explanation: "Native speakers selalu gunakan reduced forms dalam natural speech." },
-  { id: 20, question: "'Why did you' terdengar seperti...", options: ['Why-did-you', 'Why-didja / Whyddja', 'Why-joo'], answer: 'Why-didja / Whyddja', explanation: "'Did you' → 'didja' bahkan setelah question words." }
+  { id: 18, question: "'Should have done' berubah menjadi...", options: ['Should-have-done', 'Shoodadone', 'Shoulda done / Should\'ve done'], answer: 'Shoulda done / Should\'ve done', explanation: "Pola yang sama: modal + 'a/ve' + past participle." },
+  { id: 19, question: "Mengapa penting memahami reduced forms?", options: ['Untuk memahami native speakers', 'Tidak penting', 'Untuk terdengar lebih pintar'], answer: 'Untuk memahami native speakers', explanation: "Native speakers selalu gunakan reduced forms dalam natural speech." },
+  { id: 20, question: "'Why did you' terdengar seperti...", options: ['Why-joo', 'Why-didja / Whyddja', 'Why-did-you'], answer: 'Why-didja / Whyddja', explanation: "'Did you' → 'didja' bahkan setelah question words." }
 ];
 
 const InterPronunLesson9: React.FC = () => {

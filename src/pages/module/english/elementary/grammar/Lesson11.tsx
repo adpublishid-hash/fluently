@@ -71,140 +71,140 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "You ___ smoke in a hospital. It is forbidden.",
-    options: ['should not', 'must not', 'don\'t have to'],
+    options: ['must not', 'don\'t have to', 'should not'],
     answer: 'must not',
     explanation: "'Must not' (Mustn't) digunakan untuk larangan keras (aturan/hukum)."
   },
   {
     id: 2,
     question: "I ___ swim when I was 5 years old.",
-    options: ['can', 'could', 'should'],
+    options: ['should', 'could', 'can'],
     answer: 'could',
     explanation: "'When I was 5' ada di masa lalu. Bentuk lampau 'Can' adalah 'Could'."
   },
   {
     id: 3,
     question: "It is raining. You ___ take an umbrella.",
-    options: ['should', 'mustn\'t', 'can\'t'],
+    options: ['mustn\'t', 'can\'t', 'should'],
     answer: 'should',
     explanation: "Ini adalah saran. 'Should' adalah pilihan yang paling tepat."
   },
   {
     id: 4,
     question: "___ you help me with this bag, please?",
-    options: ['Must', 'Should', 'Could'],
+    options: ['Could', 'Should', 'Must'],
     answer: 'Could',
     explanation: "'Could' digunakan untuk permintaan sopan."
   },
   {
     id: 5,
     question: "I ___ go now, it is very late.",
-    options: ['can', 'must', 'shouldn\'t'],
+    options: ['must', 'shouldn\'t', 'can'],
     answer: 'must',
     explanation: "'Must' menunjukkan kebutuhan atau kewajiban yang kuat."
   },
   {
     id: 6,
     question: "You ___ smoke in a hospital. It is forbidden.",
-    options: ["should not","must not","don't have to"],
+    options: ["must not", "don't have to", "should not"],
     answer: "must not",
     explanation: "'Must not' (Mustn't) digunakan untuk larangan keras (aturan/hukum)."
   },
   {
     id: 7,
     question: "I ___ swim when I was 5 years old.",
-    options: ["can","could","should"],
+    options: ["should", "could", "can"],
     answer: "could",
     explanation: "'When I was 5' ada di masa lalu. Bentuk lampau 'Can' adalah 'Could'."
   },
   {
     id: 8,
     question: "It is raining. You ___ take an umbrella.",
-    options: ["should","mustn't","can't"],
+    options: ["mustn't", "can't", "should"],
     answer: "should",
     explanation: "Ini adalah saran. 'Should' adalah pilihan yang paling tepat."
   },
   {
     id: 9,
     question: "___ you help me with this bag, please?",
-    options: ["Must","Should","Could"],
+    options: ["Could", "Should", "Must"],
     answer: "Could",
     explanation: "'Could' digunakan untuk permintaan sopan."
   },
   {
     id: 10,
     question: "I ___ go now, it is very late.",
-    options: ["can","must","shouldn't"],
+    options: ["must", "shouldn't", "can"],
     answer: "must",
     explanation: "'Must' menunjukkan kebutuhan atau kewajiban yang kuat."
   },
   {
     id: 11,
     question: "You ___ smoke in a hospital. It is forbidden.",
-    options: ["should not","must not","don't have to"],
+    options: ["must not", "don't have to", "should not"],
     answer: "must not",
     explanation: "'Must not' (Mustn't) digunakan untuk larangan keras (aturan/hukum)."
   },
   {
     id: 12,
     question: "I ___ swim when I was 5 years old.",
-    options: ["can","could","should"],
+    options: ["should", "could", "can"],
     answer: "could",
     explanation: "'When I was 5' ada di masa lalu. Bentuk lampau 'Can' adalah 'Could'."
   },
   {
     id: 13,
     question: "It is raining. You ___ take an umbrella.",
-    options: ["should","mustn't","can't"],
+    options: ["mustn't", "can't", "should"],
     answer: "should",
     explanation: "Ini adalah saran. 'Should' adalah pilihan yang paling tepat."
   },
   {
     id: 14,
     question: "___ you help me with this bag, please?",
-    options: ["Must","Should","Could"],
+    options: ["Could", "Should", "Must"],
     answer: "Could",
     explanation: "'Could' digunakan untuk permintaan sopan."
   },
   {
     id: 15,
     question: "I ___ go now, it is very late.",
-    options: ["can","must","shouldn't"],
+    options: ["must", "shouldn't", "can"],
     answer: "must",
     explanation: "'Must' menunjukkan kebutuhan atau kewajiban yang kuat."
   },
   {
     id: 16,
     question: "You ___ smoke in a hospital. It is forbidden.",
-    options: ["should not","must not","don't have to"],
+    options: ["must not", "don't have to", "should not"],
     answer: "must not",
     explanation: "'Must not' (Mustn't) digunakan untuk larangan keras (aturan/hukum)."
   },
   {
     id: 17,
     question: "I ___ swim when I was 5 years old.",
-    options: ["can","could","should"],
+    options: ["should", "could", "can"],
     answer: "could",
     explanation: "'When I was 5' ada di masa lalu. Bentuk lampau 'Can' adalah 'Could'."
   },
   {
     id: 18,
     question: "It is raining. You ___ take an umbrella.",
-    options: ["should","mustn't","can't"],
+    options: ["mustn't", "can't", "should"],
     answer: "should",
     explanation: "Ini adalah saran. 'Should' adalah pilihan yang paling tepat."
   },
   {
     id: 19,
     question: "___ you help me with this bag, please?",
-    options: ["Must","Should","Could"],
+    options: ["Could", "Should", "Must"],
     answer: "Could",
     explanation: "'Could' digunakan untuk permintaan sopan."
   },
   {
     id: 20,
     question: "I ___ go now, it is very late.",
-    options: ["can","must","shouldn't"],
+    options: ["must", "shouldn't", "can"],
     answer: "must",
     explanation: "'Must' menunjukkan kebutuhan atau kewajiban yang kuat."
   }

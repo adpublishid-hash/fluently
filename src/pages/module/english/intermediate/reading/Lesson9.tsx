@@ -9,10 +9,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the main topic of John's advertisement?",
     "opts": [
-      "Selling a dog",
       "Hiring a dog walker",
-      "Buying dog food",
-      "Veterinary services"
+      "Selling a dog",
+      "Veterinary services",
+      "Buying dog food"
     ],
     "ans": "Hiring a dog walker",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -21,9 +21,9 @@ const QUIZ: QuizItem[] = [
     "q": "When will the water supply be shut off?",
     "opts": [
       "Sunday",
-      "Saturday",
       "Friday",
-      "Monday"
+      "Monday",
+      "Saturday"
     ],
     "ans": "Saturday",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -31,10 +31,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Who is Sarah writing to?",
     "opts": [
-      "Clients",
       "The team",
-      "Her manager",
-      "The public"
+      "Clients",
+      "The public",
+      "Her manager"
     ],
     "ans": "The team",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -43,9 +43,9 @@ const QUIZ: QuizItem[] = [
     "q": "Where can employees get water during maintenance?",
     "opts": [
       "Near the elevator",
-      "In the staff lounge",
+      "In the manager's office",
       "Outside the building",
-      "In the manager's office"
+      "In the staff lounge"
     ],
     "ans": "In the staff lounge",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -53,10 +53,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does 'exhausting' mean?",
     "opts": [
-      "Relaxing",
       "Very tiring",
       "Fast",
-      "Boring"
+      "Boring",
+      "Relaxing"
     ],
     "ans": "Very tiring",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -65,8 +65,8 @@ const QUIZ: QuizItem[] = [
     "q": "What kind of environment was Chloe's new café?",
     "opts": [
       "Loud and busy",
-      "Cozy",
       "Expensive",
+      "Cozy",
       "Modern and sterile"
     ],
     "ans": "Cozy",
@@ -75,10 +75,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does 'pushed back' mean?",
     "opts": [
-      "Delayed",
       "Canceled",
-      "Moved forward",
-      "Advanced"
+      "Advanced",
+      "Delayed",
+      "Moved forward"
     ],
     "ans": "Delayed",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -86,10 +86,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is Chloe looking forward to?",
     "opts": [
-      "Mia's visit in the summer",
       "Buying a new house",
-      "Getting a promotion",
-      "Moving again"
+      "Moving again",
+      "Mia's visit in the summer",
+      "Getting a promotion"
     ],
     "ans": "Mia's visit in the summer",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -97,10 +97,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What must John's dog walker have experience with?",
     "opts": [
-      "Small breeds",
       "Large dogs",
-      "Sick dogs",
-      "Puppies"
+      "Small breeds",
+      "Puppies",
+      "Sick dogs"
     ],
     "ans": "Large dogs",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -108,10 +108,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which restrooms have a backup water tank?",
     "opts": [
-      "Top floor",
-      "Ground floor",
       "Second floor",
-      "Basement"
+      "Basement",
+      "Top floor",
+      "Ground floor"
     ],
     "ans": "Ground floor",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -119,10 +119,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does John's dog walker need to provide?",
     "opts": [
-      "A reference",
       "A resume",
       "A car",
-      "Dog treats"
+      "Dog treats",
+      "A reference"
     ],
     "ans": "A reference",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -130,10 +130,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why did Sarah reschedule the meeting?",
     "opts": [
-      "She is sick",
       "Stakeholders are traveling",
+      "Project canceled",
       "Room is booked",
-      "Project canceled"
+      "She is sick"
     ],
     "ans": "Stakeholders are traveling",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -141,10 +141,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "When is the new kick-off meeting?",
     "opts": [
-      "Wednesday 10 AM",
       "Thursday 10 AM",
-      "Friday 10 AM",
-      "Friday 3 PM"
+      "Friday 3 PM",
+      "Wednesday 10 AM",
+      "Friday 10 AM"
     ],
     "ans": "Friday 10 AM",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -152,10 +152,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What day does Chloe start her job?",
     "opts": [
-      "Friday",
       "Monday",
-      "Wednesday",
-      "Sunday"
+      "Friday",
+      "Sunday",
+      "Wednesday"
     ],
     "ans": "Monday",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -164,9 +164,9 @@ const QUIZ: QuizItem[] = [
     "q": "Who is moving to London?",
     "opts": [
       "Jane",
-      "Mia",
+      "Sarah",
       "Chloe",
-      "Sarah"
+      "Mia"
     ],
     "ans": "Chloe",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -174,10 +174,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What was Chloe's major problem?",
     "opts": [
-      "Internet was down",
       "Lost boxes",
+      "Got sick",
       "Missed a train",
-      "Got sick"
+      "Internet was down"
     ],
     "ans": "Lost boxes",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -185,10 +185,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How much is John paying per walk?",
     "opts": [
-      "$10",
       "$15",
-      "$20",
-      "$25"
+      "$10",
+      "$25",
+      "$20"
     ],
     "ans": "$15",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -196,9 +196,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "According to the email, what should team members review?",
     "opts": [
-      "Budget reports",
-      "Attached agenda",
       "Marketing strategy",
+      "Attached agenda",
+      "Budget reports",
       "Holiday schedule"
     ],
     "ans": "Attached agenda",
@@ -207,9 +207,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What breed is John's dog?",
     "opts": [
-      "Poodle",
-      "Husky",
       "Golden Retriever",
+      "Husky",
+      "Poodle",
       "Bulldog"
     ],
     "ans": "Golden Retriever",
@@ -219,9 +219,9 @@ const QUIZ: QuizItem[] = [
     "q": "What did the workplace notice announce?",
     "opts": [
       "Pay raise",
-      "Maintenance on water pipes",
       "Fire drill",
-      "New manager"
+      "New manager",
+      "Maintenance on water pipes"
     ],
     "ans": "Maintenance on water pipes",
     "exp": "Comprehension of Intermediate texts (B1 standard)."
@@ -238,19 +238,19 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "How many days a week does John need the walker?",
     "opts": [
-      "2 days",
       "3 days",
-      "5 days",
-      "7 days"
+      "7 days",
+      "2 days",
+      "5 days"
     ],
     "ans": "5 days"
   },
   {
     "q": "What is a strict requirement?",
     "opts": [
-      "Must be a vet.",
-      "Must have experience with large dogs.",
       "Must own a dog.",
+      "Must have experience with large dogs.",
+      "Must be a vet.",
       "Must be available mornings."
     ],
     "ans": "Must have experience with large dogs."
@@ -258,20 +258,20 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "How much will the walker earn in a week?",
     "opts": [
-      "$15",
       "$45",
       "$60",
-      "$75"
+      "$75",
+      "$15"
     ],
     "ans": "$75"
   },
   {
     "q": "How long is the walk?",
     "opts": [
+      "2 hours",
       "15 mins",
       "45 mins",
-      "1 hour",
-      "2 hours"
+      "1 hour"
     ],
     "ans": "45 mins"
   },
@@ -279,8 +279,8 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "How should candidates apply?",
     "opts": [
       "Call John",
-      "Email John",
       "Visit John's house",
+      "Email John",
       "Send a letter"
     ],
     "ans": "Email John"

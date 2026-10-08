@@ -39,8 +39,8 @@ const QUIZ = [
     q: "Pasangan kalimat yang benar untuk masa depan: ",
     opts: [
       "I going to sleep.",
-      "I am will sleep.",
-      "I am going to sleep."
+      "I am going to sleep.",
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -48,9 +48,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R2)",
     opts: [
+      "I am going to sleep.",
       "I going to sleep.",
-      "I am will sleep.",
-      "I am going to sleep."
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -58,9 +58,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R3)",
     opts: [
-      "I am will sleep.",
+      "I am going to sleep.",
       "I going to sleep.",
-      "I am going to sleep."
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -68,9 +68,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R4)",
     opts: [
+      "I am will sleep.",
       "I am going to sleep.",
-      "I going to sleep.",
-      "I am will sleep."
+      "I going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -78,9 +78,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R5)",
     opts: [
-      "I am going to sleep.",
+      "I am will sleep.",
       "I going to sleep.",
-      "I am will sleep."
+      "I am going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -88,9 +88,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R6)",
     opts: [
+      "I am going to sleep.",
       "I am will sleep.",
-      "I going to sleep.",
-      "I am going to sleep."
+      "I going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -98,9 +98,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R7)",
     opts: [
-      "I am will sleep.",
+      "I am going to sleep.",
       "I going to sleep.",
-      "I am going to sleep."
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -108,9 +108,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R8)",
     opts: [
+      "I am will sleep.",
       "I am going to sleep.",
-      "I going to sleep.",
-      "I am will sleep."
+      "I going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -118,9 +118,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R9)",
     opts: [
-      "I am going to sleep.",
+      "I am will sleep.",
       "I going to sleep.",
-      "I am will sleep."
+      "I am going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -129,8 +129,8 @@ const QUIZ = [
     q: "Pasangan kalimat yang benar untuk masa depan:  (R10)",
     opts: [
       "I am will sleep.",
-      "I going to sleep.",
-      "I am going to sleep."
+      "I am going to sleep.",
+      "I going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -138,9 +138,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R11)",
     opts: [
-      "I am will sleep.",
       "I going to sleep.",
-      "I am going to sleep."
+      "I am going to sleep.",
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -158,9 +158,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R13)",
     opts: [
-      "I going to sleep.",
       "I am will sleep.",
-      "I am going to sleep."
+      "I am going to sleep.",
+      "I going to sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -168,9 +168,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R14)",
     opts: [
-      "I am will sleep.",
+      "I am going to sleep.",
       "I going to sleep.",
-      "I am going to sleep."
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -178,8 +178,8 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R15)",
     opts: [
-      "I am will sleep.",
       "I going to sleep.",
+      "I am will sleep.",
       "I am going to sleep."
     ],
     ans: "I am going to sleep.",
@@ -198,8 +198,8 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R17)",
     opts: [
-      "I am going to sleep.",
       "I going to sleep.",
+      "I am going to sleep.",
       "I am will sleep."
     ],
     ans: "I am going to sleep.",
@@ -218,9 +218,9 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R19)",
     opts: [
-      "I am will sleep.",
       "I going to sleep.",
-      "I am going to sleep."
+      "I am going to sleep.",
+      "I am will sleep."
     ],
     ans: "I am going to sleep.",
     exp: "Struktur be + going to + verb 1 digunakan untuk rencana masa depan."
@@ -228,8 +228,8 @@ const QUIZ = [
   {
     q: "Pasangan kalimat yang benar untuk masa depan:  (R20)",
     opts: [
-      "I am going to sleep.",
       "I am will sleep.",
+      "I am going to sleep.",
       "I going to sleep."
     ],
     ans: "I am going to sleep.",

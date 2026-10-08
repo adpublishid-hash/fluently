@@ -71,28 +71,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Apa bentuk jamak dari 'Watch'?",
-    options: ['Watchs', 'Watches', 'Watchies'],
+    options: ['Watches', 'Watchs', 'Watchies'],
     answer: 'Watches',
     explanation: "Kata yang berakhiran -ch ditambahkan -es."
   },
   {
     id: 2,
     question: "I have ___ umbrella.",
-    options: ['a', 'an', 'the'],
+    options: ['the', 'an', 'a'],
     answer: 'an',
     explanation: "'Umbrella' dimulai dengan bunyi vokal, jadi gunakan 'an'."
   },
   {
     id: 3,
     question: "___ sun is hot today.",
-    options: ['A', 'An', 'The'],
+    options: ['An', 'The', 'A'],
     answer: 'The',
     explanation: "Hanya ada satu matahari, jadi spesifik: gunakan 'The'."
   },
   {
     id: 4,
     question: "Bentuk jamak dari 'Baby'?",
-    options: ['Babys', 'Babies', 'Babyes'],
+    options: ['Babys', 'Babyes', 'Babies'],
     answer: 'Babies',
     explanation: "Konsonan + y: y berubah menjadi i dan tambahkan -es."
   },
@@ -106,7 +106,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "Bentuk jamak dari 'Lady'?",
-    options: ['Ladys', 'Ladies', 'Ladyes'],
+    options: ['Ladyes', 'Ladies', 'Ladys'],
     answer: 'Ladies',
     explanation: "Akhiran 'y' setelah konsonan berubah menjadi 'ies'."
   },
@@ -120,14 +120,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "Bentuk jamak dari 'Box'?",
-    options: ['Boxs', 'Boxes', 'Boxies'],
+    options: ['Boxes', 'Boxs', 'Boxies'],
     answer: 'Boxes',
     explanation: "Kata berakhiran 'x' ditambahkan '-es'."
   },
   {
     id: 9,
     question: "I want to buy ___ car.",
-    options: ['a', 'an', 'the'],
+    options: ['the', 'a', 'an'],
     answer: 'a',
     explanation: "'Car' (mobil) umum dan diawali konsonan, gunakan 'a'."
   },
@@ -141,14 +141,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Bentuk jamak dari 'Man' (Tidak beraturan)?",
-    options: ['Mans', 'Men', 'Manes'],
+    options: ['Manes', 'Men', 'Mans'],
     answer: 'Men',
     explanation: "Plural tidak beraturan: Man -> Men."
   },
   {
     id: 12,
     question: "We saw ___ elephant.",
-    options: ['a', 'an', 'the'],
+    options: ['an', 'the', 'a'],
     answer: 'an',
     explanation: "'Elephant' diawali vokal 'e', gunakan 'an'."
   },
@@ -162,7 +162,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "He is ___ honest man.",
-    options: ['a', 'an', 'the'],
+    options: ['an', 'the', 'a'],
     answer: 'an',
     explanation: "'Honest' diawali bunyi vokal (h tidak dibaca), jadi pakai 'an'."
   },
@@ -190,21 +190,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "___ sky is blue.",
-    options: ['A', 'An', 'The'],
+    options: ['The', 'An', 'A'],
     answer: 'The',
     explanation: "Hanya ada satu langit (unik), gunakan 'The'."
   },
   {
     id: 19,
     question: "Bentuk jamak dari 'Leaf'?",
-    options: ['Leafs', 'Leaves', 'Leafes'],
+    options: ['Leafes', 'Leaves', 'Leafs'],
     answer: 'Leaves',
     explanation: "Akhiran 'f'/'fe' sering berubah menjadi 'ves'."
   },
   {
     id: 20,
     question: "She is ___ teacher.",
-    options: ['a', 'an', 'the'],
+    options: ['an', 'the', 'a'],
     answer: 'a',
     explanation: "Job/Profesi biasa menggunakan 'a/an'. Teacher dimulai konsonan, jadi 'a'."
   }

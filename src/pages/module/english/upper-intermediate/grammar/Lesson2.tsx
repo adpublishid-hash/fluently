@@ -61,10 +61,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is a correct Type 2 Conditional?",
     "opts": [
-      "If she studies hard, she will pass.",
-      "If she studied hard, she would pass.",
       "If she had studied, she would have passed.",
-      "If she studies, she would pass."
+      "If she studies, she would pass.",
+      "If she studies hard, she will pass.",
+      "If she studied hard, she would pass."
     ],
     "ans": "If she studied hard, she would pass.",
     "exp": "Type 2: If + Past Simple (studied), + would + base verb (pass). Situasi hipotetis masa kini."
@@ -72,10 +72,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is a correct Type 3 Conditional?",
     "opts": [
-      "If he had left early, he catches the train.",
       "If he had left early, he would catch the train.",
-      "If he had left early, he would have caught the train.",
-      "If he left early, he would have caught the train."
+      "If he had left early, he catches the train.",
+      "If he left early, he would have caught the train.",
+      "If he had left early, he would have caught the train."
     ],
     "ans": "If he had left early, he would have caught the train.",
     "exp": "Type 3: If + Past Perfect (had left), + would have + past participle (caught). Situasi tidak nyata di masa lalu."
@@ -83,10 +83,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Fill in: \"If I ___ (be) you, I ___ (accept) the offer.\"",
     "opts": [
-      "am, will accept",
-      "were, would accept",
       "was, would have accepted",
-      "had been, would accept"
+      "had been, would accept",
+      "were, would accept",
+      "am, will accept"
     ],
     "ans": "were, would accept",
     "exp": "Type 2 dengan \"were\" formal (bukan \"was\") untuk conditional unreal present."
@@ -94,10 +94,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"If they ___ (invest) earlier, they ___ (not lose) their money.\" Type 3 form?",
     "opts": [
+      "invested, would have lost",
       "had invested, wouldn't have lost",
       "invested, wouldn't lose",
-      "had invested, hadn't lose",
-      "invested, would have lost"
+      "had invested, hadn't lose"
     ],
     "ans": "had invested, wouldn't have lost",
     "exp": "Type 3: If + had invested + wouldn't have lost (past perfect → would+have+pp)."
@@ -106,8 +106,8 @@ const QUIZ: QuizItem[] = [
     "q": "\"If he ___ wealthy, he ___ a yacht.\" Which option is correct for Type 2?",
     "opts": [
       "was, bought",
-      "were, would buy",
       "had been, would buy",
+      "were, would buy",
       "is, buys"
     ],
     "ans": "were, would buy",
@@ -117,8 +117,8 @@ const QUIZ: QuizItem[] = [
     "q": "Identify the MIXED conditional: A past cause → a present result.",
     "opts": [
       "If I had a car, I would drive to work.",
-      "If she hadn't studied, she wouldn't have graduated.",
       "If he had chosen that career, he would be rich now.",
+      "If she hadn't studied, she wouldn't have graduated.",
       "If we leave now, we will catch the bus."
     ],
     "ans": "If he had chosen that career, he would be rich now.",
@@ -128,9 +128,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which conditional expresses REGRET about a past decision?",
     "opts": [
       "Type 0",
-      "Type 1",
+      "Type 3",
       "Type 2",
-      "Type 3"
+      "Type 1"
     ],
     "ans": "Type 3",
     "exp": "Type 3 digunakan untuk menyatakan penyesalan atau spekulasi tentang hal yang tidak terjadi di masa lalu."
@@ -138,10 +138,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"If I ___ (know) the answer, I ___ (tell) you.\" Present impossibility?",
     "opts": [
-      "know, will tell",
       "knew, would tell",
-      "had known, would have told",
-      "knew, would have told"
+      "know, will tell",
+      "knew, would have told",
+      "had known, would have told"
     ],
     "ans": "knew, would tell",
     "exp": "Type 2: If + Past Simple (knew) + would + base verb (tell). Saya tidak tahu, jadi ini hipotetis."
@@ -150,9 +150,9 @@ const QUIZ: QuizItem[] = [
     "q": "In formal conditional Type 2, which form is correct for \"if + to be\"?",
     "opts": [
       "If I was rich...",
-      "If I am rich...",
+      "If I will be rich...",
       "If I were rich...",
-      "If I will be rich..."
+      "If I am rich..."
     ],
     "ans": "If I were rich...",
     "exp": "Dalam formal/subjunctive conditional, \"were\" digunakan untuk semua person (I/he/she/it/they were)."
@@ -171,10 +171,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does \"I would have helped you if you had asked\" express?",
     "opts": [
-      "A future plan",
-      "A real present situation",
       "A regret that help was not given in the past",
-      "A general truth"
+      "A general truth",
+      "A real present situation",
+      "A future plan"
     ],
     "ans": "A regret that help was not given in the past",
     "exp": "Type 3 dengan \"would have helped\" dan \"had asked\" mengekspresikan penyesalan tentang masa lalu."
@@ -182,9 +182,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"If she ___ (be) more disciplined, she would have qualified for the team.\"",
     "opts": [
-      "is",
-      "were",
       "has been",
+      "were",
+      "is",
       "had been"
     ],
     "ans": "had been",
@@ -193,10 +193,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which modal verb shows possibility (not certainty) in a conditional result?",
     "opts": [
-      "would",
-      "might",
       "should",
-      "must"
+      "must",
+      "would",
+      "might"
     ],
     "ans": "might",
     "exp": "\"Might\" menunjukkan hasil yang mungkin tapi tidak pasti, lebih lemah dari \"would\"."
@@ -204,10 +204,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"If they had communicated better, the project ___ a success.\"",
     "opts": [
-      "would be",
       "will be",
+      "would had been",
       "would have been",
-      "would had been"
+      "would be"
     ],
     "ans": "would have been",
     "exp": "Type 3: \"had communicated\" (pp) → \"would have been\" (would + have + pp)."
@@ -216,9 +216,9 @@ const QUIZ: QuizItem[] = [
     "q": "\"___ I known you were coming, I would have baked a cake.\" What replaces \"if\"?",
     "opts": [
       "Were",
-      "Had",
+      "Did",
       "Should",
-      "Did"
+      "Had"
     ],
     "ans": "Had",
     "exp": "\"Had I known...\" adalah inversion conditional formal, setara dengan \"If I had known...\"."
@@ -226,10 +226,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which type deals with general scientific laws and facts?",
     "opts": [
-      "Type 0",
-      "Type 1",
       "Type 2",
-      "Type 3"
+      "Type 3",
+      "Type 0",
+      "Type 1"
     ],
     "ans": "Type 0",
     "exp": "Type 0 (Zero Conditional): If + present simple, + present simple. Untuk kebenaran umum/ilmiah."
@@ -238,9 +238,9 @@ const QUIZ: QuizItem[] = [
     "q": "Mixed Conditional Type B: present state → past result. Example?",
     "opts": [
       "If he were taller, he would play basketball.",
-      "If he had studied, he would be successful now.",
       "If she were organized, she would have finished on time.",
-      "If they leave early, they will arrive on time."
+      "If they leave early, they will arrive on time.",
+      "If he had studied, he would be successful now."
     ],
     "ans": "If she were organized, she would have finished on time.",
     "exp": "\"Were organized\" (sifat kini) → \"would have finished\" (hasil masa lalu) = Mixed Type B."
@@ -259,10 +259,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence uses WITHOUT + gerund to replace a conditional?",
     "opts": [
-      "If you had not helped me, I would have failed.",
-      "Without your help, I would have failed.",
       "Had you not helped, I would have failed.",
-      "All of the above"
+      "All of the above",
+      "If you had not helped me, I would have failed.",
+      "Without your help, I would have failed."
     ],
     "ans": "All of the above",
     "exp": "Semua ekspresi di atas setara dengan Type 3 conditional yang membayangkan berbagai cara penyampaian."

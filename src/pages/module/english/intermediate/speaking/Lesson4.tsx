@@ -12,9 +12,9 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's health and wellness? [Q1]",
     "options": [
-      "What is your health problem?",
+      "Tell me your health now.",
       "I would love to hear about your thoughts on health and wellness.",
-      "Tell me your health now."
+      "What is your health problem?"
     ],
     "answer": "I would love to hear about your thoughts on health and wellness.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing health, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,8 +34,8 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about health? [Q3]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -45,9 +45,9 @@ const QUIZ_QUESTIONS = [
     "id": 4,
     "question": "If you want to interrupt politely during a conversation about health, you say:",
     "options": [
-      "Excuse me, may I add something here?",
+      "Wait, give me a chance.",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding health? [Q6]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's health and wellness? [Q7]",
     "options": [
-      "What is your health problem?",
+      "Tell me your health now.",
       "I would love to hear about your thoughts on health and wellness.",
-      "Tell me your health now."
+      "What is your health problem?"
     ],
     "answer": "I would love to hear about your thoughts on health and wellness.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing health, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -100,8 +100,8 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about health? [Q9]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -111,9 +111,9 @@ const QUIZ_QUESTIONS = [
     "id": 10,
     "question": "If you want to interrupt politely during a conversation about health, you say:",
     "options": [
-      "Excuse me, may I add something here?",
+      "Wait, give me a chance.",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -133,9 +133,9 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding health? [Q12]",
     "options": [
+      "Bite the bullet",
       "A piece of cake",
-      "Under the weather",
-      "Bite the bullet"
+      "Under the weather"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -144,8 +144,8 @@ const QUIZ_QUESTIONS = [
     "id": 13,
     "question": "What is the most polite way to ask about someone's health and wellness? [Q13]",
     "options": [
-      "What is your health problem?",
       "I would love to hear about your thoughts on health and wellness.",
+      "What is your health problem?",
       "Tell me your health now."
     ],
     "answer": "I would love to hear about your thoughts on health and wellness.",
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing health, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -177,9 +177,9 @@ const QUIZ_QUESTIONS = [
     "id": 16,
     "question": "If you want to interrupt politely during a conversation about health, you say:",
     "options": [
-      "Excuse me, may I add something here?",
+      "Wait, give me a chance.",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding health? [Q18]",
     "options": [
+      "Bite the bullet",
       "A piece of cake",
-      "Under the weather",
-      "Bite the bullet"
+      "Under the weather"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's health and wellness? [Q19]",
     "options": [
-      "What is your health problem?",
       "I would love to hear about your thoughts on health and wellness.",
-      "Tell me your health now."
+      "Tell me your health now.",
+      "What is your health problem?"
     ],
     "answer": "I would love to hear about your thoughts on health and wellness.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing health, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

@@ -50,14 +50,14 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "I like making clothes. My hobby is ___.",
-    options: ['Sewing', 'Hiking', 'Gaming'],
+    options: ['Hiking', 'Sewing', 'Gaming'],
     answer: 'Sewing',
     explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
   },
   {
     id: 2,
     question: "He loves nature and sleeping in a tent. He likes ___.",
-    options: ['Camping', 'Shopping', 'Cooking'],
+    options: ['Shopping', 'Cooking', 'Camping'],
     answer: 'Camping',
     explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
   },
@@ -78,28 +78,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "He uses a camera for his hobby. He likes ___.",
-    options: ['Photography', 'Gardening', 'Singing'],
+    options: ['Singing', 'Photography', 'Gardening'],
     answer: 'Photography',
     explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
   },
   {
     id: 6,
     question: "I like making clothes. My hobby is ___.",
-    options: ["Sewing","Hiking","Gaming"],
+    options: ["Hiking", "Sewing", "Gaming"],
     answer: "Sewing",
     explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
   },
   {
     id: 7,
     question: "My friend loves nature and sleeping in a tent. My friend likes ___.",
-    options: ["Camping","Shopping","Cooking"],
+    options: ["Cooking", "Camping", "Shopping"],
     answer: "Camping",
     explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
   },
   {
     id: 8,
     question: "To stay fit, he goes ___ every morning.",
-    options: ["painting","running","reading"],
+    options: ["running", "painting", "reading"],
     answer: "running",
     explanation: "Running (berlari) adalah latihan fisik."
   },
@@ -113,21 +113,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "He uses a camera for her hobby. He likes ___.",
-    options: ["Photography","Gardening","Singing"],
+    options: ["Photography", "Singing", "Gardening"],
     answer: "Photography",
     explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
   },
   {
     id: 11,
     question: "I like making clothes. My hobby is ___.",
-    options: ["Sewing","Hiking","Gaming"],
+    options: ["Hiking", "Sewing", "Gaming"],
     answer: "Sewing",
     explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
   },
   {
     id: 12,
     question: "The man loves nature and sleeping in a tent. The man likes ___.",
-    options: ["Camping","Shopping","Cooking"],
+    options: ["Shopping", "Cooking", "Camping"],
     answer: "Camping",
     explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
   },
@@ -148,28 +148,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "My brother uses a camera for her hobby. My brother likes ___.",
-    options: ["Photography","Gardening","Singing"],
+    options: ["Photography", "Singing", "Gardening"],
     answer: "Photography",
     explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
   },
   {
     id: 16,
     question: "I like making clothes. My hobby is ___.",
-    options: ["Sewing","Hiking","Gaming"],
+    options: ["Hiking", "Sewing", "Gaming"],
     answer: "Sewing",
     explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
   },
   {
     id: 17,
     question: "My friend loves nature and sleeping in a tent. My friend likes ___.",
-    options: ["Camping","Shopping","Cooking"],
+    options: ["Cooking", "Camping", "Shopping"],
     answer: "Camping",
     explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
   },
   {
     id: 18,
     question: "To stay fit, he goes ___ every morning.",
-    options: ["painting","running","reading"],
+    options: ["running", "painting", "reading"],
     answer: "running",
     explanation: "Running (berlari) adalah latihan fisik."
   },
@@ -183,7 +183,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "My friend uses a camera for our hobby. My friend likes ___.",
-    options: ["Photography","Gardening","Singing"],
+    options: ["Singing", "Photography", "Gardening"],
     answer: "Photography",
     explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
   }

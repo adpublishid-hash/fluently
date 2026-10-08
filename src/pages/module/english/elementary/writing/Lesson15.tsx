@@ -28,8 +28,8 @@ const BUILD_ITEMS = [
     blank: "spelling",
     options: [
       "eyes",
-      "spelling",
-      "shoes"
+      "shoes",
+      "spelling"
     ],
     answer: "spelling"
   }
@@ -38,8 +38,8 @@ const QUIZ = [
   {
     q: "Bentuk paling benar: ",
     opts: [
-      "i am Sorry.",
       "I am sorry.",
+      "i am Sorry.",
       "im sorry."
     ],
     ans: "I am sorry.",
@@ -49,8 +49,8 @@ const QUIZ = [
     q: "Bentuk paling benar:  (R2)",
     opts: [
       "i am Sorry.",
-      "im sorry.",
-      "I am sorry."
+      "I am sorry.",
+      "im sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
@@ -58,45 +58,15 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R3)",
     opts: [
+      "i am Sorry.",
       "im sorry.",
-      "I am sorry.",
-      "i am Sorry."
+      "I am sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
   },
   {
     q: "Bentuk paling benar:  (R4)",
-    opts: [
-      "im sorry.",
-      "I am sorry.",
-      "i am Sorry."
-    ],
-    ans: "I am sorry.",
-    exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
-  },
-  {
-    q: "Bentuk paling benar:  (R5)",
-    opts: [
-      "im sorry.",
-      "I am sorry.",
-      "i am Sorry."
-    ],
-    ans: "I am sorry.",
-    exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
-  },
-  {
-    q: "Bentuk paling benar:  (R6)",
-    opts: [
-      "im sorry.",
-      "I am sorry.",
-      "i am Sorry."
-    ],
-    ans: "I am sorry.",
-    exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
-  },
-  {
-    q: "Bentuk paling benar:  (R7)",
     opts: [
       "i am Sorry.",
       "I am sorry.",
@@ -106,11 +76,41 @@ const QUIZ = [
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
   },
   {
-    q: "Bentuk paling benar:  (R8)",
+    q: "Bentuk paling benar:  (R5)",
+    opts: [
+      "i am Sorry.",
+      "im sorry.",
+      "I am sorry."
+    ],
+    ans: "I am sorry.",
+    exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
+  },
+  {
+    q: "Bentuk paling benar:  (R6)",
+    opts: [
+      "i am Sorry.",
+      "I am sorry.",
+      "im sorry."
+    ],
+    ans: "I am sorry.",
+    exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
+  },
+  {
+    q: "Bentuk paling benar:  (R7)",
     opts: [
       "im sorry.",
+      "i am Sorry.",
+      "I am sorry."
+    ],
+    ans: "I am sorry.",
+    exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
+  },
+  {
+    q: "Bentuk paling benar:  (R8)",
+    opts: [
+      "i am Sorry.",
       "I am sorry.",
-      "i am Sorry."
+      "im sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
@@ -118,9 +118,9 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R9)",
     opts: [
+      "i am Sorry.",
       "I am sorry.",
-      "im sorry.",
-      "i am Sorry."
+      "im sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
@@ -128,9 +128,9 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R10)",
     opts: [
-      "im sorry.",
       "I am sorry.",
-      "i am Sorry."
+      "i am Sorry.",
+      "im sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
@@ -148,9 +148,9 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R12)",
     opts: [
-      "im sorry.",
       "I am sorry.",
-      "i am Sorry."
+      "i am Sorry.",
+      "im sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
@@ -159,8 +159,8 @@ const QUIZ = [
     q: "Bentuk paling benar:  (R13)",
     opts: [
       "i am Sorry.",
-      "I am sorry.",
-      "im sorry."
+      "im sorry.",
+      "I am sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."
@@ -168,8 +168,8 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R14)",
     opts: [
-      "I am sorry.",
       "im sorry.",
+      "I am sorry.",
       "i am Sorry."
     ],
     ans: "I am sorry.",
@@ -188,8 +188,8 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R16)",
     opts: [
-      "im sorry.",
       "I am sorry.",
+      "im sorry.",
       "i am Sorry."
     ],
     ans: "I am sorry.",
@@ -208,8 +208,8 @@ const QUIZ = [
   {
     q: "Bentuk paling benar:  (R18)",
     opts: [
-      "im sorry.",
       "I am sorry.",
+      "im sorry.",
       "i am Sorry."
     ],
     ans: "I am sorry.",
@@ -229,8 +229,8 @@ const QUIZ = [
     q: "Bentuk paling benar:  (R20)",
     opts: [
       "i am Sorry.",
-      "im sorry.",
-      "I am sorry."
+      "I am sorry.",
+      "im sorry."
     ],
     ans: "I am sorry.",
     exp: "Awal kapital (I) dan titik di akhir tanpa salah kapitalisasi kata."

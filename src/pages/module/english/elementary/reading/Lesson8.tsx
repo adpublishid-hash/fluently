@@ -6,25 +6,25 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
     { q: '(Review) Latihan 1 - Who is sending the email?', opts: ["Tokyo Tower","Sarah","John","Nobody"], ans: "John", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Where is John currently?', opts: ["Paris","New York","London","Tokyo"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - How is the weather there?', opts: ["A bit cold","Very hot","Raining all day","Snowing"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - What did John eat yesterday?', opts: ["Pizza","Green tea","Sushi","Burger"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What will John buy for Sarah?', opts: ["A fresh coat","Sushi","Green tea","A Tokyo Tower souvenir"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Where is John currently?', opts: ["New York", "Paris", "Tokyo", "London"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - How is the weather there?', opts: ["Very hot", "Snowing", "Raining all day", "A bit cold"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - What did John eat yesterday?', opts: ["Pizza", "Sushi", "Green tea", "Burger"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - What will John buy for Sarah?', opts: ["A fresh coat", "Green tea", "A Tokyo Tower souvenir", "Sushi"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 6 - Who is sending the email?', opts: ["Tokyo Tower","Nobody","Sarah","John"], ans: "John", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Where is John currently?', opts: ["Paris","New York","London","Tokyo"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - How is the weather there?', opts: ["Snowing","Very hot","Raining all day","A bit cold"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - What did John eat yesterday?', opts: ["Sushi","Green tea","Pizza","Burger"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - What will John buy for Sarah?', opts: ["Green tea","Sushi","A Tokyo Tower souvenir","A fresh coat"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - Who is sending the email?', opts: ["Nobody","Tokyo Tower","Sarah","John"], ans: "John", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Where is John currently?', opts: ["London","Paris","Tokyo","New York"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - How is the weather there?', opts: ["Raining all day","A bit cold","Snowing","Very hot"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - What did John eat yesterday?', opts: ["Sushi","Pizza","Burger","Green tea"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What will John buy for Sarah?', opts: ["A fresh coat","A Tokyo Tower souvenir","Sushi","Green tea"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - Who is sending the email?', opts: ["Nobody","Tokyo Tower","Sarah","John"], ans: "John", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Where is John currently?', opts: ["Paris","New York","London","Tokyo"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - How is the weather there?', opts: ["Snowing","Raining all day","Very hot","A bit cold"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - What did John eat yesterday?', opts: ["Sushi","Burger","Green tea","Pizza"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What will John buy for Sarah?', opts: ["Green tea","Sushi","A fresh coat","A Tokyo Tower souvenir"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 7 - Where is John currently?', opts: ["Paris", "London", "Tokyo", "New York"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - How is the weather there?', opts: ["Very hot", "Raining all day", "A bit cold", "Snowing"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - What did John eat yesterday?', opts: ["Green tea", "Pizza", "Burger", "Sushi"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - What will John buy for Sarah?', opts: ["Sushi", "A fresh coat", "Green tea", "A Tokyo Tower souvenir"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - Who is sending the email?', opts: ["Sarah", "John", "Nobody", "Tokyo Tower"], ans: "John", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Where is John currently?', opts: ["Paris", "New York", "London", "Tokyo"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - How is the weather there?', opts: ["A bit cold", "Snowing", "Very hot", "Raining all day"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - What did John eat yesterday?', opts: ["Sushi", "Green tea", "Burger", "Pizza"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - What will John buy for Sarah?', opts: ["A fresh coat", "Sushi", "A Tokyo Tower souvenir", "Green tea"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - Who is sending the email?', opts: ["Nobody", "Sarah", "Tokyo Tower", "John"], ans: "John", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Where is John currently?', opts: ["Paris", "Tokyo", "London", "New York"], ans: "Tokyo", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - How is the weather there?', opts: ["A bit cold", "Snowing", "Raining all day", "Very hot"], ans: "A bit cold", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - What did John eat yesterday?', opts: ["Pizza", "Sushi", "Burger", "Green tea"], ans: "Sushi", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - What will John buy for Sarah?', opts: ["Sushi", "Green tea", "A Tokyo Tower souvenir", "A fresh coat"], ans: "Green tea", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -36,10 +36,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   ),
   questions: [
     { q: 'Who is sending the email?', opts: ["Sarah","John","Nobody","Tokyo Tower"], ans: 'John' },
-    { q: 'Where is John currently?', opts: ["Tokyo","London","New York","Paris"], ans: 'Tokyo' },
-    { q: 'How is the weather there?', opts: ["Snowing","Raining all day","Very hot","A bit cold"], ans: 'A bit cold' },
-    { q: 'What did John eat yesterday?', opts: ["Green tea","Sushi","Pizza","Burger"], ans: 'Sushi' },
-    { q: 'What will John buy for Sarah?', opts: ["A fresh coat","Green tea","A Tokyo Tower souvenir","Sushi"], ans: 'Green tea' },
+    { q: 'Where is John currently?', opts: ["London", "Tokyo", "Paris", "New York"], ans: 'Tokyo' },
+    { q: 'How is the weather there?', opts: ["Snowing", "A bit cold", "Very hot", "Raining all day"], ans: 'A bit cold' },
+    { q: 'What did John eat yesterday?', opts: ["Sushi", "Pizza", "Burger", "Green tea"], ans: 'Sushi' },
+    { q: 'What will John buy for Sarah?', opts: ["A fresh coat", "A Tokyo Tower souvenir", "Sushi", "Green tea"], ans: 'Green tea' },
   ],
 };
 

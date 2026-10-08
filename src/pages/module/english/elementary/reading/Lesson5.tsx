@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - How much does the Margherita Pizza cost?', opts: ["$12.00","$8.00","$14.50","$3.00"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Which dish has bacon in it?', opts: ["Espresso","Caesar Salad","Margherita Pizza","Spaghetti Carbonara"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - What do you get in a Caesar Salad?', opts: ["Egg and bacon","Tomato and mozzarella","Lettuce, croutons, parmesan","Pasta and cheese"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - What is the cheapest item on this menu?', opts: ["Espresso","Caesar Salad","Pizza","Spaghetti"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What kind of restaurant is Luigi\'s?', opts: ["Japanese","Italian","French","Mexican"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - How much does the Margherita Pizza cost?', opts: ["$8.00","$14.50","$12.00","$3.00"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Which dish has bacon in it?', opts: ["Caesar Salad","Margherita Pizza","Espresso","Spaghetti Carbonara"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - What do you get in a Caesar Salad?', opts: ["Pasta and cheese","Egg and bacon","Tomato and mozzarella","Lettuce, croutons, parmesan"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - What is the cheapest item on this menu?', opts: ["Espresso","Caesar Salad","Pizza","Spaghetti"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - What kind of restaurant is Luigi\'s?', opts: ["Italian","French","Mexican","Japanese"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - How much does the Margherita Pizza cost?', opts: ["$12.00", "$14.50", "$8.00", "$3.00"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Which dish has bacon in it?', opts: ["Margherita Pizza", "Caesar Salad", "Espresso", "Spaghetti Carbonara"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - What do you get in a Caesar Salad?', opts: ["Tomato and mozzarella", "Pasta and cheese", "Egg and bacon", "Lettuce, croutons, parmesan"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - What is the cheapest item on this menu?', opts: ["Pizza", "Caesar Salad", "Espresso", "Spaghetti"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - What kind of restaurant is Luigi\'s?', opts: ["Japanese", "French", "Mexican", "Italian"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - How much does the Margherita Pizza cost?', opts: ["$12.00", "$3.00", "$8.00", "$14.50"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Which dish has bacon in it?', opts: ["Espresso", "Spaghetti Carbonara", "Margherita Pizza", "Caesar Salad"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - What do you get in a Caesar Salad?', opts: ["Egg and bacon", "Lettuce, croutons, parmesan", "Tomato and mozzarella", "Pasta and cheese"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - What is the cheapest item on this menu?', opts: ["Pizza", "Spaghetti", "Caesar Salad", "Espresso"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - What kind of restaurant is Luigi\'s?', opts: ["French", "Japanese", "Italian", "Mexican"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Analisis Singkat) Latihan 11 - How much does the Margherita Pizza cost?', opts: ["$14.50","$12.00","$8.00","$3.00"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Which dish has bacon in it?', opts: ["Caesar Salad","Espresso","Margherita Pizza","Spaghetti Carbonara"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - What do you get in a Caesar Salad?', opts: ["Pasta and cheese","Egg and bacon","Tomato and mozzarella","Lettuce, croutons, parmesan"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Which dish has bacon in it?', opts: ["Margherita Pizza", "Spaghetti Carbonara", "Caesar Salad", "Espresso"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - What do you get in a Caesar Salad?', opts: ["Tomato and mozzarella", "Lettuce, croutons, parmesan", "Egg and bacon", "Pasta and cheese"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 14 - What is the cheapest item on this menu?', opts: ["Espresso","Spaghetti","Caesar Salad","Pizza"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What kind of restaurant is Luigi\'s?', opts: ["Italian","Japanese","French","Mexican"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - How much does the Margherita Pizza cost?', opts: ["$3.00","$8.00","$14.50","$12.00"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Which dish has bacon in it?', opts: ["Caesar Salad","Espresso","Spaghetti Carbonara","Margherita Pizza"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - What do you get in a Caesar Salad?', opts: ["Lettuce, croutons, parmesan","Tomato and mozzarella","Pasta and cheese","Egg and bacon"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - What is the cheapest item on this menu?', opts: ["Espresso","Spaghetti","Caesar Salad","Pizza"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What kind of restaurant is Luigi\'s?', opts: ["Mexican","Japanese","French","Italian"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 15 - What kind of restaurant is Luigi\'s?', opts: ["Italian", "Mexican", "French", "Japanese"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - How much does the Margherita Pizza cost?', opts: ["$3.00", "$14.50", "$8.00", "$12.00"], ans: "$12.00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Which dish has bacon in it?', opts: ["Margherita Pizza", "Caesar Salad", "Espresso", "Spaghetti Carbonara"], ans: "Spaghetti Carbonara", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - What do you get in a Caesar Salad?', opts: ["Tomato and mozzarella", "Pasta and cheese", "Egg and bacon", "Lettuce, croutons, parmesan"], ans: "Lettuce, croutons, parmesan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - What is the cheapest item on this menu?', opts: ["Spaghetti", "Pizza", "Caesar Salad", "Espresso"], ans: "Espresso", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - What kind of restaurant is Luigi\'s?', opts: ["Japanese", "Mexican", "Italian", "French"], ans: "Italian", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'How much does the Margherita Pizza cost?', opts: ["$12.00","$3.00","$14.50","$8.00"], ans: '$12.00' },
-    { q: 'Which dish has bacon in it?', opts: ["Spaghetti Carbonara","Margherita Pizza","Espresso","Caesar Salad"], ans: 'Spaghetti Carbonara' },
+    { q: 'How much does the Margherita Pizza cost?', opts: ["$12.00", "$8.00", "$14.50", "$3.00"], ans: '$12.00' },
+    { q: 'Which dish has bacon in it?', opts: ["Spaghetti Carbonara", "Espresso", "Margherita Pizza", "Caesar Salad"], ans: 'Spaghetti Carbonara' },
     { q: 'What do you get in a Caesar Salad?', opts: ["Pasta and cheese","Egg and bacon","Tomato and mozzarella","Lettuce, croutons, parmesan"], ans: 'Lettuce, croutons, parmesan' },
-    { q: 'What is the cheapest item on this menu?', opts: ["Spaghetti","Pizza","Caesar Salad","Espresso"], ans: 'Espresso' },
-    { q: 'What kind of restaurant is Luigi\'s?', opts: ["Italian","Mexican","French","Japanese"], ans: 'Italian' },
+    { q: 'What is the cheapest item on this menu?', opts: ["Pizza", "Espresso", "Spaghetti", "Caesar Salad"], ans: 'Espresso' },
+    { q: 'What kind of restaurant is Luigi\'s?', opts: ["Italian", "French", "Mexican", "Japanese"], ans: 'Italian' },
   ],
 };
 

@@ -50,56 +50,56 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "He never lies. He is very ___.",
-    options: ['shy', 'honest', 'lazy'],
+    options: ['lazy', 'shy', 'honest'],
     answer: 'honest',
     explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
   },
   {
     id: 2,
     question: "She has no hair. She is ___.",
-    options: ['blonde', 'curly', 'bald'],
+    options: ['bald', 'blonde', 'curly'],
     answer: 'bald',
     explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
   },
   {
     id: 3,
     question: "This is my ___. We work in the same office.",
-    options: ['classmate', 'colleague', 'neighbor'],
+    options: ['colleague', 'neighbor', 'classmate'],
     answer: 'colleague',
     explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
   },
   {
     id: 4,
     question: "He likes to give money to charity. He is ___.",
-    options: ['stingy', 'generous', 'rude'],
+    options: ['generous', 'rude', 'stingy'],
     answer: 'generous',
     explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
   },
   {
     id: 5,
     question: "Which sentence is correct?",
-    options: ['She has tall.', 'She is tall.', 'She is long hair.'],
+    options: ['She has tall.', 'She is long hair.', 'She is tall.'],
     answer: 'She is tall.',
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   },
   {
     id: 6,
     question: "He never lies. He is very ___.",
-    options: ["shy","honest","lazy"],
+    options: ["lazy", "shy", "honest"],
     answer: "honest",
     explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
   },
   {
     id: 7,
     question: "my friend has no hair. my friend is ___.",
-    options: ["blonde","curly","bald"],
+    options: ["bald", "blonde", "curly"],
     answer: "bald",
     explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
   },
   {
     id: 8,
     question: "This is my ___. We work in the same office.",
-    options: ["classmate","colleague","neighbor"],
+    options: ["colleague", "neighbor", "classmate"],
     answer: "colleague",
     explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
   },
@@ -113,77 +113,77 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "Choose the correct sentence.",
-    options: ["She has tall.","She is tall.","She is long hair."],
+    options: ["She is long hair.", "She is tall.", "She has tall."],
     answer: "She is tall.",
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   },
   {
     id: 11,
     question: "He never lies. He is very ___.",
-    options: ["shy","honest","lazy"],
+    options: ["lazy", "shy", "honest"],
     answer: "honest",
     explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
   },
   {
     id: 12,
     question: "He has no hair. He is ___.",
-    options: ["blonde","curly","bald"],
+    options: ["curly", "blonde", "bald"],
     answer: "bald",
     explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
   },
   {
     id: 13,
     question: "This is my ___. We work in the same office.",
-    options: ["classmate","colleague","neighbor"],
+    options: ["colleague", "neighbor", "classmate"],
     answer: "colleague",
     explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
   },
   {
     id: 14,
     question: "he likes to give funds to charity. he is ___.",
-    options: ["stingy","generous","rude"],
+    options: ["rude", "stingy", "generous"],
     answer: "generous",
     explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
   },
   {
     id: 15,
     question: "Identify the right sentence.",
-    options: ["She has tall.","She is tall.","She is long hair."],
+    options: ["She is tall.", "She is long hair.", "She has tall."],
     answer: "She is tall.",
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   },
   {
     id: 16,
     question: "My friend never lies. My friend is very ___.",
-    options: ["shy","honest","lazy"],
+    options: ["honest", "shy", "lazy"],
     answer: "honest",
     explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
   },
   {
     id: 17,
     question: "She has no hair. She is ___.",
-    options: ["blonde","curly","bald"],
+    options: ["bald", "blonde", "curly"],
     answer: "bald",
     explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
   },
   {
     id: 18,
     question: "This is my ___. We work in the same office.",
-    options: ["classmate","colleague","neighbor"],
+    options: ["colleague", "neighbor", "classmate"],
     answer: "colleague",
     explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
   },
   {
     id: 19,
     question: "He likes to give cash to charity. He is ___.",
-    options: ["stingy","generous","rude"],
+    options: ["rude", "generous", "stingy"],
     answer: "generous",
     explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
   },
   {
     id: 20,
     question: "Which sentence is correct?",
-    options: ["She has tall.","She is tall.","She is long hair."],
+    options: ["She has tall.", "She is long hair.", "She is tall."],
     answer: "She is tall.",
     explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
   }

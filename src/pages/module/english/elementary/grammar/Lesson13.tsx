@@ -63,42 +63,42 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "The man ___ stole the car was caught.",
-    options: ['which', 'who', 'where'],
+    options: ['who', 'which', 'where'],
     answer: 'who',
     explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
   },
   {
     id: 2,
     question: "This is the cake ___ Mary baked.",
-    options: ['who', 'which', 'what'],
+    options: ['what', 'which', 'who'],
     answer: 'which',
     explanation: "'The cake' adalah benda, jadi kita gunakan 'which' (atau 'that')."
   },
   {
     id: 3,
     question: "I have a friend ___ lives in Japan.",
-    options: ['which', 'who', 'it'],
+    options: ['who', 'it', 'which'],
     answer: 'who',
     explanation: "'A friend' adalah orang."
   },
   {
     id: 4,
     question: "The book ___ is on the shelf is mine.",
-    options: ['who', 'which', 'whom'],
+    options: ['who', 'whom', 'which'],
     answer: 'which',
     explanation: "'The book' adalah benda."
   },
   {
     id: 5,
     question: "Can I talk to the person ___ is in charge?",
-    options: ['which', 'who', 'where'],
+    options: ['where', 'which', 'who'],
     answer: 'who',
     explanation: "'The person' membutuhkan 'who'."
   },
   {
     id: 6,
     question: "The man ___ stole the car was caught.",
-    options: ["which","who","where"],
+    options: ["who", "which", "where"],
     answer: "who",
     explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
   },
@@ -112,63 +112,63 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "I have a friend ___ lives in Japan.",
-    options: ["which","who","it"],
+    options: ["who", "it", "which"],
     answer: "who",
     explanation: "'A friend' adalah orang."
   },
   {
     id: 9,
     question: "The book ___ is on the shelf is mine.",
-    options: ["who","which","whom"],
+    options: ["who", "whom", "which"],
     answer: "which",
     explanation: "'The book' adalah benda."
   },
   {
     id: 10,
     question: "Can I talk to the person ___ is in charge?",
-    options: ["which","who","where"],
+    options: ["where", "which", "who"],
     answer: "who",
     explanation: "'The person' membutuhkan 'who'."
   },
   {
     id: 11,
     question: "The man ___ stole the car was caught.",
-    options: ["which","who","where"],
+    options: ["who", "which", "where"],
     answer: "who",
     explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
   },
   {
     id: 12,
     question: "This is the cake ___ Mary baked.",
-    options: ["who","which","what"],
+    options: ["what", "which", "who"],
     answer: "which",
     explanation: "'The cake' adalah benda, jadi kita gunakan 'which' (atau 'that')."
   },
   {
     id: 13,
     question: "I have a friend ___ lives in Japan.",
-    options: ["which","who","it"],
+    options: ["who", "it", "which"],
     answer: "who",
     explanation: "'A friend' adalah orang."
   },
   {
     id: 14,
     question: "The book ___ is on the shelf is mine.",
-    options: ["who","which","whom"],
+    options: ["who", "whom", "which"],
     answer: "which",
     explanation: "'The book' adalah benda."
   },
   {
     id: 15,
     question: "Can I talk to the person ___ is in charge?",
-    options: ["which","who","where"],
+    options: ["where", "which", "who"],
     answer: "who",
     explanation: "'The person' membutuhkan 'who'."
   },
   {
     id: 16,
     question: "The man ___ stole the car was caught.",
-    options: ["which","who","where"],
+    options: ["who", "which", "where"],
     answer: "who",
     explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
   },
@@ -182,21 +182,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "I have a friend ___ lives in Japan.",
-    options: ["which","who","it"],
+    options: ["who", "it", "which"],
     answer: "who",
     explanation: "'A friend' adalah orang."
   },
   {
     id: 19,
     question: "The novel ___ is on the shelf is mine.",
-    options: ["who","which","whom"],
+    options: ["which", "who", "whom"],
     answer: "which",
     explanation: "'The novel' adalah benda."
   },
   {
     id: 20,
     question: "Can I talk to the person ___ is in charge?",
-    options: ["which","who","where"],
+    options: ["where", "which", "who"],
     answer: "who",
     explanation: "'The person' membutuhkan 'who'."
   }

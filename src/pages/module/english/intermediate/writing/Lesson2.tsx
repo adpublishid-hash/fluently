@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which greeting is highly informal and typical for a friend?",
     "opts": [
-      "Dear Madam,",
-      "To Whom It May Concern,",
       "Hi Sarah,",
-      "Dear Ms. Sarah,"
+      "Dear Ms. Sarah,",
+      "Dear Madam,",
+      "To Whom It May Concern,"
     ],
     "ans": "Hi Sarah,",
     "exp": "\"Hi\" followed by a first name is the standard informal greeting."
@@ -19,10 +19,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does the phrase \"caught up\" mean contextually?",
     "opts": [
-      "To run fast",
-      "To talk and update each other on life",
       "To catch a ball",
-      "To get a virus"
+      "To get a virus",
+      "To talk and update each other on life",
+      "To run fast"
     ],
     "ans": "To talk and update each other on life",
     "exp": "\"Catch up\" is an informal phrasal verb meaning to exchange news."
@@ -30,10 +30,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the contraction used in the text that makes it informal:",
     "opts": [
-      "I am",
       "Absolutely",
       "I've",
-      "Ceremony"
+      "Ceremony",
+      "I am"
     ],
     "ans": "I've",
     "exp": "Contractions like \"I've\" (I have) are hallmarks of informal/personal writing."
@@ -41,9 +41,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of the question \"How have you been?\"",
     "opts": [
-      "Rhetorical social greeting showing care",
-      "A strict medical inquiry",
       "A test of grammar",
+      "A strict medical inquiry",
+      "Rhetorical social greeting showing care",
       "To end the letter"
     ],
     "ans": "Rhetorical social greeting showing care",
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the most appropriate informal sign-off used here.",
     "opts": [
-      "Yours faithfully,",
       "Warmly,",
       "Best regards,",
-      "Sincerely,"
+      "Sincerely,",
+      "Yours faithfully,"
     ],
     "ans": "Warmly,",
     "exp": "Warmly, Best, or Cheers are appropriate for personal letters."
@@ -63,10 +63,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In writing, what does \"proofreading\" mean?",
     "opts": [
-      "Writing the first draft wildly",
       "Finding academic sources",
-      "Carefully checking for grammatical and spelling errors",
-      "Outlining paragraphs"
+      "Writing the first draft wildly",
+      "Outlining paragraphs",
+      "Carefully checking for grammatical and spelling errors"
     ],
     "ans": "Carefully checking for grammatical and spelling errors",
     "exp": "Proofreading adalah tahapan akhir untuk membaca ulang dan memperbaiki kesalahan minor."
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is correctly punctuated?",
     "opts": [
-      "Although, it was raining we went out.",
       "Although it was raining, we went out.",
-      "Although it was raining we went out,",
-      "Although, it was raining, we went out."
+      "Although, it was raining, we went out.",
+      "Although, it was raining we went out.",
+      "Although it was raining we went out,"
     ],
     "ans": "Although it was raining, we went out.",
     "exp": "Jika kalimat dimulai dengan konjungsi subordinatif (Although), gunakan koma sebelum klausa utama."
@@ -85,9 +85,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"therefore\"?",
     "opts": [
-      "To add a point",
-      "To show a difference",
       "To show a result or consequence",
+      "To show a difference",
+      "To add a point",
       "To give an example"
     ],
     "ans": "To show a result or consequence",
@@ -96,10 +96,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence uses the PASSIVE voice correctly?",
     "opts": [
-      "The report was finished by Anna yesterday.",
-      "The report finished Anna yesterday.",
       "Anna was finished the report yesterday.",
-      "The report was finish by Anna."
+      "The report was finish by Anna.",
+      "The report finished Anna yesterday.",
+      "The report was finished by Anna yesterday."
     ],
     "ans": "The report was finished by Anna yesterday.",
     "exp": "Pasif: Subject (The report) + to be (was) + Past Participle (finished)."
@@ -107,10 +107,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
     "opts": [
-      "On the second hand...",
-      "On the other side...",
       "On the other hand...",
-      "However..."
+      "However...",
+      "On the second hand...",
+      "On the other side..."
     ],
     "ans": "On the other hand...",
     "exp": "Pasangan frasa idiomatis ini selalu \"On the one hand... On the other hand...\" untuk membandingkan dua sisi."
@@ -119,9 +119,9 @@ const QUIZ: QuizItem[] = [
     "q": "Identify the error: \"I look forward to hear from you soon.\"",
     "opts": [
       "look forward",
-      "to hear",
+      "soon",
       "from you",
-      "soon"
+      "to hear"
     ],
     "ans": "to hear",
     "exp": "Aturan baku: \"look forward to\" selalu diikuti oleh Gerund (V-ing), sehingga seharusnya \"to hearing\"."
@@ -130,9 +130,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which phrase is most appropriate for a formal email greeting?",
     "opts": [
       "Hi mate,",
-      "Hey there,",
+      "What’s up Smith,",
       "Dear Mr. Smith,",
-      "What’s up Smith,"
+      "Hey there,"
     ],
     "ans": "Dear Mr. Smith,",
     "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
@@ -140,10 +140,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
     "opts": [
-      "It was late so I kept writing.",
       "Although it was late, I kept writing.",
+      "It was late, therefore I kept writing.",
       "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
+      "It was late so I kept writing."
     ],
     "ans": "Although it was late, I kept writing.",
     "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
@@ -152,8 +152,8 @@ const QUIZ: QuizItem[] = [
     "q": "How do you make this formal? \"Send me the files ASAP.\"",
     "opts": [
       "Please dispatch the files really quick.",
-      "I require the files immediately.",
       "Please send the documents at your earliest convenience.",
+      "I require the files immediately.",
       "Shoot the documents to me."
     ],
     "ans": "Please send the documents at your earliest convenience.",
@@ -163,9 +163,9 @@ const QUIZ: QuizItem[] = [
     "q": "Choose the sentence with correct parallel structure:",
     "opts": [
       "I like swimming, to read, and hike.",
-      "I like to swim, reading, and to hike.",
+      "I like swim, read, and hike.",
       "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
+      "I like to swim, reading, and to hike."
     ],
     "ans": "I like swimming, reading, and hiking.",
     "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How would you combine these sentences with a relative clause? \"The man called the police. His car was stolen.\"",
     "opts": [
-      "The man called the police whose car was stolen.",
-      "The man whose car was stolen called the police.",
       "The man whom car was stolen called the police.",
-      "The man whom called the police had his car stolen."
+      "The man whom called the police had his car stolen.",
+      "The man whose car was stolen called the police.",
+      "The man called the police whose car was stolen."
     ],
     "ans": "The man whose car was stolen called the police.",
     "exp": "\"Whose\" digunakan untuk kepemilikan. Klausul relative disematkan langsung setelah \"The man\"."
@@ -184,10 +184,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the compound adjective: \"She bought a ___ car.\"",
     "opts": [
+      "red",
       "very fast",
       "brand-new",
-      "beautifully",
-      "red"
+      "beautifully"
     ],
     "ans": "brand-new",
     "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is a \"Topic Sentence\"?",
     "opts": [
-      "The last sentence of a text",
       "A sentence that explains the main idea of a paragraph",
-      "A famous quote",
-      "The title of an essay"
+      "The title of an essay",
+      "The last sentence of a text",
+      "A famous quote"
     ],
     "ans": "A sentence that explains the main idea of a paragraph",
     "exp": "Topic sentence (kalimat utama) memberi tahu pembaca apa gagasan pokok dari paragraf tersebut."
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word modifies a verb strongly?",
     "opts": [
-      "Beautiful",
       "Quick",
+      "Happy",
       "Significantly",
-      "Happy"
+      "Beautiful"
     ],
     "ans": "Significantly",
     "exp": "\"Significantly\" adalah adverb (kata keterangan) yang memodifikasi/menjelaskan verb."
@@ -239,9 +239,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What is the purpose of this email?",
     "opts": [
-      "To apply for a job",
-      "To complain about a restaurant",
       "To inform a friend about moving back and arranging to meet",
+      "To complain about a restaurant",
+      "To apply for a job",
       "To send an invoice"
     ],
     "ans": "To inform a friend about moving back and arranging to meet"
@@ -249,10 +249,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "Where did David just return from?",
     "opts": [
-      "Jakarta",
-      "Italy",
       "Melbourne",
-      "London"
+      "London",
+      "Jakarta",
+      "Italy"
     ],
     "ans": "Melbourne"
   },
@@ -260,8 +260,8 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why does David have free time right now?",
     "opts": [
       "He was fired",
-      "He is waiting to start looking for work after graduation",
       "He is on holiday",
+      "He is waiting to start looking for work after graduation",
       "He works part-time"
     ],
     "ans": "He is waiting to start looking for work after graduation"
@@ -269,20 +269,20 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What type of food are they planning to eat?",
     "opts": [
-      "Indonesian",
       "Japanese",
-      "Italian",
-      "Mexican"
+      "Mexican",
+      "Indonesian",
+      "Italian"
     ],
     "ans": "Italian"
   },
   {
     "q": "How will they get to the restaurant?",
     "opts": [
-      "David will drive",
       "Sarah will drive",
-      "They will take a taxi",
-      "They will walk"
+      "They will walk",
+      "David will drive",
+      "They will take a taxi"
     ],
     "ans": "David will drive"
   }

@@ -66,21 +66,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Kata mana yang memiliki suara akhiran BERSUARA?",
-    options: ['Cat', 'Dog', 'Cup'],
+    options: ['Dog', 'Cat', 'Cup'],
     answer: 'Dog',
     explanation: "/g/ bersuara (tenggorokan bergetar). /t/ dan /p/ tidak bersuara."
   },
   {
     id: 2,
     question: "Bagaimana kamu mengucapkan 'Wanted'?",
-    options: ['/wɒntd/', '/wɒntɪd/ (Suku Kata Tambahan)'],
+    options: ['/wɒntɪd/ (Suku Kata Tambahan)', '/wɒntd/'],
     answer: '/wɒntɪd/ (Suku Kata Tambahan)',
     explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk ED."
   },
   {
     id: 3,
     question: "Dalam kalimat 'I love coffee', kata-kata mana yang DITEKANKAN?",
-    options: ['I, Love', 'Love, Coffee', 'I, Coffee'],
+    options: ['I, Coffee', 'Love, Coffee', 'I, Love'],
     answer: 'Love, Coffee',
     explanation: "Kata-kata isi (Kata Kerja, Kata Benda) ditekankan. Kata ganti (I) lemah."
   },
@@ -94,35 +94,35 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Menghubungkan: 'Stop it' terdengar seperti...",
-    options: ['Stop... it', 'Sto-pit'],
+    options: ['Sto-pit', 'Stop... it'],
     answer: 'Sto-pit',
     explanation: "Konsonan pindah ke vokal."
   },
   {
     id: 6,
     question: "Kata mana yang memiliki huruf DIAM (silent letter)?",
-    options: ['Listen', 'Sound', 'Music'],
+    options: ['Sound', 'Listen', 'Music'],
     answer: 'Listen',
     explanation: "Huruf T dalam Listen diam (/ˈlɪsən/)."
   },
   {
     id: 7,
     question: "Kata mana yang memiliki suara akhiran BERSUARA ?",
-    options: ["Bat","Dog","Cup"],
+    options: ["Dog", "Bat", "Cup"],
     answer: "Dog",
     explanation: "/g/ bersuara (tenggorokan bergetar). /t/ dan /p/ tidak bersuara."
   },
   {
     id: 8,
     question: "Bagaimana kamu mengucapkan 'Wanted'?",
-    options: ["/wɒntd/","/wɒntɪd/ (Suku Kata Tambahan)"],
+    options: ["/wɒntɪd/ (Suku Kata Tambahan)", "/wɒntd/"],
     answer: "/wɒntɪd/ (Suku Kata Tambahan)",
     explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk ED."
   },
   {
     id: 9,
     question: "Dalam kalimat 'I love coffee', kata-kata mana yang DITEKANKAN?",
-    options: ["I, Love","Love, Coffee","I, Coffee"],
+    options: ["I, Coffee", "Love, Coffee", "I, Love"],
     answer: "Love, Coffee",
     explanation: "Kata-kata isi (Kata Kerja, Kata Benda) ditekankan. Kata ganti (I) lemah."
   },
@@ -136,28 +136,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Menghubungkan: 'Stop it' terdengar seperti...",
-    options: ["Stop... it","Sto-pit"],
+    options: ["Sto-pit", "Stop... it"],
     answer: "Sto-pit",
     explanation: "Konsonan pindah ke vokal."
   },
   {
     id: 12,
     question: "Pilih kata yang memiliki huruf DIAM (silent letter)...",
-    options: ["Listen","Sound","Music"],
+    options: ["Music", "Listen", "Sound"],
     answer: "Listen",
     explanation: "Huruf T dalam Listen diam (/ˈlɪsən/)."
   },
   {
     id: 13,
     question: "Manakah kata yang memiliki suara akhiran BERSUARA?",
-    options: ["Mat","Dog","Cup"],
+    options: ["Dog", "Cup", "Mat"],
     answer: "Dog",
     explanation: "/g/ bersuara (tenggorokan bergetar). /t/ dan /p/ tidak bersuara."
   },
   {
     id: 14,
     question: "Bagaimana kamu mengucapkan 'Wanted'?",
-    options: ["/wɒntd/","/wɒntɪd/ (Suku Kata Tambahan)"],
+    options: ["/wɒntɪd/ (Suku Kata Tambahan)", "/wɒntd/"],
     answer: "/wɒntɪd/ (Suku Kata Tambahan)",
     explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk ED."
   },
@@ -178,28 +178,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "Menghubungkan: 'Stop it' terdengar seperti:",
-    options: ["Stop: it","Sto-pit"],
+    options: ["Sto-pit", "Stop: it"],
     answer: "Sto-pit",
     explanation: "Konsonan pindah ke vokal."
   },
   {
     id: 18,
     question: "Manakah kata yang memiliki huruf DIAM (silent letter)?",
-    options: ["Listen","Sound","Music"],
+    options: ["Sound", "Listen", "Music"],
     answer: "Listen",
     explanation: "Huruf T dalam Listen diam (/ˈlɪsən/)."
   },
   {
     id: 19,
     question: "Kata mana yang memiliki suara akhiran BERSUARA ?",
-    options: ["Cat","Dog","Cup"],
+    options: ["Dog", "Cat", "Cup"],
     answer: "Dog",
     explanation: "/g/ bersuara (tenggorokan bergetar). /t/ dan /p/ tidak bersuara."
   },
   {
     id: 20,
     question: "Bagaimana kamu mengucapkan 'Wanted'?",
-    options: ["/wɒntd/","/wɒntɪd/ (Suku Kata Tambahan)"],
+    options: ["/wɒntɪd/ (Suku Kata Tambahan)", "/wɒntd/"],
     answer: "/wɒntɪd/ (Suku Kata Tambahan)",
     explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk ED."
   }

@@ -73,70 +73,70 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Pilih kalimat yang benar:",
-    options: ['He have a car.', 'He has a car.', 'He haves a car.'],
+    options: ['He have a car.', 'He haves a car.', 'He has a car.'],
     answer: 'He has a car.',
     explanation: "'Have' itu tidak beraturan. Untuk He/She/It, berubah menjadi 'Has'. Kita tidak pernah mengatakan 'haves'."
   },
   {
     id: 2,
     question: "I ___ a sandwich right now. (Keinginan)",
-    options: ['like', 'want', 'have'],
+    options: ['want', 'have', 'like'],
     answer: 'want',
     explanation: "Jika kamu menginginkan sesuatu yang spesifik saat ini, kamu 'want' (menginginkan) itu."
   },
   {
     id: 3,
     question: "She ___ reading books.",
-    options: ['likes', 'like', 'want'],
+    options: ['like', 'want', 'likes'],
     answer: 'likes',
     explanation: "Subjek 'She' membutuhkan akhiran 's'. 'Likes' cocok untuk aktivitas tersebut."
   },
   {
     id: 4,
     question: "Do you ___ a pen? (Bentuk Pertanyaan)",
-    options: ['has', 'likes', 'have'],
+    options: ['have', 'has', 'likes'],
     answer: 'have',
     explanation: "Setelah 'Do', kata kerja harus dalam Bentuk Dasar. 'Do you have...?'"
   },
   {
     id: 5,
     question: "He ___ pizza. (Negatif)",
-    options: ["doesn't like", "don't like", "not like"],
+    options: ["not like", "doesn't like", "don't like"],
     answer: "doesn't like",
     explanation: "He + Doesn't + Base Verb."
   },
   {
     id: 6,
     question: "They ___ a big house.",
-    options: ['has', 'have', 'haves'],
+    options: ['has', 'haves', 'have'],
     answer: 'have',
     explanation: "They (jamak) menggunakan 'have'."
   },
   {
     id: 7,
     question: "We ___ to go home.",
-    options: ['want', 'wants', 'wanting'],
+    options: ['wants', 'wanting', 'want'],
     answer: 'want',
     explanation: "We (jamak) menggunakan 'want'."
   },
   {
     id: 8,
     question: "My cat ___ fish.",
-    options: ['like', 'likes', 'liking'],
+    options: ['likes', 'like', 'liking'],
     answer: 'likes',
     explanation: "My cat (tunggal) menggunakan 'likes'."
   },
   {
     id: 9,
     question: "She ___ a headache.",
-    options: ['have', 'has', 'haved'],
+    options: ['has', 'haved', 'have'],
     answer: 'has',
     explanation: "She + has."
   },
   {
     id: 10,
     question: "Does he ___ a bike?",
-    options: ['have', 'has', 'haves'],
+    options: ['have', 'haves', 'has'],
     answer: 'have',
     explanation: "Pertanyaan 'Does' diikuti kata kerja dasar 'have'."
   },
@@ -150,49 +150,49 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "Review: He ___ a brother.",
-    options: ['have', 'has', 'is'],
+    options: ['is', 'have', 'has'],
     answer: 'has',
     explanation: "Kepemilikan orang ketiga tunggal: has."
   },
   {
     id: 13,
     question: "Do they ___ ice cream?",
-    options: ['want', 'wants', 'wanting'],
+    options: ['wanting', 'wants', 'want'],
     answer: 'want',
     explanation: "Do they want...?"
   },
   {
     id: 14,
     question: "She doesn't ___ any money.",
-    options: ['has', 'have', 'had'],
+    options: ['have', 'had', 'has'],
     answer: 'have',
     explanation: "Setelah 'doesn't', kembali ke 'have'."
   },
   {
     id: 15,
     question: "My father ___ new shoes.",
-    options: ['want', 'wants', 'is want'],
+    options: ['wants', 'want', 'is want'],
     answer: 'wants',
     explanation: "My father (He) + wants."
   },
   {
     id: 16,
     question: "We ___ three children.",
-    options: ['have', 'has', 'are'],
+    options: ['are', 'has', 'have'],
     answer: 'have',
     explanation: "We + have."
   },
   {
     id: 17,
     question: "Does she ___ chocolate?",
-    options: ['like', 'likes', 'liked'],
+    options: ['likes', 'liked', 'like'],
     answer: 'like',
     explanation: "Pertanyaan: Does + S + like."
   },
   {
     id: 18,
     question: "The dog ___ a bone.",
-    options: ['have', 'has', 'want'],
+    options: ['want', 'have', 'has'],
     answer: 'has',
     explanation: "The dog (It) + has."
   },
@@ -206,7 +206,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "He ___ swimming.",
-    options: ['likes', 'wants', 'has'],
+    options: ['has', 'likes', 'wants'],
     answer: 'likes',
     explanation: "Menyukai hobi: 'likes'."
   }

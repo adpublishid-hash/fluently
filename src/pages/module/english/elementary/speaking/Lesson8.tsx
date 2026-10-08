@@ -153,9 +153,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "I want a ticket to go there and come back. I need a ___ ticket.",
     options: [
-      { text: "single", correct: false },
       { text: "return", correct: true },
-      { text: "one-way", correct: false }
+      { text: "one-way", correct: false },
+      { text: "single", correct: false }
     ],
     explanation: "Tiket 'return' (Inggris) atau 'round-trip' (AS) adalah untuk pergi dan pulang."
   },
@@ -163,9 +163,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "You get on a plane at the ___.",
     options: [
-      { text: "platform", correct: false },
       { text: "gate", correct: true },
-      { text: "stop", correct: false }
+      { text: "stop", correct: false },
+      { text: "platform", correct: false }
     ],
     explanation: "Pesawat naik di Gate (Gerbang). Kereta menggunakan Platform (Peron)."
   },
@@ -184,8 +184,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "You must show your ___ to enter another country.",
     options: [
       { text: "receipt", correct: false },
-      { text: "passport", correct: true },
-      { text: "menu", correct: false }
+      { text: "menu", correct: false },
+      { text: "passport", correct: true }
     ],
     explanation: "Paspor adalah ID resmi untuk perjalanan internasional."
   },
@@ -193,9 +193,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "I travel ___ bus to work.",
     options: [
+      { text: "by", correct: true },
       { text: "in", correct: false },
-      { text: "on", correct: false },
-      { text: "by", correct: true }
+      { text: "on", correct: false }
     ],
     explanation: "Kita menggunakan 'by' untuk mode transportasi (by bus, by car, by train)."
   },
@@ -214,8 +214,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Ya, kita ganti di Stasiun Pusat.\"?",
     options: [
       { text: "Let me check the tracking system.", correct: false },
-      { text: "Okay, it is five pounds per day.", correct: false },
-      { text: "Yes, we change at Central Station.", correct: true }
+      { text: "Yes, we change at Central Station.", correct: true },
+      { text: "Okay, it is five pounds per day.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Ya, kita ganti di Stasiun Pusat.\" adalah \"Yes, we change at Central Station.\"."
   },
@@ -223,8 +223,8 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"I ___ it is not too heavy.\"\n(Arti: Saya harap tidak terlalu berat.)",
     options: [
-      { text: "you", correct: false },
       { text: "Which", correct: false },
+      { text: "you", correct: false },
       { text: "hope", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'hope'."
@@ -233,9 +233,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"I am sorry. Can you describe it?\"?",
     options: [
-      { text: "Mau ke mana, Pak?", correct: false },
       { text: "Maaf. Bisakah Anda mendeskripsikannya?", correct: true },
-      { text: "Oke, harganya lima pound per hari.", correct: false }
+      { text: "Oke, harganya lima pound per hari.", correct: false },
+      { text: "Mau ke mana, Pak?", correct: false }
     ],
     explanation: "Kalimat \"I am sorry. Can you describe it?\" memiliki arti \"Maaf. Bisakah Anda mendeskripsikannya?\"."
   },
@@ -243,9 +243,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Jalur mana yang ke stadion?\"?",
     options: [
-      { text: "Sure. It will take about 20 minutes.", correct: false },
+      { text: "Which line goes to the stadium?", correct: true },
       { text: "Return, please. Coming back today.", correct: false },
-      { text: "Which line goes to the stadium?", correct: true }
+      { text: "Sure. It will take about 20 minutes.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Jalur mana yang ke stadion?\" adalah \"Which line goes to the stadium?\"."
   },
@@ -253,9 +253,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"May I see your passport ___ ticket?\"\n(Arti: Boleh lihat paspor dan tiket Anda?)",
     options: [
-      { text: "was", correct: false },
+      { text: "and", correct: true },
       { text: "One", correct: false },
-      { text: "and", correct: true }
+      { text: "was", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'and'."
   },
@@ -264,8 +264,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"Yes, the view was beautiful.\"?",
     options: [
       { text: "Ya, pemandangannya indah.", correct: true },
-      { text: "Oh tidak. Berapa lama penundaannya?", correct: false },
-      { text: "Maaf. Bisakah Anda mendeskripsikannya?", correct: false }
+      { text: "Maaf. Bisakah Anda mendeskripsikannya?", correct: false },
+      { text: "Oh tidak. Berapa lama penundaannya?", correct: false }
     ],
     explanation: "Kalimat \"Yes, the view was beautiful.\" memiliki arti \"Ya, pemandangannya indah.\"."
   },
@@ -273,9 +273,9 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Satu tiket ke London, tolong.\"?",
     options: [
-      { text: "Yes, please put it on the scale.", correct: false },
+      { text: "One ticket to London, please.", correct: true },
       { text: "We will miss our connection!", correct: false },
-      { text: "One ticket to London, please.", correct: true }
+      { text: "Yes, please put it on the scale.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Satu tiket ke London, tolong.\" adalah \"One ticket to London, please.\"."
   },
@@ -283,9 +283,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"They said about ___ hours.\"\n(Arti: Mereka bilang sekitar dua jam.)",
     options: [
-      { text: "think", correct: false },
       { text: "Yes", correct: false },
-      { text: "two", correct: true }
+      { text: "two", correct: true },
+      { text: "think", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'two'."
   },
@@ -293,9 +293,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Yes, here is my international license.\"?",
     options: [
+      { text: "Ya, ini SIM internasional saya.", correct: true },
       { text: "Saya harap tidak terlalu berat.", correct: false },
-      { text: "Tolong cepat, saya ada rapat.", correct: false },
-      { text: "Ya, ini SIM internasional saya.", correct: true }
+      { text: "Tolong cepat, saya ada rapat.", correct: false }
     ],
     explanation: "Kalimat \"Yes, here is my international license.\" memiliki arti \"Ya, ini SIM internasional saya.\"."
   },
@@ -303,9 +303,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Sepertinya Jalur Merah.\"?",
     options: [
-      { text: "Do you have a driving license?", correct: false },
+      { text: "Please hurry, I have a meeting.", correct: false },
       { text: "I think it is the Red Line.", correct: true },
-      { text: "Please hurry, I have a meeting.", correct: false }
+      { text: "Do you have a driving license?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Sepertinya Jalur Merah.\" adalah \"I think it is the Red Line.\"."
   },
@@ -313,9 +313,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"Okay, it is ___ per day.\"\n(Arti: Oke, harganya lima pound per hari.)",
     options: [
+      { text: "five pounds", correct: true },
       { text: "minutes", correct: false },
-      { text: "you", correct: false },
-      { text: "five pounds", correct: true }
+      { text: "you", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'five pounds'."
   },
@@ -323,9 +323,9 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"No, you need the number 10 bus.\"?",
     options: [
-      { text: "Tidak, Anda butuh bus nomor 10.", correct: true },
+      { text: "Biar saya cek sistem pelacakannya.", correct: false },
       { text: "Baik. Akan memakan waktu sekitar 20 menit.", correct: false },
-      { text: "Biar saya cek sistem pelacakannya.", correct: false }
+      { text: "Tidak, Anda butuh bus nomor 10.", correct: true }
     ],
     explanation: "Kalimat \"No, you need the number 10 bus.\" memiliki arti \"Tidak, Anda butuh bus nomor 10.\"."
   },
@@ -333,9 +333,9 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Baik. Akan memakan waktu sekitar 20 menit.\"?",
     options: [
+      { text: "That will be twenty-five pounds. Platform 4.", correct: false },
       { text: "Sure. It will take about 20 minutes.", correct: true },
-      { text: "Did you visit the Eiffel Tower?", correct: false },
-      { text: "That will be twenty-five pounds. Platform 4.", correct: false }
+      { text: "Did you visit the Eiffel Tower?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Baik. Akan memakan waktu sekitar 20 menit.\" adalah \"Sure. It will take about 20 minutes.\"."
   },
@@ -343,8 +343,8 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"___ you have a driving license?\"\n(Arti: Apakah Anda punya SIM?)",
     options: [
-      { text: "Do", correct: true },
       { text: "please", correct: false },
+      { text: "Do", correct: true },
       { text: "catch", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'Do'."

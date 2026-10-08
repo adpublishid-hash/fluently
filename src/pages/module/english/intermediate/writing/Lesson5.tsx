@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the contrast linker in paragraph one:",
     "opts": [
-      "While",
       "Consequently",
       "Foundation",
-      "Indicates"
+      "Indicates",
+      "While"
     ],
     "ans": "While",
     "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
@@ -19,10 +19,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does \"Consequently\" mean in this context?",
     "opts": [
+      "However",
       "Before",
       "As a logical result",
-      "In addition",
-      "However"
+      "In addition"
     ],
     "ans": "As a logical result",
     "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
@@ -31,8 +31,8 @@ const QUIZ: QuizItem[] = [
     "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
     "opts": [
       "Students",
-      "Literature",
       "Reading extensive literature (Gerund phrase)",
+      "Literature",
       "Exposes"
     ],
     "ans": "Reading extensive literature (Gerund phrase)",
@@ -41,10 +41,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
     "opts": [
-      "Easy to see",
-      "Occurring repeatedly and constantly",
       "Funny",
-      "Grammatical"
+      "Grammatical",
+      "Occurring repeatedly and constantly",
+      "Easy to see"
     ],
     "ans": "Occurring repeatedly and constantly",
     "exp": "\"Persistent\" means something stubborn that keeps happening."
@@ -53,8 +53,8 @@ const QUIZ: QuizItem[] = [
     "q": "Why is \"Therefore\" used in the last paragraph?",
     "opts": [
       "To introduce a cause",
-      "To conclude a logical argument",
       "To change subjects",
+      "To conclude a logical argument",
       "To start a story"
     ],
     "ans": "To conclude a logical argument",
@@ -64,8 +64,8 @@ const QUIZ: QuizItem[] = [
     "q": "Choose the most FORMAL word to replace \"but\":",
     "opts": [
       "However",
-      "Also",
       "So",
+      "Also",
       "And"
     ],
     "ans": "However",
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which option is less formal? \"Commence\"",
     "opts": [
-      "Begin",
-      "Terminate",
       "Execute",
-      "Finalize"
+      "Finalize",
+      "Begin",
+      "Terminate"
     ],
     "ans": "Begin",
     "exp": "\"Commence\" adalah bentuk sangat formal untuk kata \"begin\" atau \"start\"."
@@ -85,9 +85,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is correctly punctuated?",
     "opts": [
-      "Although, it was raining we went out.",
-      "Although it was raining, we went out.",
       "Although it was raining we went out,",
+      "Although it was raining, we went out.",
+      "Although, it was raining we went out.",
       "Although, it was raining, we went out."
     ],
     "ans": "Although it was raining, we went out.",
@@ -97,9 +97,9 @@ const QUIZ: QuizItem[] = [
     "q": "Choose the correct structure: \"Not only ___ fast, but she is also strong.\"",
     "opts": [
       "she runs",
-      "runs she",
       "is she running",
-      "does she run"
+      "does she run",
+      "runs she"
     ],
     "ans": "does she run",
     "exp": "Struktur Inversion: Saat kalimat diawali \"Not only\", dilanjutkan dengan auxiliary + subjek (does she run)."
@@ -108,9 +108,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence is an opinion, not a fact?",
     "opts": [
       "Water boils at 100 degrees.",
-      "The population of Tokyo is huge.",
+      "Paris is the capital of France.",
       "Pineapples are the most delicious fruit.",
-      "Paris is the capital of France."
+      "The population of Tokyo is huge."
     ],
     "ans": "Pineapples are the most delicious fruit.",
     "exp": "\"The most delicious\" adalah penilaian subjektif atau opini."
@@ -118,10 +118,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence adds INFORMATION?",
     "opts": [
-      "Moreover, the city has excellent public transport.",
       "Despite this, the city is loud.",
-      "Therefore, we left early.",
-      "As a result, prices increased."
+      "Moreover, the city has excellent public transport.",
+      "As a result, prices increased.",
+      "Therefore, we left early."
     ],
     "ans": "Moreover, the city has excellent public transport.",
     "exp": "\"Moreover\" (lebih lanjut lagi) digunakan untuk memberikan informasi tambahan yang mendukung argumen."
@@ -130,9 +130,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which word modifies a verb strongly?",
     "opts": [
       "Beautiful",
-      "Quick",
+      "Happy",
       "Significantly",
-      "Happy"
+      "Quick"
     ],
     "ans": "Significantly",
     "exp": "\"Significantly\" adalah adverb (kata keterangan) yang memodifikasi/menjelaskan verb."
@@ -141,9 +141,9 @@ const QUIZ: QuizItem[] = [
     "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
     "opts": [
       "immediately",
-      "action",
+      "should",
       "goverment",
-      "should"
+      "action"
     ],
     "ans": "goverment",
     "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
@@ -151,10 +151,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the sentence with correct parallel structure:",
     "opts": [
-      "I like swimming, to read, and hike.",
       "I like to swim, reading, and to hike.",
       "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
+      "I like swim, read, and hike.",
+      "I like swimming, to read, and hike."
     ],
     "ans": "I like swimming, reading, and hiking.",
     "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
@@ -162,9 +162,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In writing, what does \"proofreading\" mean?",
     "opts": [
-      "Writing the first draft wildly",
-      "Finding academic sources",
       "Carefully checking for grammatical and spelling errors",
+      "Finding academic sources",
+      "Writing the first draft wildly",
       "Outlining paragraphs"
     ],
     "ans": "Carefully checking for grammatical and spelling errors",
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
     "opts": [
-      "have",
       "had",
-      "have had",
-      "having"
+      "having",
+      "have",
+      "have had"
     ],
     "ans": "had",
     "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
@@ -185,8 +185,8 @@ const QUIZ: QuizItem[] = [
     "q": "Identify the compound adjective: \"She bought a ___ car.\"",
     "opts": [
       "very fast",
-      "brand-new",
       "beautifully",
+      "brand-new",
       "red"
     ],
     "ans": "brand-new",
@@ -196,9 +196,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence uses the PASSIVE voice correctly?",
     "opts": [
       "The report was finished by Anna yesterday.",
-      "The report finished Anna yesterday.",
+      "The report was finish by Anna.",
       "Anna was finished the report yesterday.",
-      "The report was finish by Anna."
+      "The report finished Anna yesterday."
     ],
     "ans": "The report was finished by Anna yesterday.",
     "exp": "Pasif: Subject (The report) + to be (was) + Past Participle (finished)."
@@ -206,10 +206,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"For instance\"?",
     "opts": [
-      "To contrast",
       "To conclude",
+      "To show cause",
       "To provide an example",
-      "To show cause"
+      "To contrast"
     ],
     "ans": "To provide an example",
     "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct contrast linker: \"___ the bad weather, the event was a success.\"",
     "opts": [
-      "Although",
-      "Despite",
       "However",
-      "Because"
+      "Because",
+      "Although",
+      "Despite"
     ],
     "ans": "Despite",
     "exp": "\"Despite\" diikuti langsung oleh frasa kata benda (the bad weather), bukan klausa bersubjek-predikat."
@@ -239,10 +239,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What is considered the foundation of writing according to the text?",
     "opts": [
-      "Spelling and reading",
       "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "Spelling and reading",
+      "Finding errors",
+      "Speaking loudly"
     ],
     "ans": "Vocabulary and grammar"
   },
@@ -250,9 +250,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What indicates true proficiency?",
     "opts": [
       "Knowing 1000 words",
-      "Typing fast",
+      "Using passive voice",
       "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "Typing fast"
     ],
     "ans": "The ability to weave sentences into a coherent paragraph"
   },
@@ -260,8 +260,8 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "How does reading literature help?",
     "opts": [
       "It wastes time",
-      "It exposes students to varied structures and registers",
       "It hurts visibility",
+      "It exposes students to varied structures and registers",
       "It makes you sleepy"
     ],
     "ans": "It exposes students to varied structures and registers"
@@ -279,10 +279,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "How is mastery achieved?",
     "opts": [
-      "Through consistent, deliberate practice",
       "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "By ignoring rules",
+      "Through consistent, deliberate practice",
+      "By buying special pens"
     ],
     "ans": "Through consistent, deliberate practice"
   }

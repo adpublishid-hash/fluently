@@ -78,14 +78,14 @@ const FINAL_QUIZ = [
   {
     id: 1,
     question: "Kata mana yang mengandung bunyi Schwa?",
-    options: ['Cat', 'Sit', 'About'],
+    options: ['About', 'Sit', 'Cat'],
     answer: 'About',
     explanation: "'A' dalam 'About' tidak ditekan dan diucapkan /ə/."
   },
   {
     id: 2,
     question: "Di mana letak tekanan dalam 'Political'?",
-    options: ['PO-li-ti-cal', 'po-LI-ti-cal', 'po-li-TI-cal'],
+    options: ['po-LI-ti-cal', 'po-li-TI-cal', 'PO-li-ti-cal'],
     answer: 'po-LI-ti-cal',
     explanation: "Kata-kata yang berakhiran -ical biasanya menekan suku kata sebelum akhiran."
   },
@@ -99,7 +99,7 @@ const FINAL_QUIZ = [
   {
     id: 4,
     question: "Intonasi mana yang terbaik untuk permintaan sopan?",
-    options: ['Turun ↘', 'Naik ↗'],
+    options: ['Naik ↗', 'Turun ↘'],
     answer: 'Naik ↗',
     explanation: "Intonasi naik terdengar lebih lembut dan lebih sopan."
   },
@@ -113,7 +113,7 @@ const FINAL_QUIZ = [
   {
     id: 6,
     question: "Pasangan mana yang mengikuti aturan tekanan Kata Benda (ke-1) vs Kata Kerja (ke-2)?",
-    options: ['Water / Water', 'Object / Object', 'Happy / Happy'],
+    options: ['Happy / Happy', 'Object / Object', 'Water / Water'],
     answer: 'Object / Object',
     explanation: "OB-ject (Benda) vs ob-JECT (Tidak setuju/Keberatan)."
   },
@@ -127,28 +127,28 @@ const FINAL_QUIZ = [
   {
     id: 8,
     question: "Kata mana yang memiliki bunyi 'Dark L'?",
-    options: ['Light', 'Love', 'Full'],
+    options: ['Full', 'Light', 'Love'],
     answer: 'Full',
     explanation: "L di akhir kata biasanya Gelap (belakang tenggorokan)."
   },
   {
     id: 9,
     question: "Grup pemikiran (Thought groups) dipisahkan oleh...",
-    options: ['Napas panjang', 'Jeda singkat', 'Teriakan'],
+    options: ['Jeda singkat', 'Teriakan', 'Napas panjang'],
     answer: 'Jeda singkat',
     explanation: "Kami berhenti sejenak di antara potongan makna."
   },
   { id: 10, question: "Jika Anda ingin menekankan kontras, Anda membuat kata...", options: ['Lebih cepat', 'Lebih pelan', 'Lebih Keras dan Lebih Tinggi'], answer: 'Lebih Keras dan Lebih Tinggi', explanation: "Tekanan untuk penekanan melibatkan volume dan nada." },
-  { id: 11, question: "'Going to' berkurang menjadi...", options: ['Go-to', 'Gonna', 'Goin'], answer: 'Gonna', explanation: "'Gonna' = paling umum reduction dari 'going to'." },
-  { id: 12, question: "Weak forms terjadi pada...", options: ['Content words (nouns, main verbs)', 'Function words (the, to, and, can)', 'Semua kata'], answer: 'Function words (the, to, and, can)', explanation: "Function words dilemahkan / reduced dalam connected speech." },
-  { id: 13, question: "'Can' vs 'Can\'t' dibedakan dengan...", options: ['Can = weak /kən/, Can\'t = strong /kænt/', 'Sama saja', 'Hanya context'], answer: 'Can = weak /kən/, Can\'t = strong /kænt/', explanation: "Positive can = weak, negative can't = strong and clear." },
-  { id: 14, question: "Shadowing technique melatih...", options: ['Grammar', 'Rhythm dan intonation', 'Vocabulary'], answer: 'Rhythm dan intonation', explanation: "Shadowing = repeat after audio immediately untuk internalize native rhythm." },
+  { id: 11, question: "'Going to' berkurang menjadi...", options: ['Goin', 'Go-to', 'Gonna'], answer: 'Gonna', explanation: "'Gonna' = paling umum reduction dari 'going to'." },
+  { id: 12, question: "Weak forms terjadi pada...", options: ['Semua kata', 'Content words (nouns, main verbs)', 'Function words (the, to, and, can)'], answer: 'Function words (the, to, and, can)', explanation: "Function words dilemahkan / reduced dalam connected speech." },
+  { id: 13, question: "'Can' vs 'Can\'t' dibedakan dengan...", options: ['Hanya context', 'Can = weak /kən/, Can\'t = strong /kænt/', 'Sama saja'], answer: 'Can = weak /kən/, Can\'t = strong /kænt/', explanation: "Positive can = weak, negative can't = strong and clear." },
+  { id: 14, question: "Shadowing technique melatih...", options: ['Rhythm dan intonation', 'Vocabulary', 'Grammar'], answer: 'Rhythm dan intonation', explanation: "Shadowing = repeat after audio immediately untuk internalize native rhythm." },
   { id: 15, question: "Sentence stress biasanya jatuh pada...", options: ['Function words', 'Content words (nouns, main verbs, adjectives)', 'Random'], answer: 'Content words (nouns, main verbs, adjectives)', explanation: "Content words carry meaning, jadi mereka stressed." },
   { id: 16, question: "Fall-rise intonation (↘↗) menunjukkan...", options: ['Statement selesai', 'Uncertainty atau politeness', 'Anger'], answer: 'Uncertainty atau politeness', explanation: "Fall-rise = hedging, politeness, not finished." },
   { id: 17, question: "Untuk public speaking yang kuat, vary your...", options: ['Vocabulary only', 'Pace, pitch, dan pauses', 'Nothing'], answer: 'Pace, pitch, dan pauses', explanation: "Dynamic delivery = engaging. Monotone = boring." },
-  { id: 18, question: "Tricky consonant clusters (seperti 'months') require...", options: ['Skipping sounds', 'Slow practice, then speed up', 'Give up'], answer: 'Slow practice, then speed up', explanation: "Master clusters slowly dengan exaggeration, lalu gradually speed up." },
-  { id: 19, question: "Best approach untuk meningkatkan accent awareness?", options: ['Ignore it', 'Compare US/UK, practice intelligibility', 'Hanya copy satu accent'], answer: 'Compare US/UK, practice intelligibility', explanation: "Understanding accent variations helps, tapi goal = clarity, not perfection." },
-  { id: 20, question: "Pronunciation mastery = ___", options: ['Sound 100% native', 'Clear, confident, intelligible', 'No mistakes ever'], answer: 'Clear, confident, intelligible', explanation: "Goal = to communicate effectively, not hide your identity. Mastery = clarity + confidence!" }
+  { id: 18, question: "Tricky consonant clusters (seperti 'months') require...", options: ['Give up', 'Slow practice, then speed up', 'Skipping sounds'], answer: 'Slow practice, then speed up', explanation: "Master clusters slowly dengan exaggeration, lalu gradually speed up." },
+  { id: 19, question: "Best approach untuk meningkatkan accent awareness?", options: ['Ignore it', 'Hanya copy satu accent', 'Compare US/UK, practice intelligibility'], answer: 'Compare US/UK, practice intelligibility', explanation: "Understanding accent variations helps, tapi goal = clarity, not perfection." },
+  { id: 20, question: "Pronunciation mastery = ___", options: ['Clear, confident, intelligible', 'No mistakes ever', 'Sound 100% native'], answer: 'Clear, confident, intelligible', explanation: "Goal = to communicate effectively, not hide your identity. Mastery = clarity + confidence!" }
 ];
 
 const InterPronunLesson20: React.FC = () => {

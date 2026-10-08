@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "You look sick. You ___ go to the doctor.",
     options: [
+      { text: "like", correct: false },
       { text: "should", correct: true },
-      { text: "want", correct: false },
-      { text: "like", correct: false }
+      { text: "want", correct: false }
     ],
     explanation: "Kita, menggunakan 'should' untuk memberi saran."
   },
@@ -172,8 +172,8 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "To make water hot for tea, you ___ it.",
     options: [
-      { text: "fry", correct: false },
       { text: "boil", correct: true },
+      { text: "fry", correct: false },
       { text: "bake", correct: false }
     ],
     explanation: "'Boiling' (merebus) adalah memanaskan cairan sampai berbuih."
@@ -183,8 +183,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "I eat vegetables because they are ___.",
     options: [
       { text: "healthy", correct: true },
-      { text: "sick", correct: false },
-      { text: "painful", correct: false }
+      { text: "painful", correct: false },
+      { text: "sick", correct: false }
     ],
     explanation: "'Healthy' (sehat) berarti baik untuk tubuhmu."
   },
@@ -192,9 +192,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "My body temperature is high. I have a ___.",
     options: [
+      { text: "cough", correct: false },
       { text: "cold", correct: false },
-      { text: "fever", correct: true },
-      { text: "cough", correct: false }
+      { text: "fever", correct: true }
     ],
     explanation: "'Fever' (demam) adalah saat tubuhmu terlalu panas."
   },
@@ -202,9 +202,9 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"What do you do there?\"?",
     options: [
-      { text: "Apa yang kamu lakukan di sana?", correct: true },
+      { text: "Oke, saya kerjakan sekarang.", correct: false },
       { text: "Apa kamu sering ke gym?", correct: false },
-      { text: "Oke, saya kerjakan sekarang.", correct: false }
+      { text: "Apa yang kamu lakukan di sana?", correct: true }
     ],
     explanation: "Kalimat \"What do you do there?\" memiliki arti \"Apa yang kamu lakukan di sana?\"."
   },
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Istirahatlah. Semoga cepat sembuh.\"?",
     options: [
-      { text: "Do I take them with food?", correct: false },
       { text: "I try to go three times a week.", correct: false },
-      { text: "Rest well. Get better soon.", correct: true }
+      { text: "Rest well. Get better soon.", correct: true },
+      { text: "Do I take them with food?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Istirahatlah. Semoga cepat sembuh.\" adalah \"Rest well. Get better soon.\"."
   },
@@ -222,9 +222,9 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"Okay, I am doing ___ now.\"\n(Arti: Oke, saya kerjakan sekarang.)",
     options: [
-      { text: "will", correct: false },
+      { text: "lifting", correct: false },
       { text: "it", correct: true },
-      { text: "lifting", correct: false }
+      { text: "will", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'it'."
   },
@@ -243,8 +243,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Kebanyakan lari dan angkat beban.\"?",
     options: [
       { text: "You should take some medicine.", correct: false },
-      { text: "Ahhh. My back tooth hurts.", correct: false },
-      { text: "Mostly running and lifting weights.", correct: true }
+      { text: "Mostly running and lifting weights.", correct: true },
+      { text: "Ahhh. My back tooth hurts.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kebanyakan lari dan angkat beban.\" adalah \"Mostly running and lifting weights.\"."
   },
@@ -253,8 +253,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Ahhh. ___ back tooth hurts.\"\n(Arti: Ahhh. Gigi belakang saya sakit.)",
     options: [
       { text: "My", correct: true },
-      { text: "long", correct: false },
-      { text: "fix", correct: false }
+      { text: "fix", correct: false },
+      { text: "long", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'My'."
   },
@@ -263,8 +263,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"How long have you felt this way?\"?",
     options: [
       { text: "Sudah berapa lama Anda merasa begini?", correct: true },
-      { text: "Apakah saya meminumnya dengan makanan?", correct: false },
-      { text: "Ya, saya suka mangga dan nanas.", correct: false }
+      { text: "Ya, saya suka mangga dan nanas.", correct: false },
+      { text: "Apakah saya meminumnya dengan makanan?", correct: false }
     ],
     explanation: "Kalimat \"How long have you felt this way?\" memiliki arti \"Sudah berapa lama Anda merasa begini?\"."
   },
@@ -272,9 +272,9 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Bisakah Anda memperbaikinya hari ini?\"?",
     options: [
-      { text: "Can you fix it today?", correct: true },
+      { text: "I try to go three times a week.", correct: false },
       { text: "I will bring you the fruit tart instead.", correct: false },
-      { text: "I try to go three times a week.", correct: false }
+      { text: "Can you fix it today?", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Bisakah Anda memperbaikinya hari ini?\" adalah \"Can you fix it today?\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"I try to ___ three times a week.\"\n(Arti: Saya coba pergi tiga kali seminggu.)",
     options: [
+      { text: "to", correct: false },
       { text: "allergic", correct: false },
-      { text: "go", correct: true },
-      { text: "to", correct: false }
+      { text: "go", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'go'."
   },
@@ -292,8 +292,8 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"I cannot eat it. I am allergic.\"?",
     options: [
-      { text: "Saya tidak bisa memakannya. Saya alergi.", correct: true },
       { text: "Oh tidak. Ada apa?", correct: false },
+      { text: "Saya tidak bisa memakannya. Saya alergi.", correct: true },
       { text: "Kamu terlihat lelah. Kamu baik-baik saja?", correct: false }
     ],
     explanation: "Kalimat \"I cannot eat it. I am allergic.\" memiliki arti \"Saya tidak bisa memakannya. Saya alergi.\"."
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Apa kamu sering ke gym?\"?",
     options: [
-      { text: "You look tired. Are you okay?", correct: false },
+      { text: "Mostly running and lifting weights.", correct: false },
       { text: "Do you go to the gym often?", correct: true },
-      { text: "Mostly running and lifting weights.", correct: false }
+      { text: "You look tired. Are you okay?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Apa kamu sering ke gym?\" adalah \"Do you go to the gym often?\"."
   },
@@ -313,8 +313,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Do ___ like tropical fruits?\"\n(Arti: Apa kamu suka buah tropis?)",
     options: [
       { text: "you", correct: true },
-      { text: "medicine", correct: false },
-      { text: "Yes", correct: false }
+      { text: "Yes", correct: false },
+      { text: "medicine", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'you'."
   },
@@ -322,9 +322,9 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"You should take some medicine.\"?",
     options: [
-      { text: "Ya, ada almond di dalamnya.", correct: false },
       { text: "Kamu harus minum obat.", correct: true },
-      { text: "Oke, saya kerjakan sekarang.", correct: false }
+      { text: "Oke, saya kerjakan sekarang.", correct: false },
+      { text: "Ya, ada almond di dalamnya.", correct: false }
     ],
     explanation: "Kalimat \"You should take some medicine.\" memiliki arti \"Kamu harus minum obat.\"."
   },
@@ -332,8 +332,8 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Ya, ada almond di dalamnya.\"?",
     options: [
-      { text: "Yes, it has almonds inside.", correct: true },
       { text: "Can you chop the onions?", correct: false },
+      { text: "Yes, it has almonds inside.", correct: true },
       { text: "Yes, I love mangoes and pineapples.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Ya, ada almond di dalamnya.\" adalah \"Yes, it has almonds inside.\"."
@@ -342,9 +342,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"Very small pieces, ___.\"\n(Arti: Potongan sangat kecil, tolong.)",
     options: [
-      { text: "please", correct: true },
       { text: "small", correct: false },
-      { text: "I", correct: false }
+      { text: "I", correct: false },
+      { text: "please", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'please'."
   }

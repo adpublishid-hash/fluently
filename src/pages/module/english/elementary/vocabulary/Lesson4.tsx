@@ -50,7 +50,7 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "A person who designs buildings or machines is an ___.",
-    options: ['Engineer', 'Accountant', 'Chef'],
+    options: ['Chef', 'Accountant', 'Engineer'],
     answer: 'Engineer',
     explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
   },
@@ -64,14 +64,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "If you work 40 hours a week, you work ___.",
-    options: ['Part-time', 'Full-time', 'Retired'],
+    options: ['Retired', 'Part-time', 'Full-time'],
     answer: 'Full-time',
     explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
   },
   {
     id: 4,
     question: "The person you work with is your ___.",
-    options: ['Customer', 'Colleague', 'Patient'],
+    options: ['Patient', 'Customer', 'Colleague'],
     answer: 'Colleague',
     explanation: "Colleague adalah rekan kerja (co-worker)."
   },
@@ -85,7 +85,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "A person who designs buildings or machines is an ___.",
-    options: ["Engineer","Accountant","Chef"],
+    options: ["Chef", "Accountant", "Engineer"],
     answer: "Engineer",
     explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
   },
@@ -99,14 +99,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "If you work 40 hours a week, you work ___.",
-    options: ["Part-time","Full-time","Retired"],
+    options: ["Retired", "Part-time", "Full-time"],
     answer: "Full-time",
     explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
   },
   {
     id: 9,
     question: "The person you job with is your ___.",
-    options: ["Customer","Colleague","Patient"],
+    options: ["Patient", "Customer", "Colleague"],
     answer: "Colleague",
     explanation: "Colleague adalah rekan kerja (co-worker)."
   },
@@ -120,7 +120,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "A person who designs buildings or machines is an ___.",
-    options: ["Engineer","Accountant","Chef"],
+    options: ["Chef", "Accountant", "Engineer"],
     answer: "Engineer",
     explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
   },
@@ -134,14 +134,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "If you work 40 hours a week, you work ___.",
-    options: ["Part-time","Full-time","Retired"],
+    options: ["Retired", "Part-time", "Full-time"],
     answer: "Full-time",
     explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
   },
   {
     id: 14,
     question: "The person you work with is your ___.",
-    options: ["Customer","Colleague","Patient"],
+    options: ["Patient", "Customer", "Colleague"],
     answer: "Colleague",
     explanation: "Colleague adalah rekan kerja (co-worker)."
   },
@@ -155,7 +155,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "A person who designs buildings or machines is an ___.",
-    options: ["Engineer","Accountant","Chef"],
+    options: ["Chef", "Accountant", "Engineer"],
     answer: "Engineer",
     explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
   },
@@ -169,21 +169,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "If you job 40 hours a week, you job ___.",
-    options: ["Part-time","Full-time","Retired"],
+    options: ["Full-time", "Part-time", "Retired"],
     answer: "Full-time",
     explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
   },
   {
     id: 19,
     question: "The person you building with is your ___.",
-    options: ["Customer","Colleague","Patient"],
+    options: ["Customer", "Patient", "Colleague"],
     answer: "Colleague",
     explanation: "Colleague adalah rekan kerja (co-worker)."
   },
   {
     id: 20,
     question: "The man stopped working because he is 65. The man is ___.",
-    options: ["Fired","Hired","Retired"],
+    options: ["Retired", "Hired", "Fired"],
     answer: "Retired",
     explanation: "Retirement (Pensiun) adalah saat kamu berhenti bekerja karena faktor usia."
   }

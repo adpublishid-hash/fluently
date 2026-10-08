@@ -170,9 +170,9 @@ const QUIZ: QuizItem[] = [
     "q": "A researcher's initial untested explanation is called a ___",
     "opts": [
       "Dissertation",
-      "Hypothesis",
       "Citation",
-      "Abstract"
+      "Abstract",
+      "Hypothesis"
     ],
     "ans": "Hypothesis",
     "exp": "Hypothesis adalah pernyataan awal yang belum dibuktikan yang ingin diuji dalam penelitian."
@@ -180,10 +180,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "When researchers test each other's work for accuracy, it is called ___",
     "opts": [
-      "Peer review",
       "Correlation",
       "Paradigm",
-      "Variable"
+      "Variable",
+      "Peer review"
     ],
     "ans": "Peer review",
     "exp": "Peer review adalah proses evaluasi karya ilmiah oleh para ahli di bidang yang sama."
@@ -202,10 +202,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The researcher used statistical tests to ___ a link between stress and illness.",
     "opts": [
-      "Substantiate",
-      "Propose",
       "Abstract",
-      "Infer"
+      "Infer",
+      "Propose",
+      "Substantiate"
     ],
     "ans": "Substantiate",
     "exp": "Substantiate berarti membuktikan atau mendukung klaim dengan bukti nyata."
@@ -213,10 +213,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"___ the limitations, the study provided valuable insights.\" Choose the correct phrase.",
     "opts": [
+      "Broadly speaking",
       "Based on evidence",
       "Despite the limitations",
-      "According to the findings",
-      "Broadly speaking"
+      "According to the findings"
     ],
     "ans": "Despite the limitations",
     "exp": "\"Despite the limitations\" digunakan untuk mengakui kekurangan sekaligus menyatakan nilai positif."
@@ -224,10 +224,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A factor in a scientific experiment that can change is called a ___",
     "opts": [
-      "Citation",
       "Variable",
-      "Peer review",
-      "Inference"
+      "Inference",
+      "Citation",
+      "Peer review"
     ],
     "ans": "Variable",
     "exp": "Variable adalah faktor atau elemen yang dapat berubah dalam sebuah percobaan ilmiah."
@@ -235,10 +235,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To ___ means to reach a logical conclusion from given information.",
     "opts": [
-      "Evaluate",
       "Validate",
+      "Deduce",
       "Interpret",
-      "Deduce"
+      "Evaluate"
     ],
     "ans": "Deduce",
     "exp": "To deduce berarti mengambil kesimpulan melalui penalaran logis dari fakta yang ada."
@@ -247,9 +247,9 @@ const QUIZ: QuizItem[] = [
     "q": "The phrase used to introduce a general summary is ___",
     "opts": [
       "This raises the question of",
-      "It can be argued that",
+      "In contrast to",
       "Broadly speaking",
-      "In contrast to"
+      "It can be argued that"
     ],
     "ans": "Broadly speaking",
     "exp": "\"Broadly speaking\" digunakan untuk mengawali pernyataan umum atau gambaran besar."
@@ -257,10 +257,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A short summary at the beginning of a research paper is called an ___",
     "opts": [
+      "Paradigm",
       "Abstract",
       "Methodology",
-      "Correlation",
-      "Paradigm"
+      "Correlation"
     ],
     "ans": "Abstract",
     "exp": "An abstract adalah ringkasan singkat dari seluruh isi sebuah makalah atau karya tulis ilmiah."
@@ -269,9 +269,9 @@ const QUIZ: QuizItem[] = [
     "q": "To ___ data means to explain its meaning in context.",
     "opts": [
       "Cite",
-      "Analyse",
+      "Contradict",
       "Interpret",
-      "Contradict"
+      "Analyse"
     ],
     "ans": "Interpret",
     "exp": "To interpret berarti memberikan penjelasan atas arti atau makna dari data atau informasi."
@@ -280,9 +280,9 @@ const QUIZ: QuizItem[] = [
     "q": "A ___ is a relationship between two variables but does not imply one causes the other.",
     "opts": [
       "Hypothesis",
-      "Correlation",
       "Inference",
-      "Dissertation"
+      "Dissertation",
+      "Correlation"
     ],
     "ans": "Correlation",
     "exp": "Correlation menunjukkan hubungan antara dua variabel, bukan sebab-akibat langsung."
@@ -301,10 +301,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The ___ of a research paper describes HOW the study was carried out.",
     "opts": [
-      "Abstract",
       "Citation",
+      "Methodology",
       "Hypothesis",
-      "Methodology"
+      "Abstract"
     ],
     "ans": "Methodology",
     "exp": "Methodology (metodologi) mendeskripsikan pendekatan, teknik, dan proses yang digunakan dalam penelitian."
@@ -324,8 +324,8 @@ const QUIZ: QuizItem[] = [
     "q": "\"Further ___ is needed to confirm these results.\" Fill in the blank.",
     "opts": [
       "evaluation",
-      "citation",
       "research",
+      "citation",
       "hypothesis"
     ],
     "ans": "research",
@@ -335,9 +335,9 @@ const QUIZ: QuizItem[] = [
     "q": "An existing dominant framework or worldview in a field is called a ___",
     "opts": [
       "Paradigm",
-      "Variable",
+      "Inference",
       "Correlation",
-      "Inference"
+      "Variable"
     ],
     "ans": "Paradigm",
     "exp": "A paradigm (paradigma) adalah kerangka berpikir atau model utama yang mendominasi sebuah bidang ilmu."
@@ -346,9 +346,9 @@ const QUIZ: QuizItem[] = [
     "q": "To ___ something means to check and confirm that it is correct and accurate.",
     "opts": [
       "Propose",
-      "Contradict",
       "Analyse",
-      "Validate"
+      "Validate",
+      "Contradict"
     ],
     "ans": "Validate",
     "exp": "To validate berarti mengonfirmasi atau membuktikan keakuratan sesuatu melalui pengujian."
@@ -356,10 +356,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A long academic paper completed for a degree, especially a PhD, is called a ___",
     "opts": [
-      "Abstract",
       "Dissertation",
-      "Peer review",
-      "Methodology"
+      "Abstract",
+      "Methodology",
+      "Peer review"
     ],
     "ans": "Dissertation",
     "exp": "A dissertation adalah karya tulis ilmiah panjang yang diselesaikan sebagai bagian dari program gelar akademik."
@@ -368,8 +368,8 @@ const QUIZ: QuizItem[] = [
     "q": "The phrase \"___ to the findings, pollution is the primary cause\" is best completed with ___",
     "opts": [
       "In contrast",
-      "According",
       "Based on evidence",
+      "According",
       "This raises"
     ],
     "ans": "According",
@@ -378,10 +378,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To ___ a statement means to show it is not true or conflicts with another statement.",
     "opts": [
+      "Contradict",
       "Evaluate",
       "Synthesise",
-      "Deduce",
-      "Contradict"
+      "Deduce"
     ],
     "ans": "Contradict",
     "exp": "To contradict berarti menyatakan sesuatu yang bertentangan dengan klaim atau fakta yang lain."

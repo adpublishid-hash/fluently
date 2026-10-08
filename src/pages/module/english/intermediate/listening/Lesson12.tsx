@@ -10,8 +10,8 @@ const QUIZ: QuizItem[] = [
     "q": "What does 'overcome' mean?",
     "opts": [
       "To fail repeatedly",
-      "To successfully deal with a problem",
       "To ignore an issue",
+      "To successfully deal with a problem",
       "To cry about something"
     ],
     "ans": "To successfully deal with a problem",
@@ -20,9 +20,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How far is the Pine Valley cabin from the city?",
     "opts": [
-      "1 hour",
-      "2 hours",
       "4 hours",
+      "2 hours",
+      "1 hour",
       "A whole day"
     ],
     "ans": "2 hours",
@@ -31,10 +31,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does the nutritionist recommend doing right after waking up?",
     "opts": [
-      "Check emails",
       "Drink water",
-      "Go for a run",
-      "Eat breakfast"
+      "Eat breakfast",
+      "Check emails",
+      "Go for a run"
     ],
     "ans": "Drink water",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -43,9 +43,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is the meaning of 'usage'?",
     "opts": [
       "The amount of something that is used",
-      "Paying a bill",
+      "A new mobile phone",
       "Electric wires",
-      "A new mobile phone"
+      "Paying a bill"
     ],
     "ans": "The amount of something that is used",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -53,10 +53,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does a 10-minute walk after lunch prevent?",
     "opts": [
+      "Getting bored",
       "Evening fatigue",
       "Heart disease",
-      "Morning sickness",
-      "Getting bored"
+      "Morning sickness"
     ],
     "ans": "Evening fatigue",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -65,9 +65,9 @@ const QUIZ: QuizItem[] = [
     "q": "What kind of professional is David?",
     "opts": [
       "Surgeon",
-      "Nutritionist",
       "Dentist",
-      "Personal Trainer"
+      "Personal Trainer",
+      "Nutritionist"
     ],
     "ans": "Nutritionist",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -76,8 +76,8 @@ const QUIZ: QuizItem[] = [
     "q": "What is the synonym for 'chilly'?",
     "opts": [
       "Boiling",
-      "Cold",
       "Windy",
+      "Cold",
       "Sunny"
     ],
     "ans": "Cold",
@@ -86,10 +86,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the primary goal of the GreenTech app?",
     "opts": [
-      "To sell solar panels",
-      "To track and lower carbon footprint",
       "To chat with neighbors",
-      "To play games"
+      "To play games",
+      "To sell solar panels",
+      "To track and lower carbon footprint"
     ],
     "ans": "To track and lower carbon footprint",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -108,10 +108,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Where does Elena recommend going for a weekend trip?",
     "opts": [
-      "Crowded beaches",
       "Pine Valley mountains",
-      "A big foreign city",
-      "A local shopping mall"
+      "A local shopping mall",
+      "Crowded beaches",
+      "A big foreign city"
     ],
     "ans": "Pine Valley mountains",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -120,9 +120,9 @@ const QUIZ: QuizItem[] = [
     "q": "How long should a post-lunch walk be according to David?",
     "opts": [
       "5 minutes",
-      "10 minutes",
       "30 minutes",
-      "1 hour"
+      "1 hour",
+      "10 minutes"
     ],
     "ans": "10 minutes",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -130,10 +130,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does GreenTech Solutions' new app do?",
     "opts": [
-      "Sells electronics",
       "Tracks electricity usage",
       "Plays music",
-      "Calls an electrician"
+      "Calls an electrician",
+      "Sells electronics"
     ],
     "ans": "Tracks electricity usage",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -141,10 +141,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does 'authentic' mean in the context of writing an essay?",
     "opts": [
-      "Copied from the internet",
       "Fake",
       "Genuine and real",
-      "Very long"
+      "Very long",
+      "Copied from the internet"
     ],
     "ans": "Genuine and real",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -163,10 +163,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does 'fatigue' mean?",
     "opts": [
+      "Hunger",
       "Anger",
       "Happiness",
-      "Extreme tiredness",
-      "Hunger"
+      "Extreme tiredness"
     ],
     "ans": "Extreme tiredness",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -174,10 +174,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which of the following is a 'hidden gem' according to the travel context?",
     "opts": [
-      "A popular tourist trap",
       "An undiscovered, great place to visit",
-      "A literal diamond",
-      "A closed restaurant"
+      "A closed restaurant",
+      "A popular tourist trap",
+      "A literal diamond"
     ],
     "ans": "An undiscovered, great place to visit",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -185,10 +185,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is Mr. Roberts looking for in a personal essay?",
     "opts": [
-      "Perfect grammar",
       "A funny story",
       "True motivation and character",
-      "A list of awards"
+      "A list of awards",
+      "Perfect grammar"
     ],
     "ans": "True motivation and character",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
@@ -197,8 +197,8 @@ const QUIZ: QuizItem[] = [
     "q": "What should applicants write about in their essay?",
     "opts": [
       "Their family tree",
-      "A real challenge they overcame",
       "Their favorite movies",
+      "A real challenge they overcame",
       "What the admission board wants to hear"
     ],
     "ans": "A real challenge they overcame",
@@ -207,9 +207,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "When does the app send an alert to your phone?",
     "opts": [
-      "When the battery is low",
-      "When someone calls you",
       "When appliances are left on too long",
+      "When someone calls you",
+      "When the battery is low",
       "When you pay your bills"
     ],
     "ans": "When appliances are left on too long",
@@ -218,10 +218,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why should you pack warm clothes for Pine Valley?",
     "opts": [
-      "Because it snows heavily",
-      "Because it is chilly at night",
       "Because of the air conditioning",
-      "Because it's currently winter"
+      "Because it's currently winter",
+      "Because it snows heavily",
+      "Because it is chilly at night"
     ],
     "ans": "Because it is chilly at night",
     "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."

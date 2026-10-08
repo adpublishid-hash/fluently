@@ -77,28 +77,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Identifikasi VERB (Kata Kerja): 'Birds fly high.'",
-    options: ['Birds', 'fly', 'high'],
+    options: ['Birds', 'high', 'fly'],
     answer: 'fly',
     explanation: "'Fly' adalah tindakannya."
   },
   {
     id: 2,
     question: "Identifikasi SUBJECT (Subjek): 'My mother cooks dinner.'",
-    options: ['My mother', 'cooks', 'dinner'],
+    options: ['My mother', 'dinner', 'cooks'],
     answer: 'My mother',
     explanation: "'My mother' adalah orang yang melakukan tindakan."
   },
   {
     id: 3,
     question: "Identifikasi OBJECT (Objek): 'John loves music.'",
-    options: ['John', 'loves', 'music'],
+    options: ['music', 'John', 'loves'],
     answer: 'music',
     explanation: "'Music' adalah apa yang dicintai John (menerima perasaan)."
   },
   {
     id: 4,
     question: "Apa urutan yang benar?",
-    options: ['Subject + Verb + Object', 'Verb + Subject + Object', 'Object + Verb + Subject'],
+    options: ['Object + Verb + Subject', 'Verb + Subject + Object', 'Subject + Verb + Object'],
     answer: 'Subject + Verb + Object',
     explanation: "Bahasa Inggris mengikuti pola S-V-O."
   },
@@ -112,42 +112,42 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "Identifikasi VERB: 'The cat sleeps on the sofa.'",
-    options: ['The cat', 'sleeps', 'sofa'],
+    options: ['sofa', 'sleeps', 'The cat'],
     answer: 'sleeps',
     explanation: "'Sleeps' (tidur) adalah tindakan yang dilakukan kucing."
   },
   {
     id: 7,
     question: "Identifikasi SUBJECT: 'They play football.'",
-    options: ['They', 'play', 'football'],
+    options: ['They', 'football', 'play'],
     answer: 'They',
     explanation: "'They' (mereka) adalah pelaku tindakan."
   },
   {
     id: 8,
     question: "Identifikasi OBJECT: 'I drink coffee.'",
-    options: ['I', 'drink', 'coffee'],
+    options: ['drink', 'I', 'coffee'],
     answer: 'coffee',
     explanation: "'Coffee' adalah apa yang diminum (penerima tindakan)."
   },
   {
     id: 9,
     question: "Mana yang merupakan kalimat lengkap?",
-    options: ['Eats pizza.', 'He eats.', 'The big dog.'],
+    options: ['The big dog.', 'Eats pizza.', 'He eats.'],
     answer: 'He eats.',
     explanation: "Kalimat membutuhkan Subjek ('He') dan Kata Kerja ('eats')."
   },
   {
     id: 10,
     question: "Pilih kalimat dengan tanda baca yang benar:",
-    options: ['my name is ali.', 'My name is Ali', 'My name is Ali.'],
+    options: ['My name is Ali', 'My name is Ali.', 'my name is ali.'],
     answer: 'My name is Ali.',
     explanation: "Huruf kapital di awal, nama orang kapital, dan diakhiri titik."
   },
   {
     id: 11,
     question: "Identifikasi VERB: 'She reads a book.'",
-    options: ['She', 'reads', 'book'],
+    options: ['reads', 'book', 'She'],
     answer: 'reads',
     explanation: "'Reads' (membaca) adalah kata kerjanya."
   },
@@ -161,21 +161,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Apa yang hilang? 'We ___ lunch.'",
-    options: ['eat', 'happy', 'big'],
+    options: ['big', 'eat', 'happy'],
     answer: 'eat',
     explanation: "Kalimat ini membutuhkan Verb (Kata Kerja)."
   },
   {
     id: 14,
     question: "Susun kata-kata ini: 'likes / He / tea'",
-    options: ['Likes he tea', 'He tea likes', 'He likes tea'],
+    options: ['He likes tea', 'Likes he tea', 'He tea likes'],
     answer: 'He likes tea',
     explanation: "Pola: Subject (He) + Verb (likes) + Object (tea)."
   },
   {
     id: 15,
     question: "Identifikasi SUBJECT: 'The red car stops here.'",
-    options: ['The red car', 'stops', 'here'],
+    options: ['here', 'stops', 'The red car'],
     answer: 'The red car',
     explanation: "Frasa benda 'The red car' adalah subjeknya."
   },
@@ -189,28 +189,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "Identifikasi OBJECT: 'We watch TV.'",
-    options: ['We', 'watch', 'TV'],
+    options: ['watch', 'We', 'TV'],
     answer: 'TV',
     explanation: "'TV' adalah apa yang ditonton."
   },
   {
     id: 18,
     question: "Aturan huruf kapital: Mana yang benar?",
-    options: ['london is big.', 'London is big.', 'london Is Big.'],
+    options: ['London is big.', 'london is big.', 'london Is Big.'],
     answer: 'London is big.',
     explanation: "Awal kalimat dan nama kota (London) harus kapital."
   },
   {
     id: 19,
     question: "Lengkapi: 'Fish ___ in water.'",
-    options: ['swim', 'swims', 'swimming'],
+    options: ['swimming', 'swim', 'swims'],
     answer: 'swim',
     explanation: "Subject jamak (Fish/Ikan-ikan) + Verb dasar (swim)."
   },
   {
     id: 20,
     question: "Apa peran 'The sun' dalam: 'The sun shines.'",
-    options: ['Subject', 'Verb', 'Object'],
+    options: ['Object', 'Verb', 'Subject'],
     answer: 'Subject',
     explanation: "'The sun' adalah apa yang bersinar (Pelaku)."
   }

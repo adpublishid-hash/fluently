@@ -66,7 +66,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Saat shadowing, Anda harus menyalin...",
-    options: ['Hanya kata-katanya', 'Hanya kecepatannya', 'Kata-kata, nada, kecepatan, dan emosi'],
+    options: ['Kata-kata, nada, kecepatan, dan emosi', 'Hanya kecepatannya', 'Hanya kata-katanya'],
     answer: 'Kata-kata, nada, kecepatan, dan emosi',
     explanation: "Shadowing adalah tentang imitasi total untuk menginternalisasi aliran alami bahasa."
   },
@@ -80,26 +80,26 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "Mengapa Anda harus 'melebih-lebihkan' (menjadi dramatis) saat berlatih?",
-    options: ['Untuk menjadi lucu', 'Untuk melatih otot mulut', 'Untuk berbicara lebih cepat'],
+    options: ['Untuk berbicara lebih cepat', 'Untuk menjadi lucu', 'Untuk melatih otot mulut'],
     answer: 'Untuk melatih otot mulut',
     explanation: "Bahasa Inggris membutuhkan gerakan otot yang berbeda dari bahasa ibu Anda. Melebih-lebihkan membangun kekuatan."
   },
   { id: 4, question: "Apa cara terbaik untuk melatih cerita yang panjang?", options: ['Membaca semuanya sekaligus dengan cepat', 'Memecahnya menjadi potongan-potongan (thought groups)', 'Melewati kata-kata yang sulit'], answer: 'Memecahnya menjadi potongan-potongan (thought groups)', explanation: "Pemotongan (Chunking) memungkinkan Anda menguasai bagian-bagian kecil sebelum menggabungkannya." },
-  { id: 5, question: "Shadowing berarti Anda harus copy...", options: ['Hanya pronunciation', 'Hanya speed', 'Words, tone, speed, emotion, dan rhythm'], answer: 'Words, tone, speed, emotion, dan rhythm', explanation: "Shadowing = total imitation, bukan hanya words." },
-  { id: 6, question: "'Exaggeration' (melebih-lebihkan) saat practice membantu...", options: ['Terdengar silly', 'Train mouth muscles untuk posisi baru', 'Membingungkan'], answer: 'Train mouth muscles untuk posisi baru', explanation: "Exaggeration builds muscle memory untuk sounds yang asing." },
-  { id: 7, question: "Untuk terdengar angry, Anda harus...", options: ['Speak louder dengan sharper consonants', 'Speak softer', 'Use high pitch'], answer: 'Speak louder dengan sharper consonants', explanation: "Anger = louder volume, sharper/harder sounds, falling intonation." },
+  { id: 5, question: "Shadowing berarti Anda harus copy...", options: ['Words, tone, speed, emotion, dan rhythm', 'Hanya speed', 'Hanya pronunciation'], answer: 'Words, tone, speed, emotion, dan rhythm', explanation: "Shadowing = total imitation, bukan hanya words." },
+  { id: 6, question: "'Exaggeration' (melebih-lebihkan) saat practice membantu...", options: ['Terdengar silly', 'Membingungkan', 'Train mouth muscles untuk posisi baru'], answer: 'Train mouth muscles untuk posisi baru', explanation: "Exaggeration builds muscle memory untuk sounds yang asing." },
+  { id: 7, question: "Untuk terdengar angry, Anda harus...", options: ['Speak louder dengan sharper consonants', 'Use high pitch', 'Speak softer'], answer: 'Speak louder dengan sharper consonants', explanation: "Anger = louder volume, sharper/harder sounds, falling intonation." },
   { id: 8, question: "Untuk terdengar sad, voice Anda menjadi...", options: ['High dan fast', 'Low, slow, dan softer', 'Loud dan sharp'], answer: 'Low, slow, dan softer', explanation: "Sadness = lower pitch, slower pace, softer articulation." },
   { id: 9, question: "Untuk terdengar excited/happy, Anda gunakan...", options: ['Low pitch', 'High pitch dan wider intonation range', 'Monotone'], answer: 'High pitch dan wider intonation range', explanation: "Excitement = higher pitch, more variation, faster pace." },
-  { id: 10, question: "Shadowing paling efektif dengan...", options: ['Text saja', 'Audio native speakers', 'Silent reading'], answer: 'Audio native speakers', explanation: "Need authentic audio untuk copy rhythm/intonation accurately." },
-  { id: 11, question: "Mengapa 'acting' (peragaan) penting untuk pronunciation?", options: ['Hanya untuk fun', 'Helps internalize emotions dan natural delivery', 'Tidak penting'], answer: 'Helps internalize emotions dan natural delivery', explanation: "Acting = you practice HOW natives say things, not just WHAT." },
-  { id: 12, question: "'I CAN'T BELIEVE you did that!' dengan stress pada CAN'T menunjukkan...", options: ['Happiness', 'Anger/frustration', 'Sadness'], answer: 'Anger/frustration', explanation: "Heavy stress + sharp sounds + falling tone = anger." },
-  { id: 13, question: "Untuk sound polite/friendly, gunakan...", options: ['Falling intonation', 'Rising atau gentle intonation', 'Monotone'], answer: 'Rising atau gentle intonation', explanation: "Politeness = higher/rising pitch, softer tone." },
-  { id: 14, question: "Saat shadowing, best approach adalah...", options: ['Start fast', 'Start slow, exaggerate, then speed up', 'Skip difficult parts'], answer: 'Start slow, exaggerate, then speed up', explanation: "Slow practice → accuracy. Then increase speed gradually." },
-  { id: 15, question: "Emotional delivery mengubah...", options: ['Grammar', 'Meaning dan impact of the message', 'Vocabulary'], answer: 'Meaning dan impact of the message', explanation: "HOW you say something changes the entire meaning." },
-  { id: 16, question: "Untuk suspicious tone, voice menjadi...", options: ['High dan excited', 'Lower, slower, careful', 'Very loud'], answer: 'Lower, slower, careful', explanation: "Suspicion = lower pitch, slower, narrowed eyes (visual)." },
-  { id: 17, question: "Breaking long stories into chunks helps dengan...", options: ['Memorization dan fluent practice', 'Making it longer', 'Confusing listeners'], answer: 'Memorization dan fluent practice', explanation: "Chunking = easier to master small parts, then combine." },
+  { id: 10, question: "Shadowing paling efektif dengan...", options: ['Audio native speakers', 'Text saja', 'Silent reading'], answer: 'Audio native speakers', explanation: "Need authentic audio untuk copy rhythm/intonation accurately." },
+  { id: 11, question: "Mengapa 'acting' (peragaan) penting untuk pronunciation?", options: ['Tidak penting', 'Helps internalize emotions dan natural delivery', 'Hanya untuk fun'], answer: 'Helps internalize emotions dan natural delivery', explanation: "Acting = you practice HOW natives say things, not just WHAT." },
+  { id: 12, question: "'I CAN'T BELIEVE you did that!' dengan stress pada CAN'T menunjukkan...", options: ['Happiness', 'Sadness', 'Anger/frustration'], answer: 'Anger/frustration', explanation: "Heavy stress + sharp sounds + falling tone = anger." },
+  { id: 13, question: "Untuk sound polite/friendly, gunakan...", options: ['Rising atau gentle intonation', 'Falling intonation', 'Monotone'], answer: 'Rising atau gentle intonation', explanation: "Politeness = higher/rising pitch, softer tone." },
+  { id: 14, question: "Saat shadowing, best approach adalah...", options: ['Start slow, exaggerate, then speed up', 'Start fast', 'Skip difficult parts'], answer: 'Start slow, exaggerate, then speed up', explanation: "Slow practice → accuracy. Then increase speed gradually." },
+  { id: 15, question: "Emotional delivery mengubah...", options: ['Vocabulary', 'Meaning dan impact of the message', 'Grammar'], answer: 'Meaning dan impact of the message', explanation: "HOW you say something changes the entire meaning." },
+  { id: 16, question: "Untuk suspicious tone, voice menjadi...", options: ['Lower, slower, careful', 'Very loud', 'High dan excited'], answer: 'Lower, slower, careful', explanation: "Suspicion = lower pitch, slower, narrowed eyes (visual)." },
+  { id: 17, question: "Breaking long stories into chunks helps dengan...", options: ['Memorization dan fluent practice', 'Confusing listeners', 'Making it longer'], answer: 'Memorization dan fluent practice', explanation: "Chunking = easier to master small parts, then combine." },
   { id: 18, question: "Best resource untuk shadowing practice adalah...", options: ['Textbooks', 'Movies, podcasts, audiobooks dengan native speakers', 'Your own voice'], answer: 'Movies, podcasts, audiobooks dengan native speakers', explanation: "Authentic native audio = best models untuk shadowing." },
-  { id: 19, question: "Mengapa 'overdo' (berlebihan) saat practice?", options: ['To sound funny', 'To build strong muscle memory', 'It\'s not helpful'], answer: 'To build strong muscle memory', explanation: "Exaggeration = stronger training effect, builds habit." },
+  { id: 19, question: "Mengapa 'overdo' (berlebihan) saat practice?", options: ['It\'s not helpful', 'To sound funny', 'To build strong muscle memory'], answer: 'To build strong muscle memory', explanation: "Exaggeration = stronger training effect, builds habit." },
   { id: 20, question: "Combination of shadowing + chunking + emotion =", options: ['Waste of time', 'Most effective pronunciation practice', 'Only for actors'], answer: 'Most effective pronunciation practice', explanation: "This combo trains rhythm, delivery, dan naturalness together." }
 ];
 

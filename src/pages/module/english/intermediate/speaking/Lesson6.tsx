@@ -12,8 +12,8 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's global topics? [Q1]",
     "options": [
-      "What is your global problem?",
       "I would love to hear about your thoughts on global topics.",
+      "What is your global problem?",
       "Tell me your global now."
     ],
     "answer": "I would love to hear about your thoughts on global topics.",
@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing global, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about global? [Q3]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -45,9 +45,9 @@ const QUIZ_QUESTIONS = [
     "id": 4,
     "question": "If you want to interrupt politely during a conversation about global, you say:",
     "options": [
+      "Wait, give me a chance.",
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -56,9 +56,9 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about global topics; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding global? [Q6]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's global topics? [Q7]",
     "options": [
+      "Tell me your global now.",
       "What is your global problem?",
-      "I would love to hear about your thoughts on global topics.",
-      "Tell me your global now."
+      "I would love to hear about your thoughts on global topics."
     ],
     "answer": "I would love to hear about your thoughts on global topics.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing global, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -111,9 +111,9 @@ const QUIZ_QUESTIONS = [
     "id": 10,
     "question": "If you want to interrupt politely during a conversation about global, you say:",
     "options": [
+      "Wait, give me a chance.",
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -122,9 +122,9 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about global topics; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing global, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,8 +166,8 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about global? [Q15]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -177,9 +177,9 @@ const QUIZ_QUESTIONS = [
     "id": 16,
     "question": "If you want to interrupt politely during a conversation about global, you say:",
     "options": [
+      "Wait, give me a chance.",
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -188,9 +188,9 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about global topics; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding global? [Q18]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's global topics? [Q19]",
     "options": [
-      "What is your global problem?",
+      "Tell me your global now.",
       "I would love to hear about your thoughts on global topics.",
-      "Tell me your global now."
+      "What is your global problem?"
     ],
     "answer": "I would love to hear about your thoughts on global topics.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing global, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

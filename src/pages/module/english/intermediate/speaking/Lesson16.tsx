@@ -12,9 +12,9 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's storytelling? [Q1]",
     "options": [
+      "Tell me your story now.",
       "What is your story problem?",
-      "I would love to hear about your thoughts on storytelling.",
-      "Tell me your story now."
+      "I would love to hear about your thoughts on storytelling."
     ],
     "answer": "I would love to hear about your thoughts on storytelling.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -34,8 +34,8 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about story? [Q3]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -46,8 +46,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about story, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -56,9 +56,9 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about storytelling; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding story? [Q6]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's storytelling? [Q7]",
     "options": [
+      "Tell me your story now.",
       "What is your story problem?",
-      "I would love to hear about your thoughts on storytelling.",
-      "Tell me your story now."
+      "I would love to hear about your thoughts on storytelling."
     ],
     "answer": "I would love to hear about your thoughts on storytelling.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -100,9 +100,9 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about story? [Q9]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "I couldn't agree more.",
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -112,8 +112,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about story, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -122,9 +122,9 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about storytelling; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -133,9 +133,9 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding story? [Q12]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -144,9 +144,9 @@ const QUIZ_QUESTIONS = [
     "id": 13,
     "question": "What is the most polite way to ask about someone's storytelling? [Q13]",
     "options": [
-      "What is your story problem?",
+      "Tell me your story now.",
       "I would love to hear about your thoughts on storytelling.",
-      "Tell me your story now."
+      "What is your story problem?"
     ],
     "answer": "I would love to hear about your thoughts on storytelling.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -167,8 +167,8 @@ const QUIZ_QUESTIONS = [
     "question": "Which response strongly agrees with a statement about story? [Q15]",
     "options": [
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I couldn't agree more.",
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -178,8 +178,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about story, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -188,9 +188,9 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about storytelling; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding story? [Q18]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."

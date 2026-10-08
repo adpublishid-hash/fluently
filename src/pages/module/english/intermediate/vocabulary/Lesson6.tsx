@@ -53,26 +53,26 @@ const GLOBAL_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "We planned our trip carefully and wrote a detailed ___.", options: ['heritage', 'itinerary', 'migration'], answer: 'itinerary', explanation: "An itinerary (Rencana perjalanan) adalah rute atau perjalanan yang direncanakan." },
-  { id: 2, question: "Respecting the local ___ is important when traveling.", options: ['poverty', 'customs', 'borders'], answer: 'customs', explanation: "Customs (Adat istiadat) adalah cara berperilaku tradisional." },
-  { id: 3, question: "The country is facing an economic ___.", options: ['crisis', 'souvenir', 'ritual'], answer: 'crisis', explanation: "A crisis (Krisis) adalah masa kesulitan atau bahaya yang intens." },
-  { id: 4, question: "Hotels and hostels are types of ___.", options: ['accommodation', 'population', 'diversity'], answer: 'accommodation', explanation: "Accommodation (Akomodasi) mengacu pada tempat tinggal." },
-  { id: 5, question: "The movement of people from one place to another is called ___.", options: ['globalization', 'migration', 'democracy'], answer: 'migration', explanation: "Migration (Migrasi) adalah perpindahan orang ke daerah baru." },
-  { id: 6, question: "Our vacation ___ is Bali, Indonesia.", options: ['destination', 'border', 'crisis'], answer: 'destination', explanation: "Destination (Tujuan) adalah tempat yang dituju seseorang." },
+  { id: 1, question: "We planned our trip carefully and wrote a detailed ___.", options: ['migration', 'itinerary', 'heritage'], answer: 'itinerary', explanation: "An itinerary (Rencana perjalanan) adalah rute atau perjalanan yang direncanakan." },
+  { id: 2, question: "Respecting the local ___ is important when traveling.", options: ['borders', 'poverty', 'customs'], answer: 'customs', explanation: "Customs (Adat istiadat) adalah cara berperilaku tradisional." },
+  { id: 3, question: "The country is facing an economic ___.", options: ['crisis', 'ritual', 'souvenir'], answer: 'crisis', explanation: "A crisis (Krisis) adalah masa kesulitan atau bahaya yang intens." },
+  { id: 4, question: "Hotels and hostels are types of ___.", options: ['population', 'diversity', 'accommodation'], answer: 'accommodation', explanation: "Accommodation (Akomodasi) mengacu pada tempat tinggal." },
+  { id: 5, question: "The movement of people from one place to another is called ___.", options: ['migration', 'globalization', 'democracy'], answer: 'migration', explanation: "Migration (Migrasi) adalah perpindahan orang ke daerah baru." },
+  { id: 6, question: "Our vacation ___ is Bali, Indonesia.", options: ['crisis', 'border', 'destination'], answer: 'destination', explanation: "Destination (Tujuan) adalah tempat yang dituju seseorang." },
   { id: 7, question: "We crossed the ___ to enter the next country.", options: ['heritage', 'border', 'souvenir'], answer: 'border', explanation: "Border (Perbatasan) adalah garis yang memisahkan dua negara." },
   { id: 8, question: "The mountain ___ was breathtaking.", options: ['landscape', 'etiquette', 'politics'], answer: 'landscape', explanation: "Landscape (Pemandangan) adalah pemandangan alam suatu area." },
-  { id: 9, question: "I bought a ___ to remember my trip.", options: ['crisis', 'souvenir', 'population'], answer: 'souvenir', explanation: "Souvenir (Cenderamata) adalah barang untuk mengingat perjalanan." },
-  { id: 10, question: "___ is an important industry in many countries.", options: ['Poverty', 'Tourism', 'Migration'], answer: 'Tourism', explanation: "Tourism (Pariwisata) adalah bisnis menyediakan layanan untuk wisatawan." },
-  { id: 11, question: "We went on a day ___ to  the nearby island.", options: ['excursion', 'democracy', 'diversity'], answer: 'excursion', explanation: "Excursion (Karyawisata) adalah perjalanan singkat untuk bersenang-senang." },
-  { id: 12, question: "This temple is part of our cultural ___.", options: ['heritage', 'economy', 'trade'], answer: 'heritage', explanation: "Heritage (Warisan budaya) adalah tradisi yang diturunkan." },
+  { id: 9, question: "I bought a ___ to remember my trip.", options: ['population', 'crisis', 'souvenir'], answer: 'souvenir', explanation: "Souvenir (Cenderamata) adalah barang untuk mengingat perjalanan." },
+  { id: 10, question: "___ is an important industry in many countries.", options: ['Poverty', 'Migration', 'Tourism'], answer: 'Tourism', explanation: "Tourism (Pariwisata) adalah bisnis menyediakan layanan untuk wisatawan." },
+  { id: 11, question: "We went on a day ___ to  the nearby island.", options: ['diversity', 'excursion', 'democracy'], answer: 'excursion', explanation: "Excursion (Karyawisata) adalah perjalanan singkat untuk bersenang-senang." },
+  { id: 12, question: "This temple is part of our cultural ___.", options: ['trade', 'economy', 'heritage'], answer: 'heritage', explanation: "Heritage (Warisan budaya) adalah tradisi yang diturunkan." },
   { id: 13, question: "Every culture has different ___ and values.", options: ['borders', 'traditions', 'crises'], answer: 'traditions', explanation: "Traditions (Tradisi) adalah keyakinan atau adat yang diwariskan." },
-  { id: 14, question: "Indonesia has great cultural ___.", options: ['poverty', 'diversity', 'diplomacy'], answer: 'diversity', explanation: "Diversity (Keberagaman) adalah keragaman elemen berbeda." },
-  { id: 15, question: "It's polite to learn basic ___ before visiting.", options: ['etiquette', 'population', 'trade'], answer: 'etiquette', explanation: "Etiquette (Etiket) adalah aturan perilaku sopan." },
-  { id: 16, question: "The ___ of the city is over 10 million.", options: ['population', 'ritual', 'excursion'], answer: 'population', explanation: "Population (Populasi) adalah jumlah orang yang tinggal di suatu tempat." },
-  { id: 17, question: "___ helps nations communicate peacefully.", options: ['Crisis', 'Diplomacy', 'Poverty'], answer: 'Diplomacy', explanation: "Diplomacy (Diplomasi) adalah mengelola hubungan internasional." },
-  { id: 18, question: "The country benefits from international ___.", options: ['trade', 'poverty', 'ritual'], answer: 'trade', explanation: "Trade (Perdagangan) adalah jual beli barang antar negara." },
-  { id: 19, question: "They performed a traditional ___ ceremony.", options: ['crisis', 'ritual', 'economy'], answer: 'ritual', explanation: "Ritual adalah serangkaian tindakan yang dilakukan untuk tujuan keagamaan atau budaya." },
-  { id: 20, question: "Every ___ has rights and responsibilities.", options: ['souvenir', 'citizen', 'landscape'], answer: 'citizen', explanation: "Citizen (Warga negara) adalah anggota resmi suatu negara." }
+  { id: 14, question: "Indonesia has great cultural ___.", options: ['diplomacy', 'diversity', 'poverty'], answer: 'diversity', explanation: "Diversity (Keberagaman) adalah keragaman elemen berbeda." },
+  { id: 15, question: "It's polite to learn basic ___ before visiting.", options: ['trade', 'population', 'etiquette'], answer: 'etiquette', explanation: "Etiquette (Etiket) adalah aturan perilaku sopan." },
+  { id: 16, question: "The ___ of the city is over 10 million.", options: ['excursion', 'ritual', 'population'], answer: 'population', explanation: "Population (Populasi) adalah jumlah orang yang tinggal di suatu tempat." },
+  { id: 17, question: "___ helps nations communicate peacefully.", options: ['Poverty', 'Diplomacy', 'Crisis'], answer: 'Diplomacy', explanation: "Diplomacy (Diplomasi) adalah mengelola hubungan internasional." },
+  { id: 18, question: "The country benefits from international ___.", options: ['trade', 'ritual', 'poverty'], answer: 'trade', explanation: "Trade (Perdagangan) adalah jual beli barang antar negara." },
+  { id: 19, question: "They performed a traditional ___ ceremony.", options: ['economy', 'crisis', 'ritual'], answer: 'ritual', explanation: "Ritual adalah serangkaian tindakan yang dilakukan untuk tujuan keagamaan atau budaya." },
+  { id: 20, question: "Every ___ has rights and responsibilities.", options: ['landscape', 'citizen', 'souvenir'], answer: 'citizen', explanation: "Citizen (Warga negara) adalah anggota resmi suatu negara." }
 
 ];
 

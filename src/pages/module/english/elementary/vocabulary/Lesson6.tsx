@@ -50,140 +50,140 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "The paper you get after paying is a ___.",
-    options: ['Recipe', 'Receipt', 'Receive'],
+    options: ['Receipt', 'Recipe', 'Receive'],
     answer: 'Receipt',
     explanation: "'Receipt' (/rɪˈsiːt/) adalah bukti pembelian. 'Recipe' adalah resep masakan."
   },
   {
     id: 2,
     question: "This shirt costs $1000! It is very ___.",
-    options: ['cheap', 'expensive', 'free'],
+    options: ['expensive', 'free', 'cheap'],
     answer: 'expensive',
     explanation: "Expensive (Mahal) berarti harganya tinggi."
   },
   {
     id: 3,
     question: "Where do you pay for your items?",
-    options: ['At the shelf', 'At the entrance', 'At the cashier'],
+    options: ['At the cashier', 'At the shelf', 'At the entrance'],
     answer: 'At the cashier',
     explanation: "Cashier (Kasir) adalah orang atau tempat kamu membayar."
   },
   {
     id: 4,
     question: "You put your items in a ___ while shopping.",
-    options: ['wallet', 'trolley', 'receipt'],
+    options: ['wallet', 'receipt', 'trolley'],
     answer: 'trolley',
     explanation: "Trolley (Kereta belanja) digunakan untuk membawa barang di toko."
   },
   {
     id: 5,
     question: "If the clothes don't fit, you can ask for a ___.",
-    options: ['refund', 'salary', 'cost'],
+    options: ['salary', 'refund', 'cost'],
     answer: 'refund',
     explanation: "Refund (Pengembalian uang) berarti mendapatkan uangmu kembali."
   },
   {
     id: 6,
     question: "The paper you get after paying is a ___.",
-    options: ["Recipe","Receipt","Receive"],
+    options: ["Receipt", "Recipe", "Receive"],
     answer: "Receipt",
     explanation: "'Receipt' (/rɪˈsiːt/) adalah bukti pembelian. 'Recipe' adalah resep masakan."
   },
   {
     id: 7,
     question: "This shirt costs $1000! It is very ___.",
-    options: ["cheap","expensive","free"],
+    options: ["expensive", "free", "cheap"],
     answer: "expensive",
     explanation: "Expensive (Mahal) berarti harganya tinggi."
   },
   {
     id: 8,
     question: "Where do you pay for your items?",
-    options: ["At the shelf","At the entrance","At the cashier"],
+    options: ["At the cashier", "At the shelf", "At the entrance"],
     answer: "At the cashier",
     explanation: "Cashier (Kasir) adalah orang atau tempat kamu membayar."
   },
   {
     id: 9,
     question: "You put your items in a ___ while shopping.",
-    options: ["wallet","trolley","receipt"],
+    options: ["wallet", "receipt", "trolley"],
     answer: "trolley",
     explanation: "Trolley (Kereta belanja) digunakan untuk membawa barang di toko."
   },
   {
     id: 10,
     question: "If the clothes don't fit, you can ask for a ___.",
-    options: ["refund","salary","cost"],
+    options: ["salary", "refund", "cost"],
     answer: "refund",
     explanation: "Refund (Pengembalian uang) berarti mendapatkan uangmu kembali."
   },
   {
     id: 11,
     question: "The paper you get after paying is a ___.",
-    options: ["Recipe","Receipt","Receive"],
+    options: ["Receipt", "Recipe", "Receive"],
     answer: "Receipt",
     explanation: "'Receipt' (/rɪˈsiːt/) adalah bukti pembelian. 'Recipe' adalah resep masakan."
   },
   {
     id: 12,
     question: "This shirt costs $1000! It is very ___.",
-    options: ["cheap","expensive","free"],
+    options: ["expensive", "free", "cheap"],
     answer: "expensive",
     explanation: "Expensive (Mahal) berarti harganya tinggi."
   },
   {
     id: 13,
     question: "Where do you pay for your items?",
-    options: ["At the shelf","At the entrance","At the cashier"],
+    options: ["At the cashier", "At the shelf", "At the entrance"],
     answer: "At the cashier",
     explanation: "Cashier (Kasir) adalah orang atau tempat kamu membayar."
   },
   {
     id: 14,
     question: "You put your items in a ___ while shopping.",
-    options: ["wallet","trolley","receipt"],
+    options: ["wallet", "receipt", "trolley"],
     answer: "trolley",
     explanation: "Trolley (Kereta belanja) digunakan untuk membawa barang di toko."
   },
   {
     id: 15,
     question: "If the clothes don't fit, you can ask for a ___.",
-    options: ["refund","salary","cost"],
+    options: ["salary", "refund", "cost"],
     answer: "refund",
     explanation: "Refund (Pengembalian uang) berarti mendapatkan uangmu kembali."
   },
   {
     id: 16,
     question: "The paper you get after paying is a ___.",
-    options: ["Recipe","Receipt","Receive"],
+    options: ["Receipt", "Recipe", "Receive"],
     answer: "Receipt",
     explanation: "'Receipt' (/rɪˈsiːt/) adalah bukti pembelian. 'Recipe' adalah resep masakan."
   },
   {
     id: 17,
     question: "This shirt costs $1000! It is very ___.",
-    options: ["cheap","expensive","free"],
+    options: ["expensive", "free", "cheap"],
     answer: "expensive",
     explanation: "Expensive (Mahal) berarti harganya tinggi."
   },
   {
     id: 18,
     question: "Where do you pay for your items?",
-    options: ["At the shelf","At the entrance","At the cashier"],
+    options: ["At the cashier", "At the shelf", "At the entrance"],
     answer: "At the cashier",
     explanation: "Cashier (Kasir) adalah orang atau tempat kamu membayar."
   },
   {
     id: 19,
     question: "You put your items in a ___ while shopping.",
-    options: ["wallet","trolley","receipt"],
+    options: ["wallet", "receipt", "trolley"],
     answer: "trolley",
     explanation: "Trolley (Kereta belanja) digunakan untuk membawa barang di toko."
   },
   {
     id: 20,
     question: "If the clothes don't fit, you can ask for a ___.",
-    options: ["refund","salary","cost"],
+    options: ["salary", "refund", "cost"],
     answer: "refund",
     explanation: "Refund (Pengembalian uang) berarti mendapatkan uangmu kembali."
   }

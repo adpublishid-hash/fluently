@@ -20,9 +20,9 @@ const QUIZ: QuizItem[] = [
     "q": "What does \"Consequently\" mean in this context?",
     "opts": [
       "Before",
-      "As a logical result",
+      "However",
       "In addition",
-      "However"
+      "As a logical result"
     ],
     "ans": "As a logical result",
     "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
@@ -30,10 +30,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
     "opts": [
-      "Students",
       "Literature",
-      "Reading extensive literature (Gerund phrase)",
-      "Exposes"
+      "Students",
+      "Exposes",
+      "Reading extensive literature (Gerund phrase)"
     ],
     "ans": "Reading extensive literature (Gerund phrase)",
     "exp": "The entire gerund phrase acts as the subject."
@@ -42,9 +42,9 @@ const QUIZ: QuizItem[] = [
     "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
     "opts": [
       "Easy to see",
-      "Occurring repeatedly and constantly",
       "Funny",
-      "Grammatical"
+      "Grammatical",
+      "Occurring repeatedly and constantly"
     ],
     "ans": "Occurring repeatedly and constantly",
     "exp": "\"Persistent\" means something stubborn that keeps happening."
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why is \"Therefore\" used in the last paragraph?",
     "opts": [
-      "To introduce a cause",
-      "To conclude a logical argument",
       "To change subjects",
-      "To start a story"
+      "To start a story",
+      "To conclude a logical argument",
+      "To introduce a cause"
     ],
     "ans": "To conclude a logical argument",
     "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
@@ -63,10 +63,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
     "opts": [
-      "It was late so I kept writing.",
       "Although it was late, I kept writing.",
-      "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
+      "It was late so I kept writing.",
+      "It was late, therefore I kept writing.",
+      "Because it was late, I kept writing."
     ],
     "ans": "Although it was late, I kept writing.",
     "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"For instance\"?",
     "opts": [
-      "To contrast",
-      "To conclude",
       "To provide an example",
-      "To show cause"
+      "To show cause",
+      "To contrast",
+      "To conclude"
     ],
     "ans": "To provide an example",
     "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
@@ -85,10 +85,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
     "opts": [
-      "immediately",
       "action",
-      "goverment",
-      "should"
+      "should",
+      "immediately",
+      "goverment"
     ],
     "ans": "goverment",
     "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
@@ -96,10 +96,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which option is less formal? \"Commence\"",
     "opts": [
-      "Begin",
       "Terminate",
+      "Finalize",
       "Execute",
-      "Finalize"
+      "Begin"
     ],
     "ans": "Begin",
     "exp": "\"Commence\" adalah bentuk sangat formal untuk kata \"begin\" atau \"start\"."
@@ -108,8 +108,8 @@ const QUIZ: QuizItem[] = [
     "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
     "opts": [
       "On the second hand...",
-      "On the other side...",
       "On the other hand...",
+      "On the other side...",
       "However..."
     ],
     "ans": "On the other hand...",
@@ -119,9 +119,9 @@ const QUIZ: QuizItem[] = [
     "q": "How do you make this formal? \"Send me the files ASAP.\"",
     "opts": [
       "Please dispatch the files really quick.",
-      "I require the files immediately.",
+      "Shoot the documents to me.",
       "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
+      "I require the files immediately."
     ],
     "ans": "Please send the documents at your earliest convenience.",
     "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
@@ -129,10 +129,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the most FORMAL word to replace \"but\":",
     "opts": [
+      "And",
       "However",
       "Also",
-      "So",
-      "And"
+      "So"
     ],
     "ans": "However",
     "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
@@ -141,9 +141,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is the function of \"therefore\"?",
     "opts": [
       "To add a point",
-      "To show a difference",
+      "To give an example",
       "To show a result or consequence",
-      "To give an example"
+      "To show a difference"
     ],
     "ans": "To show a result or consequence",
     "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
@@ -151,10 +151,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is best for SUMMARISING an essay?",
     "opts": [
-      "First of all",
-      "In contrast",
       "To conclude",
-      "For instance"
+      "For instance",
+      "First of all",
+      "In contrast"
     ],
     "ans": "To conclude",
     "exp": "\"To conclude\" (atau In conclusion) secara spesifik digunakan di paragraf terakhir untuk merangkum tulisan."
@@ -162,10 +162,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence uses the PASSIVE voice correctly?",
     "opts": [
-      "The report was finished by Anna yesterday.",
       "The report finished Anna yesterday.",
-      "Anna was finished the report yesterday.",
-      "The report was finish by Anna."
+      "The report was finish by Anna.",
+      "The report was finished by Anna yesterday.",
+      "Anna was finished the report yesterday."
     ],
     "ans": "The report was finished by Anna yesterday.",
     "exp": "Pasif: Subject (The report) + to be (was) + Past Participle (finished)."
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct preposition: \"I am writing to complain ___ the poor service.\"",
     "opts": [
-      "about",
       "for",
-      "to",
-      "with"
+      "about",
+      "with",
+      "to"
     ],
     "ans": "about",
     "exp": "Kata kerja \"complain\" diikuti oleh preposisi \"about\" untuk menunjukkan hal yang dikeluhkan."
@@ -184,10 +184,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the purpose of a thesis statement in an essay?",
     "opts": [
-      "To greet the reader",
       "To state the main argument or focus of the essay",
       "To ask a rhetorical question",
-      "To give a dictionary definition"
+      "To give a dictionary definition",
+      "To greet the reader"
     ],
     "ans": "To state the main argument or focus of the essay",
     "exp": "Thesis statement berada di paragraf pertama untuk menjabarkan argumen/titik berat esai."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the compound adjective: \"She bought a ___ car.\"",
     "opts": [
-      "very fast",
       "brand-new",
       "beautifully",
-      "red"
+      "red",
+      "very fast"
     ],
     "ans": "brand-new",
     "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
@@ -206,9 +206,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the error: \"I look forward to hear from you soon.\"",
     "opts": [
-      "look forward",
-      "to hear",
       "from you",
+      "to hear",
+      "look forward",
       "soon"
     ],
     "ans": "to hear",
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
     "opts": [
-      "for",
       "from",
-      "with",
-      "about"
+      "about",
+      "for",
+      "with"
     ],
     "ans": "for",
     "exp": "\"Apologise\" selalu diikut oleh \"for\" ketika merujuk pada alasan (apologise for something)."
@@ -249,30 +249,30 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What indicates true proficiency?",
     "opts": [
+      "Using passive voice",
       "Knowing 1000 words",
       "Typing fast",
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "The ability to weave sentences into a coherent paragraph"
     ],
     "ans": "The ability to weave sentences into a coherent paragraph"
   },
   {
     "q": "How does reading literature help?",
     "opts": [
-      "It wastes time",
       "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "It wastes time",
+      "It makes you sleepy",
+      "It hurts visibility"
     ],
     "ans": "It exposes students to varied structures and registers"
   },
   {
     "q": "What is the primary objective of writing?",
     "opts": [
+      "To write long sentences",
       "To confuse the reader",
       "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "To get a high score"
     ],
     "ans": "To convey ideas clearly and concisely"
   },
@@ -280,9 +280,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "How is mastery achieved?",
     "opts": [
       "Through consistent, deliberate practice",
-      "Overnight magically",
       "By buying special pens",
-      "By ignoring rules"
+      "By ignoring rules",
+      "Overnight magically"
     ],
     "ans": "Through consistent, deliberate practice"
   }

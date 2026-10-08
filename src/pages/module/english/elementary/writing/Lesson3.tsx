@@ -32,9 +32,9 @@ const BUILD_ITEMS = [
     prompt: "Please call me ___ as possible.",
     blank: "as soon",
     options: [
-      "as late",
+      "very fast",
       "as soon",
-      "very fast"
+      "as late"
     ],
     answer: "as soon"
   }
@@ -43,10 +43,10 @@ const QUIZ = [
   {
     q: "Kalimat menunjukkan kedaruratan:",
     opts: [
-      "I like ice cream.",
       "Call me immediately!",
       "See you tomorrow.",
-      "Nice day."
+      "Nice day.",
+      "I like ice cream."
     ],
     ans: "Call me immediately!",
     exp: "\"Immediately\" = segera."
@@ -55,9 +55,9 @@ const QUIZ = [
     q: "\"___ is an emergency.\"",
     opts: [
       "He",
-      "It",
       "They",
-      "We"
+      "We",
+      "It"
     ],
     ans: "It",
     exp: "\"It\" untuk merujuk situasi."
@@ -66,9 +66,9 @@ const QUIZ = [
     q: "ASAP artinya:",
     opts: [
       "After School And Play",
-      "As Soon As Possible",
+      "Any Service At Price",
       "Always Stay And Pray",
-      "Any Service At Price"
+      "As Soon As Possible"
     ],
     ans: "As Soon As Possible",
     exp: "ASAP = As Soon As Possible."
@@ -76,10 +76,10 @@ const QUIZ = [
   {
     q: "\"I cannot come ___ I am sick.\"",
     opts: [
-      "because",
-      "but",
       "so",
-      "and"
+      "and",
+      "but",
+      "because"
     ],
     ans: "because",
     exp: "\"Because\" memberikan alasan."
@@ -87,10 +87,10 @@ const QUIZ = [
   {
     q: "Catatan darurat yang baik harus berisi:",
     opts: [
-      "Masalah + Aksi yang diminta",
       "Hanya nama",
-      "Cerita panjang",
-      "Emoji saja"
+      "Masalah + Aksi yang diminta",
+      "Emoji saja",
+      "Cerita panjang"
     ],
     ans: "Masalah + Aksi yang diminta",
     exp: "Harus jelas dan actionable."
@@ -98,10 +98,10 @@ const QUIZ = [
   {
     q: "\"Please ___ the doctor.\"",
     opts: [
-      "calling",
-      "called",
       "call",
-      "calls"
+      "calls",
+      "calling",
+      "called"
     ],
     ans: "call",
     exp: "Imperatif = verb dasar."
@@ -110,9 +110,9 @@ const QUIZ = [
     q: "\"I am ___ well today.\"",
     opts: [
       "no",
-      "not",
+      "nothing",
       "none",
-      "nothing"
+      "not"
     ],
     ans: "not",
     exp: "\"Not\" untuk negasi setelah to be."
@@ -120,10 +120,10 @@ const QUIZ = [
   {
     q: "\"Don\\'t forget ___ lock the door.\"",
     opts: [
-      "to",
       "for",
       "at",
-      "in"
+      "in",
+      "to"
     ],
     ans: "to",
     exp: "\"Don\\'t forget to\" + verb."
@@ -131,10 +131,10 @@ const QUIZ = [
   {
     q: "Catatan paling informatif:",
     opts: [
-      "I left.",
       "Gone.",
-      "Mom, went to clinic. Back at 5 PM.",
-      "Bye."
+      "I left.",
+      "Bye.",
+      "Mom, went to clinic. Back at 5 PM."
     ],
     ans: "Mom, went to clinic. Back at 5 PM.",
     exp: "Berisi tujuan dan perkiraan waktu."
@@ -143,9 +143,9 @@ const QUIZ = [
     q: "\"There ___ an accident on the road.\"",
     opts: [
       "is",
-      "are",
       "am",
-      "be"
+      "be",
+      "are"
     ],
     ans: "is",
     exp: "\"There is\" untuk singular noun."
@@ -154,9 +154,9 @@ const QUIZ = [
     q: "\"Please call me ___ soon as possible.\"",
     opts: [
       "so",
-      "as",
       "very",
-      "too"
+      "too",
+      "as"
     ],
     ans: "as",
     exp: "\"As soon as possible\" = ASAP."
@@ -164,10 +164,10 @@ const QUIZ = [
   {
     q: "\"I ___ to leave quickly.\"",
     opts: [
+      "needed",
       "needs",
       "need",
-      "needing",
-      "needed"
+      "needing"
     ],
     ans: "need",
     exp: "\"I need to\" = saya perlu."
@@ -176,8 +176,8 @@ const QUIZ = [
     q: "\"It is very ___!\"",
     opts: [
       "urgently",
-      "urgent",
       "urgency",
+      "urgent",
       "urge"
     ],
     ans: "urgent",
@@ -187,9 +187,9 @@ const QUIZ = [
     q: "\"___ worry about me.\"",
     opts: [
       "Do",
-      "Don\\'t",
+      "Didn\\'t",
       "Doesn\\'t",
-      "Didn\\'t"
+      "Don\\'t"
     ],
     ans: "Don\\'t",
     exp: "\"Don\\'t worry\" = jangan khawatir."
@@ -197,10 +197,10 @@ const QUIZ = [
   {
     q: "\"I will ___ home soon.\"",
     opts: [
-      "comes",
       "coming",
       "come",
-      "came"
+      "came",
+      "comes"
     ],
     ans: "come",
     exp: "\"Will\" + verb dasar."
@@ -208,10 +208,10 @@ const QUIZ = [
   {
     q: "\"Take ___ of yourself.\"",
     opts: [
-      "caring",
       "cared",
-      "care",
-      "cares"
+      "cares",
+      "caring",
+      "care"
     ],
     ans: "care",
     exp: "\"Take care\" = jaga diri."
@@ -219,9 +219,9 @@ const QUIZ = [
   {
     q: "\"Something bad ___ happened.\"",
     opts: [
-      "have",
-      "has",
       "having",
+      "has",
+      "have",
       "had"
     ],
     ans: "has",
@@ -230,10 +230,10 @@ const QUIZ = [
   {
     q: "\"I feel very ___.\"",
     opts: [
-      "sickly",
       "sick",
-      "sicker",
-      "sicks"
+      "sicks",
+      "sickly",
+      "sicker"
     ],
     ans: "sick",
     exp: "Adjective setelah \"feel\"."
@@ -242,8 +242,8 @@ const QUIZ = [
     q: "\"Call the ambulance ___!\"",
     opts: [
       "quick",
-      "quickly",
       "quicker",
+      "quickly",
       "quickest"
     ],
     ans: "quickly",
@@ -252,10 +252,10 @@ const QUIZ = [
   {
     q: "\"Help! I ___ my way.\"",
     opts: [
-      "lose",
-      "lost",
       "losing",
-      "loses"
+      "loses",
+      "lose",
+      "lost"
     ],
     ans: "lost",
     exp: "Past tense untuk situasi saat ini."

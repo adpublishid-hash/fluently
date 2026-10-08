@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - What is the passenger\'s name?', opts: ["John Doe","Alex Smith","Sky Airlines","JFK"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Where is the flight going?', opts: ["Gate 22B","New York (JFK)","London (LHR)","Paris"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - What is the flight number?', opts: ["LHR","JFK","22B","SK404"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - What time does boarding start?', opts: ["09:00 AM","10:15 AM","12 OCT","09:15 AM"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - What is the passenger\'s name?', opts: ["JFK", "John Doe", "Alex Smith", "Sky Airlines"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Where is the flight going?', opts: ["New York (JFK)", "Paris", "Gate 22B", "London (LHR)"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - What is the flight number?', opts: ["22B", "SK404", "LHR", "JFK"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - What time does boarding start?', opts: ["09:00 AM", "12 OCT", "10:15 AM", "09:15 AM"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Review) Latihan 5 - Which gate should the passenger go to?', opts: ["SK404","22B","12","JFK"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - What is the passenger\'s name?', opts: ["JFK","John Doe","Sky Airlines","Alex Smith"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Where is the flight going?', opts: ["Paris","New York (JFK)","London (LHR)","Gate 22B"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - What is the flight number?', opts: ["JFK","LHR","SK404","22B"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - What time does boarding start?', opts: ["12 OCT","10:15 AM","09:00 AM","09:15 AM"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - Which gate should the passenger go to?', opts: ["22B","SK404","12","JFK"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - What is the passenger\'s name?', opts: ["Alex Smith","John Doe","Sky Airlines","JFK"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Where is the flight going?', opts: ["Paris","Gate 22B","New York (JFK)","London (LHR)"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - What is the flight number?', opts: ["LHR","22B","JFK","SK404"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - What time does boarding start?', opts: ["12 OCT","09:15 AM","10:15 AM","09:00 AM"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - Which gate should the passenger go to?', opts: ["12","JFK","22B","SK404"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - What is the passenger\'s name?', opts: ["John Doe","Alex Smith","Sky Airlines","JFK"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Where is the flight going?', opts: ["New York (JFK)","Paris","London (LHR)","Gate 22B"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - What is the passenger\'s name?', opts: ["John Doe", "JFK", "Alex Smith", "Sky Airlines"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Where is the flight going?', opts: ["London (LHR)", "Gate 22B", "Paris", "New York (JFK)"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - What is the flight number?', opts: ["JFK", "22B", "SK404", "LHR"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - What time does boarding start?', opts: ["10:15 AM", "09:15 AM", "09:00 AM", "12 OCT"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - Which gate should the passenger go to?', opts: ["SK404", "JFK", "22B", "12"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - What is the passenger\'s name?', opts: ["Sky Airlines", "JFK", "John Doe", "Alex Smith"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Where is the flight going?', opts: ["Gate 22B", "Paris", "London (LHR)", "New York (JFK)"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - What is the flight number?', opts: ["LHR", "SK404", "JFK", "22B"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - What time does boarding start?', opts: ["12 OCT", "10:15 AM", "09:00 AM", "09:15 AM"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - Which gate should the passenger go to?', opts: ["22B", "SK404", "12", "JFK"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - What is the passenger\'s name?', opts: ["JFK", "John Doe", "Alex Smith", "Sky Airlines"], ans: "Alex Smith", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Where is the flight going?', opts: ["New York (JFK)", "Gate 22B", "London (LHR)", "Paris"], ans: "London (LHR)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 18 - What is the flight number?', opts: ["JFK","22B","SK404","LHR"], ans: "SK404", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - What time does boarding start?', opts: ["09:00 AM","10:15 AM","12 OCT","09:15 AM"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - Which gate should the passenger go to?', opts: ["JFK","22B","SK404","12"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 19 - What time does boarding start?', opts: ["10:15 AM", "09:15 AM", "09:00 AM", "12 OCT"], ans: "09:15 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - Which gate should the passenger go to?', opts: ["12", "JFK", "22B", "SK404"], ans: "22B", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'What is the passenger\'s name?', opts: ["JFK","Sky Airlines","John Doe","Alex Smith"], ans: 'Alex Smith' },
-    { q: 'Where is the flight going?', opts: ["London (LHR)","New York (JFK)","Gate 22B","Paris"], ans: 'London (LHR)' },
-    { q: 'What is the flight number?', opts: ["LHR","JFK","22B","SK404"], ans: 'SK404' },
-    { q: 'What time does boarding start?', opts: ["09:00 AM","12 OCT","09:15 AM","10:15 AM"], ans: '09:15 AM' },
-    { q: 'Which gate should the passenger go to?', opts: ["12","22B","JFK","SK404"], ans: '22B' },
+    { q: 'What is the passenger\'s name?', opts: ["Sky Airlines", "Alex Smith", "JFK", "John Doe"], ans: 'Alex Smith' },
+    { q: 'Where is the flight going?', opts: ["New York (JFK)", "Paris", "London (LHR)", "Gate 22B"], ans: 'London (LHR)' },
+    { q: 'What is the flight number?', opts: ["JFK", "LHR", "SK404", "22B"], ans: 'SK404' },
+    { q: 'What time does boarding start?', opts: ["09:15 AM", "10:15 AM", "12 OCT", "09:00 AM"], ans: '09:15 AM' },
+    { q: 'Which gate should the passenger go to?', opts: ["JFK", "22B", "12", "SK404"], ans: '22B' },
   ],
 };
 

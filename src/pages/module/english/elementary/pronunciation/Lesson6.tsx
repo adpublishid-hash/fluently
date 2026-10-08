@@ -81,28 +81,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "Apa yang terjadi pada 'Red door'?",
-    options: ['Kita mengucapkan dua suara D', 'Kita mengucapkan satu suara D panjang'],
+    options: ['Kita mengucapkan satu suara D panjang', 'Kita mengucapkan dua suara D'],
     answer: 'Kita mengucapkan satu suara D panjang',
     explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
   },
   {
     id: 3,
     question: "Suara penghubung apa yang muncul di 'Go out'?",
-    options: ['/w/', '/y/', '/r/'],
+    options: ['/w/', '/r/', '/y/'],
     answer: '/w/',
     explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
   },
   {
     id: 4,
     question: "Mengapa kita menghubungkan kata-kata?",
-    options: ['Untuk berbicara lebih cepat dan lancar', 'Untuk membingungkan orang'],
+    options: ['Untuk membingungkan orang', 'Untuk berbicara lebih cepat dan lancar'],
     answer: 'Untuk berbicara lebih cepat dan lancar',
     explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
   },
   {
     id: 5,
     question: "Dengarkan: 'I agree'. Apa yang menghubungkan I dan A?",
-    options: ['/w/', '/y/ (j)', 'Tidak ada'],
+    options: ['/y/ (j)', 'Tidak ada', '/w/'],
     answer: '/y/ (j)',
     explanation: "Vokal senyum (I) + Vokal (Agree) = I-y-agree."
   },
@@ -116,7 +116,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "Apa yang terjadi pada 'Red door' ?",
-    options: ["Kita mengucapkan dua suara D","Kita mengucapkan satu suara D panjang"],
+    options: ["Kita mengucapkan satu suara D panjang", "Kita mengucapkan dua suara D"],
     answer: "Kita mengucapkan satu suara D panjang",
     explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
   },
@@ -130,14 +130,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "Mengapa kita menghubungkan kata-kata ?",
-    options: ["Untuk berbicara lebih cepat dan lancar","Untuk membingungkan orang"],
+    options: ["Untuk membingungkan orang", "Untuk berbicara lebih cepat dan lancar"],
     answer: "Untuk berbicara lebih cepat dan lancar",
     explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
   },
   {
     id: 10,
     question: "Simak kata: 'I agree'. Apa yang menghubungkan I dan A...",
-    options: ["/w/","/y/ (j)","Tidak ada"],
+    options: ["/y/ (j)", "Tidak ada", "/w/"],
     answer: "/y/ (j)",
     explanation: "Vokal senyum (I) + Vokal (Agree) = I-y-agree."
   },
@@ -158,14 +158,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Suara penghubung apa yang muncul di 'Go out'...",
-    options: ["/w/","/y/","/r/"],
+    options: ["/y/", "/w/", "/r/"],
     answer: "/w/",
     explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
   },
   {
     id: 14,
     question: "Mengapa kita menghubungkan kata-kata?",
-    options: ["Untuk berbicara lebih cepat dan lancar","Untuk membingungkan orang"],
+    options: ["Untuk membingungkan orang", "Untuk berbicara lebih cepat dan lancar"],
     answer: "Untuk berbicara lebih cepat dan lancar",
     explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
   },
@@ -179,28 +179,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Bagaimana penutur asli biasanya mengucapkan 'Stop it'...",
-    options: ["Stop: it (Jeda)","Sto-pit (Terhubung)"],
+    options: ["Sto-pit (Terhubung)", "Stop: it (Jeda)"],
     answer: "Sto-pit (Terhubung)",
     explanation: "Konsonan P terhubung ke Vokal I, terdengar seperti satu kata."
   },
   {
     id: 17,
     question: "Apa yang terjadi pada 'Red door'?",
-    options: ["Kita mengucapkan dua suara D","Kita mengucapkan satu suara D panjang"],
+    options: ["Kita mengucapkan satu suara D panjang", "Kita mengucapkan dua suara D"],
     answer: "Kita mengucapkan satu suara D panjang",
     explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
   },
   {
     id: 18,
     question: "Suara penghubung apa yang muncul di 'Go out'?",
-    options: ["/w/","/y/","/r/"],
+    options: ["/w/", "/r/", "/y/"],
     answer: "/w/",
     explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
   },
   {
     id: 19,
     question: "Mengapa kita menghubungkan kata-kata?",
-    options: ["Untuk berbicara lebih cepat dan lancar","Untuk membingungkan orang"],
+    options: ["Untuk membingungkan orang", "Untuk berbicara lebih cepat dan lancar"],
     answer: "Untuk berbicara lebih cepat dan lancar",
     explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
   },

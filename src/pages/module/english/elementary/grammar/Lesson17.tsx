@@ -79,28 +79,28 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "I was tired, ___ I went to bed early.",
-    options: ['because', 'but', 'so'],
+    options: ['but', 'because', 'so'],
     answer: 'so',
     explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
   },
   {
     id: 2,
     question: "He likes football, ___ he doesn't like tennis.",
-    options: ['and', 'but', 'or'],
+    options: ['and', 'or', 'but'],
     answer: 'but',
     explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
   },
   {
     id: 3,
     question: "She is studying ___ she has an exam tomorrow.",
-    options: ['because', 'so', 'and'],
+    options: ['and', 'because', 'so'],
     answer: 'because',
     explanation: "'Because' memperkenalkan alasannya (ada ujian)."
   },
   {
     id: 4,
     question: "Do you want to go to the cinema ___ the park?",
-    options: ['or', 'so', 'because'],
+    options: ['because', 'or', 'so'],
     answer: 'or',
     explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
   },
@@ -114,14 +114,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "I was tired, ___ I went to bed early.",
-    options: ["because","but","so"],
+    options: ["but", "because", "so"],
     answer: "so",
     explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
   },
   {
     id: 7,
     question: "Mark likes football, ___ he doesn't like tennis.",
-    options: ["and","but","or"],
+    options: ["or", "but", "and"],
     answer: "but",
     explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
   },
@@ -135,7 +135,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "Do you want to go to the cinema ___ the park?",
-    options: ["or","so","because"],
+    options: ["because", "or", "so"],
     answer: "or",
     explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
   },
@@ -149,28 +149,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "I was tired, ___ I went to bed early.",
-    options: ["because","but","so"],
+    options: ["but", "because", "so"],
     answer: "so",
     explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
   },
   {
     id: 12,
     question: "She likes football, ___ he doesn't like tennis.",
-    options: ["and","but","or"],
+    options: ["but", "or", "and"],
     answer: "but",
     explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
   },
   {
     id: 13,
     question: "The girl is studying ___ he has an exam tomorrow.",
-    options: ["because","so","and"],
+    options: ["and", "because", "so"],
     answer: "because",
     explanation: "'Because' memperkenalkan alasannya (ada ujian)."
   },
   {
     id: 14,
     question: "Do you want to go to the cinema ___ the park?",
-    options: ["or","so","because"],
+    options: ["because", "or", "so"],
     answer: "or",
     explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
   },
@@ -184,35 +184,35 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "I was tired, ___ I went to bed early.",
-    options: ["because","but","so"],
+    options: ["but", "because", "so"],
     answer: "so",
     explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
   },
   {
     id: 17,
     question: "He likes golf, ___ he doesn't like tennis.",
-    options: ["and","but","or"],
+    options: ["but", "or", "and"],
     answer: "but",
     explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
   },
   {
     id: 18,
     question: "He is studying ___ the girl has an exam tomorrow.",
-    options: ["because","so","and"],
+    options: ["and", "because", "so"],
     answer: "because",
     explanation: "'Because' memperkenalkan alasannya (ada ujian)."
   },
   {
     id: 19,
     question: "Do you want to go to the cinema ___ the park?",
-    options: ["or","so","because"],
+    options: ["because", "or", "so"],
     answer: "or",
     explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
   },
   {
     id: 20,
     question: "I have a uncle ___ a sister.",
-    options: ["but","and","so"],
+    options: ["so", "but", "and"],
     answer: "and",
     explanation: "'And' menambahkan informasi (saudara laki-laki + saudara perempuan)."
   }

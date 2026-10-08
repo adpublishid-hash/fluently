@@ -12,8 +12,8 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's expressing opinions? [Q1]",
     "options": [
-      "What is your opinion problem?",
       "I would love to hear about your thoughts on expressing opinions.",
+      "What is your opinion problem?",
       "Tell me your opinion now."
     ],
     "answer": "I would love to hear about your thoughts on expressing opinions.",
@@ -34,8 +34,8 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about opinion? [Q3]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -56,9 +56,9 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about expressing opinions; ____, we should also discuss the future impacts.\"",
     "options": [
+      "Furthermore",
       "Because",
-      "Despite",
-      "Furthermore"
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding opinion? [Q6]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's expressing opinions? [Q7]",
     "options": [
+      "Tell me your opinion now.",
       "What is your opinion problem?",
-      "I would love to hear about your thoughts on expressing opinions.",
-      "Tell me your opinion now."
+      "I would love to hear about your thoughts on expressing opinions."
     ],
     "answer": "I would love to hear about your thoughts on expressing opinions.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -100,9 +100,9 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about opinion? [Q9]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -122,9 +122,9 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about expressing opinions; ____, we should also discuss the future impacts.\"",
     "options": [
+      "Furthermore",
       "Because",
-      "Despite",
-      "Furthermore"
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -133,9 +133,9 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding opinion? [Q12]",
     "options": [
+      "Bite the bullet",
       "A piece of cake",
-      "Under the weather",
-      "Bite the bullet"
+      "Under the weather"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -166,9 +166,9 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about opinion? [Q15]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -188,9 +188,9 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about expressing opinions; ____, we should also discuss the future impacts.\"",
     "options": [
+      "Furthermore",
       "Because",
-      "Despite",
-      "Furthermore"
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding opinion? [Q18]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."

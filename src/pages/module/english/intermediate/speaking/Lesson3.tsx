@@ -12,8 +12,8 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's digital life? [Q1]",
     "options": [
-      "What is your digital problem?",
       "I would love to hear about your thoughts on digital life.",
+      "What is your digital problem?",
       "Tell me your digital now."
     ],
     "answer": "I would love to hear about your thoughts on digital life.",
@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing digital, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -35,8 +35,8 @@ const QUIZ_QUESTIONS = [
     "question": "Which response strongly agrees with a statement about digital? [Q3]",
     "options": [
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I couldn't agree more.",
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -45,9 +45,9 @@ const QUIZ_QUESTIONS = [
     "id": 4,
     "question": "If you want to interrupt politely during a conversation about digital, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -56,9 +56,9 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about digital life; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -67,8 +67,8 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding digital? [Q6]",
     "options": [
-      "A piece of cake",
       "Under the weather",
+      "A piece of cake",
       "Bite the bullet"
     ],
     "answer": "A piece of cake",
@@ -78,8 +78,8 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's digital life? [Q7]",
     "options": [
-      "What is your digital problem?",
       "I would love to hear about your thoughts on digital life.",
+      "What is your digital problem?",
       "Tell me your digital now."
     ],
     "answer": "I would love to hear about your thoughts on digital life.",
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing digital, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -111,9 +111,9 @@ const QUIZ_QUESTIONS = [
     "id": 10,
     "question": "If you want to interrupt politely during a conversation about digital, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -122,9 +122,9 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about digital life; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -145,8 +145,8 @@ const QUIZ_QUESTIONS = [
     "question": "What is the most polite way to ask about someone's digital life? [Q13]",
     "options": [
       "What is your digital problem?",
-      "I would love to hear about your thoughts on digital life.",
-      "Tell me your digital now."
+      "Tell me your digital now.",
+      "I would love to hear about your thoughts on digital life."
     ],
     "answer": "I would love to hear about your thoughts on digital life.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing digital, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,8 +166,8 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about digital? [Q15]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -177,9 +177,9 @@ const QUIZ_QUESTIONS = [
     "id": 16,
     "question": "If you want to interrupt politely during a conversation about digital, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -188,9 +188,9 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about digital life; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Because"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -200,8 +200,8 @@ const QUIZ_QUESTIONS = [
     "question": "Which idiom best describes a very easy task regarding digital? [Q18]",
     "options": [
       "A piece of cake",
-      "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "Under the weather"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's digital life? [Q19]",
     "options": [
-      "What is your digital problem?",
+      "Tell me your digital now.",
       "I would love to hear about your thoughts on digital life.",
-      "Tell me your digital now."
+      "What is your digital problem?"
     ],
     "answer": "I would love to hear about your thoughts on digital life.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing digital, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

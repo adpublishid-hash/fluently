@@ -53,26 +53,26 @@ const ECON_POLITICS_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "A period of temporary economic decline is called a ___.", options: ['Recession', 'Inflation', 'Revenue'], answer: 'Recession', explanation: "Recession (Resesi) adalah periode ketika ekonomi menyusut." },
-  { id: 2, question: "In science, a ___ is an idea you test through experiments.", options: ['Theory', 'Hypothesis', 'Gravity'], answer: 'Hypothesis', explanation: "Hypothesis (Hipotesis) adalah penjelasan yang diusulkan berdasarkan bukti terbatas." },
-  { id: 3, question: "Art that does not attempt to represent external reality is called ___.", options: ['Aesthetic', 'Abstract', 'Narrative'], answer: 'Abstract', explanation: "Seni abstrak menggunakan bentuk, warna, dan rupa daripada penggambaran realistis." },
+  { id: 1, question: "A period of temporary economic decline is called a ___.", options: ['Revenue', 'Inflation', 'Recession'], answer: 'Recession', explanation: "Recession (Resesi) adalah periode ketika ekonomi menyusut." },
+  { id: 2, question: "In science, a ___ is an idea you test through experiments.", options: ['Hypothesis', 'Theory', 'Gravity'], answer: 'Hypothesis', explanation: "Hypothesis (Hipotesis) adalah penjelasan yang diusulkan berdasarkan bukti terbatas." },
+  { id: 3, question: "Art that does not attempt to represent external reality is called ___.", options: ['Narrative', 'Aesthetic', 'Abstract'], answer: 'Abstract', explanation: "Seni abstrak menggunakan bentuk, warna, dan rupa daripada penggambaran realistis." },
   { id: 4, question: "The rise in prices over time is known as ___.", options: ['Investment', 'Inflation', 'Currency'], answer: 'Inflation', explanation: "Inflation (Inflasi) adalah tingkat kenaikan harga umum barang dan jasa." },
-  { id: 5, question: "A figure of speech where a word is applied to an object literally not applicable is a ___.", options: ['Metaphor', 'Genre', 'Sculpture'], answer: 'Metaphor', explanation: "Contoh: 'Time is money' adalah metafora." },
-  { id: 6, question: "The force that attracts objects toward the center of the Earth is ___.", options: ['Quantum', 'Gravity', 'Particle'], answer: 'Gravity', explanation: "Gravity (Gravitasi) adalah gaya tarik universal." },
-  { id: 7, question: "A place where scientific research is conducted is a ___.", options: ['Exhibition', 'Laboratory', 'Legislation'], answer: 'Laboratory', explanation: "Laboratory (Laboratorium) adalah tempat untuk penelitian ilmiah." },
+  { id: 5, question: "A figure of speech where a word is applied to an object literally not applicable is a ___.", options: ['Metaphor', 'Sculpture', 'Genre'], answer: 'Metaphor', explanation: "Contoh: 'Time is money' adalah metafora." },
+  { id: 6, question: "The force that attracts objects toward the center of the Earth is ___.", options: ['Gravity', 'Particle', 'Quantum'], answer: 'Gravity', explanation: "Gravity (Gravitasi) adalah gaya tarik universal." },
+  { id: 7, question: "A place where scientific research is conducted is a ___.", options: ['Exhibition', 'Legislation', 'Laboratory'], answer: 'Laboratory', explanation: "Laboratory (Laboratorium) adalah tempat untuk penelitian ilmiah." },
   { id: 8, question: "The principle that living things change over time is ___.", options: ['Innovation', 'Evolution', 'Revolution'], answer: 'Evolution', explanation: "Evolution (Evolusi) adalah perubahan bertahap spesies dari waktu ke waktu." },
-  { id: 9, question: "Money put into a business to make profit is an ___.", options: ['Inflation', 'Investment', 'Revenue'], answer: 'Investment', explanation: "Investment (Investasi) adalah uang yang digunakan untuk menghasilkan keuntungan." },
-  { id: 10, question: "A public display of art is called an ___.", options: ['Symphony', 'Laboratory', 'Exhibition'], answer: 'Exhibition', explanation: "Exhibition (Pameran) adalah tampilan publik karya seni atau barang." },
-  { id: 11, question: "A large musical work for orchestra is a ___.", options: ['Metaphor', 'Symphony', 'Sculpture'], answer: 'Symphony', explanation: "Symphony (Simfoni) adalah komposisi orkestra yang panjang." },
-  { id: 12, question: "The art of conducting international relations is ___.", options: ['Democracy', 'Diplomacy', 'Legislation'], answer: 'Diplomacy', explanation: "Diplomacy (Diplomasi) adalah manajemen hubungan internasional." },
-  { id: 13, question: "A system of government by the whole population is ___.", options: ['Legislation', 'Democracy', 'Policy'], answer: 'Democracy', explanation: "Democracy (Demokrasi) adalah pemerintahan oleh rakyat." },
+  { id: 9, question: "Money put into a business to make profit is an ___.", options: ['Investment', 'Inflation', 'Revenue'], answer: 'Investment', explanation: "Investment (Investasi) adalah uang yang digunakan untuk menghasilkan keuntungan." },
+  { id: 10, question: "A public display of art is called an ___.", options: ['Laboratory', 'Exhibition', 'Symphony'], answer: 'Exhibition', explanation: "Exhibition (Pameran) adalah tampilan publik karya seni atau barang." },
+  { id: 11, question: "A large musical work for orchestra is a ___.", options: ['Sculpture', 'Metaphor', 'Symphony'], answer: 'Symphony', explanation: "Symphony (Simfoni) adalah komposisi orkestra yang panjang." },
+  { id: 12, question: "The art of conducting international relations is ___.", options: ['Legislation', 'Democracy', 'Diplomacy'], answer: 'Diplomacy', explanation: "Diplomacy (Diplomasi) adalah manajemen hubungan internasional." },
+  { id: 13, question: "A system of government by the whole population is ___.", options: ['Democracy', 'Legislation', 'Policy'], answer: 'Democracy', explanation: "Democracy (Demokrasi) adalah pemerintahan oleh rakyat." },
   { id: 14, question: "The appreciation of beauty is ___.", options: ['Aesthetic', 'Abstract', 'Genre'], answer: 'Aesthetic', explanation: "Aesthetic (Estetika) berhubungan dengan keindahan dan apresiasi seni." },
-  { id: 15, question: "A category of artistic composition is a ___.", options: ['Narrative', 'Genre', 'Composition'], answer: 'Genre', explanation: "Genre adalah kategori karya seni berdasarkan gaya atau subject matter." },
-  { id: 16, question: "The introduction of something new is ___.", options: ['Evolution', 'Innovation', 'Variable'], answer: 'Innovation', explanation: "Innovation (Inovasi) adalah penciptaan ide atau metode baru." },
-  { id: 17, question: "A person running for political office is a ___.", options: ['Candidate', 'Currency', 'Policy'], answer: 'Candidate', explanation: "Candidate (Kandidat) adalah seseorang yang mencalonkan diri untuk jabatan." },
+  { id: 15, question: "A category of artistic composition is a ___.", options: ['Genre', 'Narrative', 'Composition'], answer: 'Genre', explanation: "Genre adalah kategori karya seni berdasarkan gaya atau subject matter." },
+  { id: 16, question: "The introduction of something new is ___.", options: ['Innovation', 'Variable', 'Evolution'], answer: 'Innovation', explanation: "Innovation (Inovasi) adalah penciptaan ide atau metode baru." },
+  { id: 17, question: "A person running for political office is a ___.", options: ['Policy', 'Candidate', 'Currency'], answer: 'Candidate', explanation: "Candidate (Kandidat) adalah seseorang yang mencalonkan diri untuk jabatan." },
   { id: 18, question: "A well-substantiated explanation of nature is a ___.", options: ['Hypothesis', 'Theory', 'Variable'], answer: 'Theory', explanation: "Theory (Teori) adalah penjelasan yang didukung oleh banyak bukti." },
   { id: 19, question: "A three-dimensional work of art is a ___.", options: ['Narrative', 'Metaphor', 'Sculpture'], answer: 'Sculpture', explanation: "Sculpture (Patung) adalah seni tiga dimensi yang dibentuk atau dipahat." },
-  { id: 20, question: "Laws passed by a government are ___.", options: ['Diplomacy', 'Legislation', 'Policy'], answer: 'Legislation', explanation: "Legislation (Legislasi) adalah hukum yang dibuat oleh badan legislatif." }
+  { id: 20, question: "Laws passed by a government are ___.", options: ['Legislation', 'Policy', 'Diplomacy'], answer: 'Legislation', explanation: "Legislation (Legislasi) adalah hukum yang dibuat oleh badan legislatif." }
 
 ];
 

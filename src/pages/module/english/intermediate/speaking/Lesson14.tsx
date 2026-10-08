@@ -12,9 +12,9 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's situations and problems? [Q1]",
     "options": [
+      "Tell me your problem now.",
       "What is your problem problem?",
-      "I would love to hear about your thoughts on situations and problems.",
-      "Tell me your problem now."
+      "I would love to hear about your thoughts on situations and problems."
     ],
     "answer": "I would love to hear about your thoughts on situations and problems.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -24,8 +24,8 @@ const QUIZ_QUESTIONS = [
     "question": "Fill the blank: \"When discussing problem, it's important to __ open-minded.\"",
     "options": [
       "keep",
-      "stay",
-      "make"
+      "make",
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about problem? [Q3]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -46,8 +46,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about problem, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -56,9 +56,9 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about situations and problems; ____, we should also discuss the future impacts.\"",
     "options": [
+      "Furthermore",
       "Because",
-      "Despite",
-      "Furthermore"
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -78,8 +78,8 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's situations and problems? [Q7]",
     "options": [
-      "What is your problem problem?",
       "I would love to hear about your thoughts on situations and problems.",
+      "What is your problem problem?",
       "Tell me your problem now."
     ],
     "answer": "I would love to hear about your thoughts on situations and problems.",
@@ -90,8 +90,8 @@ const QUIZ_QUESTIONS = [
     "question": "Fill the blank: \"When discussing problem, it's important to __ open-minded.\"",
     "options": [
       "keep",
-      "stay",
-      "make"
+      "make",
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -100,9 +100,9 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about problem? [Q9]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -112,8 +112,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about problem, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -122,9 +122,9 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about situations and problems; ____, we should also discuss the future impacts.\"",
     "options": [
+      "Furthermore",
       "Because",
-      "Despite",
-      "Furthermore"
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -133,9 +133,9 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding problem? [Q12]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -156,8 +156,8 @@ const QUIZ_QUESTIONS = [
     "question": "Fill the blank: \"When discussing problem, it's important to __ open-minded.\"",
     "options": [
       "keep",
-      "stay",
-      "make"
+      "make",
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,9 +166,9 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about problem? [Q15]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -178,8 +178,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about problem, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -188,9 +188,9 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about situations and problems; ____, we should also discuss the future impacts.\"",
     "options": [
+      "Furthermore",
       "Because",
-      "Despite",
-      "Furthermore"
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding problem? [Q18]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -211,8 +211,8 @@ const QUIZ_QUESTIONS = [
     "question": "What is the most polite way to ask about someone's situations and problems? [Q19]",
     "options": [
       "What is your problem problem?",
-      "I would love to hear about your thoughts on situations and problems.",
-      "Tell me your problem now."
+      "Tell me your problem now.",
+      "I would love to hear about your thoughts on situations and problems."
     ],
     "answer": "I would love to hear about your thoughts on situations and problems.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -222,8 +222,8 @@ const QUIZ_QUESTIONS = [
     "question": "Fill the blank: \"When discussing problem, it's important to __ open-minded.\"",
     "options": [
       "keep",
-      "stay",
-      "make"
+      "make",
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

@@ -53,26 +53,26 @@ const SOCIAL_ISSUES_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "A person who is a legal member of a country is a ___.", options: ['Refugee', 'Citizen', 'Volunteer'], answer: 'Citizen', explanation: "A citizen (Warga negara) memiliki hak penuh di suatu negara." },
-  { id: 2, question: "When people vote to choose a leader, it is called an ___.", options: ['Election', 'Infection', 'Exception'], answer: 'Election', explanation: "Election (Pemilihan umum) adalah proses pengambilan keputusan formal." },
-  { id: 3, question: "People who do not have a place to live are facing ___.", options: ['Poverty', 'Homelessness', 'Freedom'], answer: 'Homelessness', explanation: "Homelessness (Tunawisma) berarti tidak memiliki rumah." },
+  { id: 1, question: "A person who is a legal member of a country is a ___.", options: ['Volunteer', 'Refugee', 'Citizen'], answer: 'Citizen', explanation: "A citizen (Warga negara) memiliki hak penuh di suatu negara." },
+  { id: 2, question: "When people vote to choose a leader, it is called an ___.", options: ['Election', 'Exception', 'Infection'], answer: 'Election', explanation: "Election (Pemilihan umum) adalah proses pengambilan keputusan formal." },
+  { id: 3, question: "People who do not have a place to live are facing ___.", options: ['Freedom', 'Homelessness', 'Poverty'], answer: 'Homelessness', explanation: "Homelessness (Tunawisma) berarti tidak memiliki rumah." },
   { id: 4, question: "Treating everyone the same way is called ___.", options: ['Diversity', 'Equality', 'Minority'], answer: 'Equality', explanation: "Equality (Kesetaraan) adalah keadaan menjadi setara." },
-  { id: 5, question: "He works for free to help others. He is a ___.", options: ['Candidate', 'Volunteer', 'Employee'], answer: 'Volunteer', explanation: "Volunteer (Relawan) menawarkan jasa tanpa bayaran." },
-  { id: 6, question: "The ___ of Indonesia is very diverse.", options: ['community', 'poverty', 'unemployment'], answer: 'community', explanation: "Community (Komunitas) adalah kelompok orang yang tinggal di area yang sama." },
-  { id: 7, question: "All citizens have basic ___ like freedom of speech.", options: ['crimes', 'rights', 'protests'], answer: 'rights', explanation: "Rights (Hak) adalah hal-hal yang Anda diizinkan untuk lakukan atau miliki secara legal." },
+  { id: 5, question: "He works for free to help others. He is a ___.", options: ['Employee', 'Candidate', 'Volunteer'], answer: 'Volunteer', explanation: "Volunteer (Relawan) menawarkan jasa tanpa bayaran." },
+  { id: 6, question: "The ___ of Indonesia is very diverse.", options: ['unemployment', 'poverty', 'community'], answer: 'community', explanation: "Community (Komunitas) adalah kelompok orang yang tinggal di area yang sama." },
+  { id: 7, question: "All citizens have basic ___ like freedom of speech.", options: ['protests', 'rights', 'crimes'], answer: 'rights', explanation: "Rights (Hak) adalah hal-hal yang Anda diizinkan untuk lakukan atau miliki secara legal." },
   { id: 8, question: "Unfair treatment based on race or gender is ___.", options: ['equality', 'discrimination', 'diversity'], answer: 'discrimination', explanation: "Discrimination (Diskriminasi) adalah perlakuan tidak adil terhadap kelompok tertentu." },
-  { id: 9, question: "People who flee war and seek safety in another country are ___.", options: ['volunteers', 'refugees', 'candidates'], answer: 'refugees', explanation: "Refugees (Pengungsi) melarikan diri dari bahaya ke negara lain." },
-  { id: 10, question: "The government's new health ___ will help many people.", options: ['protest', 'policy', 'crime'], answer: 'policy', explanation: "Policy (Kebijakan) adalah rencana tindakan resmi yang diadopsi oleh pemerintah." },
-  { id: 11, question: "People went to the streets to ___ against injustice.", options: ['campaign', 'protest', 'volunteer'], answer: 'protest', explanation: "To protest (Memprotes) berarti menunjukkan ketidaksetujuan terhadap sesuatu." },
+  { id: 9, question: "People who flee war and seek safety in another country are ___.", options: ['candidates', 'refugees', 'volunteers'], answer: 'refugees', explanation: "Refugees (Pengungsi) melarikan diri dari bahaya ke negara lain." },
+  { id: 10, question: "The government's new health ___ will help many people.", options: ['crime', 'protest', 'policy'], answer: 'policy', explanation: "Policy (Kebijakan) adalah rencana tindakan resmi yang diadopsi oleh pemerintah." },
+  { id: 11, question: "People went to the streets to ___ against injustice.", options: ['volunteer', 'campaign', 'protest'], answer: 'protest', explanation: "To protest (Memprotes) berarti menunjukkan ketidaksetujuan terhadap sesuatu." },
   { id: 12, question: "The presidential ___ will run for three months.", options: ['charity', 'campaign', 'generation'], answer: 'campaign', explanation: "Campaign (Kampanye) adalah serangkaian kegiatan terencana untuk mencapai tujuan tertentu." },
-  { id: 13, question: "There is a big gap between the rich and poor, showing ___.", options: ['equality', 'inequality', 'privilege'], answer: 'inequality', explanation: "Inequality (Ketidaksetaraan) adalah perbedaan dalam status, hak, dan kesempatan." },
+  { id: 13, question: "There is a big gap between the rich and poor, showing ___.", options: ['privilege', 'inequality', 'equality'], answer: 'inequality', explanation: "Inequality (Ketidaksetaraan) adalah perbedaan dalam status, hak, dan kesempatan." },
   { id: 14, question: "Breaking into someone's house is a ___.", options: ['crime', 'right', 'freedom'], answer: 'crime', explanation: "Crime (Kejahatan) adalah tindakan yang melanggar hukum." },
-  { id: 15, question: "Many people lost jobs due to high ___.", options: ['diversity', 'unemployment', 'charity'], answer: 'unemployment', explanation: "Unemployment (Pengangguran) adalah kondisi tidak memiliki pekerjaan." },
-  { id: 16, question: "We donated money to ___ to help the poor.", options: ['crime', 'charity', 'protest'], answer: 'charity', explanation: "Charity (Badan amal) adalah organisasi yang membantu orang yang membutuhkan." },
-  { id: 17, question: "Living without enough money is called ___.", options: ['freedom', 'poverty', 'justice'], answer: 'poverty', explanation: "Poverty (Kemiskinan) adalah keadaan sangat miskin." },
-  { id: 18, question: "A system where people choose their leaders is a ___.", options: ['democracy', 'minority', 'generation'], answer: 'democracy', explanation: "Democracy (Demokrasi) adalah pemerintahan oleh rakyat melalui perwakilan yang dipilih." },
+  { id: 15, question: "Many people lost jobs due to high ___.", options: ['unemployment', 'charity', 'diversity'], answer: 'unemployment', explanation: "Unemployment (Pengangguran) adalah kondisi tidak memiliki pekerjaan." },
+  { id: 16, question: "We donated money to ___ to help the poor.", options: ['charity', 'protest', 'crime'], answer: 'charity', explanation: "Charity (Badan amal) adalah organisasi yang membantu orang yang membutuhkan." },
+  { id: 17, question: "Living without enough money is called ___.", options: ['justice', 'poverty', 'freedom'], answer: 'poverty', explanation: "Poverty (Kemiskinan) adalah keadaan sangat miskin." },
+  { id: 18, question: "A system where people choose their leaders is a ___.", options: ['democracy', 'generation', 'minority'], answer: 'democracy', explanation: "Democracy (Demokrasi) adalah pemerintahan oleh rakyat melalui perwakilan yang dipilih." },
   { id: 19, question: "The ___ will debate the new law tonight.", options: ['government', 'refugee', 'charity'], answer: 'government', explanation: "Government (Pemerintah) adalah kelompok orang yang mengendalikan negara." },
-  { id: 20, question: "Fair treatment under the law is called ___.", options: ['discrimination', 'justice', 'poverty'], answer: 'justice', explanation: "Justice (Keadilan) adalah perilaku yang adil atau pengobatan." }
+  { id: 20, question: "Fair treatment under the law is called ___.", options: ['discrimination', 'poverty', 'justice'], answer: 'justice', explanation: "Justice (Keadilan) adalah perilaku yang adil atau pengobatan." }
 
 ];
 

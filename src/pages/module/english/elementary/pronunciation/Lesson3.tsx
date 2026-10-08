@@ -76,14 +76,14 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Di mana tekanan pada 'Situation'?",
-    options: ['SI-tu-a-tion', 'Si-tu-A-tion', 'Si-tu-a-TION'],
+    options: ['SI-tu-a-tion', 'Si-tu-a-TION', 'Si-tu-A-tion'],
     answer: 'Si-tu-A-tion',
     explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
   },
   {
     id: 2,
     question: "Pola apa yang diikuti 'Biology'?",
-    options: ['Tekan suku kata ke-1', 'Tekan suku kata terakhir', 'Tekan ke-3 dari belakang'],
+    options: ['Tekan ke-3 dari belakang', 'Tekan suku kata ke-1', 'Tekan suku kata terakhir'],
     answer: 'Tekan ke-3 dari belakang',
     explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
   },
@@ -97,7 +97,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 4,
     question: "Di mana tekanan pada 'Electric'?",
-    options: ['E-lec-tric', 'e-LEC-tric', 'e-lec-TRIC'],
+    options: ['e-lec-TRIC', 'E-lec-tric', 'e-LEC-tric'],
     answer: 'e-LEC-tric',
     explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
   },
@@ -118,7 +118,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "Pola apa yang diikuti 'Biology' ?",
-    options: ["Tekan suku kata ke-1","Tekan suku kata terakhir","Tekan ke-3 dari belakang"],
+    options: ["Tekan suku kata terakhir", "Tekan ke-3 dari belakang", "Tekan suku kata ke-1"],
     answer: "Tekan ke-3 dari belakang",
     explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
   },
@@ -132,7 +132,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "Di mana tekanan pada 'Electric'?",
-    options: ["E-lec-tric","e-LEC-tric","e-lec-TRIC"],
+    options: ["e-lec-TRIC", "E-lec-tric", "e-LEC-tric"],
     answer: "e-LEC-tric",
     explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
   },
@@ -146,14 +146,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Di mana tekanan pada 'Situation'?",
-    options: ["SI-tu-a-tion","Si-tu-A-tion","Si-tu-a-TION"],
+    options: ["SI-tu-a-tion", "Si-tu-a-TION", "Si-tu-A-tion"],
     answer: "Si-tu-A-tion",
     explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
   },
   {
     id: 12,
     question: "Pola apa yang diikuti 'Biology'?",
-    options: ["Tekan suku kata ke-1","Tekan suku kata terakhir","Tekan ke-3 dari belakang"],
+    options: ["Tekan ke-3 dari belakang", "Tekan suku kata ke-1", "Tekan suku kata terakhir"],
     answer: "Tekan ke-3 dari belakang",
     explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
   },
@@ -167,7 +167,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "Di mana tekanan pada 'Electric' ?",
-    options: ["E-lec-tric","e-LEC-tric","e-lec-TRIC"],
+    options: ["e-LEC-tric", "e-lec-TRIC", "E-lec-tric"],
     answer: "e-LEC-tric",
     explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
   },
@@ -181,14 +181,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Di mana tekanan pada 'Situation'...",
-    options: ["SI-tu-a-tion","Si-tu-A-tion","Si-tu-a-TION"],
+    options: ["Si-tu-A-tion", "Si-tu-a-TION", "SI-tu-a-tion"],
     answer: "Si-tu-A-tion",
     explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
   },
   {
     id: 17,
     question: "Pola apa yang diikuti 'Biology' ?",
-    options: ["Tekan suku kata ke-1","Tekan suku kata terakhir","Tekan ke-3 dari belakang"],
+    options: ["Tekan suku kata terakhir", "Tekan ke-3 dari belakang", "Tekan suku kata ke-1"],
     answer: "Tekan ke-3 dari belakang",
     explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
   },
@@ -202,7 +202,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "Di mana tekanan pada 'Electric'...",
-    options: ["E-lec-tric","e-LEC-tric","e-lec-TRIC"],
+    options: ["E-lec-tric", "e-lec-TRIC", "e-LEC-tric"],
     answer: "e-LEC-tric",
     explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
   },

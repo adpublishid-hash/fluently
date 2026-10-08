@@ -102,140 +102,140 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "The car drove ___ the tunnel.",
-    options: ['across', 'through', 'on'],
+    options: ['on', 'through', 'across'],
     answer: 'through',
     explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
   },
   {
     id: 2,
     question: "The bank is ___ the post office.",
-    options: ['next to', 'next', 'near to'],
+    options: ['next to', 'near to', 'next'],
     answer: 'next to',
     explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
   },
   {
     id: 3,
     question: "Please put the milk ___ the fridge.",
-    options: ['onto', 'into', 'out of'],
+    options: ['out of', 'onto', 'into'],
     answer: 'into',
     explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
   },
   {
     id: 4,
     question: "He swam ___ the river to the other side.",
-    options: ['along', 'across', 'through'],
+    options: ['across', 'through', 'along'],
     answer: 'across',
     explanation: "'Across' berarti dari satu sisi ke sisi lain."
   },
   {
     id: 5,
     question: "There is a bridge ___ the river.",
-    options: ['over', 'above', 'on'],
+    options: ['above', 'on', 'over'],
     answer: 'over',
     explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
   },
   {
     id: 6,
     question: "The bike drove ___ the tunnel.",
-    options: ["across","through","on"],
+    options: ["through", "across", "on"],
     answer: "through",
     explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
   },
   {
     id: 7,
     question: "The bank is ___ the post office.",
-    options: ["next to","next","near to"],
+    options: ["next to", "near to", "next"],
     answer: "next to",
     explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
   },
   {
     id: 8,
     question: "Please put the milk ___ the fridge.",
-    options: ["onto","into","out of"],
+    options: ["out of", "onto", "into"],
     answer: "into",
     explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
   },
   {
     id: 9,
     question: "He swam ___ the river to the other side.",
-    options: ["along","across","through"],
+    options: ["across", "through", "along"],
     answer: "across",
     explanation: "'Across' berarti dari satu sisi ke sisi lain."
   },
   {
     id: 10,
     question: "There is a bridge ___ the river.",
-    options: ["over","above","on"],
+    options: ["above", "on", "over"],
     answer: "over",
     explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
   },
   {
     id: 11,
     question: "The car drove ___ the tunnel.",
-    options: ["across","through","on"],
+    options: ["on", "through", "across"],
     answer: "through",
     explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
   },
   {
     id: 12,
     question: "The bank is ___ the post office.",
-    options: ["next to","next","near to"],
+    options: ["next to", "near to", "next"],
     answer: "next to",
     explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
   },
   {
     id: 13,
     question: "Please put the milk ___ the fridge.",
-    options: ["onto","into","out of"],
+    options: ["out of", "onto", "into"],
     answer: "into",
     explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
   },
   {
     id: 14,
     question: "Mark swam ___ the river to the other side.",
-    options: ["along","across","through"],
+    options: ["across", "along", "through"],
     answer: "across",
     explanation: "'Across' berarti dari satu sisi ke sisi lain."
   },
   {
     id: 15,
     question: "There is a bridge ___ the river.",
-    options: ["over","above","on"],
+    options: ["above", "on", "over"],
     answer: "over",
     explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
   },
   {
     id: 16,
     question: "The car drove ___ the tunnel.",
-    options: ["across","through","on"],
+    options: ["on", "through", "across"],
     answer: "through",
     explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
   },
   {
     id: 17,
     question: "The bank is ___ the post office.",
-    options: ["next to","next","near to"],
+    options: ["next to", "near to", "next"],
     answer: "next to",
     explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
   },
   {
     id: 18,
     question: "Please put the milk ___ the fridge.",
-    options: ["onto","into","out of"],
+    options: ["out of", "onto", "into"],
     answer: "into",
     explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
   },
   {
     id: 19,
     question: "The boy swam ___ the river to the other side.",
-    options: ["along","across","through"],
+    options: ["through", "along", "across"],
     answer: "across",
     explanation: "'Across' berarti dari satu sisi ke sisi lain."
   },
   {
     id: 20,
     question: "There is a bridge ___ the river.",
-    options: ["over","above","on"],
+    options: ["above", "on", "over"],
     answer: "over",
     explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
   }

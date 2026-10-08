@@ -79,35 +79,35 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 1,
     question: "Kata mana yang memiliki bunyi 'A' PANJANG?",
-    options: ['Cat', 'Snake', 'Dad'],
+    options: ['Dad', 'Snake', 'Cat'],
     answer: 'Snake',
     explanation: "Snake memiliki bunyi /eɪ/ (Magic E membuat A menjadi panjang)."
   },
   {
     id: 2,
     question: "Kata mana yang memiliki bunyi 'I' PENDEK?",
-    options: ['Bike', 'Fish', 'Nine'],
+    options: ['Bike', 'Nine', 'Fish'],
     answer: 'Fish',
     explanation: "Fish memiliki bunyi /ɪ/. Bike dan Nine adalah I Panjang."
   },
   {
     id: 3,
     question: "Jika Anda menambahkan 'E' ke 'Hop', itu menjadi...",
-    options: ['Hoppy', 'Hope', 'Happy'],
+    options: ['Happy', 'Hope', 'Hoppy'],
     answer: 'Hope',
     explanation: "Magic E mengubah O Pendek (Hop) menjadi O Panjang (Hope)."
   },
   {
     id: 4,
     question: "Apa bunyi vokal dalam 'Blue'?",
-    options: ['Short U (Pendek)', 'Long U (Panjang)'],
+    options: ['Long U (Panjang)', 'Short U (Pendek)'],
     answer: 'Long U (Panjang)',
     explanation: "Blue berbunyi seperti /uː/ atau /juː/, yang merupakan bunyi U Panjang."
   },
   {
     id: 5,
     question: "Pasangan mana yang berima (memiliki bunyi vokal yang sama)?",
-    options: ['Bed - Red', 'Cat - Kate', 'Dog - Go'],
+    options: ['Cat - Kate', 'Bed - Red', 'Dog - Go'],
     answer: 'Bed - Red',
     explanation: "Bed dan Red keduanya memiliki bunyi E Pendek /ɛ/."
   },
@@ -128,49 +128,49 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 8,
     question: "Kata mana yang memiliki bunyi 'O' PENDEK?",
-    options: ['Rose', 'Dog', 'Home'],
+    options: ['Rose', 'Home', 'Dog'],
     answer: 'Dog',
     explanation: "Dog memiliki bunyi /ɒ/, sedangkan Rose dan Home memiliki O Panjang."
   },
   {
     id: 9,
     question: "Kata mana yang memiliki bunyi 'U' PANJANG?",
-    options: ['Bus', 'Cup', 'Cube'],
+    options: ['Cube', 'Cup', 'Bus'],
     answer: 'Cube',
     explanation: "Cube memiliki bunyi /juː/ (U Panjang), sedangkan Bus dan Cup pendek."
   },
   {
     id: 10,
     question: "Manakah pasangan Magic E yang benar?",
-    options: ['Tap → Tape', 'Cap → Cape', 'Keduanya benar'],
+    options: ['Keduanya benar', 'Cap → Cape', 'Tap → Tape'],
     answer: 'Keduanya benar',
     explanation: "Keduanya menggunakan Magic E untuk mengubah A Pendek menjadi A Panjang."
   },
   {
     id: 11,
     question: "Kata 'Hat' memiliki bunyi vokal apa?",
-    options: ['Short A (Pendek)', 'Long A (Panjang)'],
+    options: ['Long A (Panjang)', 'Short A (Pendek)'],
     answer: 'Short A (Pendek)',
     explanation: "Hat memiliki bunyi /æ/ yang merupakan A Pendek."
   },
   {
     id: 12,
     question: "Kata mana yang memiliki bunyi sama dengan 'Cake'?",
-    options: ['Cat', 'Lake', 'Sad'],
+    options: ['Lake', 'Sad', 'Cat'],
     answer: 'Lake',
     explanation: "Lake dan Cake sama-sama memiliki bunyi A Panjang /eɪ/."
   },
   {
     id: 13,
     question: "Jika kita menambahkan 'E' ke 'Tub', apa yang terjadi?",
-    options: ['Menjadi Tube dengan U Panjang', 'Tidak berubah', 'Menjadi Tubby'],
+    options: ['Menjadi Tube dengan U Panjang', 'Menjadi Tubby', 'Tidak berubah'],
     answer: 'Menjadi Tube dengan U Panjang',
     explanation: "Magic E mengubah Tub (/ʌ/) menjadi Tube (/juː/)."
   },
   {
     id: 14,
     question: "Kata 'Bed' memiliki bunyi vokal apa?",
-    options: ['Short E (Pendek)', 'Long E (Panjang)'],
+    options: ['Long E (Panjang)', 'Short E (Pendek)'],
     answer: 'Short E (Pendek)',
     explanation: "Bed memiliki bunyi /ɛ/, yang merupakan E Pendek."
   },
@@ -184,21 +184,21 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 16,
     question: "Manakah yang BUKAN pasangan Magic E?",
-    options: ['Hop → Hope', 'Cat → Cute', 'Cub → Cube'],
+    options: ['Cub → Cube', 'Hop → Hope', 'Cat → Cute'],
     answer: 'Cat → Cute',
     explanation: "Cat menjadi Kate (bukan Cute). Cute berasal dari Cut + Magic E."
   },
   {
     id: 17,
     question: "Kata 'Rose' memiliki bunyi vokal apa?",
-    options: ['Short O (Pendek)', 'Long O (Panjang)'],
+    options: ['Long O (Panjang)', 'Short O (Pendek)'],
     answer: 'Long O (Panjang)',
     explanation: "Rose memiliki bunyi /oʊ/ (O Panjang) karena Magic E."
   },
   {
     id: 18,
     question: "Kata mana yang memiliki bunyi sama dengan 'Pig'?",
-    options: ['Ice', 'Sit', 'Kite'],
+    options: ['Kite', 'Ice', 'Sit'],
     answer: 'Sit',
     explanation: "Pig dan Sit sama-sama memiliki bunyi I Pendek /ɪ/."
   },
@@ -212,7 +212,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 20,
     question: "Magic E mengubah vokal menjadi...",
-    options: ['Pendek', 'Panjang (mengucapkan nama huruf)', 'Tidak berubah'],
+    options: ['Tidak berubah', 'Panjang (mengucapkan nama huruf)', 'Pendek'],
     answer: 'Panjang (mengucapkan nama huruf)',
     explanation: "Magic E membuat vokal mengucapkan namanya sendiri (A, E, I, O, U)."
   }

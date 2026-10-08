@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"Best Before: 15 May 2025" artinya...', opts: ['Dibuat 15 Mei', 'Dijual hingga 15 Mei', 'Terbaik dikonsumsi sebelum 15 Mei', 'Kadaluarsa tepat 15 Mei'], ans: 'Terbaik dikonsumsi sebelum 15 Mei', exp: '"Best before" = batas waktu terbaik untuk dikonsumsi.' },
-  { q: '"NET WEIGHT: 500g" artinya...', opts: ['Berat kotor', 'Berat bersih: 500 gram', 'Berat kemasan', 'Volume: 500 ml'], ans: 'Berat bersih: 500 gram', exp: '"Net weight" = berat bersih (tanpa kemasan).' },
-  { q: '"INGREDIENTS:" pada kemasan makanan artinya...', opts: ['Petunjuk penyajian', 'Bahan-bahan', 'Nilai gizi', 'Petunjuk penyimpanan'], ans: 'Bahan-bahan', exp: '"Ingredients" = bahan-bahan yang digunakan dalam produk.' },
-  { q: '"KEEP REFRIGERATED" artinya...', opts: ['Simpan di tempat kering', 'Simpan di lemari es', 'Simpan di suhu ruang', 'Jangan dibekukan'], ans: 'Simpan di lemari es', exp: '"Refrigerated" = didinginkan. "Keep refrigerated" = simpan di kulkas.' },
-  { q: '"SHAKE WELL BEFORE USE" artinya...', opts: ['Jangan dikocok', 'Kocok sebelum digunakan', 'Buka sebelum digunakan', 'Dinginkan dulu'], ans: 'Kocok sebelum digunakan', exp: '"Shake well before use" = kocok dengan baik sebelum digunakan.' },
-  { q: '"PRICE: Rp 25,000" artinya...', opts: ['Diskon Rp 25.000', 'Harganya Rp 25.000', 'Gratis senilai Rp 25.000', 'Deposit Rp 25.000'], ans: 'Harganya Rp 25.000', exp: '"Price" = harga. Ini menunjukkan harga produk tersebut.' },
-  { q: '"SUGAR FREE" pada produk artinya...', opts: ['Mengandung gula', 'Tanpa gula', 'Bebas lemak', 'Rendah kalori'], ans: 'Tanpa gula', exp: '"Sugar free" = bebas gula / tidak mengandung gula.' },
-  { q: '"MANUFACTURED BY:" artinya...', opts: ['Dijual oleh:', 'Diproduksi oleh:', 'Didistribusikan oleh:', 'Diimpor oleh:'], ans: 'Diproduksi oleh:', exp: '"Manufactured by" = dibuat/diproduksi oleh pabrik tertentu.' },
-  { q: '"USE WITHIN 3 DAYS AFTER OPENING" artinya...', opts: ['Buka dalam 3 hari', 'Habiskan dalam 3 hari setelah dibuka', 'Simpan 3 hari sebelum dibuka', 'Beli 3 dalam sehari'], ans: 'Habiskan dalam 3 hari setelah dibuka', exp: '"Use within 3 days after opening" = harus dihabiskan dalam 3 hari setelah dibuka.' },
-  { q: '"CALORIES PER SERVING: 200" artinya...', opts: ['200 gram per sajian', '200 kalori per sajian', '200 ml per sajian', '200 protein per sajian'], ans: '200 kalori per sajian', exp: '"Calories per serving" = jumlah kalori dalam satu porsi sajian.' },
-  { q: '"STORE IN A COOL, DRY PLACE" artinya...', opts: ['Simpan di kulkas', 'Simpan di tempat sejuk dan kering', 'Simpan di freezer', 'Simpan di tempat hangat'], ans: 'Simpan di tempat sejuk dan kering', exp: '"Cool, dry place" = tempat yang sejuk dan kering (tidak lembab).' },
-  { q: '"100% NATURAL" artinya...', opts: ['Buatan pabrik', '100% alami', 'Setengah alami', 'Mengandung bahan kimia'], ans: '100% alami', exp: '"Natural" = alami. "100% natural" = sepenuhnya terbuat dari bahan alami.' },
-  { q: '"GLUTEN FREE" pada kemasan artinya...', opts: ['Mengandung gluten', 'Bebas gluten', 'Bebas lemak', 'Bebas gula'], ans: 'Bebas gluten', exp: '"Gluten free" = bebas gluten.' },
-  { q: '"MADE IN JAPAN" artinya...', opts: ['Dijual di Jepang', 'Dibuat di Jepang', 'Dikirim dari Jepang', 'Merek Jepang'], ans: 'Dibuat di Jepang', exp: '"Made in + negara" = diproduksi/dibuat di negara tersebut.' },
-  { q: '"EXPIRY DATE" artinya...', opts: ['Tanggal produksi', 'Tanggal kadaluarsa', 'Tanggal penjualan', 'Tanggal pengiriman'], ans: 'Tanggal kadaluarsa', exp: '"Expiry date" = tanggal kadaluarsa produk.' },
+  { q: '"Best Before: 15 May 2025" artinya...', opts: ['Dijual hingga 15 Mei', 'Dibuat 15 Mei', 'Kadaluarsa tepat 15 Mei', 'Terbaik dikonsumsi sebelum 15 Mei'], ans: 'Terbaik dikonsumsi sebelum 15 Mei', exp: '"Best before" = batas waktu terbaik untuk dikonsumsi.' },
+  { q: '"NET WEIGHT: 500g" artinya...', opts: ['Volume: 500 ml', 'Berat kotor', 'Berat bersih: 500 gram', 'Berat kemasan'], ans: 'Berat bersih: 500 gram', exp: '"Net weight" = berat bersih (tanpa kemasan).' },
+  { q: '"INGREDIENTS:" pada kemasan makanan artinya...', opts: ['Bahan-bahan', 'Petunjuk penyajian', 'Petunjuk penyimpanan', 'Nilai gizi'], ans: 'Bahan-bahan', exp: '"Ingredients" = bahan-bahan yang digunakan dalam produk.' },
+  { q: '"KEEP REFRIGERATED" artinya...', opts: ['Simpan di lemari es', 'Jangan dibekukan', 'Simpan di suhu ruang', 'Simpan di tempat kering'], ans: 'Simpan di lemari es', exp: '"Refrigerated" = didinginkan. "Keep refrigerated" = simpan di kulkas.' },
+  { q: '"SHAKE WELL BEFORE USE" artinya...', opts: ['Jangan dikocok', 'Buka sebelum digunakan', 'Dinginkan dulu', 'Kocok sebelum digunakan'], ans: 'Kocok sebelum digunakan', exp: '"Shake well before use" = kocok dengan baik sebelum digunakan.' },
+  { q: '"PRICE: Rp 25,000" artinya...', opts: ['Diskon Rp 25.000', 'Deposit Rp 25.000', 'Gratis senilai Rp 25.000', 'Harganya Rp 25.000'], ans: 'Harganya Rp 25.000', exp: '"Price" = harga. Ini menunjukkan harga produk tersebut.' },
+  { q: '"SUGAR FREE" pada produk artinya...', opts: ['Rendah kalori', 'Mengandung gula', 'Tanpa gula', 'Bebas lemak'], ans: 'Tanpa gula', exp: '"Sugar free" = bebas gula / tidak mengandung gula.' },
+  { q: '"MANUFACTURED BY:" artinya...', opts: ['Dijual oleh:', 'Diimpor oleh:', 'Didistribusikan oleh:', 'Diproduksi oleh:'], ans: 'Diproduksi oleh:', exp: '"Manufactured by" = dibuat/diproduksi oleh pabrik tertentu.' },
+  { q: '"USE WITHIN 3 DAYS AFTER OPENING" artinya...', opts: ['Buka dalam 3 hari', 'Simpan 3 hari sebelum dibuka', 'Habiskan dalam 3 hari setelah dibuka', 'Beli 3 dalam sehari'], ans: 'Habiskan dalam 3 hari setelah dibuka', exp: '"Use within 3 days after opening" = harus dihabiskan dalam 3 hari setelah dibuka.' },
+  { q: '"CALORIES PER SERVING: 200" artinya...', opts: ['200 ml per sajian', '200 protein per sajian', '200 kalori per sajian', '200 gram per sajian'], ans: '200 kalori per sajian', exp: '"Calories per serving" = jumlah kalori dalam satu porsi sajian.' },
+  { q: '"STORE IN A COOL, DRY PLACE" artinya...', opts: ['Simpan di kulkas', 'Simpan di freezer', 'Simpan di tempat hangat', 'Simpan di tempat sejuk dan kering'], ans: 'Simpan di tempat sejuk dan kering', exp: '"Cool, dry place" = tempat yang sejuk dan kering (tidak lembab).' },
+  { q: '"100% NATURAL" artinya...', opts: ['100% alami', 'Mengandung bahan kimia', 'Buatan pabrik', 'Setengah alami'], ans: '100% alami', exp: '"Natural" = alami. "100% natural" = sepenuhnya terbuat dari bahan alami.' },
+  { q: '"GLUTEN FREE" pada kemasan artinya...', opts: ['Bebas gula', 'Mengandung gluten', 'Bebas gluten', 'Bebas lemak'], ans: 'Bebas gluten', exp: '"Gluten free" = bebas gluten.' },
+  { q: '"MADE IN JAPAN" artinya...', opts: ['Dijual di Jepang', 'Dikirim dari Jepang', 'Dibuat di Jepang', 'Merek Jepang'], ans: 'Dibuat di Jepang', exp: '"Made in + negara" = diproduksi/dibuat di negara tersebut.' },
+  { q: '"EXPIRY DATE" artinya...', opts: ['Tanggal kadaluarsa', 'Tanggal penjualan', 'Tanggal pengiriman', 'Tanggal produksi'], ans: 'Tanggal kadaluarsa', exp: '"Expiry date" = tanggal kadaluarsa produk.' },
   { q: '"SERVING SUGGESTION" pada gambar kemasan artinya...', opts: ['Foto asli produk', 'Saran penyajian', 'Cara memasak', 'Resep makanan'], ans: 'Saran penyajian', exp: '"Serving suggestion" = gambar saran penyajian (bukan foto asli produk).' },
-  { q: '"CONTAINS NUTS" artinya...', opts: ['Bebas kacang', 'Mengandung kacang', 'Rasa kacang', 'Dibuat dari kacang'], ans: 'Mengandung kacang', exp: '"Contains nuts" = mengandung kacang (penting untuk alergi).' },
-  { q: '"RECYCLABLE PACKAGING" artinya...', opts: ['Kemasan sekali pakai', 'Kemasan dapat didaur ulang', 'Kemasan kaca', 'Kemasan plastik tebal'], ans: 'Kemasan dapat didaur ulang', exp: '"Recyclable" = dapat didaur ulang.' },
-  { q: '"LOW FAT" pada kemasan artinya...', opts: ['Tanpa lemak', 'Rendah lemak', 'Tinggi lemak', 'Bebas kalori'], ans: 'Rendah lemak', exp: '"Low fat" = rendah lemak (bukan bebas lemak / "fat free").' },
-  { q: '"ORIGINAL PRICE: Rp 100,000 | NOW: Rp 75,000" artinya...', opts: ['Naik Rp 25.000', 'Diskon Rp 25.000', 'Gratis Rp 25.000', 'Harga tetap'], ans: 'Diskon Rp 25.000', exp: 'Harga asli Rp 100.000, sekarang Rp 75.000 = diskon Rp 25.000.' },
+  { q: '"CONTAINS NUTS" artinya...', opts: ['Mengandung kacang', 'Bebas kacang', 'Dibuat dari kacang', 'Rasa kacang'], ans: 'Mengandung kacang', exp: '"Contains nuts" = mengandung kacang (penting untuk alergi).' },
+  { q: '"RECYCLABLE PACKAGING" artinya...', opts: ['Kemasan kaca', 'Kemasan plastik tebal', 'Kemasan dapat didaur ulang', 'Kemasan sekali pakai'], ans: 'Kemasan dapat didaur ulang', exp: '"Recyclable" = dapat didaur ulang.' },
+  { q: '"LOW FAT" pada kemasan artinya...', opts: ['Bebas kalori', 'Tanpa lemak', 'Rendah lemak', 'Tinggi lemak'], ans: 'Rendah lemak', exp: '"Low fat" = rendah lemak (bukan bebas lemak / "fat free").' },
+  { q: '"ORIGINAL PRICE: Rp 100,000 | NOW: Rp 75,000" artinya...', opts: ['Harga tetap', 'Naik Rp 25.000', 'Diskon Rp 25.000', 'Gratis Rp 25.000'], ans: 'Diskon Rp 25.000', exp: 'Harga asli Rp 100.000, sekarang Rp 75.000 = diskon Rp 25.000.' },
 ];
 
 const LABEL_PASSAGE = {
@@ -53,11 +53,11 @@ const LABEL_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Sebelum tanggal berapa produk sebaiknya dikonsumsi?', opts: ['1 Januari', '15 Mei 2025', '31 Desember', 'Tidak disebutkan'], ans: '15 Mei 2025' },
-    { q: 'Berapa berat bersih produk?', opts: ['250g', '375g', '500g', '1kg'], ans: '500g' },
-    { q: 'Di mana produk sebaiknya disimpan?', opts: ['Di oven', 'Di tempat hangat', 'Di lemari es', 'Di bawah sinar matahari'], ans: 'Di lemari es' },
-    { q: 'Berapa kalori per sajian?', opts: ['100 kcal', '150 kcal', '200 kcal', '250 kcal'], ans: '200 kcal' },
-    { q: 'Produk ini dibuat di negara mana?', opts: ['Malaysia', 'Singapura', 'Indonesia', 'Thailand'], ans: 'Indonesia' },
+    { q: 'Sebelum tanggal berapa produk sebaiknya dikonsumsi?', opts: ['31 Desember', 'Tidak disebutkan', '15 Mei 2025', '1 Januari'], ans: '15 Mei 2025' },
+    { q: 'Berapa berat bersih produk?', opts: ['250g', '1kg', '500g', '375g'], ans: '500g' },
+    { q: 'Di mana produk sebaiknya disimpan?', opts: ['Di oven', 'Di lemari es', 'Di tempat hangat', 'Di bawah sinar matahari'], ans: 'Di lemari es' },
+    { q: 'Berapa kalori per sajian?', opts: ['250 kcal', '100 kcal', '150 kcal', '200 kcal'], ans: '200 kcal' },
+    { q: 'Produk ini dibuat di negara mana?', opts: ['Singapura', 'Indonesia', 'Thailand', 'Malaysia'], ans: 'Indonesia' },
   ] as ComprehensionQ[],
 };
 

@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the contrast linker in paragraph one:",
     "opts": [
-      "While",
-      "Consequently",
       "Foundation",
-      "Indicates"
+      "Indicates",
+      "While",
+      "Consequently"
     ],
     "ans": "While",
     "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
@@ -20,8 +20,8 @@ const QUIZ: QuizItem[] = [
     "q": "What does \"Consequently\" mean in this context?",
     "opts": [
       "Before",
-      "As a logical result",
       "In addition",
+      "As a logical result",
       "However"
     ],
     "ans": "As a logical result",
@@ -30,10 +30,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
     "opts": [
-      "Students",
       "Literature",
       "Reading extensive literature (Gerund phrase)",
-      "Exposes"
+      "Exposes",
+      "Students"
     ],
     "ans": "Reading extensive literature (Gerund phrase)",
     "exp": "The entire gerund phrase acts as the subject."
@@ -41,9 +41,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
     "opts": [
-      "Easy to see",
-      "Occurring repeatedly and constantly",
       "Funny",
+      "Occurring repeatedly and constantly",
+      "Easy to see",
       "Grammatical"
     ],
     "ans": "Occurring repeatedly and constantly",
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why is \"Therefore\" used in the last paragraph?",
     "opts": [
+      "To start a story",
       "To introduce a cause",
       "To conclude a logical argument",
-      "To change subjects",
-      "To start a story"
+      "To change subjects"
     ],
     "ans": "To conclude a logical argument",
     "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
@@ -63,10 +63,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is a \"Topic Sentence\"?",
     "opts": [
-      "The last sentence of a text",
       "A sentence that explains the main idea of a paragraph",
-      "A famous quote",
-      "The title of an essay"
+      "The title of an essay",
+      "The last sentence of a text",
+      "A famous quote"
     ],
     "ans": "A sentence that explains the main idea of a paragraph",
     "exp": "Topic sentence (kalimat utama) memberi tahu pembaca apa gagasan pokok dari paragraf tersebut."
@@ -85,10 +85,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the compound adjective: \"She bought a ___ car.\"",
     "opts": [
-      "very fast",
       "brand-new",
-      "beautifully",
-      "red"
+      "red",
+      "very fast",
+      "beautifully"
     ],
     "ans": "brand-new",
     "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
@@ -96,9 +96,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"therefore\"?",
     "opts": [
-      "To add a point",
-      "To show a difference",
       "To show a result or consequence",
+      "To show a difference",
+      "To add a point",
       "To give an example"
     ],
     "ans": "To show a result or consequence",
@@ -107,10 +107,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
     "opts": [
-      "It was late so I kept writing.",
       "Although it was late, I kept writing.",
+      "It was late, therefore I kept writing.",
       "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
+      "It was late so I kept writing."
     ],
     "ans": "Although it was late, I kept writing.",
     "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
@@ -118,10 +118,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is correctly punctuated?",
     "opts": [
-      "Although, it was raining we went out.",
       "Although it was raining, we went out.",
-      "Although it was raining we went out,",
-      "Although, it was raining, we went out."
+      "Although, it was raining, we went out.",
+      "Although, it was raining we went out.",
+      "Although it was raining we went out,"
     ],
     "ans": "Although it was raining, we went out.",
     "exp": "Jika kalimat dimulai dengan konjungsi subordinatif (Although), gunakan koma sebelum klausa utama."
@@ -129,9 +129,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"For instance\"?",
     "opts": [
-      "To contrast",
-      "To conclude",
       "To provide an example",
+      "To conclude",
+      "To contrast",
       "To show cause"
     ],
     "ans": "To provide an example",
@@ -140,10 +140,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
     "opts": [
-      "immediately",
       "action",
       "goverment",
-      "should"
+      "should",
+      "immediately"
     ],
     "ans": "goverment",
     "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
@@ -151,10 +151,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
     "opts": [
-      "On the second hand...",
-      "On the other side...",
       "On the other hand...",
-      "However..."
+      "However...",
+      "On the second hand...",
+      "On the other side..."
     ],
     "ans": "On the other hand...",
     "exp": "Pasangan frasa idiomatis ini selalu \"On the one hand... On the other hand...\" untuk membandingkan dua sisi."
@@ -162,10 +162,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which option is less formal? \"Commence\"",
     "opts": [
-      "Begin",
       "Terminate",
-      "Execute",
-      "Finalize"
+      "Begin",
+      "Finalize",
+      "Execute"
     ],
     "ans": "Begin",
     "exp": "\"Commence\" adalah bentuk sangat formal untuk kata \"begin\" atau \"start\"."
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the sentence with correct parallel structure:",
     "opts": [
-      "I like swimming, to read, and hike.",
-      "I like to swim, reading, and to hike.",
       "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
+      "I like swim, read, and hike.",
+      "I like swimming, to read, and hike.",
+      "I like to swim, reading, and to hike."
     ],
     "ans": "I like swimming, reading, and hiking.",
     "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
@@ -184,10 +184,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct contrast linker: \"___ the bad weather, the event was a success.\"",
     "opts": [
-      "Although",
       "Despite",
-      "However",
-      "Because"
+      "Because",
+      "Although",
+      "However"
     ],
     "ans": "Despite",
     "exp": "\"Despite\" diikuti langsung oleh frasa kata benda (the bad weather), bukan klausa bersubjek-predikat."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
     "opts": [
-      "for",
       "from",
+      "about",
       "with",
-      "about"
+      "for"
     ],
     "ans": "for",
     "exp": "\"Apologise\" selalu diikut oleh \"for\" ketika merujuk pada alasan (apologise for something)."
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct structure: \"Not only ___ fast, but she is also strong.\"",
     "opts": [
-      "she runs",
-      "runs she",
       "is she running",
-      "does she run"
+      "does she run",
+      "runs she",
+      "she runs"
     ],
     "ans": "does she run",
     "exp": "Struktur Inversion: Saat kalimat diawali \"Not only\", dilanjutkan dengan auxiliary + subjek (does she run)."
@@ -239,40 +239,40 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What is considered the foundation of writing according to the text?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
       "Speaking loudly",
-      "Finding errors"
+      "Finding errors",
+      "Spelling and reading",
+      "Vocabulary and grammar"
     ],
     "ans": "Vocabulary and grammar"
   },
   {
     "q": "What indicates true proficiency?",
     "opts": [
-      "Knowing 1000 words",
-      "Typing fast",
       "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "Using passive voice",
+      "Typing fast",
+      "Knowing 1000 words"
     ],
     "ans": "The ability to weave sentences into a coherent paragraph"
   },
   {
     "q": "How does reading literature help?",
     "opts": [
-      "It wastes time",
       "It exposes students to varied structures and registers",
       "It hurts visibility",
-      "It makes you sleepy"
+      "It makes you sleepy",
+      "It wastes time"
     ],
     "ans": "It exposes students to varied structures and registers"
   },
   {
     "q": "What is the primary objective of writing?",
     "opts": [
-      "To confuse the reader",
       "To convey ideas clearly and concisely",
+      "To write long sentences",
       "To get a high score",
-      "To write long sentences"
+      "To confuse the reader"
     ],
     "ans": "To convey ideas clearly and concisely"
   },

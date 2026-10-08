@@ -71,26 +71,26 @@ const ASSIMILATION = [
 ];
 
 const QUIZ_QUESTIONS = [
-  { id: 1, question: "Bagaimana penutur asli biasanya mengucapkan 'Go out'?", options: ['Go out (Jeda)', 'Go-w-out (Hubungkan dengan W)', 'Go-y-out (Hubungkan dengan Y)'], answer: 'Go-w-out (Hubungkan dengan W)', explanation: "Karena 'Go' diakhiri dengan bunyi bibir bulat, kita menghubungkan dengan /w/." },
-  { id: 2, question: "Apa bentuk reduksi dari 'Want to'?", options: ['Wonnot', 'Wanna', 'Wan-two'], answer: 'Wanna', explanation: "'Wanna' adalah reduksi kasual umum dari 'Want to'." },
-  { id: 3, question: "Dalam pembicaraan cepat, 'Did you' sering terdengar seperti...", options: ['Did-yoo', 'Did-joo', 'Did-shoo'], answer: 'Did-joo', explanation: "Bunyi D dan Y menyatu menjadi bunyi /dʒ/ (J)." },
+  { id: 1, question: "Bagaimana penutur asli biasanya mengucapkan 'Go out'?", options: ['Go-y-out (Hubungkan dengan Y)', 'Go out (Jeda)', 'Go-w-out (Hubungkan dengan W)'], answer: 'Go-w-out (Hubungkan dengan W)', explanation: "Karena 'Go' diakhiri dengan bunyi bibir bulat, kita menghubungkan dengan /w/." },
+  { id: 2, question: "Apa bentuk reduksi dari 'Want to'?", options: ['Wanna', 'Wan-two', 'Wonnot'], answer: 'Wanna', explanation: "'Wanna' adalah reduksi kasual umum dari 'Want to'." },
+  { id: 3, question: "Dalam pembicaraan cepat, 'Did you' sering terdengar seperti...", options: ['Did-yoo', 'Did-shoo', 'Did-joo'], answer: 'Did-joo', explanation: "Bunyi D dan Y menyatu menjadi bunyi /dʒ/ (J)." },
   { id: 4, question: "Haruskah Anda menulis 'Gonna' dalam email bisnis formal?", options: ['Ya, itu standar.', 'Tidak, itu hanya untuk berbicara.'], answer: 'Tidak, itu hanya untuk berbicara.', explanation: "Reduksi terutama untuk bahasa Inggris lisan atau pesan teks yang sangat kasual." },
-  { id: 5, question: "'See it' diucapkan sebagai...", options: ['See-y-it', 'See-w-it', 'See / it (jeda)'], answer: 'See-y-it', explanation: "Kata yang berakhir dengan /i:/ (ee) menghubungkan ke vokal berikutnya dengan bunyi /y/." },
-  { id: 6, question: "'Two apples' terdengar seperti...", options: ['Two apples (terpisah)', 'Two-w-apples', 'Two-y-apples'], answer: 'Two-w-apples', explanation: "Bunyi /u:/ (oo) menghubungkan dengan /w/." },
-  { id: 7, question: "Bentuk reduksi 'Going to' adalah...", options: ['Gointo', 'Gonna', 'Gonto'], answer: 'Gonna', explanation: "'Gonna' sangat umum dalam percakapan informal." },
+  { id: 5, question: "'See it' diucapkan sebagai...", options: ['See-w-it', 'See-y-it', 'See / it (jeda)'], answer: 'See-y-it', explanation: "Kata yang berakhir dengan /i:/ (ee) menghubungkan ke vokal berikutnya dengan bunyi /y/." },
+  { id: 6, question: "'Two apples' terdengar seperti...", options: ['Two-y-apples', 'Two-w-apples', 'Two apples (terpisah)'], answer: 'Two-w-apples', explanation: "Bunyi /u:/ (oo) menghubungkan dengan /w/." },
+  { id: 7, question: "Bentuk reduksi 'Going to' adalah...", options: ['Gonna', 'Gointo', 'Gonto'], answer: 'Gonna', explanation: "'Gonna' sangat umum dalam percakapan informal." },
   { id: 8, question: "'Have to' biasanya diucapkan sebagai...", options: ['Have to', 'Hafta / Gotta', 'Havta'], answer: 'Hafta / Gotta', explanation: "'Gotta' atau 'hafta' adalah reduksi umum dari 'have to'." },
-  { id: 9, question: "Dalam 'Don't you', bunyi T+Y menjadi...", options: ['/ch/ (Don-choo)', '/sh/', '/j/'], answer: '/ch/ (Don-choo)', explanation: "T + Y = CH sound dalam connected speech." },
-  { id: 10, question: "'Miss you' terdengar seperti...", options: ['Miss you', 'Mish-you', 'Mis-joo'], answer: 'Mish-you', explanation: "S + Y = SH sound (assimilation)." },
-  { id: 11, question: "Mengapa native speakers menggunakan linking dan reductions?", options: ['Untuk berbicara lebih cepat dan lancar', 'Karena malas', 'For terdengar lebih formal'], answer: 'Untuk berbicara lebih cepat dan lancar', explanation: "Connected speech adalah natural flow dalam bahasa Inggris." },
-  { id: 12, question: "'Kind of' berubah menjadi...", options: ['Kinov', 'Kinda', 'Kindoff'], answer: 'Kinda', explanation: "'Kind of' → 'kinda' dalam casual speech." },
-  { id: 13, question: "'I am' sering diucapkan sebagai...", options: ['I am', 'I-y-am', 'I-w-am'], answer: 'I-y-am', explanation: "Bunyi /aɪ/ menghubungkan ke vokal dengan /y/." },
-  { id: 14, question: "'Let me' berubah menjadi...", options: ['Letme', 'Lemme', 'Letmi'], answer: 'Lemme', explanation: "'Lemme' adalah reduksi sangat umum dari 'let me'." },
+  { id: 9, question: "Dalam 'Don't you', bunyi T+Y menjadi...", options: ['/ch/ (Don-choo)', '/j/', '/sh/'], answer: '/ch/ (Don-choo)', explanation: "T + Y = CH sound dalam connected speech." },
+  { id: 10, question: "'Miss you' terdengar seperti...", options: ['Mis-joo', 'Mish-you', 'Miss you'], answer: 'Mish-you', explanation: "S + Y = SH sound (assimilation)." },
+  { id: 11, question: "Mengapa native speakers menggunakan linking dan reductions?", options: ['For terdengar lebih formal', 'Untuk berbicara lebih cepat dan lancar', 'Karena malas'], answer: 'Untuk berbicara lebih cepat dan lancar', explanation: "Connected speech adalah natural flow dalam bahasa Inggris." },
+  { id: 12, question: "'Kind of' berubah menjadi...", options: ['Kinda', 'Kinov', 'Kindoff'], answer: 'Kinda', explanation: "'Kind of' → 'kinda' dalam casual speech." },
+  { id: 13, question: "'I am' sering diucapkan sebagai...", options: ['I am', 'I-w-am', 'I-y-am'], answer: 'I-y-am', explanation: "Bunyi /aɪ/ menghubungkan ke vokal dengan /y/." },
+  { id: 14, question: "'Let me' berubah menjadi...", options: ['Lemme', 'Letme', 'Letmi'], answer: 'Lemme', explanation: "'Lemme' adalah reduksi sangat umum dari 'let me'." },
   { id: 15, question: "Apakah reduksi dan linking hanya untuk slang?", options: ['Ya, hanya slang', 'Tidak, ini natural for ALL native speakers'], answer: 'Tidak, ini natural for ALL native speakers', explanation: "Semua penutur asli menggunakan connected speech tanpa sadar." },
-  { id: 16, question: "'Do it' diucapkan sebagai...", options: ['Do it (terpisah)', 'Do-w-it', 'Do-y-it'], answer: 'Do-w-it', explanation: "Bunyi /u:/ menghubungkan dengan /w/." },
-  { id: 17, question: "Dalam 'Would you', bunyi D+Y menjadi...", options: ['/j/ (Would-joo)', '/ch/', '/sh/'], answer: '/j/ (Would-joo)', explanation: "D + Y = J sound (assimilation)." },
-  { id: 18, question: "Apa perbedaan formal vs casual speech?", options: ['Formal = jelas terpisah, Casual = linked and reduced', 'Tidak ada beda', 'Casual = lebih lambat'], answer: 'Formal = jelas terpisah, Casual = linked and reduced', explanation: "Dalam formal speech, kita ucapkan lebih jelas. Casual = lebih banyak linking." },
-  { id: 19, question: "'The end' diucapkan sebagai...", options: ['The end', 'The-y-end', 'The-w-end'], answer: 'The-y-end', explanation: "Schwa /ə/ atau /i:/ sound menghubungkan dengan /y/." },
-  { id: 20, question: "Untuk terdengar natural, Anda harus...", options: ['Ucapkan semua kata terpisah dengan jelas', 'Gunakan linking, reductions, assimilation', 'Bicara sangat pelan'], answer: 'Gunakan linking, reductions, assimilation', explanation: "Connected speech adalah kunci kefasihan natural." }
+  { id: 16, question: "'Do it' diucapkan sebagai...", options: ['Do-w-it', 'Do it (terpisah)', 'Do-y-it'], answer: 'Do-w-it', explanation: "Bunyi /u:/ menghubungkan dengan /w/." },
+  { id: 17, question: "Dalam 'Would you', bunyi D+Y menjadi...", options: ['/ch/', '/sh/', '/j/ (Would-joo)'], answer: '/j/ (Would-joo)', explanation: "D + Y = J sound (assimilation)." },
+  { id: 18, question: "Apa perbedaan formal vs casual speech?", options: ['Casual = lebih lambat', 'Formal = jelas terpisah, Casual = linked and reduced', 'Tidak ada beda'], answer: 'Formal = jelas terpisah, Casual = linked and reduced', explanation: "Dalam formal speech, kita ucapkan lebih jelas. Casual = lebih banyak linking." },
+  { id: 19, question: "'The end' diucapkan sebagai...", options: ['The-y-end', 'The end', 'The-w-end'], answer: 'The-y-end', explanation: "Schwa /ə/ atau /i:/ sound menghubungkan dengan /y/." },
+  { id: 20, question: "Untuk terdengar natural, Anda harus...", options: ['Bicara sangat pelan', 'Gunakan linking, reductions, assimilation', 'Ucapkan semua kata terpisah dengan jelas'], answer: 'Gunakan linking, reductions, assimilation', explanation: "Connected speech adalah kunci kefasihan natural." }
 ];
 
 const InterPronunLesson6: React.FC = () => {

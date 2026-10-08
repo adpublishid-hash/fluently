@@ -152,9 +152,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "I ___ swimming every morning.",
     options: [
+      { text: "go", correct: true },
       { text: "play", correct: false },
-      { text: "do", correct: false },
-      { text: "go", correct: true }
+      { text: "do", correct: false }
     ],
     explanation: "Gunakan 'GO' untuk aktivitas berakhiran -ing (go swimming, go hiking)."
   },
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "She ___ playing the guitar.",
     options: [
-      { text: "likes", correct: true },
       { text: "want", correct: false },
-      { text: "interested", correct: false }
+      { text: "interested", correct: false },
+      { text: "likes", correct: true }
     ],
     explanation: "She likes + verb-ing. 'Want' perlu 'to' (wants to play)."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "We ___ football on Sundays.",
     options: [
+      { text: "do", correct: false },
       { text: "go", correct: false },
-      { text: "play", correct: true },
-      { text: "do", correct: false }
+      { text: "play", correct: true }
     ],
     explanation: "Gunakan 'PLAY' untuk olahraga bola dan permainan (play football, play chess)."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "He ___ karate.",
     options: [
+      { text: "goes", correct: false },
       { text: "does", correct: true },
-      { text: "plays", correct: false },
-      { text: "goes", correct: false }
+      { text: "plays", correct: false }
     ],
     explanation: "Gunakan 'DO' untuk latihan individu dan bela diri (do karate, do yoga)."
   },
@@ -192,8 +192,8 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "I enjoy ___ movies.",
     options: [
-      { text: "watch", correct: false },
       { text: "watching", correct: true },
+      { text: "watch", correct: false },
       { text: "watched", correct: false }
     ],
     explanation: "Setelah 'enjoy', selalu gunakan gerund (bentuk -ing)."
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Saya ingin bergabung dengan klub catur.\"?",
     options: [
+      { text: "I want to join the chess club.", correct: true },
       { text: "Do you play any sports?", correct: false },
-      { text: "We can start a band!", correct: false },
-      { text: "I want to join the chess club.", correct: true }
+      { text: "We can start a band!", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Saya ingin bergabung dengan klub catur.\" adalah \"I want to join the chess club.\"."
   },
@@ -222,8 +222,8 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"___ go about once a month.\"\n(Arti: Saya pergi sekitar sebulan sekali.)",
     options: [
-      { text: "I", correct: true },
       { text: "garden", correct: false },
+      { text: "I", correct: true },
       { text: "good", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'I'."
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"Your garden looks beautiful.\"?",
     options: [
-      { text: "Tidak, saya lebih suka aktivitas dalam ruangan.", correct: false },
+      { text: "Kebunmu terlihat indah.", correct: true },
       { text: "Menanam bunga pasti kerja keras.", correct: false },
-      { text: "Kebunmu terlihat indah.", correct: true }
+      { text: "Tidak, saya lebih suka aktivitas dalam ruangan.", correct: false }
     ],
     explanation: "Kalimat \"Your garden looks beautiful.\" memiliki arti \"Kebunmu terlihat indah.\"."
   },
@@ -242,8 +242,8 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Saya mencium bau enak. Kamu lagi masak?\"?",
     options: [
-      { text: "Can you take a picture of me?", correct: false },
       { text: "I smell something good. Are you cooking?", correct: true },
+      { text: "Can you take a picture of me?", correct: false },
       { text: "It is relaxing for me.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Saya mencium bau enak. Kamu lagi masak?\" adalah \"I smell something good. Are you cooking?\"."
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"Thanks. I love taking photos ___ nature.\"\n(Arti: Makasih. Saya suka memfoto alam.)",
     options: [
+      { text: "is", correct: false },
       { text: "of", correct: true },
-      { text: "How", correct: false },
-      { text: "is", correct: false }
+      { text: "How", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'of'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"How often do you go hiking?\"?",
     options: [
-      { text: "Seberapa sering kamu pergi mendaki?", correct: true },
+      { text: "Kamu main video game?", correct: false },
       { text: "Kadang-kadang, kalau lagi bosan.", correct: false },
-      { text: "Kamu main video game?", correct: false }
+      { text: "Seberapa sering kamu pergi mendaki?", correct: true }
     ],
     explanation: "Kalimat \"How often do you go hiking?\" memiliki arti \"Seberapa sering kamu pergi mendaki?\"."
   },
@@ -272,9 +272,9 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Ini hobi baru saya.\"?",
     options: [
-      { text: "It is my new hobby.", correct: true },
       { text: "Do you play video games?", correct: false },
-      { text: "I want to learn the piano.", correct: false }
+      { text: "I want to learn the piano.", correct: false },
+      { text: "It is my new hobby.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Ini hobi baru saya.\" adalah \"It is my new hobby.\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"Do you like ___ movies?\"\n(Arti: Kamu suka film horor?)",
     options: [
+      { text: "horror", correct: true },
       { text: "free", correct: false },
-      { text: "must", correct: false },
-      { text: "horror", correct: true }
+      { text: "must", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'horror'."
   },
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Apa yang kamu lakukan di waktu luang?\"?",
     options: [
-      { text: "What do you do in your free time?", correct: true },
+      { text: "Sometimes, when I am bored.", correct: false },
       { text: "Wow, you are very active.", correct: false },
-      { text: "Sometimes, when I am bored.", correct: false }
+      { text: "What do you do in your free time?", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Apa yang kamu lakukan di waktu luang?\" adalah \"What do you do in your free time?\"."
   },
@@ -312,8 +312,8 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"Is it ___ from here?\"\n(Arti: Apakah jauh dari sini?)",
     options: [
-      { text: "didn't", correct: false },
       { text: "two", correct: false },
+      { text: "didn't", correct: false },
       { text: "far", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'far'."
@@ -322,8 +322,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Yes, it takes two hours to drive there.\"?",
     options: [
-      { text: "Wow, kamu aktif sekali.", correct: false },
       { text: "Jenis film apa yang kamu suka?", correct: false },
+      { text: "Wow, kamu aktif sekali.", correct: false },
       { text: "Ya, butuh dua jam menyetir ke sana.", correct: true }
     ],
     explanation: "Kalimat \"Yes, it takes two hours to drive there.\" memiliki arti \"Ya, butuh dua jam menyetir ke sana.\"."
@@ -333,8 +333,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Saya tidak tahu kamu suka bikin kue.\"?",
     options: [
       { text: "That sounds interesting. When do they meet?", correct: false },
-      { text: "Can you play the guitar?", correct: false },
-      { text: "I didn't know you like baking.", correct: true }
+      { text: "I didn't know you like baking.", correct: true },
+      { text: "Can you play the guitar?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Saya tidak tahu kamu suka bikin kue.\" adalah \"I didn't know you like baking.\"."
   },
@@ -342,9 +342,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"Do ___ play video games?\"\n(Arti: Kamu main video game?)",
     options: [
-      { text: "nice", correct: false },
+      { text: "a", correct: false },
       { text: "you", correct: true },
-      { text: "a", correct: false }
+      { text: "nice", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'you'."
   }

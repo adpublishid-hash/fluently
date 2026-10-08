@@ -67,70 +67,70 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Dalam frasa 'Cup of tea', bagaimana 'OF' biasanya diucapkan?",
-    options: ['/ɒv/ (Kuat)', '/ə/ atau /əv/ (Lemah)'],
+    options: ['/ə/ atau /əv/ (Lemah)', '/ɒv/ (Kuat)'],
     answer: '/ə/ atau /əv/ (Lemah)',
     explanation: "Dalam ritme alami, 'of' direduksi menjadi suara schwa, terdengar seperti 'Cup-a-tea'."
   },
   {
     id: 2,
     question: "Kata mana yang merupakan Kata Fungsi (biasanya tidak ditekankan)?",
-    options: ['Apple', 'Run', 'For'],
+    options: ['Run', 'For', 'Apple'],
     answer: 'For',
     explanation: "Kata depan seperti 'for' adalah kata fungsi dan biasanya lemah/tidak ditekankan."
   },
   {
     id: 3,
     question: "Ritme bahasa Inggris didasarkan pada...",
-    options: ['Setiap suku kata sama', 'Ketukan tekanan'],
+    options: ['Ketukan tekanan', 'Setiap suku kata sama'],
     answer: 'Ketukan tekanan',
     explanation: "Bahasa Inggris berwaktu tekanan (stress-timed). Kita bergerak cepat di antara kata-kata yang ditekankan."
   },
   {
     id: 4,
     question: "Dengarkan: 'Rock and Roll'. Suara mana yang biasanya menghilang?",
-    options: ['Suara /d/ di And', 'Suara /r/ di Rock', 'Suara /l/ di Roll'],
+    options: ['Suara /r/ di Rock', 'Suara /d/ di And', 'Suara /l/ di Roll'],
     answer: 'Suara /d/ di And',
     explanation: "'And' menjadi 'n'. Kita mengucapkan 'Rock-n-Roll'."
   },
   {
     id: 5,
     question: "Dalam frasa 'Cup of tea', bagaimana 'OF' biasanya diucapkan ?",
-    options: ["/ɒv/ (Kuat)","/ə/ atau /əv/ (Lemah)"],
+    options: ["/ə/ atau /əv/ (Lemah)", "/ɒv/ (Kuat)"],
     answer: "/ə/ atau /əv/ (Lemah)",
     explanation: "Dalam ritme alami, 'of' direduksi menjadi suara schwa, terdengar seperti 'Cup-a-tea'."
   },
   {
     id: 6,
     question: "Dari pilihan berikut, mana yang merupakan Kata Fungsi (biasanya tidak ditekankan)...",
-    options: ["Apple","Run","For"],
+    options: ["For", "Run", "Apple"],
     answer: "For",
     explanation: "Kata depan seperti 'for' adalah kata fungsi dan biasanya lemah/tidak ditekankan."
   },
   {
     id: 7,
     question: "Ritme bahasa Inggris didasarkan pada:",
-    options: ["Setiap suku kata sama","Ketukan tekanan"],
+    options: ["Ketukan tekanan", "Setiap suku kata sama"],
     answer: "Ketukan tekanan",
     explanation: "Bahasa Inggris berwaktu tekanan (stress-timed). Kita bergerak cepat di antara kata-kata yang ditekankan."
   },
   {
     id: 8,
     question: "Perhatikan: 'Rock and Roll'. Suara mana yang biasanya menghilang?",
-    options: ["Suara /d/ di And","Suara /r/ di Rock","Suara /l/ di Roll"],
+    options: ["Suara /r/ di Rock", "Suara /l/ di Roll", "Suara /d/ di And"],
     answer: "Suara /d/ di And",
     explanation: "'And' menjadi 'n'. Kita mengucapkan 'Rock-n-Roll'."
   },
   {
     id: 9,
     question: "Dalam frasa 'Cup of tea', bagaimana 'OF' biasanya diucapkan ?",
-    options: ["/ɒv/ (Kuat)","/ə/ atau /əv/ (Lemah)"],
+    options: ["/ə/ atau /əv/ (Lemah)", "/ɒv/ (Kuat)"],
     answer: "/ə/ atau /əv/ (Lemah)",
     explanation: "Dalam ritme alami, 'of' direduksi menjadi suara schwa, terdengar seperti 'Cup-a-tea'."
   },
   {
     id: 10,
     question: "Kata mana yang merupakan Kata Fungsi (biasanya tidak ditekankan)...",
-    options: ["Apple","Run","For"],
+    options: ["Apple", "For", "Run"],
     answer: "For",
     explanation: "Kata depan seperti 'for' adalah kata fungsi dan biasanya lemah/tidak ditekankan."
   },
@@ -144,7 +144,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "Perhatikan: 'Rock and Roll'. Suara mana yang biasanya menghilang...",
-    options: ["Suara /d/ di And","Suara /r/ di Rock","Suara /l/ di Roll"],
+    options: ["Suara /l/ di Roll", "Suara /r/ di Rock", "Suara /d/ di And"],
     answer: "Suara /d/ di And",
     explanation: "'And' menjadi 'n'. Kita mengucapkan 'Rock-n-Roll'."
   },
@@ -158,49 +158,49 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "Dari pilihan berikut, mana yang merupakan Kata Fungsi (biasanya tidak ditekankan)?",
-    options: ["Apple","Run","For"],
+    options: ["Run", "For", "Apple"],
     answer: "For",
     explanation: "Kata depan seperti 'for' adalah kata fungsi dan biasanya lemah/tidak ditekankan."
   },
   {
     id: 15,
     question: "Ritme bahasa Inggris didasarkan pada...",
-    options: ["Setiap suku kata sama","Ketukan tekanan"],
+    options: ["Ketukan tekanan", "Setiap suku kata sama"],
     answer: "Ketukan tekanan",
     explanation: "Bahasa Inggris berwaktu tekanan (stress-timed). Kita bergerak cepat di antara kata-kata yang ditekankan."
   },
   {
     id: 16,
     question: "Fokus pada: 'Rock and Roll'. Suara mana yang biasanya menghilang?",
-    options: ["Suara /d/ di And","Suara /r/ di Rock","Suara /l/ di Roll"],
+    options: ["Suara /l/ di Roll", "Suara /r/ di Rock", "Suara /d/ di And"],
     answer: "Suara /d/ di And",
     explanation: "'And' menjadi 'n'. Kita mengucapkan 'Rock-n-Roll'."
   },
   {
     id: 17,
     question: "Dalam frasa 'Cup of tea', bagaimana 'OF' biasanya diucapkan?",
-    options: ["/ɒv/ (Kuat)","/ə/ atau /əv/ (Lemah)"],
+    options: ["/ə/ atau /əv/ (Lemah)", "/ɒv/ (Kuat)"],
     answer: "/ə/ atau /əv/ (Lemah)",
     explanation: "Dalam ritme alami, 'of' direduksi menjadi suara schwa, terdengar seperti 'Cup-a-tea'."
   },
   {
     id: 18,
     question: "Dari pilihan berikut, mana yang merupakan Kata Fungsi (biasanya tidak ditekankan) ?",
-    options: ["Apple","Run","For"],
+    options: ["Run", "Apple", "For"],
     answer: "For",
     explanation: "Kata depan seperti 'for' adalah kata fungsi dan biasanya lemah/tidak ditekankan."
   },
   {
     id: 19,
     question: "Ritme bahasa Inggris didasarkan pada:",
-    options: ["Setiap suku kata sama","Ketukan tekanan"],
+    options: ["Ketukan tekanan", "Setiap suku kata sama"],
     answer: "Ketukan tekanan",
     explanation: "Bahasa Inggris berwaktu tekanan (stress-timed). Kita bergerak cepat di antara kata-kata yang ditekankan."
   },
   {
     id: 20,
     question: "Perhatikan: 'Rock and Roll'. Suara mana yang biasanya menghilang...",
-    options: ["Suara /d/ di And","Suara /r/ di Rock","Suara /l/ di Roll"],
+    options: ["Suara /l/ di Roll", "Suara /r/ di Rock", "Suara /d/ di And"],
     answer: "Suara /d/ di And",
     explanation: "'And' menjadi 'n'. Kita mengucapkan 'Rock-n-Roll'."
   }

@@ -27,9 +27,9 @@ const BUILD_ITEMS = [
     prompt: "___ straight for 200 meters.",
     blank: "Go",
     options: [
-      "Goes",
       "Going",
-      "Go"
+      "Go",
+      "Goes"
     ],
     answer: "Go"
   }
@@ -38,9 +38,9 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik: ",
     opts: [
+      "Go straight",
       "Stop",
-      "Turn around",
-      "Go straight"
+      "Turn around"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -58,9 +58,9 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R3)",
     opts: [
-      "Go straight",
       "Turn around",
-      "Stop"
+      "Stop",
+      "Go straight"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -69,8 +69,8 @@ const QUIZ = [
     q: "Arahkan seseorang untuk berputar balik:  (R4)",
     opts: [
       "Stop",
-      "Turn around",
-      "Go straight"
+      "Go straight",
+      "Turn around"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -78,9 +78,9 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R5)",
     opts: [
-      "Stop",
       "Turn around",
-      "Go straight"
+      "Go straight",
+      "Stop"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -98,8 +98,8 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R7)",
     opts: [
-      "Turn around",
       "Go straight",
+      "Turn around",
       "Stop"
     ],
     ans: "Turn around",
@@ -118,8 +118,8 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R9)",
     opts: [
-      "Stop",
       "Turn around",
+      "Stop",
       "Go straight"
     ],
     ans: "Turn around",
@@ -128,8 +128,8 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R10)",
     opts: [
-      "Turn around",
       "Go straight",
+      "Turn around",
       "Stop"
     ],
     ans: "Turn around",
@@ -139,8 +139,8 @@ const QUIZ = [
     q: "Arahkan seseorang untuk berputar balik:  (R11)",
     opts: [
       "Stop",
-      "Turn around",
-      "Go straight"
+      "Go straight",
+      "Turn around"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -148,8 +148,8 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R12)",
     opts: [
-      "Turn around",
       "Go straight",
+      "Turn around",
       "Stop"
     ],
     ans: "Turn around",
@@ -159,8 +159,8 @@ const QUIZ = [
     q: "Arahkan seseorang untuk berputar balik:  (R13)",
     opts: [
       "Stop",
-      "Turn around",
-      "Go straight"
+      "Go straight",
+      "Turn around"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -168,8 +168,8 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R14)",
     opts: [
-      "Stop",
       "Turn around",
+      "Stop",
       "Go straight"
     ],
     ans: "Turn around",
@@ -188,9 +188,9 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R16)",
     opts: [
+      "Go straight",
       "Turn around",
-      "Stop",
-      "Go straight"
+      "Stop"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -208,9 +208,9 @@ const QUIZ = [
   {
     q: "Arahkan seseorang untuk berputar balik:  (R18)",
     opts: [
+      "Stop",
       "Turn around",
-      "Go straight",
-      "Stop"
+      "Go straight"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."
@@ -219,8 +219,8 @@ const QUIZ = [
     q: "Arahkan seseorang untuk berputar balik:  (R19)",
     opts: [
       "Turn around",
-      "Stop",
-      "Go straight"
+      "Go straight",
+      "Stop"
     ],
     ans: "Turn around",
     exp: "Turn around = U-turn atau berputar arah."

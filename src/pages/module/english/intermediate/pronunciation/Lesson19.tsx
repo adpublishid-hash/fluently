@@ -110,47 +110,47 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Berapa banyak suku kata dalam 'Vegetable'?",
-    options: ['4 (Ve-ge-ta-ble)', '3 (Veg-ta-ble)'],
+    options: ['3 (Veg-ta-ble)', '4 (Ve-ge-ta-ble)'],
     answer: '3 (Veg-ta-ble)',
     explanation: "Penutur asli menghilangkan 'e' kedua. Veg-ta-ble."
   },
   {
     id: 2,
     question: "Kata mana yang berima dengan 'Debt'?",
-    options: ['Bet', 'Bead', 'Dept'],
+    options: ['Dept', 'Bet', 'Bead'],
     answer: 'Bet',
     explanation: "'b' tidak diucapkan. Terdengar seperti 'Det'."
   },
   {
     id: 3,
     question: "Bagaimana Anda mengucapkan 'Women' (Jamak)?",
-    options: ['Woo-men', 'Wih-min'],
+    options: ['Wih-min', 'Woo-men'],
     answer: 'Wih-min',
     explanation: "Bunyi 'O' berubah menjadi bunyi 'I' pendek."
   },
   {
     id: 4,
     question: "Di mana letak tekanan pada 'Photography'?",
-    options: ['PHO-to-gra-phy', 'pho-TOG-ra-phy'],
+    options: ['pho-TOG-ra-phy', 'PHO-to-gra-phy'],
     answer: 'pho-TOG-ra-phy',
     explanation: "Tekanan berpindah ke suku kata kedua."
   },
-  { id: 5, question: "'CH' dalam 'Chaos' terdengar seperti...", options: ['CH (Cheese)', 'K (King)', 'SH (Shoe)'], answer: 'K (King)', explanation: "Chaos diucapkan 'Kay-os'." },
-  { id: 6, question: "'Island' diucapkan...", options: ['Is-land (S diucapkan)', 'Eye-land (S silent)'], answer: 'Eye-land (S silent)', explanation: "The 'S' is silent. Sounds like 'I-land'." },
-  { id: 7, question: "'Receipt' memiliki silent letter...", options: ['P', 'C', 'T'], answer: 'P', explanation: "Receipt = /rɪˈsiːt/ (Re-seet). P is silent." },
+  { id: 5, question: "'CH' dalam 'Chaos' terdengar seperti...", options: ['K (King)', 'SH (Shoe)', 'CH (Cheese)'], answer: 'K (King)', explanation: "Chaos diucapkan 'Kay-os'." },
+  { id: 6, question: "'Island' diucapkan...", options: ['Eye-land (S silent)', 'Is-land (S diucapkan)'], answer: 'Eye-land (S silent)', explanation: "The 'S' is silent. Sounds like 'I-land'." },
+  { id: 7, question: "'Receipt' memiliki silent letter...", options: ['T', 'P', 'C'], answer: 'P', explanation: "Receipt = /rɪˈsiːt/ (Re-seet). P is silent." },
   { id: 8, question: "'Comfortable' has ___ syllables.", options: ['4 (Com-for-ta-ble)', '3 (Comf-ta-ble)'], answer: '3 (Comf-ta-ble)', explanation: "Native speakers reduce it: Comf-ta-ble." },
-  { id: 9, question: "'Bury' berima dengan...", options: ['Fury', 'Berry', 'Bury (unique)'], answer: 'Berry', explanation: "Bury = /ˈbɛri/ like cherry, berry." },
-  { id: 10, question: "'Police' dimulai dengan bunyi...", options: ['/pə/ (Puh)', '/poʊ/ (Po)', '/pɑ/ (Paa)'], answer: '/pə/ (Puh)', explanation: "Police = /pəˈliːs/. First syllable is schwa." },
-  { id: 11, question: "'Onion' dimulai dengan bunyi...", options: ['/ʌn/ (Un)', '/oʊn/ (Own)', '/ɑn/ (On)'], answer: '/ʌn/ (Un)', explanation: "Onion = /ˈʌnjən/ (Un-yin)." },
-  { id: 12, question: "Stress shift: PHO-to-graph → ___", options: ['PHO-to-gra-phy', 'pho-TOG-ra-phy'], answer: 'pho-TOG-ra-phy', explanation: "Stress moves to second syllable in photography." },
-  { id: 13, question: "Stress shift: AN-a-lyze → ___", options: ['AN-a-ly-sis', 'a-NAL-y-sis'], answer: 'a-NAL-y-sis', explanation: "Stress shifts to second syllable." },
+  { id: 9, question: "'Bury' berima dengan...", options: ['Bury (unique)', 'Berry', 'Fury'], answer: 'Berry', explanation: "Bury = /ˈbɛri/ like cherry, berry." },
+  { id: 10, question: "'Police' dimulai dengan bunyi...", options: ['/pɑ/ (Paa)', '/poʊ/ (Po)', '/pə/ (Puh)'], answer: '/pə/ (Puh)', explanation: "Police = /pəˈliːs/. First syllable is schwa." },
+  { id: 11, question: "'Onion' dimulai dengan bunyi...", options: ['/oʊn/ (Own)', '/ʌn/ (Un)', '/ɑn/ (On)'], answer: '/ʌn/ (Un)', explanation: "Onion = /ˈʌnjən/ (Un-yin)." },
+  { id: 12, question: "Stress shift: PHO-to-graph → ___", options: ['pho-TOG-ra-phy', 'PHO-to-gra-phy'], answer: 'pho-TOG-ra-phy', explanation: "Stress moves to second syllable in photography." },
+  { id: 13, question: "Stress shift: AN-a-lyze → ___", options: ['a-NAL-y-sis', 'AN-a-ly-sis'], answer: 'a-NAL-y-sis', explanation: "Stress shifts to second syllable." },
   { id: 14, question: "'Colonel' (military rank) diucapkan...", options: ['/kəˈloʊnəl/ (Ko-lo-nel)', '/ˈkɜrnəl/ (Ker-nel)'], answer: '/ˈkɜrnəl/ (Ker-nel)', explanation: "Colonel sounds like 'kernel'! Silent 'o', 'l'." },
   { id: 15, question: "'Wednesday' diucapkan...", options: ['/ˈwɛdnɪzdeɪ/ (Wed-nes-day)', '/ˈwɛnzdeɪ/ (Wenz-day)'], answer: '/ˈwɛnzdeɪ/ (Wenz-day)', explanation: "First 'd' is silent. Wenz-day." },
   { id: 16, question: "'Salmon' has silent...", options: ['S', 'L', 'N'], answer: 'L', explanation: "Salmon = /ˈsæmən/ (Sam-on). L is silent." },
   { id: 17, question: "'Suite' (hotel room) diucapkan...", options: ['/suːt/ (Suit)', '/swiːt/ (Sweet)'], answer: '/swiːt/ (Sweet)', explanation: "Suite rhymes with 'sweet', not 'suit'." },
-  { id: 18, question: "'Knife' has silent...", options: ['K', 'I', 'E'], answer: 'K', explanation: "Knife = /naɪf/ (Nife). K is silent." },
-  { id: 19, question: "Common mistake: 'Nuclear' is NOT pronounced...", options: ['/ˈnukliər/ (Correct)', "/ˈnukjələr/ (Nucular - wrong)"], answer: '/ˈnukjələr/ (Nucular - wrong)', explanation: "Correct = /ˈnukliər/ (New-klee-er), NOT nucular." },
-  { id: 20, question: "Best way to avoid common mistakes?", options: ['Guess', 'Listen to natives, use dictionaries', 'Give up'], answer: 'Listen to natives, use dictionaries', explanation: "Learn correct pronunciation through exposure and reference tools!" }
+  { id: 18, question: "'Knife' has silent...", options: ['I', 'E', 'K'], answer: 'K', explanation: "Knife = /naɪf/ (Nife). K is silent." },
+  { id: 19, question: "Common mistake: 'Nuclear' is NOT pronounced...", options: ["/ˈnukjələr/ (Nucular - wrong)", '/ˈnukliər/ (Correct)'], answer: '/ˈnukjələr/ (Nucular - wrong)', explanation: "Correct = /ˈnukliər/ (New-klee-er), NOT nucular." },
+  { id: 20, question: "Best way to avoid common mistakes?", options: ['Listen to natives, use dictionaries', 'Give up', 'Guess'], answer: 'Listen to natives, use dictionaries', explanation: "Learn correct pronunciation through exposure and reference tools!" }
 ];
 
 const InterPronunLesson19: React.FC = () => {

@@ -12,9 +12,9 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's emotions and motivation? [Q1]",
     "options": [
-      "What is your emotion problem?",
       "I would love to hear about your thoughts on emotions and motivation.",
-      "Tell me your emotion now."
+      "Tell me your emotion now.",
+      "What is your emotion problem?"
     ],
     "answer": "I would love to hear about your thoughts on emotions and motivation.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing emotion, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about emotion? [Q3]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -45,9 +45,9 @@ const QUIZ_QUESTIONS = [
     "id": 4,
     "question": "If you want to interrupt politely during a conversation about emotion, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -56,8 +56,8 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about emotions and motivation; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
+      "Because",
       "Furthermore"
     ],
     "answer": "Furthermore",
@@ -67,8 +67,8 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding emotion? [Q6]",
     "options": [
-      "A piece of cake",
       "Under the weather",
+      "A piece of cake",
       "Bite the bullet"
     ],
     "answer": "A piece of cake",
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's emotions and motivation? [Q7]",
     "options": [
-      "What is your emotion problem?",
       "I would love to hear about your thoughts on emotions and motivation.",
-      "Tell me your emotion now."
+      "Tell me your emotion now.",
+      "What is your emotion problem?"
     ],
     "answer": "I would love to hear about your thoughts on emotions and motivation.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing emotion, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -111,9 +111,9 @@ const QUIZ_QUESTIONS = [
     "id": 10,
     "question": "If you want to interrupt politely during a conversation about emotion, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -122,8 +122,8 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about emotions and motivation; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
+      "Because",
       "Furthermore"
     ],
     "answer": "Furthermore",
@@ -144,9 +144,9 @@ const QUIZ_QUESTIONS = [
     "id": 13,
     "question": "What is the most polite way to ask about someone's emotions and motivation? [Q13]",
     "options": [
-      "What is your emotion problem?",
+      "Tell me your emotion now.",
       "I would love to hear about your thoughts on emotions and motivation.",
-      "Tell me your emotion now."
+      "What is your emotion problem?"
     ],
     "answer": "I would love to hear about your thoughts on emotions and motivation.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing emotion, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,9 +166,9 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about emotion? [Q15]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -177,9 +177,9 @@ const QUIZ_QUESTIONS = [
     "id": 16,
     "question": "If you want to interrupt politely during a conversation about emotion, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -188,8 +188,8 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about emotions and motivation; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
+      "Because",
       "Furthermore"
     ],
     "answer": "Furthermore",
@@ -200,8 +200,8 @@ const QUIZ_QUESTIONS = [
     "question": "Which idiom best describes a very easy task regarding emotion? [Q18]",
     "options": [
       "A piece of cake",
-      "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "Under the weather"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's emotions and motivation? [Q19]",
     "options": [
-      "What is your emotion problem?",
+      "Tell me your emotion now.",
       "I would love to hear about your thoughts on emotions and motivation.",
-      "Tell me your emotion now."
+      "What is your emotion problem?"
     ],
     "answer": "I would love to hear about your thoughts on emotions and motivation.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing emotion, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

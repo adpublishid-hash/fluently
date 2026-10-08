@@ -53,26 +53,26 @@ const COMPLEX_TRAITS = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "Someone who always expects good things to happen is ___.", options: ['Pessimistic', 'Optimistic', 'Cynical'], answer: 'Optimistic', explanation: "Orang yang optimis fokus pada sisi positif dari berbagai hal." },
-  { id: 2, question: "A person who refuses to change their mind is ___.", options: ['Flexible', 'Stubborn', 'Generous'], answer: 'Stubborn', explanation: "Orang yang keras kepala bertekad secara tidak masuk akal untuk melakukan apa yang mereka inginkan." },
-  { id: 3, question: "He only cares about himself. He is very ___.", options: ['selfish', 'selfless', 'sincere'], answer: 'selfish', explanation: "Selfish (Egois) berarti kurang mempertimbangkan orang lain." },
+  { id: 1, question: "Someone who always expects good things to happen is ___.", options: ['Cynical', 'Pessimistic', 'Optimistic'], answer: 'Optimistic', explanation: "Orang yang optimis fokus pada sisi positif dari berbagai hal." },
+  { id: 2, question: "A person who refuses to change their mind is ___.", options: ['Stubborn', 'Generous', 'Flexible'], answer: 'Stubborn', explanation: "Orang yang keras kepala bertekad secara tidak masuk akal untuk melakukan apa yang mereka inginkan." },
+  { id: 3, question: "He only cares about himself. He is very ___.", options: ['sincere', 'selfless', 'selfish'], answer: 'selfish', explanation: "Selfish (Egois) berarti kurang mempertimbangkan orang lain." },
   { id: 4, question: "She works very hard and carefully. She is ___.", options: ['lazy', 'diligent', 'arrogant'], answer: 'diligent', explanation: "Diligent (Rajin) berarti memiliki atau menunjukkan ketekunan dan kesungguhan dalam pekerjaan seseorang." },
-  { id: 5, question: "He enjoys being alone and finds social events tiring. He is ___.", options: ['Extroverted', 'Charismatic', 'Introverted'], answer: 'Introverted', explanation: "Orang yang introvert cenderung tertutup dan fokus pada pikiran internal." },
-  { id: 6, question: "Someone who sets high goals and works hard to achieve them is ___.", options: ['Lazy', 'Ambitious', 'Arrogant'], answer: 'Ambitious', explanation: "Ambitious (Ambisius) berarti memiliki keinginan kuat untuk sukses." },
+  { id: 5, question: "He enjoys being alone and finds social events tiring. He is ___.", options: ['Charismatic', 'Introverted', 'Extroverted'], answer: 'Introverted', explanation: "Orang yang introvert cenderung tertutup dan fokus pada pikiran internal." },
+  { id: 6, question: "Someone who sets high goals and works hard to achieve them is ___.", options: ['Arrogant', 'Ambitious', 'Lazy'], answer: 'Ambitious', explanation: "Ambitious (Ambisius) berarti memiliki keinginan kuat untuk sukses." },
   { id: 7, question: "You can always count on her. She is very ___.", options: ['reliable', 'impulsive', 'moody'], answer: 'reliable', explanation: "Reliable (Dapat diandalkan) berarti bisa dipercaya." },
-  { id: 8, question: "He gives a lot of money to charity. He is ___.", options: ['greedy', 'generous', 'vain'], answer: 'generous', explanation: "Generous (Dermawan) berarti murah hati dan suka memberi." },
-  { id: 9, question: "Someone who acts without thinking is ___.", options: ['impulsive', 'analytical', 'considerate'], answer: 'impulsive', explanation: "Impulsive berarti bertindak tiba-tiba tanpa berpikir." },
-  { id: 10, question: "She thinks she's better than everyone else. She is ___.", options: ['humble', 'arrogant', 'sincere'], answer: 'arrogant', explanation: "Arrogant (Sombong) berarti memiliki perasaan superioritas yang berlebihan." },
-  { id: 11, question: "He never does his homework. He is ___.", options: ['diligent', 'resourceful', 'lazy'], answer: 'lazy', explanation: "Lazy (Malas) berarti tidak mau bekerja atau menggunakan energi." },
-  { id: 12, question: "Someone who only sees the negative side is ___.", options: ['optimistic', 'pessimistic', 'sincere'], answer: 'pessimistic', explanation: "Pessimistic (Pesimis) berarti cenderung melihat sisi terburuk." },
-  { id: 13, question: "She always thinks about other people's feelings. She is ___.", options: ['selfish', 'considerate', 'cynical'], answer: 'considerate', explanation: "Considerate (Penuh perhatian) berarti peduli terhadap perasaan orang lain." },
-  { id: 14, question: "He loves talking to people and making new friends. He is ___.", options: ['introverted', 'extroverted', 'stubborn'], answer: 'extroverted', explanation: "Extroverted (Ekstrovert) berarti energik dalam situasi sosial." },
-  { id: 15, question: "Someone who is good at finding solutions is ___.", options: ['lazy', 'resourceful', 'greedy'], answer: 'resourceful', explanation: "Resourceful (Cerdik) berarti pandai menemukan cara untuk mengatasi kesulitan." },
-  { id: 16, question: "She is very ___ and can persuade anyone.", options: ['moody', 'charismatic', 'cynical'], answer: 'charismatic', explanation: "Charismatic (Kharismatik) berarti memiliki daya tarik yang memukau." },
-  { id: 17, question: "He doesn't lie. He is always ___.", options: ['vain', 'sincere', 'sarcastic'], answer: 'sincere', explanation: "Sincere (Tulus) berarti jujur dan tulus." },
-  { id: 18, question: "Someone who wants more and more money is ___.", options: ['generous', 'humble', 'greedy'], answer: 'greedy', explanation: "Greedy (Serakah) berarti memiliki keinginan berlebihan untuk kekayaan." },
-  { id: 19, question: "She uses irony to make jokes. She is ___.", options: ['sincere', 'sarcastic', 'humble'], answer: 'sarcastic', explanation: "Sarcastic (Sarkastik) berarti menggunakan ironi untuk mengejek atau menyindir." },
-  { id: 20, question: "He is very ___ and studies everything in detail.", options: ['impulsive', 'analytical', 'vain'], answer: 'analytical', explanation: "Analytical (Analitis) berarti suka menganalisis dan memeriksa detail." }
+  { id: 8, question: "He gives a lot of money to charity. He is ___.", options: ['generous', 'greedy', 'vain'], answer: 'generous', explanation: "Generous (Dermawan) berarti murah hati dan suka memberi." },
+  { id: 9, question: "Someone who acts without thinking is ___.", options: ['considerate', 'analytical', 'impulsive'], answer: 'impulsive', explanation: "Impulsive berarti bertindak tiba-tiba tanpa berpikir." },
+  { id: 10, question: "She thinks she's better than everyone else. She is ___.", options: ['sincere', 'humble', 'arrogant'], answer: 'arrogant', explanation: "Arrogant (Sombong) berarti memiliki perasaan superioritas yang berlebihan." },
+  { id: 11, question: "He never does his homework. He is ___.", options: ['diligent', 'lazy', 'resourceful'], answer: 'lazy', explanation: "Lazy (Malas) berarti tidak mau bekerja atau menggunakan energi." },
+  { id: 12, question: "Someone who only sees the negative side is ___.", options: ['sincere', 'pessimistic', 'optimistic'], answer: 'pessimistic', explanation: "Pessimistic (Pesimis) berarti cenderung melihat sisi terburuk." },
+  { id: 13, question: "She always thinks about other people's feelings. She is ___.", options: ['cynical', 'considerate', 'selfish'], answer: 'considerate', explanation: "Considerate (Penuh perhatian) berarti peduli terhadap perasaan orang lain." },
+  { id: 14, question: "He loves talking to people and making new friends. He is ___.", options: ['extroverted', 'introverted', 'stubborn'], answer: 'extroverted', explanation: "Extroverted (Ekstrovert) berarti energik dalam situasi sosial." },
+  { id: 15, question: "Someone who is good at finding solutions is ___.", options: ['greedy', 'resourceful', 'lazy'], answer: 'resourceful', explanation: "Resourceful (Cerdik) berarti pandai menemukan cara untuk mengatasi kesulitan." },
+  { id: 16, question: "She is very ___ and can persuade anyone.", options: ['cynical', 'moody', 'charismatic'], answer: 'charismatic', explanation: "Charismatic (Kharismatik) berarti memiliki daya tarik yang memukau." },
+  { id: 17, question: "He doesn't lie. He is always ___.", options: ['sarcastic', 'sincere', 'vain'], answer: 'sincere', explanation: "Sincere (Tulus) berarti jujur dan tulus." },
+  { id: 18, question: "Someone who wants more and more money is ___.", options: ['humble', 'generous', 'greedy'], answer: 'greedy', explanation: "Greedy (Serakah) berarti memiliki keinginan berlebihan untuk kekayaan." },
+  { id: 19, question: "She uses irony to make jokes. She is ___.", options: ['sarcastic', 'sincere', 'humble'], answer: 'sarcastic', explanation: "Sarcastic (Sarkastik) berarti menggunakan ironi untuk mengejek atau menyindir." },
+  { id: 20, question: "He is very ___ and studies everything in detail.", options: ['analytical', 'vain', 'impulsive'], answer: 'analytical', explanation: "Analytical (Analitis) berarti suka menganalisis dan memeriksa detail." }
 
 ];
 

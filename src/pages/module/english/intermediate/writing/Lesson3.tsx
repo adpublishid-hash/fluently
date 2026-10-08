@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word in the text functions as a TIME SEQUENCER?",
     "opts": [
-      "Typically",
       "Structured",
+      "Located",
       "Afterwards",
-      "Located"
+      "Typically"
     ],
     "ans": "Afterwards",
     "exp": "\"Afterwards\" explicitly shows the order of events in time."
@@ -19,10 +19,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What grammatical tense dominates this text?",
     "opts": [
-      "Past Simple",
       "Present Simple",
-      "Future Perfect",
-      "Present Continuous"
+      "Past Simple",
+      "Present Continuous",
+      "Future Perfect"
     ],
     "ans": "Present Simple",
     "exp": "Routines and habits are always expressed using the Present Simple (e.g., goes off, drink, take)."
@@ -30,10 +30,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does the phrase \"an early riser\" mean?",
     "opts": [
-      "Someone who bakes bread",
-      "Someone who wakes up early in the morning",
       "An alarm clock",
-      "A type of yoga"
+      "A type of yoga",
+      "Someone who bakes bread",
+      "Someone who wakes up early in the morning"
     ],
     "ans": "Someone who wakes up early in the morning",
     "exp": "It is a common idiom/noun phrase for a morning person."
@@ -42,9 +42,9 @@ const QUIZ: QuizItem[] = [
     "q": "Identify the subordinating conjunction used for purpose in the last paragraph:",
     "opts": [
       "So that",
-      "Once",
+      "In the late afternoon",
       "While",
-      "In the late afternoon"
+      "Once"
     ],
     "ans": "So that",
     "exp": "\"So that\" explains the reason or purpose for going to bed at 10:30."
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which transition phrase opens the final paragraph logically?",
     "opts": [
-      "First",
-      "During the ride",
       "In the late afternoon",
-      "By 7:00 AM"
+      "By 7:00 AM",
+      "First",
+      "During the ride"
     ],
     "ans": "In the late afternoon",
     "exp": "It shifts the chronological timeline from the workday into the evening."
@@ -63,10 +63,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How do you make this formal? \"Send me the files ASAP.\"",
     "opts": [
-      "Please dispatch the files really quick.",
       "I require the files immediately.",
       "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
+      "Shoot the documents to me.",
+      "Please dispatch the files really quick."
     ],
     "ans": "Please send the documents at your earliest convenience.",
     "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
     "opts": [
-      "have",
       "had",
       "have had",
-      "having"
+      "having",
+      "have"
     ],
     "ans": "had",
     "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
@@ -86,8 +86,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which word modifies a verb strongly?",
     "opts": [
       "Beautiful",
-      "Quick",
       "Significantly",
+      "Quick",
       "Happy"
     ],
     "ans": "Significantly",
@@ -96,9 +96,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is a \"Topic Sentence\"?",
     "opts": [
-      "The last sentence of a text",
-      "A sentence that explains the main idea of a paragraph",
       "A famous quote",
+      "A sentence that explains the main idea of a paragraph",
+      "The last sentence of a text",
       "The title of an essay"
     ],
     "ans": "A sentence that explains the main idea of a paragraph",
@@ -107,10 +107,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word means \"in addition\"?",
     "opts": [
-      "However",
       "Instead",
-      "Furthermore",
-      "Whereas"
+      "However",
+      "Whereas",
+      "Furthermore"
     ],
     "ans": "Furthermore",
     "exp": "\"Furthermore\" adalah adverb formal yang fungsinya menambah argumen atau informasi."
@@ -118,10 +118,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the sentence with correct parallel structure:",
     "opts": [
+      "I like swim, read, and hike.",
       "I like swimming, to read, and hike.",
       "I like to swim, reading, and to hike.",
-      "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
+      "I like swimming, reading, and hiking."
     ],
     "ans": "I like swimming, reading, and hiking.",
     "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
@@ -130,8 +130,8 @@ const QUIZ: QuizItem[] = [
     "q": "Choose the correct contrast linker: \"___ the bad weather, the event was a success.\"",
     "opts": [
       "Although",
-      "Despite",
       "However",
+      "Despite",
       "Because"
     ],
     "ans": "Despite",
@@ -140,10 +140,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
     "opts": [
+      "However...",
       "On the second hand...",
       "On the other side...",
-      "On the other hand...",
-      "However..."
+      "On the other hand..."
     ],
     "ans": "On the other hand...",
     "exp": "Pasangan frasa idiomatis ini selalu \"On the one hand... On the other hand...\" untuk membandingkan dua sisi."
@@ -151,10 +151,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"For instance\"?",
     "opts": [
+      "To show cause",
       "To contrast",
       "To conclude",
-      "To provide an example",
-      "To show cause"
+      "To provide an example"
     ],
     "ans": "To provide an example",
     "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
@@ -162,10 +162,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Due to\" is primarily used to indicate...",
     "opts": [
-      "Addition",
       "Time",
-      "Cause or Reason",
-      "Condition"
+      "Addition",
+      "Condition",
+      "Cause or Reason"
     ],
     "ans": "Cause or Reason",
     "exp": "\"Due to\" (= because of) digunakan untuk menunjukkan alasan/penyebab dari sesuatu."
@@ -174,8 +174,8 @@ const QUIZ: QuizItem[] = [
     "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
     "opts": [
       "immediately",
-      "action",
       "goverment",
+      "action",
       "should"
     ],
     "ans": "goverment",
@@ -185,8 +185,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence is an opinion, not a fact?",
     "opts": [
       "Water boils at 100 degrees.",
-      "The population of Tokyo is huge.",
       "Pineapples are the most delicious fruit.",
+      "The population of Tokyo is huge.",
       "Paris is the capital of France."
     ],
     "ans": "Pineapples are the most delicious fruit.",
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence adds INFORMATION?",
     "opts": [
-      "Moreover, the city has excellent public transport.",
       "Despite this, the city is loud.",
+      "As a result, prices increased.",
       "Therefore, we left early.",
-      "As a result, prices increased."
+      "Moreover, the city has excellent public transport."
     ],
     "ans": "Moreover, the city has excellent public transport.",
     "exp": "\"Moreover\" (lebih lanjut lagi) digunakan untuk memberikan informasi tambahan yang mendukung argumen."
@@ -206,10 +206,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the error: \"I look forward to hear from you soon.\"",
     "opts": [
-      "look forward",
       "to hear",
       "from you",
-      "soon"
+      "soon",
+      "look forward"
     ],
     "ans": "to hear",
     "exp": "Aturan baku: \"look forward to\" selalu diikuti oleh Gerund (V-ing), sehingga seharusnya \"to hearing\"."
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the compound adjective: \"She bought a ___ car.\"",
     "opts": [
-      "very fast",
-      "brand-new",
       "beautifully",
-      "red"
+      "red",
+      "very fast",
+      "brand-new"
     ],
     "ans": "brand-new",
     "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
@@ -239,10 +239,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What time does the writer usually wake up?",
     "opts": [
+      "6:00 AM",
       "7:00 AM",
       "8:00 AM",
-      "5:30 AM",
-      "6:00 AM"
+      "5:30 AM"
     ],
     "ans": "5:30 AM"
   },
@@ -250,9 +250,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What does the writer do immediately after drinking water?",
     "opts": [
       "Takes a shower",
-      "Eats oatmeal",
+      "Listens to a podcast",
       "Does a 20-minute yoga session",
-      "Listens to a podcast"
+      "Eats oatmeal"
     ],
     "ans": "Does a 20-minute yoga session"
   },
@@ -260,8 +260,8 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "How long does the commute to the office take?",
     "opts": [
       "20 minutes",
-      "45 minutes",
       "1 hour",
+      "45 minutes",
       "10 minutes"
     ],
     "ans": "45 minutes"
@@ -269,10 +269,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What does the writer do during the train ride?",
     "opts": [
-      "Sleeps",
       "Replies to emails",
-      "Listens to educational podcasts",
-      "Reads a novel"
+      "Reads a novel",
+      "Sleeps",
+      "Listens to educational podcasts"
     ],
     "ans": "Listens to educational podcasts"
   },
@@ -280,9 +280,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why does the writer go to bed at 10:30 PM?",
     "opts": [
       "Because the TV show ends",
-      "To have enough energy for the next day",
       "Because the house is dark",
-      "To avoid catching a cold"
+      "To avoid catching a cold",
+      "To have enough energy for the next day"
     ],
     "ans": "To have enough energy for the next day"
   }

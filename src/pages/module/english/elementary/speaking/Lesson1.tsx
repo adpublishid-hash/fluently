@@ -152,9 +152,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "I hit the ___ button because I wanted to sleep more.",
     options: [
-      { text: "start", correct: false },
       { text: "snooze", correct: true },
-      { text: "stop", correct: false }
+      { text: "stop", correct: false },
+      { text: "start", correct: false }
     ],
     explanation: "Tombol 'snooze' pada jam alarm membiarkanmu tidur beberapa menit lagi."
   },
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "I take the subway to avoid ___.",
     options: [
-      { text: "traffic", correct: true },
       { text: "people", correct: false },
-      { text: "walking", correct: false }
+      { text: "walking", correct: false },
+      { text: "traffic", correct: true }
     ],
     explanation: "Kereta bawah tanah berjalan di bawah tanah, jadi menghindari macet jalan raya."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "We are ___ of milk. We need to buy more.",
     options: [
-      { text: "full", correct: false },
       { text: "off", correct: false },
-      { text: "out", correct: true }
+      { text: "out", correct: true },
+      { text: "full", correct: false }
     ],
     explanation: "To be 'out of' something berarti kamu tidak punya sisanya lagi (habis)."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "I need to ___ after a long day at work.",
     options: [
-      { text: "unwind", correct: true },
+      { text: "undo", correct: false },
       { text: "unlock", correct: false },
-      { text: "undo", correct: false }
+      { text: "unwind", correct: true }
     ],
     explanation: "'Unwind' berarti bersantai dan melepas stres."
   },
@@ -192,8 +192,8 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "It is my ___ to wash the dishes.",
     options: [
-      { text: "circle", correct: false },
       { text: "turn", correct: true },
+      { text: "circle", correct: false },
       { text: "spin", correct: false }
     ],
     explanation: "'It is my turn' berarti ini waktuku/tanggung jawabku untuk melakukannya."
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Tepat sekali. Mau makan bareng?\"?",
     options: [
-      { text: "Exactly. Do you want to eat together?", correct: true },
+      { text: "Boring! Let's go to the park instead.", correct: false },
       { text: "I can make it to-go for you.", correct: false },
-      { text: "Boring! Let's go to the park instead.", correct: false }
+      { text: "Exactly. Do you want to eat together?", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Tepat sekali. Mau makan bareng?\" adalah \"Exactly. Do you want to eat together?\"."
   },
@@ -223,8 +223,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"___, but I hit snooze three times.\"\n(Arti: Ya, tapi aku tekan tombol tunda tiga kali.)",
     options: [
       { text: "Yes", correct: true },
-      { text: "office", correct: false },
-      { text: "so", correct: false }
+      { text: "so", correct: false },
+      { text: "office", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'Yes'."
   },
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"How do you usually get to the office?\"?",
     options: [
-      { text: "Aku lebih suka nonton Netflix di sofa.", correct: false },
+      { text: "Biasanya naik apa ke kantor?", correct: true },
       { text: "Kamu akan terlambat kerja!", correct: false },
-      { text: "Biasanya naik apa ke kantor?", correct: true }
+      { text: "Aku lebih suka nonton Netflix di sofa.", correct: false }
     ],
     explanation: "Kalimat \"How do you usually get to the office?\" memiliki arti \"Biasanya naik apa ke kantor?\"."
   },
@@ -242,8 +242,8 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Aku tahu, tapi aku capek sekali sekarang.\"?",
     options: [
-      { text: "I know, but I am so tired right now.", correct: true },
       { text: "Did your alarm go off this morning?", correct: false },
+      { text: "I know, but I am so tired right now.", correct: true },
       { text: "Deal. Let's finish it quickly.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku tahu, tapi aku capek sekali sekarang.\" adalah \"I know, but I am so tired right now.\"."
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"I take the subway ___ avoid traffic.\"\n(Arti: Saya naik kereta bawah tanah untuk menghindari macet.)",
     options: [
+      { text: "have", correct: false },
       { text: "to", correct: true },
-      { text: "to-go", correct: false },
-      { text: "have", correct: false }
+      { text: "to-go", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'to'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"Maybe in the afternoon. I have chores.\"?",
     options: [
-      { text: "Apa kita butuh sesuatu dari toko?", correct: false },
       { text: "Itu akan sangat membantu. Terima kasih!", correct: false },
-      { text: "Mungkin sore. Aku ada tugas rumah.", correct: true }
+      { text: "Mungkin sore. Aku ada tugas rumah.", correct: true },
+      { text: "Apa kita butuh sesuatu dari toko?", correct: false }
     ],
     explanation: "Kalimat \"Maybe in the afternoon. I have chores.\" memiliki arti \"Mungkin sore. Aku ada tugas rumah.\"."
   },
@@ -272,8 +272,8 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Aku bisa buatkan untuk dibawa.\"?",
     options: [
-      { text: "I can't sleep. I drank coffee too late.", correct: false },
       { text: "Where do you usually eat lunch?", correct: false },
+      { text: "I can't sleep. I drank coffee too late.", correct: false },
       { text: "I can make it to-go for you.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku bisa buatkan untuk dibawa.\" adalah \"I can make it to-go for you.\"."
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"We are out of ___ and eggs.\"\n(Arti: Susu dan telur kita habis.)",
     options: [
-      { text: "milk", correct: true },
       { text: "it", correct: false },
-      { text: "go", correct: false }
+      { text: "go", correct: false },
+      { text: "milk", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'milk'."
   },
@@ -293,8 +293,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"Is it crowded in the morning?\"?",
     options: [
       { text: "Kenapa masih bangun? Sudah tengah malam.", correct: false },
-      { text: "Setuju. Ayo selesaikan dengan cepat.", correct: false },
-      { text: "Apakah ramai di pagi hari?", correct: true }
+      { text: "Apakah ramai di pagi hari?", correct: true },
+      { text: "Setuju. Ayo selesaikan dengan cepat.", correct: false }
     ],
     explanation: "Kalimat \"Is it crowded in the morning?\" memiliki arti \"Apakah ramai di pagi hari?\"."
   },
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Apakah alarmmu berbunyi pagi ini?\"?",
     options: [
-      { text: "Did your alarm go off this morning?", correct: true },
       { text: "Good morning. Have you checked your email?", correct: false },
-      { text: "Is it crowded in the morning?", correct: false }
+      { text: "Is it crowded in the morning?", correct: false },
+      { text: "Did your alarm go off this morning?", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Apakah alarmmu berbunyi pagi ini?\" adalah \"Did your alarm go off this morning?\"."
   },
@@ -312,9 +312,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"Deal. Let's finish ___ quickly.\"\n(Arti: Setuju. Ayo selesaikan dengan cepat.)",
     options: [
+      { text: "it", correct: true },
       { text: "a", correct: false },
-      { text: "morning", correct: false },
-      { text: "it", correct: true }
+      { text: "morning", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'it'."
   },
@@ -322,9 +322,9 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"I usually clean the house in the morning.\"?",
     options: [
-      { text: "Itu akan sangat membantu. Terima kasih!", correct: false },
+      { text: "Aku biasanya bersihin rumah pagi-pagi.", correct: true },
       { text: "Saya naik kereta bawah tanah untuk menghindari macet.", correct: false },
-      { text: "Aku biasanya bersihin rumah pagi-pagi.", correct: true }
+      { text: "Itu akan sangat membantu. Terima kasih!", correct: false }
     ],
     explanation: "Kalimat \"I usually clean the house in the morning.\" memiliki arti \"Aku biasanya bersihin rumah pagi-pagi.\"."
   },
@@ -332,8 +332,8 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Kita ada rapat tim jam 10 pagi.\"?",
     options: [
-      { text: "We have a team meeting at 10 AM.", correct: true },
       { text: "Okay, I will stop by the supermarket.", correct: false },
+      { text: "We have a team meeting at 10 AM.", correct: true },
       { text: "I usually bring a packed lunch from home.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kita ada rapat tim jam 10 pagi.\" adalah \"We have a team meeting at 10 AM.\"."
@@ -343,8 +343,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Boring! Let's go ___ the park instead.\"\n(Arti: Membosankan! Ayo ke taman saja.)",
     options: [
       { text: "usually", correct: false },
-      { text: "unwind", correct: false },
-      { text: "to", correct: true }
+      { text: "to", correct: true },
+      { text: "unwind", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'to'."
   }

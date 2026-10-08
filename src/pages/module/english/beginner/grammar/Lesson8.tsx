@@ -74,21 +74,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Pilih kalimat negatif yang benar:",
-    options: ['He no likes coffee.', 'He doesn\'t likes coffee.', 'He doesn\'t like coffee.'],
+    options: ['He doesn\'t like coffee.', 'He doesn\'t likes coffee.', 'He no likes coffee.'],
     answer: 'He doesn\'t like coffee.',
     explanation: "Setelah 'doesn't', kata kerja utama kehilangan 's' (Bentuk Dasar)."
   },
   {
     id: 2,
     question: "___ your brother work here?",
-    options: ['Do', 'Does', 'Is'],
+    options: ['Do', 'Is', 'Does'],
     answer: 'Does',
     explanation: "'Your brother' adalah tunggal (He), jadi kita gunakan 'Does'."
   },
   {
     id: 3,
     question: "We ___ watch TV in the morning.",
-    options: ['doesn\'t', 'not', 'don\'t'],
+    options: ['don\'t', 'not', 'doesn\'t'],
     answer: 'don\'t',
     explanation: "Untuk 'We', kita gunakan 'don't' (do not)."
   },
@@ -102,28 +102,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Jawaban: 'Do they eat meat?'",
-    options: ['Yes, they does.', 'No, they don\'t.', 'No, they doesn\'t.'],
+    options: ['No, they doesn\'t.', 'Yes, they does.', 'No, they don\'t.'],
     answer: 'No, they don\'t.',
     explanation: "Cocokkan kata kerja bantu: Pertanyaan 'Do' -> Jawaban 'Don't'."
   },
   {
     id: 6,
     question: "___ you speak English?",
-    options: ['Do', 'Does', 'Are'],
+    options: ['Does', 'Are', 'Do'],
     answer: 'Do',
     explanation: "Pertanyaan untuk 'You' menggunakan 'Do'."
   },
   {
     id: 7,
     question: "He ___ have a car.",
-    options: ['don\'t', 'doesn\'t', 'no'],
+    options: ['no', 'don\'t', 'doesn\'t'],
     answer: 'doesn\'t',
     explanation: "He (tunggal) menggunakan 'doesn't'."
   },
   {
     id: 8,
     question: "Where ___ they live?",
-    options: ['do', 'does', 'are'],
+    options: ['does', 'are', 'do'],
     answer: 'do',
     explanation: "They (jamak) menggunakan 'do'."
   },
@@ -137,28 +137,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "Does it ___ often?",
-    options: ['rain', 'rains', 'raining'],
+    options: ['rain', 'raining', 'rains'],
     answer: 'rain',
     explanation: "Pertanyaan 'Does' -> kata kerja 'rain' (tanpa s)."
   },
   {
     id: 11,
     question: "I ___ know the answer.",
-    options: ['doesn\'t', 'don\'t', 'not'],
+    options: ['not', 'don\'t', 'doesn\'t'],
     answer: 'don\'t',
     explanation: "I menggunakan 'don't'."
   },
   {
     id: 12,
     question: "Yes, I ___.",
-    options: ['do', 'does', 'am'],
+    options: ['does', 'do', 'am'],
     answer: 'do',
     explanation: "Jawaban singkat: 'Yes, I do'."
   },
   {
     id: 13,
     question: "___ John play guitar?",
-    options: ['Do', 'Does', 'Is'],
+    options: ['Does', 'Do', 'Is'],
     answer: 'Does',
     explanation: "John = He -> Does."
   },
@@ -172,7 +172,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "Why ___ you cry?",
-    options: ['do', 'does', 'is'],
+    options: ['does', 'do', 'is'],
     answer: 'do',
     explanation: "You -> Do."
   },
@@ -186,7 +186,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "Do we ___ enough money?",
-    options: ['have', 'has', 'haves'],
+    options: ['has', 'have', 'haves'],
     answer: 'have',
     explanation: "Setelah 'Do', gunakan bentuk dasar 'have'."
   },
@@ -200,7 +200,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "When ___ the bus leave?",
-    options: ['do', 'does', 'is'],
+    options: ['is', 'does', 'do'],
     answer: 'does',
     explanation: "The bus = It -> Does."
   },

@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the contrast linker in paragraph one:",
     "opts": [
-      "While",
-      "Consequently",
       "Foundation",
-      "Indicates"
+      "Indicates",
+      "Consequently",
+      "While"
     ],
     "ans": "While",
     "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
@@ -19,10 +19,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does \"Consequently\" mean in this context?",
     "opts": [
-      "Before",
       "As a logical result",
-      "In addition",
-      "However"
+      "Before",
+      "However",
+      "In addition"
     ],
     "ans": "As a logical result",
     "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
@@ -41,10 +41,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
     "opts": [
-      "Easy to see",
       "Occurring repeatedly and constantly",
       "Funny",
-      "Grammatical"
+      "Grammatical",
+      "Easy to see"
     ],
     "ans": "Occurring repeatedly and constantly",
     "exp": "\"Persistent\" means something stubborn that keeps happening."
@@ -63,10 +63,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"therefore\"?",
     "opts": [
-      "To add a point",
       "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
+      "To give an example",
+      "To add a point",
+      "To show a result or consequence"
     ],
     "ans": "To show a result or consequence",
     "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is most appropriate for a formal email greeting?",
     "opts": [
-      "Hi mate,",
       "Hey there,",
-      "Dear Mr. Smith,",
-      "What’s up Smith,"
+      "What’s up Smith,",
+      "Hi mate,",
+      "Dear Mr. Smith,"
     ],
     "ans": "Dear Mr. Smith,",
     "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
@@ -86,9 +86,9 @@ const QUIZ: QuizItem[] = [
     "q": "Choose the correct contrast linker: \"___ the bad weather, the event was a success.\"",
     "opts": [
       "Although",
-      "Despite",
       "However",
-      "Because"
+      "Because",
+      "Despite"
     ],
     "ans": "Despite",
     "exp": "\"Despite\" diikuti langsung oleh frasa kata benda (the bad weather), bukan klausa bersubjek-predikat."
@@ -96,9 +96,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the compound adjective: \"She bought a ___ car.\"",
     "opts": [
-      "very fast",
-      "brand-new",
       "beautifully",
+      "brand-new",
+      "very fast",
       "red"
     ],
     "ans": "brand-new",
@@ -108,9 +108,9 @@ const QUIZ: QuizItem[] = [
     "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
     "opts": [
       "for",
-      "from",
       "with",
-      "about"
+      "about",
+      "from"
     ],
     "ans": "for",
     "exp": "\"Apologise\" selalu diikut oleh \"for\" ketika merujuk pada alasan (apologise for something)."
@@ -118,10 +118,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Due to\" is primarily used to indicate...",
     "opts": [
-      "Addition",
       "Time",
       "Cause or Reason",
-      "Condition"
+      "Condition",
+      "Addition"
     ],
     "ans": "Cause or Reason",
     "exp": "\"Due to\" (= because of) digunakan untuk menunjukkan alasan/penyebab dari sesuatu."
@@ -130,8 +130,8 @@ const QUIZ: QuizItem[] = [
     "q": "What is the purpose of a thesis statement in an essay?",
     "opts": [
       "To greet the reader",
-      "To state the main argument or focus of the essay",
       "To ask a rhetorical question",
+      "To state the main argument or focus of the essay",
       "To give a dictionary definition"
     ],
     "ans": "To state the main argument or focus of the essay",
@@ -140,10 +140,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the function of \"For instance\"?",
     "opts": [
-      "To contrast",
-      "To conclude",
       "To provide an example",
-      "To show cause"
+      "To show cause",
+      "To conclude",
+      "To contrast"
     ],
     "ans": "To provide an example",
     "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
@@ -152,9 +152,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is a \"Topic Sentence\"?",
     "opts": [
       "The last sentence of a text",
-      "A sentence that explains the main idea of a paragraph",
+      "The title of an essay",
       "A famous quote",
-      "The title of an essay"
+      "A sentence that explains the main idea of a paragraph"
     ],
     "ans": "A sentence that explains the main idea of a paragraph",
     "exp": "Topic sentence (kalimat utama) memberi tahu pembaca apa gagasan pokok dari paragraf tersebut."
@@ -162,10 +162,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
     "opts": [
-      "It was late so I kept writing.",
-      "Although it was late, I kept writing.",
       "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
+      "It was late, therefore I kept writing.",
+      "It was late so I kept writing.",
+      "Although it was late, I kept writing."
     ],
     "ans": "Although it was late, I kept writing.",
     "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
     "opts": [
+      "having",
       "have",
       "had",
-      "have had",
-      "having"
+      "have had"
     ],
     "ans": "had",
     "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
@@ -184,10 +184,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word modifies a verb strongly?",
     "opts": [
-      "Beautiful",
-      "Quick",
       "Significantly",
-      "Happy"
+      "Happy",
+      "Beautiful",
+      "Quick"
     ],
     "ans": "Significantly",
     "exp": "\"Significantly\" adalah adverb (kata keterangan) yang memodifikasi/menjelaskan verb."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How would you combine these sentences with a relative clause? \"The man called the police. His car was stolen.\"",
     "opts": [
-      "The man called the police whose car was stolen.",
-      "The man whose car was stolen called the police.",
       "The man whom car was stolen called the police.",
-      "The man whom called the police had his car stolen."
+      "The man whom called the police had his car stolen.",
+      "The man called the police whose car was stolen.",
+      "The man whose car was stolen called the police."
     ],
     "ans": "The man whose car was stolen called the police.",
     "exp": "\"Whose\" digunakan untuk kepemilikan. Klausul relative disematkan langsung setelah \"The man\"."
@@ -206,9 +206,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In writing, what does \"proofreading\" mean?",
     "opts": [
-      "Writing the first draft wildly",
-      "Finding academic sources",
       "Carefully checking for grammatical and spelling errors",
+      "Finding academic sources",
+      "Writing the first draft wildly",
       "Outlining paragraphs"
     ],
     "ans": "Carefully checking for grammatical and spelling errors",
@@ -217,10 +217,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word means \"in addition\"?",
     "opts": [
-      "However",
       "Instead",
       "Furthermore",
-      "Whereas"
+      "Whereas",
+      "However"
     ],
     "ans": "Furthermore",
     "exp": "\"Furthermore\" adalah adverb formal yang fungsinya menambah argumen atau informasi."
@@ -239,10 +239,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What is considered the foundation of writing according to the text?",
     "opts": [
-      "Spelling and reading",
       "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "Finding errors",
+      "Spelling and reading",
+      "Speaking loudly"
     ],
     "ans": "Vocabulary and grammar"
   },
@@ -250,9 +250,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What indicates true proficiency?",
     "opts": [
       "Knowing 1000 words",
-      "Typing fast",
+      "Using passive voice",
       "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "Typing fast"
     ],
     "ans": "The ability to weave sentences into a coherent paragraph"
   },
@@ -279,10 +279,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "How is mastery achieved?",
     "opts": [
-      "Through consistent, deliberate practice",
       "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "By ignoring rules",
+      "Through consistent, deliberate practice",
+      "By buying special pens"
     ],
     "ans": "Through consistent, deliberate practice"
   }

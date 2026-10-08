@@ -84,7 +84,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "Mengapa Anda harus berhenti sejenak saat berpidato?",
-    options: ['Untuk mengingat baris Anda', 'Untuk membiarkan audiens memproses ide', 'Untuk memeriksa telepon Anda'],
+    options: ['Untuk memeriksa telepon Anda', 'Untuk mengingat baris Anda', 'Untuk membiarkan audiens memproses ide'],
     answer: 'Untuk membiarkan audiens memproses ide',
     explanation: "Keheningan memberikan bobot pada kata-kata Anda dan membiarkan pendengar mengejar ketinggalan."
   },
@@ -96,22 +96,22 @@ const QUIZ_QUESTIONS = [
     explanation: "Pertanyaan biasanya naik untuk melibatkan pendengar."
   },
   { id: 4, question: "Untuk poin penting dan serius, Anda umumnya harus berbicara...", options: ['Lebih cepat', 'Lebih lambat'], answer: 'Lebih lambat', explanation: "Mem perlambat memberi sinyal kepada audiens: 'Ini penting, dengarkan baik-baik.'" },
-  { id: 5, question: "Proyeksi yang baik berarti Anda berbicara dari...", options: ['Tenggorokan', 'Diaphragm/perut', 'Hidung'], answer: 'Diaphragm/perut', explanation: "Breathing dari diaphragm memberikan volume dan control." },
-  { id: 6, question: "'Monotone' delivery membuat audiens...", options: ['Engaged', 'Bored / disengaged', 'Inspired'], answer: 'Bored / disengaged', explanation: "No variation = boring, listeners tune out." },
-  { id: 7, question: "Untuk menunjukkan excitement, gunakan...", options: ['Lower pitch, slow', 'Higher pitch, faster tempo', 'Monotone'], answer: 'Higher pitch, faster tempo', explanation: "Excitement = higher energy, pitch up, speed up." },
-  { id: 8, question: "Untuk menunjukkan authority/seriousness, gunakan...", options: ['High pitch', 'Low pitch, slower', 'Fast speech'], answer: 'Low pitch, slower', explanation: "Lower pitch + slow pace = authority, gravity." },
-  { id: 9, question: "Pauses di public speaking membantu...", options: ['Anda ingat script', 'Audiens process informasi', 'Mengisi waktu'], answer: 'Audiens process informasi', explanation: "Strategic pauses let ideas sink in." },
-  { id: 10, question: "Rhetorical question (misalnya 'Is this possible?') biasanya menggunakan intonation...", options: ['Falling ↘', 'Rising ↗'], answer: 'Rising ↗', explanation: "Questions rise untuk engage listeners emotionally." },
-  { id: 11, question: "Untuk end speech dengan impact, gunakan...", options: ['High pitch', 'Lower pitch dengan confident tone', 'Whisper'], answer: 'Lower pitch dengan confident tone', explanation: "Lower, firm tone gives finality dan authority." },
-  { id: 12, question: "Variasi dalam tempo membantu...", options: ['Confuse audience', 'Keep attention, emphasize points', 'Nothing'], answer: 'Keep attention, emphasize points', explanation: "Variety = interest. Slow down untuk emphasis, speed up untuk momentum." },
-  { id: 13, question: "Best way untuk practice public speaking pronunciation?", options: ['Silent reading', 'Record yourself dan listen', 'Just wing it'], answer: 'Record yourself dan listen', explanation: "Recording helps you hear filler words, pace, clarity." },
-  { id: 14, question: "Filler words (um, uh, like) harus...", options: ['Digunakan sesering mungkin', 'Diminimalisir dengan pauses', 'Tidak masalah'], answer: 'Diminimalisir dengan pauses', explanation: "Replace fillers dengan silent pauses untuk sound more confident." },
-  { id: 15, question: "Eye contact membantu dengan pronunciation karena...", options: ['Tidak ada hubungan', 'Forces you to speak clearly', 'Makes you nervous'], answer: 'Forces you to speak clearly', explanation: "When you look at people, you naturally articulate better." },
-  { id: 16, question: "Opening speech yang kuat menggunakan...", options: ['Monotone, fast', 'Warm, welcoming tone', 'Loud shouting'], answer: 'Warm, welcoming tone', explanation: "First impression = warm, confident, engaging." },
-  { id: 17, question: "Untuk emphasize contrast ('not X, but Y'), gunakan...", options: ['Same stress', 'Heavy stress pada both X and Y', 'Soft delivery'], answer: 'Heavy stress pada both X and Y', explanation: "Stress BOTH contrasting elements untuk make them clear." },
-  { id: 18, question: "Speaking terlalu cepat membuat...", options: ['You sound smart', 'Hard to understand', 'No difference'], answer: 'Hard to understand', explanation: "Too fast = words blend, audience can't follow." },
-  { id: 19, question: "Untuk quote important text, Anda harus...", options: ['Slow down, emphasize key words', 'Speed up', 'Whisper'], answer: 'Slow down, emphasize key words', explanation: "Quotes deserve emphasis dan clarity." },
-  { id: 20, question: "Best vocal delivery untuk public speaking =  ___", options: ['Monotone consistency', 'Dynamic variation (pause, pitch, tempo changes)', 'Always loud'], answer: 'Dynamic variation (pause, pitch, tempo changes)', explanation: "Variety keeps audience engaged, makes message memorable!" }
+  { id: 5, question: "Proyeksi yang baik berarti Anda berbicara dari...", options: ['Hidung', 'Tenggorokan', 'Diaphragm/perut'], answer: 'Diaphragm/perut', explanation: "Breathing dari diaphragm memberikan volume dan control." },
+  { id: 6, question: "'Monotone' delivery membuat audiens...", options: ['Engaged', 'Inspired', 'Bored / disengaged'], answer: 'Bored / disengaged', explanation: "No variation = boring, listeners tune out." },
+  { id: 7, question: "Untuk menunjukkan excitement, gunakan...", options: ['Monotone', 'Higher pitch, faster tempo', 'Lower pitch, slow'], answer: 'Higher pitch, faster tempo', explanation: "Excitement = higher energy, pitch up, speed up." },
+  { id: 8, question: "Untuk menunjukkan authority/seriousness, gunakan...", options: ['Low pitch, slower', 'High pitch', 'Fast speech'], answer: 'Low pitch, slower', explanation: "Lower pitch + slow pace = authority, gravity." },
+  { id: 9, question: "Pauses di public speaking membantu...", options: ['Audiens process informasi', 'Anda ingat script', 'Mengisi waktu'], answer: 'Audiens process informasi', explanation: "Strategic pauses let ideas sink in." },
+  { id: 10, question: "Rhetorical question (misalnya 'Is this possible?') biasanya menggunakan intonation...", options: ['Rising ↗', 'Falling ↘'], answer: 'Rising ↗', explanation: "Questions rise untuk engage listeners emotionally." },
+  { id: 11, question: "Untuk end speech dengan impact, gunakan...", options: ['Lower pitch dengan confident tone', 'High pitch', 'Whisper'], answer: 'Lower pitch dengan confident tone', explanation: "Lower, firm tone gives finality dan authority." },
+  { id: 12, question: "Variasi dalam tempo membantu...", options: ['Keep attention, emphasize points', 'Nothing', 'Confuse audience'], answer: 'Keep attention, emphasize points', explanation: "Variety = interest. Slow down untuk emphasis, speed up untuk momentum." },
+  { id: 13, question: "Best way untuk practice public speaking pronunciation?", options: ['Just wing it', 'Silent reading', 'Record yourself dan listen'], answer: 'Record yourself dan listen', explanation: "Recording helps you hear filler words, pace, clarity." },
+  { id: 14, question: "Filler words (um, uh, like) harus...", options: ['Digunakan sesering mungkin', 'Tidak masalah', 'Diminimalisir dengan pauses'], answer: 'Diminimalisir dengan pauses', explanation: "Replace fillers dengan silent pauses untuk sound more confident." },
+  { id: 15, question: "Eye contact membantu dengan pronunciation karena...", options: ['Makes you nervous', 'Tidak ada hubungan', 'Forces you to speak clearly'], answer: 'Forces you to speak clearly', explanation: "When you look at people, you naturally articulate better." },
+  { id: 16, question: "Opening speech yang kuat menggunakan...", options: ['Loud shouting', 'Monotone, fast', 'Warm, welcoming tone'], answer: 'Warm, welcoming tone', explanation: "First impression = warm, confident, engaging." },
+  { id: 17, question: "Untuk emphasize contrast ('not X, but Y'), gunakan...", options: ['Heavy stress pada both X and Y', 'Soft delivery', 'Same stress'], answer: 'Heavy stress pada both X and Y', explanation: "Stress BOTH contrasting elements untuk make them clear." },
+  { id: 18, question: "Speaking terlalu cepat membuat...", options: ['You sound smart', 'No difference', 'Hard to understand'], answer: 'Hard to understand', explanation: "Too fast = words blend, audience can't follow." },
+  { id: 19, question: "Untuk quote important text, Anda harus...", options: ['Whisper', 'Speed up', 'Slow down, emphasize key words'], answer: 'Slow down, emphasize key words', explanation: "Quotes deserve emphasis dan clarity." },
+  { id: 20, question: "Best vocal delivery untuk public speaking =  ___", options: ['Monotone consistency', 'Always loud', 'Dynamic variation (pause, pitch, tempo changes)'], answer: 'Dynamic variation (pause, pitch, tempo changes)', explanation: "Variety keeps audience engaged, makes message memorable!" }
 ];
 
 const InterPronunLesson15: React.FC = () => {

@@ -86,25 +86,25 @@ const PRACTICE_SENTENCES = [
 
 const QUIZ_QUESTIONS = [
   { id: 1, question: "Aturan Umum: Di mana penekanan pada KATA BENDA 2 suku kata?", options: ['Suku Kata ke-1 (● o)', 'Suku Kata ke-2 (o ●)'], answer: 'Suku Kata ke-1 (● o)', explanation: "Sebagian besar kata benda 2 suku kata menekankan suku kata pertama (contoh: TA-ble, PEN-cil, SUS-pect)." },
-  { id: 2, question: "Aturan Umum: Di mana penekanan pada KATA KERJA 2 suku kata?", options: ['Suku Kata ke-1 (● o)', 'Suku Kata ke-2 (o ●)'], answer: 'Suku Kata ke-2 (o ●)', explanation: "Sebagian besar kata kerja 2 suku kata menekankan suku kata kedua (contoh: be-GIN, re-LAX, sus-PECT)." },
+  { id: 2, question: "Aturan Umum: Di mana penekanan pada KATA KERJA 2 suku kata?", options: ['Suku Kata ke-2 (o ●)', 'Suku Kata ke-1 (● o)'], answer: 'Suku Kata ke-2 (o ●)', explanation: "Sebagian besar kata kerja 2 suku kata menekankan suku kata kedua (contoh: be-GIN, re-LAX, sus-PECT)." },
   { id: 3, question: "Pengucapan mana yang cocok: 'Please RE-cord this show'?", options: ['Benar', 'Salah'], answer: 'Salah', explanation: "Sebagai kata kerja (tindakan), seharusnya 're-CORD'." },
   { id: 4, question: "Arti dari 'DES-ert' (Tekanan pada suku kata ke-1)?", options: ['Meninggalkan seseorang', 'Tempat yang panas dan kering'], answer: 'Tempat yang panas dan kering', explanation: "Kata benda (tempat) memiliki tekanan pada suku kata pertama." },
-  { id: 5, question: "'SUS-pect' (noun) berarti...", options: ['Menduga seseorang bersalah', 'Orang yang diduga bersalah'], answer: 'Orang yang diduga bersalah', explanation: "Noun = ● o pattern, artinya orang/benda." },
+  { id: 5, question: "'SUS-pect' (noun) berarti...", options: ['Orang yang diduga bersalah', 'Menduga seseorang bersalah'], answer: 'Orang yang diduga bersalah', explanation: "Noun = ● o pattern, artinya orang/benda." },
   { id: 6, question: "'sus-PECT' (verb) berarti...", options: ['Orang yang diduga', 'Menduga / mencurigai'], answer: 'Menduga / mencurigai', explanation: "Verb = o ● pattern, artinya tindakan." },
   { id: 7, question: "'CON-flict' dengan stress pertama adalah...", options: ['Noun (perselisihan)', 'Verb (bentrok)'], answer: 'Noun (perselisihan)', explanation: "Noun stress on first syllable." },
   { id: 8, question: "'con-FLICT' dengan stress kedua adalah...", options: ['Noun', 'Verb (tidak setuju/bentrok)'], answer: 'Verb (tidak setuju/bentrok)', explanation: "Verb stress on second syllable." },
-  { id: 9, question: "'PER-mit' (noun) adalah...", options: ['Tindakan mengizinkan', 'Dokumen izin'], answer: 'Dokumen izin', explanation: "Noun = benda (dokumen, kartu, dll)." },
+  { id: 9, question: "'PER-mit' (noun) adalah...", options: ['Dokumen izin', 'Tindakan mengizinkan'], answer: 'Dokumen izin', explanation: "Noun = benda (dokumen, kartu, dll)." },
   { id: 10, question: "'per-MIT' (verb) berarti...", options: ['Dokumen', 'Mengizinkan (tindakan)'], answer: 'Mengizinkan (tindakan)', explanation: "Verb = action word." },
   { id: 11, question: "'de-SERT' (verb) berarti...", options: ['Gurun/desert', 'Meninggalkan / menelantarkan'], answer: 'Meninggalkan / menelantarkan', explanation: "Verb form = stress on second syllable." },
-  { id: 12, question: "'IM-port' (noun) adalah...", options: ['Tindakan mengimpor', 'Produk yang diimpor'], answer: 'Produk yang diimpor', explanation: "Noun = benda (barang impor)." },
+  { id: 12, question: "'IM-port' (noun) adalah...", options: ['Produk yang diimpor', 'Tindakan mengimpor'], answer: 'Produk yang diimpor', explanation: "Noun = benda (barang impor)." },
   { id: 13, question: "'im-PORT' (verb) berarti...", options: ['Barang impor', 'Membawa barang masuk'], answer: 'Membawa barang masuk', explanation: "Verb = tindakan mengimpor." },
-  { id: 14, question: "Mengapa pergeseran stress penting?", options: ['Hanya untuk style', 'Mengubah arti kata (noun vs verb)', 'Tidak penting'], answer: 'Mengubah arti kata (noun vs verb)', explanation: "St ress shift completely changes meaning and grammatical function." },
-  { id: 15, question: "'PRO-ject' (noun) adalah...", options: ['Melempar sesuatu', 'Tugas/proyek'], answer: 'Tugas/proyek', explanation: "Noun = ● o (project, task, assignment)." },
+  { id: 14, question: "Mengapa pergeseran stress penting?", options: ['Tidak penting', 'Hanya untuk style', 'Mengubah arti kata (noun vs verb)'], answer: 'Mengubah arti kata (noun vs verb)', explanation: "St ress shift completely changes meaning and grammatical function." },
+  { id: 15, question: "'PRO-ject' (noun) adalah...", options: ['Tugas/proyek', 'Melempar sesuatu'], answer: 'Tugas/proyek', explanation: "Noun = ● o (project, task, assignment)." },
   { id: 16, question: "'pro-JECT' (verb) berarti...", options: ['Tugas', 'Memproyeksikan / melempar'], answer: 'Memproyeksikan / melempar', explanation: "Verb = o ● (to project, display, throw)." },
   { id: 17, question: "'RE-cord' adalah...", options: ['Noun (rekaman / catatan)', 'Verb (merekam)'], answer: 'Noun (rekaman / catatan)', explanation: "Noun = first syllable stress." },
   { id: 18, question: "'re-CORD' adalah...", options: ['Noun', 'Verb (merekam / mencatat)'], answer: 'Verb (merekam / mencatat)', explanation: "Verb = second syllable stress." },
-  { id: 19, question: "Pasangan stress ini paling umum di...", options: ['1-syllable words', '2-syllable words', '3+ syllable words'], answer: '2-syllable words', explanation: "Pattern noun/verb stress shift mostly applies to 2-syllable words." },
-  { id: 20, question: "Cara mudah mengingat: Nouns = ___, Verbs = ___", options: ['● o, o ●', 'o ●, ● o', 'Sama saja'], answer: '● o, o ●', explanation: "Nouns stress first (● o), Verbs stress second (o ●)." }
+  { id: 19, question: "Pasangan stress ini paling umum di...", options: ['3+ syllable words', '1-syllable words', '2-syllable words'], answer: '2-syllable words', explanation: "Pattern noun/verb stress shift mostly applies to 2-syllable words." },
+  { id: 20, question: "Cara mudah mengingat: Nouns = ___, Verbs = ___", options: ['Sama saja', '● o, o ●', 'o ●, ● o'], answer: '● o, o ●', explanation: "Nouns stress first (● o), Verbs stress second (o ●)." }
 ];
 
 const InterPronunLesson10: React.FC = () => {

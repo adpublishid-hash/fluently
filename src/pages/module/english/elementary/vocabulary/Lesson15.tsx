@@ -57,28 +57,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "The feeling of great happiness is ___.",
-    options: ['Fear', 'Mood', 'Joy'],
+    options: ['Fear', 'Joy', 'Mood'],
     answer: 'Joy',
     explanation: "Joy (kegembiraan) adalah perasaan bahagia yang luar biasa."
   },
   {
     id: 3,
     question: "Traveling from one place to another is a ___.",
-    options: ['Journey', 'Routine', 'Balance'],
+    options: ['Balance', 'Routine', 'Journey'],
     answer: 'Journey',
     explanation: "Journey (perjalanan) adalah tindakan bepergian dari satu tempat ke tempat lain."
   },
   {
     id: 4,
     question: "Money you receive for doing your job is your ___.",
-    options: ['Skill', 'Success', 'Salary'], // Note: Salary wasn't in list but is review
+    options: ['Salary', 'Skill', 'Success'], // Note: Salary wasn't in list but is review
     answer: 'Salary',
     explanation: "Meskipun tidak ada dalam daftar spesifik ini, 'Salary' (Gaji) adalah istilah kerja utama yang dipelajari sebelumnya."
   },
   {
     id: 5,
     question: "If you want to suggest something good to do, you give ___.",
-    options: ['Advice', 'Opinion', 'Memory'],
+    options: ['Advice', 'Memory', 'Opinion'],
     answer: 'Advice',
     explanation: "Advice (nasihat) adalah bimbingan atau rekomendasi."
   },
@@ -92,98 +92,98 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "The feeling of great pleasure is ___.",
-    options: ["Fear","Mood","Joy"],
+    options: ["Fear", "Joy", "Mood"],
     answer: "Joy",
     explanation: "Joy (kegembiraan) adalah perasaan bahagia yang luar biasa."
   },
   {
     id: 8,
     question: "Traveling from one place to another is a ___.",
-    options: ["Journey","Routine","Balance"],
+    options: ["Balance", "Routine", "Journey"],
     answer: "Journey",
     explanation: "Journey (perjalanan) adalah tindakan bepergian dari satu tempat ke tempat lain."
   },
   {
     id: 9,
     question: "Money you receive for doing your job is your ___.",
-    options: ["Skill","Success","Salary"],
+    options: ["Salary", "Skill", "Success"],
     answer: "Salary",
     explanation: "Meskipun tidak ada dalam daftar spesifik ini, 'Salary' (Gaji) adalah istilah kerja utama yang dipelajari sebelumnya."
   },
   {
     id: 10,
     question: "If you want to suggest something good to do, you give ___.",
-    options: ["Advice","Opinion","Memory"],
+    options: ["Advice", "Memory", "Opinion"],
     answer: "Advice",
     explanation: "Advice (nasihat) adalah bimbingan atau rekomendasi."
   },
   {
     id: 11,
     question: "A person who purchases things from a store is a ___.",
-    options: ["Manager","Customer","Network"],
+    options: ["Network", "Customer", "Manager"],
     answer: "Customer",
     explanation: "Customer (pelanggan) adalah seseorang yang membeli barang atau jasa."
   },
   {
     id: 12,
     question: "The feeling of great joy is ___.",
-    options: ["Fear","Mood","Joy"],
+    options: ["Mood", "Joy", "Fear"],
     answer: "Joy",
     explanation: "Joy (kegembiraan) adalah perasaan bahagia yang luar biasa."
   },
   {
     id: 13,
     question: "Traveling from one place to another is a ___.",
-    options: ["Journey","Routine","Balance"],
+    options: ["Balance", "Routine", "Journey"],
     answer: "Journey",
     explanation: "Journey (perjalanan) adalah tindakan bepergian dari satu tempat ke tempat lain."
   },
   {
     id: 14,
     question: "Money you receive for doing your job is your ___.",
-    options: ["Skill","Success","Salary"],
+    options: ["Salary", "Skill", "Success"],
     answer: "Salary",
     explanation: "Meskipun tidak ada dalam daftar spesifik ini, 'Salary' (Gaji) adalah istilah kerja utama yang dipelajari sebelumnya."
   },
   {
     id: 15,
     question: "If you want to suggest something good to do, you give ___.",
-    options: ["Advice","Opinion","Memory"],
+    options: ["Advice", "Memory", "Opinion"],
     answer: "Advice",
     explanation: "Advice (nasihat) adalah bimbingan atau rekomendasi."
   },
   {
     id: 16,
     question: "A person who purchases things from a market is a ___.",
-    options: ["Manager","Customer","Network"],
+    options: ["Network", "Manager", "Customer"],
     answer: "Customer",
     explanation: "Customer (pelanggan) adalah seseorang yang membeli barang atau jasa."
   },
   {
     id: 17,
     question: "The feeling of great joy is ___.",
-    options: ["Fear","Mood","Joy"],
+    options: ["Mood", "Joy", "Fear"],
     answer: "Joy",
     explanation: "Joy (kegembiraan) adalah perasaan bahagia yang luar biasa."
   },
   {
     id: 18,
     question: "Traveling from one place to another is a ___.",
-    options: ["Journey","Routine","Balance"],
+    options: ["Balance", "Routine", "Journey"],
     answer: "Journey",
     explanation: "Journey (perjalanan) adalah tindakan bepergian dari satu tempat ke tempat lain."
   },
   {
     id: 19,
     question: "Money you receive for doing your job is your ___.",
-    options: ["Skill","Success","Salary"],
+    options: ["Salary", "Skill", "Success"],
     answer: "Salary",
     explanation: "Meskipun tidak ada dalam daftar spesifik ini, 'Salary' (Gaji) adalah istilah kerja utama yang dipelajari sebelumnya."
   },
   {
     id: 20,
     question: "If you want to suggest something good to do, you give ___.",
-    options: ["Advice","Opinion","Memory"],
+    options: ["Advice", "Memory", "Opinion"],
     answer: "Advice",
     explanation: "Advice (nasihat) adalah bimbingan atau rekomendasi."
   }

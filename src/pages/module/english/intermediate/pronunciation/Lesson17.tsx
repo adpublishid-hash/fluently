@@ -192,14 +192,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "Jika Anda ingin menyela dengan sopan, Anda harus...",
-    options: ['Berteriak "BERHENTI!"', 'Gunakan frasa seperti "Sorry, can I just..."', 'Lambaikan tangan dengan liar'],
+    options: ['Gunakan frasa seperti "Sorry, can I just..."', 'Lambaikan tangan dengan liar', 'Berteriak "BERHENTI!"'],
     answer: 'Gunakan frasa seperti "Sorry, can I just..."',
     explanation: "Frasa sopan melembutkan interupsi."
   },
   {
     id: 3,
     question: "Bagaimana Anda memberi sinyal bahwa Anda sudah selesai berbicara?",
-    options: ['Turunkan nada Anda (Intonasi turun) ↘', 'Naikkan nada Anda ↗', 'Lihat ke lantai'],
+    options: ['Naikkan nada Anda ↗', 'Turunkan nada Anda (Intonasi turun) ↘', 'Lihat ke lantai'],
     answer: 'Turunkan nada Anda (Intonasi turun) ↘',
     explanation: "Intonasi menurun dan jeda memberi sinyal kepada orang lain bahwa giliran mereka tiba."
   },
@@ -210,22 +210,22 @@ const QUIZ_QUESTIONS = [
     answer: 'Anyway, as I was saying...',
     explanation: "'Anyway' memberi sinyal kembali ke subjek sebelumnya setelah gangguan."
   },
-  { id: 5, question: "Suara mana yang berarti 'Saya mendengarkan' atau 'Ya'?", options: ['Ugh', 'Uh-huh', 'Pfft'], answer: 'Uh-huh', explanation: "'Uh-huh' /əˈhʌ/ adalah suara universal untuk 'Saya mengikuti Anda'." },
-  { id: 6, question: "Untuk take a turn dalam conversation, tunggu untuk...", options: ['Interruption signal', 'Falling intonation ↘ + pause', 'Nothing'], answer: 'Falling intonation ↘ + pause', explanation: "Falling tone + pause = turn is over, you can speak." },
-  { id: 7, question: "'By the way' digunakan untuk...", options: ['End conversation', 'Change topic', 'Agree'], answer: 'Change topic', explanation: "'By the way' signals shifting to a new subject." },
-  { id: 8, question: "Untuk hold the floor (keep speaking), use...", options: ['Fillers like um, uh', 'Silent pause', 'Fast speaking'], answer: 'Fillers like um, uh', explanation: "Fillers signal 'I'm not done yet' while you think." },
-  { id: 9, question: "Untuk give the floor to someone else, say...", options: ['Nothing', 'What do you think?', 'I disagree'], answer: 'What do you think?', explanation: "Direct questions invite others to speak." },
-  { id: 10, question: "'Right', 'I see', 'Got it' adalah contoh...", options: ['Interruptions', 'Backchannels', 'Endings'], answer: 'Backchannels', explanation: "Short responses show you're listening actively." },
-  { id: 11, question: "Untuk politely end conversation, use...", options: ['Walk away', 'It\'s been great talking', 'Change topic'], answer: 'It\'s been great talking', explanation: "Positive closing phrases signal end gracefully." },
-  { id: 12, question: "'Anyway' digunakan untuk...", options: ['Start new topic', 'Return to previous topic', 'End talk'], answer: 'Return to previous topic', explanation: "'Anyway' brings you back after digression." },
+  { id: 5, question: "Suara mana yang berarti 'Saya mendengarkan' atau 'Ya'?", options: ['Pfft', 'Ugh', 'Uh-huh'], answer: 'Uh-huh', explanation: "'Uh-huh' /əˈhʌ/ adalah suara universal untuk 'Saya mengikuti Anda'." },
+  { id: 6, question: "Untuk take a turn dalam conversation, tunggu untuk...", options: ['Nothing', 'Falling intonation ↘ + pause', 'Interruption signal'], answer: 'Falling intonation ↘ + pause', explanation: "Falling tone + pause = turn is over, you can speak." },
+  { id: 7, question: "'By the way' digunakan untuk...", options: ['Change topic', 'End conversation', 'Agree'], answer: 'Change topic', explanation: "'By the way' signals shifting to a new subject." },
+  { id: 8, question: "Untuk hold the floor (keep speaking), use...", options: ['Fast speaking', 'Fillers like um, uh', 'Silent pause'], answer: 'Fillers like um, uh', explanation: "Fillers signal 'I'm not done yet' while you think." },
+  { id: 9, question: "Untuk give the floor to someone else, say...", options: ['I disagree', 'Nothing', 'What do you think?'], answer: 'What do you think?', explanation: "Direct questions invite others to speak." },
+  { id: 10, question: "'Right', 'I see', 'Got it' adalah contoh...", options: ['Endings', 'Backchannels', 'Interruptions'], answer: 'Backchannels', explanation: "Short responses show you're listening actively." },
+  { id: 11, question: "Untuk politely end conversation, use...", options: ['It\'s been great talking', 'Walk away', 'Change topic'], answer: 'It\'s been great talking', explanation: "Positive closing phrases signal end gracefully." },
+  { id: 12, question: "'Anyway' digunakan untuk...", options: ['Return to previous topic', 'Start new topic', 'End talk'], answer: 'Return to previous topic', explanation: "'Anyway' brings you back after digression." },
   { id: 13, question: "Overlapping speech (speaking same time) is...", options: ['Always rude', 'OK in casual, avoid in formal', 'Required'], answer: 'OK in casual, avoid in formal', explanation: "Casual talk = some overlap OK. Formal = wait your turn." },
-  { id: 14, question: "'Let me just stop you there' adalah...", options: ['Polite interruption', 'Rude', 'Backchannel'], answer: 'Polite interruption', explanation: "Acknowledges you're interrupting but need to speak." },
-  { id: 15, question: "Untuk show agreement, use...", options: ['Silence', 'Mm-hmm, exactly, absolutely', 'Ugh'], answer: 'Mm-hmm, exactly, absolutely', explanation: "Agreement backchannels keep conversation flowing." },
-  { id: 16, question: "Falling intonation pada 'Really.' (not question) shows...", options: ['Surprise', 'Doubt/skepticism', 'Joy'], answer: 'Doubt/skepticism', explanation: "Really↘ = I don't believe you. Really↗ = Wow, amazing!" },
+  { id: 14, question: "'Let me just stop you there' adalah...", options: ['Polite interruption', 'Backchannel', 'Rude'], answer: 'Polite interruption', explanation: "Acknowledges you're interrupting but need to speak." },
+  { id: 15, question: "Untuk show agreement, use...", options: ['Ugh', 'Mm-hmm, exactly, absolutely', 'Silence'], answer: 'Mm-hmm, exactly, absolutely', explanation: "Agreement backchannels keep conversation flowing." },
+  { id: 16, question: "Falling intonation pada 'Really.' (not question) shows...", options: ['Joy', 'Doubt/skepticism', 'Surprise'], answer: 'Doubt/skepticism', explanation: "Really↘ = I don't believe you. Really↗ = Wow, amazing!" },
   { id: 17, question: "Untuk clarify what someone said, use...", options: ['Can I just check...?', 'You\'re wrong', 'Never mind'], answer: 'Can I just check...?', explanation: "Polite clarification opens space for correction." },
   { id: 18, question: "Eye contact dalam conversation helps with...", options: ['Nothing', 'Turn-taking signals', 'Intimidation'], answer: 'Turn-taking signals', explanation: "Eye contact shows you're listening/ready to speak." },
-  { id: 19, question: "Untuk avoid awkward silence, use...", options: ['Stare', 'Small talk questions', 'Leave'], answer: 'Small talk questions', explanation: "Open questions restart conversation flow." },
-  { id: 20, question: "Best conversation pronunciation skill?", options: ['Perfect grammar', 'Active listening + responsive backchanneling', 'Speed'], answer: 'Active listening + responsive backchanneling', explanation: "Good conversation = show you're engaged through vocal responses!" }
+  { id: 19, question: "Untuk avoid awkward silence, use...", options: ['Stare', 'Leave', 'Small talk questions'], answer: 'Small talk questions', explanation: "Open questions restart conversation flow." },
+  { id: 20, question: "Best conversation pronunciation skill?", options: ['Active listening + responsive backchanneling', 'Speed', 'Perfect grammar'], answer: 'Active listening + responsive backchanneling', explanation: "Good conversation = show you're engaged through vocal responses!" }
 ];
 
 const InterPronunLesson17: React.FC = () => {

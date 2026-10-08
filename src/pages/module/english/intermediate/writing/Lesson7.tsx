@@ -8,10 +8,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the contrast linker in paragraph one:",
     "opts": [
+      "Indicates",
       "While",
       "Consequently",
-      "Foundation",
-      "Indicates"
+      "Foundation"
     ],
     "ans": "While",
     "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
@@ -19,10 +19,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does \"Consequently\" mean in this context?",
     "opts": [
-      "Before",
-      "As a logical result",
       "In addition",
-      "However"
+      "However",
+      "As a logical result",
+      "Before"
     ],
     "ans": "As a logical result",
     "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
@@ -31,9 +31,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
     "opts": [
       "Students",
-      "Literature",
       "Reading extensive literature (Gerund phrase)",
-      "Exposes"
+      "Exposes",
+      "Literature"
     ],
     "ans": "Reading extensive literature (Gerund phrase)",
     "exp": "The entire gerund phrase acts as the subject."
@@ -41,10 +41,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
     "opts": [
-      "Easy to see",
       "Occurring repeatedly and constantly",
-      "Funny",
-      "Grammatical"
+      "Easy to see",
+      "Grammatical",
+      "Funny"
     ],
     "ans": "Occurring repeatedly and constantly",
     "exp": "\"Persistent\" means something stubborn that keeps happening."
@@ -52,10 +52,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why is \"Therefore\" used in the last paragraph?",
     "opts": [
-      "To introduce a cause",
-      "To conclude a logical argument",
       "To change subjects",
-      "To start a story"
+      "To start a story",
+      "To introduce a cause",
+      "To conclude a logical argument"
     ],
     "ans": "To conclude a logical argument",
     "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
@@ -64,8 +64,8 @@ const QUIZ: QuizItem[] = [
     "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
     "opts": [
       "for",
-      "from",
       "with",
+      "from",
       "about"
     ],
     "ans": "for",
@@ -74,10 +74,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the sentence with correct parallel structure:",
     "opts": [
-      "I like swimming, to read, and hike.",
       "I like to swim, reading, and to hike.",
-      "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
+      "I like swim, read, and hike.",
+      "I like swimming, to read, and hike.",
+      "I like swimming, reading, and hiking."
     ],
     "ans": "I like swimming, reading, and hiking.",
     "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
@@ -85,10 +85,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
     "opts": [
-      "On the second hand...",
       "On the other side...",
-      "On the other hand...",
-      "However..."
+      "However...",
+      "On the second hand...",
+      "On the other hand..."
     ],
     "ans": "On the other hand...",
     "exp": "Pasangan frasa idiomatis ini selalu \"On the one hand... On the other hand...\" untuk membandingkan dua sisi."
@@ -96,10 +96,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is most appropriate for a formal email greeting?",
     "opts": [
-      "Hi mate,",
       "Hey there,",
+      "What’s up Smith,",
       "Dear Mr. Smith,",
-      "What’s up Smith,"
+      "Hi mate,"
     ],
     "ans": "Dear Mr. Smith,",
     "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
@@ -107,10 +107,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the most FORMAL word to replace \"but\":",
     "opts": [
-      "However",
-      "Also",
       "So",
-      "And"
+      "And",
+      "However",
+      "Also"
     ],
     "ans": "However",
     "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
@@ -118,9 +118,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which option is less formal? \"Commence\"",
     "opts": [
-      "Begin",
-      "Terminate",
       "Execute",
+      "Terminate",
+      "Begin",
       "Finalize"
     ],
     "ans": "Begin",
@@ -151,9 +151,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is a \"Topic Sentence\"?",
     "opts": [
-      "The last sentence of a text",
-      "A sentence that explains the main idea of a paragraph",
       "A famous quote",
+      "A sentence that explains the main idea of a paragraph",
+      "The last sentence of a text",
       "The title of an essay"
     ],
     "ans": "A sentence that explains the main idea of a paragraph",
@@ -162,10 +162,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
     "opts": [
-      "have",
       "had",
+      "having",
       "have had",
-      "having"
+      "have"
     ],
     "ans": "had",
     "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
@@ -173,10 +173,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Due to\" is primarily used to indicate...",
     "opts": [
-      "Addition",
       "Time",
-      "Cause or Reason",
-      "Condition"
+      "Addition",
+      "Condition",
+      "Cause or Reason"
     ],
     "ans": "Cause or Reason",
     "exp": "\"Due to\" (= because of) digunakan untuk menunjukkan alasan/penyebab dari sesuatu."
@@ -185,9 +185,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is the purpose of a thesis statement in an essay?",
     "opts": [
       "To greet the reader",
-      "To state the main argument or focus of the essay",
       "To ask a rhetorical question",
-      "To give a dictionary definition"
+      "To give a dictionary definition",
+      "To state the main argument or focus of the essay"
     ],
     "ans": "To state the main argument or focus of the essay",
     "exp": "Thesis statement berada di paragraf pertama untuk menjabarkan argumen/titik berat esai."
@@ -195,10 +195,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Identify the error: \"I look forward to hear from you soon.\"",
     "opts": [
-      "look forward",
-      "to hear",
       "from you",
-      "soon"
+      "soon",
+      "to hear",
+      "look forward"
     ],
     "ans": "to hear",
     "exp": "Aturan baku: \"look forward to\" selalu diikuti oleh Gerund (V-ing), sehingga seharusnya \"to hearing\"."
@@ -239,10 +239,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What is considered the foundation of writing according to the text?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
       "Speaking loudly",
-      "Finding errors"
+      "Finding errors",
+      "Vocabulary and grammar",
+      "Spelling and reading"
     ],
     "ans": "Vocabulary and grammar"
   },
@@ -250,8 +250,8 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What indicates true proficiency?",
     "opts": [
       "Knowing 1000 words",
-      "Typing fast",
       "The ability to weave sentences into a coherent paragraph",
+      "Typing fast",
       "Using passive voice"
     ],
     "ans": "The ability to weave sentences into a coherent paragraph"
@@ -260,9 +260,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "How does reading literature help?",
     "opts": [
       "It wastes time",
-      "It exposes students to varied structures and registers",
       "It hurts visibility",
-      "It makes you sleepy"
+      "It makes you sleepy",
+      "It exposes students to varied structures and registers"
     ],
     "ans": "It exposes students to varied structures and registers"
   },
@@ -270,19 +270,19 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What is the primary objective of writing?",
     "opts": [
       "To confuse the reader",
-      "To convey ideas clearly and concisely",
+      "To write long sentences",
       "To get a high score",
-      "To write long sentences"
+      "To convey ideas clearly and concisely"
     ],
     "ans": "To convey ideas clearly and concisely"
   },
   {
     "q": "How is mastery achieved?",
     "opts": [
-      "Through consistent, deliberate practice",
       "Overnight magically",
+      "By ignoring rules",
       "By buying special pens",
-      "By ignoring rules"
+      "Through consistent, deliberate practice"
     ],
     "ans": "Through consistent, deliberate practice"
   }

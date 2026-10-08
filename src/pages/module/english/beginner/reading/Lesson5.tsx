@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"MENU" di restoran adalah...', opts: ['Daftar makanan & minuman', 'Nama restoran', 'Bill/tagihan', 'Petunjuk keluar'], ans: 'Daftar makanan & minuman', exp: '"Menu" = daftar makanan dan minuman beserta harganya.' },
-  { q: 'Pada menu: "Nasi Goreng — Rp 35,000" artinya...', opts: ['Nasi goreng gratis', 'Nasi goreng harganya Rp 35.000', 'Nasi goreng diskon', 'Nasi goreng habis'], ans: 'Nasi goreng harganya Rp 35.000', exp: '"—" setelah nama makanan biasanya menunjukkan harga.' },
-  { q: '"VEGETARIAN" pada menu artinya...', opts: ['Khusus daging', 'Tidak mengandung daging/ikan', 'Hidangan laut', 'Hidangan ayam'], ans: 'Tidak mengandung daging/ikan', exp: '"Vegetarian" = hidangan tanpa daging/ikan, cocok untuk vegetarian.' },
-  { q: '"TODAY\'S SPECIAL" pada menu artinya...', opts: ['Menu paling mahal', 'Menu yang selalu ada', 'Menu spesial hari ini', 'Menu terlaris'], ans: 'Menu spesial hari ini', exp: '"Today\'s special" = hidangan spesial yang tersedia hari ini saja.' },
-  { q: '"DESSERT" pada menu artinya...', opts: ['Hidangan pembuka', 'Hidangan utama', 'Makanan penutup/manis', 'Minuman'], ans: 'Makanan penutup/manis', exp: '"Dessert" = hidangan penutup (kue, es krim, pudding, dll).' },
-  { q: '"SPICY" pada menu artinya...', opts: ['Manis', 'Pedas', 'Asam', 'Asin'], ans: 'Pedas', exp: '"Spicy" = pedas.' },
-  { q: '"FREE REFILL" pada minuman artinya...', opts: ['Isi ulang berbayar', 'Isi ulang gratis', 'Minuman gratis', 'Diskon minuman'], ans: 'Isi ulang gratis', exp: '"Free refill" = isi ulang gratis (bisa minta tambah tanpa bayar lagi).' },
-  { q: '"APPETIZER" pada menu artinya...', opts: ['Hidangan utama', 'Minuman', 'Hidangan pembuka', 'Makanan penutup'], ans: 'Hidangan pembuka', exp: '"Appetizer" = hidangan pembuka yang disajikan sebelum hidangan utama.' },
-  { q: '"MAIN COURSE" pada menu adalah...', opts: ['Hidangan pembuka', 'Hidangan utama', 'Makanan penutup', 'Minuman'], ans: 'Hidangan utama', exp: '"Main course" = hidangan utama.' },
-  { q: '"SERVICE CHARGE: 10%" pada tagihan artinya...', opts: ['Diskon 10%', 'Pajak 10%', 'Biaya pelayanan 10%', 'Tip 10%'], ans: 'Biaya pelayanan 10%', exp: '"Service charge" = biaya pelayanan yang ditambahkan ke tagihan.' },
+  { q: '"MENU" di restoran adalah...', opts: ['Bill/tagihan', 'Petunjuk keluar', 'Daftar makanan & minuman', 'Nama restoran'], ans: 'Daftar makanan & minuman', exp: '"Menu" = daftar makanan dan minuman beserta harganya.' },
+  { q: 'Pada menu: "Nasi Goreng — Rp 35,000" artinya...', opts: ['Nasi goreng harganya Rp 35.000', 'Nasi goreng habis', 'Nasi goreng gratis', 'Nasi goreng diskon'], ans: 'Nasi goreng harganya Rp 35.000', exp: '"—" setelah nama makanan biasanya menunjukkan harga.' },
+  { q: '"VEGETARIAN" pada menu artinya...', opts: ['Hidangan laut', 'Hidangan ayam', 'Khusus daging', 'Tidak mengandung daging/ikan'], ans: 'Tidak mengandung daging/ikan', exp: '"Vegetarian" = hidangan tanpa daging/ikan, cocok untuk vegetarian.' },
+  { q: '"TODAY\'S SPECIAL" pada menu artinya...', opts: ['Menu paling mahal', 'Menu spesial hari ini', 'Menu yang selalu ada', 'Menu terlaris'], ans: 'Menu spesial hari ini', exp: '"Today\'s special" = hidangan spesial yang tersedia hari ini saja.' },
+  { q: '"DESSERT" pada menu artinya...', opts: ['Hidangan pembuka', 'Minuman', 'Makanan penutup/manis', 'Hidangan utama'], ans: 'Makanan penutup/manis', exp: '"Dessert" = hidangan penutup (kue, es krim, pudding, dll).' },
+  { q: '"SPICY" pada menu artinya...', opts: ['Manis', 'Asam', 'Asin', 'Pedas'], ans: 'Pedas', exp: '"Spicy" = pedas.' },
+  { q: '"FREE REFILL" pada minuman artinya...', opts: ['Minuman gratis', 'Diskon minuman', 'Isi ulang berbayar', 'Isi ulang gratis'], ans: 'Isi ulang gratis', exp: '"Free refill" = isi ulang gratis (bisa minta tambah tanpa bayar lagi).' },
+  { q: '"APPETIZER" pada menu artinya...', opts: ['Hidangan utama', 'Makanan penutup', 'Hidangan pembuka', 'Minuman'], ans: 'Hidangan pembuka', exp: '"Appetizer" = hidangan pembuka yang disajikan sebelum hidangan utama.' },
+  { q: '"MAIN COURSE" pada menu adalah...', opts: ['Hidangan utama', 'Minuman', 'Makanan penutup', 'Hidangan pembuka'], ans: 'Hidangan utama', exp: '"Main course" = hidangan utama.' },
+  { q: '"SERVICE CHARGE: 10%" pada tagihan artinya...', opts: ['Biaya pelayanan 10%', 'Tip 10%', 'Diskon 10%', 'Pajak 10%'], ans: 'Biaya pelayanan 10%', exp: '"Service charge" = biaya pelayanan yang ditambahkan ke tagihan.' },
   { q: '"SET MENU" pada restoran artinya...', opts: ['Menu ala carte', 'Paket menu lengkap', 'Menu harian', 'Menu eksklusif'], ans: 'Paket menu lengkap', exp: '"Set menu" = paket menu lengkap (biasanya lebih hemat).' },
-  { q: '"GRILLED" pada menu artinya...', opts: ['Digoreng', 'Dipanggang/dibakar', 'Direbus', 'Dikukus'], ans: 'Dipanggang/dibakar', exp: '"Grilled" = dipanggang atau dibakar (di atas panggangan).' },
-  { q: '"PORTION: SMALL / LARGE" artinya...', opts: ['Rasa: ringan/berat', 'Porsi: kecil/besar', 'Harga: murah/mahal', 'Waktu: cepat/lama'], ans: 'Porsi: kecil/besar', exp: '"Portion" = porsi/ukuran sajian.' },
-  { q: '"BILL / CHECK" di restoran adalah...', opts: ['Daftar menu', 'Struk pembayaran/tagihan', 'Meja pesanan', 'Resep makanan'], ans: 'Struk pembayaran/tagihan', exp: '"Bill" atau "check" = tagihan/nota pembayaran.' },
-  { q: '"FRIED" pada menu artinya...', opts: ['Direbus', 'Dipanggang', 'Digoreng', 'Dikukus'], ans: 'Digoreng', exp: '"Fried" = digoreng. Contoh: fried chicken = ayam goreng.' },
-  { q: '"PRICE LIST" adalah...', opts: ['Daftar makanan', 'Daftar harga', 'Daftar bahan', 'Daftar tamu'], ans: 'Daftar harga', exp: '"Price list" = daftar harga barang atau layanan.' },
-  { q: '"TAX INCLUDED" artinya...', opts: ['Pajak belum termasuk', 'Pajak sudah termasuk', 'Bebas pajak', 'Harga plus pajak'], ans: 'Pajak sudah termasuk', exp: '"Tax included" = harga sudah termasuk pajak.' },
-  { q: '"STEAMED" pada menu artinya...', opts: ['Digoreng', 'Dipanggang', 'Dikukus', 'Diasap'], ans: 'Dikukus', exp: '"Steamed" = dikukus.' },
-  { q: '"HALF PRICE" artinya...', opts: ['Harga penuh', 'Setengah harga', 'Dua kali harga', 'Harga normal'], ans: 'Setengah harga', exp: '"Half price" = setengah harga = diskon 50%.' },
-  { q: '"TAKEAWAY / TO GO" pada menu artinya...', opts: ['Makan di tempat', 'Dibawa pulang', 'Pesan antar', 'Reservasi meja'], ans: 'Dibawa pulang', exp: '"Takeaway" atau "to go" = pesan untuk dibawa pulang.' },
+  { q: '"GRILLED" pada menu artinya...', opts: ['Direbus', 'Dikukus', 'Dipanggang/dibakar', 'Digoreng'], ans: 'Dipanggang/dibakar', exp: '"Grilled" = dipanggang atau dibakar (di atas panggangan).' },
+  { q: '"PORTION: SMALL / LARGE" artinya...', opts: ['Porsi: kecil/besar', 'Harga: murah/mahal', 'Waktu: cepat/lama', 'Rasa: ringan/berat'], ans: 'Porsi: kecil/besar', exp: '"Portion" = porsi/ukuran sajian.' },
+  { q: '"BILL / CHECK" di restoran adalah...', opts: ['Struk pembayaran/tagihan', 'Resep makanan', 'Daftar menu', 'Meja pesanan'], ans: 'Struk pembayaran/tagihan', exp: '"Bill" atau "check" = tagihan/nota pembayaran.' },
+  { q: '"FRIED" pada menu artinya...', opts: ['Direbus', 'Dikukus', 'Digoreng', 'Dipanggang'], ans: 'Digoreng', exp: '"Fried" = digoreng. Contoh: fried chicken = ayam goreng.' },
+  { q: '"PRICE LIST" adalah...', opts: ['Daftar harga', 'Daftar makanan', 'Daftar tamu', 'Daftar bahan'], ans: 'Daftar harga', exp: '"Price list" = daftar harga barang atau layanan.' },
+  { q: '"TAX INCLUDED" artinya...', opts: ['Pajak belum termasuk', 'Bebas pajak', 'Pajak sudah termasuk', 'Harga plus pajak'], ans: 'Pajak sudah termasuk', exp: '"Tax included" = harga sudah termasuk pajak.' },
+  { q: '"STEAMED" pada menu artinya...', opts: ['Dipanggang', 'Diasap', 'Dikukus', 'Digoreng'], ans: 'Dikukus', exp: '"Steamed" = dikukus.' },
+  { q: '"HALF PRICE" artinya...', opts: ['Harga normal', 'Harga penuh', 'Setengah harga', 'Dua kali harga'], ans: 'Setengah harga', exp: '"Half price" = setengah harga = diskon 50%.' },
+  { q: '"TAKEAWAY / TO GO" pada menu artinya...', opts: ['Dibawa pulang', 'Makan di tempat', 'Reservasi meja', 'Pesan antar'], ans: 'Dibawa pulang', exp: '"Takeaway" atau "to go" = pesan untuk dibawa pulang.' },
 ];
 
 const MENU_PASSAGE = {
@@ -55,11 +55,11 @@ const MENU_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Menu manakah yang termasuk hidangan pembuka (Appetizer)?', opts: ['Nasi Goreng Special', 'Soto Ayam', 'Gado-Gado', 'Iced Tea'], ans: 'Gado-Gado' },
-    { q: 'Berapa harga Grilled Fish?', opts: ['Rp 40.000', 'Rp 45.000', 'Rp 50.000', 'Rp 55.000'], ans: 'Rp 55.000' },
-    { q: 'Restoran ini menyajikan makanan jenis apa?', opts: ['Chinese cuisine', 'Japanese cuisine', 'Indonesian cuisine', 'Western cuisine'], ans: 'Indonesian cuisine' },
-    { q: 'Berapa service charge yang dikenakan?', opts: ['5%', '10%', '15%', 'Gratis'], ans: '10%' },
-    { q: 'Minuman paling murah di menu ini adalah?', opts: ['Iced Tea', 'Fresh Orange Juice', 'Soto Ayam', 'Spring Roll'], ans: 'Iced Tea' },
+    { q: 'Menu manakah yang termasuk hidangan pembuka (Appetizer)?', opts: ['Soto Ayam', 'Nasi Goreng Special', 'Iced Tea', 'Gado-Gado'], ans: 'Gado-Gado' },
+    { q: 'Berapa harga Grilled Fish?', opts: ['Rp 50.000', 'Rp 55.000', 'Rp 45.000', 'Rp 40.000'], ans: 'Rp 55.000' },
+    { q: 'Restoran ini menyajikan makanan jenis apa?', opts: ['Japanese cuisine', 'Western cuisine', 'Chinese cuisine', 'Indonesian cuisine'], ans: 'Indonesian cuisine' },
+    { q: 'Berapa service charge yang dikenakan?', opts: ['Gratis', '5%', '10%', '15%'], ans: '10%' },
+    { q: 'Minuman paling murah di menu ini adalah?', opts: ['Soto Ayam', 'Fresh Orange Juice', 'Iced Tea', 'Spring Roll'], ans: 'Iced Tea' },
   ] as ComprehensionQ[],
 };
 

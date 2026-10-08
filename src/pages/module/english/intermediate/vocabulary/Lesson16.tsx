@@ -53,26 +53,26 @@ const INTENSIFIERS_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "It is ___ forbidden to smoke in this area.", options: ['strongly', 'strictly', 'heavily'], answer: 'strictly', explanation: "Kita mengatakan 'strictly forbidden' untuk aturan yang sangat tegas." },
-  { id: 2, question: "I need to ___ a decision by tomorrow.", options: ['do', 'make', 'create'], answer: 'make', explanation: "Kita selalu 'make' (membuat) keputusan, tidak pernah 'do' keputusan." },
+  { id: 1, question: "It is ___ forbidden to smoke in this area.", options: ['strongly', 'heavily', 'strictly'], answer: 'strictly', explanation: "Kita mengatakan 'strictly forbidden' untuk aturan yang sangat tegas." },
+  { id: 2, question: "I need to ___ a decision by tomorrow.", options: ['make', 'do', 'create'], answer: 'make', explanation: "Kita selalu 'make' (membuat) keputusan, tidak pernah 'do' keputusan." },
   { id: 3, question: "He has a ___ sense of humor. He makes jokes with a serious face.", options: ['wet', 'hard', 'dry'], answer: 'dry', explanation: "'Dry sense of humor' berarti lucu tanpa menunjukkan emosi." },
-  { id: 4, question: "It was raining ___ yesterday.", options: ['strongly', 'heavily', 'thickly'], answer: 'heavily', explanation: "Kita mengatakan 'heavy rain' (hujan lebat) atau 'raining heavily', bukan strong rain." },
-  { id: 5, question: "Please ___ attention to the safety announcement.", options: ['pay', 'give', 'keep'], answer: 'pay', explanation: "Frasa yang benar adalah 'pay attention' (memperhatikan)." },
-  { id: 6, question: "Can you ___ me a favor?", options: ['make', 'do', 'have'], answer: 'do', explanation: "'Do a favor' adalah kolokasi yang benar untuk membantu seseorang." },
-  { id: 7, question: "You need to ___ a risk if you want to succeed.", options: ['do', 'make', 'take'], answer: 'take', explanation: "Kita 'take a risk' (mengambil risiko), bukan 'make' atau 'do'." },
-  { id: 8, question: "I always ___ my promises.", options: ['hold', 'keep', 'save'], answer: 'keep', explanation: "'Keep a promise' (menepati janji) adalah frasa yang tepat." },
-  { id: 9, question: "I think I'm going to ___ a cold.", options: ['get', 'catch', 'take'], answer: 'catch', explanation: "Kita 'catch a cold' (masuk angin/pilek), bukan 'get' atau 'take'." },
-  { id: 10, question: "Let's ___ a chat over coffee.", options: ['make', 'do', 'have'], answer: 'have', explanation: "'Have a chat' (mengobrol) adalah kolokasi yang benar." },
-  { id: 11, question: "I need ___  coffee to wake up.", options: ['hard', 'strong', 'heavy'], answer: 'strong', explanation: "Kita mengatakan 'strong coffee' (kopi kental), bukan 'heavy' atau 'hard'." },
-  { id: 12, question: "This restaurant serves ___ food.", options: ['quick', 'fast', 'speedy'], answer: 'fast', explanation: "'Fast food' (makanan cepat saji) adalah istilah yang tepat." },
-  { id: 13, question: "I'm looking for ___ quality products.", options: ['tall', 'high', 'big'], answer: 'high', explanation: "Kita mengatakan 'high quality' (kualitas tinggi), bukan 'tall' atau 'big'." },
-  { id: 14, question: "I had a ___ sleep last night. I feel great!", options: ['heavy', 'deep', 'strong'], answer: 'deep', explanation: "'Deep sleep' (tidur nyenyak) adalah kolokasi yang benar." },
-  { id: 15, question: "This is a ___ opportunity. Don't miss it!", options: ['silver', 'gold', 'golden'], answer: 'golden', explanation: "'Golden opportunity' (kesempatan emas) adalah frasa yang tepat." },
-  { id: 16, question: "The doctor told me I'm ___ ill.", options: ['deeply', 'seriously', 'heavily'], answer: 'seriously', explanation: "'Seriously ill' (sakit parah) adalah kolokasi yang benar." },
-  { id: 17, question: "I am ___ aware of the risks.", options: ['completely', 'fully', 'totally'], answer: 'fully', explanation: "'Fully aware' (sadar sepenuhnya) adalah frasa yang paling sering digunakan." },
-  { id: 18, question: "This laptop is ___ recommended by experts.", options: ['strongly', 'highly', 'deeply'], answer: 'highly', explanation: "'Highly recommended' (sangat direkomendasikan) adalah kolokasi yang tepat." },
-  { id: 19, question: "The weather is ___ cold today.", options: ['deeply', 'bitterly', 'highly'], answer: 'bitterly', explanation: "'Bitterly cold' (dingin yang menusuk) digunakan untuk cuaca sangat dingin." },
-  { id: 20, question: "These two products are ___ different.", options: ['highly', 'completely', 'deeply'], answer: 'completely', explanation: "'Completely different' (berbeda sama sekali) adalah kolokasi yang tepat." }
+  { id: 4, question: "It was raining ___ yesterday.", options: ['strongly', 'thickly', 'heavily'], answer: 'heavily', explanation: "Kita mengatakan 'heavy rain' (hujan lebat) atau 'raining heavily', bukan strong rain." },
+  { id: 5, question: "Please ___ attention to the safety announcement.", options: ['give', 'pay', 'keep'], answer: 'pay', explanation: "Frasa yang benar adalah 'pay attention' (memperhatikan)." },
+  { id: 6, question: "Can you ___ me a favor?", options: ['do', 'make', 'have'], answer: 'do', explanation: "'Do a favor' adalah kolokasi yang benar untuk membantu seseorang." },
+  { id: 7, question: "You need to ___ a risk if you want to succeed.", options: ['make', 'do', 'take'], answer: 'take', explanation: "Kita 'take a risk' (mengambil risiko), bukan 'make' atau 'do'." },
+  { id: 8, question: "I always ___ my promises.", options: ['hold', 'save', 'keep'], answer: 'keep', explanation: "'Keep a promise' (menepati janji) adalah frasa yang tepat." },
+  { id: 9, question: "I think I'm going to ___ a cold.", options: ['take', 'catch', 'get'], answer: 'catch', explanation: "Kita 'catch a cold' (masuk angin/pilek), bukan 'get' atau 'take'." },
+  { id: 10, question: "Let's ___ a chat over coffee.", options: ['make', 'have', 'do'], answer: 'have', explanation: "'Have a chat' (mengobrol) adalah kolokasi yang benar." },
+  { id: 11, question: "I need ___  coffee to wake up.", options: ['strong', 'hard', 'heavy'], answer: 'strong', explanation: "Kita mengatakan 'strong coffee' (kopi kental), bukan 'heavy' atau 'hard'." },
+  { id: 12, question: "This restaurant serves ___ food.", options: ['fast', 'quick', 'speedy'], answer: 'fast', explanation: "'Fast food' (makanan cepat saji) adalah istilah yang tepat." },
+  { id: 13, question: "I'm looking for ___ quality products.", options: ['big', 'high', 'tall'], answer: 'high', explanation: "Kita mengatakan 'high quality' (kualitas tinggi), bukan 'tall' atau 'big'." },
+  { id: 14, question: "I had a ___ sleep last night. I feel great!", options: ['strong', 'heavy', 'deep'], answer: 'deep', explanation: "'Deep sleep' (tidur nyenyak) adalah kolokasi yang benar." },
+  { id: 15, question: "This is a ___ opportunity. Don't miss it!", options: ['golden', 'gold', 'silver'], answer: 'golden', explanation: "'Golden opportunity' (kesempatan emas) adalah frasa yang tepat." },
+  { id: 16, question: "The doctor told me I'm ___ ill.", options: ['heavily', 'deeply', 'seriously'], answer: 'seriously', explanation: "'Seriously ill' (sakit parah) adalah kolokasi yang benar." },
+  { id: 17, question: "I am ___ aware of the risks.", options: ['fully', 'completely', 'totally'], answer: 'fully', explanation: "'Fully aware' (sadar sepenuhnya) adalah frasa yang paling sering digunakan." },
+  { id: 18, question: "This laptop is ___ recommended by experts.", options: ['highly', 'strongly', 'deeply'], answer: 'highly', explanation: "'Highly recommended' (sangat direkomendasikan) adalah kolokasi yang tepat." },
+  { id: 19, question: "The weather is ___ cold today.", options: ['deeply', 'highly', 'bitterly'], answer: 'bitterly', explanation: "'Bitterly cold' (dingin yang menusuk) digunakan untuk cuaca sangat dingin." },
+  { id: 20, question: "These two products are ___ different.", options: ['highly', 'deeply', 'completely'], answer: 'completely', explanation: "'Completely different' (berbeda sama sekali) adalah kolokasi yang tepat." }
 
 ];
 

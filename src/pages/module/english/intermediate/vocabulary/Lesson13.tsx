@@ -54,25 +54,25 @@ const ACTION_IDIOMS = [
 const QUIZ_QUESTIONS = [
 
   { id: 1, question: "The exam was very easy. It was ___.", options: ['a piece of cake', 'under the weather', 'out of hand'], answer: 'a piece of cake', explanation: "'A piece of cake' berarti sesuatu yang sangat mudah dilakukan." },
-  { id: 2, question: "I'm not feeling well today. I'm feeling a bit ___.", options: ['over the moon', 'under the weather', 'on cloud nine'], answer: 'under the weather', explanation: "'Under the weather' berarti merasa sakit atau tidak enak badan." },
-  { id: 3, question: "Stop crying and ___! We need to solve this.", options: ['pull yourself together', 'call it a day', 'miss the boat'], answer: 'pull yourself together', explanation: "'Pull yourself together' berarti menenangkan diri dan bersikap normal." },
-  { id: 4, question: "I rarely go to the cinema. Only ___.", options: ['when pigs fly', 'once in a blue moon', 'so far so good'], answer: 'once in a blue moon', explanation: "'Once in a blue moon' berarti sangat jarang." },
-  { id: 5, question: "We agree on everything. We ___.", options: ['see eye to eye', 'cut corners', 'hit the sack'], answer: 'see eye to eye', explanation: "'See eye to eye' berarti setuju sepenuhnya dengan seseorang." },
-  { id: 6, question: "She was ___ when she won the competition.", options: ['feeling blue', 'over the moon', 'under the weather'], answer: 'over the moon', explanation: "'Over the moon' berarti sangat bahagia/gembira." },
-  { id: 7, question: "Before the interview, I felt ___ in my stomach.", options: ['butterflies', 'birds', 'fish'], answer: 'butterflies', explanation: "'Butterflies in the stomach' berarti gugup atau deg-degan." },
+  { id: 2, question: "I'm not feeling well today. I'm feeling a bit ___.", options: ['on cloud nine', 'over the moon', 'under the weather'], answer: 'under the weather', explanation: "'Under the weather' berarti merasa sakit atau tidak enak badan." },
+  { id: 3, question: "Stop crying and ___! We need to solve this.", options: ['miss the boat', 'pull yourself together', 'call it a day'], answer: 'pull yourself together', explanation: "'Pull yourself together' berarti menenangkan diri dan bersikap normal." },
+  { id: 4, question: "I rarely go to the cinema. Only ___.", options: ['when pigs fly', 'so far so good', 'once in a blue moon'], answer: 'once in a blue moon', explanation: "'Once in a blue moon' berarti sangat jarang." },
+  { id: 5, question: "We agree on everything. We ___.", options: ['cut corners', 'see eye to eye', 'hit the sack'], answer: 'see eye to eye', explanation: "'See eye to eye' berarti setuju sepenuhnya dengan seseorang." },
+  { id: 6, question: "She was ___ when she won the competition.", options: ['feeling blue', 'under the weather', 'over the moon'], answer: 'over the moon', explanation: "'Over the moon' berarti sangat bahagia/gembira." },
+  { id: 7, question: "Before the interview, I felt ___ in my stomach.", options: ['butterflies', 'fish', 'birds'], answer: 'butterflies', explanation: "'Butterflies in the stomach' berarti gugup atau deg-degan." },
   { id: 8, question: "That car must ___. It looks so expensive!", options: ['cost an arm and a leg', 'break a leg', 'hit the books'], answer: 'cost an arm and a leg', explanation: "'Cost an arm and a leg' berarti sangat mahal." },
-  { id: 9, question: "Good luck with your performance tonight! ___!", options: ['Break a leg', 'Kill two birds', 'Hit the books'], answer: 'Break a leg', explanation: "'Break a leg' digunakan untuk mengucapkan semoga sukses, terutama untuk pertunjukan." },
-  { id: 10, question: "They discovered his secret. Someone ___.", options: ['hit the sack', 'let the cat out of the bag', 'cut corners'], answer: 'let the cat out of the bag', explanation: "'Let the cat out of the bag' berarti membocorkan rahas ia." },
-  { id: 11, question: "Him becoming a billionaire? That will happen ___!", options: ['once in a blue moon', 'when pigs fly', 'so far so good'], answer: 'when pigs fly', explanation: "'When pigs fly' berarti sesuatu yang tidak mungkin terjadi." },
-  { id: 12, question: "By shopping on sale, I can ___.", options: ['cut corners', 'kill two birds with one stone', 'call it a day'], answer: 'kill two birds with one stone', explanation: "'Kill two birds with one stone' berarti menyelesaikan dua hal sekaligus." },
-  { id: 13, question: "I'm tired. Let's ___ and go home.", options: ['call it a day', 'hit the books', 'hang in there'], answer: 'call it a day', explanation: "'Call it a day' berarti berhenti bekerja untuk hari ini." },
-  { id: 14, question: "The project is difficult, but ___ so far.", options: ['miss the boat', 'so far so good', 'get out of hand'], answer: 'so far so good', explanation: "'So far so good' berarti sejauh ini baik-baik saja." },
+  { id: 9, question: "Good luck with your performance tonight! ___!", options: ['Kill two birds', 'Hit the books', 'Break a leg'], answer: 'Break a leg', explanation: "'Break a leg' digunakan untuk mengucapkan semoga sukses, terutama untuk pertunjukan." },
+  { id: 10, question: "They discovered his secret. Someone ___.", options: ['let the cat out of the bag', 'hit the sack', 'cut corners'], answer: 'let the cat out of the bag', explanation: "'Let the cat out of the bag' berarti membocorkan rahas ia." },
+  { id: 11, question: "Him becoming a billionaire? That will happen ___!", options: ['so far so good', 'once in a blue moon', 'when pigs fly'], answer: 'when pigs fly', explanation: "'When pigs fly' berarti sesuatu yang tidak mungkin terjadi." },
+  { id: 12, question: "By shopping on sale, I can ___.", options: ['kill two birds with one stone', 'cut corners', 'call it a day'], answer: 'kill two birds with one stone', explanation: "'Kill two birds with one stone' berarti menyelesaikan dua hal sekaligus." },
+  { id: 13, question: "I'm tired. Let's ___ and go home.", options: ['hit the books', 'hang in there', 'call it a day'], answer: 'call it a day', explanation: "'Call it a day' berarti berhenti bekerja untuk hari ini." },
+  { id: 14, question: "The project is difficult, but ___ so far.", options: ['so far so good', 'miss the boat', 'get out of hand'], answer: 'so far so good', explanation: "'So far so good' berarti sejauh ini baik-baik saja." },
   { id: 15, question: "I'm so tired. I need to ___.", options: ['hit the sack', 'hit the books', 'hit the road'], answer: 'hit the sack', explanation: "'Hit the sack' berarti pergi tidur." },
-  { id: 16, question: "She was ___ with envy when she saw the new car.", options: ['red', 'green', 'blue'], answer: 'green', explanation: "'Green with envy' berarti sangat iri hati." },
-  { id: 17, question: "I forgot to register. I think I ___.", options: ['hit the sack', 'missed the boat', 'cut corners'], answer: 'missed the boat', explanation: "'Miss the boat' berarti kehilangan kesempatan." },
-  { id: 18, question: "The situation is starting to ___.", options: ['get out of hand', 'hang in there', 'call it a day'], answer: 'get out of hand', explanation: "'Get out of hand' berarti menjadi tak terkendali." },
-  { id: 19, question: "Don't give up! ___ and keep trying!", options: ['Hit the sack', 'Hang in there', 'Cut corners'], answer: 'Hang in there', explanation: "'Hang in there' berarti bertahan dan jangan menyerah." },
-  { id: 20, question: "I need to ___ for tomorrow's exam.", options: ['hit the books', 'hit the sack', 'see eye to eye'], answer: 'hit the books', explanation: "'Hit the books' berarti belajar dengan giat." }
+  { id: 16, question: "She was ___ with envy when she saw the new car.", options: ['blue', 'green', 'red'], answer: 'green', explanation: "'Green with envy' berarti sangat iri hati." },
+  { id: 17, question: "I forgot to register. I think I ___.", options: ['missed the boat', 'hit the sack', 'cut corners'], answer: 'missed the boat', explanation: "'Miss the boat' berarti kehilangan kesempatan." },
+  { id: 18, question: "The situation is starting to ___.", options: ['call it a day', 'get out of hand', 'hang in there'], answer: 'get out of hand', explanation: "'Get out of hand' berarti menjadi tak terkendali." },
+  { id: 19, question: "Don't give up! ___ and keep trying!", options: ['Hit the sack', 'Cut corners', 'Hang in there'], answer: 'Hang in there', explanation: "'Hang in there' berarti bertahan dan jangan menyerah." },
+  { id: 20, question: "I need to ___ for tomorrow's exam.", options: ['see eye to eye', 'hit the sack', 'hit the books'], answer: 'hit the books', explanation: "'Hit the books' berarti belajar dengan giat." }
 
 ];
 

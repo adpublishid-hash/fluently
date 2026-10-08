@@ -32,9 +32,9 @@ const BUILD_ITEMS = [
     prompt: "See you ___ tomorrow.",
     blank: "tomorrow",
     options: [
+      "now",
       "yesterday",
-      "tomorrow",
-      "now"
+      "tomorrow"
     ],
     answer: "tomorrow"
   },
@@ -42,9 +42,9 @@ const BUILD_ITEMS = [
     prompt: "I will be ___ for 10 minutes.",
     blank: "late",
     options: [
-      "late",
       "later",
-      "lately"
+      "lately",
+      "late"
     ],
     answer: "late"
   }
@@ -64,9 +64,9 @@ const QUIZ = [
   {
     q: "Cara memberi tahu kamu telat:",
     opts: [
-      "I am late 5 mins.",
-      "I will be 5 minutes late.",
       "Late me 5 minutes.",
+      "I will be 5 minutes late.",
+      "I am late 5 mins.",
       "5 minutes I am late."
     ],
     ans: "I will be 5 minutes late.",
@@ -75,9 +75,9 @@ const QUIZ = [
   {
     q: "\"Wait ___ me at the station.\"",
     opts: [
-      "to",
-      "for",
       "at",
+      "for",
+      "to",
       "on"
     ],
     ans: "for",
@@ -86,10 +86,10 @@ const QUIZ = [
   {
     q: "Pesan mana yang paling jelas?",
     opts: [
-      "Coming.",
-      "I am on my way. 10 minutes.",
       "Later.",
-      "Soon."
+      "Soon.",
+      "Coming.",
+      "I am on my way. 10 minutes."
     ],
     ans: "I am on my way. 10 minutes.",
     exp: "Pesan jelas berisi detail waktu."
@@ -97,9 +97,9 @@ const QUIZ = [
   {
     q: "\"Can you ___ the door?\"",
     opts: [
-      "opening",
-      "opens",
       "open",
+      "opens",
+      "opening",
       "opened"
     ],
     ans: "open",
@@ -108,10 +108,10 @@ const QUIZ = [
   {
     q: "Pesan sopan membatalkan janji:",
     opts: [
-      "Not coming.",
       "Sorry, I can\\'t make it today.",
-      "No.",
-      "Cancel."
+      "Not coming.",
+      "Cancel.",
+      "No."
     ],
     ans: "Sorry, I can\\'t make it today.",
     exp: "Tambahkan \"sorry\" dan alasan."
@@ -120,9 +120,9 @@ const QUIZ = [
     q: "\"Let\\'s ___ lunch together.\"",
     opts: [
       "has",
-      "have",
+      "had",
       "having",
-      "had"
+      "have"
     ],
     ans: "have",
     exp: "\"Let\\'s\" + verb dasar."
@@ -142,8 +142,8 @@ const QUIZ = [
     q: "\"I ___ at the coffee shop now.\"",
     opts: [
       "am",
-      "is",
       "are",
+      "is",
       "be"
     ],
     ans: "am",
@@ -153,9 +153,9 @@ const QUIZ = [
     q: "Cara mengakhiri pesan kasual:",
     opts: [
       "Yours sincerely,",
-      "See you later!",
       "Best regards,",
-      "Respectfully,"
+      "Respectfully,",
+      "See you later!"
     ],
     ans: "See you later!",
     exp: "Pesan kasual diakhiri santai."
@@ -164,9 +164,9 @@ const QUIZ = [
     q: "\"Don\\'t ___ to bring your book.\"",
     opts: [
       "forgot",
-      "forget",
+      "forgets",
       "forgetting",
-      "forgets"
+      "forget"
     ],
     ans: "forget",
     exp: "\"Don\\'t forget\" = jangan lupa."
@@ -174,10 +174,10 @@ const QUIZ = [
   {
     q: "\"I will ___ you at the park.\"",
     opts: [
-      "meeting",
       "met",
       "meet",
-      "meets"
+      "meets",
+      "meeting"
     ],
     ans: "meet",
     exp: "\"Will\" + verb dasar."
@@ -185,10 +185,10 @@ const QUIZ = [
   {
     q: "\"Are you ___ tomorrow?\"",
     opts: [
-      "freely",
-      "free",
       "freed",
-      "freeing"
+      "freeing",
+      "freely",
+      "free"
     ],
     ans: "free",
     exp: "Adjective setelah to be."
@@ -196,10 +196,10 @@ const QUIZ = [
   {
     q: "\"Please ___ me a message.\"",
     opts: [
+      "sends",
       "sending",
       "sent",
-      "send",
-      "sends"
+      "send"
     ],
     ans: "send",
     exp: "Imperatif = verb dasar."
@@ -207,10 +207,10 @@ const QUIZ = [
   {
     q: "\"We ___ meeting at 3 PM.\"",
     opts: [
-      "is",
       "am",
-      "are",
-      "was"
+      "was",
+      "is",
+      "are"
     ],
     ans: "are",
     exp: "\"We are\" + v-ing."
@@ -229,10 +229,10 @@ const QUIZ = [
   {
     q: "\"I need to ___ something first.\"",
     opts: [
-      "doing",
-      "did",
       "do",
-      "does"
+      "does",
+      "did",
+      "doing"
     ],
     ans: "do",
     exp: "\"Need to\" + verb dasar."
@@ -241,8 +241,8 @@ const QUIZ = [
     q: "\"Can you ___ me a favor?\"",
     opts: [
       "doing",
-      "did",
       "do",
+      "did",
       "does"
     ],
     ans: "do",
@@ -252,9 +252,9 @@ const QUIZ = [
     q: "\"Let me ___ about it.\"",
     opts: [
       "thinks",
-      "thought",
       "think",
-      "thinking"
+      "thinking",
+      "thought"
     ],
     ans: "think",
     exp: "\"Let me\" + verb dasar."
@@ -262,10 +262,10 @@ const QUIZ = [
   {
     q: "\"Text me ___ you get there.\"",
     opts: [
-      "where",
       "when",
-      "what",
-      "why"
+      "where",
+      "why",
+      "what"
     ],
     ans: "when",
     exp: "\"When\" = pada saat."

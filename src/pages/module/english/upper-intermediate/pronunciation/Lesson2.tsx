@@ -66,8 +66,8 @@ const QUIZ: QuizItem[] = [
     "q": "In natural speech, \"and\" is often reduced to ___",
     "opts": [
       "/ænd/ always",
-      "/ən/ or /n/",
       "/ɑːnd/",
+      "/ən/ or /n/",
       "/end/"
     ],
     "ans": "/ən/ or /n/",
@@ -76,10 +76,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is \"elision\" in connected speech?",
     "opts": [
-      "Adding extra syllables",
       "Linking two words together",
-      "Dropping a sound completely",
-      "Making a sound stronger"
+      "Making a sound stronger",
+      "Adding extra syllables",
+      "Dropping a sound completely"
     ],
     "ans": "Dropping a sound completely",
     "exp": "Elision adalah penghilangan suara dalam connected speech: \"next\" + \"day\" → \"nex' day\"."
@@ -87,10 +87,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Good morning\" → /ɡʊm ˈmɔːnɪŋ/ is an example of ___",
     "opts": [
-      "Elision",
       "Assimilation",
+      "Weak forms",
       "Linking",
-      "Weak forms"
+      "Elision"
     ],
     "ans": "Assimilation",
     "exp": "Assimilation: /d/ berubah menjadi /m/ karena pengaruh konsonan /m/ yang mengikuti."
@@ -98,10 +98,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word has a STRONG and a WEAK form?",
     "opts": [
-      "Table",
       "Can",
-      "Elephant",
-      "Beautiful"
+      "Table",
+      "Beautiful",
+      "Elephant"
     ],
     "ans": "Can",
     "exp": "\"Can\" (bisa): strong /kæn/ vs weak /kən/. Dalam kalimat positif biasanya lemah."
@@ -109,10 +109,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"I want to go\" spoken naturally sounds like ___",
     "opts": [
+      "/aɪ wanttu ɡoʊ/",
       "/aɪ wɒnt tuː ɡoʊ/",
       "/aɪ wɒntə ɡoʊ/",
-      "/aɪ WONT tuː ɡoʊ/",
-      "/aɪ wanttu ɡoʊ/"
+      "/aɪ WONT tuː ɡoʊ/"
     ],
     "ans": "/aɪ wɒntə ɡoʊ/",
     "exp": "\"to\" sebelum konsonan sering diucapkan sebagai /tə/ dalam connected speech."
@@ -121,8 +121,8 @@ const QUIZ: QuizItem[] = [
     "q": "Linking in \"an apple\" makes it sound like ___",
     "opts": [
       "an + apple (two separate words)",
-      "a + napple (linked)",
       "ann + apple",
+      "a + napple (linked)",
       "anapple (one word)"
     ],
     "ans": "a + napple (linked)",
@@ -142,10 +142,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In \"I'd like a cup of tea\", \"of\" is typically pronounced as ___",
     "opts": [
-      "/ɒv/",
       "/əv/ or /ə/",
       "/ɔːf/",
-      "/ɑːv/"
+      "/ɑːv/",
+      "/ɒv/"
     ],
     "ans": "/əv/ or /ə/",
     "exp": "\"Of\" adalah salah satu kata paling umum yang dilemahkan dalam connected speech menjadi /əv/ atau bahkan /ə/."
@@ -154,9 +154,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which phrase demonstrates ELISION (sound deletion)?",
     "opts": [
       "good morning → /ɡʊm mɔːnɪŋ/",
-      "an apple → /ənæpəl/",
       "next please → /neks pliːz/",
-      "fish and chips → /fɪʃ ən tʃɪps/"
+      "fish and chips → /fɪʃ ən tʃɪps/",
+      "an apple → /ənæpəl/"
     ],
     "ans": "next please → /neks pliːz/",
     "exp": "\"Next please\": /t/ di akhir \"next\" hilang sebelum konsonan /p/ → \"nex' please\"."
@@ -164,10 +164,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The word \"for\" in connected speech often sounds like ___",
     "opts": [
-      "/fɔːr/",
       "/fər/",
+      "/fuːr/",
       "/fɒr/",
-      "/fuːr/"
+      "/fɔːr/"
     ],
     "ans": "/fər/",
     "exp": "\"For\" dalam unstressed position: /fɔːr/ → /fər/ (schwa replacement)."
@@ -176,8 +176,8 @@ const QUIZ: QuizItem[] = [
     "q": "Recognizing weak forms helps with ___",
     "opts": [
       "Writing formal essays",
-      "Listening comprehension in natural speech",
       "Grammar accuracy",
+      "Listening comprehension in natural speech",
       "Vocabulary building"
     ],
     "ans": "Listening comprehension in natural speech",
@@ -186,10 +186,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"CAN'T\" (stress form) vs \"can\" (weak) – how to tell them apart?",
     "opts": [
-      "By spelling",
       "By context and vowel clarity: /kænt/ vs /kən/",
+      "They sound identical",
       "By counting syllables",
-      "They sound identical"
+      "By spelling"
     ],
     "ans": "By context and vowel clarity: /kænt/ vs /kən/",
     "exp": "CAN'T (negatif) selalu kuat /kænt/. \"Can\" positif dilemahkan /kən/ dalam mid-sentence position."
@@ -197,10 +197,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In \"I've been to London\", \"have\" sounds like ___?",
     "opts": [
-      "/hæv/",
       "/ɪv/",
-      "/eɪv/",
-      "/hɑːv/"
+      "/hɑːv/",
+      "/hæv/",
+      "/eɪv/"
     ],
     "ans": "/ɪv/",
     "exp": "Auxiliary \"have\" dalam \"I've\" dikontraksikan menjadi /ɪv/, sebuah bentuk sangat lemah."
@@ -208,10 +208,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The process where consonants at end of words link to vowels at start of next is ___",
     "opts": [
-      "Elision",
-      "Assimilation",
       "Linking",
-      "Reduction"
+      "Reduction",
+      "Assimilation",
+      "Elision"
     ],
     "ans": "Linking",
     "exp": "Consonant-to-vowel linking membuat percakapan lebih mulus dan alami dalam bahasa Inggris."
@@ -220,8 +220,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence uses connected speech MOST naturally?",
     "opts": [
       "I WANT TO GO TO THE STORE.",
-      "I wanna go t'the store.",
       "I wants to go to store.",
+      "I wanna go t'the store.",
       "I want go to store."
     ],
     "ans": "I wanna go t'the store.",
@@ -230,10 +230,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Pick the stressed (strong) form of \"the\" used before vowel-initial words:",
     "opts": [
-      "/ðə/",
       "/ðɪ/",
-      "/ðiː/",
-      "/ðæ/"
+      "/ðə/",
+      "/ðæ/",
+      "/ðiː/"
     ],
     "ans": "/ðɪ/",
     "exp": "\"The\" sebelum vokal: /ðɪ/ (strong). Sebelum konsonan: /ðə/ (weak). \"The apple\" = /ðɪ æpəl/."
@@ -241,10 +241,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What causes assimilation in English?",
     "opts": [
-      "Random choice by speakers",
-      "Influence of neighboring sounds on each other",
       "Grammar rules",
-      "Formal vs informal settings"
+      "Formal vs informal settings",
+      "Random choice by speakers",
+      "Influence of neighboring sounds on each other"
     ],
     "ans": "Influence of neighboring sounds on each other",
     "exp": "Assimilation terjadi karena suara mempengaruhi suara di sebelahnya untuk kemudahan produksi."
@@ -263,10 +263,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Connected speech features are important for ___",
     "opts": [
-      "Passing grammar tests only",
       "Sounding natural and being understood by native speakers",
-      "Reading textbooks",
-      "Formal letter writing"
+      "Passing grammar tests only",
+      "Formal letter writing",
+      "Reading textbooks"
     ],
     "ans": "Sounding natural and being understood by native speakers",
     "exp": "Connected speech adalah inti dari fluency alami dan sangat penting untuk komunikasi lisan yang efektif."
@@ -274,10 +274,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In \"last year\", the /t/ in \"last\" before /j/ may become ___",
     "opts": [
-      "Stressed",
-      "Dropped entirely",
       "Lengthened",
-      "Replaced by /d/"
+      "Replaced by /d/",
+      "Dropped entirely",
+      "Stressed"
     ],
     "ans": "Dropped entirely",
     "exp": "Elision: /t/ dalam \"last\" sering hilang sebelum konsonan atau dalam cluster konsonan: \"las' year\"."

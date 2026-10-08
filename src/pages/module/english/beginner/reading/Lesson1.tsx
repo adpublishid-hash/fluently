@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-  { q: 'Apa artinya nama "Starbucks" pada sebuah gedung?', opts: ['Warung nasi', 'Kedai kopi', 'Apotek', 'Toko buku'], ans: 'Kedai kopi', exp: 'Starbucks adalah merek kedai kopi internasional yang terkenal.' },
-  { q: 'Tanda "OPEN" di depan toko artinya...', opts: ['Toko tutup', 'Toko buka', 'Toko pindah', 'Toko penuh'], ans: 'Toko buka', exp: '"OPEN" = buka. Kebalikannya adalah "CLOSED" = tutup.' },
-  { q: '"EXIT" pada papan petunjuk artinya...', opts: ['Masuk', 'Keluar', 'Berhenti', 'Naik'], ans: 'Keluar', exp: '"Exit" = pintu keluar / jalan keluar.' },
-  { q: 'Nama "Jakarta" pada sebuah peta adalah nama...', opts: ['Jalan', 'Negara', 'Kota', 'Pulau'], ans: 'Kota', exp: 'Jakarta adalah nama kota (ibu kota Indonesia).' },
-  { q: '"Dr. Siti Rahayu" adalah nama seorang...', opts: ['Tentara', 'Dokter', 'Pilot', 'Guru'], ans: 'Dokter', exp: '"Dr." adalah singkatan dari Doctor (Dokter/Doktor).' },
-  { q: 'Tanda "PUSH" pada sebuah pintu artinya...', opts: ['Tarik', 'Dorong', 'Putar', 'Angkat'], ans: 'Dorong', exp: '"Push" = dorong. Kebalikannya "Pull" = tarik.' },
-  { q: '"Jl. Sudirman No. 5" adalah contoh sebuah...', opts: ['Nama orang', 'Nama kota', 'Alamat', 'Nomor telepon'], ans: 'Alamat', exp: '"Jl." adalah singkatan dari "Jalan" = nama jalan.' },
+  { q: 'Apa artinya nama "Starbucks" pada sebuah gedung?', opts: ['Kedai kopi', 'Toko buku', 'Apotek', 'Warung nasi'], ans: 'Kedai kopi', exp: 'Starbucks adalah merek kedai kopi internasional yang terkenal.' },
+  { q: 'Tanda "OPEN" di depan toko artinya...', opts: ['Toko penuh', 'Toko tutup', 'Toko buka', 'Toko pindah'], ans: 'Toko buka', exp: '"OPEN" = buka. Kebalikannya adalah "CLOSED" = tutup.' },
+  { q: '"EXIT" pada papan petunjuk artinya...', opts: ['Berhenti', 'Naik', 'Keluar', 'Masuk'], ans: 'Keluar', exp: '"Exit" = pintu keluar / jalan keluar.' },
+  { q: 'Nama "Jakarta" pada sebuah peta adalah nama...', opts: ['Kota', 'Negara', 'Jalan', 'Pulau'], ans: 'Kota', exp: 'Jakarta adalah nama kota (ibu kota Indonesia).' },
+  { q: '"Dr. Siti Rahayu" adalah nama seorang...', opts: ['Dokter', 'Pilot', 'Guru', 'Tentara'], ans: 'Dokter', exp: '"Dr." adalah singkatan dari Doctor (Dokter/Doktor).' },
+  { q: 'Tanda "PUSH" pada sebuah pintu artinya...', opts: ['Dorong', 'Angkat', 'Tarik', 'Putar'], ans: 'Dorong', exp: '"Push" = dorong. Kebalikannya "Pull" = tarik.' },
+  { q: '"Jl. Sudirman No. 5" adalah contoh sebuah...', opts: ['Alamat', 'Nomor telepon', 'Nama orang', 'Nama kota'], ans: 'Alamat', exp: '"Jl." adalah singkatan dari "Jalan" = nama jalan.' },
   { q: '"McDonald\'s" pada sebuah papan besar adalah nama...', opts: ['Merek restoran', 'Nama orang', 'Nama kota', 'Merek obat'], ans: 'Merek restoran', exp: 'McDonald\'s adalah merek restoran cepat saji internasional.' },
-  { q: '"TOILET / WC" pada papan petunjuk artinya...', opts: ['Tangga', 'Parkir', 'Kamar mandi', 'Kasir'], ans: 'Kamar mandi', exp: '"Toilet" atau "WC" (Water Closet) = kamar mandi/toilet.' },
-  { q: '"Indomaret" pada papan toko adalah nama...', opts: ['Merek supermarket', 'Nama jalan', 'Nama kota', 'Merek makanan'], ans: 'Merek supermarket', exp: 'Indomaret adalah nama merek minimarket/supermarket.' },
-  { q: '"Mr. John Smith" — gelar "Mr." digunakan untuk...', opts: ['Anak-anak', 'Pria dewasa', 'Wanita menikah', 'Wanita belum menikah'], ans: 'Pria dewasa', exp: '"Mr." (Mister) digunakan untuk pria dewasa.' },
-  { q: '"Mrs. Putri Hapsari" — gelar "Mrs." digunakan untuk...', opts: ['Pria dewasa', 'Wanita belum menikah', 'Wanita menikah', 'Anak perempuan'], ans: 'Wanita menikah', exp: '"Mrs." (Missus) digunakan untuk wanita yang sudah menikah.' },
-  { q: '"ENTER" pada tombol komputer atau pintu artinya...', opts: ['Keluar', 'Masuk/Lanjutkan', 'Batal', 'Simpan'], ans: 'Masuk/Lanjutkan', exp: '"Enter" = masuk atau lanjutkan.' },
-  { q: '"Stasiun Gambir" adalah nama sebuah...', opts: ['Pasar', 'Hotel', 'Stasiun kereta', 'Bandara'], ans: 'Stasiun kereta', exp: '"Stasiun" = train station (stasiun kereta api).' },
-  { q: '"PT Telkom Indonesia" adalah nama sebuah...', opts: ['Orang', 'Kota', 'Perusahaan', 'Produk'], ans: 'Perusahaan', exp: '"PT" (Perseroan Terbatas) = perusahaan / company.' },
-  { q: '"Taman Nasional Komodo" adalah nama sebuah...', opts: ['Taman bermain', 'Area wisata alam', 'Kebun binatang kota', 'Museum'], ans: 'Area wisata alam', exp: '"Taman Nasional" = National Park = kawasan alam yang dilindungi.' },
-  { q: '"CLOSED" pada pintu toko artinya...', opts: ['Buka', 'Diskon', 'Tutup', 'Pindah'], ans: 'Tutup', exp: '"Closed" = tutup. Kebalikannya "Open" = buka.' },
-  { q: '"PARKING" atau "P" pada papan artinya...', opts: ['Toilet', 'Pintu masuk', 'Area parkir', 'Kassa'], ans: 'Area parkir', exp: '"Parking" = area untuk memarkirkan kendaraan.' },
-  { q: '"Miss" sebagai gelar digunakan untuk...', opts: ['Pria dewasa', 'Wanita menikah', 'Wanita muda/belum menikah', 'Dokter wanita'], ans: 'Wanita muda/belum menikah', exp: '"Miss" digunakan untuk wanita yang belum menikah.' },
-  { q: '"SALE 50%" pada sebuah toko artinya...', opts: ['Harga naik 50%', 'Diskon 50%', 'Stok tersisa 50%', 'Beli 2 gratis 1'], ans: 'Diskon 50%', exp: '"Sale" = diskon/obral. "50%" = 50 persen potongan harga.' },
+  { q: '"TOILET / WC" pada papan petunjuk artinya...', opts: ['Parkir', 'Kamar mandi', 'Kasir', 'Tangga'], ans: 'Kamar mandi', exp: '"Toilet" atau "WC" (Water Closet) = kamar mandi/toilet.' },
+  { q: '"Indomaret" pada papan toko adalah nama...', opts: ['Nama jalan', 'Merek makanan', 'Nama kota', 'Merek supermarket'], ans: 'Merek supermarket', exp: 'Indomaret adalah nama merek minimarket/supermarket.' },
+  { q: '"Mr. John Smith" — gelar "Mr." digunakan untuk...', opts: ['Wanita menikah', 'Wanita belum menikah', 'Pria dewasa', 'Anak-anak'], ans: 'Pria dewasa', exp: '"Mr." (Mister) digunakan untuk pria dewasa.' },
+  { q: '"Mrs. Putri Hapsari" — gelar "Mrs." digunakan untuk...', opts: ['Wanita belum menikah', 'Anak perempuan', 'Wanita menikah', 'Pria dewasa'], ans: 'Wanita menikah', exp: '"Mrs." (Missus) digunakan untuk wanita yang sudah menikah.' },
+  { q: '"ENTER" pada tombol komputer atau pintu artinya...', opts: ['Batal', 'Masuk/Lanjutkan', 'Keluar', 'Simpan'], ans: 'Masuk/Lanjutkan', exp: '"Enter" = masuk atau lanjutkan.' },
+  { q: '"Stasiun Gambir" adalah nama sebuah...', opts: ['Stasiun kereta', 'Hotel', 'Pasar', 'Bandara'], ans: 'Stasiun kereta', exp: '"Stasiun" = train station (stasiun kereta api).' },
+  { q: '"PT Telkom Indonesia" adalah nama sebuah...', opts: ['Kota', 'Orang', 'Produk', 'Perusahaan'], ans: 'Perusahaan', exp: '"PT" (Perseroan Terbatas) = perusahaan / company.' },
+  { q: '"Taman Nasional Komodo" adalah nama sebuah...', opts: ['Kebun binatang kota', 'Area wisata alam', 'Taman bermain', 'Museum'], ans: 'Area wisata alam', exp: '"Taman Nasional" = National Park = kawasan alam yang dilindungi.' },
+  { q: '"CLOSED" pada pintu toko artinya...', opts: ['Buka', 'Tutup', 'Pindah', 'Diskon'], ans: 'Tutup', exp: '"Closed" = tutup. Kebalikannya "Open" = buka.' },
+  { q: '"PARKING" atau "P" pada papan artinya...', opts: ['Area parkir', 'Pintu masuk', 'Toilet', 'Kassa'], ans: 'Area parkir', exp: '"Parking" = area untuk memarkirkan kendaraan.' },
+  { q: '"Miss" sebagai gelar digunakan untuk...', opts: ['Wanita menikah', 'Wanita muda/belum menikah', 'Dokter wanita', 'Pria dewasa'], ans: 'Wanita muda/belum menikah', exp: '"Miss" digunakan untuk wanita yang belum menikah.' },
+  { q: '"SALE 50%" pada sebuah toko artinya...', opts: ['Diskon 50%', 'Beli 2 gratis 1', 'Stok tersisa 50%', 'Harga naik 50%'], ans: 'Diskon 50%', exp: '"Sale" = diskon/obral. "50%" = 50 persen potongan harga.' },
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -42,11 +42,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </div>
   ),
   questions: [
-    { q: 'Jam berapa mall dibuka?', opts: ['8 AM', '9 AM', '10 AM', '11 AM'], ans: '10 AM' },
-    { q: 'Di mana meja informasi berada?', opts: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'], ans: 'Level 1' },
-    { q: '"EXIT" menunjukkan arah ke...', opts: ['Toilet', 'Pintu keluar', 'Informasi', 'Kasir'], ans: 'Pintu keluar' },
-    { q: 'Di level berapa toilet berada?', opts: ['Ground Floor', 'Level 1', 'Level 2', 'Level 3'], ans: 'Level 2' },
-    { q: 'Jam berapa mall tutup?', opts: ['8 PM', '9 PM', '10 PM', '11 PM'], ans: '10 PM' },
+    { q: 'Jam berapa mall dibuka?', opts: ['9 AM', '10 AM', '11 AM', '8 AM'], ans: '10 AM' },
+    { q: 'Di mana meja informasi berada?', opts: ['Ground Floor', 'Level 2', 'Level 3', 'Level 1'], ans: 'Level 1' },
+    { q: '"EXIT" menunjukkan arah ke...', opts: ['Toilet', 'Informasi', 'Pintu keluar', 'Kasir'], ans: 'Pintu keluar' },
+    { q: 'Di level berapa toilet berada?', opts: ['Ground Floor', 'Level 3', 'Level 2', 'Level 1'], ans: 'Level 2' },
+    { q: 'Jam berapa mall tutup?', opts: ['9 PM', '11 PM', '8 PM', '10 PM'], ans: '10 PM' },
   ],
 };
 

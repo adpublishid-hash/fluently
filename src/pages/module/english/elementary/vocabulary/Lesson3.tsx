@@ -50,21 +50,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "The daughter of your brother is your ___.",
-    options: ['Niece', 'Nephew', 'Cousin'],
+    options: ['Nephew', 'Niece', 'Cousin'],
     answer: 'Niece',
     explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
   },
   {
     id: 2,
     question: "Your husband's mother is your ___.",
-    options: ['Stepmother', 'Mother-in-law', 'Grandmother'],
+    options: ['Mother-in-law', 'Grandmother', 'Stepmother'],
     answer: 'Mother-in-law',
     explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
   },
   {
     id: 3,
     question: "They are no longer married. They are ___.",
-    options: ['Engaged', 'Widowed', 'Divorced'],
+    options: ['Widowed', 'Engaged', 'Divorced'],
     answer: 'Divorced',
     explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
   },
@@ -78,28 +78,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Two children born at the same time are ___.",
-    options: ['Siblings', 'Twins', 'Cousins'],
+    options: ['Siblings', 'Cousins', 'Twins'],
     answer: 'Twins',
     explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
   },
   {
     id: 6,
     question: "The daughter of your brother is your ___.",
-    options: ["Niece","Nephew","Cousin"],
+    options: ["Nephew", "Niece", "Cousin"],
     answer: "Niece",
     explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
   },
   {
     id: 7,
     question: "Your husband's mother is your ___.",
-    options: ["Stepmother","Mother-in-law","Grandmother"],
+    options: ["Mother-in-law", "Grandmother", "Stepmother"],
     answer: "Mother-in-law",
     explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
   },
   {
     id: 8,
     question: "They are no longer married. They are ___.",
-    options: ["Engaged","Widowed","Divorced"],
+    options: ["Widowed", "Engaged", "Divorced"],
     answer: "Divorced",
     explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
   },
@@ -113,28 +113,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "Two children born at the same time are ___.",
-    options: ["Siblings","Twins","Cousins"],
+    options: ["Siblings", "Cousins", "Twins"],
     answer: "Twins",
     explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
   },
   {
     id: 11,
     question: "The daughter of your brother is your ___.",
-    options: ["Niece","Nephew","Cousin"],
+    options: ["Nephew", "Niece", "Cousin"],
     answer: "Niece",
     explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
   },
   {
     id: 12,
     question: "Your husband's mother is your ___.",
-    options: ["Stepmother","Mother-in-law","Grandmother"],
+    options: ["Mother-in-law", "Grandmother", "Stepmother"],
     answer: "Mother-in-law",
     explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
   },
   {
     id: 13,
     question: "They are no longer married. They are ___.",
-    options: ["Engaged","Widowed","Divorced"],
+    options: ["Widowed", "Engaged", "Divorced"],
     answer: "Divorced",
     explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
   },
@@ -148,28 +148,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "Two children born at the same time are ___.",
-    options: ["Siblings","Twins","Cousins"],
+    options: ["Siblings", "Cousins", "Twins"],
     answer: "Twins",
     explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
   },
   {
     id: 16,
     question: "The daughter of your brother is your ___.",
-    options: ["Niece","Nephew","Cousin"],
+    options: ["Nephew", "Niece", "Cousin"],
     answer: "Niece",
     explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
   },
   {
     id: 17,
     question: "Your husband's mother is your ___.",
-    options: ["Stepmother","Mother-in-law","Grandmother"],
+    options: ["Mother-in-law", "Grandmother", "Stepmother"],
     answer: "Mother-in-law",
     explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
   },
   {
     id: 18,
     question: "They are no longer married. They are ___.",
-    options: ["Engaged","Widowed","Divorced"],
+    options: ["Widowed", "Engaged", "Divorced"],
     answer: "Divorced",
     explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
   },
@@ -183,7 +183,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "Two children born at the same time are ___.",
-    options: ["Siblings","Twins","Cousins"],
+    options: ["Siblings", "Cousins", "Twins"],
     answer: "Twins",
     explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
   }

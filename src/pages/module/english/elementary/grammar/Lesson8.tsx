@@ -73,28 +73,28 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "This box is ___ than that one.",
-    options: ['heavyer', 'heavier', 'more heavy'],
+    options: ['heavyer', 'more heavy', 'heavier'],
     answer: 'heavier',
     explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
   },
   {
     id: 2,
     question: "He is the ___ player on the team.",
-    options: ['best', 'goodest', 'most good'],
+    options: ['goodest', 'most good', 'best'],
     answer: 'best',
     explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
   },
   {
     id: 3,
     question: "Ferrari is ___ than a Toyota.",
-    options: ['expensive', 'more expensive', 'expensiver'],
+    options: ['expensiver', 'more expensive', 'expensive'],
     answer: 'more expensive',
     explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
   },
   {
     id: 4,
     question: "She is the ___ girl in school.",
-    options: ['prettyest', 'prettiest', 'most pretty'],
+    options: ['prettiest', 'prettyest', 'most pretty'],
     answer: 'prettiest',
     explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
   },
@@ -108,28 +108,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "This box is ___ than that one.",
-    options: ["heavyer","heavier","more heavy"],
+    options: ["heavyer", "more heavy", "heavier"],
     answer: "heavier",
     explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
   },
   {
     id: 7,
     question: "He is the ___ player on the team.",
-    options: ["best","goodest","most good"],
+    options: ["goodest", "most good", "best"],
     answer: "best",
     explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
   },
   {
     id: 8,
     question: "Ferrari is ___ than a Toyota.",
-    options: ["expensive","more expensive","expensiver"],
+    options: ["expensiver", "more expensive", "expensive"],
     answer: "more expensive",
     explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
   },
   {
     id: 9,
     question: "The girl is the ___ girl in school.",
-    options: ["prettyest","prettiest","most pretty"],
+    options: ["most pretty", "prettiest", "prettyest"],
     answer: "prettiest",
     explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
   },
@@ -143,7 +143,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "This box is ___ than that one.",
-    options: ["heavyer","heavier","more heavy"],
+    options: ["heavyer", "more heavy", "heavier"],
     answer: "heavier",
     explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
   },
@@ -157,14 +157,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Ferrari is ___ than a Toyota.",
-    options: ["expensive","more expensive","expensiver"],
+    options: ["expensiver", "more expensive", "expensive"],
     answer: "more expensive",
     explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
   },
   {
     id: 14,
     question: "She is the ___ girl in school.",
-    options: ["prettyest","prettiest","most pretty"],
+    options: ["prettiest", "prettyest", "most pretty"],
     answer: "prettiest",
     explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
   },
@@ -178,28 +178,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "This box is ___ than that one.",
-    options: ["heavyer","heavier","more heavy"],
+    options: ["heavyer", "more heavy", "heavier"],
     answer: "heavier",
     explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
   },
   {
     id: 17,
     question: "He is the ___ player on the team.",
-    options: ["best","goodest","most good"],
+    options: ["goodest", "most good", "best"],
     answer: "best",
     explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
   },
   {
     id: 18,
     question: "Ferrari is ___ than a Toyota.",
-    options: ["expensive","more expensive","expensiver"],
+    options: ["expensiver", "more expensive", "expensive"],
     answer: "more expensive",
     explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
   },
   {
     id: 19,
     question: "She is the ___ girl in school.",
-    options: ["prettyest","prettiest","most pretty"],
+    options: ["prettiest", "prettyest", "most pretty"],
     answer: "prettiest",
     explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
   },

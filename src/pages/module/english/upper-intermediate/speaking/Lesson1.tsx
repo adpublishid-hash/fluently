@@ -60,10 +60,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase introduces a formal opinion at B2 level?",
     "opts": [
-      "I think maybe...",
       "I would argue that...",
       "Like, I feel...",
-      "Kind of, you know..."
+      "Kind of, you know...",
+      "I think maybe..."
     ],
     "ans": "I would argue that...",
     "exp": "\"I would argue that...\" adalah frasa formal yang umum dalam debat akademik dan presentasi."
@@ -71,10 +71,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"To some extent\" is used to ___",
     "opts": [
-      "Express 100% certainty",
       "Partially qualify or limit a statement",
-      "Contradict the speaker",
-      "Begin a narrative"
+      "Express 100% certainty",
+      "Begin a narrative",
+      "Contradict the speaker"
     ],
     "ans": "Partially qualify or limit a statement",
     "exp": "\"To some extent\" menunjukkan bahwa pernyataan hanya berlaku sebagian – teknik hedging yang penting."
@@ -83,9 +83,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which phrase is MOST formal for expressing an opinion?",
     "opts": [
       "I think...",
-      "It is my contention that...",
       "I guess...",
-      "Kind of like..."
+      "Kind of like...",
+      "It is my contention that..."
     ],
     "ans": "It is my contention that...",
     "exp": "\"It is my contention that\" adalah salah satu frasa paling formal untuk menyatakan pendapat dalam konteks akademik."
@@ -104,10 +104,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"That said, it is worth noting that...\" serves what purpose?",
     "opts": [
-      "Starting a new topic",
       "Conceding a point then adding a nuance or exception",
+      "Expressing strong agreement",
       "Ending the discussion",
-      "Expressing strong agreement"
+      "Starting a new topic"
     ],
     "ans": "Conceding a point then adding a nuance or exception",
     "exp": "\"That said\" mengakui poin sebelumnya sebelum memperkenalkan nuansa atau pengecualian penting."
@@ -126,10 +126,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"There is a strong case for...\" introduces ___",
     "opts": [
-      "A weak suggestion",
       "A well-supported argument or position",
-      "A question",
-      "A personal anecdote only"
+      "A personal anecdote only",
+      "A weak suggestion",
+      "A question"
     ],
     "ans": "A well-supported argument or position",
     "exp": "\"There is a strong case for\" mengintroduksi argumen yang didukung oleh alasan atau bukti yang kuat."
@@ -137,10 +137,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does hedging do in academic speaking?",
     "opts": [
-      "Makes you sound uncertain about everything",
-      "Provides appropriate caution and balance to claims",
       "Weakens your argument completely",
-      "Is only used in writing"
+      "Is only used in writing",
+      "Makes you sound uncertain about everything",
+      "Provides appropriate caution and balance to claims"
     ],
     "ans": "Provides appropriate caution and balance to claims",
     "exp": "Hedging memberikan nuansa akademik pada klaim, menunjukkan kesadaran bahwa tidak semua generalizations berlaku."
@@ -148,9 +148,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"From my perspective\" signals that the speaker is ___",
     "opts": [
-      "Stating an objective fact",
-      "Sharing a personal viewpoint",
       "Asking a question",
+      "Sharing a personal viewpoint",
+      "Stating an objective fact",
       "Disagreeing politely"
     ],
     "ans": "Sharing a personal viewpoint",
@@ -159,9 +159,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase introduces a counterargument?",
     "opts": [
-      "In addition,",
-      "Furthermore,",
       "However, one cannot deny that...",
+      "Furthermore,",
+      "In addition,",
       "As a result,"
     ],
     "ans": "However, one cannot deny that...",
@@ -170,10 +170,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"One cannot deny that\" is used to ___",
     "opts": [
-      "Weakly suggest something",
-      "Introduce an undeniable fact or widely accepted point",
       "Ask a yes/no question",
-      "Start a concession only"
+      "Start a concession only",
+      "Weakly suggest something",
+      "Introduce an undeniable fact or widely accepted point"
     ],
     "ans": "Introduce an undeniable fact or widely accepted point",
     "exp": "\"One cannot deny\" digunakan untuk pernyataan yang dianggap sulit dibantah atau sangat kuat."
@@ -182,9 +182,9 @@ const QUIZ: QuizItem[] = [
     "q": "In a formal debate, which opener is most appropriate?",
     "opts": [
       "Okay guys, so I basically think...",
-      "It seems to me that the issue of X is often oversimplified.",
+      "Everyone agrees that...",
       "Like, this topic is so complicated...",
-      "Everyone agrees that..."
+      "It seems to me that the issue of X is often oversimplified."
     ],
     "ans": "It seems to me that the issue of X is often oversimplified.",
     "exp": "Pembukaan formal menggunakan frasa seperti \"It seems to me that\" dengan sikap analitis."
@@ -193,8 +193,8 @@ const QUIZ: QuizItem[] = [
     "q": "\"Broadly speaking, although...\" shows that the speaker is ___",
     "opts": [
       "Making a very specific claim",
-      "Generalizing while acknowledging exceptions",
       "Answering directly",
+      "Generalizing while acknowledging exceptions",
       "Refusing to commit to an opinion"
     ],
     "ans": "Generalizing while acknowledging exceptions",
@@ -203,9 +203,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase is appropriate for giving a well-supported opinion in a discussion?",
     "opts": [
-      "I dunno, maybe...",
-      "To be honest, I'm not sure.",
       "As far as I'm aware, the research indicates...",
+      "To be honest, I'm not sure.",
+      "I dunno, maybe...",
       "It's just my feeling that..."
     ],
     "ans": "As far as I'm aware, the research indicates...",
@@ -214,10 +214,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is NOT a hedging expression?",
     "opts": [
-      "To some extent,",
-      "This may not always be the case,",
       "Absolutely, without question,",
-      "In most, though not all, cases,"
+      "In most, though not all, cases,",
+      "This may not always be the case,",
+      "To some extent,"
     ],
     "ans": "Absolutely, without question,",
     "exp": "\"Absolutely, without question\" adalah ekspresi kepastian penuh, bukan hedging. Hedging mengkualifikasi pernyataan."
@@ -225,9 +225,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How should you introduce a CONTRASTING point in a B2 discussion?",
     "opts": [
-      "And also yes.",
-      "However, it is important to recognise that...",
       "But no.",
+      "However, it is important to recognise that...",
+      "And also yes.",
       "The other thing is if..."
     ],
     "ans": "However, it is important to recognise that...",
@@ -237,9 +237,9 @@ const QUIZ: QuizItem[] = [
     "q": "\"Exceptions aside, the majority of studies confirm...\" means ___",
     "opts": [
       "All studies agree completely",
-      "Ignoring some outliers, most evidence agrees",
+      "Only one study matters",
       "No exceptions exist",
-      "Only one study matters"
+      "Ignoring some outliers, most evidence agrees"
     ],
     "ans": "Ignoring some outliers, most evidence agrees",
     "exp": "\"Exceptions aside\" mengakui adanya outlier/pengecualian sebelum membuat generalisasi berbasis mayoritas bukti."
@@ -247,10 +247,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "At B2 level, good oral argumentation includes ___",
     "opts": [
-      "Only stating opinions without support",
       "Opinion + supporting reason + concession + conclusion",
       "Repeating the same point multiple times",
-      "Using only simple, short sentences"
+      "Using only simple, short sentences",
+      "Only stating opinions without support"
     ],
     "ans": "Opinion + supporting reason + concession + conclusion",
     "exp": "Argumentasi oral yang baik di B2 mencakup: pendapat, dukungan, konsesi, dan penutup."
@@ -258,10 +258,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which response is most academically appropriate to \"Do you agree?\"?",
     "opts": [
-      "Yeah totally.",
-      "Nope.",
       "I am largely in agreement, though I would qualify this by noting that...",
-      "Sure, why not."
+      "Sure, why not.",
+      "Nope.",
+      "Yeah totally."
     ],
     "ans": "I am largely in agreement, though I would qualify this by noting that...",
     "exp": "\"Largely in agreement, though I would qualify\" menunjukkan persetujuan dengan nuansa yang dikualifikasi."
@@ -270,9 +270,9 @@ const QUIZ: QuizItem[] = [
     "q": "The phrase \"I would argue that\" is often followed by ___",
     "opts": [
       "A simple yes/no",
-      "A question about weather",
       "A reasoned position or evidence-based claim",
-      "An emotional reaction"
+      "An emotional reaction",
+      "A question about weather"
     ],
     "ans": "A reasoned position or evidence-based claim",
     "exp": "\"I would argue that\" diikuti oleh posisi yang didukung oleh alasan atau bukti – bukan emosi semata."

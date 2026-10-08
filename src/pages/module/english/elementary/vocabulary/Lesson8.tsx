@@ -50,140 +50,140 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "You wait for the train on the ___.",
-    options: ['Gate', 'Platform', 'Runway'],
+    options: ['Runway', 'Platform', 'Gate'],
     answer: 'Platform',
     explanation: "Kereta api berhenti di platform (peron)."
   },
   {
     id: 2,
     question: "To reserve a hotel room, you need to ___ it.",
-    options: ['book', 'pack', 'drive'],
+    options: ['drive', 'pack', 'book'],
     answer: 'book',
     explanation: "To book berarti memesan sesuatu sebelumnya."
   },
   {
     id: 3,
     question: "A person traveling in a taxi but not driving is a ___.",
-    options: ['Driver', 'Passenger', 'Pilot'],
+    options: ['Driver', 'Pilot', 'Passenger'],
     answer: 'Passenger',
     explanation: "Passenger (penumpang) adalah orang yang bepergian dengan kendaraan tetapi tidak mengemudikannya."
   },
   {
     id: 4,
     question: "You need a ___ to travel to another country.",
-    options: ['Ticket', 'Passport', 'License'],
+    options: ['Passport', 'Ticket', 'License'],
     answer: 'Passport',
     explanation: "Passport adalah dokumen resmi untuk perjalanan internasional."
   },
   {
     id: 5,
     question: "I am going to ___ my suitcase now.",
-    options: ['pack', 'fly', 'ride'],
+    options: ['ride', 'pack', 'fly'],
     answer: 'pack',
     explanation: "To pack berarti memasukkan pakaian ke dalam koper."
   },
   {
     id: 6,
     question: "You wait for the train on the ___.",
-    options: ["Gate","Platform","Runway"],
+    options: ["Runway", "Platform", "Gate"],
     answer: "Platform",
     explanation: "Kereta api berhenti di platform (peron)."
   },
   {
     id: 7,
     question: "To reserve a hotel room, you need to ___ it.",
-    options: ["book","pack","drive"],
+    options: ["drive", "pack", "book"],
     answer: "book",
     explanation: "To book berarti memesan sesuatu sebelumnya."
   },
   {
     id: 8,
     question: "A person traveling in a taxi but not driving is a ___.",
-    options: ["Driver","Passenger","Pilot"],
+    options: ["Driver", "Pilot", "Passenger"],
     answer: "Passenger",
     explanation: "Passenger (penumpang) adalah orang yang bepergian dengan kendaraan tetapi tidak mengemudikannya."
   },
   {
     id: 9,
     question: "You need a ___ to travel to another country.",
-    options: ["Ticket","Passport","License"],
+    options: ["Passport", "Ticket", "License"],
     answer: "Passport",
     explanation: "Passport adalah dokumen resmi untuk perjalanan internasional."
   },
   {
     id: 10,
     question: "I am going to ___ my suitcase now.",
-    options: ["pack","fly","ride"],
+    options: ["ride", "pack", "fly"],
     answer: "pack",
     explanation: "To pack berarti memasukkan pakaian ke dalam koper."
   },
   {
     id: 11,
     question: "You wait for the train on the ___.",
-    options: ["Gate","Platform","Runway"],
+    options: ["Runway", "Platform", "Gate"],
     answer: "Platform",
     explanation: "Kereta api berhenti di platform (peron)."
   },
   {
     id: 12,
     question: "To reserve a hotel room, you need to ___ it.",
-    options: ["book","pack","drive"],
+    options: ["drive", "pack", "book"],
     answer: "book",
     explanation: "To book berarti memesan sesuatu sebelumnya."
   },
   {
     id: 13,
     question: "A person traveling in a taxi but not driving is a ___.",
-    options: ["Driver","Passenger","Pilot"],
+    options: ["Driver", "Pilot", "Passenger"],
     answer: "Passenger",
     explanation: "Passenger (penumpang) adalah orang yang bepergian dengan kendaraan tetapi tidak mengemudikannya."
   },
   {
     id: 14,
     question: "You need a ___ to travel to another country.",
-    options: ["Ticket","Passport","License"],
+    options: ["Passport", "Ticket", "License"],
     answer: "Passport",
     explanation: "Passport adalah dokumen resmi untuk perjalanan internasional."
   },
   {
     id: 15,
     question: "I am going to ___ my suitcase now.",
-    options: ["pack","fly","ride"],
+    options: ["ride", "pack", "fly"],
     answer: "pack",
     explanation: "To pack berarti memasukkan pakaian ke dalam koper."
   },
   {
     id: 16,
     question: "You wait for the train on the ___.",
-    options: ["Gate","Platform","Runway"],
+    options: ["Runway", "Platform", "Gate"],
     answer: "Platform",
     explanation: "Kereta api berhenti di platform (peron)."
   },
   {
     id: 17,
     question: "To reserve a hotel room, you need to ___ it.",
-    options: ["book","pack","drive"],
+    options: ["drive", "pack", "book"],
     answer: "book",
     explanation: "To book berarti memesan sesuatu sebelumnya."
   },
   {
     id: 18,
     question: "A person traveling in a taxi but not driving is a ___.",
-    options: ["Driver","Passenger","Pilot"],
+    options: ["Driver", "Pilot", "Passenger"],
     answer: "Passenger",
     explanation: "Passenger (penumpang) adalah orang yang bepergian dengan kendaraan tetapi tidak mengemudikannya."
   },
   {
     id: 19,
     question: "You need a ___ to travel to another country.",
-    options: ["Ticket","Passport","License"],
+    options: ["Passport", "Ticket", "License"],
     answer: "Passport",
     explanation: "Passport adalah dokumen resmi untuk perjalanan internasional."
   },
   {
     id: 20,
     question: "I am going to ___ my suitcase now.",
-    options: ["pack","fly","ride"],
+    options: ["ride", "pack", "fly"],
     answer: "pack",
     explanation: "To pack berarti memasukkan pakaian ke dalam koper."
   }

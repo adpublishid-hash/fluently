@@ -170,8 +170,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which word best describes introducing a new idea in the field of Travel & Globalization?",
     "opts": [
       "Innovate",
-      "Navigate",
       "Acknowledge",
+      "Navigate",
       "Emerge"
     ],
     "ans": "Innovate",
@@ -180,10 +180,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A point of view or way of thinking is called a ___",
     "opts": [
-      "Perspective",
-      "Controversy",
       "Implication",
-      "Advocate"
+      "Advocate",
+      "Controversy",
+      "Perspective"
     ],
     "ans": "Perspective",
     "exp": "Perspective adalah cara melihat atau memaknai sesuatu berdasarkan sudut pandang tertentu."
@@ -191,10 +191,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The indirect consequence of an action is its ___",
     "opts": [
-      "Implement",
       "Substantial",
       "Implication",
-      "Navigate"
+      "Navigate",
+      "Implement"
     ],
     "ans": "Implication",
     "exp": "Implication adalah efek atau konsekuensi tidak langsung dari suatu tindakan atau pernyataan."
@@ -202,9 +202,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A public debate where people strongly disagree is called a ___",
     "opts": [
-      "Controversy",
-      "Perspective",
       "Implementation",
+      "Perspective",
+      "Controversy",
       "Emergence"
     ],
     "ans": "Controversy",
@@ -213,9 +213,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To put a plan or policy into action is to ___ it.",
     "opts": [
-      "Acknowledge",
-      "Advocate",
       "Navigate",
+      "Advocate",
+      "Acknowledge",
       "Implement"
     ],
     "ans": "Implement",
@@ -224,10 +224,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To admit or recognize something officially is to ___ it.",
     "opts": [
-      "Emerge",
-      "Acknowledge",
       "Innovate",
-      "Implement"
+      "Implement",
+      "Emerge",
+      "Acknowledge"
     ],
     "ans": "Acknowledge",
     "exp": "To acknowledge berarti mengakui atau mengakui secara resmi keberadaan atau kebenaran sesuatu."
@@ -257,10 +257,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Someone who publicly supports a cause is called an ___",
     "opts": [
-      "Innovator",
-      "Advocate",
       "Perspective",
-      "Enabler"
+      "Enabler",
+      "Advocate",
+      "Innovator"
     ],
     "ans": "Advocate",
     "exp": "An advocate adalah orang yang secara aktif mendukung atau membela sebuah cause atauide."
@@ -269,9 +269,9 @@ const QUIZ: QuizItem[] = [
     "q": "When a new trend ___ it becomes gradually visible in society.",
     "opts": [
       "Innovates",
-      "Navigates",
       "Emerges",
-      "Implements"
+      "Implements",
+      "Navigates"
     ],
     "ans": "Emerges",
     "exp": "To emerge berarti muncul atau menjadi terlihat secara bertahap, seringkali dari situasi tersembunyi."
@@ -279,9 +279,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The act of putting a strategy into practice is called its ___",
     "opts": [
-      "Innovation",
-      "Implication",
       "Implementation",
+      "Implication",
+      "Innovation",
       "Controversy"
     ],
     "ans": "Implementation",
@@ -290,10 +290,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To look at a problem from a different ___ can reveal new solutions.",
     "opts": [
+      "Innovation",
       "Implication",
       "Advocacy",
-      "Perspective",
-      "Innovation"
+      "Perspective"
     ],
     "ans": "Perspective",
     "exp": "Perspective berbeda berarti melihat masalah dari sudut pandang yang berbeda untuk mendapatkan solusi baru."
@@ -301,10 +301,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which adjective describes something that is significant and important in size or scale?",
     "opts": [
-      "Emerging",
       "Substantial",
-      "Controversial",
-      "Innovative"
+      "Emerging",
+      "Innovative",
+      "Controversial"
     ],
     "ans": "Substantial",
     "exp": "Substantial digunakan untuk menggambarkan sesuatu yang besar, bermakna, atau signifikan."
@@ -313,8 +313,8 @@ const QUIZ: QuizItem[] = [
     "q": "New technologies ___ from scientific research constantly.",
     "opts": [
       "Advocate",
-      "Navigate",
       "Innovate",
+      "Navigate",
       "Emerge"
     ],
     "ans": "Emerge",
@@ -335,8 +335,8 @@ const QUIZ: QuizItem[] = [
     "q": "To ___ a cause means to speak in its defense publicly.",
     "opts": [
       "Implement",
-      "Acknowledge",
       "Navigate",
+      "Acknowledge",
       "Advocate"
     ],
     "ans": "Advocate",
@@ -345,10 +345,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A solution that is creative and uses new methods is called ___",
     "opts": [
-      "Substantial",
       "Controversial",
-      "Innovative",
-      "Navigable"
+      "Navigable",
+      "Substantial",
+      "Innovative"
     ],
     "ans": "Innovative",
     "exp": "Innovative berarti menggunakan pendekatan atau ide baru yang kreatif dan berbeda dari yang sudah ada."
@@ -356,10 +356,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Accepting and admitting mistakes is important for ___",
     "opts": [
-      "Navigation",
       "Controversy",
+      "Innovation",
       "Acknowledgement",
-      "Innovation"
+      "Navigation"
     ],
     "ans": "Acknowledgement",
     "exp": "Acknowledgement of mistakes berarti pengakuan resmi atas kesalahan, penting untuk kepercayaan dan integritas."
@@ -367,10 +367,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The new policy promised to ___ a national digital education programme.",
     "opts": [
-      "Acknowledge",
-      "Navigate",
       "Emerge",
-      "Implement"
+      "Implement",
+      "Navigate",
+      "Acknowledge"
     ],
     "ans": "Implement",
     "exp": "To implement a programme berarti menerapkan dan menjalankan program tersebut secara aktif."
@@ -378,10 +378,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "An issue that causes strong public disagreement is described as ___",
     "opts": [
+      "Navigable",
       "Substantial",
       "Innovative",
-      "Controversial",
-      "Navigable"
+      "Controversial"
     ],
     "ans": "Controversial",
     "exp": "Controversial mendeskripsikan topik atau isu yang memancing perdebatan kuat dan perbedaan pendapat."

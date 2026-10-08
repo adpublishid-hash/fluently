@@ -39,54 +39,14 @@ const QUIZ = [
     q: "Cara paling sopan menolak: ",
     opts: [
       "I won't go.",
-      "I am sorry, but I am busy.",
-      "No."
+      "No.",
+      "I am sorry, but I am busy."
     ],
     ans: "I am sorry, but I am busy.",
     exp: "Berikan maaf lalu alasannya."
   },
   {
     q: "Cara paling sopan menolak:  (R2)",
-    opts: [
-      "I won't go.",
-      "I am sorry, but I am busy.",
-      "No."
-    ],
-    ans: "I am sorry, but I am busy.",
-    exp: "Berikan maaf lalu alasannya."
-  },
-  {
-    q: "Cara paling sopan menolak:  (R3)",
-    opts: [
-      "No.",
-      "I am sorry, but I am busy.",
-      "I won't go."
-    ],
-    ans: "I am sorry, but I am busy.",
-    exp: "Berikan maaf lalu alasannya."
-  },
-  {
-    q: "Cara paling sopan menolak:  (R4)",
-    opts: [
-      "I won't go.",
-      "I am sorry, but I am busy.",
-      "No."
-    ],
-    ans: "I am sorry, but I am busy.",
-    exp: "Berikan maaf lalu alasannya."
-  },
-  {
-    q: "Cara paling sopan menolak:  (R5)",
-    opts: [
-      "No.",
-      "I am sorry, but I am busy.",
-      "I won't go."
-    ],
-    ans: "I am sorry, but I am busy.",
-    exp: "Berikan maaf lalu alasannya."
-  },
-  {
-    q: "Cara paling sopan menolak:  (R6)",
     opts: [
       "No.",
       "I won't go.",
@@ -96,7 +56,7 @@ const QUIZ = [
     exp: "Berikan maaf lalu alasannya."
   },
   {
-    q: "Cara paling sopan menolak:  (R7)",
+    q: "Cara paling sopan menolak:  (R3)",
     opts: [
       "I won't go.",
       "I am sorry, but I am busy.",
@@ -106,11 +66,51 @@ const QUIZ = [
     exp: "Berikan maaf lalu alasannya."
   },
   {
-    q: "Cara paling sopan menolak:  (R8)",
+    q: "Cara paling sopan menolak:  (R4)",
+    opts: [
+      "No.",
+      "I won't go.",
+      "I am sorry, but I am busy."
+    ],
+    ans: "I am sorry, but I am busy.",
+    exp: "Berikan maaf lalu alasannya."
+  },
+  {
+    q: "Cara paling sopan menolak:  (R5)",
+    opts: [
+      "No.",
+      "I won't go.",
+      "I am sorry, but I am busy."
+    ],
+    ans: "I am sorry, but I am busy.",
+    exp: "Berikan maaf lalu alasannya."
+  },
+  {
+    q: "Cara paling sopan menolak:  (R6)",
+    opts: [
+      "I am sorry, but I am busy.",
+      "No.",
+      "I won't go."
+    ],
+    ans: "I am sorry, but I am busy.",
+    exp: "Berikan maaf lalu alasannya."
+  },
+  {
+    q: "Cara paling sopan menolak:  (R7)",
     opts: [
       "I won't go.",
-      "I am sorry, but I am busy.",
-      "No."
+      "No.",
+      "I am sorry, but I am busy."
+    ],
+    ans: "I am sorry, but I am busy.",
+    exp: "Berikan maaf lalu alasannya."
+  },
+  {
+    q: "Cara paling sopan menolak:  (R8)",
+    opts: [
+      "No.",
+      "I won't go.",
+      "I am sorry, but I am busy."
     ],
     ans: "I am sorry, but I am busy.",
     exp: "Berikan maaf lalu alasannya."
@@ -119,8 +119,8 @@ const QUIZ = [
     q: "Cara paling sopan menolak:  (R9)",
     opts: [
       "No.",
-      "I am sorry, but I am busy.",
-      "I won't go."
+      "I won't go.",
+      "I am sorry, but I am busy."
     ],
     ans: "I am sorry, but I am busy.",
     exp: "Berikan maaf lalu alasannya."
@@ -138,9 +138,9 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R11)",
     opts: [
-      "I won't go.",
       "No.",
-      "I am sorry, but I am busy."
+      "I am sorry, but I am busy.",
+      "I won't go."
     ],
     ans: "I am sorry, but I am busy.",
     exp: "Berikan maaf lalu alasannya."
@@ -158,8 +158,8 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R13)",
     opts: [
-      "I won't go.",
       "I am sorry, but I am busy.",
+      "I won't go.",
       "No."
     ],
     ans: "I am sorry, but I am busy.",
@@ -168,9 +168,9 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R14)",
     opts: [
-      "I won't go.",
+      "I am sorry, but I am busy.",
       "No.",
-      "I am sorry, but I am busy."
+      "I won't go."
     ],
     ans: "I am sorry, but I am busy.",
     exp: "Berikan maaf lalu alasannya."
@@ -178,8 +178,8 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R15)",
     opts: [
-      "No.",
       "I am sorry, but I am busy.",
+      "No.",
       "I won't go."
     ],
     ans: "I am sorry, but I am busy.",
@@ -198,8 +198,8 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R17)",
     opts: [
-      "I won't go.",
       "I am sorry, but I am busy.",
+      "I won't go.",
       "No."
     ],
     ans: "I am sorry, but I am busy.",
@@ -218,8 +218,8 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R19)",
     opts: [
-      "I won't go.",
       "I am sorry, but I am busy.",
+      "I won't go.",
       "No."
     ],
     ans: "I am sorry, but I am busy.",
@@ -228,9 +228,9 @@ const QUIZ = [
   {
     q: "Cara paling sopan menolak:  (R20)",
     opts: [
-      "I won't go.",
       "I am sorry, but I am busy.",
-      "No."
+      "No.",
+      "I won't go."
     ],
     ans: "I am sorry, but I am busy.",
     exp: "Berikan maaf lalu alasannya."

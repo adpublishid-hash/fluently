@@ -74,14 +74,14 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "'I am tired.' ➡️ He said he ___ tired.",
-    options: ['is', 'was', 'were'],
+    options: ['were', 'was', 'is'],
     answer: 'was',
     explanation: "Present 'am' berubah menjadi Past 'was'."
   },
   {
     id: 2,
     question: "'I can fly.' ➡️ She said she ___ fly.",
-    options: ['can', 'could', 'canned'],
+    options: ['can', 'canned', 'could'],
     answer: 'could',
     explanation: "'Can' berubah menjadi 'could' dalam reported speech."
   },
@@ -102,28 +102,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "'We are leaving.' ➡️ They said they ___ leaving.",
-    options: ['are', 'was', 'were'],
+    options: ['was', 'were', 'are'],
     answer: 'were',
     explanation: "'Are' berubah menjadi 'were'."
   },
   {
     id: 6,
     question: "'I am sad.' ➡️ The boy said he ___ sad.",
-    options: ["is","was","were"],
+    options: ["were", "was", "is"],
     answer: "was",
     explanation: "Present 'am' berubah menjadi Past 'was'."
   },
   {
     id: 7,
     question: "'I can fly.' ➡️ My sister said she ___ fly.",
-    options: ["can","could","canned"],
+    options: ["can", "canned", "could"],
     answer: "could",
     explanation: "'Can' berubah menjadi 'could' dalam reported speech."
   },
   {
     id: 8,
     question: "'I want pizza.' ➡️ He said she ___ pizza.",
-    options: ["wanted","want","wants"],
+    options: ["wants", "wanted", "want"],
     answer: "wanted",
     explanation: "Present Simple 'want' berubah menjadi Past Simple 'wanted'."
   },
@@ -137,56 +137,56 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "'They are leaving.' ➡️ They said we ___ leaving.",
-    options: ["are","was","were"],
+    options: ["was", "were", "are"],
     answer: "were",
     explanation: "'Are' berubah menjadi 'were'."
   },
   {
     id: 11,
     question: "'I am thirsty.' ➡️ My brother said he ___ thirsty.",
-    options: ["is","was","were"],
+    options: ["were", "is", "was"],
     answer: "was",
     explanation: "Present 'am' berubah menjadi Past 'was'."
   },
   {
     id: 12,
     question: "'I can fly.' ➡️ She said she ___ fly.",
-    options: ["can","could","canned"],
+    options: ["can", "canned", "could"],
     answer: "could",
     explanation: "'Can' berubah menjadi 'could' dalam reported speech."
   },
   {
     id: 13,
     question: "'I want pasta.' ➡️ My father said he ___ pasta.",
-    options: ["wanted","want","wants"],
+    options: ["want", "wanted", "wants"],
     answer: "wanted",
     explanation: "Present Simple 'want' berubah menjadi Past Simple 'wanted'."
   },
   {
     id: 14,
     question: "'I will help.' ➡️ She said he ___ help.",
-    options: ["will","would","willed"],
+    options: ["would", "willed", "will"],
     answer: "would",
     explanation: "'Will' menjadi 'would'."
   },
   {
     id: 15,
     question: "'My parents are leaving.' ➡️ The teachers said they ___ leaving.",
-    options: ["are","was","were"],
+    options: ["were", "was", "are"],
     answer: "were",
     explanation: "'Are' berubah menjadi 'were'."
   },
   {
     id: 16,
     question: "'I am thirsty.' ➡️ She said she ___ thirsty.",
-    options: ["is","was","were"],
+    options: ["is", "were", "was"],
     answer: "was",
     explanation: "Present 'am' berubah menjadi Past 'was'."
   },
   {
     id: 17,
     question: "'I can fly.' ➡️ Mark said she ___ fly.",
-    options: ["can","could","canned"],
+    options: ["could", "can", "canned"],
     answer: "could",
     explanation: "'Can' berubah menjadi 'could' dalam reported speech."
   },
@@ -200,14 +200,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "'I will help.' ➡️ My father said the girl ___ help.",
-    options: ["will","would","willed"],
+    options: ["would", "willed", "will"],
     answer: "would",
     explanation: "'Will' menjadi 'would'."
   },
   {
     id: 20,
     question: "'We are leaving.' ➡️ We said we ___ leaving.",
-    options: ["are","was","were"],
+    options: ["was", "are", "were"],
     answer: "were",
     explanation: "'Are' berubah menjadi 'were'."
   }

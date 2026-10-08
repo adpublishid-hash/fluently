@@ -71,28 +71,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "I don't have ___ money.",
-    options: ['many', 'much', 'a'],
+    options: ['much', 'a', 'many'],
     answer: 'much',
     explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
   },
   {
     id: 3,
     question: "There are ___ apples on the table.",
-    options: ['some', 'much', 'a'],
+    options: ['a', 'some', 'much'],
     answer: 'some',
     explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
   },
   {
     id: 4,
     question: "Can I have ___ advice?",
-    options: ['an', 'a', 'some'],
+    options: ['some', 'a', 'an'],
     answer: 'some',
     explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
   },
   {
     id: 5,
     question: "How ___ cars do you see?",
-    options: ['much', 'many', 'any'],
+    options: ['many', 'any', 'much'],
     answer: 'many',
     explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
   },
@@ -106,28 +106,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "I don't have ___ money.",
-    options: ["many","much","a"],
+    options: ["much", "a", "many"],
     answer: "much",
     explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
   },
   {
     id: 8,
     question: "There are ___ apples on the table.",
-    options: ["some","much","a"],
+    options: ["a", "some", "much"],
     answer: "some",
     explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
   },
   {
     id: 9,
     question: "Can I have ___ advice?",
-    options: ["an","a","some"],
+    options: ["some", "a", "an"],
     answer: "some",
     explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
   },
   {
     id: 10,
     question: "How ___ cars do you see?",
-    options: ["much","many","any"],
+    options: ["many", "any", "much"],
     answer: "many",
     explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
   },
@@ -141,28 +141,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "I don't have ___ money.",
-    options: ["many","much","a"],
+    options: ["much", "a", "many"],
     answer: "much",
     explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
   },
   {
     id: 13,
     question: "There are ___ apples on the table.",
-    options: ["some","much","a"],
+    options: ["a", "some", "much"],
     answer: "some",
     explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
   },
   {
     id: 14,
     question: "Can I have ___ advice?",
-    options: ["an","a","some"],
+    options: ["some", "a", "an"],
     answer: "some",
     explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
   },
   {
     id: 15,
     question: "How ___ cars do you see?",
-    options: ["much","many","any"],
+    options: ["many", "any", "much"],
     answer: "many",
     explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
   },
@@ -176,28 +176,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "I don't have ___ money.",
-    options: ["many","much","a"],
+    options: ["much", "a", "many"],
     answer: "much",
     explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
   },
   {
     id: 18,
     question: "There are ___ apples on the table.",
-    options: ["some","much","a"],
+    options: ["a", "some", "much"],
     answer: "some",
     explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
   },
   {
     id: 19,
     question: "Can I have ___ advice?",
-    options: ["an","a","some"],
+    options: ["some", "a", "an"],
     answer: "some",
     explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
   },
   {
     id: 20,
     question: "How ___ cars do you see?",
-    options: ["much","many","any"],
+    options: ["many", "any", "much"],
     answer: "many",
     explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
   }

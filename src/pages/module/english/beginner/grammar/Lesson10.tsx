@@ -79,7 +79,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Pilih kalimat yang benar:",
-    options: ['He cans speak English.', 'He can speaks English.', 'He can speak English.'],
+    options: ['He can speaks English.', 'He can speak English.', 'He cans speak English.'],
     answer: 'He can speak English.',
     explanation: "Jangan pernah menambahkan 's' pada 'Can' atau kata kerja utama setelahnya."
   },
@@ -93,28 +93,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "___ you help me?",
-    options: ['Can', 'Do', 'Are'],
+    options: ['Are', 'Can', 'Do'],
     answer: 'Can',
     explanation: "Gunakan 'Can' untuk meminta bantuan (kemampuan/kesediaan)."
   },
   {
     id: 4,
     question: "They can ___ the piano.",
-    options: ['play', 'plays', 'playing'],
+    options: ['playing', 'plays', 'play'],
     answer: 'play',
     explanation: "Setelah 'Can', gunakan kata kerja bentuk dasar."
   },
   {
     id: 5,
     question: "Can he ___ a car?",
-    options: ['drives', 'driving', 'drive'],
+    options: ['driving', 'drives', 'drive'],
     answer: 'drive',
     explanation: "Pertanyaan dengan 'Can' juga menggunakan kata kerja dasar."
   },
   {
     id: 6,
     question: "I ___ come to the party tonight.",
-    options: ['no can', 'can\'t', 'don\'t can'],
+    options: ['don\'t can', 'can\'t', 'no can'],
     answer: 'can\'t',
     explanation: "'Can't' adalah singkatan dari 'Cannot'."
   },
@@ -128,7 +128,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "Birds ___ fly.",
-    options: ['can', 'cans', 'canning'],
+    options: ['cans', 'canning', 'can'],
     answer: 'can',
     explanation: "Subjek jamak atau tunggal tetap menggunakan 'can'."
   },
@@ -142,77 +142,77 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "We can ___ pizza tonight.",
-    options: ['eat', 'eats', 'eating'],
+    options: ['eating', 'eat', 'eats'],
     answer: 'eat',
     explanation: "Setelah modal verb 'can', gunakan Verb 1 (dasar)."
   },
   {
     id: 11,
     question: "He can ___ Spanish.",
-    options: ['speak', 'speaks', 'speaking'],
+    options: ['speaks', 'speaking', 'speak'],
     answer: 'speak',
     explanation: "Jangan tambahkan 's' pada kata kerja setelah 'can'."
   },
   {
     id: 12,
     question: "___ she cook?",
-    options: ['Cans', 'Can', 'Does can'],
+    options: ['Can', 'Cans', 'Does can'],
     answer: 'Can',
     explanation: "Pindahkan 'Can' ke depan untuk bertanya."
   },
   {
     id: 13,
     question: "You ___ park here. (Dilarang)",
-    options: ['can', 'can\'t', 'not'],
+    options: ['not', 'can\'t', 'can'],
     answer: 'can\'t',
     explanation: "Menyatakan larangan/ketidakmampuan: Can't."
   },
   {
     id: 14,
     question: "Can I ___ a glass of water?",
-    options: ['has', 'have', 'having'],
+    options: ['having', 'has', 'have'],
     answer: 'have',
     explanation: "Selalu gunakan bentuk dasar 'have'."
   },
   {
     id: 15,
     question: "They ___ see anything.",
-    options: ['no can', 'can no', 'cannot'],
+    options: ['can no', 'cannot', 'no can'],
     answer: 'cannot',
     explanation: "Bentuk negatif formal yang benar adalah 'cannot'."
   },
   {
     id: 16,
     question: "Can you ___ me?",
-    options: ['hear', 'hears', 'hearing'],
+    options: ['hearing', 'hears', 'hear'],
     answer: 'hear',
     explanation: "Kata kerja dasar 'hear'."
   },
   {
     id: 17,
     question: "She ___ run fast.",
-    options: ['can', 'cans', 'do can'],
+    options: ['cans', 'do can', 'can'],
     answer: 'can',
     explanation: "She + can (tanpa s)."
   },
   {
     id: 18,
     question: "I ___ believe it!",
-    options: ['can\'t', 'no can', 'not can'],
+    options: ['not can', 'can\'t', 'no can'],
     answer: 'can\'t',
     explanation: "Ungkapan umum: 'I can't believe it'."
   },
   {
     id: 19,
     question: "___ we go now?",
-    options: ['Can', 'Do', 'Are'],
+    options: ['Do', 'Can', 'Are'],
     answer: 'Can',
     explanation: "Meminta izin/mengajak: Can we...?"
   },
   {
     id: 20,
     question: "Fish ___ swim.",
-    options: ['can', 'cans', 'can to'],
+    options: ['can', 'can to', 'cans'],
     answer: 'can',
     explanation: "Kita tidak menggunakan 'to' setelah 'can'. Fish can swim."
   }

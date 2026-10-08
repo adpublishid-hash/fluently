@@ -12,9 +12,9 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's society and issues? [Q1]",
     "options": [
-      "What is your society problem?",
+      "Tell me your society now.",
       "I would love to hear about your thoughts on society and issues.",
-      "Tell me your society now."
+      "What is your society problem?"
     ],
     "answer": "I would love to hear about your thoughts on society and issues.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing society, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about society? [Q3]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -45,9 +45,9 @@ const QUIZ_QUESTIONS = [
     "id": 4,
     "question": "If you want to interrupt politely during a conversation about society, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -57,8 +57,8 @@ const QUIZ_QUESTIONS = [
     "question": "Select the best transition word: \"We talked about society and issues; ____, we should also discuss the future impacts.\"",
     "options": [
       "Because",
-      "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding society? [Q6]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's society and issues? [Q7]",
     "options": [
-      "What is your society problem?",
+      "Tell me your society now.",
       "I would love to hear about your thoughts on society and issues.",
-      "Tell me your society now."
+      "What is your society problem?"
     ],
     "answer": "I would love to hear about your thoughts on society and issues.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing society, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -100,9 +100,9 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about society? [Q9]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -111,9 +111,9 @@ const QUIZ_QUESTIONS = [
     "id": 10,
     "question": "If you want to interrupt politely during a conversation about society, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -123,8 +123,8 @@ const QUIZ_QUESTIONS = [
     "question": "Select the best transition word: \"We talked about society and issues; ____, we should also discuss the future impacts.\"",
     "options": [
       "Because",
-      "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -133,9 +133,9 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding society? [Q12]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -144,9 +144,9 @@ const QUIZ_QUESTIONS = [
     "id": 13,
     "question": "What is the most polite way to ask about someone's society and issues? [Q13]",
     "options": [
-      "What is your society problem?",
       "I would love to hear about your thoughts on society and issues.",
-      "Tell me your society now."
+      "Tell me your society now.",
+      "What is your society problem?"
     ],
     "answer": "I would love to hear about your thoughts on society and issues.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing society, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,9 +166,9 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about society? [Q15]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -177,9 +177,9 @@ const QUIZ_QUESTIONS = [
     "id": 16,
     "question": "If you want to interrupt politely during a conversation about society, you say:",
     "options": [
-      "Excuse me, may I add something here?",
       "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Excuse me, may I add something here?"
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -189,8 +189,8 @@ const QUIZ_QUESTIONS = [
     "question": "Select the best transition word: \"We talked about society and issues; ____, we should also discuss the future impacts.\"",
     "options": [
       "Because",
-      "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding society? [Q18]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's society and issues? [Q19]",
     "options": [
+      "Tell me your society now.",
       "What is your society problem?",
-      "I would love to hear about your thoughts on society and issues.",
-      "Tell me your society now."
+      "I would love to hear about your thoughts on society and issues."
     ],
     "answer": "I would love to hear about your thoughts on society and issues.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing society, it's important to __ open-minded.\"",
     "options": [
-      "keep",
       "stay",
-      "make"
+      "make",
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

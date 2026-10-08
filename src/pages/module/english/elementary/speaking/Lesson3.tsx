@@ -152,9 +152,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "My sister's daughter is my ___.",
     options: [
+      { text: "cousin", correct: false },
       { text: "nephew", correct: false },
-      { text: "niece", correct: true },
-      { text: "cousin", correct: false }
+      { text: "niece", correct: true }
     ],
     explanation: "Anak perempuan dari saudaramu adalah 'niece' (keponakan perempuan)."
   },
@@ -162,8 +162,8 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "My husband's mother is my ___.",
     options: [
-      { text: "mother-in-law", correct: true },
       { text: "stepmother", correct: false },
+      { text: "mother-in-law", correct: true },
       { text: "grandmother", correct: false }
     ],
     explanation: "Ibu dari pasanganmu adalah 'mother-in-law' (ibu mertua)."
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "He is not married. He is ___.",
     options: [
-      { text: "single", correct: true },
+      { text: "engaged", correct: false },
       { text: "double", correct: false },
-      { text: "engaged", correct: false }
+      { text: "single", correct: true }
     ],
     explanation: "'Single' berarti belum menikah atau tidak dalam hubungan."
   },
@@ -192,9 +192,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "Your father's brother is your ___.",
     options: [
+      { text: "grandfather", correct: false },
       { text: "aunt", correct: false },
-      { text: "uncle", correct: true },
-      { text: "grandfather", correct: false }
+      { text: "uncle", correct: true }
     ],
     explanation: "Saudara laki-laki dari orang tuamu adalah 'uncle' (paman)."
   },
@@ -202,9 +202,9 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"We usually meet at Christmas.\"?",
     options: [
-      { text: "Biasanya kami ketemu pas Natal.", correct: true },
       { text: "Kamu pasti bangga sekali.", correct: false },
-      { text: "Gak juga. Mereka tinggal di kota lain.", correct: false }
+      { text: "Gak juga. Mereka tinggal di kota lain.", correct: false },
+      { text: "Biasanya kami ketemu pas Natal.", correct: true }
     ],
     explanation: "Kalimat \"We usually meet at Christmas.\" memiliki arti \"Biasanya kami ketemu pas Natal.\"."
   },
@@ -213,8 +213,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Kadang kesepian, tapi oke kok.\"?",
     options: [
       { text: "No, he is still single.", correct: false },
-      { text: "Just cook a nice dinner for her.", correct: false },
-      { text: "Sometimes it is lonely, but it is okay.", correct: true }
+      { text: "Sometimes it is lonely, but it is okay.", correct: true },
+      { text: "Just cook a nice dinner for her.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kadang kesepian, tapi oke kok.\" adalah \"Sometimes it is lonely, but it is okay.\"."
   },
@@ -222,9 +222,9 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"We are ___ a big party for him.\"\n(Arti: Kami mengadakan pesta besar buat dia.)",
     options: [
+      { text: "I", correct: false },
       { text: "having", correct: true },
-      { text: "She", correct: false },
-      { text: "I", correct: false }
+      { text: "She", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'having'."
   },
@@ -242,8 +242,8 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Aku gak punya. Aku anak tunggal.\"?",
     options: [
-      { text: "Not really. They live in another city.", correct: false },
       { text: "We usually meet at Christmas.", correct: false },
+      { text: "Not really. They live in another city.", correct: false },
       { text: "I don't have any. I am an only child.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku gak punya. Aku anak tunggal.\" adalah \"I don't have any. I am an only child.\"."
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"Did you hear the ___ about Jane?\"\n(Arti: Udah dengar kabar soal Jane?)",
     options: [
-      { text: "him", correct: false },
       { text: "news", correct: true },
-      { text: "uncle", correct: false }
+      { text: "uncle", correct: false },
+      { text: "him", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'news'."
   },
@@ -263,8 +263,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"Give him my best wishes.\"?",
     options: [
       { text: "Belum, ada apa?", correct: false },
-      { text: "Sampaikan salam terbaikku.", correct: true },
-      { text: "Ya, aku punya satu kakak laki-laki.", correct: false }
+      { text: "Ya, aku punya satu kakak laki-laki.", correct: false },
+      { text: "Sampaikan salam terbaikku.", correct: true }
     ],
     explanation: "Kalimat \"Give him my best wishes.\" memiliki arti \"Sampaikan salam terbaikku.\"."
   },
@@ -273,8 +273,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Aku jadi paman kemarin!\"?",
     options: [
       { text: "Are you married now, Tom?", correct: false },
-      { text: "Just cook a nice dinner for her.", correct: false },
-      { text: "I became an uncle yesterday!", correct: true }
+      { text: "I became an uncle yesterday!", correct: true },
+      { text: "Just cook a nice dinner for her.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku jadi paman kemarin!\" adalah \"I became an uncle yesterday!\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"My grandfather is 80 years old ___.\"\n(Arti: Kakekku umur 80 tahun hari ini.)",
     options: [
+      { text: "that", correct: false },
       { text: "today", correct: true },
-      { text: "woman", correct: false },
-      { text: "that", correct: false }
+      { text: "woman", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'today'."
   },
@@ -292,9 +292,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Who is that woman in the photo?\"?",
     options: [
-      { text: "Siapa wanita di foto itu?", correct: true },
+      { text: "Suka gak jadi anak tunggal?", correct: false },
       { text: "Tidak, aku sudah bercerai.", correct: false },
-      { text: "Suka gak jadi anak tunggal?", correct: false }
+      { text: "Siapa wanita di foto itu?", correct: true }
     ],
     explanation: "Kalimat \"Who is that woman in the photo?\" memiliki arti \"Siapa wanita di foto itu?\"."
   },
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Wow, itu ulang tahun besar.\"?",
     options: [
+      { text: "Do you fight with your siblings?", correct: false },
       { text: "Wow, that is a big birthday.", correct: true },
-      { text: "Do you see your cousins often?", correct: false },
-      { text: "Do you fight with your siblings?", correct: false }
+      { text: "Do you see your cousins often?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Wow, itu ulang tahun besar.\" adalah \"Wow, that is a big birthday.\"."
   },
@@ -322,9 +322,9 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Do you fight with your siblings?\"?",
     options: [
+      { text: "Apa kamu berantem sama saudaramu?", correct: true },
       { text: "Dia terlihat sangat muda.", correct: false },
-      { text: "Belum, ada apa?", correct: false },
-      { text: "Apa kamu berantem sama saudaramu?", correct: true }
+      { text: "Belum, ada apa?", correct: false }
     ],
     explanation: "Kalimat \"Do you fight with your siblings?\" memiliki arti \"Apa kamu berantem sama saudaramu?\"."
   },
@@ -342,8 +342,8 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"Yes, she is the youngest ___ the family.\"\n(Arti: Ya, dia yang paling muda di keluarga.)",
     options: [
-      { text: "in", correct: true },
       { text: "No", correct: false },
+      { text: "in", correct: true },
       { text: "Oh", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'in'."

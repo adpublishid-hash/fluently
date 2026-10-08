@@ -12,8 +12,8 @@ const QUIZ_QUESTIONS = [
     "id": 1,
     "question": "What is the most polite way to ask about someone's public speaking? [Q1]",
     "options": [
-      "What is your speaking problem?",
       "I would love to hear about your thoughts on public speaking.",
+      "What is your speaking problem?",
       "Tell me your speaking now."
     ],
     "answer": "I would love to hear about your thoughts on public speaking.",
@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing speaking, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about speaking? [Q3]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "I couldn't agree more.",
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -46,8 +46,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about speaking, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -56,8 +56,8 @@ const QUIZ_QUESTIONS = [
     "id": 5,
     "question": "Select the best transition word: \"We talked about public speaking; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
+      "Because",
       "Furthermore"
     ],
     "answer": "Furthermore",
@@ -78,9 +78,9 @@ const QUIZ_QUESTIONS = [
     "id": 7,
     "question": "What is the most polite way to ask about someone's public speaking? [Q7]",
     "options": [
-      "What is your speaking problem?",
       "I would love to hear about your thoughts on public speaking.",
-      "Tell me your speaking now."
+      "Tell me your speaking now.",
+      "What is your speaking problem?"
     ],
     "answer": "I would love to hear about your thoughts on public speaking.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing speaking, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -100,8 +100,8 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about speaking? [Q9]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -112,8 +112,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about speaking, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -122,8 +122,8 @@ const QUIZ_QUESTIONS = [
     "id": 11,
     "question": "Select the best transition word: \"We talked about public speaking; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
+      "Because",
       "Furthermore"
     ],
     "answer": "Furthermore",
@@ -133,9 +133,9 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding speaking? [Q12]",
     "options": [
+      "Bite the bullet",
       "A piece of cake",
-      "Under the weather",
-      "Bite the bullet"
+      "Under the weather"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing speaking, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -167,8 +167,8 @@ const QUIZ_QUESTIONS = [
     "question": "Which response strongly agrees with a statement about speaking? [Q15]",
     "options": [
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I couldn't agree more.",
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -178,8 +178,8 @@ const QUIZ_QUESTIONS = [
     "question": "If you want to interrupt politely during a conversation about speaking, you say:",
     "options": [
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Wait, give me a chance.",
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -188,8 +188,8 @@ const QUIZ_QUESTIONS = [
     "id": 17,
     "question": "Select the best transition word: \"We talked about public speaking; ____, we should also discuss the future impacts.\"",
     "options": [
-      "Because",
       "Despite",
+      "Because",
       "Furthermore"
     ],
     "answer": "Furthermore",
@@ -199,8 +199,8 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding speaking? [Q18]",
     "options": [
-      "A piece of cake",
       "Under the weather",
+      "A piece of cake",
       "Bite the bullet"
     ],
     "answer": "A piece of cake",
@@ -211,8 +211,8 @@ const QUIZ_QUESTIONS = [
     "question": "What is the most polite way to ask about someone's public speaking? [Q19]",
     "options": [
       "What is your speaking problem?",
-      "I would love to hear about your thoughts on public speaking.",
-      "Tell me your speaking now."
+      "Tell me your speaking now.",
+      "I would love to hear about your thoughts on public speaking."
     ],
     "answer": "I would love to hear about your thoughts on public speaking.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing speaking, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

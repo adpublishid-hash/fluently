@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - How many calories are in one serving?', opts: ["90","240","480","15"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - What is the serving size?', opts: ["1 bowl","1 cup (240ml)","1 can","1 liter"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - How many calories are in one serving?', opts: ["240", "15", "480", "90"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - What is the serving size?', opts: ["1 liter", "1 bowl", "1 cup (240ml)", "1 can"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Analisis Singkat) Latihan 3 - How much protein does it have?', opts: ["3g","15g","2g","90g"], ans: "3g", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - What is the first ingredient listed?', opts: ["Water","Tomato Paste","Sugar","Salt"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - How much sodium is in the soup?', opts: ["2g","90mg","15g","480mg"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - How many calories are in one serving?', opts: ["15","90","240","480"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - What is the first ingredient listed?', opts: ["Tomato Paste", "Salt", "Sugar", "Water"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - How much sodium is in the soup?', opts: ["2g", "15g", "480mg", "90mg"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - How many calories are in one serving?', opts: ["90", "480", "240", "15"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Analisis Singkat) Latihan 7 - What is the serving size?', opts: ["1 liter","1 can","1 bowl","1 cup (240ml)"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Mencari Fakta) Latihan 8 - How much protein does it have?', opts: ["2g","90g","15g","3g"], ans: "3g", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Review) Latihan 9 - What is the first ingredient listed?', opts: ["Water","Tomato Paste","Sugar","Salt"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - How much sodium is in the soup?', opts: ["90mg","480mg","2g","15g"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - How many calories are in one serving?', opts: ["15","90","240","480"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - What is the serving size?', opts: ["1 can","1 bowl","1 cup (240ml)","1 liter"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - How much protein does it have?', opts: ["3g","15g","2g","90g"], ans: "3g", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - What is the first ingredient listed?', opts: ["Salt","Sugar","Tomato Paste","Water"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - How much sodium is in the soup?', opts: ["15g","90mg","480mg","2g"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - How many calories are in one serving?', opts: ["480","240","90","15"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - What is the serving size?', opts: ["1 can","1 cup (240ml)","1 bowl","1 liter"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - How much protein does it have?', opts: ["15g","2g","90g","3g"], ans: "3g", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - What is the first ingredient listed?', opts: ["Sugar","Salt","Tomato Paste","Water"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - How much sodium is in the soup?', opts: ["480mg","15g","2g","90mg"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Pemahaman Cepat) Latihan 10 - How much sodium is in the soup?', opts: ["480mg", "90mg", "15g", "2g"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - How many calories are in one serving?', opts: ["90", "480", "15", "240"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - What is the serving size?', opts: ["1 bowl", "1 liter", "1 can", "1 cup (240ml)"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - How much protein does it have?', opts: ["2g", "15g", "3g", "90g"], ans: "3g", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - What is the first ingredient listed?', opts: ["Sugar", "Salt", "Water", "Tomato Paste"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - How much sodium is in the soup?', opts: ["480mg", "90mg", "15g", "2g"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - How many calories are in one serving?', opts: ["240", "90", "15", "480"], ans: "90", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - What is the serving size?', opts: ["1 can", "1 bowl", "1 cup (240ml)", "1 liter"], ans: "1 cup (240ml)", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - How much protein does it have?', opts: ["90g", "3g", "15g", "2g"], ans: "3g", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - What is the first ingredient listed?', opts: ["Sugar", "Tomato Paste", "Water", "Salt"], ans: "Water", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - How much sodium is in the soup?', opts: ["15g", "480mg", "90mg", "2g"], ans: "480mg", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'How many calories are in one serving?', opts: ["15","90","240","480"], ans: '90' },
-    { q: 'What is the serving size?', opts: ["1 cup (240ml)","1 liter","1 can","1 bowl"], ans: '1 cup (240ml)' },
-    { q: 'How much protein does it have?', opts: ["90g","15g","3g","2g"], ans: '3g' },
-    { q: 'What is the first ingredient listed?', opts: ["Water","Tomato Paste","Salt","Sugar"], ans: 'Water' },
-    { q: 'How much sodium is in the soup?', opts: ["2g","15g","480mg","90mg"], ans: '480mg' },
+    { q: 'How many calories are in one serving?', opts: ["90", "240", "480", "15"], ans: '90' },
+    { q: 'What is the serving size?', opts: ["1 bowl", "1 cup (240ml)", "1 liter", "1 can"], ans: '1 cup (240ml)' },
+    { q: 'How much protein does it have?', opts: ["15g", "2g", "3g", "90g"], ans: '3g' },
+    { q: 'What is the first ingredient listed?', opts: ["Salt", "Tomato Paste", "Water", "Sugar"], ans: 'Water' },
+    { q: 'How much sodium is in the soup?', opts: ["2g", "90mg", "480mg", "15g"], ans: '480mg' },
   ],
 };
 

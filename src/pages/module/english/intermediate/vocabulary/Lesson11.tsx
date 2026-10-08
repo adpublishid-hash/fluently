@@ -53,26 +53,26 @@ const MIND_PSYCHOLOGY_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "Feeling thankful for what you have is called ___.", options: ['Envy', 'Gratitude', 'Anxiety'], answer: 'Gratitude', explanation: "Gratitude (Rasa syukur) adalah kualitas bersyukur." },
-  { id: 2, question: "To reach your goals, you need strong ___ to keep working hard.", options: ['failure', 'determination', 'stress'], answer: 'determination', explanation: "Determination (Tekad) adalah keteguhan tujuan." },
-  { id: 3, question: "A feeling of worry or nervousness about something is ___.", options: ['Optimism', 'Confidence', 'Anxiety'], answer: 'Anxiety', explanation: "Anxiety (Kecemasan) adalah perasaan khawatir, gugup, atau gelisah." },
-  { id: 4, question: "Changing your ___ can change how you see the world.", options: ['mindset', 'habit', 'therapy'], answer: 'mindset', explanation: "Mindset (Pola pik) adalah serangkaian sikap mapan yang dimiliki oleh seseorang." },
-  { id: 5, question: "Looking back at the past with a sentimental feeling is ___.", options: ['Compassion', 'Nostalgia', 'Frustration'], answer: 'Nostalgia', explanation: "Nostalgia (Nostalgia) adalah kerinduan sentimental akan masa lalu." },
-  { id: 6, question: "Feeling unhappy because someone else has something you want is ___.", options: ['compassion', 'envy', 'optimism'], answer: 'envy', explanation: "Envy (Iri hati) adalah keinginan untuk memiliki apa yang dimiliki orang lain." },
-  { id: 7, question: "Being hopeful about the future is ___.", options: ['pessimism', 'optimism', 'frustration'], answer: 'optimism', explanation: "Optimism (Optimisme) adalah harapan dan kepercayaan akan masa depan yang baik." },
+  { id: 1, question: "Feeling thankful for what you have is called ___.", options: ['Gratitude', 'Envy', 'Anxiety'], answer: 'Gratitude', explanation: "Gratitude (Rasa syukur) adalah kualitas bersyukur." },
+  { id: 2, question: "To reach your goals, you need strong ___ to keep working hard.", options: ['stress', 'determination', 'failure'], answer: 'determination', explanation: "Determination (Tekad) adalah keteguhan tujuan." },
+  { id: 3, question: "A feeling of worry or nervousness about something is ___.", options: ['Anxiety', 'Optimism', 'Confidence'], answer: 'Anxiety', explanation: "Anxiety (Kecemasan) adalah perasaan khawatir, gugup, atau gelisah." },
+  { id: 4, question: "Changing your ___ can change how you see the world.", options: ['therapy', 'habit', 'mindset'], answer: 'mindset', explanation: "Mindset (Pola pik) adalah serangkaian sikap mapan yang dimiliki oleh seseorang." },
+  { id: 5, question: "Looking back at the past with a sentimental feeling is ___.", options: ['Compassion', 'Frustration', 'Nostalgia'], answer: 'Nostalgia', explanation: "Nostalgia (Nostalgia) adalah kerinduan sentimental akan masa lalu." },
+  { id: 6, question: "Feeling unhappy because someone else has something you want is ___.", options: ['optimism', 'envy', 'compassion'], answer: 'envy', explanation: "Envy (Iri hati) adalah keinginan untuk memiliki apa yang dimiliki orang lain." },
+  { id: 7, question: "Being hopeful about the future is ___.", options: ['pessimism', 'frustration', 'optimism'], answer: 'optimism', explanation: "Optimism (Optimisme) adalah harapan dan kepercayaan akan masa depan yang baik." },
   { id: 8, question: "Belief in yourself and your abilities is ___.", options: ['insecurity', 'confidence', 'depression'], answer: 'confidence', explanation: "Confidence (Kepercayaan diri) adalah keyakinan pada kemampuan diri sendiri." },
   { id: 9, question: "When you feel upset because things didn't work out, you feel ___.", options: ['gratitude', 'frustration', 'compassion'], answer: 'frustration', explanation: "Frustration (Frustrasi) adalah perasaan kecewa atau kesal." },
-  { id: 10, question: "Making your life better is called personal ___.", options: ['failure', 'improvement', 'stress'], answer: 'improvement', explanation: "Improvement (Perbaikan) adalah proses menjadi lebih baik." },
-  { id: 11, question: "Something you do regularly is a ___.", options: ['challenge', 'habit', 'opportunity'], answer: 'habit', explanation: "Habit (Kebiasaan) adalah sesuatu yang Anda lakukan berulang kali." },
-  { id: 12, question: "When you don't succeed at something, it is a ___.", options: ['achievement', 'failure', 'progress'], answer: 'failure', explanation: "Failure (Kegagalan) adalah tidak berhasilnya suatu upaya." },
+  { id: 10, question: "Making your life better is called personal ___.", options: ['stress', 'improvement', 'failure'], answer: 'improvement', explanation: "Improvement (Perbaikan) adalah proses menjadi lebih baik." },
+  { id: 11, question: "Something you do regularly is a ___.", options: ['habit', 'challenge', 'opportunity'], answer: 'habit', explanation: "Habit (Kebiasaan) adalah sesuatu yang Anda lakukan berulang kali." },
+  { id: 12, question: "When you don't succeed at something, it is a ___.", options: ['failure', 'progress', 'achievement'], answer: 'failure', explanation: "Failure (Kegagalan) adalah tidak berhasilnya suatu upaya." },
   { id: 13, question: "The mental or emotional strain is called ___.", options: ['consciousness', 'stress', 'attitude'], answer: 'stress', explanation: "Stress (Stres) adalah tekanan mental atau emosional." },
-  { id: 14, question: "Your unique character and qualities make up your ___.", options: ['behavior', 'personality', 'perspective'], answer: 'personality', explanation: "Personality (Kepribadian) adalah kumpulan karakteristik yang membuat Anda unik." },
-  { id: 15, question: "The way you think about or view something is your ___.", options: ['therapy', 'perspective', 'intelligence'], answer: 'perspective', explanation: "Perspective (Sudut pandang) adalah pandangan atau sikap terhadap sesuatu." },
-  { id: 16, question: "Treating emotional or mental problems is ___.", options: ['depression', 'therapy', 'attitude'], answer: 'therapy', explanation: "Therapy (Terapi) adalah pengobatan untuk masalah mental atau emosional." },
-  { id: 17, question: "Your general way of thinking or feeling about something is your ___.", options: ['mindset', 'attitude', 'behavior'], answer: 'attitude', explanation: "Attitude (Sikap) adalah cara Anda berpikir dan merasa tentang sesuatu." },
-  { id: 18, question: "What gives you the desire to do something is ___.", options: ['motivation', 'discipline', 'consciousness'], answer: 'motivation', explanation: "Motivation (Motivasi) adalah alasan atau hasrat untuk melakukan sesuatu." },
-  { id: 19, question: "Controlling your actions and working hard requires ___.", options: ['discipline', 'failure', 'envy'], answer: 'discipline', explanation: "Discipline (Disiplin) adalah kemampuan untuk mengontrol diri dan bekerja keras." },
-  { id: 20, question: "An accomplishment you're proud of is an ___.", options: ['achievement', 'challenge', 'opportunity'], answer: 'achievement', explanation: "Achievement (Prestasi) adalah sesuatu yang berhasil Anda capai." }
+  { id: 14, question: "Your unique character and qualities make up your ___.", options: ['perspective', 'personality', 'behavior'], answer: 'personality', explanation: "Personality (Kepribadian) adalah kumpulan karakteristik yang membuat Anda unik." },
+  { id: 15, question: "The way you think about or view something is your ___.", options: ['therapy', 'intelligence', 'perspective'], answer: 'perspective', explanation: "Perspective (Sudut pandang) adalah pandangan atau sikap terhadap sesuatu." },
+  { id: 16, question: "Treating emotional or mental problems is ___.", options: ['attitude', 'depression', 'therapy'], answer: 'therapy', explanation: "Therapy (Terapi) adalah pengobatan untuk masalah mental atau emosional." },
+  { id: 17, question: "Your general way of thinking or feeling about something is your ___.", options: ['attitude', 'behavior', 'mindset'], answer: 'attitude', explanation: "Attitude (Sikap) adalah cara Anda berpikir dan merasa tentang sesuatu." },
+  { id: 18, question: "What gives you the desire to do something is ___.", options: ['discipline', 'motivation', 'consciousness'], answer: 'motivation', explanation: "Motivation (Motivasi) adalah alasan atau hasrat untuk melakukan sesuatu." },
+  { id: 19, question: "Controlling your actions and working hard requires ___.", options: ['envy', 'discipline', 'failure'], answer: 'discipline', explanation: "Discipline (Disiplin) adalah kemampuan untuk mengontrol diri dan bekerja keras." },
+  { id: 20, question: "An accomplishment you're proud of is an ___.", options: ['opportunity', 'challenge', 'achievement'], answer: 'achievement', explanation: "Achievement (Prestasi) adalah sesuatu yang berhasil Anda capai." }
 
 ];
 

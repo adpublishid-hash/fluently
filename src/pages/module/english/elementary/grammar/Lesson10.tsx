@@ -55,21 +55,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "I want ___ a new phone.",
-    options: ['buy', 'buying', 'to buy'],
+    options: ['to buy', 'buying', 'buy'],
     answer: 'to buy',
     explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
   },
   {
     id: 2,
     question: "She enjoys ___ TV.",
-    options: ['watch', 'watching', 'to watch'],
+    options: ['to watch', 'watching', 'watch'],
     answer: 'watching',
     explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
   },
   {
     id: 3,
     question: "We decided ___ home.",
-    options: ['stay', 'staying', 'to stay'],
+    options: ['staying', 'to stay', 'stay'],
     answer: 'to stay',
     explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
   },
@@ -83,28 +83,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "He needs ___ a doctor.",
-    options: ['see', 'seeing', 'to see'],
+    options: ['see', 'to see', 'seeing'],
     answer: 'to see',
     explanation: "Setelah 'Need', gunakan Infinitive."
   },
   {
     id: 6,
     question: "I want ___ a new phone.",
-    options: ["buy","buying","to buy"],
+    options: ["to buy", "buying", "buy"],
     answer: "to buy",
     explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
   },
   {
     id: 7,
     question: "My sister enjoys ___ TV.",
-    options: ["watch","watching","to watch"],
+    options: ["watch", "to watch", "watching"],
     answer: "watching",
     explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
   },
   {
     id: 8,
     question: "They decided ___ home.",
-    options: ["stay","staying","to stay"],
+    options: ["to stay", "stay", "staying"],
     answer: "to stay",
     explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
   },
@@ -125,21 +125,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "I want ___ a new phone.",
-    options: ["buy","buying","to buy"],
+    options: ["to buy", "buying", "buy"],
     answer: "to buy",
     explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
   },
   {
     id: 12,
     question: "My mother enjoys ___ TV.",
-    options: ["watch","watching","to watch"],
+    options: ["watching", "to watch", "watch"],
     answer: "watching",
     explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
   },
   {
     id: 13,
     question: "We decided ___ home.",
-    options: ["stay","staying","to stay"],
+    options: ["staying", "to stay", "stay"],
     answer: "to stay",
     explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
   },
@@ -153,28 +153,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "She needs ___ a doctor.",
-    options: ["see","seeing","to see"],
+    options: ["seeing", "see", "to see"],
     answer: "to see",
     explanation: "Setelah 'Need', gunakan Infinitive."
   },
   {
     id: 16,
     question: "I want ___ a new phone.",
-    options: ["buy","buying","to buy"],
+    options: ["to buy", "buying", "buy"],
     answer: "to buy",
     explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
   },
   {
     id: 17,
     question: "She enjoys ___ TV.",
-    options: ["watch","watching","to watch"],
+    options: ["to watch", "watching", "watch"],
     answer: "watching",
     explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
   },
   {
     id: 18,
     question: "We decided ___ home.",
-    options: ["stay","staying","to stay"],
+    options: ["staying", "to stay", "stay"],
     answer: "to stay",
     explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
   },
@@ -188,7 +188,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "He needs ___ a doctor.",
-    options: ["see","seeing","to see"],
+    options: ["see", "to see", "seeing"],
     answer: "to see",
     explanation: "Setelah 'Need', gunakan Infinitive."
   }

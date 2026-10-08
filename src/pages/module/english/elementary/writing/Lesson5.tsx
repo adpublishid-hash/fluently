@@ -27,8 +27,8 @@ const BUILD_ITEMS = [
     prompt: "Thank you ___ helping me.",
     blank: "for",
     options: [
-      "to",
       "for",
+      "to",
       "at"
     ],
     answer: "for"
@@ -38,10 +38,10 @@ const QUIZ = [
   {
     q: "Cara bilang terima kasih untuk bantuan:",
     opts: [
-      "Thanks to help me.",
-      "Thank you for your help.",
       "Thanks your help.",
-      "Thank your help to me."
+      "Thank your help to me.",
+      "Thank you for your help.",
+      "Thanks to help me."
     ],
     ans: "Thank you for your help.",
     exp: "\"Thank you for\" + noun/v-ing."
@@ -49,9 +49,9 @@ const QUIZ = [
   {
     q: "\"Thank you for ___ me.\"",
     opts: [
-      "help",
-      "helps",
       "helping",
+      "helps",
+      "help",
       "helped"
     ],
     ans: "helping",
@@ -61,8 +61,8 @@ const QUIZ = [
     q: "Ucapan terima kasih paling spesifik:",
     opts: [
       "Thanks.",
-      "Thank you for the blue scarf!",
       "Thanks a lot.",
+      "Thank you for the blue scarf!",
       "Yeah thanks."
     ],
     ans: "Thank you for the blue scarf!",
@@ -71,10 +71,10 @@ const QUIZ = [
   {
     q: "\"I really ___ the birthday present.\"",
     opts: [
-      "appreciation",
-      "appreciating",
       "appreciate",
-      "appreciated"
+      "appreciated",
+      "appreciating",
+      "appreciation"
     ],
     ans: "appreciate",
     exp: "Simple present untuk perasaan saat ini."
@@ -82,10 +82,10 @@ const QUIZ = [
   {
     q: "\"You ___ so kind to visit me.\"",
     opts: [
-      "is",
-      "am",
       "are",
-      "was"
+      "was",
+      "am",
+      "is"
     ],
     ans: "are",
     exp: "\"You\" = \"are\"."
@@ -93,9 +93,9 @@ const QUIZ = [
   {
     q: "Penutup surat yang tepat:",
     opts: [
-      "OK bye.",
-      "With love, Ana.",
       "Whatever.",
+      "With love, Ana.",
+      "OK bye.",
       "End."
     ],
     ans: "With love, Ana.",
@@ -104,9 +104,9 @@ const QUIZ = [
   {
     q: "\"It ___ my day!\"",
     opts: [
-      "make",
-      "made",
       "makes",
+      "made",
+      "make",
       "making"
     ],
     ans: "made",
@@ -115,10 +115,10 @@ const QUIZ = [
   {
     q: "\"I was ___ to receive your gift.\"",
     opts: [
-      "happy",
       "happily",
-      "happiness",
-      "happier"
+      "happier",
+      "happy",
+      "happiness"
     ],
     ans: "happy",
     exp: "Adjective setelah to be."
@@ -127,9 +127,9 @@ const QUIZ = [
     q: "\"The cake you ___ was delicious.\"",
     opts: [
       "bake",
-      "baked",
       "baking",
-      "bakes"
+      "bakes",
+      "baked"
     ],
     ans: "baked",
     exp: "Past tense karena sudah dibuat."
@@ -138,8 +138,8 @@ const QUIZ = [
     q: "\"I can\\'t ___ to use it!\"",
     opts: [
       "waiting",
-      "waited",
       "waits",
+      "waited",
       "wait"
     ],
     ans: "wait",
@@ -148,10 +148,10 @@ const QUIZ = [
   {
     q: "\"I am so ___ for your support.\"",
     opts: [
-      "gratefully",
-      "grateful",
       "gratefulness",
-      "grate"
+      "grate",
+      "gratefully",
+      "grateful"
     ],
     ans: "grateful",
     exp: "Adjective setelah \"so\"."
@@ -170,10 +170,10 @@ const QUIZ = [
   {
     q: "\"You always ___ me smile.\"",
     opts: [
-      "makes",
-      "make",
       "making",
-      "made"
+      "made",
+      "makes",
+      "make"
     ],
     ans: "make",
     exp: "\"You make\" (present habitual)."
@@ -181,10 +181,10 @@ const QUIZ = [
   {
     q: "\"I ___ blessed to have you.\"",
     opts: [
-      "am",
-      "is",
       "are",
-      "was"
+      "was",
+      "is",
+      "am"
     ],
     ans: "am",
     exp: "\"I am\" + adjective."
@@ -192,9 +192,9 @@ const QUIZ = [
   {
     q: "\"Words ___ express how grateful I am.\"",
     opts: [
-      "can",
-      "cannot",
       "doesn\\'t",
+      "cannot",
+      "can",
       "isn\\'t"
     ],
     ans: "cannot",
@@ -203,10 +203,10 @@ const QUIZ = [
   {
     q: "\"Your gift was ___!\"",
     opts: [
-      "perfectly",
       "perfect",
-      "perfection",
-      "perfects"
+      "perfectly",
+      "perfects",
+      "perfection"
     ],
     ans: "perfect",
     exp: "Adjective setelah \"was\"."
@@ -215,9 +215,9 @@ const QUIZ = [
     q: "\"I will ___ forget your kindness.\"",
     opts: [
       "ever",
-      "never",
       "always",
-      "sometimes"
+      "sometimes",
+      "never"
     ],
     ans: "never",
     exp: "\"Will never forget\" = takkan pernah lupa."
@@ -225,10 +225,10 @@ const QUIZ = [
   {
     q: "\"Please ___ my thanks to your family.\"",
     opts: [
-      "passing",
       "passed",
-      "pass",
-      "passes"
+      "passing",
+      "passes",
+      "pass"
     ],
     ans: "pass",
     exp: "\"Please pass\" = tolong sampaikan."
@@ -236,10 +236,10 @@ const QUIZ = [
   {
     q: "\"You ___ the best friend ever!\"",
     opts: [
-      "is",
       "am",
-      "are",
-      "was"
+      "is",
+      "was",
+      "are"
     ],
     ans: "are",
     exp: "\"You are\" = kamu adalah."
@@ -248,9 +248,9 @@ const QUIZ = [
     q: "\"I ___ so lucky to know you.\"",
     opts: [
       "am",
-      "is",
       "are",
-      "be"
+      "be",
+      "is"
     ],
     ans: "am",
     exp: "\"I am\" untuk diri sendiri."

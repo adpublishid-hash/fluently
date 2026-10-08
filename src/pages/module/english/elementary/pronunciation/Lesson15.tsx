@@ -72,7 +72,7 @@ const FINAL_QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Kata mana yang memiliki suara Vokal Panjang?",
-    options: ['Sit', 'Seat', 'Bit'],
+    options: ['Bit', 'Sit', 'Seat'],
     answer: 'Seat',
     explanation: "Seat menggunakan /iː/ (E Panjang)."
   },
@@ -107,28 +107,28 @@ const FINAL_QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "Bagaimana cara mengucapkan 'Comfortable' secara alami?",
-    options: ['Com-for-ta-ble (4 suku kata)', 'Comf-ta-ble (3 suku kata)'],
+    options: ['Comf-ta-ble (3 suku kata)', 'Com-for-ta-ble (4 suku kata)'],
     answer: 'Comf-ta-ble (3 suku kata)',
     explanation: "Dalam bahasa Inggris alami, 'or' di tengah sering dihilangkan (Elisi Schwa)."
   },
   {
     id: 7,
     question: "Kata 'Vegetable' ditekan pada...",
-    options: ['Suku kata ke-1 (VEG-ta-ble)', 'Suku kata ke-2 (ve-GET-a-ble)'],
+    options: ['Suku kata ke-2 (ve-GET-a-ble)', 'Suku kata ke-1 (VEG-ta-ble)'],
     answer: 'Suku kata ke-1 (VEG-ta-ble)',
     explanation: "Penekanan ada pada suku kata pertama."
   },
   {
     id: 8,
     question: "Pasangan mana yang merupakan 'Minimal Pairs' (Hanya satu suara yang berbeda)?",
-    options: ['Cat - Dog', 'Fan - Van', 'Big - Small'],
+    options: ['Fan - Van', 'Cat - Dog', 'Big - Small'],
     answer: 'Fan - Van',
     explanation: "Hanya suara pertama yang berubah (/f/ vs /v/)."
   },
   {
     id: 9,
     question: "Manakah kata yang memiliki suara Vokal Panjang?",
-    options: ["Sit","Greet","Bit"],
+    options: ["Greet", "Bit", "Sit"],
     answer: "Greet",
     explanation: "Seat menggunakan /iː/ (E Panjang)."
   },
@@ -163,28 +163,28 @@ const FINAL_QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "Bagaimana cara mengucapkan 'Comfortable' secara alami?",
-    options: ["Com-for-ta-ble (4 suku kata)","Comf-ta-ble (3 suku kata)"],
+    options: ["Comf-ta-ble (3 suku kata)", "Com-for-ta-ble (4 suku kata)"],
     answer: "Comf-ta-ble (3 suku kata)",
     explanation: "Dalam bahasa Inggris alami, 'or' di tengah sering dihilangkan (Elisi Schwa)."
   },
   {
     id: 15,
     question: "Kata 'Vegetable' ditekan pada...",
-    options: ["Suku kata ke-1 (VEG-ta-ble)","Suku kata ke-2 (ve-GET-a-ble)"],
+    options: ["Suku kata ke-2 (ve-GET-a-ble)", "Suku kata ke-1 (VEG-ta-ble)"],
     answer: "Suku kata ke-1 (VEG-ta-ble)",
     explanation: "Penekanan ada pada suku kata pertama."
   },
   {
     id: 16,
     question: "Pasangan mana yang merupakan 'Minimal Pairs' (Hanya satu suara yang berbeda)?",
-    options: ["Cat - Dog","Fan - Van","Big - Small"],
+    options: ["Fan - Van", "Cat - Dog", "Big - Small"],
     answer: "Fan - Van",
     explanation: "Hanya suara pertama yang berubah (/f/ vs /v/)."
   },
   {
     id: 17,
     question: "Kata mana yang memiliki suara Vokal Panjang?",
-    options: ["Sit","Greet","Bit"],
+    options: ["Bit", "Sit", "Greet"],
     answer: "Greet",
     explanation: "Seat menggunakan /iː/ (E Panjang)."
   },
@@ -198,7 +198,7 @@ const FINAL_QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "Dalam kalimat 'She ran to the park', kata mana yang DITEKANKAN?",
-    options: ["to","the","park"],
+    options: ["the", "park", "to"],
     answer: "park",
     explanation: "'Park' adalah kata isi (Kata Benda), jadi kuat. 'To' dan 'The' lemah."
   },

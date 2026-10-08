@@ -77,14 +77,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "Please speak ___.",
-    options: ['quiet', 'quietly'],
+    options: ['quietly', 'quiet'],
     answer: 'quietly',
     explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
   },
   {
     id: 4,
     question: "She works very ___.",
-    options: ['hard', 'hardly'],
+    options: ['hardly', 'hard'],
     answer: 'hard',
     explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
   },
@@ -112,7 +112,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "Please speak ___.",
-    options: ["quiet","quietly"],
+    options: ["quietly", "quiet"],
     answer: "quietly",
     explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
   },
@@ -140,21 +140,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "Mark plays the piano ___.",
-    options: ["nice","well","goodly"],
+    options: ["goodly", "well", "nice"],
     answer: "well",
     explanation: "Play adalah kata kerja. Kita butuh kata keterangan 'Well'. 'Good' adalah kata sifat."
   },
   {
     id: 13,
     question: "Please speak ___.",
-    options: ["quiet","quietly"],
+    options: ["quietly", "quiet"],
     answer: "quietly",
     explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
   },
   {
     id: 14,
     question: "She works very ___.",
-    options: ["hard","hardly"],
+    options: ["hardly", "hard"],
     answer: "hard",
     explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
   },
@@ -168,35 +168,35 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "This is a ___ van.",
-    options: ["slow","slowly"],
+    options: ["slowly", "slow"],
     answer: "slow",
     explanation: "Car adalah kata benda. Kita butuh Kata Sifat untuk menjelaskannya."
   },
   {
     id: 17,
     question: "She plays the piano ___.",
-    options: ["excellent","well","goodly"],
+    options: ["goodly", "excellent", "well"],
     answer: "well",
     explanation: "Play adalah kata kerja. Kita butuh kata keterangan 'Well'. 'Good' adalah kata sifat."
   },
   {
     id: 18,
     question: "Please speak ___.",
-    options: ["quiet","quietly"],
+    options: ["quietly", "quiet"],
     answer: "quietly",
     explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
   },
   {
     id: 19,
     question: "She works very ___.",
-    options: ["hard","hardly"],
+    options: ["hardly", "hard"],
     answer: "hard",
     explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
   },
   {
     id: 20,
     question: "You look ___ this morning.",
-    options: ["happy","happily"],
+    options: ["happily", "happy"],
     answer: "happy",
     explanation: "Setelah kata kerja seperti 'Look', 'Feel', 'Smell', 'Sound' (Indra), gunakan Kata Sifat."
   }

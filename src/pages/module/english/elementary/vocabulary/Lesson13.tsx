@@ -57,28 +57,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ['accept', 'refuse', 'celebrate'],
+    options: ['refuse', 'accept', 'celebrate'],
     answer: 'refuse',
     explanation: "To refuse berarti menolak atau mengatakan tidak."
   },
   {
     id: 3,
     question: "The person who organizes the party is the ___.",
-    options: ['Guest', 'Host', 'Stranger'],
+    options: ['Guest', 'Stranger', 'Host'],
     answer: 'Host',
     explanation: "Host (tuan rumah) mengundang para tamu."
   },
   {
     id: 4,
     question: "It is ___ to say 'Thank you'.",
-    options: ['rude', 'polite', 'angry'],
+    options: ['angry', 'polite', 'rude'],
     answer: 'polite',
     explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
   },
   {
     id: 5,
     question: "A romantic meeting between two people is a ___.",
-    options: ['Date', 'Funeral', 'Reunion'],
+    options: ['Funeral', 'Reunion', 'Date'],
     answer: 'Date',
     explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
   },
@@ -92,28 +92,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ["accept","refuse","celebrate"],
+    options: ["refuse", "accept", "celebrate"],
     answer: "refuse",
     explanation: "To refuse berarti menolak atau mengatakan tidak."
   },
   {
     id: 8,
     question: "The person who organizes the party is the ___.",
-    options: ["Guest","Host","Stranger"],
+    options: ["Guest", "Stranger", "Host"],
     answer: "Host",
     explanation: "Host (tuan rumah) mengundang para tamu."
   },
   {
     id: 9,
     question: "It is ___ to say 'Thank you'.",
-    options: ["rude","polite","angry"],
+    options: ["angry", "polite", "rude"],
     answer: "polite",
     explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
   },
   {
     id: 10,
     question: "A romantic meeting between two individuals is a ___.",
-    options: ["Date","Funeral","Reunion"],
+    options: ["Reunion", "Funeral", "Date"],
     answer: "Date",
     explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
   },
@@ -127,21 +127,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ["accept","refuse","celebrate"],
+    options: ["refuse", "accept", "celebrate"],
     answer: "refuse",
     explanation: "To refuse berarti menolak atau mengatakan tidak."
   },
   {
     id: 13,
     question: "The person who organizes the party is the ___.",
-    options: ["Guest","Host","Stranger"],
+    options: ["Guest", "Stranger", "Host"],
     answer: "Host",
     explanation: "Host (tuan rumah) mengundang para tamu."
   },
   {
     id: 14,
     question: "It is ___ to say 'Thank you'.",
-    options: ["rude","polite","angry"],
+    options: ["angry", "polite", "rude"],
     answer: "polite",
     explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
   },
@@ -162,28 +162,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ["accept","refuse","celebrate"],
+    options: ["refuse", "accept", "celebrate"],
     answer: "refuse",
     explanation: "To refuse berarti menolak atau mengatakan tidak."
   },
   {
     id: 18,
     question: "The person who organizes the party is the ___.",
-    options: ["Guest","Host","Stranger"],
+    options: ["Guest", "Stranger", "Host"],
     answer: "Host",
     explanation: "Host (tuan rumah) mengundang para tamu."
   },
   {
     id: 19,
     question: "It is ___ to say 'Thank you'.",
-    options: ["rude","polite","angry"],
+    options: ["angry", "polite", "rude"],
     answer: "polite",
     explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
   },
   {
     id: 20,
     question: "A romantic meeting between two individuals is a ___.",
-    options: ["Date","Funeral","Reunion"],
+    options: ["Reunion", "Funeral", "Date"],
     answer: "Date",
     explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
   }

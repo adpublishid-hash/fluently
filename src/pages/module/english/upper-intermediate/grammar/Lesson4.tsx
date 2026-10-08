@@ -61,10 +61,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which describes the primary characteristic of Reported Speech Advanced?",
     "opts": [
-      "It only appears in spoken English",
       "It is a complex grammatical structure used in formal B2 contexts",
-      "It is only used in questions",
-      "It replaces all other grammar patterns"
+      "It only appears in spoken English",
+      "It replaces all other grammar patterns",
+      "It is only used in questions"
     ],
     "ans": "It is a complex grammatical structure used in formal B2 contexts",
     "exp": "Reported Speech Advanced adalah struktur gramatikal B2 yang digunakan secara luas dalam konteks formal dan akademik."
@@ -73,9 +73,9 @@ const QUIZ: QuizItem[] = [
     "q": "At CEFR B2 level, writers are expected to use grammar with ___",
     "opts": [
       "No errors at all",
-      "A high degree of accuracy in complex contexts",
+      "Primarily spoken patterns",
       "Only basic sentences",
-      "Primarily spoken patterns"
+      "A high degree of accuracy in complex contexts"
     ],
     "ans": "A high degree of accuracy in complex contexts",
     "exp": "CEFR B2 mengharuskan pengguna untuk menampilkan kontrol gramatikal yang baik dalam teks kompleks."
@@ -83,10 +83,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence demonstrates higher grammatical sophistication?",
     "opts": [
-      "I work here.",
       "Having worked here for years, I understand the culture well.",
-      "I am working here now.",
-      "I worked here."
+      "I work here.",
+      "I worked here.",
+      "I am working here now."
     ],
     "ans": "Having worked here for years, I understand the culture well.",
     "exp": "Participle clause \"Having worked...\" menunjukkan tingkat sophistication gramatikal yang lebih tinggi."
@@ -94,10 +94,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Formal academic writing generally requires ___",
     "opts": [
-      "Contractions and slang",
-      "Passive voice and complex sentence structures",
       "Simple subject-verb patterns",
-      "Conversational tone"
+      "Conversational tone",
+      "Passive voice and complex sentence structures",
+      "Contractions and slang"
     ],
     "ans": "Passive voice and complex sentence structures",
     "exp": "Academic writing formal menggunakan passive voice dan struktur kompleks untuk objektivitas dan presisi."
@@ -106,9 +106,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which is a sign of B2-level grammatical competence?",
     "opts": [
       "Using only simple sentences",
-      "Mixing tenses randomly",
       "Using varied sentence structures appropriately",
-      "Avoiding all complex grammar"
+      "Avoiding all complex grammar",
+      "Mixing tenses randomly"
     ],
     "ans": "Using varied sentence structures appropriately",
     "exp": "B2 menunjukkan kemampuan menggunakan berbagai struktur kalimat yang kompleks dengan tepat."
@@ -116,10 +116,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Error correction is important because it ___",
     "opts": [
-      "Makes writing shorter",
       "Improves clarity and credibility of the text",
-      "Eliminates all vocabulary",
-      "Replaces ideas with structure"
+      "Replaces ideas with structure",
+      "Makes writing shorter",
+      "Eliminates all vocabulary"
     ],
     "ans": "Improves clarity and credibility of the text",
     "exp": "Memperbaiki kesalahan gramatikal meningkatkan kejernihan dan kredibilitas tulisan Anda."
@@ -127,10 +127,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word signals strong contrast in formal writing?",
     "opts": [
-      "And",
       "So",
-      "Nevertheless",
-      "Because"
+      "Because",
+      "And",
+      "Nevertheless"
     ],
     "ans": "Nevertheless",
     "exp": "\"Nevertheless\" adalah konektor formal yang kuat untuk menyatakan kontras antara dua argumen."
@@ -149,10 +149,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which structure correctly uses \"not only... but also\"?",
     "opts": [
-      "Not only he studies, but also works.",
-      "Not only does he study, but he also works.",
       "Not only he does study, but also works.",
-      "Not only studying, but also work."
+      "Not only studying, but also work.",
+      "Not only he studies, but also works.",
+      "Not only does he study, but he also works."
     ],
     "ans": "Not only does he study, but he also works.",
     "exp": "\"Not only\" diikuti inversion: does/is/has + subject. \"Not only does he study, but he also works.\""
@@ -160,10 +160,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which connector adds information while contrasting simultaneously?",
     "opts": [
-      "Therefore",
-      "However",
       "While",
-      "Despite"
+      "Despite",
+      "However",
+      "Therefore"
     ],
     "ans": "While",
     "exp": "\"While\" dapat digunakan untuk menambahkan informasi yang berkontras dalam satu kalimat (\"While X is true, Y is also important\")."
@@ -172,9 +172,9 @@ const QUIZ: QuizItem[] = [
     "q": "Cleft sentences are used to ___",
     "opts": [
       "Shorten sentences",
-      "Emphasize a specific element of a sentence",
       "Replace relative clauses",
-      "Remove the subject"
+      "Remove the subject",
+      "Emphasize a specific element of a sentence"
     ],
     "ans": "Emphasize a specific element of a sentence",
     "exp": "Cleft sentences (\"It is X that...\") digunakan untuk memberikan penekanan pada elemen tertentu."
@@ -182,10 +182,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which is an example of nominalization?",
     "opts": [
-      "He decided to go.",
       "His decision to go shocked us.",
       "He was going there.",
-      "Going was his plan."
+      "Going was his plan.",
+      "He decided to go."
     ],
     "ans": "His decision to go shocked us.",
     "exp": "Nominalization: kata kerja \"decided\" diubah menjadi nomina \"decision\" untuk gaya akademik yang lebih formal."
@@ -204,10 +204,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To avoid repetition in formal texts, writers use ___",
     "opts": [
-      "Synonyms and ellipsis",
-      "The same word repeatedly",
       "Short sentences",
-      "Only pronouns"
+      "Only pronouns",
+      "Synonyms and ellipsis",
+      "The same word repeatedly"
     ],
     "ans": "Synonyms and ellipsis",
     "exp": "Sinonim dan ellipsis (menghilangkan bagian yang sudah jelas) digunakan untuk menghindari repetisi."
@@ -216,9 +216,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which is NOT a discourse marker for adding information?",
     "opts": [
       "Furthermore",
-      "In addition",
       "Nevertheless",
-      "Moreover"
+      "Moreover",
+      "In addition"
     ],
     "ans": "Nevertheless",
     "exp": "\"Nevertheless\" digunakan untuk kontras, bukan untuk menambah informasi. Tiga lainnya digunakan untuk penambahan."
@@ -226,10 +226,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In academic style, \"big\" should be replaced with ___",
     "opts": [
-      "Large",
-      "Substantial",
       "Huge",
-      "Significant"
+      "Significant",
+      "Substantial",
+      "Large"
     ],
     "ans": "Substantial",
     "exp": "\"Substantial\" atau \"significant\" adalah pilihan yang lebih akademik dibandingkan \"big\" atau \"large\"."
@@ -237,10 +237,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Despite\" is followed by ___",
     "opts": [
+      "An adjective only",
       "A full clause",
       "A noun phrase or gerund",
-      "An infinitive",
-      "An adjective only"
+      "An infinitive"
     ],
     "ans": "A noun phrase or gerund",
     "exp": "\"Despite\" diikuti langsung oleh noun phrase atau gerund: \"Despite the rain\" / \"Despite working hard\"."
@@ -249,9 +249,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which structure shows condition without \"if\"?",
     "opts": [
       "Unless + past",
-      "Were + subject + infinitive",
       "Although + subject",
-      "Since + noun"
+      "Since + noun",
+      "Were + subject + infinitive"
     ],
     "ans": "Were + subject + infinitive",
     "exp": "\"Were I to leave early...\" adalah inversion conditional formal yang menggantikan \"If I were to leave early...\"."
@@ -259,10 +259,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which linking expression introduces a conclusion?",
     "opts": [
-      "In contrast",
       "In addition",
+      "On the other hand",
       "As a result",
-      "On the other hand"
+      "In contrast"
     ],
     "ans": "As a result",
     "exp": "\"As a result\" menunjukkan hasil atau konsekuensi dari pernyataan sebelumnya."
@@ -271,9 +271,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which is the BEST academic version of \"The company got more money from investors\"?",
     "opts": [
       "The company received additional funding from investors.",
-      "The company got more dollars from people.",
       "More money was got by the company.",
-      "Investors gave the company lots of cash."
+      "Investors gave the company lots of cash.",
+      "The company got more dollars from people."
     ],
     "ans": "The company received additional funding from investors.",
     "exp": "\"Received additional funding\" adalah ekspresi formal yang tepat untuk konteks akademik dan bisnis."

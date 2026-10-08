@@ -57,14 +57,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "Apples and oranges are healthy because they have ___.",
-    options: ['fat', 'vitamins', 'salt'],
+    options: ['salt', 'fat', 'vitamins'],
     answer: 'vitamins',
     explanation: "Buah-buahan kaya akan vitamins (vitamin)."
   },
   {
     id: 3,
     question: "My head hurts. I have a ___.",
-    options: ['stomachache', 'headache', 'fever'],
+    options: ['fever', 'stomachache', 'headache'],
     answer: 'headache',
     explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
   },
@@ -78,7 +78,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "If you have a cold, you should take some ___.",
-    options: ['sugar', 'medicine', 'exercise'],
+    options: ['exercise', 'sugar', 'medicine'],
     answer: 'medicine',
     explanation: "Medicine (obat) membantu menyembuhkan penyakit."
   },
@@ -92,14 +92,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "Apples and oranges are healthy because they have ___.",
-    options: ["fat","vitamins","salt"],
+    options: ["salt", "fat", "vitamins"],
     answer: "vitamins",
     explanation: "Buah-buahan kaya akan vitamins (vitamin)."
   },
   {
     id: 8,
     question: "My head hurts. I have a ___.",
-    options: ["stomachache","headache","fever"],
+    options: ["fever", "stomachache", "headache"],
     answer: "headache",
     explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
   },
@@ -113,7 +113,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "If you have a cold, you should take some ___.",
-    options: ["sugar","medicine","exercise"],
+    options: ["exercise", "sugar", "medicine"],
     answer: "medicine",
     explanation: "Medicine (obat) membantu menyembuhkan penyakit."
   },
@@ -127,14 +127,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "Apples and oranges are healthy because they have ___.",
-    options: ["fat","vitamins","salt"],
+    options: ["salt", "fat", "vitamins"],
     answer: "vitamins",
     explanation: "Buah-buahan kaya akan vitamins (vitamin)."
   },
   {
     id: 13,
     question: "My head hurts. I have a ___.",
-    options: ["stomachache","headache","fever"],
+    options: ["fever", "stomachache", "headache"],
     answer: "headache",
     explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
   },
@@ -148,7 +148,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "If you have a cold, you should take some ___.",
-    options: ["sugar","medicine","exercise"],
+    options: ["exercise", "sugar", "medicine"],
     answer: "medicine",
     explanation: "Medicine (obat) membantu menyembuhkan penyakit."
   },
@@ -162,14 +162,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "Apples and oranges are healthy because they have ___.",
-    options: ["fat","vitamins","salt"],
+    options: ["salt", "fat", "vitamins"],
     answer: "vitamins",
     explanation: "Buah-buahan kaya akan vitamins (vitamin)."
   },
   {
     id: 18,
     question: "My head hurts. I have a ___.",
-    options: ["stomachache","headache","fever"],
+    options: ["fever", "stomachache", "headache"],
     answer: "headache",
     explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
   },
@@ -183,7 +183,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "If you have a cold, you should take some ___.",
-    options: ["sugar","medicine","exercise"],
+    options: ["exercise", "sugar", "medicine"],
     answer: "medicine",
     explanation: "Medicine (obat) membantu menyembuhkan penyakit."
   }

@@ -74,7 +74,7 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "___ you like chocolate?",
-    options: ['Do', 'Are', 'Have'],
+    options: ['Are', 'Do', 'Have'],
     answer: 'Do',
     explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
   },
@@ -88,63 +88,63 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "Who ___ the window? (Subject Question)",
-    options: ['did break', 'broke', 'does break'],
+    options: ['broke', 'did break', 'does break'],
     answer: 'broke',
     explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
   },
   {
     id: 4,
     question: "___ car is this?",
-    options: ['Who', 'Who\'s', 'Whose'],
+    options: ['Whose', 'Who', 'Who\'s'],
     answer: 'Whose',
     explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
   },
   {
     id: 5,
     question: "___ many apples do you need?",
-    options: ['How', 'What', 'Who'],
+    options: ['What', 'Who', 'How'],
     answer: 'How',
     explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
   },
   {
     id: 6,
     question: "___ you like chocolate?",
-    options: ["Do","Are","Have"],
+    options: ["Are", "Do", "Have"],
     answer: "Do",
     explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
   },
   {
     id: 7,
     question: "Where ___ he live?",
-    options: ["do","does","is"],
+    options: ["does", "do", "is"],
     answer: "does",
     explanation: "Simple Present dengan 'The boy' menggunakan 'Does'."
   },
   {
     id: 8,
     question: "Who ___ the window? (Subject Question)",
-    options: ["did break","broke","does break"],
+    options: ["broke", "did break", "does break"],
     answer: "broke",
     explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
   },
   {
     id: 9,
     question: "___ car is this?",
-    options: ["Who","Who's","Whose"],
+    options: ["Whose", "Who", "Who's"],
     answer: "Whose",
     explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
   },
   {
     id: 10,
     question: "___ many apples do you need?",
-    options: ["How","What","Who"],
+    options: ["What", "Who", "How"],
     answer: "How",
     explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
   },
   {
     id: 11,
     question: "___ you like chocolate?",
-    options: ["Do","Are","Have"],
+    options: ["Are", "Do", "Have"],
     answer: "Do",
     explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
   },
@@ -158,56 +158,56 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Who ___ the window? (Subject Question)",
-    options: ["did break","broke","does break"],
+    options: ["broke", "did break", "does break"],
     answer: "broke",
     explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
   },
   {
     id: 14,
     question: "___ bus is this?",
-    options: ["Who","Who's","Whose"],
+    options: ["Who's", "Whose", "Who"],
     answer: "Whose",
     explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
   },
   {
     id: 15,
     question: "___ many apples do you need?",
-    options: ["How","What","Who"],
+    options: ["What", "Who", "How"],
     answer: "How",
     explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
   },
   {
     id: 16,
     question: "___ you like chocolate?",
-    options: ["Do","Are","Have"],
+    options: ["Are", "Do", "Have"],
     answer: "Do",
     explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
   },
   {
     id: 17,
     question: "Where ___ the girl live?",
-    options: ["do","does","is"],
+    options: ["does", "is", "do"],
     answer: "does",
     explanation: "Simple Present dengan 'Anna' menggunakan 'Does'."
   },
   {
     id: 18,
     question: "Who ___ the window? (Subject Question)",
-    options: ["did break","broke","does break"],
+    options: ["broke", "did break", "does break"],
     answer: "broke",
     explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
   },
   {
     id: 19,
     question: "___ car is this?",
-    options: ["Who","Who's","Whose"],
+    options: ["Whose", "Who", "Who's"],
     answer: "Whose",
     explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
   },
   {
     id: 20,
     question: "___ many apples do you need?",
-    options: ["How","What","Who"],
+    options: ["What", "Who", "How"],
     answer: "How",
     explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
   }

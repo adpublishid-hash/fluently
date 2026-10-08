@@ -50,14 +50,14 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "It is dark in here. Please ___ the light.",
-    options: ['turn off', 'turn on', 'get on'],
+    options: ['get on', 'turn on', 'turn off'],
     answer: 'turn on',
     explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
   },
   {
     id: 2,
     question: "You need to ___ your shoes before entering the mosque.",
-    options: ['take off', 'put on', 'get off'],
+    options: ['get off', 'put on', 'take off'],
     answer: 'take off',
     explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
   },
@@ -71,28 +71,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 4,
     question: "I lost my keys. Can you help me ___ them?",
-    options: ['look at', 'look after', 'look for'],
+    options: ['look after', 'look for', 'look at'],
     answer: 'look for',
     explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
   },
   {
     id: 5,
     question: "This shirt looks nice. I want to ___ it ___.",
-    options: ['try / on', 'put / away', 'fill / in'],
+    options: ['try / on', 'fill / in', 'put / away'],
     answer: 'try / on',
     explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
   },
   {
     id: 6,
     question: "It is dark in here. Please ___ the light.",
-    options: ["turn off","turn on","get on"],
+    options: ["get on", "turn on", "turn off"],
     answer: "turn on",
     explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
   },
   {
     id: 7,
     question: "You need to ___ your shoes before entering the mosque.",
-    options: ["take off","put on","get off"],
+    options: ["get off", "put on", "take off"],
     answer: "take off",
     explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
   },
@@ -106,28 +106,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "I lost my keys. Can you help me ___ them?",
-    options: ["look at","look after","look for"],
+    options: ["look after", "look for", "look at"],
     answer: "look for",
     explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
   },
   {
     id: 10,
     question: "This shirt looks nice. I want to ___ it ___.",
-    options: ["try / on","put / away","fill / in"],
+    options: ["try / on", "fill / in", "put / away"],
     answer: "try / on",
     explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
   },
   {
     id: 11,
     question: "It is dark in here. Please ___ the light.",
-    options: ["turn off","turn on","get on"],
+    options: ["get on", "turn on", "turn off"],
     answer: "turn on",
     explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
   },
   {
     id: 12,
     question: "You need to ___ your shoes before entering the mosque.",
-    options: ["take off","put on","get off"],
+    options: ["get off", "put on", "take off"],
     answer: "take off",
     explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
   },
@@ -141,28 +141,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "I lost my keys. Can you help me ___ them?",
-    options: ["look at","look after","look for"],
+    options: ["look after", "look for", "look at"],
     answer: "look for",
     explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
   },
   {
     id: 15,
     question: "This shirt looks nice. I want to ___ it ___.",
-    options: ["try / on","put / away","fill / in"],
+    options: ["try / on", "fill / in", "put / away"],
     answer: "try / on",
     explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
   },
   {
     id: 16,
     question: "It is dark in here. Please ___ the light.",
-    options: ["turn off","turn on","get on"],
+    options: ["get on", "turn on", "turn off"],
     answer: "turn on",
     explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
   },
   {
     id: 17,
     question: "You need to ___ your shoes before entering the mosque.",
-    options: ["take off","put on","get off"],
+    options: ["get off", "put on", "take off"],
     answer: "take off",
     explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
   },
@@ -176,14 +176,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "I lost my keys. Can you help me ___ them?",
-    options: ["look at","look after","look for"],
+    options: ["look after", "look for", "look at"],
     answer: "look for",
     explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
   },
   {
     id: 20,
     question: "This shirt looks nice. I want to ___ it ___.",
-    options: ["try / on","put / away","fill / in"],
+    options: ["try / on", "fill / in", "put / away"],
     answer: "try / on",
     explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
   }

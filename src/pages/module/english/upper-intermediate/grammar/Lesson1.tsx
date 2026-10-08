@@ -61,10 +61,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Choose the correct tense: \"When I arrived, she ___ (already leave) the office.\"",
     "opts": [
+      "was already leaving",
       "already left",
       "had already left",
-      "has already left",
-      "was already leaving"
+      "has already left"
     ],
     "ans": "had already left",
     "exp": "Past Perfect (had left) digunakan untuk aksi yang selesai SEBELUM aksi lain di masa lalu (arrived)."
@@ -72,10 +72,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence uses Present Perfect CORRECTLY?",
     "opts": [
-      "I have seen him yesterday.",
-      "She has moved to London last year.",
       "We have already submitted the report.",
-      "They have worked there in 2020."
+      "They have worked there in 2020.",
+      "I have seen him yesterday.",
+      "She has moved to London last year."
     ],
     "ans": "We have already submitted the report.",
     "exp": "\"Already\" adalah signal word Present Perfect. Kalimat lain salah karena menggunakan time adverb past (yesterday, last year, in 2020)."
@@ -84,8 +84,8 @@ const QUIZ: QuizItem[] = [
     "q": "\"By the time you read this, I ___ (finish) the project.\" Choose correctly.",
     "opts": [
       "will finish",
-      "will have finished",
       "have finished",
+      "will have finished",
       "had finished"
     ],
     "ans": "will have finished",
@@ -94,10 +94,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "She ___ English for 10 years, so she is fluent now.",
     "opts": [
-      "studied",
       "has studied",
-      "had studied",
-      "will study"
+      "will study",
+      "studied",
+      "had studied"
     ],
     "ans": "has studied",
     "exp": "Present Perfect dengan \"for\" menunjukkan aksi yang dimulai masa lalu dan masih relevan sekarang."
@@ -105,10 +105,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "He told me he ___ never ___ to Japan before.",
     "opts": [
-      "has, been",
       "will, go",
-      "had, been",
-      "was, gone"
+      "has, been",
+      "was, gone",
+      "had, been"
     ],
     "ans": "had, been",
     "exp": "Past Perfect dalam reported speech: dia menceritakan pengalamannya sebelum saat berbicara."
@@ -116,10 +116,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Researchers ___ the data by the time the conference begins.\" Best choice?",
     "opts": [
-      "analyse",
       "have analysed",
-      "will have analysed",
-      "had analysed"
+      "had analysed",
+      "analyse",
+      "will have analysed"
     ],
     "ans": "will have analysed",
     "exp": "Future Perfect menunjukkan bahwa analisis akan selesai sebelum konferensi dimulai."
@@ -128,9 +128,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which time expression goes with the Past Perfect tense?",
     "opts": [
       "yesterday",
-      "by the time",
       "since last year",
-      "tomorrow"
+      "tomorrow",
+      "by the time"
     ],
     "ans": "by the time",
     "exp": "\"By the time\" + Past Perfect menunjukkan urutan kronologis dua peristiwa masa lalu."
@@ -138,10 +138,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "I ___ three novels this year. (tahun ini belum selesai)",
     "opts": [
-      "read",
-      "have read",
       "had read",
-      "will read"
+      "will read",
+      "read",
+      "have read"
     ],
     "ans": "have read",
     "exp": "Present Perfect digunakan karena waktu (this year) belum selesai - masih dalam periode yang sama."
@@ -149,10 +149,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Before smartphones, people ___ maps to navigate.\" Choose correctly.",
     "opts": [
-      "use",
-      "have used",
       "had used",
-      "will have used"
+      "will have used",
+      "use",
+      "have used"
     ],
     "ans": "had used",
     "exp": "Past Perfect menunjukkan kebiasaan yang ada sebelum peristiwa lain (sebelum era smartphone)."
@@ -160,10 +160,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence shows the CORRECT future perfect structure?",
     "opts": [
-      "She will finish the project.",
-      "She finishes the project by Monday.",
       "She will have finished the project by Monday.",
-      "She had finished the project by Monday."
+      "She had finished the project by Monday.",
+      "She finishes the project by Monday.",
+      "She will finish the project."
     ],
     "ans": "She will have finished the project by Monday.",
     "exp": "Future Perfect: will + have + past participle, with \"by Monday\" sebagai deadline masa depan."
@@ -172,9 +172,9 @@ const QUIZ: QuizItem[] = [
     "q": "The signal word \"yet\" is typically used with which tense?",
     "opts": [
       "Past Simple",
-      "Past Perfect",
       "Present Perfect",
-      "Future Perfect"
+      "Future Perfect",
+      "Past Perfect"
     ],
     "ans": "Present Perfect",
     "exp": "\"Yet\" digunakan dalam kalimat Present Perfect, biasanya dalam pertanyaan atau kalimat negatif."
@@ -182,9 +182,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"___ you ever ___ bungee jumping?\" Choose correctly.",
     "opts": [
-      "Did, try",
-      "Have, tried",
       "Had, tried",
+      "Have, tried",
+      "Did, try",
       "Will, try"
     ],
     "ans": "Have, tried",
@@ -193,9 +193,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "By 2050, scientists predict they ___ a cure for cancer.",
     "opts": [
-      "find",
-      "have found",
       "had found",
+      "have found",
+      "find",
       "will have found"
     ],
     "ans": "will have found",
@@ -204,10 +204,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"I ___ here since 2015\" means I am still here now.",
     "opts": [
-      "was working",
       "worked",
-      "have been working",
-      "had worked"
+      "had worked",
+      "was working",
+      "have been working"
     ],
     "ans": "have been working",
     "exp": "Present Perfect Continuous (have been working + since) = aktivitas yang dimulai di masa lalu dan masih berlangsung."
@@ -216,8 +216,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which sentence INCORRECTLY uses Past Perfect?",
     "opts": [
       "She had eaten before he arrived.",
-      "They had left when I called.",
       "He had been born in 1990.",
+      "They had left when I called.",
       "I had went to the store."
     ],
     "ans": "I had went to the store.",
@@ -237,10 +237,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The phrase \"by the time\" signals which tense combination?",
     "opts": [
-      "Present + Past",
-      "Past + Present Perfect",
       "Past + Past Perfect",
-      "Future + Past"
+      "Future + Past",
+      "Present + Past",
+      "Past + Present Perfect"
     ],
     "ans": "Past + Past Perfect",
     "exp": "\"By the time + Past Simple, + Past Perfect\" → By the time she arrived, he had left."
@@ -259,10 +259,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which shows CORRECT signal word for Future Perfect?",
     "opts": [
-      "yesterday",
-      "just",
       "by next year",
-      "since"
+      "since",
+      "just",
+      "yesterday"
     ],
     "ans": "by next year",
     "exp": "\"By + future time\" → Future Perfect: \"By next year, she will have graduated.\""
@@ -270,10 +270,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which sentence uses \"for\" correctly with Present Perfect?",
     "opts": [
-      "I have been here for yesterday.",
       "She has lived there for 2010.",
+      "He has studied for last month.",
       "They have worked here for 5 years.",
-      "He has studied for last month."
+      "I have been here for yesterday."
     ],
     "ans": "They have worked here for 5 years.",
     "exp": "\"For + duration\" (5 years) dengan Present Perfect berarti aksi berlangsung dari waktu tertentu hingga sekarang."

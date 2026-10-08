@@ -78,41 +78,41 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Di mana Anda biasanya mendengar bunyi 'Dark L'?",
-    options: ['Di awal kata', 'Di akhir kata'],
+    options: ['Di akhir kata', 'Di awal kata'],
     answer: 'Di akhir kata',
     explanation: "Contoh: 'Ball'. Bunyi tersebut beresonansi di bagian belakang tenggorokan."
   },
   {
     id: 2,
     question: "Bagaimana cara mengucapkan 'Months'?",
-    options: ['Mun-s', 'Mun-ths', 'Month-iz'],
+    options: ['Month-iz', 'Mun-s', 'Mun-ths'],
     answer: 'Mun-ths',
     explanation: "Anda harus beralih dari N ke TH ke S. Itu rumit!"
   },
   {
     id: 3,
     question: "Kata mana yang mengandung kombinasi 'RL'?",
-    options: ['Word', 'World', 'Wood'],
+    options: ['Word', 'Wood', 'World'],
     answer: 'World',
     explanation: "World memiliki bunyi R dan L. Word hanya memiliki R."
   },
-  { id: 4, question: "Dalam kata 'Sixth', bunyi akhirnya adalah...", options: ['/ks/', '/kθ/', '/ksθ/'], answer: '/ksθ/', explanation: "Itu diakhiri dengan bunyi K-S-TH bersama-sama." },
-  { id: 5, question: "'Light L' (di awal kata) dibentuk oleh...", options: ['Ujung lidah menyentuh gigi bagian atas', 'Bagian belakang lidah naik', 'Bibir bulat'], answer: 'Ujung lidah menyentuh gigi bagian atas', explanation: "Light L = ujung lidah ke ridge di belakang gigi." },
-  { id: 6, question: "'Dark L' (di akhir kata) dibentuk oleh...", options: ['Ujung lidah menyentuh gigi', 'Bagian belakang lidah naik', 'Bibir terbuka lebar'], answer: 'Bagian belakang lidah naik', explanation: "Dark L = back of tongue raises, sounds deeper/resonant." },
-  { id: 7, question: "'Clothes' /kloʊðz/ memiliki bunyi TH yang...", options: ['Bersuara (voiced)', 'Tak bersuara (voiceless)'], answer: 'Bersuara (voiced)', explanation: "TH dalam 'clothes' adalah /ð/ (bersuara/buzz)." },
+  { id: 4, question: "Dalam kata 'Sixth', bunyi akhirnya adalah...", options: ['/ksθ/', '/kθ/', '/ks/'], answer: '/ksθ/', explanation: "Itu diakhiri dengan bunyi K-S-TH bersama-sama." },
+  { id: 5, question: "'Light L' (di awal kata) dibentuk oleh...", options: ['Bibir bulat', 'Ujung lidah menyentuh gigi bagian atas', 'Bagian belakang lidah naik'], answer: 'Ujung lidah menyentuh gigi bagian atas', explanation: "Light L = ujung lidah ke ridge di belakang gigi." },
+  { id: 6, question: "'Dark L' (di akhir kata) dibentuk oleh...", options: ['Bibir terbuka lebar', 'Ujung lidah menyentuh gigi', 'Bagian belakang lidah naik'], answer: 'Bagian belakang lidah naik', explanation: "Dark L = back of tongue raises, sounds deeper/resonant." },
+  { id: 7, question: "'Clothes' /kloʊðz/ memiliki bunyi TH yang...", options: ['Tak bersuara (voiceless)', 'Bersuara (voiced)'], answer: 'Bersuara (voiced)', explanation: "TH dalam 'clothes' adalah /ð/ (bersuara/buzz)." },
   { id: 8, question: "'Cloths' /klɔːθs/ memiliki bunyi TH yang...", options: ['Bersuara', 'Tak bersuara (voiceless)'], answer: 'Tak bersuara (voiceless)', explanation: "Cloths = /θ/ (voiceless, seperti angin)." },
-  { id: 9, question: "Kata 'World' sulit karena...", options: ['Hanya satu konsonan', 'Kombinasi R + Dark L + D', 'Tidak ada vokal'], answer: 'Kombinasi R + Dark L + D', explanation: "/wɜːrld/ = R sound kemudian Dark L kemudian D." },
-  { id: 10, question: "Kata 'Girl' memiliki gugus konsonan...", options: ['/rl/', '/ll/', '/rr/'], answer: '/rl/', explanation: "Girl = /gɜːrl/, R kemudian Dark L." },
-  { id: 11, question: "Dalam 'Months', urutan bunyi adalah...", options: ['M-O-N-S', 'M-U-N-TH-S', 'M-O-N-TH'], answer: 'M-U-N-TH-S', explanation: "/mʌnθs/ = harus ucapkan TH sebelum S." },
-  { id: 12, question: "Kesalahan umum dengan 'Sixth' adalah...", options: ['Menghilangkan /k/', 'Menghilangkan /θ/ (TH)', 'Menghilangkan /s/'], answer: 'Menghilangkan /θ/ (TH)', explanation: "Banyak learners say 'siks' instead of 'siksθ'." },
-  { id: 13, question: "'Ball' dan 'Bell' berbeda dalam...", options: ['Bunyi L (sama Dark L)', 'Vokal (/ɔː/ vs /ɛ/)', 'Bunyi B'], answer: 'Vokal (/ɔː/ vs /ɛ/)', explanation: "Ball = /bɔːl/, Bell = /bɛl/. Keduanya Dark L." },
-  { id: 14, question: "Untuk Dark L, posisi lidah seperti...", options: ['Datar dan rileks', 'Ujung naik, belakang turun', 'Ujung turun, belakang naik'], answer: 'Ujung turun, belakang naik', explanation: "Dark L = back of tongue rises toward soft palate." },
-  { id: 15, question: "Kata 'Earl' sulit karena...", options: ['R + Dark L kombinasi', 'Terlalu panjang', 'Tidak ada vokal'], answer: 'R + Dark L kombinasi', explanation: "/ɜːrl/ = R sound blends into Dark L." },
+  { id: 9, question: "Kata 'World' sulit karena...", options: ['Tidak ada vokal', 'Hanya satu konsonan', 'Kombinasi R + Dark L + D'], answer: 'Kombinasi R + Dark L + D', explanation: "/wɜːrld/ = R sound kemudian Dark L kemudian D." },
+  { id: 10, question: "Kata 'Girl' memiliki gugus konsonan...", options: ['/ll/', '/rl/', '/rr/'], answer: '/rl/', explanation: "Girl = /gɜːrl/, R kemudian Dark L." },
+  { id: 11, question: "Dalam 'Months', urutan bunyi adalah...", options: ['M-O-N-TH', 'M-U-N-TH-S', 'M-O-N-S'], answer: 'M-U-N-TH-S', explanation: "/mʌnθs/ = harus ucapkan TH sebelum S." },
+  { id: 12, question: "Kesalahan umum dengan 'Sixth' adalah...", options: ['Menghilangkan /θ/ (TH)', 'Menghilangkan /k/', 'Menghilangkan /s/'], answer: 'Menghilangkan /θ/ (TH)', explanation: "Banyak learners say 'siks' instead of 'siksθ'." },
+  { id: 13, question: "'Ball' dan 'Bell' berbeda dalam...", options: ['Bunyi B', 'Vokal (/ɔː/ vs /ɛ/)', 'Bunyi L (sama Dark L)'], answer: 'Vokal (/ɔː/ vs /ɛ/)', explanation: "Ball = /bɔːl/, Bell = /bɛl/. Keduanya Dark L." },
+  { id: 14, question: "Untuk Dark L, posisi lidah seperti...", options: ['Ujung naik, belakang turun', 'Ujung turun, belakang naik', 'Datar dan rileks'], answer: 'Ujung turun, belakang naik', explanation: "Dark L = back of tongue rises toward soft palate." },
+  { id: 15, question: "Kata 'Earl' sulit karena...", options: ['Terlalu panjang', 'Tidak ada vokal', 'R + Dark L kombinasi'], answer: 'R + Dark L kombinasi', explanation: "/ɜːrl/ = R sound blends into Dark L." },
   { id: 16, question: "'Film' sering salah diucapkan sebagai...", options: ['Fil-um (dua suku kata)', 'Correct: Film (satu suku kata)', 'Fee-lum'], answer: 'Fil-um (dua suku kata)', explanation: "Film = /fɪlm/, bukan 'fil-um'. Langsung dari L ke M." },
   { id: 17, question: "Konsonan gugus yang paling sulit biasanya...", options: ['Di awal kata', 'Di akhir kata', 'Di tengah kata'], answer: 'Di akhir kata', explanation: "Final clusters (akhir kata) seperti -nths, -ksθ paling sulit." },
-  { id: 18, question: "'Fifth' diakhiri dengan bunyi...", options: ['/f/', '/fθ/', '/θ/'], answer: '/fθ/', explanation: "Fifth = /fɪfθ/, F kemudian TH." },
+  { id: 18, question: "'Fifth' diakhiri dengan bunyi...", options: ['/fθ/', '/f/', '/θ/'], answer: '/fθ/', explanation: "Fifth = /fɪfθ/, F kemudian TH." },
   { id: 19, question: "Dark L terdengar seperti vokal...", options: ['/u/ atau /w/', '/i/', '/a/'], answer: '/u/ atau /w/', explanation: "Dark L has a 'w' or 'oo' quality (back tongue raised)." },
-  { id: 20, question: "Cara melatih tricky consonants terbaik adalah...", options: ['Ucapkan cepat 100x', 'Slow down, exaggerate, then speed up', 'Skip them'], answer: 'Slow down, exaggerate, then speed up', explanation: "Practice slowly with exaggeration, then gradually increase speed." }
+  { id: 20, question: "Cara melatih tricky consonants terbaik adalah...", options: ['Slow down, exaggerate, then speed up', 'Ucapkan cepat 100x', 'Skip them'], answer: 'Slow down, exaggerate, then speed up', explanation: "Practice slowly with exaggeration, then gradually increase speed." }
 ];
 
 const InterPronunLesson11: React.FC = () => {

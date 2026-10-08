@@ -75,21 +75,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Kata mana yang memiliki akhiran DISUARAKAN?",
-    options: ['Cat', 'Dog', 'Cup'],
+    options: ['Dog', 'Cat', 'Cup'],
     answer: 'Dog',
     explanation: "/g/ disuarakan (tenggorokan bergetar). /t/ dan /p/ tak disuarakan."
   },
   {
     id: 2,
     question: "Bagaimana kamu mengucapkan 'Wanted'?",
-    options: ['/wɒntd/', '/wɒntɪd/ (Suku Kata Ekstra)'],
+    options: ['/wɒntɪd/ (Suku Kata Ekstra)', '/wɒntd/'],
     answer: '/wɒntɪd/ (Suku Kata Ekstra)',
     explanation: "Kata-kata berakhiran T atau D mendapat suku kata ekstra untuk ED."
   },
   {
     id: 3,
     question: "Dalam kalimat 'I love coffee', kata mana yang DITEKANKAN?",
-    options: ['I, Love', 'Love, Coffee', 'I, Coffee'],
+    options: ['I, Love', 'I, Coffee', 'Love, Coffee'],
     answer: 'Love, Coffee',
     explanation: "Kata konten (Kata Kerja, Kata Benda) ditekankan. Kata ganti (I) lemah."
   },
@@ -103,56 +103,56 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Linking: 'Stop it' terdengar seperti...",
-    options: ['Stop... it', 'Sto-pit'],
+    options: ['Sto-pit', 'Stop... it'],
     answer: 'Sto-pit',
     explanation: "Konsonan pindah ke vokal."
   },
   {
     id: 6,
     question: "Kata mana yang memiliki huruf MATI (Silent)?",
-    options: ['Listen', 'Sound', 'Music'],
+    options: ['Music', 'Listen', 'Sound'],
     answer: 'Listen',
     explanation: "Huruf T di Listen mati (/ˈlɪsən/)."
   },
   {
     id: 7,
     question: "Berapa suku kata dalam 'Banana'?",
-    options: ['2', '3', '4'],
+    options: ['4', '3', '2'],
     answer: '3',
     explanation: "Ba-na-na memiliki 3 suku kata (3 bunyi vokal)."
   },
   {
     id: 8,
     question: "Pertanyaan 'Are you happy?' memiliki intonasi...",
-    options: ['Naik (↗)', 'Turun (↘)'],
+    options: ['Turun (↘)', 'Naik (↗)'],
     answer: 'Naik (↗)',
     explanation: "Pertanyaan Ya/Tidak memiliki intonasi naik."
   },
   {
     id: 9,
     question: "Perbedaan /p/ dan /b/ adalah...",
-    options: ['Posisi bibir', 'Vocal cords: /b/ bersuara, /p/ tidak', 'Tidak ada'],
+    options: ['Tidak ada', 'Posisi bibir', 'Vocal cords: /b/ bersuara, /p/ tidak'],
     answer: 'Vocal cords: /b/ bersuara, /p/ tidak',
     explanation: "/b/ membuat tenggorokan bergetar, /p/ hanya udara."
   },
   {
     id: 10,
     question: "ED dalam 'Wanted' diucapkan sebagai...",
-    options: ['/t/', '/d/', '/ɪd/'],
+    options: ['/ɪd/', '/d/', '/t/'],
     answer: '/ɪd/',
     explanation: "Kata yang berakhir T atau D mendapat suku kata tambahan /ɪd/."
   },
   {
     id: 11,
     question: "Vokal dalam 'Cake' adalah...",
-    options: ['Short A (/æ/)', 'Long A (/eɪ/)'],
+    options: ['Long A (/eɪ/)', 'Short A (/æ/)'],
     answer: 'Long A (/eɪ/)',
     explanation: "Magic E membuat A menjadi panjang - 'Cake' = /keɪk/."
   },
   {
     id: 12,
     question: "Kata benda 2 suku kata biasanya ditekan di...",
-    options: ['Suku kata pertama', 'Suku kata kedua'],
+    options: ['Suku kata kedua', 'Suku kata pertama'],
     answer: 'Suku kata pertama',
     explanation: "Contoh: TAble, PENcil, WINdow - semua di awal."
   },
@@ -166,7 +166,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "Huruf mana yang silent dalam 'Knife'?",
-    options: ['K', 'N', 'E'],
+    options: ['N', 'K', 'E'],
     answer: 'K',
     explanation: "K tidak diucapkan - 'Knife' = /naɪf/."
   },
@@ -180,14 +180,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Kata mana yang berakhir /ɪz/?",
-    options: ['Dogs', 'Cats', 'Boxes'],
+    options: ['Boxes', 'Dogs', 'Cats'],
     answer: 'Boxes',
     explanation: "Setelah bunyi desis (x, s, z, sh, ch), kita tambah /ɪz/."
   },
   {
     id: 17,
     question: "Bunyi /θ/ (seperti dalam 'Think') dibuat dengan...",
-    options: ['Lidah menyentuh gigi atas', 'Bibir tertutup', 'Lidah di belakang'],
+    options: ['Lidah menyentuh gigi atas', 'Lidah di belakang', 'Bibir tertutup'],
     answer: 'Lidah menyentuh gigi atas',
     explanation: "TH memerlukan lidah keluar menyentuh gigi."
   },
@@ -208,7 +208,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "Apa kunci pronunciation bahasa Inggris yang baik?",
-    options: ['Ejaan sempurna', 'Praktik dan mendengarkan', 'Hafalan'],
+    options: ['Ejaan sempurna', 'Hafalan', 'Praktik dan mendengarkan'],
     answer: 'Praktik dan mendengarkan',
     explanation: "Latihan dan mendengarkan penutur asli adalah kunci sukses!"
   }

@@ -67,63 +67,63 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Kapan kata 'CAN' biasanya kuat (/kæn/)?",
-    options: ['Dalam kalimat biasa', 'Di akhir kalimat ("Yes, I can")', 'Tidak pernah'],
+    options: ['Di akhir kalimat ("Yes, I can")', 'Dalam kalimat biasa', 'Tidak pernah'],
     answer: 'Di akhir kalimat ("Yes, I can")',
     explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
   },
   {
     id: 2,
     question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming'?",
-    options: ['/fɔːr/ (Four)', '/fər/ (Fur)'],
+    options: ['/fər/ (Fur)', '/fɔːr/ (Four)'],
     answer: '/fər/ (Fur)',
     explanation: "Ia direduksi menjadi bentuk lemah /fər/."
   },
   {
     id: 3,
     question: "Suara mana yang mewakili vokal lemah (Schwa)?",
-    options: ['/ə/', '/e/', '/i/'],
+    options: ['/ə/', '/i/', '/e/'],
     answer: '/ə/',
     explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
   },
   {
     id: 4,
     question: "Dengarkan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ['Menjadi Kuat', 'Menjadi Lemah (/n/)'],
+    options: ['Menjadi Lemah (/n/)', 'Menjadi Kuat'],
     answer: 'Menjadi Lemah (/n/)',
     explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
   },
   {
     id: 5,
     question: "Kapan kata 'CAN' biasanya kuat (/kæn/)?",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
+    options: ["Di akhir kalimat (\"Yes, I can\")", "Dalam kalimat biasa", "Tidak pernah"],
     answer: "Di akhir kalimat (\"Yes, I can\")",
     explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
   },
   {
     id: 6,
     question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming' ?",
-    options: ["/fɔːr/ (Four)","/fər/ (Fur)"],
+    options: ["/fər/ (Fur)", "/fɔːr/ (Four)"],
     answer: "/fər/ (Fur)",
     explanation: "Ia direduksi menjadi bentuk lemah /fər/."
   },
   {
     id: 7,
     question: "Suara mana yang mewakili vokal lemah (Schwa)?",
-    options: ["/ə/","/e/","/i/"],
+    options: ["/ə/", "/i/", "/e/"],
     answer: "/ə/",
     explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
   },
   {
     id: 8,
     question: "Perhatikan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
+    options: ["Menjadi Lemah (/n/)", "Menjadi Kuat"],
     answer: "Menjadi Lemah (/n/)",
     explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
   },
   {
     id: 9,
     question: "Kapan kata 'CAN' biasanya kuat (/kæn/) ?",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
+    options: ["Tidak pernah", "Dalam kalimat biasa", "Di akhir kalimat (\"Yes, I can\")"],
     answer: "Di akhir kalimat (\"Yes, I can\")",
     explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
   },
@@ -137,21 +137,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Suara mana yang mewakili vokal lemah (Schwa)?",
-    options: ["/ə/","/e/","/i/"],
+    options: ["/ə/", "/i/", "/e/"],
     answer: "/ə/",
     explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
   },
   {
     id: 12,
     question: "Dengarkan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
+    options: ["Menjadi Lemah (/n/)", "Menjadi Kuat"],
     answer: "Menjadi Lemah (/n/)",
     explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
   },
   {
     id: 13,
     question: "Kapan kata 'CAN' biasanya kuat (/kæn/)?",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
+    options: ["Di akhir kalimat (\"Yes, I can\")", "Dalam kalimat biasa", "Tidak pernah"],
     answer: "Di akhir kalimat (\"Yes, I can\")",
     explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
   },
@@ -165,7 +165,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "Suara mana yang mewakili vokal lemah (Schwa)...",
-    options: ["/ə/","/e/","/i/"],
+    options: ["/i/", "/ə/", "/e/"],
     answer: "/ə/",
     explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
   },
@@ -179,28 +179,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "Kapan kata 'CAN' biasanya kuat (/kæn/)...",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
+    options: ["Dalam kalimat biasa", "Tidak pernah", "Di akhir kalimat (\"Yes, I can\")"],
     answer: "Di akhir kalimat (\"Yes, I can\")",
     explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
   },
   {
     id: 18,
     question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming'?",
-    options: ["/fɔːr/ (Four)","/fər/ (Fur)"],
+    options: ["/fər/ (Fur)", "/fɔːr/ (Four)"],
     answer: "/fər/ (Fur)",
     explanation: "Ia direduksi menjadi bentuk lemah /fər/."
   },
   {
     id: 19,
     question: "Suara mana yang mewakili vokal lemah (Schwa) ?",
-    options: ["/ə/","/e/","/i/"],
+    options: ["/ə/", "/i/", "/e/"],
     answer: "/ə/",
     explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
   },
   {
     id: 20,
     question: "Dengarkan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
+    options: ["Menjadi Lemah (/n/)", "Menjadi Kuat"],
     answer: "Menjadi Lemah (/n/)",
     explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
   }

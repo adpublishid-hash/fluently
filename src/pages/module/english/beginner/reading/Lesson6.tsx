@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"Full Name" pada formulir artinya...', opts: ['Nama panggilan', 'Nama lengkap', 'Nama keluarga', 'Nama alias'], ans: 'Nama lengkap', exp: '"Full name" = nama lengkap sesuai identitas.' },
-  { q: '"Date of Birth" artinya...', opts: ['Tanggal hari ini', 'Tanggal pernikahan', 'Tanggal lahir', 'Tanggal kadaluarsa'], ans: 'Tanggal lahir', exp: '"Date of birth" = tanggal lahir. Disingkat DOB.' },
+  { q: '"Full Name" pada formulir artinya...', opts: ['Nama panggilan', 'Nama alias', 'Nama keluarga', 'Nama lengkap'], ans: 'Nama lengkap', exp: '"Full name" = nama lengkap sesuai identitas.' },
+  { q: '"Date of Birth" artinya...', opts: ['Tanggal hari ini', 'Tanggal kadaluarsa', 'Tanggal lahir', 'Tanggal pernikahan'], ans: 'Tanggal lahir', exp: '"Date of birth" = tanggal lahir. Disingkat DOB.' },
   { q: '"Nationality" pada formulir artinya...', opts: ['Nama lengkap', 'Kewarganegaraan', 'Alamat', 'Pekerjaan'], ans: 'Kewarganegaraan', exp: '"Nationality" = kewarganegaraan.' },
-  { q: '"Gender" pada formulir artinya...', opts: ['Umur', 'Jenis kelamin', 'Agama', 'Pendidikan'], ans: 'Jenis kelamin', exp: '"Gender" = jenis kelamin (Male = pria, Female = wanita).' },
-  { q: '"Address" pada formulir artinya...', opts: ['Nomor telepon', 'Email', 'Alamat', 'Pekerjaan'], ans: 'Alamat', exp: '"Address" = alamat tempat tinggal.' },
-  { q: '"Occupation" artinya...', opts: ['Hobi', 'Agama', 'Pekerjaan', 'Pendidikan'], ans: 'Pekerjaan', exp: '"Occupation" = pekerjaan / profesi.' },
-  { q: '"Signature" di akhir formulir artinya...', opts: ['Tanggal', 'Nama', 'Tanda tangan', 'Stempel'], ans: 'Tanda tangan', exp: '"Signature" = tanda tangan.' },
-  { q: '"Emergency Contact" artinya...', opts: ['Nomor darurat polisi', 'Kontak keadaan darurat', 'Nomor pemadam kebakaran', 'Nomor ambulance'], ans: 'Kontak keadaan darurat', exp: '"Emergency contact" = kontak yang dihubungi dalam keadaan darurat.' },
-  { q: '"Passport No." artinya...', opts: ['Nomor KTP', 'Nomor paspor', 'Nomor SIM', 'Nomor rekening'], ans: 'Nomor paspor', exp: '"Passport No." = nomor paspor.' },
-  { q: '"Place of Birth" artinya...', opts: ['Tempat tinggal', 'Tempat kerja', 'Tempat lahir', 'Tempat belajar'], ans: 'Tempat lahir', exp: '"Place of birth" = tempat lahir.' },
-  { q: '"Please fill in BLOCK LETTERS" artinya...', opts: ['Isi dengan huruf kecil', 'Isi dengan huruf kapital/cetak', 'Isi dengan huruf miring', 'Isi dengan huruf tebal'], ans: 'Isi dengan huruf kapital/cetak', exp: '"Block letters" atau "capital letters" = huruf kapital/cetak.' },
-  { q: '"Marital Status" artinya...', opts: ['Status pekerjaan', 'Status pendidikan', 'Status pernikahan', 'Status kewarganegaraan'], ans: 'Status pernikahan', exp: '"Marital status" = status pernikahan (Single/Married/Divorced).' },
-  { q: '"Phone Number" artinya...', opts: ['Nomor kamar', 'Nomor paspor', 'Nomor telepon', 'Nomor antrean'], ans: 'Nomor telepon', exp: '"Phone number" = nomor telepon.' },
-  { q: '"Religion" pada formulir artinya...', opts: ['Hobi', 'Agama', 'Suku', 'Bahasa'], ans: 'Agama', exp: '"Religion" = agama.' },
-  { q: '"SINGLE" dalam marital status artinya...', opts: ['Menikah', 'Belum menikah', 'Bercerai', 'Janda/Duda'], ans: 'Belum menikah', exp: '"Single" = belum menikah / lajang.' },
-  { q: '"Next of Kin" artinya...', opts: ['Teman dekat', 'Rekan kerja', 'Keluarga/kerabat terdekat', 'Dokter'], ans: 'Keluarga/kerabat terdekat', exp: '"Next of kin" = kerabat/anggota keluarga terdekat.' },
-  { q: '"MALE" dalam gender artinya...', opts: ['Perempuan', 'Laki-laki', 'Anak-anak', 'Remaja'], ans: 'Laki-laki', exp: '"Male" = laki-laki. "Female" = perempuan.' },
-  { q: '"Zip Code / Postal Code" artinya...', opts: ['Kode negara', 'Kode pos', 'Kode area', 'Kode telepon'], ans: 'Kode pos', exp: '"Zip code" atau "postal code" = kode pos.' },
-  { q: '"Date" pada formulir biasanya ditulis...', opts: ['YYYY/DD/MM', 'DD/MM/YYYY atau MM/DD/YYYY', 'MM-YYYY-DD', 'Semua sama'], ans: 'DD/MM/YYYY atau MM/DD/YYYY', exp: 'Format tanggal internasional: DD/MM/YYYY (Eropa) atau MM/DD/YYYY (Amerika).' },
-  { q: '"Please tick (✓) where applicable" artinya...', opts: ['Isi dengan tulisan', 'Beri tanda centang pada yang sesuai', 'Coret yang tidak perlu', 'Lingkari pilihanmu'], ans: 'Beri tanda centang pada yang sesuai', exp: '"Tick" = tanda centang (✓). "Where applicable" = di mana yang sesuai/relevan.' },
+  { q: '"Gender" pada formulir artinya...', opts: ['Pendidikan', 'Umur', 'Jenis kelamin', 'Agama'], ans: 'Jenis kelamin', exp: '"Gender" = jenis kelamin (Male = pria, Female = wanita).' },
+  { q: '"Address" pada formulir artinya...', opts: ['Nomor telepon', 'Pekerjaan', 'Alamat', 'Email'], ans: 'Alamat', exp: '"Address" = alamat tempat tinggal.' },
+  { q: '"Occupation" artinya...', opts: ['Pekerjaan', 'Pendidikan', 'Agama', 'Hobi'], ans: 'Pekerjaan', exp: '"Occupation" = pekerjaan / profesi.' },
+  { q: '"Signature" di akhir formulir artinya...', opts: ['Tanggal', 'Tanda tangan', 'Nama', 'Stempel'], ans: 'Tanda tangan', exp: '"Signature" = tanda tangan.' },
+  { q: '"Emergency Contact" artinya...', opts: ['Kontak keadaan darurat', 'Nomor ambulance', 'Nomor darurat polisi', 'Nomor pemadam kebakaran'], ans: 'Kontak keadaan darurat', exp: '"Emergency contact" = kontak yang dihubungi dalam keadaan darurat.' },
+  { q: '"Passport No." artinya...', opts: ['Nomor paspor', 'Nomor KTP', 'Nomor rekening', 'Nomor SIM'], ans: 'Nomor paspor', exp: '"Passport No." = nomor paspor.' },
+  { q: '"Place of Birth" artinya...', opts: ['Tempat kerja', 'Tempat belajar', 'Tempat tinggal', 'Tempat lahir'], ans: 'Tempat lahir', exp: '"Place of birth" = tempat lahir.' },
+  { q: '"Please fill in BLOCK LETTERS" artinya...', opts: ['Isi dengan huruf kecil', 'Isi dengan huruf miring', 'Isi dengan huruf kapital/cetak', 'Isi dengan huruf tebal'], ans: 'Isi dengan huruf kapital/cetak', exp: '"Block letters" atau "capital letters" = huruf kapital/cetak.' },
+  { q: '"Marital Status" artinya...', opts: ['Status pekerjaan', 'Status pernikahan', 'Status pendidikan', 'Status kewarganegaraan'], ans: 'Status pernikahan', exp: '"Marital status" = status pernikahan (Single/Married/Divorced).' },
+  { q: '"Phone Number" artinya...', opts: ['Nomor antrean', 'Nomor kamar', 'Nomor paspor', 'Nomor telepon'], ans: 'Nomor telepon', exp: '"Phone number" = nomor telepon.' },
+  { q: '"Religion" pada formulir artinya...', opts: ['Agama', 'Suku', 'Bahasa', 'Hobi'], ans: 'Agama', exp: '"Religion" = agama.' },
+  { q: '"SINGLE" dalam marital status artinya...', opts: ['Belum menikah', 'Menikah', 'Janda/Duda', 'Bercerai'], ans: 'Belum menikah', exp: '"Single" = belum menikah / lajang.' },
+  { q: '"Next of Kin" artinya...', opts: ['Keluarga/kerabat terdekat', 'Dokter', 'Teman dekat', 'Rekan kerja'], ans: 'Keluarga/kerabat terdekat', exp: '"Next of kin" = kerabat/anggota keluarga terdekat.' },
+  { q: '"MALE" dalam gender artinya...', opts: ['Laki-laki', 'Remaja', 'Anak-anak', 'Perempuan'], ans: 'Laki-laki', exp: '"Male" = laki-laki. "Female" = perempuan.' },
+  { q: '"Zip Code / Postal Code" artinya...', opts: ['Kode telepon', 'Kode negara', 'Kode pos', 'Kode area'], ans: 'Kode pos', exp: '"Zip code" atau "postal code" = kode pos.' },
+  { q: '"Date" pada formulir biasanya ditulis...', opts: ['YYYY/DD/MM', 'Semua sama', 'MM-YYYY-DD', 'DD/MM/YYYY atau MM/DD/YYYY'], ans: 'DD/MM/YYYY atau MM/DD/YYYY', exp: 'Format tanggal internasional: DD/MM/YYYY (Eropa) atau MM/DD/YYYY (Amerika).' },
+  { q: '"Please tick (✓) where applicable" artinya...', opts: ['Lingkari pilihanmu', 'Isi dengan tulisan', 'Beri tanda centang pada yang sesuai', 'Coret yang tidak perlu'], ans: 'Beri tanda centang pada yang sesuai', exp: '"Tick" = tanda centang (✓). "Where applicable" = di mana yang sesuai/relevan.' },
 ];
 
 const FORM_PASSAGE = {
@@ -54,11 +54,11 @@ const FORM_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Apa nama lengkap tamu hotel ini?', opts: ['Budi Santoso', 'Budi Prasetyo Santoso', 'Prasetyo Santoso', 'Santoso Budi'], ans: 'Santoso Budi' },
-    { q: 'Apa kewarganegaraan tamu ini?', opts: ['Malaysian', 'Indonesian', 'Singaporean', 'Australian'], ans: 'Indonesian' },
-    { q: 'Kapan tamu ini melakukan check-in?', opts: ['18 April', '19 April', '20 April', '23 April'], ans: '20 April' },
-    { q: 'Apa pekerjaan tamu ini?', opts: ['Doctor', 'Lawyer', 'Engineer', 'Teacher'], ans: 'Engineer' },
-    { q: 'Berapa malam tamu ini menginap?', opts: ['1 malam', '2 malam', '3 malam', '4 malam'], ans: '3 malam' },
+    { q: 'Apa nama lengkap tamu hotel ini?', opts: ['Budi Prasetyo Santoso', 'Santoso Budi', 'Prasetyo Santoso', 'Budi Santoso'], ans: 'Santoso Budi' },
+    { q: 'Apa kewarganegaraan tamu ini?', opts: ['Indonesian', 'Singaporean', 'Australian', 'Malaysian'], ans: 'Indonesian' },
+    { q: 'Kapan tamu ini melakukan check-in?', opts: ['18 April', '23 April', '20 April', '19 April'], ans: '20 April' },
+    { q: 'Apa pekerjaan tamu ini?', opts: ['Lawyer', 'Teacher', 'Engineer', 'Doctor'], ans: 'Engineer' },
+    { q: 'Berapa malam tamu ini menginap?', opts: ['1 malam', '4 malam', '3 malam', '2 malam'], ans: '3 malam' },
   ] as ComprehensionQ[],
 };
 

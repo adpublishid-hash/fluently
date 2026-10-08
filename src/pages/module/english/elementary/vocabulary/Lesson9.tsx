@@ -50,14 +50,14 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "You hear a loud boom during a storm. It is ___.",
-    options: ['Lightning', 'Thunder', 'Fog'],
+    options: ['Lightning', 'Fog', 'Thunder'],
     answer: 'Thunder',
     explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
   },
   {
     id: 2,
     question: "It is very ___ in the desert. There is no water.",
-    options: ['wet', 'cold', 'hot'],
+    options: ['hot', 'wet', 'cold'],
     answer: 'hot',
     explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
   },
@@ -78,21 +78,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "In Winter, it is usually ___.",
-    options: ['hot', 'warm', 'cold'],
+    options: ['warm', 'cold', 'hot'],
     answer: 'cold',
     explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
   },
   {
     id: 6,
     question: "You hear a loud boom during a storm. It is ___.",
-    options: ["Lightning","Thunder","Fog"],
+    options: ["Lightning", "Fog", "Thunder"],
     answer: "Thunder",
     explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
   },
   {
     id: 7,
     question: "It is very ___ in the desert. There is no water.",
-    options: ["wet","cold","hot"],
+    options: ["hot", "wet", "cold"],
     answer: "hot",
     explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
   },
@@ -113,21 +113,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "In Winter, it is usually ___.",
-    options: ["hot","warm","cold"],
+    options: ["warm", "cold", "hot"],
     answer: "cold",
     explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
   },
   {
     id: 11,
     question: "You hear a loud boom during a storm. It is ___.",
-    options: ["Lightning","Thunder","Fog"],
+    options: ["Lightning", "Fog", "Thunder"],
     answer: "Thunder",
     explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
   },
   {
     id: 12,
     question: "It is very ___ in the desert. There is no water.",
-    options: ["wet","cold","hot"],
+    options: ["hot", "wet", "cold"],
     answer: "hot",
     explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
   },
@@ -148,21 +148,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "In Winter, it is usually ___.",
-    options: ["hot","warm","cold"],
+    options: ["warm", "cold", "hot"],
     answer: "cold",
     explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
   },
   {
     id: 16,
     question: "You hear a loud boom during a storm. It is ___.",
-    options: ["Lightning","Thunder","Fog"],
+    options: ["Lightning", "Fog", "Thunder"],
     answer: "Thunder",
     explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
   },
   {
     id: 17,
     question: "It is very ___ in the desert. There is no water.",
-    options: ["wet","cold","hot"],
+    options: ["hot", "wet", "cold"],
     answer: "hot",
     explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
   },
@@ -183,7 +183,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "In Winter, it is usually ___.",
-    options: ["hot","warm","cold"],
+    options: ["warm", "cold", "hot"],
     answer: "cold",
     explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
   }

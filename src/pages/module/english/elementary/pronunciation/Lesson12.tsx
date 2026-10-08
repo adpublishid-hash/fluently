@@ -53,140 +53,140 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Apa tujuan utama dari Shadowing?",
-    options: ['Menghafal kata-kata', 'Meniru ritme dan kecepatan', 'Menerjemahkan dengan cepat'],
+    options: ['Meniru ritme dan kecepatan', 'Menerjemahkan dengan cepat', 'Menghafal kata-kata'],
     answer: 'Meniru ritme dan kecepatan',
     explanation: "Shadowing membantu mulutmu terbiasa dengan aliran alami, kecepatan, dan musik bahasa Inggris."
   },
   {
     id: 2,
     question: "Saat melakukan shadowing, kamu harus berbicara...",
-    options: ['Setelah audio selesai', 'Pada saat yang sama dengan audio', 'Sebelum audio'],
+    options: ['Pada saat yang sama dengan audio', 'Setelah audio selesai', 'Sebelum audio'],
     answer: 'Pada saat yang sama dengan audio',
     explanation: "Kamu mengikuti pembicara seperti bayangan, hampir bersamaan."
   },
   {
     id: 3,
     question: "Jika kamu tidak bisa mengikuti kecepatannya, apa yang harus kamu lakukan?",
-    options: ['Berhenti dan menyerah', 'Bergumam/Berbisik dulu', 'Membaca buku saja'],
+    options: ['Bergumam/Berbisik dulu', 'Membaca buku saja', 'Berhenti dan menyerah'],
     answer: 'Bergumam/Berbisik dulu',
     explanation: "Mulailah dengan bergumam untuk mendapatkan ritme sebelum mencoba mengucapkan setiap suara dengan jelas."
   },
   {
     id: 4,
     question: "Shadowing membantu meningkatkan...",
-    options: ['Ejaan tulisan', 'Aturan tata bahasa', 'Intonasi & Kefasihan'],
+    options: ['Ejaan tulisan', 'Intonasi & Kefasihan', 'Aturan tata bahasa'],
     answer: 'Intonasi & Kefasihan',
     explanation: "Ini melatih memori ototmu untuk pola bicara alami."
   },
   {
     id: 5,
     question: "Apa tujuan utama dari Shadowing?",
-    options: ["Menghafal kata-kata","Meniru ritme dan kecepatan","Menerjemahkan dengan cepat"],
+    options: ["Meniru ritme dan kecepatan", "Menerjemahkan dengan cepat", "Menghafal kata-kata"],
     answer: "Meniru ritme dan kecepatan",
     explanation: "Shadowing membantu mulutmu terbiasa dengan aliran alami, kecepatan, dan musik bahasa Inggris."
   },
   {
     id: 6,
     question: "Saat melakukan shadowing, kamu harus berbicara:",
-    options: ["Setelah audio selesai","Pada saat yang sama dengan audio","Sebelum audio"],
+    options: ["Pada saat yang sama dengan audio", "Sebelum audio", "Setelah audio selesai"],
     answer: "Pada saat yang sama dengan audio",
     explanation: "Kamu mengikuti pembicara seperti bayangan, hampir bersamaan."
   },
   {
     id: 7,
     question: "Jika kamu tidak bisa mengikuti kecepatannya, apa yang harus kamu lakukan?",
-    options: ["Berhenti dan menyerah","Bergumam/Berbisik dulu","Membaca buku saja"],
+    options: ["Bergumam/Berbisik dulu", "Membaca buku saja", "Berhenti dan menyerah"],
     answer: "Bergumam/Berbisik dulu",
     explanation: "Mulailah dengan bergumam untuk mendapatkan ritme sebelum mencoba mengucapkan setiap suara dengan jelas."
   },
   {
     id: 8,
     question: "Shadowing membantu meningkatkan:",
-    options: ["Ejaan tulisan","Aturan tata bahasa","Intonasi & Kefasihan"],
+    options: ["Ejaan tulisan", "Intonasi & Kefasihan", "Aturan tata bahasa"],
     answer: "Intonasi & Kefasihan",
     explanation: "Ini melatih memori ototmu untuk pola bicara alami."
   },
   {
     id: 9,
     question: "Apa tujuan utama dari Shadowing ?",
-    options: ["Menghafal kata-kata","Meniru ritme dan kecepatan","Menerjemahkan dengan cepat"],
+    options: ["Meniru ritme dan kecepatan", "Menerjemahkan dengan cepat", "Menghafal kata-kata"],
     answer: "Meniru ritme dan kecepatan",
     explanation: "Shadowing membantu mulutmu terbiasa dengan aliran alami, kecepatan, dan musik bahasa Inggris."
   },
   {
     id: 10,
     question: "Saat melakukan shadowing, kamu harus berbicara:",
-    options: ["Setelah audio selesai","Pada saat yang sama dengan audio","Sebelum audio"],
+    options: ["Pada saat yang sama dengan audio", "Sebelum audio", "Setelah audio selesai"],
     answer: "Pada saat yang sama dengan audio",
     explanation: "Kamu mengikuti pembicara seperti bayangan, hampir bersamaan."
   },
   {
     id: 11,
     question: "Jika kamu tidak bisa mengikuti kecepatannya, apa yang harus kamu lakukan?",
-    options: ["Berhenti dan menyerah","Bergumam/Berbisik dulu","Membaca buku saja"],
+    options: ["Bergumam/Berbisik dulu", "Membaca buku saja", "Berhenti dan menyerah"],
     answer: "Bergumam/Berbisik dulu",
     explanation: "Mulailah dengan bergumam untuk mendapatkan ritme sebelum mencoba mengucapkan setiap suara dengan jelas."
   },
   {
     id: 12,
     question: "Shadowing membantu meningkatkan...",
-    options: ["Ejaan tulisan","Aturan tata bahasa","Intonasi & Kefasihan"],
+    options: ["Ejaan tulisan", "Intonasi & Kefasihan", "Aturan tata bahasa"],
     answer: "Intonasi & Kefasihan",
     explanation: "Ini melatih memori ototmu untuk pola bicara alami."
   },
   {
     id: 13,
     question: "Apa tujuan utama dari Shadowing?",
-    options: ["Menghafal kata-kata","Meniru ritme dan kecepatan","Menerjemahkan dengan cepat"],
+    options: ["Meniru ritme dan kecepatan", "Menerjemahkan dengan cepat", "Menghafal kata-kata"],
     answer: "Meniru ritme dan kecepatan",
     explanation: "Shadowing membantu mulutmu terbiasa dengan aliran alami, kecepatan, dan musik bahasa Inggris."
   },
   {
     id: 14,
     question: "Saat melakukan shadowing, kamu harus berbicara...",
-    options: ["Setelah audio selesai","Pada saat yang sama dengan audio","Sebelum audio"],
+    options: ["Pada saat yang sama dengan audio", "Setelah audio selesai", "Sebelum audio"],
     answer: "Pada saat yang sama dengan audio",
     explanation: "Kamu mengikuti pembicara seperti bayangan, hampir bersamaan."
   },
   {
     id: 15,
     question: "Jika kamu tidak bisa mengikuti kecepatannya, apa yang harus kamu lakukan?",
-    options: ["Berhenti dan menyerah","Bergumam/Berbisik dulu","Membaca buku saja"],
+    options: ["Bergumam/Berbisik dulu", "Membaca buku saja", "Berhenti dan menyerah"],
     answer: "Bergumam/Berbisik dulu",
     explanation: "Mulailah dengan bergumam untuk mendapatkan ritme sebelum mencoba mengucapkan setiap suara dengan jelas."
   },
   {
     id: 16,
     question: "Shadowing membantu meningkatkan...",
-    options: ["Ejaan tulisan","Aturan tata bahasa","Intonasi & Kefasihan"],
+    options: ["Ejaan tulisan", "Intonasi & Kefasihan", "Aturan tata bahasa"],
     answer: "Intonasi & Kefasihan",
     explanation: "Ini melatih memori ototmu untuk pola bicara alami."
   },
   {
     id: 17,
     question: "Apa tujuan utama dari Shadowing...",
-    options: ["Menghafal kata-kata","Meniru ritme dan kecepatan","Menerjemahkan dengan cepat"],
+    options: ["Menerjemahkan dengan cepat", "Meniru ritme dan kecepatan", "Menghafal kata-kata"],
     answer: "Meniru ritme dan kecepatan",
     explanation: "Shadowing membantu mulutmu terbiasa dengan aliran alami, kecepatan, dan musik bahasa Inggris."
   },
   {
     id: 18,
     question: "Saat melakukan shadowing, kamu harus berbicara:",
-    options: ["Setelah audio selesai","Pada saat yang sama dengan audio","Sebelum audio"],
+    options: ["Pada saat yang sama dengan audio", "Sebelum audio", "Setelah audio selesai"],
     answer: "Pada saat yang sama dengan audio",
     explanation: "Kamu mengikuti pembicara seperti bayangan, hampir bersamaan."
   },
   {
     id: 19,
     question: "Jika kamu tidak bisa mengikuti kecepatannya, apa yang harus kamu lakukan...",
-    options: ["Berhenti dan menyerah","Bergumam/Berbisik dulu","Membaca buku saja"],
+    options: ["Berhenti dan menyerah", "Membaca buku saja", "Bergumam/Berbisik dulu"],
     answer: "Bergumam/Berbisik dulu",
     explanation: "Mulailah dengan bergumam untuk mendapatkan ritme sebelum mencoba mengucapkan setiap suara dengan jelas."
   },
   {
     id: 20,
     question: "Shadowing membantu meningkatkan... ...",
-    options: ["Ejaan tulisan","Aturan tata bahasa","Intonasi & Kefasihan"],
+    options: ["Ejaan tulisan", "Intonasi & Kefasihan", "Aturan tata bahasa"],
     answer: "Intonasi & Kefasihan",
     explanation: "Ini melatih memori ototmu untuk pola bicara alami."
   }

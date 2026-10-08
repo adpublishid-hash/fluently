@@ -152,9 +152,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "I want to ask about someone's personality. I say:",
     options: [
+      { text: "How is he like?", correct: false },
       { text: "What does he look like?", correct: false },
-      { text: "What is he like?", correct: true },
-      { text: "How is he like?", correct: false }
+      { text: "What is he like?", correct: true }
     ],
     explanation: "'What is he like?' menanyakan karakter/sifat. 'What does he look like?' menanyakan penampilan."
   },
@@ -162,8 +162,8 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "He ___ blue eyes.",
     options: [
-      { text: "is", correct: false },
       { text: "has", correct: true },
+      { text: "is", correct: false },
       { text: "have", correct: false }
     ],
     explanation: "Kita gunakan 'have/has' untuk bagian tubuh (mata, rambut, hidung, kaki)."
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "She ___ tall and slim.",
     options: [
-      { text: "is", correct: true },
       { text: "has", correct: false },
-      { text: "are", correct: false }
+      { text: "are", correct: false },
+      { text: "is", correct: true }
     ],
     explanation: "Kita gunakan 'is/are' untuk kata sifat yang mendeskripsikan keseluruhan tubuh atau orang (tinggi, pendek, gemuk, bahagia)."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "Someone who doesn't like to work is ___.",
     options: [
+      { text: "shy", correct: false },
       { text: "hardworking", correct: false },
-      { text: "lazy", correct: true },
-      { text: "shy", correct: false }
+      { text: "lazy", correct: true }
     ],
     explanation: "'Lazy' (malas) adalah lawan kata dari hardworking (rajin)."
   },
@@ -192,8 +192,8 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "He has no hair. He is ___.",
     options: [
-      { text: "blonde", correct: false },
       { text: "curly", correct: false },
+      { text: "blonde", correct: false },
       { text: "bald", correct: true }
     ],
     explanation: "'Bald' (botak) berarti tidak punya rambut di kepala."
@@ -202,9 +202,9 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"The muscular guy with blue eyes?\"?",
     options: [
-      { text: "Pria berotot dengan mata biru itu?", correct: true },
+      { text: "Apa kamu lihat Tom?", correct: false },
       { text: "Tapi sifatku seperti ayahku.", correct: false },
-      { text: "Apa kamu lihat Tom?", correct: false }
+      { text: "Pria berotot dengan mata biru itu?", correct: true }
     ],
     explanation: "Kalimat \"The muscular guy with blue eyes?\" memiliki arti \"Pria berotot dengan mata biru itu?\"."
   },
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Wow, Dave! Kamu terlihat beda.\"?",
     options: [
-      { text: "Really? Everyone says I have her eyes.", correct: false },
+      { text: "Wow, Dave! You look different.", correct: true },
       { text: "Was he wearing glasses?", correct: false },
-      { text: "Wow, Dave! You look different.", correct: true }
+      { text: "Really? Everyone says I have her eyes.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Wow, Dave! Kamu terlihat beda.\" adalah \"Wow, Dave! You look different.\"."
   },
@@ -223,8 +223,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Yes, and you both have ___ hair.\"\n(Arti: Ya, dan kalian berdua punya rambut keriting.)",
     options: [
       { text: "curly", correct: true },
-      { text: "are", correct: false },
-      { text: "tall", correct: false }
+      { text: "tall", correct: false },
+      { text: "are", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'curly'."
   },
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"But you are very talkative!\"?",
     options: [
+      { text: "Kamu mirip sekali dengan ibumu.", correct: false },
       { text: "Tapi kamu sangat banyak bicara!", correct: true },
-      { text: "Oke. Apa dia ganteng?", correct: false },
-      { text: "Kamu mirip sekali dengan ibumu.", correct: false }
+      { text: "Oke. Apa dia ganteng?", correct: false }
     ],
     explanation: "Kalimat \"But you are very talkative!\" memiliki arti \"Tapi kamu sangat banyak bicara!\"."
   },
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"Really? Everyone says I have her ___.\"\n(Arti: Benarkah? Semua orang bilang aku punya matanya.)",
     options: [
-      { text: "eyes", correct: true },
       { text: "My", correct: false },
-      { text: "Was", correct: false }
+      { text: "Was", correct: false },
+      { text: "eyes", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'eyes'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"Do you like it? My wife hates it.\"?",
     options: [
-      { text: "Oke. Apa dia ganteng?", correct: false },
       { text: "Suka gak? Istriku membencinya.", correct: true },
-      { text: "Tapi kamu sangat banyak bicara!", correct: false }
+      { text: "Tapi kamu sangat banyak bicara!", correct: false },
+      { text: "Oke. Apa dia ganteng?", correct: false }
     ],
     explanation: "Kalimat \"Do you like it? My wife hates it.\" memiliki arti \"Suka gak? Istriku membencinya.\"."
   },
@@ -293,8 +293,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"And you grew a mustache!\"?",
     options: [
       { text: "Dan kamu menumbuhkan kumis!", correct: true },
-      { text: "Aku tahu. Kami bertolak belakang.", correct: false },
-      { text: "Ya! Dia juga sangat berbakat.", correct: false }
+      { text: "Ya! Dia juga sangat berbakat.", correct: false },
+      { text: "Aku tahu. Kami bertolak belakang.", correct: false }
     ],
     explanation: "Kalimat \"And you grew a mustache!\" memiliki arti \"Dan kamu menumbuhkan kumis!\"."
   },
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Tidak, tapi dia memakai topi.\"?",
     options: [
+      { text: "No, but he was wearing a hat.", correct: true },
       { text: "What is your new roommate like?", correct: false },
-      { text: "I don't know him. What does he look like?", correct: false },
-      { text: "No, but he was wearing a hat.", correct: true }
+      { text: "I don't know him. What does he look like?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Tidak, tapi dia memakai topi.\" adalah \"No, but he was wearing a hat.\"."
   },
@@ -312,9 +312,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"She is ___ friendly and outgoing.\"\n(Arti: Dia sangat ramah dan mudah bergaul.)",
     options: [
-      { text: "do", correct: false },
+      { text: "very", correct: true },
       { text: "does", correct: false },
-      { text: "very", correct: true }
+      { text: "do", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'very'."
   },
@@ -333,8 +333,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Aku mau kenalkan kamu ke sepupuku.\"?",
     options: [
       { text: "I want to introduce you to my cousin.", correct: true },
-      { text: "Is he strict about time?", correct: false },
-      { text: "Does he have dark hair?", correct: false }
+      { text: "Does he have dark hair?", correct: false },
+      { text: "Is he strict about time?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku mau kenalkan kamu ke sepupuku.\" adalah \"I want to introduce you to my cousin.\"."
   },
@@ -342,8 +342,8 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"Can you describe the man you ___?\"\n(Arti: Bisakah Anda deskripsikan pria yang Anda lihat?)",
     options: [
-      { text: "dark", correct: false },
       { text: "That", correct: false },
+      { text: "dark", correct: false },
       { text: "saw", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'saw'."

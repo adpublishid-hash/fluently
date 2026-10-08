@@ -47,26 +47,26 @@ const WORLD_TECH_REVIEW = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "A person who starts their own business is an ___.", options: ['Employee', 'Entrepreneur', 'Introvert'], answer: 'Entrepreneur', explanation: "Seorang pebisnis (entrepreneur) adalah seseorang yang mengorganisir dan menjalankan bisnis." },
-  { id: 2, question: "We need to finish this project before the ___.", options: ['headline', 'deadline', 'resume'], answer: 'deadline', explanation: "Deadline (Tenggat waktu) adalah waktu terakhir di mana sesuatu harus diselesaikan." },
+  { id: 1, question: "A person who starts their own business is an ___.", options: ['Entrepreneur', 'Introvert', 'Employee'], answer: 'Entrepreneur', explanation: "Seorang pebisnis (entrepreneur) adalah seseorang yang mengorganisir dan menjalankan bisnis." },
+  { id: 2, question: "We need to finish this project before the ___.", options: ['resume', 'deadline', 'headline'], answer: 'deadline', explanation: "Deadline (Tenggat waktu) adalah waktu terakhir di mana sesuatu harus diselesaikan." },
   { id: 3, question: "Using energy that doesn't harm the future environment is called ___.", options: ['sustainability', 'pollution', 'anxiety'], answer: 'sustainability', explanation: "Sustainability (Keberlanjutan) berarti memenuhi kebutuhan tanpa mengorbankan generasi mendatang." },
-  { id: 4, question: "Someone who prefers to be alone or with few people is ___.", options: ['ambitious', 'introverted', 'viral'], answer: 'introverted', explanation: "Orang yang introvert cenderung tertutup dan pendiam." },
-  { id: 5, question: "The title of a newspaper article is the ___.", options: ['budget', 'headline', 'tuition'], answer: 'headline', explanation: "Headline adalah judul di bagian atas artikel." },
-  { id: 6, question: "You need to ___ a decision quickly.", options: ['do', 'make', 'have'], answer: 'make', explanation: "Kita 'make a decision', bukan 'do' atau 'have' a decision." },
-  { id: 7, question: "It's raining ___. We should stay inside.", options: ['heavily', 'strongly', 'deeply'], answer: 'heavily', explanation: "'Heavily' digunakan untuk mendeskripsikan hujan deras." },
+  { id: 4, question: "Someone who prefers to be alone or with few people is ___.", options: ['introverted', 'viral', 'ambitious'], answer: 'introverted', explanation: "Orang yang introvert cenderung tertutup dan pendiam." },
+  { id: 5, question: "The title of a newspaper article is the ___.", options: ['budget', 'tuition', 'headline'], answer: 'headline', explanation: "Headline adalah judul di bagian atas artikel." },
+  { id: 6, question: "You need to ___ a decision quickly.", options: ['have', 'make', 'do'], answer: 'make', explanation: "Kita 'make a decision', bukan 'do' atau 'have' a decision." },
+  { id: 7, question: "It's raining ___. We should stay inside.", options: ['deeply', 'strongly', 'heavily'], answer: 'heavily', explanation: "'Heavily' digunakan untuk mendeskripsikan hujan deras." },
   { id: 8, question: "The value of money is decreasing. This is called ___.", options: ['recession', 'inflation', 'investment'], answer: 'inflation', explanation: "Inflation (Inflasi) adalah kenaikan harga yang mengurangi daya beli uang." },
-  { id: 9, question: "To protect the environment, we should use ___ energy sources.", options: ['traditional', 'renewable', 'expensive'], answer: 'renewable', explanation: "Renewable energy (Energi terbarukan) dapat diperbaharui dan tidak habis." },
-  { id: 10, question: "She is very ___. She always helps other people.", options: ['selfish', 'generous', 'greedy'], answer: 'generous', explanation: "Generous (Dermawan) berarti suka memberi dan membantu." },
-  { id: 11, question: "We need to ___ the data before making conclusions.", options: ['assume', 'analyze', 'require'], answer: 'analyze', explanation: "Analyze (Menganalisis) berarti memeriksa secara detail untuk memahami." },
-  { id: 12, question: "The researcher proposed a new ___ to test.", options: ['theory', 'hypothesis', 'evidence'], answer: 'hypothesis', explanation: "Hypothesis (Hipotesis) adalah dugaan awal yang perlu dibuktikan melalui eksperimen." },
-  { id: 13, question: "My phone ___ and stopped working.", options: ['upgraded', 'malfunctioned', 'crashed'], answer: 'crashed', explanation: "'Crash' berarti berhenti bekerja tiba-tiba (untuk perangkat elektronik)." },
-  { id: 14, question: "To say you don't agree politely, you can say '___'.", options: ['You are wrong', 'I beg to differ', 'That is stupid'], answer: 'I beg to differ', explanation: "'I beg to differ' adalah cara formal dan sopan untuk tidak setuju." },
-  { id: 15, question: "A very serious problem or danger is a ___.", options: ['solution', 'crisis', 'alternative'], answer: 'crisis', explanation: "Crisis (Krisis) adalah situasi berbahaya atau sulit yang ekstrem." },
-  { id: 16, question: "This job requires ___ knowledge of computers.", options: ['deep', 'high', 'strong'], answer: 'deep', explanation: "'Deep knowledge' (Pengetahuan mendalam) adalah kolokasi yang tepat." },
-  { id: 17, question: "She is very ___. She changes her mind every minute.", options: ['reliable', 'decisive', 'impulsive'], answer: 'impulsive', explanation: "Impulsive berarti bertindak dan memutuskan sesuatu secara tiba-tiba tanpa berpikir panjang." },
-  { id: 18, question: "___, I think this plan will work.", options: ['In my opinion', 'Therefore', 'Nevertheless'], answer: 'In my opinion', explanation: "'In my opinion' (Menurut pendapat saya) digunakan untuk menyatakan pendapat pribadi." },
-  { id: 19, question: "She gave a great ___ presentation.", options: ['deeply', 'highly', 'strong'], answer: 'highly', explanation: "'Highly' digunakan dengan kata sifat positif seperti 'effective', 'successful', atau dengan past participles." },
-  { id: 20, question: "The economy is growing. ___, unemployment is decreasing.", options: ['However', 'Moreover', 'Nevertheless'], answer: 'Moreover', explanation: "'Moreover' (Terlebih lagi) menambahkan informasi yang mendukung pernyataan sebelumnya." }
+  { id: 9, question: "To protect the environment, we should use ___ energy sources.", options: ['renewable', 'expensive', 'traditional'], answer: 'renewable', explanation: "Renewable energy (Energi terbarukan) dapat diperbaharui dan tidak habis." },
+  { id: 10, question: "She is very ___. She always helps other people.", options: ['generous', 'greedy', 'selfish'], answer: 'generous', explanation: "Generous (Dermawan) berarti suka memberi dan membantu." },
+  { id: 11, question: "We need to ___ the data before making conclusions.", options: ['require', 'assume', 'analyze'], answer: 'analyze', explanation: "Analyze (Menganalisis) berarti memeriksa secara detail untuk memahami." },
+  { id: 12, question: "The researcher proposed a new ___ to test.", options: ['evidence', 'hypothesis', 'theory'], answer: 'hypothesis', explanation: "Hypothesis (Hipotesis) adalah dugaan awal yang perlu dibuktikan melalui eksperimen." },
+  { id: 13, question: "My phone ___ and stopped working.", options: ['upgraded', 'crashed', 'malfunctioned'], answer: 'crashed', explanation: "'Crash' berarti berhenti bekerja tiba-tiba (untuk perangkat elektronik)." },
+  { id: 14, question: "To say you don't agree politely, you can say '___'.", options: ['You are wrong', 'That is stupid', 'I beg to differ'], answer: 'I beg to differ', explanation: "'I beg to differ' adalah cara formal dan sopan untuk tidak setuju." },
+  { id: 15, question: "A very serious problem or danger is a ___.", options: ['alternative', 'crisis', 'solution'], answer: 'crisis', explanation: "Crisis (Krisis) adalah situasi berbahaya atau sulit yang ekstrem." },
+  { id: 16, question: "This job requires ___ knowledge of computers.", options: ['high', 'deep', 'strong'], answer: 'deep', explanation: "'Deep knowledge' (Pengetahuan mendalam) adalah kolokasi yang tepat." },
+  { id: 17, question: "She is very ___. She changes her mind every minute.", options: ['reliable', 'impulsive', 'decisive'], answer: 'impulsive', explanation: "Impulsive berarti bertindak dan memutuskan sesuatu secara tiba-tiba tanpa berpikir panjang." },
+  { id: 18, question: "___, I think this plan will work.", options: ['Nevertheless', 'Therefore', 'In my opinion'], answer: 'In my opinion', explanation: "'In my opinion' (Menurut pendapat saya) digunakan untuk menyatakan pendapat pribadi." },
+  { id: 19, question: "She gave a great ___ presentation.", options: ['deeply', 'strong', 'highly'], answer: 'highly', explanation: "'Highly' digunakan dengan kata sifat positif seperti 'effective', 'successful', atau dengan past participles." },
+  { id: 20, question: "The economy is growing. ___, unemployment is decreasing.", options: ['Moreover', 'However', 'Nevertheless'], answer: 'Moreover', explanation: "'Moreover' (Terlebih lagi) menambahkan informasi yang mendukung pernyataan sebelumnya." }
 
 ];
 

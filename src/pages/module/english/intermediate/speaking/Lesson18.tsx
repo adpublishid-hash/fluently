@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing negotiation, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about negotiation? [Q3]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding negotiation? [Q6]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing negotiation, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -100,9 +100,9 @@ const QUIZ_QUESTIONS = [
     "id": 9,
     "question": "Which response strongly agrees with a statement about negotiation? [Q9]",
     "options": [
+      "I couldn't agree more.",
       "That is totally wrong.",
-      "I see your point, but...",
-      "I couldn't agree more."
+      "I see your point, but..."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -133,8 +133,8 @@ const QUIZ_QUESTIONS = [
     "id": 12,
     "question": "Which idiom best describes a very easy task regarding negotiation? [Q12]",
     "options": [
-      "A piece of cake",
       "Under the weather",
+      "A piece of cake",
       "Bite the bullet"
     ],
     "answer": "A piece of cake",
@@ -144,8 +144,8 @@ const QUIZ_QUESTIONS = [
     "id": 13,
     "question": "What is the most polite way to ask about someone's negotiation? [Q13]",
     "options": [
-      "What is your negotiation problem?",
       "I would love to hear about your thoughts on negotiation.",
+      "What is your negotiation problem?",
       "Tell me your negotiation now."
     ],
     "answer": "I would love to hear about your thoughts on negotiation.",
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing negotiation, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,9 +166,9 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about negotiation? [Q15]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -199,8 +199,8 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding negotiation? [Q18]",
     "options": [
-      "A piece of cake",
       "Under the weather",
+      "A piece of cake",
       "Bite the bullet"
     ],
     "answer": "A piece of cake",
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's negotiation? [Q19]",
     "options": [
+      "Tell me your negotiation now.",
       "What is your negotiation problem?",
-      "I would love to hear about your thoughts on negotiation.",
-      "Tell me your negotiation now."
+      "I would love to hear about your thoughts on negotiation."
     ],
     "answer": "I would love to hear about your thoughts on negotiation.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing negotiation, it's important to __ open-minded.\"",
     "options": [
-      "keep",
+      "make",
       "stay",
-      "make"
+      "keep"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

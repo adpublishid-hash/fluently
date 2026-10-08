@@ -50,63 +50,63 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "I won the competition! I feel very ___.",
-    options: ['sad', 'proud', 'lonely'],
+    options: ['sad', 'lonely', 'proud'],
     answer: 'proud',
     explanation: "Memenangkan sesuatu biasanya membuatmu merasa proud (bangga)."
   },
   {
     id: 2,
     question: "The movie was very long and slow. I was ___.",
-    options: ['excited', 'bored', 'nervous'],
+    options: ['bored', 'excited', 'nervous'],
     answer: 'bored',
     explanation: "Hal yang panjang dan lambat sering membuatmu merasa bored (bosan)."
   },
   {
     id: 3,
     question: "She is afraid of spiders. She is ___.",
-    options: ['scared', 'happy', 'grateful'],
+    options: ['happy', 'scared', 'grateful'],
     answer: 'scared',
     explanation: "Afraid adalah sinonim dari scared (takut)."
   },
   {
     id: 4,
     question: "I have an exam tomorrow. I feel ___.",
-    options: ['calm', 'nervous', 'delighted'],
+    options: ['delighted', 'nervous', 'calm'],
     answer: 'nervous',
     explanation: "Ujian sering membuat orang merasa nervous (gugup)."
   },
   {
     id: 5,
     question: "He has no friends here. He feels ___.",
-    options: ['lonely', 'confident', 'cheerful'],
+    options: ['cheerful', 'confident', 'lonely'],
     answer: 'lonely',
     explanation: "Tidak memiliki teman membuatmu merasa lonely (kesepian)."
   },
   {
     id: 6,
     question: "I won the competition! I feel very ___.",
-    options: ["sad","proud","lonely"],
+    options: ["sad", "lonely", "proud"],
     answer: "proud",
     explanation: "Memenangkan sesuatu biasanya membuatmu merasa proud (bangga)."
   },
   {
     id: 7,
     question: "The movie was very long and slow. I was ___.",
-    options: ["excited","bored","nervous"],
+    options: ["bored", "excited", "nervous"],
     answer: "bored",
     explanation: "Hal yang panjang dan lambat sering membuatmu merasa bored (bosan)."
   },
   {
     id: 8,
     question: "the woman is afraid of spiders. the woman is ___.",
-    options: ["scared","happy","grateful"],
+    options: ["grateful", "scared", "happy"],
     answer: "scared",
     explanation: "Afraid adalah sinonim dari scared (takut)."
   },
   {
     id: 9,
     question: "I have an exam tomorrow. I feel ___.",
-    options: ["calm","nervous","delighted"],
+    options: ["delighted", "nervous", "calm"],
     answer: "nervous",
     explanation: "Ujian sering membuat orang merasa nervous (gugup)."
   },
@@ -120,70 +120,70 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "I won the competition! I feel very ___.",
-    options: ["sad","proud","lonely"],
+    options: ["sad", "lonely", "proud"],
     answer: "proud",
     explanation: "Memenangkan sesuatu biasanya membuatmu merasa proud (bangga)."
   },
   {
     id: 12,
     question: "The movie was very long and slow. I was ___.",
-    options: ["excited","bored","nervous"],
+    options: ["bored", "excited", "nervous"],
     answer: "bored",
     explanation: "Hal yang panjang dan lambat sering membuatmu merasa bored (bosan)."
   },
   {
     id: 13,
     question: "The woman is afraid of spiders. The woman is ___.",
-    options: ["scared","happy","grateful"],
+    options: ["grateful", "scared", "happy"],
     answer: "scared",
     explanation: "Afraid adalah sinonim dari scared (takut)."
   },
   {
     id: 14,
     question: "I have an exam tomorrow. I feel ___.",
-    options: ["calm","nervous","delighted"],
+    options: ["delighted", "nervous", "calm"],
     answer: "nervous",
     explanation: "Ujian sering membuat orang merasa nervous (gugup)."
   },
   {
     id: 15,
     question: "He has no friends here. He feels ___.",
-    options: ["lonely","confident","cheerful"],
+    options: ["cheerful", "confident", "lonely"],
     answer: "lonely",
     explanation: "Tidak memiliki teman membuatmu merasa lonely (kesepian)."
   },
   {
     id: 16,
     question: "I won the competition! I feel very ___.",
-    options: ["sad","proud","lonely"],
+    options: ["sad", "lonely", "proud"],
     answer: "proud",
     explanation: "Memenangkan sesuatu biasanya membuatmu merasa proud (bangga)."
   },
   {
     id: 17,
     question: "The movie was very long and slow. I was ___.",
-    options: ["excited","bored","nervous"],
+    options: ["bored", "excited", "nervous"],
     answer: "bored",
     explanation: "Hal yang panjang dan lambat sering membuatmu merasa bored (bosan)."
   },
   {
     id: 18,
     question: "my friend is afraid of spiders. my friend is ___.",
-    options: ["scared","happy","grateful"],
+    options: ["happy", "scared", "grateful"],
     answer: "scared",
     explanation: "Afraid adalah sinonim dari scared (takut)."
   },
   {
     id: 19,
     question: "I have an exam tomorrow. I feel ___.",
-    options: ["calm","nervous","delighted"],
+    options: ["delighted", "nervous", "calm"],
     answer: "nervous",
     explanation: "Ujian sering membuat orang merasa nervous (gugup)."
   },
   {
     id: 20,
     question: "He has no friends here. He feels ___.",
-    options: ["lonely","confident","cheerful"],
+    options: ["cheerful", "confident", "lonely"],
     answer: "lonely",
     explanation: "Tidak memiliki teman membuatmu merasa lonely (kesepian)."
   }

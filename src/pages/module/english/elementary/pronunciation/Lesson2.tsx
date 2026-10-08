@@ -67,21 +67,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Untuk membuat suara /iː/ (seperti Sheep), kamu harus...",
-    options: ['Merilekskan mulut', 'Tersenyum lebar', 'Menurunkan rahang'],
+    options: ['Merilekskan mulut', 'Menurunkan rahang', 'Tersenyum lebar'],
     answer: 'Tersenyum lebar',
     explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
   },
   {
     id: 2,
     question: "Kata mana yang memiliki suara vokal yang sama dengan 'Good'?",
-    options: ['Food', 'Look', 'Blood'],
+    options: ['Look', 'Blood', 'Food'],
     answer: 'Look',
     explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
   },
   {
     id: 3,
     question: "Kata mana yang mengharuskanmu membuka mulut paling lebar?",
-    options: ['Men', 'Man', 'Min'],
+    options: ['Men', 'Min', 'Man'],
     answer: 'Man',
     explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
   },
@@ -95,21 +95,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Ketika menghasilkan bunyi /iː/ (seperti Weep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
+    options: ["Menurunkan rahang", "Tersenyum lebar", "Merilekskan mulut"],
     answer: "Tersenyum lebar",
     explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
   },
   {
     id: 6,
     question: "Pilih kata yang memiliki suara vokal yang sama dengan 'Good' ?",
-    options: ["Food","Look","Blood"],
+    options: ["Food", "Blood", "Look"],
     answer: "Look",
     explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
   },
   {
     id: 7,
     question: "Dari pilihan berikut, mana yang mengharuskanmu membuka mulut paling lebar?",
-    options: ["Men","Man","Min"],
+    options: ["Min", "Man", "Men"],
     answer: "Man",
     explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
   },
@@ -123,21 +123,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "Untuk membuat suara /iː/ (seperti Weep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
+    options: ["Menurunkan rahang", "Tersenyum lebar", "Merilekskan mulut"],
     answer: "Tersenyum lebar",
     explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
   },
   {
     id: 10,
     question: "Dari pilihan berikut, mana yang memiliki suara vokal yang sama dengan 'Good'?",
-    options: ["Food","Look","Blood"],
+    options: ["Look", "Blood", "Food"],
     answer: "Look",
     explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
   },
   {
     id: 11,
     question: "Kata mana yang mengharuskanmu membuka mulut paling lebar ?",
-    options: ["Men","Man","Min"],
+    options: ["Min", "Man", "Men"],
     answer: "Man",
     explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
   },
@@ -151,21 +151,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Saat mengucapkan suara /iː/ (seperti Sheep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
+    options: ["Tersenyum lebar", "Menurunkan rahang", "Merilekskan mulut"],
     answer: "Tersenyum lebar",
     explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
   },
   {
     id: 14,
     question: "Pilih kata yang memiliki suara vokal yang sama dengan 'Good' ?",
-    options: ["Food","Look","Blood"],
+    options: ["Food", "Blood", "Look"],
     answer: "Look",
     explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
   },
   {
     id: 15,
     question: "Dari pilihan berikut, mana yang mengharuskanmu membuka mulut paling lebar?",
-    options: ["Men","Man","Min"],
+    options: ["Min", "Man", "Men"],
     answer: "Man",
     explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
   },
@@ -186,21 +186,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "Manakah kata yang memiliki suara vokal yang sama dengan 'Good' ?",
-    options: ["Food","Look","Blood"],
+    options: ["Blood", "Food", "Look"],
     answer: "Look",
     explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
   },
   {
     id: 19,
     question: "Manakah kata yang mengharuskanmu membuka mulut paling lebar ?",
-    options: ["Men","Man","Min"],
+    options: ["Min", "Man", "Men"],
     answer: "Man",
     explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
   },
   {
     id: 20,
     question: "Dengarkan perbedaannya: 'Fill' vs 'Feel'. Mana yang lebih panjang...",
-    options: ["Fill","Feel"],
+    options: ["Feel", "Fill"],
     answer: "Feel",
     explanation: "'Feel' /iː/ adalah vokal panjang."
   }

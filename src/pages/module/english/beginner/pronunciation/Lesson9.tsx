@@ -95,7 +95,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Kata mana yang memiliki huruf MATI (Silent)?",
-    options: ['Desk', 'Knife', 'Milk'],
+    options: ['Milk', 'Desk', 'Knife'],
     answer: 'Knife',
     explanation: "'K' di Knife adalah mati (silent). Kita mengucapkan /naɪf/."
   },
@@ -109,49 +109,49 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "Bagaimana kamu mengucapkan 'Island'?",
-    options: ['Ice-land', 'Eye-land'],
+    options: ['Eye-land', 'Ice-land'],
     answer: 'Eye-land',
     explanation: "'S' nya mati (silent). Terdengar seperti 'Eye-land'."
   },
   {
     id: 4,
     question: "Kata 'Sheep' memiliki bunyi ___.",
-    options: ['Pendek (Rileks)', 'Panjang (Tersenyum)'],
+    options: ['Panjang (Tersenyum)', 'Pendek (Rileks)'],
     answer: 'Panjang (Tersenyum)',
     explanation: "Sheep /iː/ itu panjang. Ship /ɪ/ itu pendek."
   },
   {
     id: 5,
     question: "Huruf mana yang silent dalam 'Honest'?",
-    options: ['O', 'H', 'T'],
+    options: ['T', 'O', 'H'],
     answer: 'H',
     explanation: "H tidak diucapkan dalam 'Honest' - diucapkan 'onest'."
   },
   {
     id: 6,
     question: "Kesalahan umum: TH diucapkan seperti...",
-    options: ['/θ/ atau /ð/ (lidah keluar)', '/s/ atau /z/', '/t/ atau /d/'],
+    options: ['/t/ atau /d/', '/θ/ atau /ð/ (lidah keluar)', '/s/ atau /z/'],
     answer: '/θ/ atau /ð/ (lidah keluar)',
     explanation: "TH memerlukan lidah menyentuh gigi atas, bukan T atau S."
   },
   {
     id: 7,
     question: "Kata mana yang memiliki silent letter?",
-    options: ['Table', 'Knee', 'Chair'],
+    options: ['Chair', 'Table', 'Knee'],
     answer: 'Knee',
     explanation: "K dalam 'Knee' adalah silent - diucapkan 'nee'."
   },
   {
     id: 8,
     question: "Huruf mana yang silent dalam 'Write'?",
-    options: ['W', 'R', 'T'],
+    options: ['T', 'W', 'R'],
     answer: 'W',
     explanation: "W tidak diucapkan dalam 'Write' - seperti 'rite'."
   },
   {
     id: 9,
     question: "Kesalahan umum dalam 'Walk' adalah...",
-    options: ['Mengucapkan L', 'Mengucapkan W', 'Mengucapkan K'],
+    options: ['Mengucapkan K', 'Mengucapkan W', 'Mengucapkan L'],
     answer: 'Mengucapkan L',
     explanation: "L dalam 'Walk' adalah silent - diucapkan 'wok'."
   },
@@ -165,70 +165,70 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Huruf mana yang silent dalam 'Island'?",
-    options: ['I', 'S', 'D'],
+    options: ['S', 'D', 'I'],
     answer: 'S',
     explanation: "S dalam 'Island' adalah silent - diucapkan 'iland'."
   },
   {
     id: 12,
     question: "Kesalahan umum: V dan W terdengar...",
-    options: ['Berbeda (/v/ dan /w/)', 'Sama', 'Seperti B'],
+    options: ['Seperti B', 'Berbeda (/v/ dan /w/)', 'Sama'],
     answer: 'Berbeda (/v/ dan /w/)',
     explanation: "V = gigi menyentuh bibir. W = bibir bulat. Mereka BERBEDA!"
   },
   {
     id: 13,
     question: "Kata mana yang memiliki silent B?",
-    options: ['Bed', 'Lamb', 'Bat'],
+    options: ['Lamb', 'Bat', 'Bed'],
     answer: 'Lamb',
     explanation: "B dalam 'Lamb' adalah silent - diucapkan 'lam'."
   },
   {
     id: 14,
     question: "Huruf mana yang silent dalam 'Castle'?",
-    options: ['C', 'T', 'E'],
+    options: ['E', 'T', 'C'],
     answer: 'T',
     explanation: "T dalam 'Castle' sering tidak diucapkan - 'cas-sul'."
   },
   {
     id: 15,
     question: "Kesalahan umum: SH diucapkan seperti...",
-    options: ['/ʃ/ (seperti Shhh)', '/s/', '/ch/'],
+    options: ['/ʃ/ (seperti Shhh)', '/ch/', '/s/'],
     answer: '/ʃ/ (seperti Shhh)',
     explanation: "SH diucapkan seperti 'shhh' (diam), bukan S atau CH."
   },
   {
     id: 16,
     question: "Kata mana yang memiliki silent H?",
-    options: ['House', 'Hour', 'Help'],
+    options: ['Help', 'House', 'Hour'],
     answer: 'Hour',
     explanation: "H dalam 'Hour' adalah silent - diucapkan 'our'."
   },
   {
     id: 17,
     question: "Huruf mana yang silent dalam 'Listen'?",
-    options: ['L', 'T', 'N'],
+    options: ['N', 'L', 'T'],
     answer: 'T',
     explanation: "T dalam 'Listen' adalah silent - diucapkan 'lissen'."
   },
   {
     id: 18,
     question: "Kesalahan umum: L dan R terdengar...",
-    options: ['Berbeda (/l/ dan /r/)', 'Sama', 'Seperti W'],
+    options: ['Seperti W', 'Sama', 'Berbeda (/l/ dan /r/)'],
     answer: 'Berbeda (/l/ dan /r/)',
     explanation: "L = lidah menyentuh langit-langit. R = lidah tidak menyentuh. Berbeda!"
   },
   {
     id: 19,
     question: "Kata mana yang memiliki silent G?",
-    options: ['Big', 'Sign', 'Bag'],
+    options: ['Bag', 'Sign', 'Big'],
     answer: 'Sign',
     explanation: "G dalam 'Sign' adalah silent - diucapkan 'sine'."
   },
   {
     id: 20,
     question: "Kenapa penting mengetahui silent letters?",
-    options: ['Untuk ejaan', 'Untuk pronunciation yang benar', 'Tidak penting'],
+    options: ['Untuk ejaan', 'Tidak penting', 'Untuk pronunciation yang benar'],
     answer: 'Untuk pronunciation yang benar',
     explanation: "Silent letters membantu Anda mengucapkan kata dengan benar!"
   }

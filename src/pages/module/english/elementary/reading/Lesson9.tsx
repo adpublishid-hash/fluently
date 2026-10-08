@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - Who is Emma writing to?', opts: ["Mom & Dad","Her sister","Her boss","Her teacher"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Where is Emma right now?', opts: ["Bali","Hawaii","Lombok","Jakarta"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - What does Emma do every morning?', opts: ["Dances","Sleeps in","Eats breakfast","Goes to the beach"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - How is the weather in Bali according to Emma?', opts: ["Rainy and cold","Cloudy","Very windy","Bright and hot"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What did Emma see yesterday?', opts: ["A traditional dance","A concert","A movie","A museum"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - Who is Emma writing to?', opts: ["Her sister","Mom & Dad","Her boss","Her teacher"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Where is Emma right now?', opts: ["Jakarta","Bali","Lombok","Hawaii"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - What does Emma do every morning?', opts: ["Dances","Goes to the beach","Eats breakfast","Sleeps in"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - How is the weather in Bali according to Emma?', opts: ["Cloudy","Bright and hot","Very windy","Rainy and cold"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - What did Emma see yesterday?', opts: ["A traditional dance","A concert","A movie","A museum"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - Who is Emma writing to?', opts: ["Mom & Dad","Her sister","Her boss","Her teacher"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Where is Emma right now?', opts: ["Bali","Hawaii","Lombok","Jakarta"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - Who is Emma writing to?', opts: ["Her sister", "Her teacher", "Her boss", "Mom & Dad"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Where is Emma right now?', opts: ["Lombok", "Jakarta", "Hawaii", "Bali"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - What does Emma do every morning?', opts: ["Dances", "Goes to the beach", "Eats breakfast", "Sleeps in"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - How is the weather in Bali according to Emma?', opts: ["Rainy and cold", "Very windy", "Cloudy", "Bright and hot"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - What did Emma see yesterday?', opts: ["A movie", "A museum", "A traditional dance", "A concert"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - Who is Emma writing to?', opts: ["Mom & Dad", "Her teacher", "Her sister", "Her boss"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Where is Emma right now?', opts: ["Jakarta", "Lombok", "Hawaii", "Bali"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - What does Emma do every morning?', opts: ["Eats breakfast", "Goes to the beach", "Dances", "Sleeps in"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - How is the weather in Bali according to Emma?', opts: ["Bright and hot", "Very windy", "Rainy and cold", "Cloudy"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - What did Emma see yesterday?', opts: ["A concert", "A museum", "A movie", "A traditional dance"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - Who is Emma writing to?', opts: ["Her boss", "Her teacher", "Her sister", "Mom & Dad"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Where is Emma right now?', opts: ["Hawaii", "Jakarta", "Bali", "Lombok"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Review) Latihan 13 - What does Emma do every morning?', opts: ["Eats breakfast","Dances","Goes to the beach","Sleeps in"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - How is the weather in Bali according to Emma?', opts: ["Cloudy","Very windy","Rainy and cold","Bright and hot"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What did Emma see yesterday?', opts: ["A traditional dance","A movie","A museum","A concert"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - Who is Emma writing to?', opts: ["Her boss","Her teacher","Her sister","Mom & Dad"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Where is Emma right now?', opts: ["Bali","Hawaii","Lombok","Jakarta"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - What does Emma do every morning?', opts: ["Goes to the beach","Eats breakfast","Sleeps in","Dances"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - How is the weather in Bali according to Emma?', opts: ["Bright and hot","Rainy and cold","Very windy","Cloudy"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What did Emma see yesterday?', opts: ["A traditional dance","A movie","A museum","A concert"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Pemahaman Cepat) Latihan 14 - How is the weather in Bali according to Emma?', opts: ["Cloudy", "Rainy and cold", "Very windy", "Bright and hot"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - What did Emma see yesterday?', opts: ["A traditional dance", "A museum", "A concert", "A movie"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - Who is Emma writing to?', opts: ["Her teacher", "Her sister", "Mom & Dad", "Her boss"], ans: "Mom & Dad", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Where is Emma right now?', opts: ["Lombok", "Hawaii", "Bali", "Jakarta"], ans: "Bali", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - What does Emma do every morning?', opts: ["Goes to the beach", "Sleeps in", "Eats breakfast", "Dances"], ans: "Goes to the beach", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - How is the weather in Bali according to Emma?', opts: ["Very windy", "Cloudy", "Rainy and cold", "Bright and hot"], ans: "Bright and hot", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - What did Emma see yesterday?', opts: ["A movie", "A concert", "A museum", "A traditional dance"], ans: "A traditional dance", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'Who is Emma writing to?', opts: ["Mom & Dad","Her sister","Her boss","Her teacher"], ans: 'Mom & Dad' },
-    { q: 'Where is Emma right now?', opts: ["Hawaii","Jakarta","Lombok","Bali"], ans: 'Bali' },
-    { q: 'What does Emma do every morning?', opts: ["Dances","Goes to the beach","Eats breakfast","Sleeps in"], ans: 'Goes to the beach' },
-    { q: 'How is the weather in Bali according to Emma?', opts: ["Bright and hot","Rainy and cold","Very windy","Cloudy"], ans: 'Bright and hot' },
-    { q: 'What did Emma see yesterday?', opts: ["A museum","A traditional dance","A movie","A concert"], ans: 'A traditional dance' },
+    { q: 'Who is Emma writing to?', opts: ["Her teacher", "Mom & Dad", "Her sister", "Her boss"], ans: 'Mom & Dad' },
+    { q: 'Where is Emma right now?', opts: ["Jakarta", "Bali", "Lombok", "Hawaii"], ans: 'Bali' },
+    { q: 'What does Emma do every morning?', opts: ["Goes to the beach", "Eats breakfast", "Sleeps in", "Dances"], ans: 'Goes to the beach' },
+    { q: 'How is the weather in Bali according to Emma?', opts: ["Rainy and cold", "Bright and hot", "Cloudy", "Very windy"], ans: 'Bright and hot' },
+    { q: 'What did Emma see yesterday?', opts: ["A museum", "A movie", "A traditional dance", "A concert"], ans: 'A traditional dance' },
   ],
 };
 

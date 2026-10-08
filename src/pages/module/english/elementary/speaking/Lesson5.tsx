@@ -163,8 +163,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Math, History, and Science are ___.",
     options: [
       { text: "objects", correct: false },
-      { text: "subjects", correct: true },
-      { text: "projects", correct: false }
+      { text: "projects", correct: false },
+      { text: "subjects", correct: true }
     ],
     explanation: "Di sekolah, hal-hal yang kamu pelajari disebut 'Subjects' (Mata Pelajaran)."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "To get a degree, you must ___ from university.",
     options: [
+      { text: "leave", correct: false },
       { text: "graduate", correct: true },
-      { text: "fail", correct: false },
-      { text: "leave", correct: false }
+      { text: "fail", correct: false }
     ],
     explanation: "Graduate berarti berhasil menyelesaikan kursus/kuliah (lulus)."
   },
@@ -192,9 +192,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "If you study hard, you will get a good ___.",
     options: [
-      { text: "grade", correct: true },
+      { text: "lesson", correct: false },
       { text: "class", correct: false },
-      { text: "lesson", correct: false }
+      { text: "grade", correct: true }
     ],
     explanation: "Grade (atau nilai) adalah skor yang kamu dapatkan di ujian."
   },
@@ -202,8 +202,8 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"Not really. I am very nervous.\"?",
     options: [
-      { text: "Gak juga. Aku gugup banget.", correct: true },
       { text: "Apa kamu sudah selesai PR Bahasa Inggris?", correct: false },
+      { text: "Gak juga. Aku gugup banget.", correct: true },
       { text: "Apakah itu kuliah yang sulit?", correct: false }
     ],
     explanation: "Kalimat \"Not really. I am very nervous.\" memiliki arti \"Gak juga. Aku gugup banget.\"."
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Anda harus berbisik di sini.\"?",
     options: [
-      { text: "You have to whisper here.", correct: true },
+      { text: "Your pronunciation is very good.", correct: false },
       { text: "Thanks. I forgot mine at home.", correct: false },
-      { text: "Your pronunciation is very good.", correct: false }
+      { text: "You have to whisper here.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Anda harus berbisik di sini.\" adalah \"You have to whisper here.\"."
   },
@@ -222,9 +222,9 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"Next year in ___.\"\n(Arti: Tahun depan bulan Juni.)",
     options: [
+      { text: "numbers", correct: false },
       { text: "June", correct: true },
-      { text: "later", correct: false },
-      { text: "numbers", correct: false }
+      { text: "later", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'June'."
   },
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"I prefer Math. I like numbers.\"?",
     options: [
-      { text: "Aku lebih suka Matematika. Aku suka angka.", correct: true },
       { text: "Kapan kamu wisuda?", correct: false },
-      { text: "Aku bisa bantu kamu setelah makan siang.", correct: false }
+      { text: "Aku bisa bantu kamu setelah makan siang.", correct: false },
+      { text: "Aku lebih suka Matematika. Aku suka angka.", correct: true }
     ],
     explanation: "Kalimat \"I prefer Math. I like numbers.\" memiliki arti \"Aku lebih suka Matematika. Aku suka angka.\"."
   },
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"I missed the bus this ___.\"\n(Arti: Aku ketinggalan bus pagi ini.)",
     options: [
-      { text: "morning", correct: true },
+      { text: "Me", correct: false },
       { text: "about", correct: false },
-      { text: "Me", correct: false }
+      { text: "morning", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'morning'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"For about two years now.\"?",
     options: [
-      { text: "Kamu harus belajar lagi nanti malam.", correct: false },
+      { text: "Apakah itu kuliah yang sulit?", correct: false },
       { text: "Sudah sekitar dua tahun.", correct: true },
-      { text: "Apakah itu kuliah yang sulit?", correct: false }
+      { text: "Kamu harus belajar lagi nanti malam.", correct: false }
     ],
     explanation: "Kalimat \"For about two years now.\" memiliki arti \"Sudah sekitar dua tahun.\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"What ___ your favorite subject?\"\n(Arti: Apa mata pelajaran favoritmu?)",
     options: [
-      { text: "is", correct: true },
       { text: "book", correct: false },
-      { text: "Science", correct: false }
+      { text: "Science", correct: false },
+      { text: "is", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'is'."
   },
@@ -292,9 +292,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Sorry, I was asking for a book.\"?",
     options: [
-      { text: "Anda harus berbisik di sini.", correct: false },
       { text: "Aku harap segera dapat satu.", correct: false },
-      { text: "Maaf, saya sedang menanyakan buku.", correct: true }
+      { text: "Maaf, saya sedang menanyakan buku.", correct: true },
+      { text: "Anda harus berbisik di sini.", correct: false }
     ],
     explanation: "Kalimat \"Sorry, I was asking for a book.\" memiliki arti \"Maaf, saya sedang menanyakan buku.\"."
   },
@@ -302,8 +302,8 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Saya belajar Ilmu Komputer.\"?",
     options: [
-      { text: "I am studying Computer Science.", correct: true },
       { text: "Why are you late for class?", correct: false },
+      { text: "I am studying Computer Science.", correct: true },
       { text: "I will study at the library.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Saya belajar Ilmu Komputer.\" adalah \"I am studying Computer Science.\"."
@@ -312,9 +312,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"Are you ___ for the big exam?\"\n(Arti: Kamu siap buat ujian besarnya?)",
     options: [
-      { text: "ready", correct: true },
       { text: "will", correct: false },
-      { text: "History", correct: false }
+      { text: "History", correct: false },
+      { text: "ready", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'ready'."
   },
@@ -322,8 +322,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"The teacher will be angry.\"?",
     options: [
-      { text: "Sudah berapa lama kamu belajar bahasa Inggris?", correct: false },
       { text: "Permisi, bolehkah aku pinjam pulpen?", correct: false },
+      { text: "Sudah berapa lama kamu belajar bahasa Inggris?", correct: false },
       { text: "Gurunya bakal marah.", correct: true }
     ],
     explanation: "Kalimat \"The teacher will be angry.\" memiliki arti \"Gurunya bakal marah.\"."

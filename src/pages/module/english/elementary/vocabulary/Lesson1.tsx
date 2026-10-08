@@ -59,98 +59,98 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "I slept too late, so I ___ this morning.",
-    options: ['commuted', 'overslept', 'unwound'],
+    options: ['overslept', 'unwound', 'commuted'],
     answer: 'overslept',
     explanation: "Oversleep berarti bangun lebih lambat dari yang kamu niatkan."
   },
   {
     id: 2,
     question: "The carpet is dirty. I need to ___.",
-    options: ['mop it', 'vacuum it', 'iron it'],
+    options: ['iron it', 'mop it', 'vacuum it'],
     answer: 'vacuum it',
     explanation: "Kita menyedot debu (vacuum) karpet dan permadani untuk menghilangkan debu."
   },
   {
     id: 3,
     question: "I usually ___ on Netflix on weekends.",
-    options: ['binge-watch', 'scroll', 'charge'],
+    options: ['charge', 'binge-watch', 'scroll'],
     answer: 'binge-watch',
     explanation: "Binge-watch berarti menonton banyak episode berturut-turut."
   },
   {
     id: 4,
     question: "Before sleeping, I always ___ my phone.",
-    options: ['feed', 'charge', 'water'],
+    options: ['charge', 'water', 'feed'],
     answer: 'charge',
     explanation: "Kita mengisi daya (charge) perangkat elektronik untuk mengisi baterai."
   },
   {
     id: 5,
     question: "I need to buy food. I'm going ___.",
-    options: ['grocery shopping', 'running errands', 'doing laundry'],
+    options: ['grocery shopping', 'doing laundry', 'running errands'],
     answer: 'grocery shopping',
     explanation: "Grocery shopping adalah membeli makanan dan kebutuhan rumah tangga."
   },
   {
     id: 6,
     question: "I need to ___ the plants because the soil is very dry.",
-    options: ['fold', 'water', 'hang'],
+    options: ['hang', 'fold', 'water'],
     answer: 'water',
     explanation: "Kamu menyiram (water) tanaman agar tetap hidup dan tumbuh."
   },
   {
     id: 7,
     question: "She never leaves home without trying to ___ to look good.",
-    options: ['put on makeup', 'do laundry', 'unwind'],
+    options: ['do laundry', 'put on makeup', 'unwind'],
     answer: 'put on makeup',
     explanation: "Memakai riasan (put on makeup) adalah salah satu rutinitas merias diri."
   },
   {
     id: 8,
     question: "Instead of getting up, I decided to ___ and sleep five more minutes.",
-    options: ['hit snooze', 'commute', 'pack a lunch'],
+    options: ['pack a lunch', 'hit snooze', 'commute'],
     answer: 'hit snooze',
     explanation: "Menekan snooze (hit snooze) berarti menunda alarm agar berbunyi lagi beberapa menit kemudian."
   },
   {
     id: 9,
     question: "I have to ___ early tomorrow because my train leaves at 6 AM.",
-    options: ['set an alarm', 'binge-watch', 'hang out'],
+    options: ['set an alarm', 'hang out', 'binge-watch'],
     answer: 'set an alarm',
     explanation: "Kamu memasang alarm (set an alarm) agar bangun tepat waktu."
   },
   {
     id: 10,
     question: "After taking off my clean clothes from the line, I need to ___ them.",
-    options: ['iron', 'fold', 'dust'],
+    options: ['dust', 'fold', 'iron'],
     answer: 'fold',
     explanation: "Melipat (fold) pakaian adalah kegiatan setelah pakaian kering."
   },
   {
     id: 11,
     question: "You want to eat but you are too lazy to cook. You should ___.",
-    options: ['do the laundry', 'order food delivery', 'take out the trash'],
+    options: ['do the laundry', 'take out the trash', 'order food delivery'],
     answer: 'order food delivery',
     explanation: "Order food delivery berarti memesan antar makanan."
   },
   {
     id: 12,
     question: "Adverb of frequency 'Selalu' in English is ___.",
-    options: ['Often', 'Usually', 'Always'],
+    options: ['Usually', 'Always', 'Often'],
     answer: 'Always',
     explanation: "'Always' digunakan untuk sesuatu yang dilakukan 100% setiap saat."
   },
   {
     id: 13,
     question: "My cat is hungry. I have to ___ him.",
-    options: ['feed', 'water', 'dust'],
+    options: ['feed', 'dust', 'water'],
     answer: 'feed',
     explanation: "Memberi makan hewan peliharaan adalah 'feed the pet'."
   },
   {
     id: 14,
     question: "It takes me an hour to ___ to work every day by train.",
-    options: ['commute', 'unwind', 'hang out'],
+    options: ['hang out', 'unwind', 'commute'],
     answer: 'commute',
     explanation: "Commute berarti perjalanan pulang-pergi ke tempat kerja."
   },
@@ -164,28 +164,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "When I am bored, I often ___ to see new posts from friends.",
-    options: ['scroll social media', 'check notifications', 'reply to messages'],
+    options: ['reply to messages', 'scroll social media', 'check notifications'],
     answer: 'scroll social media',
     explanation: "Menggulir media sosial untuk melihat postingan disebut 'scroll social media'."
   },
   {
     id: 17,
     question: "My phone just beeped. I need to ___.",
-    options: ['scroll social media', 'check notifications', 'hang out'],
+    options: ['hang out', 'check notifications', 'scroll social media'],
     answer: 'check notifications',
     explanation: "Saat ada notifikasi baru, kamu akan mengecek (check notifications)."
   },
   {
     id: 18,
     question: "After a long and stressful day, I like to ___ by reading a book.",
-    options: ['unwind', 'commute', 'run errands'],
+    options: ['run errands', 'commute', 'unwind'],
     answer: 'unwind',
     explanation: "Unwind berarti bersantai atau melepas penat setelah kelelahan."
   },
   {
     id: 19,
     question: "Adverb 'Jarang' in English is ___.",
-    options: ['Often', 'Rarely', 'Usually'],
+    options: ['Usually', 'Often', 'Rarely'],
     answer: 'Rarely',
     explanation: "'Rarely' menunjukkan kejadian yang sangat jarang dilakukan (10% peluang)."
   },

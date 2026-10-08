@@ -48,8 +48,8 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R2)",
     opts: [
-      "Umur",
       "Nama Anda",
+      "Umur",
       "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
@@ -68,16 +68,6 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R4)",
     opts: [
-      "Nama Anda",
-      "Umur",
-      "Jenis Kelamin"
-    ],
-    ans: "Jenis Kelamin",
-    exp: "Male / Female"
-  },
-  {
-    q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R5)",
-    opts: [
       "Umur",
       "Jenis Kelamin",
       "Nama Anda"
@@ -86,10 +76,20 @@ const QUIZ = [
     exp: "Male / Female"
   },
   {
-    q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R6)",
+    q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R5)",
     opts: [
       "Umur",
+      "Nama Anda",
+      "Jenis Kelamin"
+    ],
+    ans: "Jenis Kelamin",
+    exp: "Male / Female"
+  },
+  {
+    q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R6)",
+    opts: [
       "Jenis Kelamin",
+      "Umur",
       "Nama Anda"
     ],
     ans: "Jenis Kelamin",
@@ -99,8 +99,8 @@ const QUIZ = [
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R7)",
     opts: [
       "Nama Anda",
-      "Jenis Kelamin",
-      "Umur"
+      "Umur",
+      "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -108,9 +108,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R8)",
     opts: [
+      "Nama Anda",
       "Umur",
-      "Jenis Kelamin",
-      "Nama Anda"
+      "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -138,9 +138,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R11)",
     opts: [
-      "Umur",
       "Jenis Kelamin",
-      "Nama Anda"
+      "Nama Anda",
+      "Umur"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -148,9 +148,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R12)",
     opts: [
-      "Jenis Kelamin",
+      "Umur",
       "Nama Anda",
-      "Umur"
+      "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -158,9 +158,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R13)",
     opts: [
-      "Umur",
       "Jenis Kelamin",
-      "Nama Anda"
+      "Nama Anda",
+      "Umur"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -168,9 +168,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R14)",
     opts: [
-      "Jenis Kelamin",
+      "Umur",
       "Nama Anda",
-      "Umur"
+      "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -178,9 +178,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R15)",
     opts: [
-      "Nama Anda",
       "Jenis Kelamin",
-      "Umur"
+      "Umur",
+      "Nama Anda"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -198,9 +198,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R17)",
     opts: [
+      "Umur",
       "Nama Anda",
-      "Jenis Kelamin",
-      "Umur"
+      "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -218,9 +218,9 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R19)",
     opts: [
+      "Nama Anda",
       "Umur",
-      "Jenis Kelamin",
-      "Nama Anda"
+      "Jenis Kelamin"
     ],
     ans: "Jenis Kelamin",
     exp: "Male / Female"
@@ -228,8 +228,8 @@ const QUIZ = [
   {
     q: "Arti dari tulisan \"Gender / Sex\" di formulir:  (R20)",
     opts: [
-      "Nama Anda",
       "Jenis Kelamin",
+      "Nama Anda",
       "Umur"
     ],
     ans: "Jenis Kelamin",

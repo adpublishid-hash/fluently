@@ -70,49 +70,49 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Kalimat mana yang benar?",
-    options: ['Him is happy.', 'He is happy.', 'His is happy.'],
+    options: ['He is happy.', 'Him is happy.', 'His is happy.'],
     answer: 'He is happy.',
     explanation: "Kita butuh kata ganti Subjek sebelum kata kerja 'is'."
   },
   {
     id: 2,
     question: "This is ___ book. (Saya)",
-    options: ['I', 'me', 'my'],
+    options: ['my', 'me', 'I'],
     answer: 'my',
     explanation: "'Book' adalah benda, jadi kita butuh kata sifat kepemilikan 'My'."
   },
   {
     id: 3,
     question: "Call ___ tomorrow. (Dia laki-laki)",
-    options: ['he', 'him', 'his'],
+    options: ['him', 'his', 'he'],
     answer: 'him',
     explanation: "Kita butuh kata ganti Objek setelah kata kerja 'Call'."
   },
   {
     id: 4,
     question: "___ car is red. (Mereka)",
-    options: ['They', 'Them', 'Their'],
+    options: ['Them', 'Their', 'They'],
     answer: 'Their',
     explanation: "Kepemilikan untuk 'They' adalah 'Their'."
   },
   {
     id: 5,
     question: "Do you like ___? (Itu)",
-    options: ['it', 'its', 'they'],
+    options: ['they', 'it', 'its'],
     answer: 'it',
     explanation: "'It' bisa jadi Subjek atau Objek. Di sini sebagai Objek."
   },
   {
     id: 6,
     question: "___ is my sister.",
-    options: ['Her', 'She', 'Him'],
+    options: ['Her', 'Him', 'She'],
     answer: 'She',
     explanation: "Kita butuh Subjek. 'She' adalah subjek untuk perempuan."
   },
   {
     id: 7,
     question: "Tell ___ the truth. (Saya)",
-    options: ['I', 'my', 'me'],
+    options: ['me', 'my', 'I'],
     answer: 'me',
     explanation: "Sebagai objek (setelah kata kerja 'Tell'), gunakan 'me'."
   },
@@ -126,56 +126,56 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "Please help ___. (Kami)",
-    options: ['we', 'our', 'us'],
+    options: ['us', 'our', 'we'],
     answer: 'us',
     explanation: "Objek untuk 'We' adalah 'us'."
   },
   {
     id: 10,
     question: "Where is ___ house? (Kamu)",
-    options: ['you', 'your', 'yours'],
+    options: ['yours', 'you', 'your'],
     answer: 'your',
     explanation: "Kepemilikan untuk 'You' adalah 'Your'."
   },
   {
     id: 11,
     question: "I see ___. (Dia perempuan)",
-    options: ['she', 'her', 'hers'],
+    options: ['she', 'hers', 'her'],
     answer: 'her',
     explanation: "Objek untuk 'She' adalah 'her'."
   },
   {
     id: 12,
     question: "___ name is Budi.",
-    options: ['Him', 'His', 'He'],
+    options: ['He', 'Him', 'His'],
     answer: 'His',
     explanation: "Kepemilikan untuk laki-laki adalah 'His'."
   },
   {
     id: 13,
     question: "Are ___ busy? (Kalian/Kamu)",
-    options: ['your', 'you', 'yours'],
+    options: ['your', 'yours', 'you'],
     answer: 'you',
     explanation: "'You' di sini sebagai Subjek."
   },
   {
     id: 14,
     question: "Give it to ___. (Mereka)",
-    options: ['they', 'their', 'them'],
+    options: ['them', 'they', 'their'],
     answer: 'them',
     explanation: "Objek untuk 'They' adalah 'them'."
   },
   {
     id: 15,
     question: "___ looks delicious. (Benda/Makanan)",
-    options: ['It', 'Its', 'They'],
+    options: ['It', 'They', 'Its'],
     answer: 'It',
     explanation: "Subjek tunggal untuk benda adalah 'It'."
   },
   {
     id: 16,
     question: "This isn't my pen. It's ___.",
-    options: ['he', 'him', 'hers'],
+    options: ['him', 'he', 'hers'],
     answer: 'hers',
     explanation: "'Hers' adalah possessive pronoun (milik dia pr) yang berdiri sendiri."
   },
@@ -189,21 +189,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "Listen to ___! (Saya)",
-    options: ['me', 'my', 'I'],
+    options: ['I', 'my', 'me'],
     answer: 'me',
     explanation: "Objek dari 'I' adalah 'me'."
   },
   {
     id: 19,
     question: "___ don't know.",
-    options: ['Me', 'I', 'My'],
+    options: ['I', 'Me', 'My'],
     answer: 'I',
     explanation: "Subjek kalimat adalah 'I'."
   },
   {
     id: 20,
     question: "Is that ___ bag? (Dia pr)",
-    options: ['she', 'her', 'hers'],
+    options: ['her', 'she', 'hers'],
     answer: 'her',
     explanation: "Kepemilikan (Possessive Adjective) untuk perempuan adalah 'her'."
   }

@@ -43,21 +43,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ['am going to', 'will', 'going to'],
+    options: ['will', 'am going to', 'going to'],
     answer: 'will',
     explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
   },
   {
     id: 2,
     question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ['will', 'is going to', 'shall'],
+    options: ['is going to', 'shall', 'will'],
     answer: 'is going to',
     explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
   },
   {
     id: 3,
     question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ['will', 'am going to', 'will to'],
+    options: ['am going to', 'will', 'will to'],
     answer: 'am going to',
     explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
   },
@@ -71,28 +71,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Saya pikir ___ hujan minggu depan.",
-    options: ['is going to', 'will', 'is'],
+    options: ['will', 'is', 'is going to'],
     answer: 'will',
     explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
   },
   {
     id: 6,
     question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ["am going to","will","going to"],
+    options: ["will", "am going to", "going to"],
     answer: "will",
     explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
   },
   {
     id: 7,
     question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ["will","is going to","shall"],
+    options: ["is going to", "shall", "will"],
     answer: "is going to",
     explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
   },
   {
     id: 8,
     question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ["will","am going to","will to"],
+    options: ["am going to", "will", "will to"],
     answer: "am going to",
     explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
   },
@@ -106,28 +106,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "Saya pikir ___ hujan minggu depan.",
-    options: ["is going to","will","is"],
+    options: ["will", "is", "is going to"],
     answer: "will",
     explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
   },
   {
     id: 11,
     question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ["am going to","will","going to"],
+    options: ["will", "am going to", "going to"],
     answer: "will",
     explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
   },
   {
     id: 12,
     question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ["will","is going to","shall"],
+    options: ["is going to", "shall", "will"],
     answer: "is going to",
     explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
   },
   {
     id: 13,
     question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ["will","am going to","will to"],
+    options: ["am going to", "will", "will to"],
     answer: "am going to",
     explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
   },
@@ -141,28 +141,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "Saya pikir ___ hujan minggu depan.",
-    options: ["is going to","will","is"],
+    options: ["will", "is", "is going to"],
     answer: "will",
     explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
   },
   {
     id: 16,
     question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ["am going to","will","going to"],
+    options: ["will", "am going to", "going to"],
     answer: "will",
     explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
   },
   {
     id: 17,
     question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ["will","is going to","shall"],
+    options: ["is going to", "shall", "will"],
     answer: "is going to",
     explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
   },
   {
     id: 18,
     question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ["will","am going to","will to"],
+    options: ["am going to", "will", "will to"],
     answer: "am going to",
     explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
   },
@@ -176,7 +176,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "Saya pikir ___ hujan minggu depan.",
-    options: ["is going to","will","is"],
+    options: ["will", "is", "is going to"],
     answer: "will",
     explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
   }

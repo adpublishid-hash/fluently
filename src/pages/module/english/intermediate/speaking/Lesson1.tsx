@@ -23,9 +23,9 @@ const QUIZ_QUESTIONS = [
     "id": 2,
     "question": "Fill the blank: \"When discussing experience, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -34,9 +34,9 @@ const QUIZ_QUESTIONS = [
     "id": 3,
     "question": "Which response strongly agrees with a statement about experience? [Q3]",
     "options": [
-      "That is totally wrong.",
+      "I couldn't agree more.",
       "I see your point, but...",
-      "I couldn't agree more."
+      "That is totally wrong."
     ],
     "answer": "I couldn't agree more.",
     "explanation": "'I couldn't agree more' menyatakan persetujuan 100% (tidak ada yang bisa ditambahkan karena sudah sangat setuju)."
@@ -45,9 +45,9 @@ const QUIZ_QUESTIONS = [
     "id": 4,
     "question": "If you want to interrupt politely during a conversation about experience, you say:",
     "options": [
+      "Wait, give me a chance.",
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -57,8 +57,8 @@ const QUIZ_QUESTIONS = [
     "question": "Select the best transition word: \"We talked about life experiences; ____, we should also discuss the future impacts.\"",
     "options": [
       "Because",
-      "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -67,9 +67,9 @@ const QUIZ_QUESTIONS = [
     "id": 6,
     "question": "Which idiom best describes a very easy task regarding experience? [Q6]",
     "options": [
-      "A piece of cake",
       "Under the weather",
-      "Bite the bullet"
+      "Bite the bullet",
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -79,8 +79,8 @@ const QUIZ_QUESTIONS = [
     "question": "What is the most polite way to ask about someone's life experiences? [Q7]",
     "options": [
       "What is your experience problem?",
-      "I would love to hear about your thoughts on life experiences.",
-      "Tell me your experience now."
+      "Tell me your experience now.",
+      "I would love to hear about your thoughts on life experiences."
     ],
     "answer": "I would love to hear about your thoughts on life experiences.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -89,9 +89,9 @@ const QUIZ_QUESTIONS = [
     "id": 8,
     "question": "Fill the blank: \"When discussing experience, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -111,9 +111,9 @@ const QUIZ_QUESTIONS = [
     "id": 10,
     "question": "If you want to interrupt politely during a conversation about experience, you say:",
     "options": [
+      "Wait, give me a chance.",
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -123,8 +123,8 @@ const QUIZ_QUESTIONS = [
     "question": "Select the best transition word: \"We talked about life experiences; ____, we should also discuss the future impacts.\"",
     "options": [
       "Because",
-      "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -144,8 +144,8 @@ const QUIZ_QUESTIONS = [
     "id": 13,
     "question": "What is the most polite way to ask about someone's life experiences? [Q13]",
     "options": [
-      "What is your experience problem?",
       "I would love to hear about your thoughts on life experiences.",
+      "What is your experience problem?",
       "Tell me your experience now."
     ],
     "answer": "I would love to hear about your thoughts on life experiences.",
@@ -155,9 +155,9 @@ const QUIZ_QUESTIONS = [
     "id": 14,
     "question": "Fill the blank: \"When discussing experience, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."
@@ -166,8 +166,8 @@ const QUIZ_QUESTIONS = [
     "id": 15,
     "question": "Which response strongly agrees with a statement about experience? [Q15]",
     "options": [
-      "That is totally wrong.",
       "I see your point, but...",
+      "That is totally wrong.",
       "I couldn't agree more."
     ],
     "answer": "I couldn't agree more.",
@@ -177,9 +177,9 @@ const QUIZ_QUESTIONS = [
     "id": 16,
     "question": "If you want to interrupt politely during a conversation about experience, you say:",
     "options": [
+      "Wait, give me a chance.",
       "Excuse me, may I add something here?",
-      "Stop talking for a moment.",
-      "Wait, give me a chance."
+      "Stop talking for a moment."
     ],
     "answer": "Excuse me, may I add something here?",
     "explanation": "'Excuse me, may I add something here' adalah standar baku (CEFR B2) untuk interupsi yang menghormati pembicara."
@@ -189,8 +189,8 @@ const QUIZ_QUESTIONS = [
     "question": "Select the best transition word: \"We talked about life experiences; ____, we should also discuss the future impacts.\"",
     "options": [
       "Because",
-      "Despite",
-      "Furthermore"
+      "Furthermore",
+      "Despite"
     ],
     "answer": "Furthermore",
     "explanation": "'Furthermore' memperluas / menambahkan poin pada ide dasar sebelumnya secara terstruktur."
@@ -199,9 +199,9 @@ const QUIZ_QUESTIONS = [
     "id": 18,
     "question": "Which idiom best describes a very easy task regarding experience? [Q18]",
     "options": [
-      "A piece of cake",
+      "Bite the bullet",
       "Under the weather",
-      "Bite the bullet"
+      "A piece of cake"
     ],
     "answer": "A piece of cake",
     "explanation": "'A piece of cake' secara harafiah berarti sesuatu yang sangat mudah dikerjakan atau diucapkan."
@@ -210,9 +210,9 @@ const QUIZ_QUESTIONS = [
     "id": 19,
     "question": "What is the most polite way to ask about someone's life experiences? [Q19]",
     "options": [
-      "What is your experience problem?",
       "I would love to hear about your thoughts on life experiences.",
-      "Tell me your experience now."
+      "Tell me your experience now.",
+      "What is your experience problem?"
     ],
     "answer": "I would love to hear about your thoughts on life experiences.",
     "explanation": "Kalimat ini adalah bentuk ajakan ('invitation to speak') yang sangat formal dan sopan dalam konteks profesional."
@@ -221,9 +221,9 @@ const QUIZ_QUESTIONS = [
     "id": 20,
     "question": "Fill the blank: \"When discussing experience, it's important to __ open-minded.\"",
     "options": [
+      "make",
       "keep",
-      "stay",
-      "make"
+      "stay"
     ],
     "answer": "stay",
     "explanation": "Phrase yang tepat adalah 'stay open-minded' yang berarti mempertahankan pemikiran terbuka."

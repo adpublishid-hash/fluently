@@ -50,21 +50,21 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "You go to the ___ to borrow books.",
-    options: ['Laboratory', 'Library', 'Classroom'],
+    options: ['Laboratory', 'Classroom', 'Library'],
     answer: 'Library',
     explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
   },
   {
     id: 2,
     question: "If you get a good score, you ___ the exam.",
-    options: ['fail', 'pass', 'miss'],
+    options: ['fail', 'miss', 'pass'],
     answer: 'pass',
     explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
   },
   {
     id: 3,
     question: "A person who teaches at a university is a ___.",
-    options: ['Student', 'Principal', 'Professor'],
+    options: ['Principal', 'Professor', 'Student'],
     answer: 'Professor',
     explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
   },
@@ -78,28 +78,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "When you finish university, you ___.",
-    options: ['fail', 'graduate', 'start'],
+    options: ['fail', 'start', 'graduate'],
     answer: 'graduate',
     explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
   },
   {
     id: 6,
     question: "You go to the ___ to borrow books.",
-    options: ["Laboratory","Library","Classroom"],
+    options: ["Laboratory", "Classroom", "Library"],
     answer: "Library",
     explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
   },
   {
     id: 7,
     question: "If you get a good score, you ___ the exam.",
-    options: ["fail","pass","miss"],
+    options: ["fail", "miss", "pass"],
     answer: "pass",
     explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
   },
   {
     id: 8,
     question: "A person who teaches at a university is a ___.",
-    options: ["Student","Principal","Professor"],
+    options: ["Principal", "Professor", "Student"],
     answer: "Professor",
     explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
   },
@@ -113,28 +113,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "When you finish university, you ___.",
-    options: ["fail","graduate","start"],
+    options: ["fail", "start", "graduate"],
     answer: "graduate",
     explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
   },
   {
     id: 11,
     question: "You go to the ___ to borrow books.",
-    options: ["Laboratory","Library","Classroom"],
+    options: ["Laboratory", "Classroom", "Library"],
     answer: "Library",
     explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
   },
   {
     id: 12,
     question: "If you get a good score, you ___ the exam.",
-    options: ["fail","pass","miss"],
+    options: ["fail", "miss", "pass"],
     answer: "pass",
     explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
   },
   {
     id: 13,
     question: "A person who teaches at a university is a ___.",
-    options: ["Student","Principal","Professor"],
+    options: ["Principal", "Professor", "Student"],
     answer: "Professor",
     explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
   },
@@ -148,28 +148,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "When you finish university, you ___.",
-    options: ["fail","graduate","start"],
+    options: ["fail", "start", "graduate"],
     answer: "graduate",
     explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
   },
   {
     id: 16,
     question: "You go to the ___ to borrow books.",
-    options: ["Laboratory","Library","Classroom"],
+    options: ["Laboratory", "Classroom", "Library"],
     answer: "Library",
     explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
   },
   {
     id: 17,
     question: "If you get a good score, you ___ the exam.",
-    options: ["fail","pass","miss"],
+    options: ["fail", "miss", "pass"],
     answer: "pass",
     explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
   },
   {
     id: 18,
     question: "A person who teaches at a university is a ___.",
-    options: ["Student","Principal","Professor"],
+    options: ["Principal", "Professor", "Student"],
     answer: "Professor",
     explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
   },
@@ -183,7 +183,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "When you finish university, you ___.",
-    options: ["fail","graduate","start"],
+    options: ["fail", "start", "graduate"],
     answer: "graduate",
     explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
   }

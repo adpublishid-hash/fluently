@@ -107,28 +107,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "She ___ (study) for the exam.",
-    options: ['studyed', 'stayed', 'studied'],
+    options: ['studyed', 'studied', 'stayed'],
     answer: 'studied',
     explanation: "Aturan Konsonan + y: Ubah 'y' menjadi 'i' dan tambahkan 'ed'."
   },
   {
     id: 4,
     question: "Apa bentuk lampau dari 'Buy'?",
-    options: ['Buyed', 'Bought', 'Brought'],
+    options: ['Brought', 'Bought', 'Buyed'],
     answer: 'Bought',
     explanation: "'Buy' tidak beraturan. Bentuk lampaunya adalah 'Bought'. ('Brought' adalah bentuk lampau dari 'Bring')."
   },
   {
     id: 5,
     question: "___ you go to the party?",
-    options: ['Do', 'Were', 'Did'],
+    options: ['Were', 'Did', 'Do'],
     answer: 'Did',
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
   {
     id: 6,
     question: "He ___ (come) to my house last night.",
-    options: ['comed', 'came', 'come'],
+    options: ['come', 'came', 'comed'],
     answer: 'came',
     explanation: "'Come' tidak beraturan. Bentuk lampaunya adalah 'Came'."
   },
@@ -142,35 +142,35 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "I ___ (not / see) him last month.",
-    options: ["didn't saw","didn't see","don't saw"],
+    options: ["didn't saw", "don't saw", "didn't see"],
     answer: "didn't see",
     explanation: "Setelah 'didn't', gunakan kata kerja DASAR (see)."
   },
   {
     id: 9,
     question: "She ___ (study) for the exam.",
-    options: ["studyed","stayed","studied"],
+    options: ["studyed", "studied", "stayed"],
     answer: "studied",
     explanation: "Aturan Konsonan + y: Ubah 'y' menjadi 'i' dan tambahkan 'ed'."
   },
   {
     id: 10,
     question: "Apa bentuk lampau dari 'Buy'?",
-    options: ["Buyed","Bought","Brought"],
+    options: ["Brought", "Bought", "Buyed"],
     answer: "Bought",
     explanation: "'Buy' tidak beraturan. Bentuk lampaunya adalah 'Bought'. ('Brought' adalah bentuk lampau dari 'Bring')."
   },
   {
     id: 11,
     question: "___ you go to the party?",
-    options: ["Do","Were","Did"],
+    options: ["Were", "Did", "Do"],
     answer: "Did",
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
   {
     id: 12,
     question: "She ___ (come) to my office last night.",
-    options: ["comed","came","come"],
+    options: ["come", "comed", "came"],
     answer: "came",
     explanation: "'Come' tidak beraturan. Bentuk lampaunya adalah 'Came'."
   },
@@ -184,7 +184,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "I ___ (not / see) him this morning.",
-    options: ["didn't saw","didn't see","don't saw"],
+    options: ["didn't saw", "don't saw", "didn't see"],
     answer: "didn't see",
     explanation: "Setelah 'didn't', gunakan kata kerja DASAR (see)."
   },
@@ -198,21 +198,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Apa bentuk lampau dari 'Buy'?",
-    options: ["Buyed","Bought","Brought"],
+    options: ["Brought", "Bought", "Buyed"],
     answer: "Bought",
     explanation: "'Buy' tidak beraturan. Bentuk lampaunya adalah 'Bought'. ('Brought' adalah bentuk lampau dari 'Bring')."
   },
   {
     id: 17,
     question: "___ you go to the party?",
-    options: ["Do","Were","Did"],
+    options: ["Were", "Did", "Do"],
     answer: "Did",
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
   {
     id: 18,
     question: "My father ___ (come) to my flat last night.",
-    options: ["comed","came","come"],
+    options: ["come", "came", "comed"],
     answer: "came",
     explanation: "'Come' tidak beraturan. Bentuk lampaunya adalah 'Came'."
   },

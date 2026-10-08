@@ -180,10 +180,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To ___ the ozone layer means to reduce or use it up significantly.",
     "opts": [
+      "Restore",
       "Emit",
       "Conserve",
-      "Deplete",
-      "Restore"
+      "Deplete"
     ],
     "ans": "Deplete",
     "exp": "To deplete berarti menguras atau mengurangi sesuatu secara signifikan, seperti lapisan ozon."
@@ -191,10 +191,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Energy from sources like wind and solar that will not run out is called ___",
     "opts": [
+      "Carbon offset",
       "Fossil fuel",
       "Greenhouse gas",
-      "Renewable energy",
-      "Carbon offset"
+      "Renewable energy"
     ],
     "ans": "Renewable energy",
     "exp": "Renewable energy berasal dari sumber-sumber alam yang dapat diperbaharui dan tidak habis."
@@ -202,10 +202,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A company claiming to be eco-friendly without evidence is called ___",
     "opts": [
-      "Carbon neutral",
       "Greenwashing",
       "Net zero",
-      "Tipping point"
+      "Tipping point",
+      "Carbon neutral"
     ],
     "ans": "Greenwashing",
     "exp": "Greenwashing adalah praktik menyesatkan konsumen tentang komitmen lingkungan perusahaan."
@@ -213,10 +213,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The goal of having no net carbon emissions is called ___",
     "opts": [
-      "Circular economy",
-      "Carbon offset",
       "Net zero",
-      "Ecological footprint"
+      "Ecological footprint",
+      "Circular economy",
+      "Carbon offset"
     ],
     "ans": "Net zero",
     "exp": "Net zero adalah komitmen untuk menyeimbangkan emisi yang dihasilkan dengan emisi yang dihapus."
@@ -224,10 +224,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "An economy where waste is eliminated and resources are reused is called ___",
     "opts": [
-      "Sustainable development",
-      "Fossil fuel",
       "Circular economy",
-      "Climate justice"
+      "Climate justice",
+      "Fossil fuel",
+      "Sustainable development"
     ],
     "ans": "Circular economy",
     "exp": "Circular economy adalah model ekonomi yang menghilangkan limbah dan memaksimalkan penggunaan ulang sumber daya."
@@ -235,10 +235,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The wide variety of plant and animal species in an area is called ___",
     "opts": [
+      "Deforestation",
       "Ecosystem",
       "Biodiversity",
-      "Habitat loss",
-      "Deforestation"
+      "Habitat loss"
     ],
     "ans": "Biodiversity",
     "exp": "Biodiversity mengacu pada keanekaragaman semua kehidupan di suatu daerah atau planet."
@@ -246,10 +246,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Chemicals released into the environment by factories ___ the water supply.",
     "opts": [
-      "Restore",
-      "Harness",
       "Contaminate",
-      "Recycle"
+      "Recycle",
+      "Restore",
+      "Harness"
     ],
     "ans": "Contaminate",
     "exp": "To contaminate berarti memasukkan zat berbahaya ke lingkungan, menjadikannya tidak aman."
@@ -257,10 +257,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Climate change caused by human activity is described as ___",
     "opts": [
-      "Ecological",
-      "Biodegradable",
       "Anthropogenic",
-      "Circular"
+      "Circular",
+      "Ecological",
+      "Biodegradable"
     ],
     "ans": "Anthropogenic",
     "exp": "Anthropogenic berarti disebabkan atau dipengaruhi oleh aktivitas manusia."
@@ -268,10 +268,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "A material that can naturally decompose is called ___",
     "opts": [
-      "Carbon neutral",
       "Biodegradable",
       "Renewable",
-      "Tipping point"
+      "Tipping point",
+      "Carbon neutral"
     ],
     "ans": "Biodegradable",
     "exp": "Biodegradable materials dapat terurai secara alami oleh organisme biologis."
@@ -280,9 +280,9 @@ const QUIZ: QuizItem[] = [
     "q": "The critical threshold beyond which changes become irreversible is the ___",
     "opts": [
       "Net zero",
-      "Greenwashing",
+      "Carbon offset",
       "Tipping point",
-      "Carbon offset"
+      "Greenwashing"
     ],
     "ans": "Tipping point",
     "exp": "Tipping point adalah batas kritis di mana perubahan iklim menjadi tidak dapat dikembalikan ke kondisi semula."
@@ -291,9 +291,9 @@ const QUIZ: QuizItem[] = [
     "q": "To ___ solar energy means to capture and use it effectively.",
     "opts": [
       "Emit",
-      "Deplete",
+      "Harness",
       "Pollute",
-      "Harness"
+      "Deplete"
     ],
     "ans": "Harness",
     "exp": "To harness energy berarti menangkap dan mengubah sumber daya alam menjadi bentuk energi yang dapat digunakan."
@@ -312,10 +312,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "To ___ a damaged ecosystem means to bring it back to its original state.",
     "opts": [
-      "Degrade",
       "Conserve",
       "Restore",
-      "Distribute"
+      "Distribute",
+      "Degrade"
     ],
     "ans": "Restore",
     "exp": "To restore an ecosystem berarti memulihkannya dari kerusakan menuju kondisi yang lebih sehat dan alami."
@@ -323,9 +323,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Development that meets present needs without compromising future generations is called ___",
     "opts": [
-      "Climate justice",
-      "Net zero",
       "Sustainable development",
+      "Net zero",
+      "Climate justice",
       "Circular economy"
     ],
     "ans": "Sustainable development",
@@ -334,10 +334,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The community of living things and their environment is called an ___",
     "opts": [
-      "Fossil fuel",
       "Ecosystem",
-      "Carbon footprint",
-      "Biodiversity"
+      "Biodiversity",
+      "Fossil fuel",
+      "Carbon footprint"
     ],
     "ans": "Ecosystem",
     "exp": "Ecosystem adalah sistem yang terdiri dari semua organisme hidup beserta lingkungan fisik tempat mereka tinggal."
@@ -345,10 +345,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Buying carbon offsets means paying to ___ emissions you create elsewhere.",
     "opts": [
-      "Increase",
       "Match",
+      "Emit",
       "Compensate for",
-      "Emit"
+      "Increase"
     ],
     "ans": "Compensate for",
     "exp": "Carbon offset berarti membayar untuk proyek lingkungan yang mengurangi emisi setara dengan yang Anda hasilkan."
@@ -356,10 +356,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase means \"impartial distribution of climate change burdens and benefits\"?",
     "opts": [
-      "Carbon neutral",
       "Greenwashing",
+      "Net zero",
       "Climate justice",
-      "Net zero"
+      "Carbon neutral"
     ],
     "ans": "Climate justice",
     "exp": "Climate justice menyerukan pembagian yang adil atas beban perubahan iklim, terutama antara negara kaya dan miskin."
@@ -368,9 +368,9 @@ const QUIZ: QuizItem[] = [
     "q": "Gases like CO2 and methane that trap heat in the atmosphere are called ___",
     "opts": [
       "Fossil fuels",
-      "Carbon offsets",
+      "Renewable energy",
       "Greenhouse gases",
-      "Renewable energy"
+      "Carbon offsets"
     ],
     "ans": "Greenhouse gases",
     "exp": "Greenhouse gases adalah gas yang memerangkap panas di atmosfer, menyebabkan pemanasan global."
@@ -379,8 +379,8 @@ const QUIZ: QuizItem[] = [
     "q": "The total natural resources consumed by a person or country is called their ___",
     "opts": [
       "Carbon footprint",
-      "Ecological footprint",
       "Net zero",
+      "Ecological footprint",
       "Biodiversity"
     ],
     "ans": "Ecological footprint",

@@ -79,42 +79,42 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "We ___ eat out on Fridays. (Sering)",
-    options: ['seldom', 'never', 'often'],
+    options: ['seldom', 'often', 'never'],
     answer: 'often',
     explanation: "'Often' berarti sering/banyak kali."
   },
   {
     id: 4,
     question: "She ___ late for work. (0%)",
-    options: ['always', 'never', 'usually'],
+    options: ['always', 'usually', 'never'],
     answer: 'never',
     explanation: "'Never' berarti tidak pernah sama sekali (0%)."
   },
   {
     id: 5,
     question: "They ___ watch TV in the evening.",
-    options: ['usually', 'usual', 'usuallies'],
+    options: ['usual', 'usually', 'usuallies'],
     answer: 'usually',
     explanation: "Bentuk adverb yang benar adalah 'usually'."
   },
   {
     id: 6,
     question: "My brother ___ helps me. (Jarang)",
-    options: ['always', 'rarely', 'usually'],
+    options: ['always', 'usually', 'rarely'],
     answer: 'rarely',
     explanation: "'Rarely' artinya jarang."
   },
   {
     id: 7,
     question: "I ___ drink coffee. (100%)",
-    options: ['always', 'never', 'sometimes'],
+    options: ['sometimes', 'never', 'always'],
     answer: 'always',
     explanation: "'Always' artinya selalu (100%)."
   },
   {
     id: 8,
     question: "Where does 'usually' go? 'I ___ go ___ to the park.'",
-    options: ['After go', 'Before go'],
+    options: ['Before go', 'After go'],
     answer: 'Before go',
     explanation: "Sebelum kata kerja aksi: 'I usually go'."
   },
@@ -128,7 +128,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "Do you ___ play tennis?",
-    options: ['ever', 'never', 'always'],
+    options: ['always', 'never', 'ever'],
     answer: 'ever',
     explanation: "Dalam pertanyaan, kita sering menggunakan 'ever' (pernah)."
   },
@@ -142,63 +142,63 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "Susun kalimat: goes / usually / He / to school",
-    options: ['He goes usually to school', 'He usually goes to school'],
+    options: ['He usually goes to school', 'He goes usually to school'],
     answer: 'He usually goes to school',
     explanation: "Subject + Adverb + Verb."
   },
   {
     id: 13,
     question: "Susun kalimat: is / She / late / always",
-    options: ['She always is late', 'She is always late'],
+    options: ['She is always late', 'She always is late'],
     answer: 'She is always late',
     explanation: "Subject + To Be + Adverb."
   },
   {
     id: 14,
     question: "It ___ snows here in summer.",
-    options: ['never', 'always', 'often'],
+    options: ['always', 'never', 'often'],
     answer: 'never',
     explanation: "Secara logika, salju 'tidak pernah' turun di musim panas."
   },
   {
     id: 15,
     question: "We ___ visit our grandparents on Sundays.",
-    options: ['sometimes', 'sometime', 'some time'],
+    options: ['sometimes', 'some time', 'sometime'],
     answer: 'sometimes',
     explanation: "Adverb yang benar adalah 'sometimes' (kadang-kadang)."
   },
   {
     id: 16,
     question: "Are you ___ busy?",
-    options: ['always', 'every', 'day'],
+    options: ['every', 'day', 'always'],
     answer: 'always',
     explanation: "Pertanyaan: 'Are you always busy?' (Apakah kamu selalu sibuk?)."
   },
   {
     id: 17,
     question: "I don't ___ eat meat.",
-    options: ['often', 'never', 'ever'],
+    options: ['often', 'ever', 'never'],
     answer: 'often',
     explanation: "Dalam kalimat negatif, kita bisa pakai 'often' (tidak sering)."
   },
   {
     id: 18,
     question: "They are ___ at home on weekends.",
-    options: ['usual', 'usually', 'use'],
+    options: ['usually', 'use', 'usual'],
     answer: 'usually',
     explanation: "Posisi setelah 'are' (to be) -> usually."
   },
   {
     id: 19,
     question: "He ___ reads books.",
-    options: ['seldom', 'never', 'always'],
+    options: ['seldom', 'always', 'never'],
     answer: 'seldom',
     explanation: "Semua benar secara grammar, tapi 'Seldom' berarti jarang."
   },
   {
     id: 20,
     question: "Does she ___ cook?",
-    options: ['often', 'always', 'sometimes'],
+    options: ['often', 'sometimes', 'always'],
     answer: 'often',
     explanation: "Posisi adverb di tengah pertanyaan: Does she OFTEN cook?"
   }

@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - Which street do you walk on first?', opts: ["Hospital Street","Main Street","Elm Street","Supermarket Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Which way do you turn at the traffic light?', opts: ["Turn around","Go straight","Right","Left"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - What building do you walk past?', opts: ["The pharmacy","The school","The bank","The supermarket"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - What is next to the hospital?', opts: ["The supermarket","Elm Street","The traffic light","The pharmacy"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - On which side is the hospital located?', opts: ["On your right","Behind you","On your left","In front of you"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - Which street do you walk on first?', opts: ["Main Street","Elm Street","Hospital Street","Supermarket Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Which way do you turn at the traffic light?', opts: ["Left","Turn around","Right","Go straight"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - What building do you walk past?', opts: ["The school","The bank","The supermarket","The pharmacy"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - What is next to the hospital?', opts: ["The traffic light","Elm Street","The pharmacy","The supermarket"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - On which side is the hospital located?', opts: ["On your right","Behind you","In front of you","On your left"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - Which street do you walk on first?', opts: ["Supermarket Street","Hospital Street","Elm Street","Main Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Which way do you turn at the traffic light?', opts: ["Turn around","Go straight","Right","Left"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - What building do you walk past?', opts: ["The school","The bank","The pharmacy","The supermarket"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - What is next to the hospital?', opts: ["The pharmacy","The traffic light","Elm Street","The supermarket"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - On which side is the hospital located?', opts: ["Behind you","In front of you","On your left","On your right"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - Which street do you walk on first?', opts: ["Supermarket Street","Hospital Street","Elm Street","Main Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Which way do you turn at the traffic light?', opts: ["Left","Right","Go straight","Turn around"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - What building do you walk past?', opts: ["The school","The bank","The pharmacy","The supermarket"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - Which street do you walk on first?', opts: ["Main Street", "Supermarket Street", "Elm Street", "Hospital Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Which way do you turn at the traffic light?', opts: ["Go straight", "Right", "Left", "Turn around"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - What building do you walk past?', opts: ["The school", "The supermarket", "The bank", "The pharmacy"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - What is next to the hospital?', opts: ["Elm Street", "The pharmacy", "The traffic light", "The supermarket"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - On which side is the hospital located?', opts: ["Behind you", "On your left", "In front of you", "On your right"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - Which street do you walk on first?', opts: ["Hospital Street", "Supermarket Street", "Elm Street", "Main Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Which way do you turn at the traffic light?', opts: ["Right", "Go straight", "Left", "Turn around"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - What building do you walk past?', opts: ["The bank", "The pharmacy", "The supermarket", "The school"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - What is next to the hospital?', opts: ["The pharmacy", "The supermarket", "The traffic light", "Elm Street"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - On which side is the hospital located?', opts: ["In front of you", "On your left", "On your right", "Behind you"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - Which street do you walk on first?', opts: ["Hospital Street", "Supermarket Street", "Main Street", "Elm Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Which way do you turn at the traffic light?', opts: ["Right", "Left", "Go straight", "Turn around"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - What building do you walk past?', opts: ["The pharmacy", "The supermarket", "The bank", "The school"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - What is next to the hospital?', opts: ["The supermarket", "The pharmacy", "The traffic light", "Elm Street"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - On which side is the hospital located?', opts: ["In front of you", "Behind you", "On your right", "On your left"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - Which street do you walk on first?', opts: ["Hospital Street", "Main Street", "Elm Street", "Supermarket Street"], ans: "Main Street", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Which way do you turn at the traffic light?', opts: ["Left", "Turn around", "Go straight", "Right"], ans: "Left", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - What building do you walk past?', opts: ["The bank", "The supermarket", "The school", "The pharmacy"], ans: "The supermarket", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Analisis Singkat) Latihan 19 - What is next to the hospital?', opts: ["The supermarket","Elm Street","The traffic light","The pharmacy"], ans: "The pharmacy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - On which side is the hospital located?', opts: ["On your right","On your left","In front of you","Behind you"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Mencari Fakta) Latihan 20 - On which side is the hospital located?', opts: ["On your right", "In front of you", "Behind you", "On your left"], ans: "On your right", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'Which street do you walk on first?', opts: ["Main Street","Elm Street","Hospital Street","Supermarket Street"], ans: 'Main Street' },
-    { q: 'Which way do you turn at the traffic light?', opts: ["Go straight","Left","Turn around","Right"], ans: 'Left' },
-    { q: 'What building do you walk past?', opts: ["The supermarket","The pharmacy","The bank","The school"], ans: 'The supermarket' },
-    { q: 'What is next to the hospital?', opts: ["Elm Street","The supermarket","The pharmacy","The traffic light"], ans: 'The pharmacy' },
-    { q: 'On which side is the hospital located?', opts: ["Behind you","On your left","On your right","In front of you"], ans: 'On your right' },
+    { q: 'Which street do you walk on first?', opts: ["Hospital Street", "Supermarket Street", "Elm Street", "Main Street"], ans: 'Main Street' },
+    { q: 'Which way do you turn at the traffic light?', opts: ["Left", "Turn around", "Right", "Go straight"], ans: 'Left' },
+    { q: 'What building do you walk past?', opts: ["The supermarket", "The bank", "The school", "The pharmacy"], ans: 'The supermarket' },
+    { q: 'What is next to the hospital?', opts: ["Elm Street", "The pharmacy", "The traffic light", "The supermarket"], ans: 'The pharmacy' },
+    { q: 'On which side is the hospital located?', opts: ["On your left", "In front of you", "On your right", "Behind you"], ans: 'On your right' },
   ],
 };
 

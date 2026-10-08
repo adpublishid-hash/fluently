@@ -65,10 +65,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why is mastering Pitch & Tone in Academic Contexts important at B2 level?",
     "opts": [
-      "It is not important",
       "It helps you sound natural and be easily understood",
-      "It only matters for writing",
-      "It is only for advanced learners"
+      "It is not important",
+      "It is only for advanced learners",
+      "It only matters for writing"
     ],
     "ans": "It helps you sound natural and be easily understood",
     "exp": "Menguasai Pitch & Tone in Academic Contexts di level B2 membuat Anda terdengar lebih alami dan mudah dipahami oleh penutur asli."
@@ -77,9 +77,9 @@ const QUIZ: QuizItem[] = [
     "q": "What does \"IPA\" stand for in pronunciation?",
     "opts": [
       "International Phonetic Alphabet",
-      "Internal Pronunciation Aid",
+      "International Pronunciation Application",
       "Important Phonics Assessment",
-      "International Pronunciation Application"
+      "Internal Pronunciation Aid"
     ],
     "ans": "International Phonetic Alphabet",
     "exp": "IPA (International Phonetic Alphabet) adalah sistem simbol standar untuk merepresentasikan bunyi bahasa."
@@ -87,10 +87,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The best way to improve pronunciation is to ___",
     "opts": [
-      "Only read textbooks",
       "Listen to and mimic native speakers' natural speech",
-      "Memorize all phonetic rules",
-      "Speak only in your first language"
+      "Speak only in your first language",
+      "Only read textbooks",
+      "Memorize all phonetic rules"
     ],
     "ans": "Listen to and mimic native speakers' natural speech",
     "exp": "Mendengarkan dan meniru penutur asli (shadowing) adalah teknik paling efektif untuk pronunciation."
@@ -99,8 +99,8 @@ const QUIZ: QuizItem[] = [
     "q": "A \"minimal pair\" is ___",
     "opts": [
       "Two words with identical pronunciation",
-      "Two words that differ by only one sound",
       "Two words with the same spelling",
+      "Two words that differ by only one sound",
       "Two words from the same word family"
     ],
     "ans": "Two words that differ by only one sound",
@@ -109,10 +109,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In English, stress usually falls on ___",
     "opts": [
-      "The last syllable always",
       "Content words (nouns, verbs, adjectives)",
-      "Only prepositions and articles",
-      "Every third word"
+      "The last syllable always",
+      "Every third word",
+      "Only prepositions and articles"
     ],
     "ans": "Content words (nouns, verbs, adjectives)",
     "exp": "Dalam kalimat, kata konten (noun, verb, adjective, adverb) biasanya mendapat tekanan lebih kuat."
@@ -120,10 +120,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Rising intonation at the end of a sentence typically signals ___",
     "opts": [
-      "A statement of fact",
       "A yes/no question or uncertainty",
-      "A completed thought",
-      "An exclamation"
+      "A statement of fact",
+      "An exclamation",
+      "A completed thought"
     ],
     "ans": "A yes/no question or uncertainty",
     "exp": "Intonasi naik di akhir kalimat umumnya menandakan pertanyaan yes/no atau ekspresi ketidakpastian."
@@ -131,10 +131,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The schwa sound /ə/ is ___",
     "opts": [
-      "The loudest vowel sound",
       "The most common unstressed vowel in English",
       "Found only in stressed syllables",
-      "Never found in connected speech"
+      "Never found in connected speech",
+      "The loudest vowel sound"
     ],
     "ans": "The most common unstressed vowel in English",
     "exp": "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, selalu muncul dalam suku kata tidak bertekanan."
@@ -153,10 +153,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Recording yourself practice is useful because ___",
     "opts": [
-      "It is entertaining only",
       "You can identify errors you cannot hear when speaking",
       "It replaces teacher feedback completely",
-      "It is required for B2 certification"
+      "It is required for B2 certification",
+      "It is entertaining only"
     ],
     "ans": "You can identify errors you cannot hear when speaking",
     "exp": "Merekam dan mendengarkan kembali bicara Anda membantu mendeteksi kesalahan yang tidak terasa saat berbicara."
@@ -165,8 +165,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which element of speech makes English sound natural and rhythmic?",
     "opts": [
       "Syllable counting",
-      "Stress-timed rhythm (stressed syllables at regular intervals)",
       "Speaking very slowly",
+      "Stress-timed rhythm (stressed syllables at regular intervals)",
       "Pronouncing every syllable equally"
     ],
     "ans": "Stress-timed rhythm (stressed syllables at regular intervals)",
@@ -176,9 +176,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which sound is a voiced fricative?",
     "opts": [
       "/p/",
-      "/t/",
+      "/k/",
       "/v/",
-      "/k/"
+      "/t/"
     ],
     "ans": "/v/",
     "exp": "/v/ adalah konsonan frikatif bersuara. Pasangannya yang tidak bersuara adalah /f/."
@@ -187,9 +187,9 @@ const QUIZ: QuizItem[] = [
     "q": "In \"butter\", the \"t\" in American English is often pronounced as ___",
     "opts": [
       "/t/ (full stop)",
-      "/d/ (flapped)",
       "/θ/ (th sound)",
-      "/r/ (rhotic)"
+      "/r/ (rhotic)",
+      "/d/ (flapped)"
     ],
     "ans": "/d/ (flapped)",
     "exp": "Dalam American English, /t/ di antara dua vokal sering diucapkan sebagai flap /d/: \"butter\" → \"budder\"."
@@ -197,10 +197,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The word \"beautiful\" has how many syllables?",
     "opts": [
-      "2",
-      "3",
       "4",
-      "5"
+      "5",
+      "2",
+      "3"
     ],
     "ans": "3",
     "exp": "\"Beautiful\" = beau-ti-ful = 3 suku kata, dengan tekanan pada BEAUtiful."
@@ -209,9 +209,9 @@ const QUIZ: QuizItem[] = [
     "q": "Which is a correct IPA transcription for \"thought\"?",
     "opts": [
       "/θɒt/",
-      "/θaʊt/",
+      "/θuːt/",
       "/ðɒt/",
-      "/θuːt/"
+      "/θaʊt/"
     ],
     "ans": "/θɒt/",
     "exp": "\"Thought\" = /θɒt/ – pengucapan dengan /θ/ (tidak bersuara) dan vokal pendek /ɒ/."
@@ -219,10 +219,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The difference between /iː/ (sheep) and /ɪ/ (ship) is ___",
     "opts": [
-      "Consonant type",
       "Vowel length and position",
-      "Stress placement",
-      "Number of syllables"
+      "Number of syllables",
+      "Consonant type",
+      "Stress placement"
     ],
     "ans": "Vowel length and position",
     "exp": "/iː/ adalah vowel panjang, /ɪ/ adalah vowel pendek. Lidah lebih tinggi untuk /iː/ daripada /ɪ/."
@@ -230,10 +230,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Falling intonation in English typically indicates ___",
     "opts": [
-      "A question needing a yes/no answer",
-      "Uncertainty",
       "A completed statement or an information question (WH)",
-      "Agreement"
+      "Agreement",
+      "A question needing a yes/no answer",
+      "Uncertainty"
     ],
     "ans": "A completed statement or an information question (WH)",
     "exp": "Intonasi turun biasanya menandakan kalimat berita yang selesai atau pertanyaan information (wh-question)."
@@ -241,10 +241,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which word has a SILENT consonant?",
     "opts": [
-      "Garden",
-      "Know",
       "Speak",
-      "Table"
+      "Table",
+      "Garden",
+      "Know"
     ],
     "ans": "Know",
     "exp": "\"Know\" /noʊ/ – huruf \"k\" tidak diucapkan. Pola /kn-/ di awal kata selalu hanya /n/ dalam bahasa Inggris modern."
@@ -252,10 +252,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "B2 pronunciation competence means you can ___",
     "opts": [
-      "Speak with a perfect native accent",
       "Speak clearly enough to be consistently understood with occasional errors",
-      "Never make pronunciation mistakes",
-      "Only speak slowly and carefully"
+      "Speak with a perfect native accent",
+      "Only speak slowly and carefully",
+      "Never make pronunciation mistakes"
     ],
     "ans": "Speak clearly enough to be consistently understood with occasional errors",
     "exp": "CEFR B2: dapat berbicara dengan jelas dan konsisten dipahami, meski dengan sedikit aksen."
@@ -263,10 +263,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is \"shadowing\" in language learning?",
     "opts": [
+      "Reading texts aloud slowly",
       "Repeating word lists",
       "Speaking simultaneously with or immediately after a recording",
-      "Writing pronunciation notes",
-      "Reading texts aloud slowly"
+      "Writing pronunciation notes"
     ],
     "ans": "Speaking simultaneously with or immediately after a recording",
     "exp": "Shadowing adalah teknik di mana Anda mengikuti/meniru speaker secara langsung untuk melatih pronunciation dan ritme."
@@ -275,8 +275,8 @@ const QUIZ: QuizItem[] = [
     "q": "To make /θ/ (as in \"think\"), you place your tongue ___",
     "opts": [
       "Behind your upper teeth",
-      "Between or behind your teeth with air flowing over it",
       "At the roof of your mouth",
+      "Between or behind your teeth with air flowing over it",
       "Against your lower teeth"
     ],
     "ans": "Between or behind your teeth with air flowing over it",

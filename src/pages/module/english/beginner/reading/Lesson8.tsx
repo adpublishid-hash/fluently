@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"MON" adalah singkatan dari hari...', opts: ['Tuesday', 'Monday', 'Month', 'Morning'], ans: 'Monday', exp: '"Mon" = Monday (Senin).' },
-  { q: '"Departure: 09:30" pada jadwal bus artinya...', opts: ['Tiba jam 09.30', 'Berangkat jam 09.30', 'Istirahat jam 09.30', 'Buka jam 09.30'], ans: 'Berangkat jam 09.30', exp: '"Departure" = keberangkatan.' },
-  { q: '"Arrival: 13:15" artinya...', opts: ['Berangkat jam 13.15', 'Tiba jam 13.15', 'Istirahat jam 13.15', 'Buka jam 13.15'], ans: 'Tiba jam 13.15', exp: '"Arrival" = kedatangan/ketibaan.' },
-  { q: '"PLATFORM 3" pada jadwal kereta artinya...', opts: ['Gerbong 3', 'Peron 3', 'Kursi 3', 'Jalur 3'], ans: 'Peron 3', exp: '"Platform" = peron (tempat menunggu kereta di stasiun).' },
-  { q: '"DELAYED" pada layar bandara artinya...', opts: ['Tepat waktu', 'Ditunda/terlambat', 'Dibatalkan', 'Berangkat lebih awal'], ans: 'Ditunda/terlambat', exp: '"Delayed" = terlambat / ada penundaan keberangkatan.' },
+  { q: '"MON" adalah singkatan dari hari...', opts: ['Monday', 'Tuesday', 'Morning', 'Month'], ans: 'Monday', exp: '"Mon" = Monday (Senin).' },
+  { q: '"Departure: 09:30" pada jadwal bus artinya...', opts: ['Buka jam 09.30', 'Tiba jam 09.30', 'Berangkat jam 09.30', 'Istirahat jam 09.30'], ans: 'Berangkat jam 09.30', exp: '"Departure" = keberangkatan.' },
+  { q: '"Arrival: 13:15" artinya...', opts: ['Istirahat jam 13.15', 'Buka jam 13.15', 'Tiba jam 13.15', 'Berangkat jam 13.15'], ans: 'Tiba jam 13.15', exp: '"Arrival" = kedatangan/ketibaan.' },
+  { q: '"PLATFORM 3" pada jadwal kereta artinya...', opts: ['Peron 3', 'Kursi 3', 'Jalur 3', 'Gerbong 3'], ans: 'Peron 3', exp: '"Platform" = peron (tempat menunggu kereta di stasiun).' },
+  { q: '"DELAYED" pada layar bandara artinya...', opts: ['Dibatalkan', 'Ditunda/terlambat', 'Tepat waktu', 'Berangkat lebih awal'], ans: 'Ditunda/terlambat', exp: '"Delayed" = terlambat / ada penundaan keberangkatan.' },
   { q: '"CANCELLED" pada jadwal artinya...', opts: ['Tepat waktu', 'Ditunda', 'Dibatalkan', 'Dipercepat'], ans: 'Dibatalkan', exp: '"Cancelled" = dibatalkan sepenuhnya.' },
-  { q: '"SUN" adalah singkatan dari hari...', opts: ['Saturday', 'Sunday', 'Summer', 'Senior'], ans: 'Sunday', exp: '"Sun" = Sunday (Minggu).' },
-  { q: '"Doctor appointment at 2 PM on Tuesday" artinya...', opts: ['Janji dokter Selasa jam 2 siang', 'Janji dokter Senin jam 2', 'Janji dokter Kamis jam 2 pagi', 'Janji dokter Rabu'], ans: 'Janji dokter Selasa jam 2 siang', exp: '"2 PM on Tuesday" = jam 2 siang hari Selasa.' },
-  { q: '"GATE B7" pada tiket pesawat artinya...', opts: ['Nomor kursi', 'Nomor gerbong', 'Pintu/gerbang keberangkatan B7', 'Terminal 7'], ans: 'Pintu/gerbang keberangkatan B7', exp: '"Gate" = pintu/gerbang boarding di bandara.' },
-  { q: '"ON TIME" pada jadwal artinya...', opts: ['Terlambat', 'Tepat waktu', 'Dibatalkan', 'Ditunda'], ans: 'Tepat waktu', exp: '"On time" = tepat waktu / sesuai jadwal.' },
-  { q: '"WED" adalah singkatan hari...', opts: ['Tuesday', 'Thursday', 'Wednesday', 'Weekend'], ans: 'Wednesday', exp: '"Wed" = Wednesday (Rabu).' },
-  { q: '"EVERY DAY EXCEPT SUNDAY" pada jadwal artinya...', opts: ['Hanya Minggu', 'Setiap hari kecuali Minggu', 'Setiap hari', 'Hanya hari kerja'], ans: 'Setiap hari kecuali Minggu', exp: '"Every day except Sunday" = setiap hari kecuali hari Minggu.' },
-  { q: '"DURATION: 2h 30m" pada jadwal perjalanan artinya...', opts: ['Jarak 2,5 km', 'Durasi perjalanan 2 jam 30 menit', 'Harga Rp 2,30', 'Nomor kursi 230'], ans: 'Durasi perjalanan 2 jam 30 menit', exp: '"Duration" = durasi/lama waktu. "2h 30m" = 2 jam 30 menit.' },
-  { q: '"FRI" adalah singkatan hari...', opts: ['Thursday', 'Friday', 'February', 'First'], ans: 'Friday', exp: '"Fri" = Friday (Jumat).' },
-  { q: '"BOARDING NOW" pada layar bandara artinya...', opts: ['Menunggu boarding', 'Sedang boarding sekarang', 'Gate ditutup', 'Pesawat terlambat'], ans: 'Sedang boarding sekarang', exp: '"Boarding now" = proses naik pesawat sedang berlangsung.' },
-  { q: '"MONTHLY CALENDAR" artinya...', opts: ['Kalender tahunan', 'Kalender mingguan', 'Kalender bulanan', 'Kalender harian'], ans: 'Kalender bulanan', exp: '"Monthly" = bulanan. "Calendar" = kalender.' },
-  { q: '"SAT" adalah singkatan hari...', opts: ['Sunday', 'Saturday', 'September', 'Start'], ans: 'Saturday', exp: '"Sat" = Saturday (Sabtu).' },
-  { q: '"LAST TRAIN: 22:30" artinya...', opts: ['Kereta pertama jam 22.30', 'Kereta terakhir jam 22.30', 'Kereta cepat jam 22.30', 'Kereta lambat jam 22.30'], ans: 'Kereta terakhir jam 22.30', exp: '"Last train" = kereta terakhir.' },
-  { q: '"Appointment: Dr. Sari | 10:00 AM | Room 3" artinya...', opts: ['Janji Dr. Sari jam 10 pagi di Ruang 3', 'Dokter Sari ada jam 10 malam', 'Ruang 3 tersedia jam 10', 'Jadwal Ruang 3'], ans: 'Janji Dr. Sari jam 10 pagi di Ruang 3', exp: '"Appointment" = janji temu. "AM" = pagi hari.' },
-  { q: '"THU" adalah singkatan hari...', opts: ['Tuesday', 'Thursday', 'Three', 'Third'], ans: 'Thursday', exp: '"Thu" = Thursday (Kamis).' },
+  { q: '"SUN" adalah singkatan dari hari...', opts: ['Sunday', 'Senior', 'Saturday', 'Summer'], ans: 'Sunday', exp: '"Sun" = Sunday (Minggu).' },
+  { q: '"Doctor appointment at 2 PM on Tuesday" artinya...', opts: ['Janji dokter Selasa jam 2 siang', 'Janji dokter Kamis jam 2 pagi', 'Janji dokter Rabu', 'Janji dokter Senin jam 2'], ans: 'Janji dokter Selasa jam 2 siang', exp: '"2 PM on Tuesday" = jam 2 siang hari Selasa.' },
+  { q: '"GATE B7" pada tiket pesawat artinya...', opts: ['Pintu/gerbang keberangkatan B7', 'Terminal 7', 'Nomor kursi', 'Nomor gerbong'], ans: 'Pintu/gerbang keberangkatan B7', exp: '"Gate" = pintu/gerbang boarding di bandara.' },
+  { q: '"ON TIME" pada jadwal artinya...', opts: ['Tepat waktu', 'Ditunda', 'Dibatalkan', 'Terlambat'], ans: 'Tepat waktu', exp: '"On time" = tepat waktu / sesuai jadwal.' },
+  { q: '"WED" adalah singkatan hari...', opts: ['Thursday', 'Weekend', 'Wednesday', 'Tuesday'], ans: 'Wednesday', exp: '"Wed" = Wednesday (Rabu).' },
+  { q: '"EVERY DAY EXCEPT SUNDAY" pada jadwal artinya...', opts: ['Setiap hari kecuali Minggu', 'Setiap hari', 'Hanya hari kerja', 'Hanya Minggu'], ans: 'Setiap hari kecuali Minggu', exp: '"Every day except Sunday" = setiap hari kecuali hari Minggu.' },
+  { q: '"DURATION: 2h 30m" pada jadwal perjalanan artinya...', opts: ['Durasi perjalanan 2 jam 30 menit', 'Nomor kursi 230', 'Harga Rp 2,30', 'Jarak 2,5 km'], ans: 'Durasi perjalanan 2 jam 30 menit', exp: '"Duration" = durasi/lama waktu. "2h 30m" = 2 jam 30 menit.' },
+  { q: '"FRI" adalah singkatan hari...', opts: ['Thursday', 'February', 'First', 'Friday'], ans: 'Friday', exp: '"Fri" = Friday (Jumat).' },
+  { q: '"BOARDING NOW" pada layar bandara artinya...', opts: ['Menunggu boarding', 'Pesawat terlambat', 'Gate ditutup', 'Sedang boarding sekarang'], ans: 'Sedang boarding sekarang', exp: '"Boarding now" = proses naik pesawat sedang berlangsung.' },
+  { q: '"MONTHLY CALENDAR" artinya...', opts: ['Kalender mingguan', 'Kalender harian', 'Kalender bulanan', 'Kalender tahunan'], ans: 'Kalender bulanan', exp: '"Monthly" = bulanan. "Calendar" = kalender.' },
+  { q: '"SAT" adalah singkatan hari...', opts: ['September', 'Start', 'Saturday', 'Sunday'], ans: 'Saturday', exp: '"Sat" = Saturday (Sabtu).' },
+  { q: '"LAST TRAIN: 22:30" artinya...', opts: ['Kereta terakhir jam 22.30', 'Kereta lambat jam 22.30', 'Kereta cepat jam 22.30', 'Kereta pertama jam 22.30'], ans: 'Kereta terakhir jam 22.30', exp: '"Last train" = kereta terakhir.' },
+  { q: '"Appointment: Dr. Sari | 10:00 AM | Room 3" artinya...', opts: ['Jadwal Ruang 3', 'Janji Dr. Sari jam 10 pagi di Ruang 3', 'Dokter Sari ada jam 10 malam', 'Ruang 3 tersedia jam 10'], ans: 'Janji Dr. Sari jam 10 pagi di Ruang 3', exp: '"Appointment" = janji temu. "AM" = pagi hari.' },
+  { q: '"THU" adalah singkatan hari...', opts: ['Tuesday', 'Three', 'Third', 'Thursday'], ans: 'Thursday', exp: '"Thu" = Thursday (Kamis).' },
 ];
 
 const SCHEDULE_PASSAGE = {
@@ -59,11 +59,11 @@ const SCHEDULE_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Bus ini beroperasi pada hari apa?', opts: ['Setiap hari', 'Senin–Sabtu', 'Senin–Jumat', 'Sabtu–Minggu saja'], ans: 'Senin–Sabtu' },
-    { q: 'Bus manakah yang mengalami keterlambatan?', opts: ['Bus jam 06:00', 'Bus jam 08:30', 'Bus jam 11:00', 'Bus jam 14:00'], ans: 'Bus jam 11:00' },
-    { q: 'Berapa lama perjalanan bus ini?', opts: ['30 menit', '45 menit', '1 jam', '1,5 jam'], ans: '45 menit' },
-    { q: 'Bus terakhir berangkat jam berapa?', opts: ['17:30', '18:15', '20:00', '20:45'], ans: '20:00' },
-    { q: 'Berapa harga tiket bus ini?', opts: ['Rp 10.000', 'Rp 15.000', 'Rp 20.000', 'Gratis'], ans: 'Rp 15.000' },
+    { q: 'Bus ini beroperasi pada hari apa?', opts: ['Senin–Sabtu', 'Sabtu–Minggu saja', 'Senin–Jumat', 'Setiap hari'], ans: 'Senin–Sabtu' },
+    { q: 'Bus manakah yang mengalami keterlambatan?', opts: ['Bus jam 08:30', 'Bus jam 06:00', 'Bus jam 14:00', 'Bus jam 11:00'], ans: 'Bus jam 11:00' },
+    { q: 'Berapa lama perjalanan bus ini?', opts: ['45 menit', '1 jam', '1,5 jam', '30 menit'], ans: '45 menit' },
+    { q: 'Bus terakhir berangkat jam berapa?', opts: ['18:15', '20:45', '17:30', '20:00'], ans: '20:00' },
+    { q: 'Berapa harga tiket bus ini?', opts: ['Rp 20.000', 'Rp 15.000', 'Rp 10.000', 'Gratis'], ans: 'Rp 15.000' },
   ] as ComprehensionQ[],
 };
 

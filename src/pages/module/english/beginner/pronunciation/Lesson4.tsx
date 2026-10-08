@@ -125,14 +125,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 1,
     question: "Bagaimana cara mengucapkan 'S' dalam 'Cats'?",
-    options: ['/s/ (seperti Snake)', '/z/ (seperti Zoo)', '/ɪz/ (Tambahan)'],
+    options: ['/ɪz/ (Tambahan)', '/z/ (seperti Zoo)', '/s/ (seperti Snake)'],
     answer: '/s/ (seperti Snake)',
     explanation: "'T' tak bersuara, jadi 'S' tetap tak bersuara /s/."
   },
   {
     id: 2,
     question: "Bagaimana cara mengucapkan 'ED' dalam 'Wanted'?",
-    options: ['/t/', '/d/', '/ɪd/ (Tambahan)'],
+    options: ['/ɪd/ (Tambahan)', '/d/', '/t/'],
     answer: '/ɪd/ (Tambahan)',
     explanation: "Kata yang berakhiran T atau D mendapatkan suku kata tambahan /ɪd/."
   },
@@ -147,14 +147,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 4,
     question: "Kata mana yang berakhiran dengan bunyi /ɪz/?",
-    options: ['Dogs', 'Books', 'Dishes'],
+    options: ['Books', 'Dogs', 'Dishes'],
     answer: 'Dishes',
     explanation: "Dish berakhiran 'sh' (bunyi desis), jadi kita tambahkan suku kata ekstra /ɪz/."
   },
   {
     id: 5,
     question: "Bagaimana cara mengucapkan 'S' dalam 'Dogs'?",
-    options: ['/s/', '/z/', '/ɪz/'],
+    options: ['/ɪz/', '/z/', '/s/'],
     answer: '/z/',
     audioText: "Dogs",
     explanation: "G adalah bersuara, jadi S berbunyi seperti /z/."
@@ -162,7 +162,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 6,
     question: "Bagaimana cara mengucapkan 'ED' dalam 'Walked'?",
-    options: ['/t/', '/d/', '/ɪd/'],
+    options: ['/ɪd/', '/t/', '/d/'],
     answer: '/t/',
     audioText: "Walked",
     explanation: "K adalah tak bersuara, jadi ED berbunyi seperti /t/."
@@ -185,7 +185,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 9,
     question: "Kata mana yang 'S' berbunyi /z/?",
-    options: ['Cats', 'Cars', 'Watches'],
+    options: ['Cars', 'Cats', 'Watches'],
     answer: 'Cars',
     audioText: "Cars",
     explanation: "R adalah bersuara, jadi S berbunyi /z/."
@@ -193,7 +193,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 10,
     question: "Bagaimana cara mengucapkan 'ED' dalam 'Helped'?",
-    options: ['/t/', '/d/', '/ɪd/'],
+    options: ['/d/', '/ɪd/', '/t/'],
     answer: '/t/',
     audioText: "Helped",
     explanation: "P adalah tak bersuara, jadi ED berbunyi /t/."
@@ -201,14 +201,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 11,
     question: "Bunyi 'S' menjadi /ɪz/ setelah bunyi...",
-    options: ['Tak bersuara', 'Bersuara', 'Desis (s, z, sh, ch)'],
+    options: ['Desis (s, z, sh, ch)', 'Tak bersuara', 'Bersuara'],
     answer: 'Desis (s, z, sh, ch)',
     explanation: "Setelah bunyi desis, kita perlu tambahan suku kata /ɪz/."
   },
   {
     id: 12,
     question: "Bagaimana cara mengucapkan 'ED' dalam 'Cleaned'?",
-    options: ['/t/', '/d/', '/ɪd/'],
+    options: ['/d/', '/ɪd/', '/t/'],
     answer: '/d/',
     audioText: "Cleaned",
     explanation: "N adalah bersuara, jadi ED berbunyi /d/."
@@ -216,7 +216,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 13,
     question: "Kata mana yang 'S' berbunyi /ɪz/?",
-    options: ['Books', 'Dogs', 'Buses'],
+    options: ['Buses', 'Books', 'Dogs'],
     answer: 'Buses',
     audioText: "Buses",
     explanation: "Bus berakhiran bunyi desis 's', jadi kita tambahkan /ɪz/."
@@ -224,7 +224,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 14,
     question: "Bagaimana cara mengucapkan 'ED' dalam 'Loved'?",
-    options: ['/t/', '/d/', '/ɪd/'],
+    options: ['/ɪd/', '/t/', '/d/'],
     answer: '/d/',
     audioText: "Loved",
     explanation: "V adalah bersuara, jadi ED berbunyi /d/."
@@ -232,7 +232,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 15,
     question: "Kata mana yang 'ED' berbunyi /ɪd/?",
-    options: ['Walked', 'Played', 'Visited'],
+    options: ['Played', 'Walked', 'Visited'],
     answer: 'Visited',
     audioText: "Visited",
     explanation: "Visit berakhiran T, jadi ED berbunyi /ɪd/."
@@ -248,7 +248,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 17,
     question: "Bagaimana cara mengucapkan 'ED' dalam 'Ended'?",
-    options: ['/t/', '/d/', '/ɪd/'],
+    options: ['/ɪd/', '/t/', '/d/'],
     answer: '/ɪd/',
     audioText: "Ended",
     explanation: "End berakhiran D, jadi ED berbunyi /ɪd/."
@@ -264,14 +264,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 19,
     question: "Kapan 'ED' berbunyi /t/?",
-    options: ['Setelah bunyi bersuara', 'Setelah bunyi tak bersuara', 'Setelah T atau D'],
+    options: ['Setelah bunyi tak bersuara', 'Setelah T atau D', 'Setelah bunyi bersuara'],
     answer: 'Setelah bunyi tak bersuara',
     explanation: "Jika bunyi terakhir tak bersuara (p, k, s, f), ED berbunyi /t/."
   },
   {
     id: 20,
     question: "Kapan 'S' perlu suku kata tambahan /ɪz/?",
-    options: ['Setelah vokal', 'Setelah bunyi desis', 'Setelah konsonan'],
+    options: ['Setelah konsonan', 'Setelah bunyi desis', 'Setelah vokal'],
     answer: 'Setelah bunyi desis',
     explanation: "Setelah s, z, sh, ch, j, x - kita perlu tambahan /ɪz/."
   }

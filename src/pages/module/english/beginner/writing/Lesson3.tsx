@@ -19,25 +19,25 @@ const PRONOUNS = [
 
 const QUIZ: QuizItem[] = [
   { q: '"Dia (lk) adalah muridku" → ___ is my student.', opts: ['She', 'He', 'It'], ans: 'He', exp: '"He" untuk laki-laki.' },
-  { q: '"Kami pergi ke sekolah." → ___ go to school.', opts: ['They', 'We', 'I'], ans: 'We', exp: '"We" untuk kelompok + saya.' },
-  { q: '"Kamu adalah temanku." → ___ are my friend.', opts: ['I', 'You', 'She'], ans: 'You', exp: '"You" untuk orang yang diajak bicara.' },
-  { q: '"Ini adalah kucing." → ___ is a cat.', opts: ['He', 'They', 'It'], ans: 'It', exp: '"It" untuk benda atau hewan.' },
+  { q: '"Kami pergi ke sekolah." → ___ go to school.', opts: ['They', 'I', 'We'], ans: 'We', exp: '"We" untuk kelompok + saya.' },
+  { q: '"Kamu adalah temanku." → ___ are my friend.', opts: ['She', 'I', 'You'], ans: 'You', exp: '"You" untuk orang yang diajak bicara.' },
+  { q: '"Ini adalah kucing." → ___ is a cat.', opts: ['He', 'It', 'They'], ans: 'It', exp: '"It" untuk benda atau hewan.' },
   { q: '"Saya seorang guru." → ___ am a teacher.', opts: ['I', 'We', 'He'], ans: 'I', exp: '"I" hanya digunakan untuk diri sendiri.' },
-  { q: '"Mereka murid." → ___ are students.', opts: ['We', 'They', 'She'], ans: 'They', exp: '"They" = lebih dari satu orang atau benda.' },
+  { q: '"Mereka murid." → ___ are students.', opts: ['She', 'We', 'They'], ans: 'They', exp: '"They" = lebih dari satu orang atau benda.' },
   { q: '"Dia (pr) adalah ibuku." → ___ is my mother.', opts: ['He', 'It', 'She'], ans: 'She', exp: '"She" untuk perempuan.' },
-  { q: 'Kata ganti mana untuk buku (benda)?', opts: ['He', 'She', 'It'], ans: 'It', exp: 'Buku adalah benda → It.' },
-  { q: 'Possessive pronoun untuk "I" (milikku) adalah...', opts: ['My', 'Me', 'Mine'], ans: 'My', exp: '"My" = milikku (My book, My name).' },
-  { q: '"Mobilnya (laki-laki)" ditulis...', opts: ['His car', 'Her car', 'Its car'], ans: 'His car', exp: '"His" = milik laki-laki.' },
+  { q: 'Kata ganti mana untuk buku (benda)?', opts: ['It', 'He', 'She'], ans: 'It', exp: 'Buku adalah benda → It.' },
+  { q: 'Possessive pronoun untuk "I" (milikku) adalah...', opts: ['Me', 'Mine', 'My'], ans: 'My', exp: '"My" = milikku (My book, My name).' },
+  { q: '"Mobilnya (laki-laki)" ditulis...', opts: ['Its car', 'His car', 'Her car'], ans: 'His car', exp: '"His" = milik laki-laki.' },
   { q: '"Tasnya (perempuan)" ditulis...', opts: ['His bag', 'Her bag', 'Your bag'], ans: 'Her bag', exp: '"Her" = milik perempuan.' },
-  { q: '"Sekolah kami" ditulis...', opts: ['Their school', 'Our school', 'We school'], ans: 'Our school', exp: '"Our" = milik kami.' },
+  { q: '"Sekolah kami" ditulis...', opts: ['Our school', 'We school', 'Their school'], ans: 'Our school', exp: '"Our" = milik kami.' },
   { q: '"Buku mereka" ditulis...', opts: ['Their books', 'Our books', 'His books'], ans: 'Their books', exp: '"Their" = milik mereka.' },
-  { q: '"Namamu" ditulis...', opts: ['You name', 'Your name', 'Yours name'], ans: 'Your name', exp: '"Your" = milikmu.' },
-  { q: '"___ is raining." Kata ganti tepat untuk cuaca...', opts: ['He', 'She', 'It'], ans: 'It', exp: 'Cuaca selalu pakai "It": It is raining.' },
-  { q: 'Kata mana BUKAN subject pronoun?', opts: ['I', 'Me', 'She'], ans: 'Me', exp: '"Me" adalah object pronoun, bukan subject.' },
-  { q: '"John dan Mary pergi." → ___ go.', opts: ['We', 'They', 'You'], ans: 'They', exp: '"They" = lebih dari satu orang.' },
-  { q: '"Sekolah kami besar." ditulis...', opts: ['We school is big.', 'Our school is big.', 'Their school is big.'], ans: 'Our school is big.', exp: '"Our" = possessive dari "we".' },
-  { q: '"You are" → disingkat menjadi...', opts: ["You're", 'Your', "You'd"], ans: "You're", exp: '"You are" → "You\'re" (kontraksi).' },
-  { q: '"I am" → disingkat menjadi...', opts: ["I'm", 'Im', "I'd"], ans: "I'm", exp: '"I am" → "I\'m" (kontraksi).' },
+  { q: '"Namamu" ditulis...', opts: ['Yours name', 'You name', 'Your name'], ans: 'Your name', exp: '"Your" = milikmu.' },
+  { q: '"___ is raining." Kata ganti tepat untuk cuaca...', opts: ['She', 'He', 'It'], ans: 'It', exp: 'Cuaca selalu pakai "It": It is raining.' },
+  { q: 'Kata mana BUKAN subject pronoun?', opts: ['Me', 'I', 'She'], ans: 'Me', exp: '"Me" adalah object pronoun, bukan subject.' },
+  { q: '"John dan Mary pergi." → ___ go.', opts: ['You', 'We', 'They'], ans: 'They', exp: '"They" = lebih dari satu orang.' },
+  { q: '"Sekolah kami besar." ditulis...', opts: ['Their school is big.', 'Our school is big.', 'We school is big.'], ans: 'Our school is big.', exp: '"Our" = possessive dari "we".' },
+  { q: '"You are" → disingkat menjadi...', opts: ['Your', "You're", "You'd"], ans: "You're", exp: '"You are" → "You\'re" (kontraksi).' },
+  { q: '"I am" → disingkat menjadi...', opts: ["I'd", "I'm", 'Im'], ans: "I'm", exp: '"I am" → "I\'m" (kontraksi).' },
 ];
 
 /* ─── WRITING PRACTICE ─── */
@@ -54,10 +54,10 @@ function WritingPractice() {
   ];
 
   const gapFill = [
-    { prompt: '___ am happy today.', options: ['I', 'Me', 'My'], ans: 'I' },
-    { prompt: '___ school is very big.', options: ['We', 'Our', 'Us'], ans: 'Our' },
-    { prompt: '___ book is on the table.', options: ['Her', 'She', 'Hers'], ans: 'Her' },
-    { prompt: 'I love ___ family.', options: ['me', 'my', 'I'], ans: 'my' },
+    { prompt: '___ am happy today.', options: ['My', 'Me', 'I'], ans: 'I' },
+    { prompt: '___ school is very big.', options: ['Us', 'We', 'Our'], ans: 'Our' },
+    { prompt: '___ book is on the table.', options: ['Her', 'Hers', 'She'], ans: 'Her' },
+    { prompt: 'I love ___ family.', options: ['me', 'I', 'my'], ans: 'my' },
   ];
 
   return (

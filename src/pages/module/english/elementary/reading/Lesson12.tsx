@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - How many stars did the reviewer give?', opts: ["1 out of 5","4 out of 5","3 out of 5","5 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - What does the user like about the screen?', opts: ["It is small","It is broken","It is colorful","It is very clear"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - How long does the battery last?', opts: ["A week","One day","A few hours","Two days"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - What is a negative point mentioned?', opts: ["It is a bit heavy","It is expensive","It has bad features","It is ugly"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - Who wrote the review?', opts: ["SmartWatch 3000","John","TechLover99","A tech expert"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - How many stars did the reviewer give?', opts: ["3 out of 5","5 out of 5","1 out of 5","4 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - What does the user like about the screen?', opts: ["It is colorful","It is very clear","It is broken","It is small"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - How long does the battery last?', opts: ["A week","One day","A few hours","Two days"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - What is a negative point mentioned?', opts: ["It is a bit heavy","It is expensive","It has bad features","It is ugly"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - Who wrote the review?', opts: ["John","A tech expert","TechLover99","SmartWatch 3000"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - How many stars did the reviewer give?', opts: ["1 out of 5","3 out of 5","5 out of 5","4 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - What does the user like about the screen?', opts: ["It is very clear","It is colorful","It is small","It is broken"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - How long does the battery last?', opts: ["A few hours","A week","One day","Two days"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - What is a negative point mentioned?', opts: ["It is expensive","It is ugly","It is a bit heavy","It has bad features"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - Who wrote the review?', opts: ["A tech expert","TechLover99","John","SmartWatch 3000"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - How many stars did the reviewer give?', opts: ["1 out of 5","5 out of 5","4 out of 5","3 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - What does the user like about the screen?', opts: ["It is very clear","It is broken","It is colorful","It is small"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - How long does the battery last?', opts: ["Two days","One day","A week","A few hours"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - What is a negative point mentioned?', opts: ["It is ugly","It is a bit heavy","It is expensive","It has bad features"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - Who wrote the review?', opts: ["John","A tech expert","SmartWatch 3000","TechLover99"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Review) Latihan 1 - How many stars did the reviewer give?', opts: ["1 out of 5", "5 out of 5", "3 out of 5", "4 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - What does the user like about the screen?', opts: ["It is small", "It is very clear", "It is colorful", "It is broken"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - How long does the battery last?', opts: ["A few hours", "One day", "A week", "Two days"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - What is a negative point mentioned?', opts: ["It is a bit heavy", "It has bad features", "It is ugly", "It is expensive"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - Who wrote the review?', opts: ["SmartWatch 3000", "A tech expert", "TechLover99", "John"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - How many stars did the reviewer give?', opts: ["1 out of 5", "5 out of 5", "3 out of 5", "4 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - What does the user like about the screen?', opts: ["It is very clear", "It is colorful", "It is small", "It is broken"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - How long does the battery last?', opts: ["A week", "A few hours", "Two days", "One day"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - What is a negative point mentioned?', opts: ["It is expensive", "It is ugly", "It is a bit heavy", "It has bad features"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - Who wrote the review?', opts: ["A tech expert", "SmartWatch 3000", "John", "TechLover99"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - How many stars did the reviewer give?', opts: ["1 out of 5", "5 out of 5", "4 out of 5", "3 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - What does the user like about the screen?', opts: ["It is small", "It is colorful", "It is very clear", "It is broken"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - How long does the battery last?', opts: ["A few hours", "Two days", "One day", "A week"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - What is a negative point mentioned?', opts: ["It is a bit heavy", "It has bad features", "It is expensive", "It is ugly"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - Who wrote the review?', opts: ["John", "SmartWatch 3000", "A tech expert", "TechLover99"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - How many stars did the reviewer give?', opts: ["1 out of 5", "3 out of 5", "4 out of 5", "5 out of 5"], ans: "4 out of 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - What does the user like about the screen?', opts: ["It is broken", "It is small", "It is colorful", "It is very clear"], ans: "It is very clear", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - How long does the battery last?', opts: ["Two days", "A week", "A few hours", "One day"], ans: "Two days", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - What is a negative point mentioned?', opts: ["It has bad features", "It is ugly", "It is a bit heavy", "It is expensive"], ans: "It is a bit heavy", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - Who wrote the review?', opts: ["A tech expert", "TechLover99", "John", "SmartWatch 3000"], ans: "TechLover99", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'How many stars did the reviewer give?', opts: ["5 out of 5","4 out of 5","3 out of 5","1 out of 5"], ans: '4 out of 5' },
-    { q: 'What does the user like about the screen?', opts: ["It is small","It is colorful","It is very clear","It is broken"], ans: 'It is very clear' },
-    { q: 'How long does the battery last?', opts: ["A few hours","A week","One day","Two days"], ans: 'Two days' },
-    { q: 'What is a negative point mentioned?', opts: ["It is a bit heavy","It is expensive","It has bad features","It is ugly"], ans: 'It is a bit heavy' },
-    { q: 'Who wrote the review?', opts: ["TechLover99","A tech expert","John","SmartWatch 3000"], ans: 'TechLover99' },
+    { q: 'How many stars did the reviewer give?', opts: ["3 out of 5", "4 out of 5", "5 out of 5", "1 out of 5"], ans: '4 out of 5' },
+    { q: 'What does the user like about the screen?', opts: ["It is small", "It is very clear", "It is broken", "It is colorful"], ans: 'It is very clear' },
+    { q: 'How long does the battery last?', opts: ["A week", "One day", "Two days", "A few hours"], ans: 'Two days' },
+    { q: 'What is a negative point mentioned?', opts: ["It is expensive", "It has bad features", "It is ugly", "It is a bit heavy"], ans: 'It is a bit heavy' },
+    { q: 'Who wrote the review?', opts: ["TechLover99", "John", "A tech expert", "SmartWatch 3000"], ans: 'TechLover99' },
   ],
 };
 

@@ -53,26 +53,26 @@ const DESCRIPTIVE_ADJECTIVES = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "We have a ___ with the computer system; it won't turn on.", options: ['solution', 'issue', 'success'], answer: 'issue', explanation: "Issue (Masalah) adalah masalah atau topik yang akan dibahas." },
-  { id: 2, question: "This problem is very ___. We need to fix it right now!", options: ['minor', 'urgent', 'temporary'], answer: 'urgent', explanation: "Urgent (Mendesak) berarti membutuhkan tindakan segera." },
-  { id: 3, question: "I don't know what to choose. I am in a ___.", options: ['dilemma', 'joy', 'habit'], answer: 'dilemma', explanation: "Dilemma (Dilema) adalah situasi di mana pilihan sulit harus dibuat." },
-  { id: 4, question: "Can you ___ this situation? I am too busy.", options: ['handle', 'create', 'break'], answer: 'handle', explanation: "Handle (Menangani) berarti mengelola atau menghadapi situasi." },
+  { id: 1, question: "We have a ___ with the computer system; it won't turn on.", options: ['success', 'solution', 'issue'], answer: 'issue', explanation: "Issue (Masalah) adalah masalah atau topik yang akan dibahas." },
+  { id: 2, question: "This problem is very ___. We need to fix it right now!", options: ['urgent', 'minor', 'temporary'], answer: 'urgent', explanation: "Urgent (Mendesak) berarti membutuhkan tindakan segera." },
+  { id: 3, question: "I don't know what to choose. I am in a ___.", options: ['habit', 'dilemma', 'joy'], answer: 'dilemma', explanation: "Dilemma (Dilema) adalah situasi di mana pilihan sulit harus dibuat." },
+  { id: 4, question: "Can you ___ this situation? I am too busy.", options: ['break', 'create', 'handle'], answer: 'handle', explanation: "Handle (Menangani) berarti mengelola atau menghadapi situasi." },
   { id: 5, question: "It was an ___ moment when I forgot his name.", options: ['awkward', 'urgent', 'efficient'], answer: 'awkward', explanation: "Awkward (Canggung) berarti menyebabkan atau merasakan rasa malu." },
   { id: 6, question: "There was a ___ blocking the road after the accident.", options: ['solution', 'obstacle', 'alternative'], answer: 'obstacle', explanation: "Obstacle (Hambatan) adalah sesuatu yang menghalangi kemajuan." },
-  { id: 7, question: "The country is facing an economic ___.", options: ['crisis', 'advice', 'solution'], answer: 'crisis', explanation: "Crisis (Krisis) adalah waktu kesulitan atau bahaya yang intens." },
-  { id: 8, question: "We need to ___ this problem before it gets worse.", options: ['create', 'resolve', 'complicate'], answer: 'resolve', explanation: "Resolve (Menyelesaikan) berarti menemukan solusi untuk masalah." },
-  { id: 9, question: "Can you ___ this broken chair?", options: ['fix', 'break', 'avoid'], answer: 'fix', explanation: "Fix (Memperbaiki) berarti memperbaiki sesuatu yang rusak." },
-  { id: 10, question: "We should ___ problems before they happen.", options: ['create', 'prevent', 'complicate'], answer: 'prevent', explanation: "Prevent (Mencegah) berarti menghentikan sesuatu terjadi." },
-  { id: 11, question: "There's a water ___  in the city.", options: ['complication', 'shortage', 'alternative'], answer: 'shortage', explanation: "Shortage (Kekurangan) adalahkurangnya sesuatu yang dibutuhkan." },
-  { id: 12, question: "The earthquake was a terrible ___.", options: ['disaster', 'advice', 'solution'], answer: 'disaster', explanation: "Disaster (Bencana) adalah kejadian yang menyebabkan kerusakan besar." },
-  { id: 13, question: "This problem is only ___. It will be fixed soon.", options: ['permanent', 'temporary', 'serious'], answer: 'temporary', explanation: "Temporary (Sementara) berarti berlangsung untuk waktu yang terbatas." },
-  { id: 14, question: "It was an ___ surprise when he showed up.", options: ['expected', 'unexpected', 'appropriate'], answer: 'unexpected', explanation: "Unexpected (Tidak terduga) berarti tidak diantisipasi." },
-  { id: 15, question: "This is a ___ situation that requires careful attention.", options: ['minor', 'serious', 'temporary'], answer: 'serious', explanation: "Serious (Serius) berarti memerlukan pemikiran atau tindakan yang cermat." },
-  { id: 16, question: "We need to ___ with this customer complaint.", options: ['avoid', 'deal with', 'create'], answer: 'deal with', explanation: "'Deal with' (Menangani) berarti mengambil tindakan untuk menyelesaikan sesuatu." },
-  { id: 17, question: "Can you suggest an ___ solution?", options: ['alternative', 'complication', 'error'], answer: 'alternative', explanation: "Alternative (Alternatif) adalah pilihan lain yang tersedia." },
+  { id: 7, question: "The country is facing an economic ___.", options: ['advice', 'crisis', 'solution'], answer: 'crisis', explanation: "Crisis (Krisis) adalah waktu kesulitan atau bahaya yang intens." },
+  { id: 8, question: "We need to ___ this problem before it gets worse.", options: ['resolve', 'complicate', 'create'], answer: 'resolve', explanation: "Resolve (Menyelesaikan) berarti menemukan solusi untuk masalah." },
+  { id: 9, question: "Can you ___ this broken chair?", options: ['fix', 'avoid', 'break'], answer: 'fix', explanation: "Fix (Memperbaiki) berarti memperbaiki sesuatu yang rusak." },
+  { id: 10, question: "We should ___ problems before they happen.", options: ['create', 'complicate', 'prevent'], answer: 'prevent', explanation: "Prevent (Mencegah) berarti menghentikan sesuatu terjadi." },
+  { id: 11, question: "There's a water ___  in the city.", options: ['alternative', 'complication', 'shortage'], answer: 'shortage', explanation: "Shortage (Kekurangan) adalahkurangnya sesuatu yang dibutuhkan." },
+  { id: 12, question: "The earthquake was a terrible ___.", options: ['solution', 'disaster', 'advice'], answer: 'disaster', explanation: "Disaster (Bencana) adalah kejadian yang menyebabkan kerusakan besar." },
+  { id: 13, question: "This problem is only ___. It will be fixed soon.", options: ['permanent', 'serious', 'temporary'], answer: 'temporary', explanation: "Temporary (Sementara) berarti berlangsung untuk waktu yang terbatas." },
+  { id: 14, question: "It was an ___ surprise when he showed up.", options: ['appropriate', 'unexpected', 'expected'], answer: 'unexpected', explanation: "Unexpected (Tidak terduga) berarti tidak diantisipasi." },
+  { id: 15, question: "This is a ___ situation that requires careful attention.", options: ['temporary', 'serious', 'minor'], answer: 'serious', explanation: "Serious (Serius) berarti memerlukan pemikiran atau tindakan yang cermat." },
+  { id: 16, question: "We need to ___ with this customer complaint.", options: ['create', 'deal with', 'avoid'], answer: 'deal with', explanation: "'Deal with' (Menangani) berarti mengambil tindakan untuk menyelesaikan sesuatu." },
+  { id: 17, question: "Can you suggest an ___ solution?", options: ['alternative', 'error', 'complication'], answer: 'alternative', explanation: "Alternative (Alternatif) adalah pilihan lain yang tersedia." },
   { id: 18, question: "We need to ___ the quality of our products.", options: ['worsen', 'improve', 'complicate'], answer: 'improve', explanation: "Improve (Meningkatkan) berarti membuat sesuatu menjadi lebih baik." },
-  { id: 19, question: "It's a very ___ task that will take many hours.", options: ['simple', 'complicated', 'minor'], answer: 'complicated', explanation: "Complicated (Rumit) berarti terdiri dari banyak bagian yang saling terkait." },
-  { id: 20, question: "This mistake was my ___. I'm sorry.", options: ['solution', 'advice', 'fault'], answer: 'fault', explanation: "Fault (Kesalahan) berarti tanggung jawab atas kesalahan." }
+  { id: 19, question: "It's a very ___ task that will take many hours.", options: ['complicated', 'simple', 'minor'], answer: 'complicated', explanation: "Complicated (Rumit) berarti terdiri dari banyak bagian yang saling terkait." },
+  { id: 20, question: "This mistake was my ___. I'm sorry.", options: ['fault', 'solution', 'advice'], answer: 'fault', explanation: "Fault (Kesalahan) berarti tanggung jawab atas kesalahan." }
 
 ];
 

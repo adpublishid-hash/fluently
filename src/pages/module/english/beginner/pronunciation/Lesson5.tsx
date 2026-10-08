@@ -74,7 +74,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 1,
     question: "Berapa banyak suku kata dalam 'Banana'?",
-    options: ['1', '2', '3'],
+    options: ['3', '2', '1'],
     answer: '3',
     explanation: "Ba-na-na. 3 suku kata."
   },
@@ -109,14 +109,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 6,
     question: "Di mana tekanan pada 'Window' (Kata Benda)?",
-    options: ['1st (WIN-dow)', '2nd (win-DOW)'],
+    options: ['2nd (win-DOW)', '1st (WIN-dow)'],
     answer: '1st (WIN-dow)',
     explanation: "Window adalah kata benda, jadi tekanan di suku kata pertama."
   },
   {
     id: 7,
     question: "Di mana tekanan pada 'Enjoy' (Kata Kerja)?",
-    options: ['1st (EN-joy)', '2nd (en-JOY)'],
+    options: ['2nd (en-JOY)', '1st (EN-joy)'],
     answer: '2nd (en-JOY)',
     audioText: "Enjoy",
     explanation: "Enjoy adalah kata kerja, jadi tekanan di suku kata kedua."
@@ -124,14 +124,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 8,
     question: "Berapa suku kata dalam 'Beautiful'?",
-    options: ['2', '3', '4'],
+    options: ['4', '3', '2'],
     answer: '3',
     explanation: "Beau-ti-ful. 3 suku kata."
   },
   {
     id: 9,
     question: "Apa yang menentukan jumlah suku kata?",
-    options: ['Jumlah huruf', 'Jumlah bunyi vokal', 'Jumlah konsonan'],
+    options: ['Jumlah konsonan', 'Jumlah huruf', 'Jumlah bunyi vokal'],
     answer: 'Jumlah bunyi vokal',
     explanation: "Setiap bunyi vokal = satu suku kata."
   },
@@ -146,7 +146,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 11,
     question: "Di mana tekanan pada 'Forget' (Kata Kerja)?",
-    options: ['1st (FOR-get)', '2nd (for-GET)'],
+    options: ['2nd (for-GET)', '1st (FOR-get)'],
     answer: '2nd (for-GET)',
     audioText: "Forget",
     explanation: "Forget adalah kata kerja, tekanan di suku kata kedua."
@@ -154,21 +154,21 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 12,
     question: "Berapa suku kata dalam 'Chocolate'?",
-    options: ['2', '3', '4'],
+    options: ['4', '2', '3'],
     answer: '3',
     explanation: "Cho-co-late (atau Choc-late dalam pengucapan cepat). 3 suku kata."
   },
   {
     id: 13,
     question: "Kebanyakan kata BENDA 2 suku kata ditekan di...",
-    options: ['Suku kata pertama', 'Suku kata kedua', 'Keduanya sama'],
+    options: ['Suku kata kedua', 'Suku kata pertama', 'Keduanya sama'],
     answer: 'Suku kata pertama',
     explanation: "Contoh: TAble, PENcil, WINdow - semua ditekan di awal."
   },
   {
     id: 14,
     question: "Kebanyakan kata KERJA 2 suku kata ditekan di...",
-    options: ['Suku kata pertama', 'Suku kata kedua', 'Keduanya sama'],
+    options: ['Suku kata pertama', 'Keduanya sama', 'Suku kata kedua'],
     answer: 'Suku kata kedua',
     explanation: "Contoh: beCOME, forGET, enJOY - semua ditekan di akhir."
   },
@@ -183,14 +183,14 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 16,
     question: "Berapa suku kata dalam 'English'?",
-    options: ['1', '2', '3'],
+    options: ['3', '1', '2'],
     answer: '2',
     explanation: "Eng-lish. 2 suku kata."
   },
   {
     id: 17,
     question: "Di mana tekanan pada 'Invite' (Kata Kerja)?",
-    options: ['1st (IN-vite)', '2nd (in-VITE)'],
+    options: ['2nd (in-VITE)', '1st (IN-vite)'],
     answer: '2nd (in-VITE)',
     audioText: "Invite",
     explanation: "Invite adalah kata kerja, tekanan di suku kata kedua."
@@ -206,7 +206,7 @@ const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     id: 19,
     question: "Berapa suku kata dalam 'Understand'?",
-    options: ['2', '3', '4'],
+    options: ['3', '2', '4'],
     answer: '3',
     explanation: "Un-der-stand. 3 suku kata."
   },

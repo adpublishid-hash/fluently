@@ -55,119 +55,119 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Kalimat mana yang benar?",
-    options: ['I didn\'t went.', 'I didn\'t go.', 'I not go.'],
+    options: ['I didn\'t go.', 'I not go.', 'I didn\'t went.'],
     answer: 'I didn\'t go.',
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Go)."
   },
   {
     id: 2,
     question: "___ you see the bird?",
-    options: ['Does', 'Were', 'Did'],
+    options: ['Were', 'Does', 'Did'],
     answer: 'Did',
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
   {
     id: 3,
     question: "He ___ enjoy the party.",
-    options: ['didn\'t', 'doesn\'t', 'don\'t'],
+    options: ['don\'t', 'didn\'t', 'doesn\'t'],
     answer: 'didn\'t',
     explanation: "Karena ini peristiwa lampau, 'didn't' itu benar. (Doesn't akan untuk kebiasaan saat ini)."
   },
   {
     id: 4,
     question: "Did she ___ a new phone?",
-    options: ['bought', 'buy', 'buys'],
+    options: ['buy', 'buys', 'bought'],
     answer: 'buy',
     explanation: "Setelah 'Did', gunakan Kata Kerja Dasar (Buy)."
   },
   {
     id: 5,
     question: "They didn't ___ to the beach.",
-    options: ['drive', 'drove', 'driving'],
+    options: ['drove', 'drive', 'driving'],
     answer: 'drive',
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Drive)."
   },
   {
     id: 6,
     question: "Kalimat mana yang benar?",
-    options: ["I didn't went.","I didn't go.","I not go."],
+    options: ["I didn't go.", "I not go.", "I didn't went."],
     answer: "I didn't go.",
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Go)."
   },
   {
     id: 7,
     question: "___ you see the bird?",
-    options: ["Does","Were","Did"],
+    options: ["Were", "Does", "Did"],
     answer: "Did",
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
   {
     id: 8,
     question: "He ___ enjoy the party.",
-    options: ["didn't","doesn't","don't"],
+    options: ["don't", "didn't", "doesn't"],
     answer: "didn't",
     explanation: "Karena ini peristiwa lampau, 'didn't' itu benar. (Doesn't akan untuk kebiasaan saat ini)."
   },
   {
     id: 9,
     question: "Did she ___ a new phone?",
-    options: ["bought","buy","buys"],
+    options: ["buy", "buys", "bought"],
     answer: "buy",
     explanation: "Setelah 'Did', gunakan Kata Kerja Dasar (Buy)."
   },
   {
     id: 10,
     question: "The dogs didn't ___ to the beach.",
-    options: ["drive","drove","driving"],
+    options: ["drove", "drive", "driving"],
     answer: "drive",
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Drive)."
   },
   {
     id: 11,
     question: "Kalimat mana yang benar?",
-    options: ["I didn't went.","I didn't go.","I not go."],
+    options: ["I didn't go.", "I not go.", "I didn't went."],
     answer: "I didn't go.",
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Go)."
   },
   {
     id: 12,
     question: "___ you see the bird?",
-    options: ["Does","Were","Did"],
+    options: ["Were", "Does", "Did"],
     answer: "Did",
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
   {
     id: 13,
     question: "The boy ___ enjoy the party.",
-    options: ["didn't","doesn't","don't"],
+    options: ["doesn't", "don't", "didn't"],
     answer: "didn't",
     explanation: "Karena ini peristiwa lampau, 'didn't' itu benar. (Doesn't akan untuk kebiasaan saat ini)."
   },
   {
     id: 14,
     question: "Did she ___ a new phone?",
-    options: ["bought","buy","buys"],
+    options: ["buy", "buys", "bought"],
     answer: "buy",
     explanation: "Setelah 'Did', gunakan Kata Kerja Dasar (Buy)."
   },
   {
     id: 15,
     question: "They didn't ___ to the beach.",
-    options: ["drive","drove","driving"],
+    options: ["drove", "drive", "driving"],
     answer: "drive",
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Drive)."
   },
   {
     id: 16,
     question: "Kalimat mana yang benar?",
-    options: ["I didn't went.","I didn't go.","I not go."],
+    options: ["I didn't go.", "I not go.", "I didn't went."],
     answer: "I didn't go.",
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Go)."
   },
   {
     id: 17,
     question: "___ you see the bird?",
-    options: ["Does","Were","Did"],
+    options: ["Were", "Does", "Did"],
     answer: "Did",
     explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
   },
@@ -181,14 +181,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "Did she ___ a new phone?",
-    options: ["bought","buy","buys"],
+    options: ["buy", "buys", "bought"],
     answer: "buy",
     explanation: "Setelah 'Did', gunakan Kata Kerja Dasar (Buy)."
   },
   {
     id: 20,
     question: "The dogs didn't ___ to the beach.",
-    options: ["drive","drove","driving"],
+    options: ["drove", "drive", "driving"],
     answer: "drive",
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar (Drive)."
   }

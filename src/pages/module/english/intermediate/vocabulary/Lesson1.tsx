@@ -63,63 +63,63 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "It was a difficult problem, but she managed to ___ it.",
-    options: ['fail', 'regret', 'overcome'],
+    options: ['fail', 'overcome', 'regret'],
     answer: 'overcome',
     explanation: "To overcome (Mengatasi) berarti berhasil menangani masalah atau kesulitan."
   },
   {
     id: 3,
     question: "I have a very happy ___ of my first day at school.",
-    options: ['memory', 'ambition', 'funeral'],
+    options: ['funeral', 'ambition', 'memory'],
     answer: 'memory',
     explanation: "A memory (Kenangan) adalah sesuatu yang Anda ingat dari masa lalu."
   },
   {
     id: 4,
     question: "She worked hard and got a ___ to manager.",
-    options: ['graduation', 'promotion', 'ceremony'],
+    options: ['promotion', 'ceremony', 'graduation'],
     answer: 'promotion',
     explanation: "A promotion (Kenaikan pangkat) adalah perpindahan ke pekerjaan atau peringkat yang lebih penting."
   },
   {
     id: 5,
     question: "I am very ___ for your help.",
-    options: ['proud', 'nostalgic', 'grateful'],
+    options: ['grateful', 'nostalgic', 'proud'],
     answer: 'grateful',
     explanation: "Grateful (Bersyukur) berarti merasakan atau menunjukkan penghargaan atas kebaikan."
   },
   {
     id: 6,
     question: "They held a beautiful ___ to celebrate their 10th wedding ___.",
-    options: ['ceremony, anniversary', 'funeral, graduation', 'upbringing, childhood'],
+    options: ['funeral, graduation', 'ceremony, anniversary', 'upbringing, childhood'],
     answer: 'ceremony, anniversary',
     explanation: "Ceremony (Upacara) dan Anniversary (Hari jadi) cocok untuk perayaan pernikahan."
   },
   {
     id: 7,
     question: "If you want to ___, you must work hard and never give up.",
-    options: ['fail', 'succeed', 'regret'],
+    options: ['regret', 'succeed', 'fail'],
     answer: 'succeed',
     explanation: "To succeed (Berhasil) berarti mencapai tujuan yang Anda inginkan."
   },
   {
     id: 8,
     question: "Her ___ was very happy. She grew up in a loving family.",
-    options: ['adulthood', 'retirement', 'childhood'],
+    options: ['retirement', 'adulthood', 'childhood'],
     answer: 'childhood',
     explanation: "Childhood (Masa kecil) adalah periode saat seseorang masih anak-anak."
   },
   {
     id: 9,
     question: "He has a strong ___ to become a famous musician.",
-    options: ['funeral', 'ambition', 'ceremony'],
+    options: ['ceremony', 'ambition', 'funeral'],
     answer: 'ambition',
     explanation: "Ambition (Ambisi) adalah keinginan kuat untuk mencapai sesuatu yang membutuhkan kerja keras."
   },
   {
     id: 10,
     question: "Students usually ___ from university after four years.",
-    options: ['achieve', 'graduate', 'celebrate'],
+    options: ['graduate', 'achieve', 'celebrate'],
     answer: 'graduate',
     explanation: "To graduate (Lulus) berarti menyelesaikan program studi dan menerima gelar atau sertifikat."
   },
@@ -133,63 +133,63 @@ const QUIZ_QUESTIONS = [
   {
     id: 12,
     question: "Despite many ___, she never gave up on her goals.",
-    options: ['challenges', 'funerals', 'ceremonies'],
+    options: ['funerals', 'challenges', 'ceremonies'],
     answer: 'challenges',
     explanation: "Challenges (Tantangan) adalah situasi sulit yang memerlukan usaha untuk mengatasinya."
   },
   {
     id: 13,
     question: "I ___ not studying harder when I was young.",
-    options: ['achieve', 'overcome', 'regret'],
+    options: ['overcome', 'achieve', 'regret'],
     answer: 'regret',
     explanation: "To regret (Menyesali) berarti merasa sedih tentang sesuatu yang sudah terjadi."
   },
   {
     id: 14,
     question: "Her good ___ taught her to be polite and respectful.",
-    options: ['graduation', 'upbringing', 'promotion'],
+    options: ['upbringing', 'promotion', 'graduation'],
     answer: 'upbringing',
     explanation: "Upbringing (Pola asuh) adalah cara seseorang dididik dan dibesarkan saat masih kecil."
   },
   {
     id: 15,
     question: "The team worked together to ___ their goal of winning the championship.",
-    options: ['accomplish', 'fail', 'regret'],
+    options: ['regret', 'accomplish', 'fail'],
     answer: 'accomplish',
     explanation: "To accomplish (Menyelesaikan/Meraih) berarti berhasil menyelesaikan sesuatu."
   },
   {
     id: 16,
     question: "Looking at old photos makes me feel ___.",
-    options: ['proud', 'nostalgic', 'grateful'],
+    options: ['nostalgic', 'grateful', 'proud'],
     answer: 'nostalgic',
     explanation: "Nostalgic (Bernostalgia) berarti merasa rindu atau suka mengingat masa lalu."
   },
   {
     id: 17,
     question: "Everyone should ___ in community activities.",
-    options: ['participate', 'fail', 'discover'],
+    options: ['fail', 'participate', 'discover'],
     answer: 'participate',
     explanation: "To participate (Berpartisipasi) berarti ikut serta dalam suatu kegiatan."
   },
   {
     id: 18,
     question: "When you enter ___, you become responsible for your own life.",
-    options: ['childhood', 'adulthood', 'graduation'],
+    options: ['adulthood', 'graduation', 'childhood'],
     answer: 'adulthood',
     explanation: "Adulthood (Masa dewasa) adalah periode hidup setelah masa remaja."
   },
   {
     id: 19,
     question: "He was ___ of his daughter's achievements.",
-    options: ['nostalgic', 'grateful', 'proud'],
+    options: ['grateful', 'proud', 'nostalgic'],
     answer: 'proud',
     explanation: "Proud (Bangga) berarti merasa senang dan puas dengan pencapaian seseorang atau diri sendiri."
   },
   {
     id: 20,
     question: "Scientists continue to ___ new things about the universe.",
-    options: ['regret', 'discover', 'fail'],
+    options: ['discover', 'regret', 'fail'],
     answer: 'discover',
     explanation: "To discover (Menemukan) berarti menemukan sesuatu yang sebelumnya tidak diketahui."
   }

@@ -50,7 +50,7 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "You need to ___ your username and password to access your email.",
-    options: ['click', 'type', 'draw'],
+    options: ['click', 'draw', 'type'],
     answer: 'type',
     explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
   },
@@ -64,28 +64,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "To keep a file, you must ___ it.",
-    options: ['delete', 'save', 'search'],
+    options: ['save', 'search', 'delete'],
     answer: 'save',
     explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
   },
   {
     id: 4,
     question: "If you don't want a photo anymore, you ___ it.",
-    options: ['upload', 'delete', 'download'],
+    options: ['download', 'upload', 'delete'],
     answer: 'delete',
     explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
   },
   {
     id: 5,
     question: "You need a ___ to connect to the internet wirelessly.",
-    options: ['Mouse', 'Wi-Fi', 'Battery'],
+    options: ['Battery', 'Wi-Fi', 'Mouse'],
     answer: 'Wi-Fi',
     explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
   },
   {
     id: 6,
     question: "You need to ___ your username and password to access your email.",
-    options: ["click","type","draw"],
+    options: ["click", "draw", "type"],
     answer: "type",
     explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
   },
@@ -99,28 +99,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "To keep a file, you must ___ it.",
-    options: ["delete","save","search"],
+    options: ["save", "search", "delete"],
     answer: "save",
     explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
   },
   {
     id: 9,
     question: "If you don't want a photo anymore, you ___ it.",
-    options: ["upload","delete","download"],
+    options: ["download", "upload", "delete"],
     answer: "delete",
     explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
   },
   {
     id: 10,
     question: "You need a ___ to connect to the internet wirelessly.",
-    options: ["Mouse","Wi-Fi","Battery"],
+    options: ["Battery", "Wi-Fi", "Mouse"],
     answer: "Wi-Fi",
     explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
   },
   {
     id: 11,
     question: "You need to ___ your username and password to access your email.",
-    options: ["click","type","draw"],
+    options: ["click", "draw", "type"],
     answer: "type",
     explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
   },
@@ -134,28 +134,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "To keep a file, you must ___ it.",
-    options: ["delete","save","search"],
+    options: ["save", "search", "delete"],
     answer: "save",
     explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
   },
   {
     id: 14,
     question: "If you don't want a photo anymore, you ___ it.",
-    options: ["upload","delete","download"],
+    options: ["download", "upload", "delete"],
     answer: "delete",
     explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
   },
   {
     id: 15,
     question: "You need a ___ to connect to the internet wirelessly.",
-    options: ["Mouse","Wi-Fi","Battery"],
+    options: ["Battery", "Wi-Fi", "Mouse"],
     answer: "Wi-Fi",
     explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
   },
   {
     id: 16,
     question: "You need to ___ your username and password to access your email.",
-    options: ["click","type","draw"],
+    options: ["click", "draw", "type"],
     answer: "type",
     explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
   },
@@ -169,21 +169,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "To keep a file, you must ___ it.",
-    options: ["delete","save","search"],
+    options: ["save", "search", "delete"],
     answer: "save",
     explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
   },
   {
     id: 19,
     question: "If you don't want a photo anymore, you ___ it.",
-    options: ["upload","delete","download"],
+    options: ["download", "upload", "delete"],
     answer: "delete",
     explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
   },
   {
     id: 20,
     question: "You need a ___ to connect to the internet wirelessly.",
-    options: ["Mouse","Wi-Fi","Battery"],
+    options: ["Battery", "Wi-Fi", "Mouse"],
     answer: "Wi-Fi",
     explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
   }

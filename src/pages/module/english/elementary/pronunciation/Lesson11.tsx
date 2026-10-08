@@ -94,49 +94,49 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa?",
-    options: ['F', 'TH', 'S'],
+    options: ['TH', 'F', 'S'],
     answer: 'TH',
     explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
   },
   {
     id: 2,
     question: "Pasangan mana yang terdengar berbeda?",
-    options: ['Fit - Pit', 'Same - Same', 'Do - Do'],
+    options: ['Do - Do', 'Fit - Pit', 'Same - Same'],
     answer: 'Fit - Pit',
     explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
   },
   {
     id: 3,
     question: "Bagaimana kamu mengucapkan akhir kata 'World'?",
-    options: ['Worl (D Tak Bersuara)', 'World (L dan D Jelas)'],
+    options: ['World (L dan D Jelas)', 'Worl (D Tak Bersuara)'],
     answer: 'World (L dan D Jelas)',
     explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
   },
   {
     id: 4,
     question: "She vs See. Mana yang mengharuskan bibir membulat?",
-    options: ['See /s/', 'She /ʃ/'],
+    options: ['She /ʃ/', 'See /s/'],
     answer: 'She /ʃ/',
     explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
   },
   {
     id: 5,
     question: "Apa kesalahan umum dengan V dan W?",
-    options: ['Menukarnya (Vet terdengar seperti Wet)', 'Menghilangkannya'],
+    options: ['Menghilangkannya', 'Menukarnya (Vet terdengar seperti Wet)'],
     answer: 'Menukarnya (Vet terdengar seperti Wet)',
     explanation: "V mengharuskan gigi di bibir. W mengharuskan bibir membulat. Jangan bilang 'Wery good' bukannya 'Very good'."
   },
   {
     id: 6,
     question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa...",
-    options: ["F","TH","S"],
+    options: ["S", "TH", "F"],
     answer: "TH",
     explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
   },
   {
     id: 7,
     question: "Pasangan mana yang terdengar berbeda ?",
-    options: ["Fit - Pit","Same - Same","Do - Do"],
+    options: ["Same - Same", "Fit - Pit", "Do - Do"],
     answer: "Fit - Pit",
     explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
   },
@@ -164,7 +164,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa?",
-    options: ["F","TH","S"],
+    options: ["TH", "F", "S"],
     answer: "TH",
     explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
   },
@@ -178,14 +178,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Bagaimana kamu mengucapkan akhir kata 'World' ?",
-    options: ["Worl (D Tak Bersuara)","World (L dan D Jelas)"],
+    options: ["World (L dan D Jelas)", "Worl (D Tak Bersuara)"],
     answer: "World (L dan D Jelas)",
     explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
   },
   {
     id: 14,
     question: "She vs See. Mana yang mengharuskan bibir membulat?",
-    options: ["See /s/","She /ʃ/"],
+    options: ["She /ʃ/", "See /s/"],
     answer: "She /ʃ/",
     explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
   },
@@ -199,28 +199,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa?",
-    options: ["F","TH","S"],
+    options: ["TH", "F", "S"],
     answer: "TH",
     explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
   },
   {
     id: 17,
     question: "Pasangan mana yang terdengar berbeda?",
-    options: ["Fit - Pit","Same - Same","Do - Do"],
+    options: ["Do - Do", "Fit - Pit", "Same - Same"],
     answer: "Fit - Pit",
     explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
   },
   {
     id: 18,
     question: "Bagaimana kamu mengucapkan akhir kata 'World'?",
-    options: ["Worl (D Tak Bersuara)","World (L dan D Jelas)"],
+    options: ["World (L dan D Jelas)", "Worl (D Tak Bersuara)"],
     answer: "World (L dan D Jelas)",
     explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
   },
   {
     id: 19,
     question: "She vs See. Mana yang mengharuskan bibir membulat?",
-    options: ["See /s/","She /ʃ/"],
+    options: ["She /ʃ/", "See /s/"],
     answer: "She /ʃ/",
     explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
   },

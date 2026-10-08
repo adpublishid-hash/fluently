@@ -57,9 +57,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is the BEST way to introduce your main point when speaking about \"Describing Trends & Data\"?",
     "opts": [
       "Umm, so basically I think...",
-      "The key point I would like to address is...",
+      "So yeah, my thing is...",
       "Like, I dunno what to say...",
-      "So yeah, my thing is..."
+      "The key point I would like to address is..."
     ],
     "ans": "The key point I would like to address is...",
     "exp": "\"The key point I would like to address\" adalah pembuka formal yang langsung dan jelas dalam speaking B2."
@@ -67,10 +67,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase allows you to AGREE and then ADD a qualification?",
     "opts": [
-      "No way.",
-      "I totally agree. Full stop.",
       "I see your point, however, there is also the consideration of...",
-      "Whatever you say."
+      "Whatever you say.",
+      "No way.",
+      "I totally agree. Full stop."
     ],
     "ans": "I see your point, however, there is also the consideration of...",
     "exp": "\"I see your point, however\" mengakui argumen lawan sebelum memperkenalkan perspektif tambahan."
@@ -78,10 +78,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "In formal speaking, what does \"To put it another way,\" signal?",
     "opts": [
-      "Starting a new topic",
       "Rephrasing what was said for clarity",
+      "Ending the conversation",
       "Disagreeing strongly",
-      "Ending the conversation"
+      "Starting a new topic"
     ],
     "ans": "Rephrasing what was said for clarity",
     "exp": "\"To put it another way\" adalah frasa transisi yang digunakan untuk memparafrase atau menyederhanakan poin."
@@ -89,9 +89,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which phrase appropriately asks someone to develop their idea?",
     "opts": [
-      "What do you mean?",
-      "Huh?",
       "Could you elaborate on that point, please?",
+      "Huh?",
+      "What do you mean?",
       "Say it again."
     ],
     "ans": "Could you elaborate on that point, please?",
@@ -101,9 +101,9 @@ const QUIZ: QuizItem[] = [
     "q": "\"Building on what was said earlier\" shows that you ___",
     "opts": [
       "Are changing the subject",
-      "Cannot remember the conversation",
+      "Are ending your speaking turn",
       "Are connecting your point to previous contributions",
-      "Are ending your speaking turn"
+      "Cannot remember the conversation"
     ],
     "ans": "Are connecting your point to previous contributions",
     "exp": "\"Building on\" menunjukkan kemampuan mengikuti diskusi dan mengintegrasikan ide yang telah disampaikan."
@@ -112,8 +112,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which is an effective strategy when you need time to think in a discussion?",
     "opts": [
       "Going completely silent",
-      "Using fillers like \"That's an interesting point; let me consider...\"",
       "Changing the topic abruptly",
+      "Using fillers like \"That's an interesting point; let me consider...\"",
       "Saying \"I don't know\" and stopping"
     ],
     "ans": "Using fillers like \"That's an interesting point; let me consider...\"",
@@ -122,10 +122,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does hedging in formal speaking indicate?",
     "opts": [
-      "Weak knowledge",
       "Academic caution and awareness of complexity",
-      "Uncertainty about everything",
-      "Refusal to commit to ideas"
+      "Weak knowledge",
+      "Refusal to commit to ideas",
+      "Uncertainty about everything"
     ],
     "ans": "Academic caution and awareness of complexity",
     "exp": "Hedging menunjukkan kesadaran akademik bahwa sebagian besar isu bersifat kompleks dan memiliki nuansa."
@@ -133,10 +133,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"The implications of this are significant\" is used when ___",
     "opts": [
+      "Asking a question",
       "Concluding a story",
       "Emphasizing the importance of a point or finding",
-      "Introducing yourself",
-      "Asking a question"
+      "Introducing yourself"
     ],
     "ans": "Emphasizing the importance of a point or finding",
     "exp": "Frasa ini menekankan bahwa poin yang dibicarakan memiliki konsekuensi atau dampak yang besar."
@@ -144,10 +144,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"Drawing on current research\" shows that your argument is ___",
     "opts": [
-      "Based purely on personal feeling",
-      "Evidence-based and academically grounded",
       "Hypothetical only",
-      "Informal and chatty"
+      "Informal and chatty",
+      "Evidence-based and academically grounded",
+      "Based purely on personal feeling"
     ],
     "ans": "Evidence-based and academically grounded",
     "exp": "\"Drawing on current research\" menandai bahwa argumen Anda didukung oleh sumber akademik terkini."
@@ -155,10 +155,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "At B2 level, good speaking involves ___",
     "opts": [
-      "Only using simple vocabulary",
       "Using complex structures, varied vocabulary, and appropriate register",
-      "Speaking as fast as possible",
-      "Avoiding all opinions"
+      "Only using simple vocabulary",
+      "Avoiding all opinions",
+      "Speaking as fast as possible"
     ],
     "ans": "Using complex structures, varied vocabulary, and appropriate register",
     "exp": "CEFR B2 berbicara: menggunakan struktur kompleks, kosakata bervariasi, dan register yang sesuai konteks."
@@ -166,9 +166,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"What I find most compelling is...\" introduces ___",
     "opts": [
-      "A dismissal of an idea",
-      "The speaker's strongest supporting argument",
       "A personal anecdote only",
+      "The speaker's strongest supporting argument",
+      "A dismissal of an idea",
       "A question to the audience"
     ],
     "ans": "The speaker's strongest supporting argument",
@@ -178,8 +178,8 @@ const QUIZ: QuizItem[] = [
     "q": "Which phrase politely challenges a previous statement?",
     "opts": [
       "That's wrong.",
-      "While I appreciate that perspective, I would question whether...",
       "No that's false.",
+      "While I appreciate that perspective, I would question whether...",
       "I disagree completely."
     ],
     "ans": "While I appreciate that perspective, I would question whether...",
@@ -188,10 +188,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"This is a nuanced issue because...\" prepares the listener for ___",
     "opts": [
-      "A simple answer",
       "A complex, multi-faceted discussion with multiple perspectives",
+      "A personal story",
       "A conclusion only",
-      "A personal story"
+      "A simple answer"
     ],
     "ans": "A complex, multi-faceted discussion with multiple perspectives",
     "exp": "\"Nuanced\" menandakan bahwa isu tidak hitam-putih dan memerlukan pemikiran yang lebih dalam."
@@ -200,9 +200,9 @@ const QUIZ: QuizItem[] = [
     "q": "\"To summarise my argument\" is used ___",
     "opts": [
       "At the beginning of a discussion",
-      "To introduce new evidence",
       "To signal closure or recapping before concluding",
-      "To ask a question"
+      "To ask a question",
+      "To introduce new evidence"
     ],
     "ans": "To signal closure or recapping before concluding",
     "exp": "\"To summarise\" menandakan bahwa pembicara akan menyatakan kembali poin-poin utama sebelum menutup."
@@ -211,9 +211,9 @@ const QUIZ: QuizItem[] = [
     "q": "If a stakeholder says something vague, which is the BEST response?",
     "opts": [
       "Ignore it.",
-      "Agree immediately.",
       "If I understand correctly, you are suggesting that...?",
-      "Tell them they are wrong."
+      "Tell them they are wrong.",
+      "Agree immediately."
     ],
     "ans": "If I understand correctly, you are suggesting that...?",
     "exp": "\"If I understand correctly\" memverifikasi pemahaman Anda sebelum merespons, menghindari kesalahpahaman."
@@ -221,10 +221,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "\"In light of the evidence\" signals that your conclusion is ___",
     "opts": [
-      "Based on random guessing",
       "Supported by available data or research",
-      "Purely emotional",
-      "Unsupported"
+      "Unsupported",
+      "Based on random guessing",
+      "Purely emotional"
     ],
     "ans": "Supported by available data or research",
     "exp": "\"In light of the evidence\" menekankan bahwa kesimpulan Anda didasarkan pada bukti yang tersedia."
@@ -232,10 +232,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "When presenting in English, how should you structure your main points?",
     "opts": [
-      "Randomly and without order",
       "With a clear introduction, signposting, and conclusion",
-      "Without any signposting or transitions",
-      "Only with bullet points read aloud"
+      "Only with bullet points read aloud",
+      "Randomly and without order",
+      "Without any signposting or transitions"
     ],
     "ans": "With a clear introduction, signposting, and conclusion",
     "exp": "Presentasi B2 efektif: pembuka jelas, penanda jalan (signposting), isi terstruktur, dan penutup yang kuat."
@@ -255,9 +255,9 @@ const QUIZ: QuizItem[] = [
     "q": "\"That's an interesting perspective\" is best followed by ___",
     "opts": [
       "...and I completely agree.",
-      "...and I have nothing to add.",
+      "...goodbye.",
       "...though I think we should also consider X.",
-      "...goodbye."
+      "...and I have nothing to add."
     ],
     "ans": "...though I think we should also consider X.",
     "exp": "Mengakui perspektif orang lain lalu memperluas diskusi dengan \"we should also consider\" menunjukkan engagement yang baik."
@@ -266,9 +266,9 @@ const QUIZ: QuizItem[] = [
     "q": "Effective B2 discussion participants ___",
     "opts": [
       "Only talk and never listen",
-      "Listen actively, build on others' ideas, and take balanced turns",
+      "Avoid all opinions",
       "Dominate the conversation entirely",
-      "Avoid all opinions"
+      "Listen actively, build on others' ideas, and take balanced turns"
     ],
     "ans": "Listen actively, build on others' ideas, and take balanced turns",
     "exp": "Peserta diskusi yang baik di B2 menunjukkan kemampuan mendengar aktif, membangun argumen kolaboratif, dan bergilir dengan seimbang."

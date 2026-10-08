@@ -33,28 +33,28 @@ const QUIZ_QUESTIONS = [
 {
     id: 1,
     question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ['Late', 'Cat', 'Feet'],
+    options: ['Feet', 'Cat', 'Late'],
     answer: 'Cat',
     explanation: "Cat memiliki suara /æ/. Late dan Feet adalah vokal panjang."
   },
   {
     id: 2,
     question: "Untuk membuat suara 'TH', lidahmu harus...",
-    options: ['Menyentuh langit-langit mulut', 'Berada di antara gigi', 'Tetap datar'],
+    options: ['Menyentuh langit-langit mulut', 'Tetap datar', 'Berada di antara gigi'],
     answer: 'Berada di antara gigi',
     explanation: "Lidah harus sedikit menjulur di antara gigi."
   },
   {
     id: 3,
     question: "Dengarkan: 'Ship' vs 'Sheep'. Mana yang lebih panjang?",
-    options: ['Ship', 'Sheep'],
+    options: ['Sheep', 'Ship'],
     answer: 'Sheep',
     explanation: "Sheep /iː/ adalah suara vokal panjang."
   },
   {
     id: 4,
     question: "Huruf apa yang biasanya mengubah vokal Pendek menjadi vokal Panjang?",
-    options: ['Silent E', 'Double S', 'Hard C'],
+    options: ['Silent E', 'Hard C', 'Double S'],
     answer: 'Silent E',
     explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
   },
@@ -68,28 +68,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 6,
     question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ["Rate","Hat","Feet"],
+    options: ["Feet", "Hat", "Rate"],
     answer: "Hat",
     explanation: "Hat memiliki suara /æ/. Rate dan Feet adalah vokal panjang."
   },
   {
     id: 7,
     question: "Ketika menghasilkan bunyi 'TH', lidahmu harus...",
-    options: ["Menyentuh langit-langit mulut","Berada di antara gigi","Tetap datar"],
+    options: ["Tetap datar", "Berada di antara gigi", "Menyentuh langit-langit mulut"],
     answer: "Berada di antara gigi",
     explanation: "Lidah harus sedikit menjulur di antara gigi."
   },
   {
     id: 8,
     question: "Dengarkan: 'Ship' vs 'Peep'. Mana yang lebih panjang...",
-    options: ["Ship","Peep"],
+    options: ["Peep", "Ship"],
     answer: "Peep",
     explanation: "Peep /iː/ adalah suara vokal panjang."
   },
   {
     id: 9,
     question: "Elemen apa yang biasanya mengubah vokal Pendek menjadi vokal Panjang ?",
-    options: ["Silent E","Double S","Hard C"],
+    options: ["Hard C", "Double S", "Silent E"],
     answer: "Silent E",
     explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
   },
@@ -103,28 +103,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ["Late","Mat","Sweet"],
+    options: ["Sweet", "Mat", "Late"],
     answer: "Mat",
     explanation: "Mat memiliki suara /æ/. Late dan Sweet adalah vokal panjang."
   },
   {
     id: 12,
     question: "Untuk membuat suara 'TH', lidahmu harus... ?",
-    options: ["Menyentuh langit-langit mulut","Berada di antara gigi","Tetap datar"],
+    options: ["Berada di antara gigi", "Menyentuh langit-langit mulut", "Tetap datar"],
     answer: "Berada di antara gigi",
     explanation: "Lidah harus sedikit menjulur di antara gigi."
   },
   {
     id: 13,
     question: "Dengarkan: 'Dip' vs 'Peep'. Mana yang lebih panjang?",
-    options: ["Dip","Peep"],
+    options: ["Peep", "Dip"],
     answer: "Peep",
     explanation: "Peep /iː/ adalah suara vokal panjang."
   },
   {
     id: 14,
     question: "Huruf apa yang biasanya mengubah vokal Pendek menjadi vokal Panjang?",
-    options: ["Silent E","Double S","Hard C"],
+    options: ["Silent E", "Hard C", "Double S"],
     answer: "Silent E",
     explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
   },
@@ -138,35 +138,35 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ["Rate","Rat","Sheet"],
+    options: ["Sheet", "Rat", "Rate"],
     answer: "Rat",
     explanation: "Rat memiliki suara /æ/. Rate dan Sheet adalah vokal panjang."
   },
   {
     id: 17,
     question: "Untuk membuat suara 'TH', lidahmu harus...",
-    options: ["Menyentuh langit-langit mulut","Berada di antara gigi","Tetap datar"],
+    options: ["Menyentuh langit-langit mulut", "Tetap datar", "Berada di antara gigi"],
     answer: "Berada di antara gigi",
     explanation: "Lidah harus sedikit menjulur di antara gigi."
   },
   {
     id: 18,
     question: "Dengarkan: 'Sip' vs 'Weep'. Mana yang lebih panjang?",
-    options: ["Sip","Weep"],
+    options: ["Weep", "Sip"],
     answer: "Weep",
     explanation: "Weep /iː/ adalah suara vokal panjang."
   },
   {
     id: 19,
     question: "Manakah yang biasanya mengubah vokal Pendek menjadi vokal Panjang?",
-    options: ["Silent E","Double S","Hard C"],
+    options: ["Double S", "Hard C", "Silent E"],
     answer: "Silent E",
     explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
   },
   {
     id: 20,
     question: "Bandingkan V & W: Mana yang mengharuskan bibir 'membulat'...",
-    options: ["V (Vet)","W (Will)"],
+    options: ["W (Will)", "V (Vet)"],
     answer: "W (Will)",
     explanation: "W dibuat dengan membentuk lingkaran kecil dengan bibirmu."
   }

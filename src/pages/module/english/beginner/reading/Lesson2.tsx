@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"NOTICE" pada sebuah papan artinya...', opts: ['Iklan', 'Pengumuman penting', 'Pertanyaan', 'Perintah'], ans: 'Pengumuman penting', exp: '"Notice" = pemberitahuan/pengumuman penting.' },
-  { q: '"The office is CLOSED today." artinya...', opts: ['Kantor tutup hari ini.', 'Kantor buka hari ini.', 'Kantor pindah.', 'Kantor penuh.'], ans: 'Kantor tutup hari ini.', exp: '"Closed today" = tutup hari ini.' },
-  { q: '"FOR SALE" pada sebuah rumah artinya...', opts: ['Rumah disewa', 'Rumah dijual', 'Rumah gratis', 'Rumah dikosongkan'], ans: 'Rumah dijual', exp: '"For sale" = dijual.' },
-  { q: '"NO SMOKING" artinya...', opts: ['Boleh merokok', 'Area merokok', 'Dilarang merokok', 'Jual rokok'], ans: 'Dilarang merokok', exp: '"No + kata kerja" = dilarang melakukan sesuatu itu.' },
-  { q: '"PLEASE KEEP THIS AREA CLEAN" artinya...', opts: ['Bersihkan sekarang', 'Dilarang masuk', 'Tolong jaga kebersihan area ini.', 'Area ini kotor.'], ans: 'Tolong jaga kebersihan area ini.', exp: '"Keep this area clean" = jaga kebersihan area ini.' },
-  { q: '"Opening Hours: Mon–Fri 8AM–5PM" artinya...', opts: ['Buka Senin–Jumat jam 8–5', 'Buka setiap hari jam 8–5', 'Buka akhir pekan saja', 'Tutup Senin'], ans: 'Buka Senin–Jumat jam 8–5', exp: '"Mon–Fri" = Monday to Friday = Senin sampai Jumat.' },
-  { q: '"CAUTION: WET FLOOR" artinya...', opts: ['Lantai kering', 'Dilarang masuk', 'Hati-hati lantai licin/basah', 'Sedang dibersihkan'], ans: 'Hati-hati lantai licin/basah', exp: '"Caution" = hati-hati. "Wet floor" = lantai basah/licin.' },
-  { q: '"STAFF ONLY" artinya...', opts: ['Terbuka untuk umum', 'Hanya untuk pegawai', 'Ruang tunggu', 'Ruang makan'], ans: 'Hanya untuk pegawai', exp: '"Staff only" = khusus untuk staf/pegawai saja.' },
-  { q: '"DO NOT DISTURB" pada pintu hotel artinya...', opts: ['Ketuk pintu', 'Jangan ganggu', 'Silakan masuk', 'Kamar bersih'], ans: 'Jangan ganggu', exp: '"Do not disturb" = jangan diganggu / mohon tidak diganggu.' },
-  { q: '"OUT OF ORDER" pada sebuah mesin artinya...', opts: ['Mesin bekerja normal', 'Mesin rusak/tidak berfungsi', 'Mesin baru', 'Mesin kosong'], ans: 'Mesin rusak/tidak berfungsi', exp: '"Out of order" = rusak atau tidak berfungsi.' },
-  { q: '"ENTRANCE" pada sebuah gedung artinya...', opts: ['Pintu keluar', 'Tangga darurat', 'Pintu masuk', 'Lift'], ans: 'Pintu masuk', exp: '"Entrance" = pintu masuk. Kebalikannya "Exit" = pintu keluar.' },
-  { q: '"FRAGILE – Handle with Care" artinya...', opts: ['Barang berat', 'Barang mudah pecah – tangani dengan hati-hati', 'Barang berbahaya', 'Barang baru'], ans: 'Barang mudah pecah – tangani dengan hati-hati', exp: '"Fragile" = rapuh/mudah pecah. "Handle with care" = tangani dengan hati-hati.' },
+  { q: '"NOTICE" pada sebuah papan artinya...', opts: ['Pertanyaan', 'Pengumuman penting', 'Iklan', 'Perintah'], ans: 'Pengumuman penting', exp: '"Notice" = pemberitahuan/pengumuman penting.' },
+  { q: '"The office is CLOSED today." artinya...', opts: ['Kantor tutup hari ini.', 'Kantor pindah.', 'Kantor buka hari ini.', 'Kantor penuh.'], ans: 'Kantor tutup hari ini.', exp: '"Closed today" = tutup hari ini.' },
+  { q: '"FOR SALE" pada sebuah rumah artinya...', opts: ['Rumah dikosongkan', 'Rumah disewa', 'Rumah dijual', 'Rumah gratis'], ans: 'Rumah dijual', exp: '"For sale" = dijual.' },
+  { q: '"NO SMOKING" artinya...', opts: ['Area merokok', 'Jual rokok', 'Boleh merokok', 'Dilarang merokok'], ans: 'Dilarang merokok', exp: '"No + kata kerja" = dilarang melakukan sesuatu itu.' },
+  { q: '"PLEASE KEEP THIS AREA CLEAN" artinya...', opts: ['Dilarang masuk', 'Area ini kotor.', 'Tolong jaga kebersihan area ini.', 'Bersihkan sekarang'], ans: 'Tolong jaga kebersihan area ini.', exp: '"Keep this area clean" = jaga kebersihan area ini.' },
+  { q: '"Opening Hours: Mon–Fri 8AM–5PM" artinya...', opts: ['Buka Senin–Jumat jam 8–5', 'Tutup Senin', 'Buka akhir pekan saja', 'Buka setiap hari jam 8–5'], ans: 'Buka Senin–Jumat jam 8–5', exp: '"Mon–Fri" = Monday to Friday = Senin sampai Jumat.' },
+  { q: '"CAUTION: WET FLOOR" artinya...', opts: ['Hati-hati lantai licin/basah', 'Sedang dibersihkan', 'Dilarang masuk', 'Lantai kering'], ans: 'Hati-hati lantai licin/basah', exp: '"Caution" = hati-hati. "Wet floor" = lantai basah/licin.' },
+  { q: '"STAFF ONLY" artinya...', opts: ['Ruang tunggu', 'Ruang makan', 'Terbuka untuk umum', 'Hanya untuk pegawai'], ans: 'Hanya untuk pegawai', exp: '"Staff only" = khusus untuk staf/pegawai saja.' },
+  { q: '"DO NOT DISTURB" pada pintu hotel artinya...', opts: ['Silakan masuk', 'Kamar bersih', 'Jangan ganggu', 'Ketuk pintu'], ans: 'Jangan ganggu', exp: '"Do not disturb" = jangan diganggu / mohon tidak diganggu.' },
+  { q: '"OUT OF ORDER" pada sebuah mesin artinya...', opts: ['Mesin rusak/tidak berfungsi', 'Mesin kosong', 'Mesin bekerja normal', 'Mesin baru'], ans: 'Mesin rusak/tidak berfungsi', exp: '"Out of order" = rusak atau tidak berfungsi.' },
+  { q: '"ENTRANCE" pada sebuah gedung artinya...', opts: ['Pintu masuk', 'Tangga darurat', 'Pintu keluar', 'Lift'], ans: 'Pintu masuk', exp: '"Entrance" = pintu masuk. Kebalikannya "Exit" = pintu keluar.' },
+  { q: '"FRAGILE – Handle with Care" artinya...', opts: ['Barang berbahaya', 'Barang baru', 'Barang berat', 'Barang mudah pecah – tangani dengan hati-hati'], ans: 'Barang mudah pecah – tangani dengan hati-hati', exp: '"Fragile" = rapuh/mudah pecah. "Handle with care" = tangani dengan hati-hati.' },
   { q: '"RESERVED" pada sebuah meja/kursi artinya...', opts: ['Meja kosong', 'Meja sudah dipesan', 'Meja rusak', 'Meja VIP'], ans: 'Meja sudah dipesan', exp: '"Reserved" = sudah dipesan/dicadangkan.' },
-  { q: '"PLEASE QUEUE HERE" artinya...', opts: ['Dilarang antre', 'Silakan antre di sini', 'Antre di luar', 'Kasir tutup'], ans: 'Silakan antre di sini', exp: '"Queue" = antre. "Please queue here" = silakan antre di sini.' },
-  { q: '"EMERGENCY EXIT" artinya...', opts: ['Pintu utama', 'Pintu belakang', 'Pintu darurat', 'Pintu barang'], ans: 'Pintu darurat', exp: '"Emergency" = darurat. "Emergency exit" = pintu keluar darurat.' },
-  { q: '"ATTENTION ALL PASSENGERS" artinya...', opts: ['Perhatian semua penumpang', 'Perhatian semua pengemudi', 'Perhatian semua pengunjung', 'Perhatian semua siswa'], ans: 'Perhatian semua penumpang', exp: '"Passengers" = penumpang (bus, kereta, pesawat).' },
-  { q: '"NO ENTRY" artinya...', opts: ['Silakan masuk', 'Dilarang masuk', 'Pintu masuk', 'Area terbuka'], ans: 'Dilarang masuk', exp: '"No entry" = dilarang masuk.' },
-  { q: '"OPEN 24 HOURS" artinya...', opts: ['Buka 24 jam', 'Buka jam 2 siang', 'Tutup pukul 24.00', 'Buka 24 hari'], ans: 'Buka 24 jam', exp: '"Open 24 hours" = buka 24 jam penuh, tidak tutup.' },
-  { q: '"INFORMATION DESK" artinya...', opts: ['Meja kasir', 'Meja informasi', 'Meja resepsionis hotel', 'Meja pengiriman'], ans: 'Meja informasi', exp: '"Information desk" = meja/loket informasi.' },
-  { q: '"PLEASE TURN OFF YOUR PHONE" artinya...', opts: ['Silakan nyalakan HP', 'Mohon matikan HP Anda', 'Gunakan HP Anda', 'Cas HP Anda'], ans: 'Mohon matikan HP Anda', exp: '"Turn off" = matikan. "Phone" = HP/telepon.' },
+  { q: '"PLEASE QUEUE HERE" artinya...', opts: ['Silakan antre di sini', 'Dilarang antre', 'Kasir tutup', 'Antre di luar'], ans: 'Silakan antre di sini', exp: '"Queue" = antre. "Please queue here" = silakan antre di sini.' },
+  { q: '"EMERGENCY EXIT" artinya...', opts: ['Pintu darurat', 'Pintu barang', 'Pintu belakang', 'Pintu utama'], ans: 'Pintu darurat', exp: '"Emergency" = darurat. "Emergency exit" = pintu keluar darurat.' },
+  { q: '"ATTENTION ALL PASSENGERS" artinya...', opts: ['Perhatian semua penumpang', 'Perhatian semua pengunjung', 'Perhatian semua pengemudi', 'Perhatian semua siswa'], ans: 'Perhatian semua penumpang', exp: '"Passengers" = penumpang (bus, kereta, pesawat).' },
+  { q: '"NO ENTRY" artinya...', opts: ['Pintu masuk', 'Area terbuka', 'Dilarang masuk', 'Silakan masuk'], ans: 'Dilarang masuk', exp: '"No entry" = dilarang masuk.' },
+  { q: '"OPEN 24 HOURS" artinya...', opts: ['Buka jam 2 siang', 'Buka 24 hari', 'Buka 24 jam', 'Tutup pukul 24.00'], ans: 'Buka 24 jam', exp: '"Open 24 hours" = buka 24 jam penuh, tidak tutup.' },
+  { q: '"INFORMATION DESK" artinya...', opts: ['Meja informasi', 'Meja pengiriman', 'Meja resepsionis hotel', 'Meja kasir'], ans: 'Meja informasi', exp: '"Information desk" = meja/loket informasi.' },
+  { q: '"PLEASE TURN OFF YOUR PHONE" artinya...', opts: ['Gunakan HP Anda', 'Cas HP Anda', 'Mohon matikan HP Anda', 'Silakan nyalakan HP'], ans: 'Mohon matikan HP Anda', exp: '"Turn off" = matikan. "Phone" = HP/telepon.' },
 ];
 
 const COMPREHENSION = {
@@ -40,11 +40,11 @@ const COMPREHENSION = {
     </div>
   ),
   questions: [
-    { q: 'Pada hari apa kantor ditutup?', opts: ['Kamis', 'Jumat', 'Sabtu', 'Senin'], ans: 'Jumat' },
-    { q: 'Apa alasan kantor ditutup?', opts: ['Perbaikan kantor', 'Libur nasional', 'Pertemuan staf', 'Cuaca buruk'], ans: 'Libur nasional' },
-    { q: 'Pintu mana yang dikunci pada hari libur?', opts: ['Pintu samping', 'Pintu darurat', 'Pintu utama', 'Pintu belakang'], ans: 'Pintu utama' },
-    { q: 'Kapan jam kerja normal kembali?', opts: ['Jumat 25 April', 'Sabtu 26 April', 'Senin 28 April', 'Selasa 29 April'], ans: 'Senin 28 April' },
-    { q: 'Pengumuman ini dibuat oleh departemen apa?', opts: ['IT Department', 'Finance', 'HR Department', 'Marketing'], ans: 'HR Department' },
+    { q: 'Pada hari apa kantor ditutup?', opts: ['Sabtu', 'Senin', 'Jumat', 'Kamis'], ans: 'Jumat' },
+    { q: 'Apa alasan kantor ditutup?', opts: ['Libur nasional', 'Cuaca buruk', 'Pertemuan staf', 'Perbaikan kantor'], ans: 'Libur nasional' },
+    { q: 'Pintu mana yang dikunci pada hari libur?', opts: ['Pintu samping', 'Pintu belakang', 'Pintu utama', 'Pintu darurat'], ans: 'Pintu utama' },
+    { q: 'Kapan jam kerja normal kembali?', opts: ['Sabtu 26 April', 'Jumat 25 April', 'Selasa 29 April', 'Senin 28 April'], ans: 'Senin 28 April' },
+    { q: 'Pengumuman ini dibuat oleh departemen apa?', opts: ['IT Department', 'Marketing', 'HR Department', 'Finance'], ans: 'HR Department' },
   ] as ComprehensionQ[],
 };
 
