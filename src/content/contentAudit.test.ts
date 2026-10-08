@@ -8,25 +8,19 @@ const audits = runContentAudit();
 // English pages whose quiz lives inside the component and still repeats
 // templated questions; each floor only stops it from getting worse.
 const knownLowVariety: Record<string, number> = {
-  'english/advanced/grammar': 0.04,
   'english/elementary/grammar': 0.40,
   'english/elementary/pronunciation': 0.54,
   'english/elementary/vocabulary': 0.34,
-  'english/intermediate/listening': 0.04,
-  'english/intermediate/reading': 0.07,
   'english/intermediate/speaking': 0.59,
-  'english/intermediate/writing': 0.10,
   'english/upper-intermediate/grammar': 0.13,
   'english/upper-intermediate/pronunciation': 0.13,
-  'english/upper-intermediate/reading': 0.04,
   'english/upper-intermediate/speaking': 0.08,
   'english/upper-intermediate/vocabulary': 0.18,
   'english-latihan/grammar': 0.72,
   'english-latihan/reading': 0.67,
   'english-latihan/speaking': 0.74,
 };
-// Lessons 10-20 of advanced grammar still share one generic quiz.
-const knownDuplicateLessons = new Set(['english/advanced/grammar']);
+const knownDuplicateLessons = new Set<string>();
 
 describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] as const))('%s', (_, audit) => {
   it('has lessons with practice questions', () => {

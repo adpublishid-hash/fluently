@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircle2, ChevronLeft, BookOpen, Lightbulb } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { advancedGrammarQuizBank } from './quizBank';
 const THEORY_LINES = [
     "**Academic hedging** is the use of language to express uncertainty, qualify claims, and avoid absolute statements — a defining feature of scholarly writing.",
     "**Modal hedges:** may, might, could, would, should (in conditional contexts)",
@@ -23,28 +25,7 @@ const ITEMS = [
 
 ];
 
-const QUIZ: { q: string; opts: string[]; ans: string; exp: string }[] = [
-  { q: "Which structure is an inverted conditional?", opts: ["If you need help, contact me.", "You need help, contact me.", "Should you need help, please contact me."], ans: "Should you need help, please contact me.", exp: "Inverted conditionals replace \"if\" with auxiliary inversion: Should/Were/Had + subject." },
-  { q: "Complete: \"She insisted ___ attending the entire symposium.\"", opts: ["on", "for", "to"], ans: "on", exp: "\"Insist on + gerund\" is the fixed collocation." },
-  { q: "Which uses the subjunctive correctly?", opts: ["The committee recommends him to submit the report.", "The committee recommends that he submits the report.", "The committee recommends that he submit the report."], ans: "The committee recommends that he submit the report.", exp: "After recommend/insist/suggest/require, use subjunctive: that + subject + base form." },
-  { q: "Identify the correct cleft sentence:", opts: ["It was John who broke the record.", "John broke the record was it.", "It was John that broke the record, yes."], ans: "It was John who broke the record.", exp: "It-cleft structure: It + be + focus element + relative clause (who/that)." },
-  { q: "\"The ___ of the research proposal was rejected.\" (Nominalize: propose)", opts: ["proposal", "propose", "proposition"], ans: "proposal", exp: "Nominalization of \"propose\" → \"proposal\". Academic writing uses nominalisations for formality." },
-  { q: "What type of error is: \"The equipments are outdated.\"?", opts: ["Countability error — equipment is uncountable", "Tense error", "Word order error"], ans: "Countability error — equipment is uncountable", exp: "\"Equipment\" is always uncountable → \"The equipment is outdated.\" No plural form exists." },
-  { q: "\"Had they begun earlier, the project ___ by now.\"", opts: ["would have been completed", "would complete", "will be completed"], ans: "would have been completed", exp: "Type 3 inverted conditional: Had + subject + past participle → would have + past participle." },
-  { q: "Which sentence uses a participle clause correctly?", opts: ["Having reviewed the manuscript, it was accepted.", "Reviewed having the manuscript, the editor accepted.", "Having reviewed the manuscript, the editor accepted it."], ans: "Having reviewed the manuscript, the editor accepted it.", exp: "The subject of the participle clause must match the main clause subject. \"The editor\" reviewed — not \"it\"." },
-  { q: "Choose the correct passive reporting structure:", opts: ["It is believed that he resigned.", "It believes that he resigned.", "People believe that he resigned."], ans: "It is believed that he resigned.", exp: "Passive reporting: \"It + be + past participle + that-clause\". Common verbs: believe, argue, suggest, report." },
-  { q: "What does \"should have done\" express?", opts: ["A plan for the future", "A criticism or regret about a past action that did not happen", "Certainty about a past event"], ans: "A criticism or regret about a past action that did not happen", exp: "\"Should have + past participle\" = it was the right thing to do but it did NOT happen (regret/criticism)." },
-  { q: "Which is an example of nominalization in academic writing?", opts: ["Scientists found a cure and it was considered.", "The scientists discovered a cure.", "The discovery of a cure by the scientists..."], ans: "The discovery of a cure by the scientists...", exp: "Nominalization: \"discovered\" → \"the discovery\". Creates a more formal, dense academic style." },
-  { q: "\"Not only ___ she finish the project, but she also trained the team.\"", opts: ["has", "did", "was"], ans: "did", exp: "After \"Not only\" at sentence start, auxiliary inversion is required: Not only did + subject + base verb." },
-  { q: "Which hedge is most appropriate in academic writing?", opts: ["The results totally prove the hypothesis.", "The results may suggest support for the hypothesis.", "Obviously, the results confirm everything."], ans: "The results may suggest support for the hypothesis.", exp: "\"May suggest\" is appropriately hedged — academic writing avoids absolute claims. \"May\" + \"suggest\" double-hedges." },
-  { q: "Fix: \"She was married with a prominent economist.\"", opts: ["\"Prominent\" → \"famous\"", "\"Married with\" → \"married to\"", "\"Was\" → \"got\""], ans: "\"Married with\" → \"married to\"", exp: "Fixed collocation: \"married to\" (not \"with\"). Portuguese/Spanish cognate interference: \"casado con\" ≠ \"married with\"." },
-  { q: "Which sentence correctly uses ellipsis?", opts: ["She applied for the grant and she received the grant.", "She applied and she received.", "She applied for the grant and received [the grant]."], ans: "She applied for the grant and received [the grant].", exp: "Ellipsis removes repeated elements. \"She applied for the grant and received [it]\" is the most natural." },
-  { q: "What is the function of \"albeit\" in: \"The results were positive, albeit preliminary.\"?", opts: ["To show cause", "To introduce a concession or qualification", "To add more information"], ans: "To introduce a concession or qualification", exp: "\"Albeit\" (= although/even though) introduces a concession within a clause. Formal and C1+ register." },
-  { q: "\"The more rigorous the study, ___ credible the findings.\"", opts: ["most", "the most", "the more"], ans: "the more", exp: "Proportional comparisons: \"The more X, the more Y.\" Both clauses use comparative form." },
-  { q: "Select the sentence with correct fronting for emphasis:", opts: ["Completely unconvincing argument I find this.", "I find this argument unconvincing completely.", "This argument I find completely unconvincing."], ans: "This argument I find completely unconvincing.", exp: "Fronting moves the object to initial position for emphasis: \"This argument [object] + I find [subject-verb] + completely unconvincing [complement].\"" },
-  { q: "Which demonstrates correct use of the mixed conditional?", opts: ["If I had worked harder, I would succeed now.", "If I work harder, I would succeed now.", "If I had worked harder, I would have succeeded."], ans: "If I had worked harder, I would succeed now.", exp: "Mixed conditional: past perfect in if-clause (past condition) + would + base (present result)." },
-  { q: "What distinguishes \"needn't have done\" from \"didn't need to do\"?", opts: ["No difference", "Needn't have = action happened but was unnecessary; didn't need to = action didn't happen", "Didn't need to = action happened but was unnecessary; needn't have = action didn't happen"], ans: "Needn't have = action happened but was unnecessary; didn't need to = action didn't happen", exp: "\"Needn't have brought lunch\" = you brought it, but it wasn't needed. \"Didn't need to bring\" = you didn't bring it (correctly)." }
-];
+const QUIZ: { q: string; opts: string[]; ans: string; exp: string }[] = shuffledAuthored(advancedGrammarQuizBank[18], 'advanced/grammar/18');
 
 const ACCENT = '#1B2631';
 const NEXT_PATH = "/modul/english/advanced/grammar/lesson-19";

@@ -3,6 +3,7 @@
 // of question objects is read as data, so these pages can be audited without
 // moving their content.
 import ts from 'typescript';
+import { shuffledAuthored, type AuthoredQuiz } from '../pages/module/english/advanced/shared/authoredQuiz';
 import type { AuditLesson, AuditQuestion } from './contentAudit';
 
 type Group = { language: string; level: string; lessons: AuditLesson[] };
@@ -14,11 +15,26 @@ const moduleSources = import.meta.glob(
 ) as Record<string, string>;
 const practiceSources = import.meta.glob('../pages/latihan/english/**/topik*.tsx', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
 
+// Pages that read their quiz from an authored bank call shuffledAuthored(bank[N], seed).
+const bankModules = import.meta.glob('../pages/module/english/**/quizBank.ts', { eager: true }) as Record<string, Record<string, Record<number, AuthoredQuiz[]>>>;
+const banks = new Map(Object.values(bankModules).flatMap((module) => Object.entries(module)));
+
+function authoredCall(node: ts.CallExpression): Literal {
+  const callee = node.expression.getText();
+  if (callee === 'asNumberedQuestions' && node.arguments[0]) return literal(node.arguments[0]);
+  const target = node.arguments[0];
+  if (callee !== 'shuffledAuthored' || !target || !ts.isElementAccessExpression(target)) return undefined;
+  const items = banks.get(target.expression.getText())?.[Number(target.argumentExpression.getText())];
+  const seed = node.arguments[1] && ts.isStringLiteral(node.arguments[1]) ? node.arguments[1].text : '';
+  return shuffledAuthored(items, seed);
+}
+
 /** Evaluates a literal expression; anything computed becomes undefined. */
 function literal(node: ts.Expression): Literal {
   if (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isTypeAssertionExpression(node)) return literal(node.expression);
   if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
   if (ts.isNumericLiteral(node)) return Number(node.text);
+  if (ts.isCallExpression(node)) return authoredCall(node);
   if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
   if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
   if (ts.isArrayLiteralExpression(node)) return node.elements.map((element) => (ts.isSpreadElement(element) ? undefined : literal(element)));
@@ -68,7 +84,7 @@ function collectQuestions(value: Literal, out: AuditQuestion[]) {
 }
 
 export function inlineQuestions(source: string): AuditQuestion[] {
-  const file = ts.createSourceFile('lesson.tsx', source, ts.ScriptTarget.Latest, false, ts.ScriptKind.TSX);
+  const file = ts.createSourceFile('lesson.tsx', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const questions: AuditQuestion[] = [];
   file.statements.forEach((statement) => {
     if (!ts.isVariableStatement(statement)) return;
