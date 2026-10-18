@@ -20,7 +20,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "How did Chloe feel during the move?",
     "opts": [
       "Overwhelmed and exhausted",
-      "Excited",
+      "Excited and full of energy",
       "Bored",
       "Angry"
     ],
@@ -30,7 +30,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What specific problem happened?",
     "opts": [
       "She lost her job",
-      "She lost her passport",
+      "She lost her passport at the airport",
       "Her laptop broke",
       "Boxes went to the wrong address"
     ],

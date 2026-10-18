@@ -29,7 +29,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "Which facility will work normally?",
     "opts": [
-      "Pipes on the second floor",
+      "The water pipes on the second floor",
       "Restrooms on the ground floor",
       "The coffee machine",
       "All restrooms"

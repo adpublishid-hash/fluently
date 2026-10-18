@@ -21,7 +21,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What is the purpose of Jonathan's letter?",
     "opts": [
       "To apply for a job as a manager",
-      "To ask for technical support for software",
+      "To ask for technical support for the software on the laptop",
       "To write a positive review",
       "To complain about a defective product and rude service"
     ],
@@ -33,7 +33,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
       "Wrong color and dead battery",
       "A virus and a broken keyboard",
       "A cracked screen and a missing charging cable",
-      "It was too heavy and too expensive"
+      "It was too heavy, too slow and much too expensive for him"
     ],
     "ans": "A cracked screen and a missing charging cable"
   },
@@ -50,7 +50,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What resolution is the writer demanding?",
     "opts": [
-      "For the staff member to be fired",
+      "For the staff member to be fired immediately",
       "A prompt replacement or full refund",
       "A free phone",
       "A discount voucher"
@@ -61,7 +61,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What action will he take if not resolved?",
     "opts": [
       "He will never buy laptops again",
-      "He will call the police immediately",
+      "He will call the police immediately and post a bad review online",
       "He will elevate the issue to the Consumer Protection Board",
       "He will break the laptop"
     ],

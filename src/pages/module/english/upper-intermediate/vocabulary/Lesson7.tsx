@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Commission",
+    "ipa": "/kəˈmɪʃən/",
+    "meaning": "Memesan karya seni secara resmi"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Exhibit",
+    "ipa": "/ɪɡˈzɪbɪt/",
+    "meaning": "Memamerkan karya di galeri atau museum"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Depict",
+    "ipa": "/dɪˈpɪkt/",
+    "meaning": "Menggambarkan dalam lukisan atau karya"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Portray",
+    "ipa": "/pɔːˈtreɪ/",
+    "meaning": "Memerankan atau menggambarkan tokoh"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Compose",
+    "ipa": "/kəmˈpəʊz/",
+    "meaning": "Menggubah musik"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Choreograph",
+    "ipa": "/ˈkɒriəɡrɑːf/",
+    "meaning": "Menata gerak tari (koreografi)"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Sculpt",
+    "ipa": "/skʌlpt/",
+    "meaning": "Memahat patung"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Rehearse",
+    "ipa": "/rɪˈhɜːs/",
+    "meaning": "Berlatih sebelum pertunjukan"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Revive",
+    "ipa": "/rɪˈvaɪv/",
+    "meaning": "Menghidupkan kembali tradisi atau karya lama"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Showcase",
+    "ipa": "/ˈʃəʊkeɪs/",
+    "meaning": "Menampilkan bakat atau karya"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Work of art",
+    "ipa": "/wɜːk əv ɑːt/",
+    "meaning": "Karya seni"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Standing ovation",
+    "ipa": "/ˈstændɪŋ əʊˈveɪʃən/",
+    "meaning": "Tepuk tangan meriah sambil berdiri"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Critical acclaim",
+    "ipa": "/ˈkrɪtɪkəl əˈkleɪm/",
+    "meaning": "Pujian luas dari para kritikus"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Open to interpretation",
+    "ipa": "/ˈəʊpən tə ɪnˌtɜːprɪˈteɪʃən/",
+    "meaning": "Terbuka untuk berbagai tafsiran"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Behind the scenes",
+    "ipa": "/bɪˈhaɪnd ðə siːnz/",
+    "meaning": "Di balik layar"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Box-office hit",
+    "ipa": "/ˈbɒks ˌɒfɪs hɪt/",
+    "meaning": "Film yang laris di bioskop"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Art for art's sake",
+    "ipa": "/ɑːt fər ɑːts seɪk/",
+    "meaning": "Seni demi seni itu sendiri"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Stage fright",
+    "ipa": "/steɪdʒ fraɪt/",
+    "meaning": "Demam panggung"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Sell-out show",
+    "ipa": "/ˈsel aʊt ʃəʊ/",
+    "meaning": "Pertunjukan yang tiketnya habis terjual"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Street art",
+    "ipa": "/striːt ɑːt/",
+    "meaning": "Seni jalanan seperti mural dan grafiti"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[7], 'upper-intermediate/vocabulary/7');

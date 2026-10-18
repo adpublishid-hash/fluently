@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Last year, I decided to start cycling to school because the bus was always crowded and often late. At first, my parents were worried, since the roads near our house are busy. However, they agreed when I promised to wear a helmet and use the quieter back streets.\n\nThe first week was difficult. Although the distance is only five kilometres, there are two steep hills, and I arrived at school hot and exhausted. Not only did my legs ache, but I also had to wake up thirty minutes earlier. Nevertheless, I did not give up. I kept cycling every day, and gradually it became easier.\n\nNow I would never go back to the bus. Cycling keeps me fit, saves my family money, and it is better for the environment. Whenever it rains heavily, I still take the bus so that I do not arrive soaking wet. Otherwise, you will find me on my bike, unless I have a flat tyre!</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "Why did the writer stop taking the bus?",
     "opts": [
-      "Speaking loudly",
-      "Finding errors",
-      "Spelling and reading",
-      "Vocabulary and grammar"
+      "It was too expensive",
+      "It was crowded and often late",
+      "The driver was rude",
+      "It did not stop near the school"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "It was crowded and often late"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Why were the writer's parents worried at first?",
     "opts": [
-      "Typing fast",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph",
-      "Knowing 1000 words"
+      "The roads near their house are busy",
+      "The writer had no bicycle",
+      "The school is very far away from their house",
+      "The writer could not ride a bike"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "The roads near their house are busy"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "How far is the writer's journey to school?",
     "opts": [
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It exposes students to varied structures and registers",
-      "It wastes time"
+      "Two kilometres",
+      "Thirty kilometres",
+      "Five kilometres",
+      "Seven kilometres"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Five kilometres"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "When does the writer still take the bus?",
     "opts": [
-      "To get a high score",
-      "To write long sentences",
-      "To convey ideas clearly and concisely",
-      "To confuse the reader"
+      "Every Monday",
+      "When they wake up late",
+      "When their legs ache",
+      "When it rains heavily"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "When it rains heavily"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "Which conjunction in the text means 'except if'?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "By buying special pens",
-      "Overnight magically",
-      "By ignoring rules"
+      "since",
+      "unless",
+      "whenever",
+      "so that"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "unless"
   }
 ],
 };

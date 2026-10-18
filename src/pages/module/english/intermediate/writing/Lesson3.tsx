@@ -50,7 +50,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What does the writer do during the train ride?",
     "opts": [
-      "Replies to emails",
+      "Replies to work emails on the phone from the office",
       "Reads a novel",
       "Sleeps",
       "Listens to educational podcasts"
@@ -61,7 +61,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why does the writer go to bed at 10:30 PM?",
     "opts": [
       "Because the TV show ends",
-      "Because the house is dark",
+      "Because the house is too dark and quiet to do anything else",
       "To avoid catching a cold",
       "To have enough energy for the next day"
     ],

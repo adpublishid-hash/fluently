@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Commute",
+    "ipa": "/kəˈmjuːt/",
+    "meaning": "Pulang-pergi antara rumah dan tempat kerja"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Urbanise",
+    "ipa": "/ˈɜːbənaɪz/",
+    "meaning": "Menjadikan wilayah bersifat perkotaan"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Redevelop",
+    "ipa": "/ˌriːdɪˈveləp/",
+    "meaning": "Membangun kembali suatu kawasan"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Regenerate",
+    "ipa": "/rɪˈdʒenəreɪt/",
+    "meaning": "Merevitalisasi kawasan yang terbengkalai"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Demolish",
+    "ipa": "/dɪˈmɒlɪʃ/",
+    "meaning": "Merobohkan bangunan"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Pedestrianise",
+    "ipa": "/pəˈdestriənaɪz/",
+    "meaning": "Menjadikan jalan khusus pejalan kaki"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Renovate",
+    "ipa": "/ˈrenəveɪt/",
+    "meaning": "Merenovasi bangunan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Overcrowd",
+    "ipa": "/ˌəʊvəˈkraʊd/",
+    "meaning": "Memadati tempat secara berlebihan"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Expand",
+    "ipa": "/ɪkˈspænd/",
+    "meaning": "Memperluas wilayah atau jaringan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Displace",
+    "ipa": "/dɪsˈpleɪs/",
+    "meaning": "Menggusur penduduk dari tempat tinggalnya"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Rush hour",
+    "ipa": "/ˈrʌʃ aʊə/",
+    "meaning": "Jam sibuk"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Public transport",
+    "ipa": "/ˈpʌblɪk ˈtrænspɔːt/",
+    "meaning": "Transportasi umum"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Affordable housing",
+    "ipa": "/əˈfɔːdəbəl ˈhaʊzɪŋ/",
+    "meaning": "Perumahan yang terjangkau"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Green space",
+    "ipa": "/ɡriːn speɪs/",
+    "meaning": "Ruang terbuka hijau"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Cost of living",
+    "ipa": "/kɒst əv ˈlɪvɪŋ/",
+    "meaning": "Biaya hidup"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Inner city",
+    "ipa": "/ˌɪnə ˈsɪti/",
+    "meaning": "Kawasan pusat kota yang padat dan sering miskin"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Traffic jam",
+    "ipa": "/ˈtræfɪk dʒæm/",
+    "meaning": "Kemacetan lalu lintas"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Concrete jungle",
+    "ipa": "/ˈkɒŋkriːt ˈdʒʌŋɡəl/",
+    "meaning": "Hutan beton – kota penuh gedung tanpa alam"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Cycle lane",
+    "ipa": "/ˈsaɪkəl leɪn/",
+    "meaning": "Jalur sepeda"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Urban renewal",
+    "ipa": "/ˈɜːbən rɪˈnjuːəl/",
+    "meaning": "Peremajaan kota"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[14], 'upper-intermediate/vocabulary/14');

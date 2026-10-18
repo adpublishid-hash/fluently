@@ -40,9 +40,9 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   questions: [
     { q: 'Siapa yang menulis surat ini?', opts: ["Jane", "Sarah", "Mr. Peterson", "Tidak diketahui"], ans: 'Sarah' },
     { q: 'Berapa lama Sarah sudah bekerja di pekerjaan barunya?', opts: ["Baru saja mulai besok", "1 Tahun", "Hampir sebulan", "Satu minggu"], ans: 'Hampir sebulan' },
-    { q: 'Apa jenis perusahaan tempat Sarah bekerja sekarang?', opts: ["Perusahaan IT", "Rumah Sakit", "Restoran Italia", "Agensi Periklanan (Advertising agency)"], ans: 'Agensi Periklanan (Advertising agency)' },
-    { q: 'Apa yang dilakukan tim Sarah untuk merayakan kedatangannya?', opts: ["Mengundangnya makan siang (welcome lunch)", "Memberikan banyak pekerjaan", "Memecatnya", "Membelikannya mobil"], ans: 'Mengundangnya makan siang (welcome lunch)' },
-    { q: 'Apa harapan Sarah untuk bulan depan secara profesional?', opts: ["Bekerja dari rumah", "Resign dari perusahaan", "Menjadi CEO", "Memimpin campaign-nya sendiri"], ans: 'Memimpin campaign-nya sendiri' },
+    { q: 'Apa jenis perusahaan tempat Sarah bekerja sekarang?', opts: ["Perusahaan teknologi informasi (IT company)", "Rumah Sakit", "Restoran Italia", "Agensi Periklanan (Advertising agency)"], ans: 'Agensi Periklanan (Advertising agency)' },
+    { q: 'Apa yang dilakukan tim Sarah untuk merayakan kedatangannya?', opts: ["Mengundangnya makan siang (welcome lunch)", "Memberinya banyak pekerjaan tambahan di hari pertama", "Memecatnya", "Membelikannya mobil"], ans: 'Mengundangnya makan siang (welcome lunch)' },
+    { q: 'Apa harapan Sarah untuk bulan depan secara profesional?', opts: ["Bekerja dari rumah", "Resign dan pindah ke perusahaan lain", "Menjadi CEO", "Memimpin campaign-nya sendiri"], ans: 'Memimpin campaign-nya sendiri' },
   ],
 };
 

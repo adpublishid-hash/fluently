@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Every morning between 6.30 and 7 a.m., the road outside our school becomes completely blocked. Hundreds of parents stop their cars and motorbikes right in front of the gate to drop off their children. As a result, many students arrive late, the air is full of exhaust fumes, and local residents cannot get out of their homes.\n\nThere are several practical ways to solve this problem. Firstly, the school could create a drop-off zone a short walk away, for example in the car park of the nearby mosque. Parents would then be able to stop safely without blocking the main road. Secondly, the school could encourage students who live nearby to walk or cycle by providing a secure bicycle shed. Another option is to organise a school bus for students from the same neighbourhoods.\n\nIf these solutions were introduced, the area around the gate would be safer and cleaner, and lessons could start on time. Although some parents might find the changes inconvenient at first, I believe everyone would benefit in the long run.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "When does the traffic problem happen?",
     "opts": [
-      "Spelling and reading",
-      "Speaking loudly",
-      "Finding errors",
-      "Vocabulary and grammar"
+      "Every afternoon after school",
+      "Only on Mondays",
+      "Every morning between 6.30 and 7 a.m.",
+      "Every afternoon when lessons finish"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "Every morning between 6.30 and 7 a.m."
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What is one effect of the traffic on students?",
     "opts": [
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice",
-      "Typing fast",
-      "Knowing 1000 words"
+      "Many of them arrive late",
+      "They have to walk home",
+      "They miss lunch",
+      "They cannot use the library"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Many of them arrive late"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "Where could the drop-off zone be?",
     "opts": [
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It wastes time"
+      "Inside the school field",
+      "In the car park of the nearby mosque",
+      "On the main road",
+      "Next to the new bicycle shed behind the school"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "In the car park of the nearby mosque"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "How could the school encourage students to cycle?",
     "opts": [
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences",
-      "To confuse the reader"
+      "By giving every student a free bicycle and helmet",
+      "By closing the school gate",
+      "By shortening the lessons",
+      "By providing a secure bicycle shed"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "By providing a secure bicycle shed"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What does the writer admit at the end?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "The problem cannot be solved",
+      "Some parents might find the changes inconvenient at first",
+      "A school bus would be too expensive",
+      "Local residents do not care about the traffic outside their homes"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Some parents might find the changes inconvenient at first"
   }
 ],
 };

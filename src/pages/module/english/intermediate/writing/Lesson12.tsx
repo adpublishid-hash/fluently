@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">My school, SMP Negeri 3 Malang, is located on a quiet hill on the edge of the city, surrounded by tall pine trees. It was built in the 1970s, but most of the buildings were renovated five years ago, so the classrooms now feel bright and modern.\n\nThe school has around eight hundred students and fifty teachers. In the centre of the campus there is a large field where we hold the flag ceremony every Monday and play football in the afternoons. My favourite place, however, is the library. It is small but cosy, with large windows, comfortable bean bags and a surprising collection of English novels. Next to it is a science laboratory, which was recently equipped with new microscopes.\n\nWhat makes my school special is not only its facilities but also its atmosphere. The teachers are strict about discipline, yet they are always willing to help when we struggle. Students from different backgrounds get along well, and there are more than twenty clubs to choose from. I feel lucky to study in such a supportive place.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "Where is the writer's school located?",
     "opts": [
-      "Vocabulary and grammar",
-      "Finding errors",
-      "Spelling and reading",
-      "Speaking loudly"
+      "In the busy city centre",
+      "On a quiet hill on the edge of the city",
+      "Next to the beach",
+      "Inside a large shopping centre in the city"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "On a quiet hill on the edge of the city"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "When were most of the buildings renovated?",
     "opts": [
-      "Knowing 1000 words",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph",
-      "Typing fast"
+      "In the 1970s",
+      "Last month",
+      "Five years ago",
+      "Twenty years ago"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Five years ago"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What happens on the field every Monday?",
     "opts": [
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "The flag ceremony",
+      "A science exam",
+      "A library sale",
+      "A music concert"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "The flag ceremony"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What is the writer's favourite place at school?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "The football field",
+      "The science laboratory",
+      "The canteen",
+      "The library"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "The library"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "How many clubs can students choose from?",
     "opts": [
-      "Overnight magically",
-      "By ignoring rules",
-      "Through consistent, deliberate practice",
-      "By buying special pens"
+      "Exactly eight",
+      "Around fifty",
+      "More than twenty",
+      "Only two"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "More than twenty"
   }
 ],
 };

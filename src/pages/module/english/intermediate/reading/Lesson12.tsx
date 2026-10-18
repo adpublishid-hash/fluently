@@ -59,7 +59,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What will Emma do when she gets the keys to the flat?",
     "opts": [
-      "Visit her grandad",
+      "Visit her grandad for the weekend",
       "Start a new job",
       "Send her grandad the new address",
       "Buy a new diary"

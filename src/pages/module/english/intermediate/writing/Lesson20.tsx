@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Task: 'Should teenagers have part-time jobs?' Write an essay of 150–180 words.\n\nNowadays, more and more teenagers work part-time, for example in cafés, shops or online businesses. While this trend has clear advantages, it also has some drawbacks.\n\nOn the one hand, a part-time job teaches young people valuable skills. They learn how to manage money, communicate with customers and arrive on time. Moreover, earning their own money can make teenagers more independent and less reliant on their parents.\n\nOn the other hand, working too many hours can damage students' education. If a teenager works every evening, they may not have enough time to do homework or rest properly. As a result, their marks might fall and they could feel stressed.\n\nIn conclusion, I believe a part-time job can be beneficial, provided that students work only a few hours a week, preferably at weekends. In this way, they can gain experience without neglecting their studies.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What type of essay is this model answer?",
     "opts": [
-      "Speaking loudly",
-      "Finding errors",
-      "Spelling and reading",
-      "Vocabulary and grammar"
+      "A story about a holiday",
+      "A for-and-against essay",
+      "A formal complaint",
+      "A product review"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "A for-and-against essay"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Which skill does the writer say a part-time job teaches?",
     "opts": [
-      "Typing fast",
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice",
-      "Knowing 1000 words"
+      "Cooking",
+      "Driving",
+      "Managing money",
+      "Playing music"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Managing money"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What might happen if a teenager works every evening?",
     "opts": [
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It exposes students to varied structures and registers",
-      "It wastes time"
+      "Their marks might fall",
+      "They will earn less money",
+      "They will lose their friends",
+      "Their parents will be angry"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Their marks might fall"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "Which phrase introduces the disadvantages?",
     "opts": [
-      "To convey ideas clearly and concisely",
-      "To write long sentences",
-      "To get a high score",
-      "To confuse the reader"
+      "On the one hand",
+      "Moreover",
+      "In conclusion",
+      "On the other hand"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "On the other hand"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "When does the writer think a part-time job is beneficial?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "By buying special pens",
-      "Overnight magically",
-      "By ignoring rules"
+      "When students work every evening and at weekends",
+      "When students work only a few hours a week",
+      "When students leave school early",
+      "When parents pay for everything"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "When students work only a few hours a week"
   }
 ],
 };

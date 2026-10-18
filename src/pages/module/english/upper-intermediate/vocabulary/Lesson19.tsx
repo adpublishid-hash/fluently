@@ -58,113 +58,113 @@ const CAT1: VocabItem[] = [
     "meaning": "Satir – humor yang mengkritik atau mengejek kelemahan sosial. Contoh: Swift's A Modest Proposal remains one of the most devastating examples of political **satire** in English literature."
   },
   {
-    "word": "Motif",
-    "ipa": "/məʊˈtiːf/",
-    "meaning": "Motif – elemen berulang dalam karya sastra yang membawa makna. Contoh: The **motif** of blindness in King Lear operates on both literal and metaphorical levels."
+    "word": "Metaphor",
+    "ipa": "/ˈmetəfə/",
+    "meaning": "Metafora – perbandingan tidak langsung antara dua hal. Contoh: 'Time is a thief' is a **metaphor** for how quickly life passes."
   }
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Paraphrase",
+    "ipa": "/ˈpærəfreɪz/",
+    "meaning": "Memparafrasakan dengan kata-kata sendiri"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Annotate",
+    "ipa": "/ˈænəteɪt/",
+    "meaning": "Memberi catatan atau anotasi pada teks"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Allude",
+    "ipa": "/əˈluːd/",
+    "meaning": "Menyinggung sesuatu secara tidak langsung"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Personify",
+    "ipa": "/pəˈsɒnɪfaɪ/",
+    "meaning": "Mempersonifikasikan benda sebagai manusia"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Articulate",
+    "ipa": "/ɑːˈtɪkjuleɪt/",
+    "meaning": "Mengungkapkan gagasan dengan jelas"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Elaborate",
+    "ipa": "/ɪˈlæbəreɪt/",
+    "meaning": "Menguraikan lebih rinci"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Summarise",
+    "ipa": "/ˈsʌməraɪz/",
+    "meaning": "Merangkum"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Coin",
+    "ipa": "/kɔɪn/",
+    "meaning": "Menciptakan kata atau istilah baru"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Abridge",
+    "ipa": "/əˈbrɪdʒ/",
+    "meaning": "Meringkas buku atau teks"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Evoke",
+    "ipa": "/ɪˈvəʊk/",
+    "meaning": "Membangkitkan perasaan atau kenangan"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Figure of speech",
+    "ipa": "/ˈfɪɡə əv spiːtʃ/",
+    "meaning": "Majas atau gaya bahasa"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Plot twist",
+    "ipa": "/plɒt twɪst/",
+    "meaning": "Perubahan alur yang tak terduga"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Read between the lines",
+    "ipa": "/riːd bɪˈtwiːn ðə laɪnz/",
+    "meaning": "Memahami makna tersirat"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Coming-of-age story",
+    "ipa": "/ˌkʌmɪŋ əv ˈeɪdʒ ˈstɔːri/",
+    "meaning": "Kisah tentang proses menuju kedewasaan"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Turn of phrase",
+    "ipa": "/tɜːn əv freɪz/",
+    "meaning": "Cara pengungkapan yang khas"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Literary device",
+    "ipa": "/ˈlɪtərəri dɪˈvaɪs/",
+    "meaning": "Teknik atau perangkat sastra"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Open ending",
+    "ipa": "/ˈəʊpən ˈendɪŋ/",
+    "meaning": "Akhir cerita yang terbuka"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Mother tongue",
+    "ipa": "/ˈmʌðə tʌŋ/",
+    "meaning": "Bahasa ibu"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Page-turner",
+    "ipa": "/ˈpeɪdʒ ˌtɜːnə/",
+    "meaning": "Buku yang sangat menarik hingga sulit berhenti dibaca"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Lost in translation",
+    "ipa": "/lɒst ɪn trænzˈleɪʃən/",
+    "meaning": "Maknanya hilang dalam terjemahan"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[19], 'upper-intermediate/vocabulary/19');

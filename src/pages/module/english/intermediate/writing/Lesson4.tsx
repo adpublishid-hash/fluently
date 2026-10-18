@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Last August, my cousin and I took the overnight ferry from Surabaya to Lombok. We had planned the trip for months, and we were looking forward to three relaxing days on the beach. However, the journey turned out to be far more exciting than we had expected.\n\nAt around midnight, while most passengers were sleeping, the engine suddenly stopped. The lights went out and the ship began to rock from side to side. A few children started crying, and I must admit that I was terrified. Fortunately, the crew stayed calm. They handed out life jackets and explained that a mechanic was already fixing the problem.\n\nFour hours later, the engine finally started again. As the sun rose over the sea, everyone came out onto the deck to watch. Strangers who had been frightened in the dark were now sharing snacks and laughing together. We arrived in Lombok six hours late, tired but happy. Looking back, that night taught me that the most memorable journeys are rarely the ones that go according to plan.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "How did the writer and their cousin travel to Lombok?",
     "opts": [
-      "Speaking loudly",
-      "Vocabulary and grammar",
-      "Spelling and reading",
-      "Finding errors"
+      "By plane from Surabaya",
+      "By overnight ferry",
+      "By bus and train",
+      "By a small fishing boat"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "By overnight ferry"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What happened at around midnight?",
     "opts": [
-      "Typing fast",
-      "Knowing 1000 words",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph"
+      "The ship arrived in Lombok",
+      "A storm damaged the deck and the lifeboats",
+      "The ship's engine suddenly stopped",
+      "The passengers had dinner"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "The ship's engine suddenly stopped"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "How did the crew react to the problem?",
     "opts": [
-      "It makes you sleepy",
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility"
+      "They stayed calm and handed out life jackets",
+      "They started shouting at the passengers",
+      "They asked the passengers to help the mechanic fix the engine",
+      "They turned the ship back to Surabaya"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "They stayed calm and handed out life jackets"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "How late did the ferry arrive in Lombok?",
     "opts": [
-      "To write long sentences",
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score"
+      "Two hours late",
+      "Four hours late",
+      "One whole day late",
+      "Six hours late"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Six hours late"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What lesson did the writer learn from the trip?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "By buying special pens",
-      "By ignoring rules",
-      "Overnight magically"
+      "Ferries are always dangerous",
+      "Memorable journeys rarely go according to plan",
+      "It is better to travel alone",
+      "Holidays should always be planned carefully for many months"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Memorable journeys rarely go according to plan"
   }
 ],
 };

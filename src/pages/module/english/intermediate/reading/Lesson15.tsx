@@ -30,7 +30,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What should staff do with their files on Thursday?",
     "opts": [
       "Delete them",
-      "Email them to the IT team",
+      "Email them to the IT team before 8 PM",
       "Save them to the shared drive",
       "Print them"
     ],

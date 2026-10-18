@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Digest",
+    "ipa": "/daɪˈdʒest/",
+    "meaning": "Mencerna makanan"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Ferment",
+    "ipa": "/fəˈment/",
+    "meaning": "Memfermentasi"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Preserve",
+    "ipa": "/prɪˈzɜːv/",
+    "meaning": "Mengawetkan makanan"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Consume",
+    "ipa": "/kənˈsjuːm/",
+    "meaning": "Mengonsumsi"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Process",
+    "ipa": "/ˈprəʊses/",
+    "meaning": "Mengolah bahan pangan secara industri"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Refrigerate",
+    "ipa": "/rɪˈfrɪdʒəreɪt/",
+    "meaning": "Menyimpan di lemari pendingin"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Source",
+    "ipa": "/sɔːs/",
+    "meaning": "Memperoleh bahan dari sumber tertentu"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Harvest",
+    "ipa": "/ˈhɑːvɪst/",
+    "meaning": "Memanen hasil pertanian"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Overeat",
+    "ipa": "/ˌəʊvərˈiːt/",
+    "meaning": "Makan berlebihan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Supplement",
+    "ipa": "/ˈsʌplɪment/",
+    "meaning": "Melengkapi pola makan dengan tambahan nutrisi"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Balanced diet",
+    "ipa": "/ˈbælənst ˈdaɪət/",
+    "meaning": "Pola makan seimbang"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Junk food",
+    "ipa": "/ˈdʒʌŋk fuːd/",
+    "meaning": "Makanan tidak sehat"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Shelf life",
+    "ipa": "/ˈʃelf laɪf/",
+    "meaning": "Masa simpan produk"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Food waste",
+    "ipa": "/fuːd weɪst/",
+    "meaning": "Limbah atau sisa makanan"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Farm-to-table",
+    "ipa": "/ˌfɑːm tə ˈteɪbəl/",
+    "meaning": "Dari ladang langsung ke meja makan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Portion size",
+    "ipa": "/ˈpɔːʃən saɪz/",
+    "meaning": "Ukuran porsi"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Expiry date",
+    "ipa": "/ɪkˈspaɪəri deɪt/",
+    "meaning": "Tanggal kedaluwarsa"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Eat in moderation",
+    "ipa": "/iːt ɪn ˌmɒdəˈreɪʃən/",
+    "meaning": "Makan secukupnya, tidak berlebihan"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Organic produce",
+    "ipa": "/ɔːˈɡænɪk ˈprɒdjuːs/",
+    "meaning": "Hasil pertanian organik"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Empty calories",
+    "ipa": "/ˈempti ˈkæləriz/",
+    "meaning": "Kalori kosong – energi tanpa gizi"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[16], 'upper-intermediate/vocabulary/16');

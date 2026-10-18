@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">After I finish secondary school next year, I am going to study environmental engineering at a university in Surabaya. I have been interested in clean water and recycling since I joined my school's environment club three years ago, and I would like to turn this interest into a career.\n\nMy plan for the next few years is quite clear. While I am at university, I hope to do an internship with a company that builds water treatment systems, because I want to gain practical experience as well as knowledge. I am also going to improve my English, since many of the best textbooks and research articles are written in it. If I get the chance, I would love to take part in an exchange programme in Japan or the Netherlands.\n\nIn the long term, I intend to return to my home village and help it get a reliable supply of clean water. I know this goal will not be easy to achieve, but I am determined to work hard. By the time I am thirty, I hope I will have made a real difference to my community.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What does the writer plan to study?",
     "opts": [
-      "Vocabulary and grammar",
-      "Finding errors",
-      "Speaking loudly",
-      "Spelling and reading"
+      "Medicine at a university in Jakarta",
+      "Environmental engineering",
+      "English literature",
+      "Business management"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "Environmental engineering"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "When did the writer's interest in clean water begin?",
     "opts": [
-      "The ability to weave sentences into a coherent paragraph",
-      "Typing fast",
-      "Knowing 1000 words",
-      "Using passive voice"
+      "When they joined the school environment club",
+      "When they visited a water company in Japan",
+      "When they started reading about recycling at university",
+      "When they read a research article"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "When they joined the school environment club"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "Why does the writer want to improve their English?",
     "opts": [
-      "It wastes time",
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It exposes students to varied structures and registers"
+      "To become an English teacher",
+      "To move to the Netherlands for ever after finishing university",
+      "Many of the best textbooks and articles are in English",
+      "To pass a driving test"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Many of the best textbooks and articles are in English"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "Where might the writer go on an exchange programme?",
     "opts": [
-      "To confuse the reader",
-      "To write long sentences",
-      "To get a high score",
-      "To convey ideas clearly and concisely"
+      "Australia, Canada or New Zealand",
+      "Singapore or Malaysia",
+      "Surabaya or Jakarta",
+      "Japan or the Netherlands"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Japan or the Netherlands"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What is the writer's long-term goal?",
     "opts": [
-      "Overnight magically",
-      "By ignoring rules",
-      "By buying special pens",
-      "Through consistent, deliberate practice"
+      "To bring clean water to their home village",
+      "To open a recycling shop",
+      "To become a university lecturer in environmental science",
+      "To live abroad permanently"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "To bring clean water to their home village"
   }
 ],
 };

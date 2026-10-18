@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">If I had to choose one dish to eat for the rest of my life, it would be soto ayam, a fragrant chicken soup that is popular all over Indonesia. Every region has its own version, but my favourite is the one my mother makes on rainy Sunday mornings.\n\nThe broth is bright yellow because of the turmeric, and it smells wonderfully of lemongrass, garlic and lime leaves. It is served with shredded chicken, rice noodles, a boiled egg and fresh bean sprouts. On top, my mother adds crunchy fried shallots and a spoonful of spicy sambal. The combination of soft noodles, crisp shallots and warm, slightly sour broth is simply perfect.\n\nFor me, soto ayam is more than just food. It reminds me of my family sitting around the kitchen table, chatting and laughing while the rain falls outside. Whenever I feel homesick, a bowl of soto instantly makes me feel better.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What kind of dish is soto ayam?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "A fried rice dish",
+      "A chicken soup",
+      "A sweet dessert",
+      "A beef curry"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "A chicken soup"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Why is the broth bright yellow?",
     "opts": [
-      "Typing fast",
-      "Using passive voice",
-      "Knowing 1000 words",
-      "The ability to weave sentences into a coherent paragraph"
+      "Because of the egg",
+      "Because of the sambal",
+      "Because of the lime leaves",
+      "Because of the turmeric"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Because of the turmeric"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "When does the writer's mother usually make it?",
     "opts": [
-      "It exposes students to varied structures and registers",
-      "It makes you sleepy",
-      "It wastes time",
-      "It hurts visibility"
+      "On rainy Sunday mornings",
+      "On hot Friday evenings",
+      "Only on birthdays",
+      "Every day for lunch"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "On rainy Sunday mornings"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What does the mother add on top of the soup?",
     "opts": [
-      "To convey ideas clearly and concisely",
-      "To confuse the reader",
-      "To write long sentences",
-      "To get a high score"
+      "Cheese and tomatoes",
+      "Grated cheese and sliced tomatoes",
+      "Fried shallots and sambal",
+      "Rice and peanuts"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Fried shallots and sambal"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "How does soto ayam make the writer feel when homesick?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "By buying special pens",
-      "By ignoring rules",
-      "Overnight magically"
+      "More homesick",
+      "Sleepy",
+      "Better",
+      "Angry"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Better"
   }
 ],
 };

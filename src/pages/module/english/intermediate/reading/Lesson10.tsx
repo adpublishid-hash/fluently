@@ -22,14 +22,14 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
       "Helen's manager",
       "A new member of the design team",
       "James's mentor",
-      "An HR assistant"
+      "An HR assistant who started last month"
     ],
     "ans": "A new member of the design team"
   },
   {
     "q": "Why does Helen recommend the Monday meeting?",
     "opts": [
-      "It is compulsory for all new staff.",
+      "It is compulsory for all new staff in their first week.",
       "Lunch is provided at the meeting.",
       "It shows what colleagues are working on.",
       "James always leads it."
@@ -39,7 +39,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What does 'settle in' mean?",
     "opts": [
-      "Sit down at your desk",
+      "Sit down at your desk and start work",
       "Become comfortable in a new place",
       "Pay your bills",
       "Leave work early"

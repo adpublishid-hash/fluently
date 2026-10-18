@@ -58,113 +58,113 @@ const CAT1: VocabItem[] = [
     "meaning": "Ekowisata – pariwisata yang bertanggung jawab pada lingkungan. Contoh: **Ecotourism** provides an economic alternative to deforestation in many biodiversity hotspots."
   },
   {
-    "word": "Sovereignty",
-    "ipa": "/ˈsɒvrənti/",
-    "meaning": "Kedaulatan – kekuasaan independen suatu negara. Contoh: Trade agreements were negotiated with careful attention to maintaining national **sovereignty**."
+    "word": "Expatriate",
+    "ipa": "/eksˈpætriət/",
+    "meaning": "Ekspatriat – orang yang tinggal dan bekerja di luar negaranya. Contoh: Many **expatriates** in Jakarta work for multinational companies."
   }
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Relocate",
+    "ipa": "/ˌriːləʊˈkeɪt/",
+    "meaning": "Pindah tempat tinggal atau tempat kerja"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Embark",
+    "ipa": "/ɪmˈbɑːk/",
+    "meaning": "Memulai perjalanan; naik kapal/pesawat"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Adapt",
+    "ipa": "/əˈdæpt/",
+    "meaning": "Beradaptasi dengan lingkungan baru"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Accommodate",
+    "ipa": "/əˈkɒmədeɪt/",
+    "meaning": "Menampung atau menyediakan tempat menginap"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Deport",
+    "ipa": "/dɪˈpɔːt/",
+    "meaning": "Mendeportasi – memulangkan paksa ke negara asal"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Settle",
+    "ipa": "/ˈsetəl/",
+    "meaning": "Menetap di tempat baru"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Backpack",
+    "ipa": "/ˈbækpæk/",
+    "meaning": "Berwisata hemat dengan ransel"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Overstay",
+    "ipa": "/ˌəʊvəˈsteɪ/",
+    "meaning": "Tinggal melebihi batas izin visa"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Globalise",
+    "ipa": "/ˈɡləʊbəlaɪz/",
+    "meaning": "Mengglobal – berkembang ke tingkat dunia"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Interact",
+    "ipa": "/ˌɪntərˈækt/",
+    "meaning": "Berinteraksi dengan orang lain"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Culture shock",
+    "ipa": "/ˈkʌltʃə ʃɒk/",
+    "meaning": "Gegar budaya"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Off the beaten track",
+    "ipa": "/ɒf ðə ˈbiːtən træk/",
+    "meaning": "Jauh dari jalur wisata umum"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Global village",
+    "ipa": "/ˈɡləʊbəl ˈvɪlɪdʒ/",
+    "meaning": "Desa global – dunia yang saling terhubung"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Jet lag",
+    "ipa": "/ˈdʒet læɡ/",
+    "meaning": "Kelelahan akibat perbedaan zona waktu"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Language barrier",
+    "ipa": "/ˈlæŋɡwɪdʒ ˈbæriə/",
+    "meaning": "Hambatan bahasa"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Brain drain",
+    "ipa": "/ˈbreɪn dreɪn/",
+    "meaning": "Hengkangnya tenaga terdidik ke luar negeri"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Travel broadens the mind",
+    "ipa": "/ˈtrævəl ˈbrɔːdənz ðə maɪnd/",
+    "meaning": "Bepergian memperluas wawasan"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Melting pot",
+    "ipa": "/ˈmeltɪŋ pɒt/",
+    "meaning": "Tempat berbaurnya berbagai budaya"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Visa requirements",
+    "ipa": "/ˈviːzə rɪˈkwaɪəmənts/",
+    "meaning": "Persyaratan visa"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Cultural exchange",
+    "ipa": "/ˈkʌltʃərəl ɪksˈtʃeɪndʒ/",
+    "meaning": "Pertukaran budaya"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[13], 'upper-intermediate/vocabulary/13');

@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">My favourite hobby is street photography. I started two years ago when my uncle gave me his old camera, and since then I have hardly ever left the house without it.\n\nWhat I enjoy most is capturing ordinary moments that most people never notice: a street vendor counting his coins, children playing football in the rain, or the shadows of trees on a wall in the late afternoon. To take a good photo, you need both patience and quick reactions. Sometimes I wait for half an hour on one corner for the right person to walk past, and sometimes the perfect shot lasts less than a second.\n\nPhotography has changed the way I see my city. I notice colours, light and faces much more than I used to. It has also helped me to become more confident, because I often have to ask strangers for permission before I take their picture. Last month, three of my photos were displayed at a local exhibition, which made me incredibly proud. I hope to keep improving and perhaps one day publish a book of my work.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "How did the writer start their hobby?",
     "opts": [
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors",
-      "Spelling and reading"
+      "They took a photography course",
+      "Their uncle gave them an old camera",
+      "They won a camera in a competition",
+      "They bought a camera with their savings"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "Their uncle gave them an old camera"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What does the writer enjoy photographing most?",
     "opts": [
-      "The ability to weave sentences into a coherent paragraph",
-      "Typing fast",
-      "Knowing 1000 words",
-      "Using passive voice"
+      "Famous buildings",
+      "Their friends at parties",
+      "Ordinary moments most people never notice",
+      "Wild animals in the forests outside the city at night"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Ordinary moments most people never notice"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "According to the writer, what do you need to take a good photo?",
     "opts": [
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It wastes time",
-      "It exposes students to varied structures and registers"
+      "Patience and quick reactions",
+      "An expensive camera and several lenses",
+      "A lot of free time",
+      "A good teacher"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Patience and quick reactions"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "Why has photography made the writer more confident?",
     "opts": [
-      "To confuse the reader",
-      "To write long sentences",
-      "To get a high score",
-      "To convey ideas clearly and concisely"
+      "They have won many prizes in national competitions",
+      "They often ask strangers for permission",
+      "Their parents praise their photos",
+      "They teach photography to friends"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "They often ask strangers for permission"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What happened last month?",
     "opts": [
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules",
-      "Through consistent, deliberate practice"
+      "The writer published a book",
+      "The writer bought a new camera with money from selling photos",
+      "The writer's uncle visited",
+      "Three of the writer's photos were shown at an exhibition"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Three of the writer's photos were shown at an exhibition"
   }
 ],
 };

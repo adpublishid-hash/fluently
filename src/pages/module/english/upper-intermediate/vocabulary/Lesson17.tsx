@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Compete",
+    "ipa": "/kəmˈpiːt/",
+    "meaning": "Bertanding atau bersaing"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Outperform",
+    "ipa": "/ˌaʊtpəˈfɔːm/",
+    "meaning": "Mengungguli lawan"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Qualify",
+    "ipa": "/ˈkwɒlɪfaɪ/",
+    "meaning": "Lolos kualifikasi"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Tackle",
+    "ipa": "/ˈtækəl/",
+    "meaning": "Menjegal atau merebut bola dari lawan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Sprint",
+    "ipa": "/sprɪnt/",
+    "meaning": "Berlari secepat mungkin dalam jarak pendek"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Stretch",
+    "ipa": "/stretʃ/",
+    "meaning": "Meregangkan otot"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Strain",
+    "ipa": "/streɪn/",
+    "meaning": "Membuat otot tegang hingga cedera"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Coach",
+    "ipa": "/kəʊtʃ/",
+    "meaning": "Melatih atlet atau tim"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Overtake",
+    "ipa": "/ˌəʊvəˈteɪk/",
+    "meaning": "Menyalip lawan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Peak",
+    "ipa": "/piːk/",
+    "meaning": "Mencapai puncak performa"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Personal best",
+    "ipa": "/ˈpɜːsənəl best/",
+    "meaning": "Rekor pribadi terbaik"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Home advantage",
+    "ipa": "/həʊm ədˈvɑːntɪdʒ/",
+    "meaning": "Keuntungan bertanding di kandang"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Level playing field",
+    "ipa": "/ˈlevəl ˈpleɪɪŋ fiːld/",
+    "meaning": "Kondisi persaingan yang setara"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Hit the wall",
+    "ipa": "/hɪt ðə wɔːl/",
+    "meaning": "Tiba-tiba kehabisan tenaga"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Warm-up routine",
+    "ipa": "/ˈwɔːm ʌp ruːˈtiːn/",
+    "meaning": "Rutinitas pemanasan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Fair play",
+    "ipa": "/feə pleɪ/",
+    "meaning": "Permainan yang jujur dan adil"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Team spirit",
+    "ipa": "/tiːm ˈspɪrɪt/",
+    "meaning": "Semangat kebersamaan tim"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Go the distance",
+    "ipa": "/ɡəʊ ðə ˈdɪstəns/",
+    "meaning": "Bertahan sampai akhir pertandingan"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Comeback victory",
+    "ipa": "/ˈkʌmbæk ˈvɪktəri/",
+    "meaning": "Kemenangan setelah sempat tertinggal"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Performance-enhancing drugs",
+    "ipa": "/pəˈfɔːməns ɪnˈhɑːnsɪŋ drʌɡz/",
+    "meaning": "Obat peningkat performa"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[17], 'upper-intermediate/vocabulary/17');

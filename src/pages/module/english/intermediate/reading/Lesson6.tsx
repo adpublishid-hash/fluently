@@ -22,7 +22,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
       "To welcome a new manager.",
       "To celebrate reaching their sales targets.",
       "To say goodbye to Tom.",
-      "To try a new Italian restaurant."
+      "To try a new Italian restaurant on King Street."
     ],
     "ans": "To celebrate reaching their sales targets."
   },
@@ -32,7 +32,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
       "The company",
       "Tom",
       "Each team member",
-      "The restaurant"
+      "The restaurant, as a special offer"
     ],
     "ans": "Each team member"
   },
@@ -50,7 +50,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What must staff do by Monday?",
     "opts": [
       "Pay for their meal.",
-      "Choose a dish from the menu.",
+      "Choose a dish from the restaurant's online menu.",
       "Book their own table.",
       "Confirm attendance and dietary needs."
     ],

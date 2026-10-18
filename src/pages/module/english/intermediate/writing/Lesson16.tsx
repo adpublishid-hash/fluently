@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">When travelling from Jakarta to Yogyakarta, most people choose between the train and the plane. Both options are popular, but they offer very different experiences.\n\nThe most obvious difference is speed. A flight takes just over an hour, whereas the train journey lasts about seven hours. However, when you include the time needed to reach the airport, check in and pass through security, the plane is not as fast as it first appears. Price is another important factor. Economy train tickets are usually much cheaper than plane tickets, especially during school holidays, when air fares can double.\n\nOn the other hand, the two options are similar in some ways. Both are generally safe and comfortable, and both allow passengers to book tickets online. Unlike the plane, however, the train lets you enjoy beautiful views of rice fields and volcanoes along the way, and the stations are located right in the city centre.\n\nIn conclusion, the plane is the better choice for business travellers in a hurry, while the train suits students and families who want to save money and enjoy the journey.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "How long does the train journey take?",
     "opts": [
-      "Finding errors",
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly"
+      "Just over an hour",
+      "About three hours",
+      "About seven hours",
+      "A whole day and a night"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "About seven hours"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Why is the plane not as fast as it first appears?",
     "opts": [
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice",
-      "Knowing 1000 words",
-      "Typing fast"
+      "Flights are often cancelled or delayed because of bad weather",
+      "You need time to reach the airport and go through security",
+      "Planes fly slowly over volcanoes",
+      "The airport is in the city centre"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "You need time to reach the airport and go through security"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "When can air fares double?",
     "opts": [
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "During school holidays",
+      "On weekday mornings",
+      "When you book online at the last minute",
+      "In the rainy season"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "During school holidays"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "Which similarity between the train and the plane is mentioned?",
     "opts": [
-      "To confuse the reader",
-      "To get a high score",
-      "To convey ideas clearly and concisely",
-      "To write long sentences"
+      "Both offer views of rice fields and volcanoes",
+      "Both take seven hours",
+      "Both cost the same",
+      "Both allow tickets to be booked online"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Both allow tickets to be booked online"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "Who does the writer think the train suits best?",
     "opts": [
-      "Overnight magically",
-      "Through consistent, deliberate practice",
-      "By ignoring rules",
-      "By buying special pens"
+      "Business travellers in a hurry",
+      "Students and families who want to save money",
+      "People who live near the airport and travel for work every week",
+      "Tourists with a lot of luggage"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Students and families who want to save money"
   }
 ],
 };

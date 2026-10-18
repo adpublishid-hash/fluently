@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Upgrade",
+    "ipa": "/ˌʌpˈɡreɪd/",
+    "meaning": "Meningkatkan versi atau kualitas perangkat"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Digitise",
+    "ipa": "/ˈdɪdʒɪtaɪz/",
+    "meaning": "Mendigitalkan dokumen atau data"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Debug",
+    "ipa": "/ˌdiːˈbʌɡ/",
+    "meaning": "Mencari dan memperbaiki kesalahan program"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Configure",
+    "ipa": "/kənˈfɪɡə/",
+    "meaning": "Mengatur konfigurasi sistem atau perangkat"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Troubleshoot",
+    "ipa": "/ˈtrʌbəlʃuːt/",
+    "meaning": "Mendiagnosis dan memecahkan masalah teknis"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Prototype",
+    "ipa": "/ˈprəʊtətaɪp/",
+    "meaning": "Membuat purwarupa produk baru"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Patent",
+    "ipa": "/ˈpætənt/",
+    "meaning": "Mematenkan sebuah penemuan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Commercialise",
+    "ipa": "/kəˈmɜːʃəlaɪz/",
+    "meaning": "Mengomersialkan – menjual produk ke pasar"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Pioneer",
+    "ipa": "/ˌpaɪəˈnɪə/",
+    "meaning": "Merintis teknologi atau metode baru"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Optimise",
+    "ipa": "/ˈɒptɪmaɪz/",
+    "meaning": "Mengoptimalkan kinerja sistem"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Cutting-edge technology",
+    "ipa": "/ˈkʌtɪŋ edʒ tekˈnɒlədʒi/",
+    "meaning": "Teknologi paling mutakhir"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "State-of-the-art",
+    "ipa": "/ˌsteɪt əv ði ˈɑːt/",
+    "meaning": "Paling canggih saat ini"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "User-friendly interface",
+    "ipa": "/ˌjuːzə ˈfrendli ˈɪntəfeɪs/",
+    "meaning": "Antarmuka yang mudah digunakan"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Early adopter",
+    "ipa": "/ˈɜːli əˈdɒptə/",
+    "meaning": "Pengguna awal teknologi baru"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Cloud storage",
+    "ipa": "/klaʊd ˈstɔːrɪdʒ/",
+    "meaning": "Penyimpanan data berbasis awan (internet)"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Open-source software",
+    "ipa": "/ˌəʊpən ˈsɔːs ˈsɒftweə/",
+    "meaning": "Perangkat lunak sumber terbuka"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Tech-savvy",
+    "ipa": "/ˈtek ˌsævi/",
+    "meaning": "Mahir menggunakan teknologi"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Research and development",
+    "ipa": "/rɪˈsɜːtʃ ənd dɪˈveləpmənt/",
+    "meaning": "Penelitian dan pengembangan (R&D)"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Product launch",
+    "ipa": "/ˈprɒdʌkt lɔːntʃ/",
+    "meaning": "Peluncuran produk"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Teething problems",
+    "ipa": "/ˈtiːðɪŋ ˈprɒbləmz/",
+    "meaning": "Masalah awal pada produk atau sistem baru"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[4], 'upper-intermediate/vocabulary/4');

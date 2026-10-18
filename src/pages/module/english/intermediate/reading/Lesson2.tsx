@@ -39,7 +39,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What does 'pushed back' mean?",
     "opts": [
-      "Moved earlier",
+      "Moved to an earlier time",
       "Relocated",
       "Canceled",
       "Delayed to a later time"
@@ -51,7 +51,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "opts": [
       "Call the stakeholders.",
       "Ignore the email.",
-      "Write a new agenda.",
+      "Write a new agenda for the meeting on Friday.",
       "Inform Sarah about conflicting deadlines."
     ],
     "ans": "Inform Sarah about conflicting deadlines."

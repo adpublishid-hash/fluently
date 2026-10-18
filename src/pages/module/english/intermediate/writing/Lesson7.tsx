@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Growing your own chillies is easy, cheap and rewarding, even if you only have a small balcony. Just follow these simple steps.\n\nFirst, choose a pot that is at least twenty centimetres deep and make sure it has holes in the bottom so that extra water can drain away. Next, fill the pot with good-quality soil mixed with a little compost. Then, press three or four chilli seeds about one centimetre into the soil and cover them lightly.\n\nAfter that, water the soil gently and place the pot somewhere warm and sunny. Be careful not to give the seeds too much water, as this can make them rot. The first shoots should appear within two weeks. When the plants are about ten centimetres tall, remove the weakest ones so that the strongest plant has enough space to grow.\n\nFinally, be patient. Your chillies should be ready to pick after about three months. Remember to wash your hands after touching them, and never rub your eyes!</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "How deep should the pot be?",
     "opts": [
-      "Speaking loudly",
-      "Finding errors",
-      "Vocabulary and grammar",
-      "Spelling and reading"
+      "No more than ten centimetres deep",
+      "Exactly one centimetre",
+      "At least twenty centimetres",
+      "About three metres"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "At least twenty centimetres"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Why should the pot have holes in the bottom?",
     "opts": [
-      "Knowing 1000 words",
-      "The ability to weave sentences into a coherent paragraph",
-      "Typing fast",
-      "Using passive voice"
+      "So that extra water can drain away",
+      "So that insects can get in",
+      "So that the pot is lighter",
+      "So that the roots can grow outside"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "So that extra water can drain away"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What can happen if you give the seeds too much water?",
     "opts": [
-      "It wastes time",
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It exposes students to varied structures and registers"
+      "They grow faster",
+      "They can rot",
+      "They change colour",
+      "They become spicier"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "They can rot"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What should you do when the plants are about ten centimetres tall?",
     "opts": [
-      "To confuse the reader",
-      "To write long sentences",
-      "To get a high score",
-      "To convey ideas clearly and concisely"
+      "Move them into a dark room",
+      "Add more seeds",
+      "Pick the first chillies",
+      "Remove the weakest plants"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Remove the weakest plants"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "How long does it take before the chillies are ready to pick?",
     "opts": [
-      "Overnight magically",
-      "By ignoring rules",
-      "By buying special pens",
-      "Through consistent, deliberate practice"
+      "About two weeks",
+      "About three months",
+      "About one year",
+      "About ten days"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "About three months"
   }
 ],
 };

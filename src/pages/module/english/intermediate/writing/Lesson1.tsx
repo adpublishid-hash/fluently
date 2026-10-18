@@ -21,7 +21,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why is Bandung called the \"Paris of Java\"?",
     "opts": [
       "Because it is in France",
-      "Because it is extremely hot",
+      "Because it is extremely hot and dry all year, with very little rain",
       "Because of its traffic",
       "Due to its cool climate and historical architecture"
     ],
@@ -32,7 +32,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "opts": [
       "A huge desert",
       "A large ocean",
-      "A flat prairie",
+      "A flat plain full of rice fields and rivers",
       "Surrounded by volcanic mountains"
     ],
     "ans": "Surrounded by volcanic mountains"
@@ -41,7 +41,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What can tourists find along Dago and Riau streets?",
     "opts": [
       "Schools and universities",
-      "Government offices",
+      "Government offices and large international hotels",
       "Trendy cafes and factory outlets",
       "Farms and barns"
     ],
@@ -51,7 +51,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What negative aspect of Bandung is mentioned in the text?",
     "opts": [
       "Unfriendly people",
-      "Lack of art galleries",
+      "A lack of art galleries and music venues",
       "Poor food quality",
       "Heavy traffic congestion"
     ],

@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Dear Mrs Rahayu,\n\nI am writing to thank you for everything you did for me during my two-week work placement at Sinar Travel last month. It was my first experience of a real office, and I learnt far more than I had expected.\n\nI am especially grateful for the time you spent showing me how to plan tour itineraries and answer customer enquiries. At first I was very nervous about speaking on the phone, but your patient advice gave me the confidence to deal with customers on my own by the end of the first week. I also really appreciated being invited to join the team meeting, where I saw how decisions are made in a busy company.\n\nThanks to this placement, I am now certain that I want to work in the tourism industry after I graduate. Please pass on my thanks to the rest of the team, who made me feel so welcome.\n\nWith best wishes,\nRizky Pratama</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "Why is Rizky writing to Mrs Rahayu?",
     "opts": [
-      "Speaking loudly",
-      "Vocabulary and grammar",
-      "Spelling and reading",
-      "Finding errors"
+      "To apply for a permanent job at Sinar Travel",
+      "To complain about a tour",
+      "To thank her for his work placement",
+      "To book a holiday"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "To thank her for his work placement"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "How long was Rizky's placement?",
     "opts": [
-      "Typing fast",
-      "Knowing 1000 words",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph"
+      "Two weeks",
+      "One day",
+      "Two months",
+      "One year"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Two weeks"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What was Rizky nervous about at first?",
     "opts": [
-      "It exposes students to varied structures and registers",
-      "It makes you sleepy",
-      "It wastes time",
-      "It hurts visibility"
+      "Using the computer",
+      "Speaking on the phone",
+      "Planning tour itineraries",
+      "Travelling to the office"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Speaking on the phone"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What did Rizky see at the team meeting?",
     "opts": [
-      "To write long sentences",
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score"
+      "How customers book flights",
+      "How the office was cleaned",
+      "How tours are advertised on TV and on social media",
+      "How decisions are made in a busy company"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "How decisions are made in a busy company"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What is Rizky now certain about?",
     "opts": [
-      "By buying special pens",
-      "By ignoring rules",
-      "Through consistent, deliberate practice",
-      "Overnight magically"
+      "He wants to work in tourism",
+      "He wants to become a teacher",
+      "He never wants to work in an office",
+      "He wants to study abroad"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "He wants to work in tourism"
   }
 ],
 };

@@ -21,7 +21,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What is the purpose of this email?",
     "opts": [
       "To inform a friend about moving back and arranging to meet",
-      "To complain about a restaurant",
+      "To complain about a new Italian restaurant they visited together last month",
       "To apply for a job",
       "To send an invoice"
     ],
@@ -41,7 +41,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why does David have free time right now?",
     "opts": [
       "He was fired",
-      "He is on holiday",
+      "He is on holiday with his family and will start a new job abroad soon",
       "He is waiting to start looking for work after graduation",
       "He works part-time"
     ],

@@ -50,7 +50,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What will happen if it rains?",
     "opts": [
       "The party will be cancelled.",
-      "The party will start later.",
+      "The party will start an hour later than planned.",
       "The party will move to the canteen.",
       "Guests will not be allowed."
     ],

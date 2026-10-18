@@ -29,7 +29,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "How often do the tours run?",
     "opts": [
-      "Every day in May",
+      "Every day in May except Mondays",
       "Every Saturday",
       "Once a month",
       "Twice every Sunday in May"

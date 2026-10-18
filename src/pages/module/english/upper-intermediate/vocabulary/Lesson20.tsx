@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Augment",
+    "ipa": "/ɔːɡˈment/",
+    "meaning": "Memperkuat atau menambah kemampuan"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Predict",
+    "ipa": "/prɪˈdɪkt/",
+    "meaning": "Memprediksi"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Regulate",
+    "ipa": "/ˈreɡjuleɪt/",
+    "meaning": "Mengatur melalui regulasi"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Generate",
+    "ipa": "/ˈdʒenəreɪt/",
+    "meaning": "Menghasilkan teks, gambar atau data"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Surpass",
+    "ipa": "/səˈpɑːs/",
+    "meaning": "Melampaui"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Safeguard",
+    "ipa": "/ˈseɪfɡɑːd/",
+    "meaning": "Melindungi dari bahaya"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Transform",
+    "ipa": "/trænsˈfɔːm/",
+    "meaning": "Mengubah secara mendasar"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Anticipate",
+    "ipa": "/ænˈtɪsɪpeɪt/",
+    "meaning": "Mengantisipasi"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Envision",
+    "ipa": "/ɪnˈvɪʒən/",
+    "meaning": "Membayangkan masa depan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Monitor",
+    "ipa": "/ˈmɒnɪtə/",
+    "meaning": "Memantau secara terus-menerus"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Machine learning",
+    "ipa": "/məˈʃiːn ˈlɜːnɪŋ/",
+    "meaning": "Pembelajaran mesin"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Smart home",
+    "ipa": "/smɑːt həʊm/",
+    "meaning": "Rumah pintar"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Science fiction",
+    "ipa": "/ˈsaɪəns ˈfɪkʃən/",
+    "meaning": "Fiksi ilmiah"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Virtual reality",
+    "ipa": "/ˈvɜːtʃuəl riˈæləti/",
+    "meaning": "Realitas virtual"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Big data",
+    "ipa": "/bɪɡ ˈdeɪtə/",
+    "meaning": "Data berukuran sangat besar"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Ethical guidelines",
+    "ipa": "/ˈeθɪkəl ˈɡaɪdlaɪnz/",
+    "meaning": "Pedoman etis"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Human oversight",
+    "ipa": "/ˈhjuːmən ˈəʊvəsaɪt/",
+    "meaning": "Pengawasan oleh manusia"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Jobs of the future",
+    "ipa": "/dʒɒbz əv ðə ˈfjuːtʃə/",
+    "meaning": "Pekerjaan masa depan"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Facial recognition",
+    "ipa": "/ˈfeɪʃəl ˌrekəɡˈnɪʃən/",
+    "meaning": "Pengenalan wajah"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Tech giant",
+    "ipa": "/tek ˈdʒaɪənt/",
+    "meaning": "Raksasa teknologi"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[20], 'upper-intermediate/vocabulary/20');

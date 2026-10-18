@@ -29,7 +29,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What must you do after choosing your drink?",
     "opts": [
-      "Pay at reception.",
+      "Pay for the drink at reception with a card.",
       "Tap your staff ID card on the reader.",
       "Clean the nozzle.",
       "Call extension 310."
@@ -50,7 +50,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What should you do if the machine stops working?",
     "opts": [
       "Repair it carefully yourself.",
-      "Use the old kettle instead.",
+      "Use the old kettle in the kitchen instead.",
       "Ask a visitor for help.",
       "Report it to the facilities team."
     ],

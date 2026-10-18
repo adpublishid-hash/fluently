@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Enrol",
+    "ipa": "/ɪnˈrəʊl/",
+    "meaning": "Mendaftar di sekolah atau kursus"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Graduate",
+    "ipa": "/ˈɡrædʒueɪt/",
+    "meaning": "Lulus dari sekolah atau universitas"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Revise",
+    "ipa": "/rɪˈvaɪz/",
+    "meaning": "Mengulang pelajaran untuk ujian"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Accredit",
+    "ipa": "/əˈkredɪt/",
+    "meaning": "Mengakreditasi lembaga atau program"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Expel",
+    "ipa": "/ɪkˈspel/",
+    "meaning": "Mengeluarkan siswa dari sekolah"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Specialise",
+    "ipa": "/ˈspeʃəlaɪz/",
+    "meaning": "Mengambil spesialisasi bidang tertentu"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Mentor",
+    "ipa": "/ˈmentɔː/",
+    "meaning": "Membimbing seseorang secara pribadi"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Memorise",
+    "ipa": "/ˈmeməraɪz/",
+    "meaning": "Menghafal"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Plagiarise",
+    "ipa": "/ˈpleɪdʒəraɪz/",
+    "meaning": "Menjiplak karya orang lain"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Excel",
+    "ipa": "/ɪkˈsel/",
+    "meaning": "Unggul dalam suatu bidang"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Rote learning",
+    "ipa": "/rəʊt ˈlɜːnɪŋ/",
+    "meaning": "Belajar dengan cara menghafal"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Hands-on learning",
+    "ipa": "/ˌhændz ˈɒn ˈlɜːnɪŋ/",
+    "meaning": "Belajar melalui praktik langsung"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Drop out of school",
+    "ipa": "/drɒp aʊt əv skuːl/",
+    "meaning": "Putus sekolah"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Learning curve",
+    "ipa": "/ˈlɜːnɪŋ kɜːv/",
+    "meaning": "Kurva belajar – proses menguasai hal baru"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Sit an exam",
+    "ipa": "/sɪt ən ɪɡˈzæm/",
+    "meaning": "Mengikuti ujian"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Higher education",
+    "ipa": "/ˈhaɪə ˌedʒuˈkeɪʃən/",
+    "meaning": "Pendidikan tinggi"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Gap year",
+    "ipa": "/ˈɡæp jɪə/",
+    "meaning": "Tahun jeda sebelum kuliah"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Extracurricular activities",
+    "ipa": "/ˌekstrəkəˈrɪkjələ ækˈtɪvətiz/",
+    "meaning": "Kegiatan ekstrakurikuler"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Student loan",
+    "ipa": "/ˈstjuːdənt ləʊn/",
+    "meaning": "Pinjaman biaya kuliah"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Mixed-ability class",
+    "ipa": "/ˌmɪkst əˈbɪləti klɑːs/",
+    "meaning": "Kelas dengan siswa berkemampuan beragam"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[15], 'upper-intermediate/vocabulary/15');

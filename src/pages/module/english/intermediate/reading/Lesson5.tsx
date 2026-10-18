@@ -32,7 +32,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
       "Must be a vet.",
       "Must have experience with large dogs.",
       "Must own a dog.",
-      "Must be available mornings."
+      "Must be available every morning before work."
     ],
     "ans": "Must have experience with large dogs."
   },

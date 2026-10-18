@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Prosecute",
+    "ipa": "/ˈprɒsɪkjuːt/",
+    "meaning": "Menuntut seseorang secara hukum"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Convict",
+    "ipa": "/kənˈvɪkt/",
+    "meaning": "Menyatakan terdakwa bersalah"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Sentence",
+    "ipa": "/ˈsentəns/",
+    "meaning": "Menjatuhkan hukuman"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Testify",
+    "ipa": "/ˈtestɪfaɪ/",
+    "meaning": "Bersaksi di pengadilan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Appeal",
+    "ipa": "/əˈpiːl/",
+    "meaning": "Mengajukan banding"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Overrule",
+    "ipa": "/ˌəʊvəˈruːl/",
+    "meaning": "Menolak atau membatalkan keputusan/keberatan"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Enforce",
+    "ipa": "/ɪnˈfɔːs/",
+    "meaning": "Menegakkan hukum atau aturan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Sue",
+    "ipa": "/suː/",
+    "meaning": "Menggugat ke pengadilan"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Pardon",
+    "ipa": "/ˈpɑːdən/",
+    "meaning": "Memberi pengampunan resmi"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Indict",
+    "ipa": "/ɪnˈdaɪt/",
+    "meaning": "Mendakwa secara resmi atas kejahatan"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Beyond reasonable doubt",
+    "ipa": "/bɪˈjɒnd ˈriːzənəbəl daʊt/",
+    "meaning": "Tanpa keraguan yang wajar"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Plead guilty",
+    "ipa": "/pliːd ˈɡɪlti/",
+    "meaning": "Mengaku bersalah di pengadilan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Take legal action",
+    "ipa": "/teɪk ˈliːɡəl ˈækʃən/",
+    "meaning": "Menempuh jalur hukum"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Miscarriage of justice",
+    "ipa": "/ˌmɪsˈkærɪdʒ əv ˈdʒʌstɪs/",
+    "meaning": "Kegagalan peradilan (vonis yang keliru)"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Out-of-court settlement",
+    "ipa": "/ˌaʊt əv ˈkɔːt ˈsetəlmənt/",
+    "meaning": "Penyelesaian sengketa di luar pengadilan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Above the law",
+    "ipa": "/əˈbʌv ðə lɔː/",
+    "meaning": "Merasa kebal atau di atas hukum"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Burden of proof",
+    "ipa": "/ˈbɜːdən əv pruːf/",
+    "meaning": "Beban pembuktian"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Rule of law",
+    "ipa": "/ruːl əv lɔː/",
+    "meaning": "Supremasi hukum"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Community service",
+    "ipa": "/kəˈmjuːnəti ˈsɜːvɪs/",
+    "meaning": "Kerja sosial sebagai bentuk hukuman"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Legal loophole",
+    "ipa": "/ˈliːɡəl ˈluːphəʊl/",
+    "meaning": "Celah hukum"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[11], 'upper-intermediate/vocabulary/11');

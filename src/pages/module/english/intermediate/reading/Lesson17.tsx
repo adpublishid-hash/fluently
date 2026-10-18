@@ -59,7 +59,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "What will the winner receive?",
     "opts": [
-      "A cash prize of £1,500",
+      "A cash prize of £1,500 and a trophy",
       "Book tokens and a published story",
       "Free library membership",
       "A job at the newspaper"

@@ -23,9 +23,9 @@ const CAT1: VocabItem[] = [
     "meaning": "Replikasi – pengulangan percobaan untuk memverifikasi hasil. Contoh: The **replication** crisis in psychology has raised serious concerns about published findings."
   },
   {
-    "word": "Hypothesis",
-    "ipa": "/haɪˈpɒθɪsɪs/",
-    "meaning": "Hipotesis – dugaan sementara yang dapat diuji. Contoh: The **hypothesis** was formulated based on preliminary observations of cellular behaviour."
+    "word": "Phenomenon",
+    "ipa": "/fəˈnɒmɪnən/",
+    "meaning": "Fenomena – gejala yang dapat diamati dan diteliti. Contoh: Scientists are still trying to explain this unusual **phenomenon** in the deep ocean."
   },
   {
     "word": "Genome",
@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Observe",
+    "ipa": "/əbˈzɜːv/",
+    "meaning": "Mengamati secara cermat"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Isolate",
+    "ipa": "/ˈaɪsəleɪt/",
+    "meaning": "Mengisolasi zat, gen atau virus"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Quantify",
+    "ipa": "/ˈkwɒntɪfaɪ/",
+    "meaning": "Mengukur dalam bentuk angka"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Calibrate",
+    "ipa": "/ˈkælɪbreɪt/",
+    "meaning": "Mengkalibrasi alat ukur"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Classify",
+    "ipa": "/ˈklæsɪfaɪ/",
+    "meaning": "Mengklasifikasikan ke dalam kelompok"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Detect",
+    "ipa": "/dɪˈtekt/",
+    "meaning": "Mendeteksi sesuatu yang sulit terlihat"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Dissect",
+    "ipa": "/daɪˈsekt/",
+    "meaning": "Membedah untuk diteliti"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Verify",
+    "ipa": "/ˈverɪfaɪ/",
+    "meaning": "Memverifikasi – memastikan kebenaran hasil"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Formulate",
+    "ipa": "/ˈfɔːmjuleɪt/",
+    "meaning": "Merumuskan teori atau rencana"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Simulate",
+    "ipa": "/ˈsɪmjuleɪt/",
+    "meaning": "Mensimulasikan kondisi nyata"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Scientific breakthrough",
+    "ipa": "/ˌsaɪənˈtɪfɪk ˈbreɪkθruː/",
+    "meaning": "Terobosan ilmiah"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Trial and error",
+    "ipa": "/ˈtraɪəl ənd ˈerə/",
+    "meaning": "Metode coba-coba"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Control group",
+    "ipa": "/kənˈtrəʊl ɡruːp/",
+    "meaning": "Kelompok kontrol dalam percobaan"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Margin of error",
+    "ipa": "/ˈmɑːdʒɪn əv ˈerə/",
+    "meaning": "Batas kesalahan (galat)"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Laboratory conditions",
+    "ipa": "/ləˈbɒrətri kənˈdɪʃənz/",
+    "meaning": "Kondisi terkendali di laboratorium"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Conduct an experiment",
+    "ipa": "/kənˈdʌkt ən ɪkˈsperɪmənt/",
+    "meaning": "Melakukan eksperimen"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Draw a conclusion",
+    "ipa": "/drɔː ə kənˈkluːʒən/",
+    "meaning": "Menarik kesimpulan"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Shed light on",
+    "ipa": "/ʃed laɪt ɒn/",
+    "meaning": "Menjelaskan sesuatu yang sebelumnya belum dipahami"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Sample size",
+    "ipa": "/ˈsɑːmpəl saɪz/",
+    "meaning": "Ukuran sampel"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Under the microscope",
+    "ipa": "/ˈʌndə ðə ˈmaɪkrəskəʊp/",
+    "meaning": "Sedang diteliti dengan sangat cermat"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[9], 'upper-intermediate/vocabulary/9');

@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Bond",
+    "ipa": "/bɒnd/",
+    "meaning": "Menjalin ikatan emosional"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Confide",
+    "ipa": "/kənˈfaɪd/",
+    "meaning": "Mencurahkan isi hati atau rahasia"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Alienate",
+    "ipa": "/ˈeɪliəneɪt/",
+    "meaning": "Membuat seseorang merasa terasing"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Volunteer",
+    "ipa": "/ˌvɒlənˈtɪə/",
+    "meaning": "Menjadi sukarelawan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Socialise",
+    "ipa": "/ˈsəʊʃəlaɪz/",
+    "meaning": "Bersosialisasi atau bergaul"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Discriminate",
+    "ipa": "/dɪˈskrɪmɪneɪt/",
+    "meaning": "Mendiskriminasi atau memperlakukan tidak adil"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Nurture",
+    "ipa": "/ˈnɜːtʃə/",
+    "meaning": "Memupuk dan merawat hubungan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Compromise",
+    "ipa": "/ˈkɒmprəmaɪz/",
+    "meaning": "Berkompromi"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Exclude",
+    "ipa": "/ɪkˈskluːd/",
+    "meaning": "Mengucilkan atau tidak mengikutsertakan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Empower",
+    "ipa": "/ɪmˈpaʊə/",
+    "meaning": "Memberdayakan"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Close-knit community",
+    "ipa": "/ˌkləʊs ˈnɪt kəˈmjuːnəti/",
+    "meaning": "Komunitas yang sangat erat"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Fall out with",
+    "ipa": "/fɔːl aʊt wɪð/",
+    "meaning": "Bertengkar atau berselisih dengan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Get on well with",
+    "ipa": "/ɡet ɒn wel wɪð/",
+    "meaning": "Akur atau rukun dengan"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Generation gap",
+    "ipa": "/ˌdʒenəˈreɪʃən ɡæp/",
+    "meaning": "Kesenjangan antargenerasi"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Support network",
+    "ipa": "/səˈpɔːt ˈnetwɜːk/",
+    "meaning": "Jaringan orang yang memberi dukungan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Sense of belonging",
+    "ipa": "/sens əv bɪˈlɒŋɪŋ/",
+    "meaning": "Rasa memiliki dan diterima"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Common ground",
+    "ipa": "/ˈkɒmən ɡraʊnd/",
+    "meaning": "Kesamaan pandangan atau minat"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Lend a hand",
+    "ipa": "/lend ə hænd/",
+    "meaning": "Membantu"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Work-life balance",
+    "ipa": "/ˌwɜːk ˈlaɪf ˈbæləns/",
+    "meaning": "Keseimbangan kerja dan kehidupan pribadi"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Strike up a friendship",
+    "ipa": "/straɪk ʌp ə ˈfrendʃɪp/",
+    "meaning": "Memulai sebuah pertemanan"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[18], 'upper-intermediate/vocabulary/18');

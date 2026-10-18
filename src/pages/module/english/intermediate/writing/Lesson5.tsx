@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">In my opinion, every secondary school should teach students how to cook. Although some people believe that cooking is a skill children should learn at home, many parents today work long hours and simply do not have time to teach it.\n\nFirstly, cooking lessons would help young people eat more healthily. Students who can prepare simple meals are less likely to depend on instant noodles and fast food. Secondly, cooking teaches practical maths and science. Measuring ingredients, calculating cooking times and understanding why bread rises are all useful lessons in disguise. Furthermore, cooking together encourages teamwork and patience.\n\nAdmittedly, schools would need kitchens and trained teachers, which could be expensive. Nevertheless, I believe the long-term benefits for students' health and independence are far greater than the cost. For these reasons, I am convinced that cooking deserves a place on every school timetable.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What is the writer's main opinion?",
     "opts": [
-      "Vocabulary and grammar",
-      "Spelling and reading",
-      "Finding errors",
-      "Speaking loudly"
+      "Parents should cook every meal at home",
+      "Students should eat only home-made food every day",
+      "Every secondary school should teach cooking",
+      "Schools should sell healthier snacks"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "Every secondary school should teach cooking"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Why does the writer think learning at home is not enough?",
     "opts": [
-      "Knowing 1000 words",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph",
-      "Typing fast"
+      "Many parents work long hours and have no time",
+      "Children do not like cooking with their parents at the weekend",
+      "Home kitchens are too small",
+      "Parents cannot cook well"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Many parents work long hours and have no time"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "Which subjects does the writer connect with cooking?",
     "opts": [
-      "It wastes time",
-      "It hurts visibility",
-      "It exposes students to varied structures and registers",
-      "It makes you sleepy"
+      "History and geography",
+      "Art and music",
+      "English and sport",
+      "Maths and science"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Maths and science"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What disadvantage does the writer admit?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "Students might burn themselves",
+      "Kitchens and trained teachers could be expensive",
+      "Cooking lessons would take too much time from other subjects",
+      "Students would eat more fast food"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Kitchens and trained teachers could be expensive"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "Which word does the writer use to reply to the problem of cost?",
     "opts": [
-      "Overnight magically",
-      "By ignoring rules",
-      "Through consistent, deliberate practice",
-      "By buying special pens"
+      "Firstly",
+      "Furthermore",
+      "Nevertheless",
+      "Admittedly"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Nevertheless"
   }
 ],
 };

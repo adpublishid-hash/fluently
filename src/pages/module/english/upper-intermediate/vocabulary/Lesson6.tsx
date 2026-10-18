@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Campaign",
+    "ipa": "/kæmˈpeɪn/",
+    "meaning": "Berkampanye untuk suatu tujuan politik"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Lobby",
+    "ipa": "/ˈlɒbi/",
+    "meaning": "Melobi pejabat atau anggota parlemen"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Ratify",
+    "ipa": "/ˈrætɪfaɪ/",
+    "meaning": "Meratifikasi – mengesahkan perjanjian secara resmi"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Veto",
+    "ipa": "/ˈviːtəʊ/",
+    "meaning": "Memveto – menolak keputusan dengan hak resmi"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Enact",
+    "ipa": "/ɪˈnækt/",
+    "meaning": "Memberlakukan undang-undang"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Abolish",
+    "ipa": "/əˈbɒlɪʃ/",
+    "meaning": "Menghapuskan hukum atau sistem"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Govern",
+    "ipa": "/ˈɡʌvən/",
+    "meaning": "Memerintah suatu negara atau wilayah"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Mobilise",
+    "ipa": "/ˈməʊbəlaɪz/",
+    "meaning": "Menggerakkan massa atau pendukung"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Resign",
+    "ipa": "/rɪˈzaɪn/",
+    "meaning": "Mengundurkan diri dari jabatan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Endorse",
+    "ipa": "/ɪnˈdɔːs/",
+    "meaning": "Mendukung kandidat atau kebijakan secara resmi"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Grassroots movement",
+    "ipa": "/ˈɡrɑːsruːts ˈmuːvmənt/",
+    "meaning": "Gerakan akar rumput"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Landslide victory",
+    "ipa": "/ˈlændslaɪd ˈvɪktəri/",
+    "meaning": "Kemenangan telak dalam pemilu"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Hung parliament",
+    "ipa": "/hʌŋ ˈpɑːləmənt/",
+    "meaning": "Parlemen tanpa partai mayoritas"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Vote of no confidence",
+    "ipa": "/vəʊt əv nəʊ ˈkɒnfɪdəns/",
+    "meaning": "Mosi tidak percaya"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Political turmoil",
+    "ipa": "/pəˈlɪtɪkəl ˈtɜːmɔɪl/",
+    "meaning": "Kekacauan politik"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Public opinion",
+    "ipa": "/ˈpʌblɪk əˈpɪnjən/",
+    "meaning": "Opini publik"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Swing voter",
+    "ipa": "/swɪŋ ˈvəʊtə/",
+    "meaning": "Pemilih mengambang"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Head of state",
+    "ipa": "/hed əv steɪt/",
+    "meaning": "Kepala negara"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Ruling party",
+    "ipa": "/ˈruːlɪŋ ˈpɑːti/",
+    "meaning": "Partai yang sedang berkuasa"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Civil unrest",
+    "ipa": "/ˈsɪvəl ʌnˈrest/",
+    "meaning": "Kerusuhan atau keresahan sipil"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[6], 'upper-intermediate/vocabulary/6');

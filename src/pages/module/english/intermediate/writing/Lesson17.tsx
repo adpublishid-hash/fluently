@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">I live in Cempaka, a small residential neighbourhood on the southern edge of Depok. It is not a famous place, and you will not find it in any guidebook, but to me it is the most comfortable place in the world.\n\nThe streets in Cempaka are narrow and lined with small houses painted in bright colours. At the end of my street there is a traditional market, which opens before sunrise. By six o'clock it is already busy with people buying fresh vegetables, fish and warm kue for breakfast. Opposite the market there is a small mosque and a football pitch where teenagers gather every afternoon.\n\nThe best thing about my neighbourhood is the people. Neighbours greet each other by name, and once a month everyone takes part in kerja bakti, a community clean-up day. However, Cempaka is not perfect. The drains often flood during the rainy season, and the main road is very crowded in the evenings. Even so, I cannot imagine living anywhere else.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "Where is Cempaka?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "In the centre of Jakarta",
+      "On the southern edge of Depok",
+      "Next to the beach in Bali",
+      "Near a famous tourist site in the mountains"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "On the southern edge of Depok"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What is at the end of the writer's street?",
     "opts": [
-      "Using passive voice",
-      "Knowing 1000 words",
-      "Typing fast",
-      "The ability to weave sentences into a coherent paragraph"
+      "A traditional market",
+      "A shopping mall",
+      "A school",
+      "A train station"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "A traditional market"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What do teenagers do every afternoon?",
     "opts": [
-      "It exposes students to varied structures and registers",
-      "It wastes time",
-      "It makes you sleepy",
-      "It hurts visibility"
+      "Clean the drains",
+      "Sell kue at the market for pocket money",
+      "Gather at the football pitch",
+      "Study at the mosque"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Gather at the football pitch"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What happens once a month in the neighbourhood?",
     "opts": [
-      "To write long sentences",
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score"
+      "A music festival",
+      "A football tournament for local teenagers",
+      "A night market",
+      "A community clean-up day"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "A community clean-up day"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What problem does the neighbourhood have in the rainy season?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "By buying special pens",
-      "By ignoring rules",
-      "Overnight magically"
+      "The market closes",
+      "The drains often flood",
+      "The mosque is crowded",
+      "The houses lose their colour"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "The drains often flood"
   }
 ],
 };

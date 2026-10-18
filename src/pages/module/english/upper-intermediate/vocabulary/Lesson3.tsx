@@ -95,9 +95,9 @@ const CAT2: VocabItem[] = [
     "meaning": "Memulihkan ekosistem yang rusak"
   },
   {
-    "word": "Mitigate",
-    "ipa": "/ˈmɪtɪɡeɪt/",
-    "meaning": "Mengurangi dampak negatif lingkungan"
+    "word": "Offset",
+    "ipa": "/ˈɒfset/",
+    "meaning": "Mengimbangi (misalnya emisi karbon)"
   },
   {
     "word": "Pollute",
@@ -117,9 +117,9 @@ const CAT2: VocabItem[] = [
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Sustainable development",
-    "ipa": "/səˈsteɪnəbəl dɪˈveləpmənt/",
-    "meaning": "Pembangunan berkelanjutan"
+    "word": "Rewilding",
+    "ipa": "/ˌriːˈwaɪldɪŋ/",
+    "meaning": "Pengembalian lahan ke kondisi alaminya"
   },
   {
     "word": "Climate justice",
@@ -152,9 +152,9 @@ const CAT3: VocabItem[] = [
     "meaning": "Net zero – target menghilangkan total emisi karbon bersih"
   },
   {
-    "word": "Biodegradable",
-    "ipa": "/ˌbaɪoʊdɪˈɡreɪdəbəl/",
-    "meaning": "Dapat terurai secara biologis"
+    "word": "Single-use plastic",
+    "ipa": "/ˌsɪŋɡəl juːs ˈplæstɪk/",
+    "meaning": "Plastik sekali pakai"
   },
   {
     "word": "Ecological footprint",

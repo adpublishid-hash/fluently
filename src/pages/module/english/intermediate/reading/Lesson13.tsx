@@ -19,7 +19,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "Who is this class mainly for?",
     "opts": [
-      "Experienced yoga teachers",
+      "Experienced yoga teachers and trainers",
       "People who are new to yoga",
       "Only young people",
       "Professional athletes"

@@ -105,9 +105,9 @@ const CAT2: VocabItem[] = [
     "meaning": "Memperlancar / mengefisienkan proses"
   },
   {
-    "word": "Leverage",
-    "ipa": "/ˈlevərɪdʒ/",
-    "meaning": "Memanfaatkan aset/posisi untuk keuntungan"
+    "word": "Capitalise",
+    "ipa": "/ˈkæpɪtəlaɪz/",
+    "meaning": "Memanfaatkan peluang (capitalise on)"
   },
   {
     "word": "Restructure",
@@ -157,9 +157,9 @@ const CAT3: VocabItem[] = [
     "meaning": "Uji tuntas – riset menyeluruh sebelum transaksi"
   },
   {
-    "word": "Stakeholder",
-    "ipa": "/ˈsteɪkhoʊldər/",
-    "meaning": "Pemangku kepentingan (pemegang saham, karyawan, dll)"
+    "word": "Profit margin",
+    "ipa": "/ˈprɒfɪt ˈmɑːdʒɪn/",
+    "meaning": "Margin keuntungan"
   },
   {
     "word": "Fiscal year",

@@ -41,7 +41,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "opts": [
       "She watched a lot of TV.",
       "She had to speak it every weekend.",
-      "She took extra classes.",
+      "She took extra evening classes at a language school.",
       "She lived alone."
     ],
     "ans": "She had to speak it every weekend."

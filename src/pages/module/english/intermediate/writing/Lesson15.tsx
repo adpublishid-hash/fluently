@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Three years ago, on a stormy evening in January, my younger brother and I heard a weak crying sound coming from under our neighbour's car. When we looked more closely, we found a tiny grey kitten, soaking wet and shaking with cold. We wrapped him in a towel, carried him home and gave him some warm milk. We decided to call him Milo.\n\nFor the first few weeks, Milo was extremely shy. Whenever someone walked into the room, he darted under the sofa and refused to come out. My mother was worried that he would never trust us. However, my brother had an idea. Every evening, he sat quietly on the floor and read his comic books aloud, without trying to touch the kitten. Slowly, Milo began to creep closer, until one night he climbed onto my brother's lap and fell asleep.\n\nToday, Milo is a large, lazy cat who spends most of the day sleeping in the sun on the kitchen windowsill. He still hides when visitors arrive, but with our family he is gentle and affectionate. Looking after him has taught us that trust cannot be forced; it has to be earned.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "Where did the writer and their brother find the kitten?",
     "opts": [
-      "Speaking loudly",
-      "Finding errors",
-      "Spelling and reading",
-      "Vocabulary and grammar"
+      "In a pet shop",
+      "Under their neighbour's car",
+      "In their school garden",
+      "On the kitchen windowsill"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "Under their neighbour's car"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What did Milo do when someone walked into the room?",
     "opts": [
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice",
-      "Typing fast",
-      "Knowing 1000 words"
+      "He hid under the sofa",
+      "He jumped onto their lap",
+      "He asked for milk",
+      "He ran out of the house"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "He hid under the sofa"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What was the brother's idea to help Milo?",
     "opts": [
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It wastes time"
+      "Buying him lots of toys",
+      "Taking him to a vet every week for special medicine",
+      "Reading comics aloud on the floor every evening",
+      "Keeping him in a cage"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Reading comics aloud on the floor every evening"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "Where does Milo spend most of the day now?",
     "opts": [
-      "To convey ideas clearly and concisely",
-      "To write long sentences",
-      "To get a high score",
-      "To confuse the reader"
+      "Under the neighbour's car",
+      "In the garden",
+      "On the sofa next to visitors in the living room",
+      "Sleeping on the kitchen windowsill"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Sleeping on the kitchen windowsill"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What did the family learn from looking after Milo?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "Cats prefer comics",
+      "Trust has to be earned",
+      "Kittens need cold milk",
+      "Pets should live outside"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Trust has to be earned"
   }
 ],
 };

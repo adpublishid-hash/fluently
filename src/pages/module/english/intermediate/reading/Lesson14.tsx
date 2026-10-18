@@ -22,7 +22,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
       "To order more desks",
       "To complain about a delivery",
       "To thank Mr Hughes",
-      "To cancel the order"
+      "To cancel the order for office chairs"
     ],
     "ans": "To complain about a delivery"
   },

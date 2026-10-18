@@ -30,7 +30,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "What surprised Ollie at the interview?",
     "opts": [
       "He had to cook an omelette.",
-      "The chef was late.",
+      "The head chef was over an hour late.",
       "There were no questions.",
       "The hotel was closed."
     ],

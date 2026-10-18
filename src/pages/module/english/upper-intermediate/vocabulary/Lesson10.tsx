@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Broadcast",
+    "ipa": "/ˈbrɔːdkɑːst/",
+    "meaning": "Menyiarkan di televisi atau radio"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Fact-check",
+    "ipa": "/ˈfækt tʃek/",
+    "meaning": "Memeriksa kebenaran fakta"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Sensationalise",
+    "ipa": "/senˈseɪʃənəlaɪz/",
+    "meaning": "Membesar-besarkan berita agar menarik perhatian"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Leak",
+    "ipa": "/liːk/",
+    "meaning": "Membocorkan informasi rahasia"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Retract",
+    "ipa": "/rɪˈtrækt/",
+    "meaning": "Menarik kembali pernyataan atau berita"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Disseminate",
+    "ipa": "/dɪˈsemɪneɪt/",
+    "meaning": "Menyebarluaskan informasi"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Moderate",
+    "ipa": "/ˈmɒdəreɪt/",
+    "meaning": "Memoderasi diskusi atau konten daring"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Subscribe",
+    "ipa": "/səbˈskraɪb/",
+    "meaning": "Berlangganan media atau layanan"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Misrepresent",
+    "ipa": "/ˌmɪsreprɪˈzent/",
+    "meaning": "Menggambarkan secara keliru atau menyesatkan"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Distort",
+    "ipa": "/dɪˈstɔːt/",
+    "meaning": "Memutarbalikkan fakta"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Breaking news",
+    "ipa": "/ˈbreɪkɪŋ njuːz/",
+    "meaning": "Berita terkini yang baru terjadi"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Go viral",
+    "ipa": "/ɡəʊ ˈvaɪrəl/",
+    "meaning": "Menjadi viral – menyebar cepat di internet"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Press release",
+    "ipa": "/pres rɪˈliːs/",
+    "meaning": "Siaran pers"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Hit the headlines",
+    "ipa": "/hɪt ðə ˈhedlaɪnz/",
+    "meaning": "Menjadi berita utama"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Off the record",
+    "ipa": "/ɒf ðə ˈrekɔːd/",
+    "meaning": "Tidak untuk dikutip atau dipublikasikan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Media coverage",
+    "ipa": "/ˈmiːdiə ˈkʌvərɪdʒ/",
+    "meaning": "Liputan media"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Freedom of the press",
+    "ipa": "/ˈfriːdəm əv ðə pres/",
+    "meaning": "Kebebasan pers"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Prime time",
+    "ipa": "/praɪm taɪm/",
+    "meaning": "Jam tayang utama"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Public relations",
+    "ipa": "/ˈpʌblɪk rɪˈleɪʃənz/",
+    "meaning": "Hubungan masyarakat (humas)"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Fake news",
+    "ipa": "/feɪk njuːz/",
+    "meaning": "Berita palsu"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[10], 'upper-intermediate/vocabulary/10');

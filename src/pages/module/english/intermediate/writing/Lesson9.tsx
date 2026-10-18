@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Dear Mr Hartono,\n\nOn behalf of the students of Class 11B, I would like to invite you to our end-of-year charity bazaar, which will take place on Saturday, 14th June, from 9 a.m. to 3 p.m. in the main hall of SMA Harapan Bangsa.\n\nAs our former English teacher, you played an important part in our first year, and we would be delighted if you could join us. During the bazaar, students will be selling home-made food, second-hand books and handicrafts. All the money we raise will go to a local orphanage. There will also be live music performed by the school band, and at 11 a.m. we will hold a short ceremony to thank our teachers.\n\nWe would be very grateful if you could let us know whether you are able to attend by Friday, 6th June. You can simply reply to this email.\n\nWe very much hope to see you there.\n\nYours sincerely,\nDewi Lestari\nClass Representative, 11B</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What is Mr Hartono invited to?",
     "opts": [
-      "Vocabulary and grammar",
-      "Spelling and reading",
-      "Finding errors",
-      "Speaking loudly"
+      "A graduation party",
+      "A charity bazaar",
+      "A football match",
+      "A parents' meeting"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "A charity bazaar"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Where will the event take place?",
     "opts": [
-      "Knowing 1000 words",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph",
-      "Typing fast"
+      "In the main hall of the school",
+      "In a local orphanage",
+      "In the school car park",
+      "In a hotel in the city centre"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "In the main hall of the school"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "Who will receive the money the students raise?",
     "opts": [
-      "It wastes time",
-      "It hurts visibility",
-      "It exposes students to varied structures and registers",
-      "It makes you sleepy"
+      "The school band",
+      "The English teachers",
+      "A local orphanage",
+      "Class 11B"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "A local orphanage"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What will happen at 11 a.m.?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "The bazaar will open",
+      "The band will go home",
+      "Lunch will be served to all the guests in the hall",
+      "A short ceremony to thank the teachers"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "A short ceremony to thank the teachers"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "By when should Mr Hartono reply?",
     "opts": [
-      "Overnight magically",
-      "Through consistent, deliberate practice",
-      "By ignoring rules",
-      "By buying special pens"
+      "Saturday, 14th June",
+      "Friday, 6th June",
+      "The end of the year",
+      "11 a.m. on the day"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Friday, 6th June"
   }
 ],
 };

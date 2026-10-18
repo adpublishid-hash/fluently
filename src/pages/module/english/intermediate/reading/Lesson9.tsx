@@ -20,7 +20,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why do the parents need a babysitter?",
     "opts": [
       "They work night shifts.",
-      "They are going on holiday.",
+      "They are going on holiday for a week.",
       "They attend evening classes.",
       "They have just moved house."
     ],
@@ -50,7 +50,7 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Which is a requirement for the job?",
     "opts": [
       "Having first-aid training",
-      "Having a driving licence",
+      "Having a full UK driving licence",
       "Being able to cook",
       "Living nearby"
     ],

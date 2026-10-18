@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Contemplate",
+    "ipa": "/ˈkɒntəmpleɪt/",
+    "meaning": "Merenungkan secara mendalam"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Deliberate",
+    "ipa": "/dɪˈlɪbəreɪt/",
+    "meaning": "Menimbang dengan saksama sebelum memutuskan"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Rationalise",
+    "ipa": "/ˈræʃənəlaɪz/",
+    "meaning": "Merasionalisasi – mencari alasan logis atas tindakan"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Refute",
+    "ipa": "/rɪˈfjuːt/",
+    "meaning": "Membantah dan membuktikan suatu argumen salah"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Ponder",
+    "ipa": "/ˈpɒndə/",
+    "meaning": "Memikirkan sesuatu dengan cermat"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Condemn",
+    "ipa": "/kənˈdem/",
+    "meaning": "Mengecam secara moral"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Reconcile",
+    "ipa": "/ˈrekənsaɪl/",
+    "meaning": "Menyelaraskan dua gagasan yang bertentangan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Presuppose",
+    "ipa": "/ˌpriːsəˈpəʊz/",
+    "meaning": "Mengandaikan sesuatu sudah benar sebelumnya"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Uphold",
+    "ipa": "/ʌpˈhəʊld/",
+    "meaning": "Menjunjung tinggi prinsip atau nilai"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Discern",
+    "ipa": "/dɪˈsɜːn/",
+    "meaning": "Membedakan atau memahami dengan jelas"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Moral dilemma",
+    "ipa": "/ˈmɒrəl dɪˈlemə/",
+    "meaning": "Dilema moral"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "The greater good",
+    "ipa": "/ðə ˈɡreɪtə ɡʊd/",
+    "meaning": "Kebaikan yang lebih besar bagi banyak orang"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Free will",
+    "ipa": "/friː wɪl/",
+    "meaning": "Kehendak bebas"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "The end justifies the means",
+    "ipa": "/ði end ˈdʒʌstɪfaɪz ðə miːnz/",
+    "meaning": "Tujuan menghalalkan cara"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Slippery slope",
+    "ipa": "/ˈslɪpəri sləʊp/",
+    "meaning": "Argumen bahwa satu langkah kecil memicu akibat buruk berantai"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Food for thought",
+    "ipa": "/fuːd fə θɔːt/",
+    "meaning": "Bahan renungan"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Thought experiment",
+    "ipa": "/θɔːt ɪkˈsperɪmənt/",
+    "meaning": "Eksperimen pikiran"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Moral compass",
+    "ipa": "/ˈmɒrəl ˈkʌmpəs/",
+    "meaning": "Pedoman moral pribadi"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Golden rule",
+    "ipa": "/ˈɡəʊldən ruːl/",
+    "meaning": "Kaidah emas – perlakukan orang lain seperti ingin diperlakukan"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Human nature",
+    "ipa": "/ˈhjuːmən ˈneɪtʃə/",
+    "meaning": "Sifat dasar manusia"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[8], 'upper-intermediate/vocabulary/8');

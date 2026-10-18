@@ -13,59 +13,59 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">The person I admire most is my grandmother, Siti. She is a small woman in her seventies with silver hair, which she always ties in a neat bun, and bright, curious eyes that seem to notice everything.\n\nAlthough she left school at the age of twelve, my grandmother is one of the wisest people I know. For over forty years, she ran a small food stall in Yogyakarta, where she sold gudeg to students and office workers. Customers often stayed long after finishing their meals simply because they enjoyed talking to her. She is patient, generous and incredibly hard-working, yet she never complains about anything.\n\nWhat I appreciate most is the way she listens. Whenever I have a problem, she makes me a cup of sweet tea and lets me speak without interrupting. Then she gives advice that is simple but always sensible. I hope that one day I will be as kind and calm as she is.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "How old is the writer's grandmother?",
     "opts": [
-      "Spelling and reading",
-      "Finding errors",
-      "Speaking loudly",
-      "Vocabulary and grammar"
+      "In her fifties",
+      "In her sixties",
+      "In her seventies",
+      "Over ninety"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "In her seventies"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What did she do for over forty years?",
     "opts": [
-      "Typing fast",
-      "Using passive voice",
-      "The ability to weave sentences into a coherent paragraph",
-      "Knowing 1000 words"
+      "She taught cooking at a primary school in Yogyakarta",
+      "She ran a food stall in Yogyakarta",
+      "She worked in an office",
+      "She studied at university"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "She ran a food stall in Yogyakarta"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "Why did customers stay after finishing their meals?",
     "opts": [
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy",
-      "It wastes time"
+      "They enjoyed talking to her",
+      "It was raining outside",
+      "They were waiting for the bus",
+      "The food was very cheap"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "They enjoyed talking to her"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What does the writer appreciate most about her?",
     "opts": [
-      "To get a high score",
-      "To write long sentences",
-      "To convey ideas clearly and concisely",
-      "To confuse the reader"
+      "Her cooking",
+      "Her silver hair",
+      "Her stories about school",
+      "The way she listens"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "The way she listens"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What does she do when the writer has a problem?",
     "opts": [
-      "By buying special pens",
-      "Overnight magically",
-      "Through consistent, deliberate practice",
-      "By ignoring rules"
+      "She tells the writer to stop complaining and go to bed",
+      "She makes sweet tea and lets the writer talk",
+      "She calls the writer's parents",
+      "She gives the writer some money"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "She makes sweet tea and lets the writer talk"
   }
 ],
 };

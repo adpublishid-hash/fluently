@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Perceive",
+    "ipa": "/pəˈsiːv/",
+    "meaning": "Mempersepsikan atau memandang sesuatu"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Suppress",
+    "ipa": "/səˈpres/",
+    "meaning": "Menekan atau menahan emosi"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Cope",
+    "ipa": "/kəʊp/",
+    "meaning": "Mengatasi atau menghadapi kesulitan"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Procrastinate",
+    "ipa": "/prəˈkræstɪneɪt/",
+    "meaning": "Menunda-nunda pekerjaan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Internalise",
+    "ipa": "/ɪnˈtɜːnəlaɪz/",
+    "meaning": "Menginternalisasi nilai atau perasaan"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Manipulate",
+    "ipa": "/məˈnɪpjuleɪt/",
+    "meaning": "Memanipulasi orang lain"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Reinforce",
+    "ipa": "/ˌriːɪnˈfɔːs/",
+    "meaning": "Memperkuat perilaku atau keyakinan"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Overthink",
+    "ipa": "/ˌəʊvəˈθɪŋk/",
+    "meaning": "Terlalu banyak memikirkan sesuatu"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Trigger",
+    "ipa": "/ˈtrɪɡə/",
+    "meaning": "Memicu reaksi atau emosi"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Project",
+    "ipa": "/prəˈdʒekt/",
+    "meaning": "Memproyeksikan perasaan sendiri kepada orang lain"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Peer pressure",
+    "ipa": "/pɪə ˈpreʃə/",
+    "meaning": "Tekanan dari teman sebaya"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Comfort zone",
+    "ipa": "/ˈkʌmfət zəʊn/",
+    "meaning": "Zona nyaman"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Fight-or-flight response",
+    "ipa": "/ˌfaɪt ɔː ˈflaɪt rɪˈspɒns/",
+    "meaning": "Respons melawan atau lari saat terancam"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Low self-esteem",
+    "ipa": "/ləʊ ˌself ɪˈstiːm/",
+    "meaning": "Rasa rendah diri"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Mental well-being",
+    "ipa": "/ˈmentəl ˌwel ˈbiːɪŋ/",
+    "meaning": "Kesejahteraan mental"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Body language",
+    "ipa": "/ˈbɒdi ˈlæŋɡwɪdʒ/",
+    "meaning": "Bahasa tubuh"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Gut feeling",
+    "ipa": "/ɡʌt ˈfiːlɪŋ/",
+    "meaning": "Firasat atau naluri"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Snap judgement",
+    "ipa": "/snæp ˈdʒʌdʒmənt/",
+    "meaning": "Penilaian yang dibuat tergesa-gesa"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Herd mentality",
+    "ipa": "/hɜːd menˈtæləti/",
+    "meaning": "Mentalitas ikut-ikutan orang banyak"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Delayed gratification",
+    "ipa": "/dɪˈleɪd ˌɡrætɪfɪˈkeɪʃən/",
+    "meaning": "Kemampuan menunda kepuasan demi hasil lebih besar"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[12], 'upper-intermediate/vocabulary/12');

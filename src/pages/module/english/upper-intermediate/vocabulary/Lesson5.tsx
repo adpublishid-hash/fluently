@@ -65,106 +65,106 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Prescribe",
+    "ipa": "/prɪˈskraɪb/",
+    "meaning": "Meresepkan obat"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Alleviate",
+    "ipa": "/əˈliːvieɪt/",
+    "meaning": "Meringankan rasa sakit atau gejala"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Recuperate",
+    "ipa": "/rɪˈkuːpəreɪt/",
+    "meaning": "Memulihkan diri setelah sakit"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Administer",
+    "ipa": "/ədˈmɪnɪstə/",
+    "meaning": "Memberikan obat atau perawatan"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Contract",
+    "ipa": "/kənˈtrækt/",
+    "meaning": "Tertular atau terjangkit penyakit"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Relapse",
+    "ipa": "/rɪˈlæps/",
+    "meaning": "Kambuh setelah sempat membaik"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Sterilise",
+    "ipa": "/ˈsterəlaɪz/",
+    "meaning": "Mensterilkan alat dari kuman"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Vaccinate",
+    "ipa": "/ˈvæksɪneɪt/",
+    "meaning": "Memvaksinasi"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Transmit",
+    "ipa": "/trænzˈmɪt/",
+    "meaning": "Menularkan penyakit"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Refer",
+    "ipa": "/rɪˈfɜː/",
+    "meaning": "Merujuk pasien ke dokter spesialis"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Side effects",
+    "ipa": "/saɪd ɪˈfekts/",
+    "meaning": "Efek samping obat"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Underlying condition",
+    "ipa": "/ˌʌndəˈlaɪɪŋ kənˈdɪʃən/",
+    "meaning": "Penyakit bawaan/penyerta yang mendasari"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Make a full recovery",
+    "ipa": "/meɪk ə fʊl rɪˈkʌvəri/",
+    "meaning": "Pulih sepenuhnya"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Under observation",
+    "ipa": "/ˈʌndər ˌɒbzəˈveɪʃən/",
+    "meaning": "Dalam pengawasan medis"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Second opinion",
+    "ipa": "/ˈsekənd əˈpɪnjən/",
+    "meaning": "Pendapat medis dari dokter lain"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Life expectancy",
+    "ipa": "/laɪf ɪkˈspektənsi/",
+    "meaning": "Angka harapan hidup"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Clinical trial",
+    "ipa": "/ˈklɪnɪkəl ˈtraɪəl/",
+    "meaning": "Uji klinis obat atau terapi"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Run a temperature",
+    "ipa": "/rʌn ə ˈtemprətʃə/",
+    "meaning": "Mengalami demam"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Over-the-counter medicine",
+    "ipa": "/ˌəʊvə ðə ˈkaʊntə ˈmedsən/",
+    "meaning": "Obat bebas yang dibeli tanpa resep"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Preventive care",
+    "ipa": "/prɪˈventɪv keə/",
+    "meaning": "Perawatan pencegahan penyakit"
   }
 ];
 const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[5], 'upper-intermediate/vocabulary/5');
