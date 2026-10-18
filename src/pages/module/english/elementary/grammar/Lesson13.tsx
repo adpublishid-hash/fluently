@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const RELATIVE_RULES = [
   {
     pronoun: "WHO",
@@ -59,148 +61,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Benda (Which)", en: "The pizza which we ate was delicious.", id: "Pizza yang kami makan enak.", icon: "🍕" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "The man ___ stole the car was caught.",
-    options: ['which', 'who', 'where'],
-    answer: 'who',
-    explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
-  },
-  {
-    id: 2,
-    question: "This is the cake ___ Mary baked.",
-    options: ['who', 'which', 'what'],
-    answer: 'which',
-    explanation: "'The cake' adalah benda, jadi kita gunakan 'which' (atau 'that')."
-  },
-  {
-    id: 3,
-    question: "I have a friend ___ lives in Japan.",
-    options: ['which', 'who', 'it'],
-    answer: 'who',
-    explanation: "'A friend' adalah orang."
-  },
-  {
-    id: 4,
-    question: "The book ___ is on the shelf is mine.",
-    options: ['who', 'which', 'whom'],
-    answer: 'which',
-    explanation: "'The book' adalah benda."
-  },
-  {
-    id: 5,
-    question: "Can I talk to the person ___ is in charge?",
-    options: ['which', 'who', 'where'],
-    answer: 'who',
-    explanation: "'The person' membutuhkan 'who'."
-  },
-  {
-    id: 6,
-    question: "The man ___ stole the car was caught.",
-    options: ["which","who","where"],
-    answer: "who",
-    explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
-  },
-  {
-    id: 7,
-    question: "This is the cake ___ Sarah baked.",
-    options: ["who","which","what"],
-    answer: "which",
-    explanation: "'The cake' adalah benda, jadi kita gunakan 'which' (atau 'that')."
-  },
-  {
-    id: 8,
-    question: "I have a friend ___ lives in Japan.",
-    options: ["which","who","it"],
-    answer: "who",
-    explanation: "'A friend' adalah orang."
-  },
-  {
-    id: 9,
-    question: "The book ___ is on the shelf is mine.",
-    options: ["who","which","whom"],
-    answer: "which",
-    explanation: "'The book' adalah benda."
-  },
-  {
-    id: 10,
-    question: "Can I talk to the person ___ is in charge?",
-    options: ["which","who","where"],
-    answer: "who",
-    explanation: "'The person' membutuhkan 'who'."
-  },
-  {
-    id: 11,
-    question: "The man ___ stole the car was caught.",
-    options: ["which","who","where"],
-    answer: "who",
-    explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
-  },
-  {
-    id: 12,
-    question: "This is the cake ___ Mary baked.",
-    options: ["who","which","what"],
-    answer: "which",
-    explanation: "'The cake' adalah benda, jadi kita gunakan 'which' (atau 'that')."
-  },
-  {
-    id: 13,
-    question: "I have a friend ___ lives in Japan.",
-    options: ["which","who","it"],
-    answer: "who",
-    explanation: "'A friend' adalah orang."
-  },
-  {
-    id: 14,
-    question: "The book ___ is on the shelf is mine.",
-    options: ["who","which","whom"],
-    answer: "which",
-    explanation: "'The book' adalah benda."
-  },
-  {
-    id: 15,
-    question: "Can I talk to the person ___ is in charge?",
-    options: ["which","who","where"],
-    answer: "who",
-    explanation: "'The person' membutuhkan 'who'."
-  },
-  {
-    id: 16,
-    question: "The man ___ stole the car was caught.",
-    options: ["which","who","where"],
-    answer: "who",
-    explanation: "'The man' adalah orang, jadi kita gunakan 'who' (atau 'that')."
-  },
-  {
-    id: 17,
-    question: "This is the cake ___ Lisa baked.",
-    options: ["who","which","what"],
-    answer: "which",
-    explanation: "'The cake' adalah benda, jadi kita gunakan 'which' (atau 'that')."
-  },
-  {
-    id: 18,
-    question: "I have a friend ___ lives in Japan.",
-    options: ["which","who","it"],
-    answer: "who",
-    explanation: "'A friend' adalah orang."
-  },
-  {
-    id: 19,
-    question: "The novel ___ is on the shelf is mine.",
-    options: ["who","which","whom"],
-    answer: "which",
-    explanation: "'The novel' adalah benda."
-  },
-  {
-    id: 20,
-    question: "Can I talk to the person ___ is in charge?",
-    options: ["which","who","where"],
-    answer: "who",
-    explanation: "'The person' membutuhkan 'who'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[13], 'elementary/grammar/13'));
 
 const ElemGrammarLesson13: React.FC = () => {
   const navigate = useNavigate();

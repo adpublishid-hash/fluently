@@ -152,9 +152,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "Would you ___ to come to my party?",
     options: [
-      { text: "want", correct: false },
       { text: "like", correct: true },
-      { text: "love", correct: false }
+      { text: "love", correct: false },
+      { text: "want", correct: false }
     ],
     explanation: "'Would you like' adalah cara sopan untuk mengundang seseorang."
   },
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "I'm sorry, I ___ go. I am busy.",
     options: [
-      { text: "can't", correct: true },
       { text: "don't", correct: false },
-      { text: "won't", correct: false }
+      { text: "won't", correct: false },
+      { text: "can't", correct: true }
     ],
     explanation: "'I can't' adalah cara standar menolak undangan."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "Make yourself at ___.",
     options: [
-      { text: "house", correct: false },
+      { text: "room", correct: false },
       { text: "home", correct: true },
-      { text: "room", correct: false }
+      { text: "house", correct: false }
     ],
     explanation: "'Make yourself at home' berarti 'silakan merasa nyaman/anggap rumah sendiri'."
   },
@@ -183,8 +183,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Have you ___ my friend?",
     options: [
       { text: "meet", correct: false },
-      { text: "met", correct: true },
-      { text: "meeting", correct: false }
+      { text: "meeting", correct: false },
+      { text: "met", correct: true }
     ],
     explanation: "Present perfect tense: Have you met? (Sudahkah kamu bertemu/kenal?)"
   },
@@ -192,8 +192,8 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "I am ___ you could come.",
     options: [
-      { text: "glad", correct: true },
       { text: "sad", correct: false },
+      { text: "glad", correct: true },
       { text: "mad", correct: false }
     ],
     explanation: "Glad berarti senang atau gembira."
@@ -202,8 +202,8 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"I really enjoyed the pasta.\"?",
     options: [
-      { text: "Aku sangat menikmati pastanya.", correct: true },
       { text: "Apakah Anda ingin bergabung makan malam bersama kami?", correct: false },
+      { text: "Aku sangat menikmati pastanya.", correct: true },
       { text: "Sepertinya saya harus pergi sekarang.", correct: false }
     ],
     explanation: "Kalimat \"I really enjoyed the pasta.\" memiliki arti \"Aku sangat menikmati pastanya.\"."
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Saya harus kerja pagi-pagi besok.\"?",
     options: [
-      { text: "I would love to! When is it?", correct: false },
+      { text: "Yes, let's try again next week.", correct: false },
       { text: "I have to work early tomorrow.", correct: true },
-      { text: "Yes, let's try again next week.", correct: false }
+      { text: "I would love to! When is it?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Saya harus kerja pagi-pagi besok.\" adalah \"I have to work early tomorrow.\"."
   },
@@ -222,9 +222,9 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"The ___ is also delicious.\"\n(Arti: Makanannya juga enak.)",
     options: [
+      { text: "I", correct: false },
       { text: "food", correct: true },
-      { text: "visiting", correct: false },
-      { text: "I", correct: false }
+      { text: "visiting", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'food'."
   },
@@ -242,9 +242,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Maaf, aku tidak bisa. Aku sibuk.\"?",
     options: [
-      { text: "I'm sorry, I can't. I am busy.", correct: true },
+      { text: "We are. Thank you for being here.", correct: false },
       { text: "Thank you very much.", correct: false },
-      { text: "We are. Thank you for being here.", correct: false }
+      { text: "I'm sorry, I can't. I am busy.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Maaf, aku tidak bisa. Aku sibuk.\" adalah \"I'm sorry, I can't. I am busy.\"."
   },
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"You both look ___ happy.\"\n(Arti: Kalian berdua terlihat sangat bahagia.)",
     options: [
-      { text: "very", correct: true },
       { text: "my", correct: false },
-      { text: "7", correct: false }
+      { text: "7", correct: false },
+      { text: "very", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'very'."
   },
@@ -263,8 +263,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"Have you met my friend, Sarah?\"?",
     options: [
       { text: "Sudah kenal teman saya, Sarah?", correct: true },
-      { text: "Aku senang kamu menyukainya.", correct: false },
-      { text: "Belum. Hai Sarah.", correct: false }
+      { text: "Belum. Hai Sarah.", correct: false },
+      { text: "Aku senang kamu menyukainya.", correct: false }
     ],
     explanation: "Kalimat \"Have you met my friend, Sarah?\" memiliki arti \"Sudah kenal teman saya, Sarah?\"."
   },
@@ -272,9 +272,9 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Sabtu ini jam 7 malam.\"?",
     options: [
+      { text: "It is this Saturday at 7 PM.", correct: true },
       { text: "Yes, it is lovely.", correct: false },
-      { text: "You didn't have to! Come on in.", correct: false },
-      { text: "It is this Saturday at 7 PM.", correct: true }
+      { text: "You didn't have to! Come on in.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Sabtu ini jam 7 malam.\" adalah \"It is this Saturday at 7 PM.\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"Nice weather ___, isn't it?\"\n(Arti: Cuaca hari ini bagus, kan?)",
     options: [
+      { text: "today", correct: true },
       { text: "That", correct: false },
-      { text: "join", correct: false },
-      { text: "today", correct: true }
+      { text: "join", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'today'."
   },
@@ -292,9 +292,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Would you like to join us for dinner?\"?",
     options: [
+      { text: "Apakah Anda ingin bergabung makan malam bersama kami?", correct: true },
       { text: "Kalian berdua terlihat sangat bahagia.", correct: false },
-      { text: "Anda sangat baik sekali.", correct: false },
-      { text: "Apakah Anda ingin bergabung makan malam bersama kami?", correct: true }
+      { text: "Anda sangat baik sekali.", correct: false }
     ],
     explanation: "Kalimat \"Would you like to join us for dinner?\" memiliki arti \"Apakah Anda ingin bergabung makan malam bersama kami?\"."
   },
@@ -302,8 +302,8 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Anda sangat baik sekali.\"?",
     options: [
-      { text: "I understand. Thanks for coming.", correct: false },
       { text: "I'm sorry, I can't. I am busy.", correct: false },
+      { text: "I understand. Thanks for coming.", correct: false },
       { text: "That is very kind of you.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Anda sangat baik sekali.\" adalah \"That is very kind of you.\"."
@@ -312,8 +312,8 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"We are. Thank ___ for being here.\"\n(Arti: Iya. Terima kasih sudah hadir.)",
     options: [
-      { text: "beautiful", correct: false },
       { text: "you", correct: true },
+      { text: "beautiful", correct: false },
       { text: "are", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'you'."
@@ -322,8 +322,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Your house is beautiful.\"?",
     options: [
-      { text: "Rumahmu indah sekali.", correct: true },
       { text: "Sabtu ini jam 7 malam.", correct: false },
+      { text: "Rumahmu indah sekali.", correct: true },
       { text: "Aku senang kamu bisa datang.", correct: false }
     ],
     explanation: "Kalimat \"Your house is beautiful.\" memiliki arti \"Rumahmu indah sekali.\"."
@@ -332,8 +332,8 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Kami akan pergi ke restoran Italia.\"?",
     options: [
-      { text: "We are going to an Italian restaurant.", correct: true },
       { text: "I have to work early tomorrow.", correct: false },
+      { text: "We are going to an Italian restaurant.", correct: true },
       { text: "Thank you for the lovely dinner.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kami akan pergi ke restoran Italia.\" adalah \"We are going to an Italian restaurant.\"."
@@ -343,8 +343,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"I am glad you could ___ it.\"\n(Arti: Aku senang kamu bisa datang.)",
     options: [
       { text: "make", correct: true },
-      { text: "Can", correct: false },
-      { text: "to", correct: false }
+      { text: "to", correct: false },
+      { text: "Can", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'make'."
   }

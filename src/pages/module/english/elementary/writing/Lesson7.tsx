@@ -27,9 +27,9 @@ const BUILD_ITEMS = [
     prompt: "My friend is very ___.",
     blank: "tall",
     options: [
+      "taller",
       "tall",
-      "height",
-      "taller"
+      "height"
     ],
     answer: "tall"
   }
@@ -48,9 +48,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R2)",
     opts: [
-      "My cat is fat very.",
       "My cat is very fat.",
-      "Fat is my cat very."
+      "Fat is my cat very.",
+      "My cat is fat very."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -68,8 +68,8 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R4)",
     opts: [
-      "My cat is very fat.",
       "My cat is fat very.",
+      "My cat is very fat.",
       "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
@@ -78,9 +78,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R5)",
     opts: [
-      "Fat is my cat very.",
+      "My cat is very fat.",
       "My cat is fat very.",
-      "My cat is very fat."
+      "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -88,8 +88,8 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R6)",
     opts: [
-      "Fat is my cat very.",
       "My cat is fat very.",
+      "Fat is my cat very.",
       "My cat is very fat."
     ],
     ans: "My cat is very fat.",
@@ -108,8 +108,8 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R8)",
     opts: [
-      "My cat is very fat.",
       "My cat is fat very.",
+      "My cat is very fat.",
       "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
@@ -128,9 +128,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R10)",
     opts: [
-      "Fat is my cat very.",
+      "My cat is very fat.",
       "My cat is fat very.",
-      "My cat is very fat."
+      "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -138,8 +138,8 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R11)",
     opts: [
-      "Fat is my cat very.",
       "My cat is fat very.",
+      "Fat is my cat very.",
       "My cat is very fat."
     ],
     ans: "My cat is very fat.",
@@ -148,9 +148,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R12)",
     opts: [
-      "My cat is fat very.",
+      "Fat is my cat very.",
       "My cat is very fat.",
-      "Fat is my cat very."
+      "My cat is fat very."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -158,8 +158,8 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R13)",
     opts: [
-      "My cat is fat very.",
       "My cat is very fat.",
+      "My cat is fat very.",
       "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
@@ -178,9 +178,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R15)",
     opts: [
-      "Fat is my cat very.",
       "My cat is fat very.",
-      "My cat is very fat."
+      "My cat is very fat.",
+      "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -198,9 +198,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R17)",
     opts: [
-      "Fat is my cat very.",
       "My cat is fat very.",
-      "My cat is very fat."
+      "My cat is very fat.",
+      "Fat is my cat very."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -218,9 +218,9 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R19)",
     opts: [
-      "My cat is very fat.",
       "My cat is fat very.",
-      "Fat is my cat very."
+      "Fat is my cat very.",
+      "My cat is very fat."
     ],
     ans: "My cat is very fat.",
     exp: "Adverb (very) ditempatkan sebelum Adjective (fat)."
@@ -228,8 +228,8 @@ const QUIZ = [
   {
     q: "Susunan kalimat sifat yang benar:  (R20)",
     opts: [
-      "Fat is my cat very.",
       "My cat is fat very.",
+      "Fat is my cat very.",
       "My cat is very fat."
     ],
     ans: "My cat is very fat.",

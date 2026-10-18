@@ -49,9 +49,9 @@ const BUILD_ITEMS = [
     prompt: "___ is my brother.",
     blank: "He",
     options: [
-      "He",
       "She",
-      "It"
+      "It",
+      "He"
     ],
     answer: "He"
   },
@@ -69,9 +69,9 @@ const BUILD_ITEMS = [
     prompt: "I ___ a cat.",
     blank: "have",
     options: [
-      "has",
       "have",
-      "having"
+      "having",
+      "has"
     ],
     answer: "have"
   },
@@ -79,9 +79,9 @@ const BUILD_ITEMS = [
     prompt: "She ___ coffee every morning.",
     blank: "drinks",
     options: [
-      "drink",
+      "drinking",
       "drinks",
-      "drinking"
+      "drink"
     ],
     answer: "drinks"
   }
@@ -90,10 +90,10 @@ const QUIZ = [
   {
     q: "Susunan kalimat yang benar adalah...",
     opts: [
-      "I like pizza.",
       "Like I pizza.",
-      "Pizza I like.",
-      "Like pizza I."
+      "I like pizza.",
+      "Like pizza I.",
+      "Pizza I like."
     ],
     ans: "I like pizza.",
     exp: "Struktur: S (I) + V (like) + O (pizza)."
@@ -101,10 +101,10 @@ const QUIZ = [
   {
     q: "Pilih to be yang benar untuk \"She\"",
     opts: [
-      "am",
       "are",
       "is",
-      "be"
+      "be",
+      "am"
     ],
     ans: "is",
     exp: "\"She\" selalu dipasangkan dengan \"is\"."
@@ -112,10 +112,10 @@ const QUIZ = [
   {
     q: "Kalimat mana yang tidak punya Subjek?",
     opts: [
+      "We eat rice.",
       "They swim.",
       "Runs fast.",
-      "He is tall.",
-      "We eat rice."
+      "He is tall."
     ],
     ans: "Runs fast.",
     exp: "Kalimat harus memiliki Subjek."
@@ -134,10 +134,10 @@ const QUIZ = [
   {
     q: "Terjemahan \"Saya makan nasi\" yang benar:",
     opts: [
-      "I eat rice.",
-      "Eat I rice.",
       "Rice I eat.",
-      "Me eat rice."
+      "Me eat rice.",
+      "I eat rice.",
+      "Eat I rice."
     ],
     ans: "I eat rice.",
     exp: "S (I) + V (eat) + O (rice)."
@@ -145,10 +145,10 @@ const QUIZ = [
   {
     q: "\"He ___ a doctor.\" Isi yang benar:",
     opts: [
-      "am",
       "is",
-      "are",
-      "be"
+      "be",
+      "am",
+      "are"
     ],
     ans: "is",
     exp: "He/She/It menggunakan \"is\"."
@@ -157,8 +157,8 @@ const QUIZ = [
     q: "\"We ___ students.\" Isi yang benar:",
     opts: [
       "am",
-      "is",
       "are",
+      "is",
       "was"
     ],
     ans: "are",
@@ -168,9 +168,9 @@ const QUIZ = [
     q: "Kalimat yang menggunakan to be dengan benar:",
     opts: [
       "I are happy.",
-      "They is smart.",
       "She is kind.",
-      "We am here."
+      "We am here.",
+      "They is smart."
     ],
     ans: "She is kind.",
     exp: "\"She\" + \"is\" = benar."
@@ -189,10 +189,10 @@ const QUIZ = [
   {
     q: "Pilih kalimat S+V+O yang lengkap:",
     opts: [
-      "Running fast.",
-      "She reads books.",
       "Very happy.",
-      "In the park."
+      "In the park.",
+      "She reads books.",
+      "Running fast."
     ],
     ans: "She reads books.",
     exp: "S (She) + V (reads) + O (books)."
@@ -200,10 +200,10 @@ const QUIZ = [
   {
     q: "\"I ___ a student.\" Isi yang benar:",
     opts: [
-      "am",
       "is",
       "are",
-      "be"
+      "be",
+      "am"
     ],
     ans: "am",
     exp: "\"I\" menggunakan \"am\"."
@@ -223,9 +223,9 @@ const QUIZ = [
     q: "\"My parents ___ teachers.\"",
     opts: [
       "is",
-      "am",
+      "was",
       "are",
-      "was"
+      "am"
     ],
     ans: "are",
     exp: "\"Parents\" = jamak, gunakan \"are\"."
@@ -234,8 +234,8 @@ const QUIZ = [
     q: "\"The cat ___ on the sofa.\"",
     opts: [
       "sit",
-      "sits",
       "sitting",
+      "sits",
       "sitted"
     ],
     ans: "sits",
@@ -245,9 +245,9 @@ const QUIZ = [
     q: "\"We ___ to school every day.\"",
     opts: [
       "goes",
-      "go",
+      "goed",
       "going",
-      "goed"
+      "go"
     ],
     ans: "go",
     exp: "\"We\" menggunakan verb dasar."
@@ -255,10 +255,10 @@ const QUIZ = [
   {
     q: "Terjemahan \Dia laki-laki pintar\:",
     opts: [
-      "He is a smart boy.",
       "Smart he is boy.",
-      "Boy smart he is.",
-      "He smart is boy."
+      "He smart is boy.",
+      "He is a smart boy.",
+      "Boy smart he is."
     ],
     ans: "He is a smart boy.",
     exp: "S + is + a + adj + noun."
@@ -266,10 +266,10 @@ const QUIZ = [
   {
     q: "\"It ___ cold outside.\"",
     opts: [
-      "am",
-      "is",
       "are",
-      "be"
+      "be",
+      "am",
+      "is"
     ],
     ans: "is",
     exp: "\"It\" menggunakan \"is\"."
@@ -277,10 +277,10 @@ const QUIZ = [
   {
     q: "\"You ___ very kind.\"",
     opts: [
-      "am",
       "is",
-      "are",
-      "was"
+      "was",
+      "am",
+      "are"
     ],
     ans: "are",
     exp: "\"You\" selalu menggunakan \"are\"."
@@ -288,10 +288,10 @@ const QUIZ = [
   {
     q: "Kalimat negatif yang benar:",
     opts: [
-      "She do not like math.",
       "She does not like math.",
+      "She no like math.",
       "She not likes math.",
-      "She no like math."
+      "She do not like math."
     ],
     ans: "She does not like math.",
     exp: "\"She\" + \"does not\" + verb dasar."
@@ -299,10 +299,10 @@ const QUIZ = [
   {
     q: "\"___ they your friends?\"",
     opts: [
-      "Am",
       "Is",
-      "Are",
-      "Was"
+      "Am",
+      "Was",
+      "Are"
     ],
     ans: "Are",
     exp: "\"They\" menggunakan \"Are\" untuk pertanyaan."

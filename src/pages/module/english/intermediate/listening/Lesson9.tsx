@@ -4,229 +4,10 @@ import { QuizEngine, DialoguePlayer, FillBlankExercise, getCompletedListeningLes
 import type { QuizItem } from './listeningUtils';
 import { Headphones, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateListeningQuizBank } from './quizBank';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Where does Elena recommend going for a weekend trip?",
-    "opts": [
-      "Crowded beaches",
-      "Pine Valley mountains",
-      "A big foreign city",
-      "A local shopping mall"
-    ],
-    "ans": "Pine Valley mountains",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does the nutritionist recommend doing right after waking up?",
-    "opts": [
-      "Check emails",
-      "Drink water",
-      "Go for a run",
-      "Eat breakfast"
-    ],
-    "ans": "Drink water",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How long should a post-lunch walk be according to David?",
-    "opts": [
-      "5 minutes",
-      "10 minutes",
-      "30 minutes",
-      "1 hour"
-    ],
-    "ans": "10 minutes",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does GreenTech Solutions' new app do?",
-    "opts": [
-      "Sells electronics",
-      "Tracks electricity usage",
-      "Plays music",
-      "Calls an electrician"
-    ],
-    "ans": "Tracks electricity usage",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'fatigue' mean?",
-    "opts": [
-      "Anger",
-      "Happiness",
-      "Extreme tiredness",
-      "Hunger"
-    ],
-    "ans": "Extreme tiredness",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'authentic' mean in the context of writing an essay?",
-    "opts": [
-      "Copied from the internet",
-      "Fake",
-      "Genuine and real",
-      "Very long"
-    ],
-    "ans": "Genuine and real",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is Mr. Roberts looking for in a personal essay?",
-    "opts": [
-      "Perfect grammar",
-      "A funny story",
-      "True motivation and character",
-      "A list of awards"
-    ],
-    "ans": "True motivation and character",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does a 10-minute walk after lunch prevent?",
-    "opts": [
-      "Evening fatigue",
-      "Heart disease",
-      "Morning sickness",
-      "Getting bored"
-    ],
-    "ans": "Evening fatigue",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How far is the Pine Valley cabin from the city?",
-    "opts": [
-      "1 hour",
-      "2 hours",
-      "4 hours",
-      "A whole day"
-    ],
-    "ans": "2 hours",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'overcome' mean?",
-    "opts": [
-      "To fail repeatedly",
-      "To successfully deal with a problem",
-      "To ignore an issue",
-      "To cry about something"
-    ],
-    "ans": "To successfully deal with a problem",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "When does the app send an alert to your phone?",
-    "opts": [
-      "When the battery is low",
-      "When someone calls you",
-      "When appliances are left on too long",
-      "When you pay your bills"
-    ],
-    "ans": "When appliances are left on too long",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the primary goal of the GreenTech app?",
-    "opts": [
-      "To sell solar panels",
-      "To track and lower carbon footprint",
-      "To chat with neighbors",
-      "To play games"
-    ],
-    "ans": "To track and lower carbon footprint",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What kind of professional is David?",
-    "opts": [
-      "Surgeon",
-      "Nutritionist",
-      "Dentist",
-      "Personal Trainer"
-    ],
-    "ans": "Nutritionist",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What should applicants write about in their essay?",
-    "opts": [
-      "Their family tree",
-      "A real challenge they overcame",
-      "Their favorite movies",
-      "What the admission board wants to hear"
-    ],
-    "ans": "A real challenge they overcame",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Which of the following is a 'hidden gem' according to the travel context?",
-    "opts": [
-      "A popular tourist trap",
-      "An undiscovered, great place to visit",
-      "A literal diamond",
-      "A closed restaurant"
-    ],
-    "ans": "An undiscovered, great place to visit",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Why should you pack warm clothes for Pine Valley?",
-    "opts": [
-      "Because it snows heavily",
-      "Because it is chilly at night",
-      "Because of the air conditioning",
-      "Because it's currently winter"
-    ],
-    "ans": "Because it is chilly at night",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the name of the radio host doing the travel show?",
-    "opts": [
-      "Mark",
-      "John",
-      "Kevin",
-      "David"
-    ],
-    "ans": "Kevin",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Who is the guest talking about the tech app?",
-    "opts": [
-      "Maya",
-      "Jenna",
-      "Sarah",
-      "Elena"
-    ],
-    "ans": "Maya",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the meaning of 'usage'?",
-    "opts": [
-      "The amount of something that is used",
-      "Paying a bill",
-      "Electric wires",
-      "A new mobile phone"
-    ],
-    "ans": "The amount of something that is used",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the synonym for 'chilly'?",
-    "opts": [
-      "Boiling",
-      "Cold",
-      "Windy",
-      "Sunny"
-    ],
-    "ans": "Cold",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateListeningQuizBank[9], 'intermediate/listening/9');
 
 export default function InterListeningLesson9(): React.ReactElement {
   const navigate = useNavigate();
@@ -237,9 +18,9 @@ export default function InterListeningLesson9(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(9); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Getaway","id":"Liburan singkat"},{"en":"Hidden gem","id":"Permata tersembunyi / Tempat rahasia yang bagus"},{"en":"Cabin","id":"Pondok kayu"},{"en":"Chilly","id":"Terasa dingin"}];
-  const DIALOGUE = [{"speaker":"DJ Kevin","text":"It’s Friday evening! If you're looking for a weekend getaway, travel blogger Elena is here. So Elena, what is a great hidden gem for a two-day trip?","translation":"Ini Jumat malam! Jika Anda mencari liburan akhir pekan, blogger perjalanan Elena ada di sini. Jadi Elena, apa permata tersembunyi yang bagus untuk perjalanan dua hari?","avatar":"🎧"},{"speaker":"Elena","text":"Forget the crowded beaches! Head to the Pine Valley mountains. You can rent a small cabin. It is incredibly peaceful and only a two-hour drive from the city. Make sure to pack warm clothes because it gets quite chilly at night.","translation":"Lupakan pantai yang ramai! Pergilah ke pegunungan Lembah Pinus. Anda bisa menyewa kabin kecil. Ini sangat damai dan hanya dua jam berkendara dari kota. Pastikan untuk membawa pakaian hangat karena cukup dingin di malam hari.","avatar":"🎒"}];
-  const BLANKS = [{"sentence":"If you're looking for a weekend ___.","blank":"getaway","opts":["getaway","job","house","car"],"hint":"Liburan / Jalan-jalan"},{"sentence":"Forget the crowded ___! Head to the mountains.","blank":"beaches","opts":["beaches","bars","offices","malls"],"hint":"Pantai"},{"sentence":"Pack warm clothes because it gets ___ at night.","blank":"chilly","opts":["chilly","hot","dark","bright"],"hint":"Agak dingin"}];
+  const vocab = [{"en":"City break","id":"Liburan singkat di kota"},{"en":"Medieval","id":"Abad pertengahan"},{"en":"Cathedral","id":"Katedral"},{"en":"Fare","id":"Tarif / Ongkos"}];
+  const DIALOGUE = [{"speaker":"DJ Ryan","text":"Good evening, it's Friday and you're listening to 'Weekend Plans' with me, Ryan. If you don't fancy driving this weekend, why not take the train? Travel writer Grace is here with an idea. Grace, where should we go?","translation":"Selamat malam, ini hari Jumat dan Anda mendengarkan 'Weekend Plans' bersama saya, Ryan. Jika Anda tidak ingin menyetir akhir pekan ini, mengapa tidak naik kereta? Penulis perjalanan Grace hadir dengan sebuah ide. Grace, ke mana kita harus pergi?","avatar":"🎧"},{"speaker":"Grace","text":"Hi, Ryan! I'd suggest a city break in York. Trains from London take about two hours, and the station is just a ten-minute walk from the old city walls. You won't need a car at all.","translation":"Hai, Ryan! Saya sarankan liburan singkat ke kota York. Kereta dari London memakan waktu sekitar dua jam, dan stasiunnya hanya sepuluh menit berjalan kaki dari tembok kota tua. Anda sama sekali tidak memerlukan mobil.","avatar":"🎒"},{"speaker":"DJ Ryan","text":"What should people see while they're there?","translation":"Apa yang sebaiknya dilihat orang selama di sana?","avatar":"🎧"},{"speaker":"Grace","text":"Walk along the city walls first – it's free and the views are lovely. Then explore the Shambles, a narrow medieval street full of little shops and cafés. And don't miss the cathedral, York Minster.","translation":"Pertama, berjalanlah di sepanjang tembok kota – gratis dan pemandangannya indah. Lalu jelajahi the Shambles, jalan sempit abad pertengahan yang penuh toko kecil dan kafe. Dan jangan lewatkan katedralnya, York Minster.","avatar":"🎒"},{"speaker":"DJ Ryan","text":"Any money-saving tips?","translation":"Ada tips untuk berhemat?","avatar":"🎧"},{"speaker":"Grace","text":"Book your train tickets in advance, because prices go up nearer the day. And if you're travelling with a friend, get a Two Together Railcard to save a third on fares.","translation":"Pesan tiket kereta Anda jauh-jauh hari, karena harganya naik mendekati hari keberangkatan. Dan jika Anda bepergian bersama teman, belilah Two Together Railcard untuk menghemat sepertiga harga tiket.","avatar":"🎒"}];
+  const BLANKS = [{"sentence":"Why not take the ___ this weekend?","blank":"train","opts":["train","plane","boat","taxi"],"hint":"Kereta"},{"sentence":"The Shambles is a narrow ___ street.","blank":"medieval","opts":["medieval","modern","busy","wide"],"hint":"Abad pertengahan"},{"sentence":"Get a railcard to save a third on ___.","blank":"fares","opts":["fares","meals","hotels","books"],"hint":"Tarif / Ongkos"}];
 
   return (
     <>
@@ -267,7 +48,7 @@ export default function InterListeningLesson9(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Weekend Getaway Tips</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">City Break by Train</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L9</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -295,7 +76,7 @@ export default function InterListeningLesson9(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Talk Show: Travel Guide</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Talk Show: City Break by Train</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -315,7 +96,7 @@ export default function InterListeningLesson9(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Talk Show: Travel Guide" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Talk Show: City Break by Train" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

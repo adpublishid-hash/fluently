@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const NOUN_TYPES = [
   {
     title: "Dapat Dihitung (Countable)",
@@ -60,148 +62,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Uncountable", en: "Put some sugar in it.", id: "Taruh gula di dalamnya.", icon: "🍬" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Apakah 'Rice' (Nasi) dapat dihitung (countable)?",
-    options: ['Countable', 'Uncountable'],
-    answer: 'Uncountable',
-    explanation: "Nasi terdiri dari butiran kecil yang kita anggap sebagai satu kesatuan massa, jadi tak terhitung."
-  },
-  {
-    id: 2,
-    question: "I don't have ___ money.",
-    options: ['many', 'much', 'a'],
-    answer: 'much',
-    explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
-  },
-  {
-    id: 3,
-    question: "There are ___ apples on the table.",
-    options: ['some', 'much', 'a'],
-    answer: 'some',
-    explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
-  },
-  {
-    id: 4,
-    question: "Can I have ___ advice?",
-    options: ['an', 'a', 'some'],
-    answer: 'some',
-    explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
-  },
-  {
-    id: 5,
-    question: "How ___ cars do you see?",
-    options: ['much', 'many', 'any'],
-    answer: 'many',
-    explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
-  },
-  {
-    id: 6,
-    question: "Apakah 'Rice' (Nasi) dapat dihitung (countable)?",
-    options: ["Countable","Uncountable"],
-    answer: "Uncountable",
-    explanation: "Nasi terdiri dari butiran kecil yang kita anggap sebagai satu kesatuan massa, jadi tak terhitung."
-  },
-  {
-    id: 7,
-    question: "I don't have ___ money.",
-    options: ["many","much","a"],
-    answer: "much",
-    explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
-  },
-  {
-    id: 8,
-    question: "There are ___ apples on the table.",
-    options: ["some","much","a"],
-    answer: "some",
-    explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
-  },
-  {
-    id: 9,
-    question: "Can I have ___ advice?",
-    options: ["an","a","some"],
-    answer: "some",
-    explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
-  },
-  {
-    id: 10,
-    question: "How ___ cars do you see?",
-    options: ["much","many","any"],
-    answer: "many",
-    explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
-  },
-  {
-    id: 11,
-    question: "Apakah 'Rice' (Nasi) dapat dihitung (countable)?",
-    options: ["Countable","Uncountable"],
-    answer: "Uncountable",
-    explanation: "Nasi terdiri dari butiran kecil yang kita anggap sebagai satu kesatuan massa, jadi tak terhitung."
-  },
-  {
-    id: 12,
-    question: "I don't have ___ money.",
-    options: ["many","much","a"],
-    answer: "much",
-    explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
-  },
-  {
-    id: 13,
-    question: "There are ___ apples on the table.",
-    options: ["some","much","a"],
-    answer: "some",
-    explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
-  },
-  {
-    id: 14,
-    question: "Can I have ___ advice?",
-    options: ["an","a","some"],
-    answer: "some",
-    explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
-  },
-  {
-    id: 15,
-    question: "How ___ cars do you see?",
-    options: ["much","many","any"],
-    answer: "many",
-    explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
-  },
-  {
-    id: 16,
-    question: "Apakah 'Rice' (Nasi) dapat dihitung (countable)?",
-    options: ["Countable","Uncountable"],
-    answer: "Uncountable",
-    explanation: "Nasi terdiri dari butiran kecil yang kita anggap sebagai satu kesatuan massa, jadi tak terhitung."
-  },
-  {
-    id: 17,
-    question: "I don't have ___ money.",
-    options: ["many","much","a"],
-    answer: "much",
-    explanation: "Uang (Money) tak terhitung, jadi gunakan 'much' dalam kalimat negatif."
-  },
-  {
-    id: 18,
-    question: "There are ___ apples on the table.",
-    options: ["some","much","a"],
-    answer: "some",
-    explanation: "Apel (Apples) dapat dihitung dan jamak, jadi gunakan 'some'."
-  },
-  {
-    id: 19,
-    question: "Can I have ___ advice?",
-    options: ["an","a","some"],
-    answer: "some",
-    explanation: "'Advice' (Nasihat) tak terhitung dalam bahasa Inggris. Katakan 'some advice', jangan pernah 'an advice'."
-  },
-  {
-    id: 20,
-    question: "How ___ cars do you see?",
-    options: ["much","many","any"],
-    answer: "many",
-    explanation: "Mobil (Cars) dapat dihitung, jadi tanyakan 'How many'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[7], 'elementary/grammar/7'));
 
 const ElemGrammarLesson7: React.FC = () => {
   const navigate = useNavigate();

@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, MicIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 const PROBLEM_SOUNDS = [
   {
     id: 'pf',
@@ -90,148 +92,7 @@ const PRACTICE_SENTENCES = [
   }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa?",
-    options: ['F', 'TH', 'S'],
-    answer: 'TH',
-    explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
-  },
-  {
-    id: 2,
-    question: "Pasangan mana yang terdengar berbeda?",
-    options: ['Fit - Pit', 'Same - Same', 'Do - Do'],
-    answer: 'Fit - Pit',
-    explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
-  },
-  {
-    id: 3,
-    question: "Bagaimana kamu mengucapkan akhir kata 'World'?",
-    options: ['Worl (D Tak Bersuara)', 'World (L dan D Jelas)'],
-    answer: 'World (L dan D Jelas)',
-    explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
-  },
-  {
-    id: 4,
-    question: "She vs See. Mana yang mengharuskan bibir membulat?",
-    options: ['See /s/', 'She /ʃ/'],
-    answer: 'She /ʃ/',
-    explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
-  },
-  {
-    id: 5,
-    question: "Apa kesalahan umum dengan V dan W?",
-    options: ['Menukarnya (Vet terdengar seperti Wet)', 'Menghilangkannya'],
-    answer: 'Menukarnya (Vet terdengar seperti Wet)',
-    explanation: "V mengharuskan gigi di bibir. W mengharuskan bibir membulat. Jangan bilang 'Wery good' bukannya 'Very good'."
-  },
-  {
-    id: 6,
-    question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa...",
-    options: ["F","TH","S"],
-    answer: "TH",
-    explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
-  },
-  {
-    id: 7,
-    question: "Pasangan mana yang terdengar berbeda ?",
-    options: ["Fit - Pit","Same - Same","Do - Do"],
-    answer: "Fit - Pit",
-    explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
-  },
-  {
-    id: 8,
-    question: "Bagaimana kamu mengucapkan akhir kata 'World'...",
-    options: ["Worl (D Tak Bersuara)","World (L dan D Jelas)"],
-    answer: "World (L dan D Jelas)",
-    explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
-  },
-  {
-    id: 9,
-    question: "She vs See. Mana yang mengharuskan bibir membulat...",
-    options: ["See /s/","She /ʃ/"],
-    answer: "She /ʃ/",
-    explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
-  },
-  {
-    id: 10,
-    question: "Apa kesalahan umum dengan V dan W...",
-    options: ["Menukarnya (Vet terdengar seperti Will)","Menghilangkannya"],
-    answer: "Menukarnya (Vet terdengar seperti Will)",
-    explanation: "V mengharuskan gigi di bibir. W mengharuskan bibir membulat. Jangan bilang 'Wery good' bukannya 'Vet good'."
-  },
-  {
-    id: 11,
-    question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa?",
-    options: ["F","TH","S"],
-    answer: "TH",
-    explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
-  },
-  {
-    id: 12,
-    question: "Pasangan mana yang terdengar berbeda...",
-    options: ["Fit - Pit","Same - Same","Do - Do"],
-    answer: "Fit - Pit",
-    explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
-  },
-  {
-    id: 13,
-    question: "Bagaimana kamu mengucapkan akhir kata 'World' ?",
-    options: ["Worl (D Tak Bersuara)","World (L dan D Jelas)"],
-    answer: "World (L dan D Jelas)",
-    explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
-  },
-  {
-    id: 14,
-    question: "She vs See. Mana yang mengharuskan bibir membulat?",
-    options: ["See /s/","She /ʃ/"],
-    answer: "She /ʃ/",
-    explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
-  },
-  {
-    id: 15,
-    question: "Apa kesalahan umum dengan V dan W...",
-    options: ["Menukarnya (Vet terdengar seperti Will)","Menghilangkannya"],
-    answer: "Menukarnya (Vet terdengar seperti Will)",
-    explanation: "V mengharuskan gigi di bibir. W mengharuskan bibir membulat. Jangan bilang 'Wery good' bukannya 'Vet good'."
-  },
-  {
-    id: 16,
-    question: "Jika kamu mengatakan 'Tree' bukannya 'Three', kamu melewatkan suara apa?",
-    options: ["F","TH","S"],
-    answer: "TH",
-    explanation: "Three dimulai dengan /θ/ (lidah di antara gigi). Tree dimulai dengan /t/."
-  },
-  {
-    id: 17,
-    question: "Pasangan mana yang terdengar berbeda?",
-    options: ["Fit - Pit","Same - Same","Do - Do"],
-    answer: "Fit - Pit",
-    explanation: "Fit dimulai dengan F (gigi di bibir), Pit dimulai dengan P (bibir meletup)."
-  },
-  {
-    id: 18,
-    question: "Bagaimana kamu mengucapkan akhir kata 'World'?",
-    options: ["Worl (D Tak Bersuara)","World (L dan D Jelas)"],
-    answer: "World (L dan D Jelas)",
-    explanation: "Dalam bahasa Inggris, kamu harus mengucapkan gugus akhir LD. Jangan hilangkan D."
-  },
-  {
-    id: 19,
-    question: "She vs See. Mana yang mengharuskan bibir membulat?",
-    options: ["See /s/","She /ʃ/"],
-    answer: "She /ʃ/",
-    explanation: "Suara SH /ʃ/ dibuat dengan membulatkan bibirmu seperti sedang mengatakan 'Ssst'."
-  },
-  {
-    id: 20,
-    question: "Apa kesalahan umum dengan V dan W...",
-    options: ["Menukarnya (Vet terdengar seperti Wet)","Menghilangkannya"],
-    answer: "Menukarnya (Vet terdengar seperti Wet)",
-    explanation: "V mengharuskan gigi di bibir. W mengharuskan bibir membulat. Jangan bilang 'Wery good' bukannya 'Very good'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[11], 'elementary/pronunciation/11'));
 
 const ElemPronunLesson11: React.FC = () => {
   const navigate = useNavigate();

@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "nouns-articles-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Nouns & Articles (A/An/The)): Complete: I saw ____ elephant at the zoo.",
+      "prompt": "Basic grammar check (Nouns & Articles (A/An/The)): Complete: She wants to be ____ engineer.",
       "answer": "an",
       "options": [
-        "an",
-        "a",
         "the",
+        "a",
+        "an",
         "-"
       ]
     },
     {
       "id": "nouns-articles-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Nouns & Articles (A/An/The)): Complete: ____ sun rises in the east.",
-      "answer": "The",
+      "prompt": "Basic grammar check (Nouns & Articles (A/An/The)): Choose the correct plural: one child, two ____.",
+      "answer": "children",
       "options": [
-        "A",
-        "An",
-        "-",
-        "The"
+        "childes",
+        "children",
+        "childs",
+        "childrens"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "nouns-articles-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Nouns & Articles (A/An/The)): Choose the correct phrase.",
-      "answer": "some information",
+      "prompt": "Choose the best structure (Nouns & Articles (A/An/The)): Complete: Could you give me ____ advice about my CV?",
+      "answer": "some",
       "options": [
-        "an information",
-        "many information",
-        "a few information",
-        "some information"
+        "an",
+        "a few",
+        "many",
+        "some"
       ]
     },
     {
       "id": "nouns-articles-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Nouns & Articles (A/An/The)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Nouns & Articles (A/An/The)): Complete: ____ Nile is the longest river in Africa.",
+      "answer": "The",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "The",
+        "-",
+        "An",
+        "A"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "nouns-articles-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Nouns & Articles (A/An/The)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Nouns & Articles (A/An/The)): Complete: ____ rich should contribute more to public services, the report argues.",
+      "answer": "The",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "The",
+        "-",
+        "Some",
+        "A"
       ]
     },
     {
       "id": "nouns-articles-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Nouns & Articles (A/An/The)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Nouns & Articles (A/An/The)): Which sentence uses articles correctly?",
+      "answer": "She plays the violin in an orchestra.",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "She plays violin in a orchestra.",
+        "She plays a violin in orchestra.",
+        "She plays the violin in a orchestra.",
+        "She plays the violin in an orchestra."
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "nouns-articles-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Nouns & Articles (A/An/The)): Complete: I saw ____ elephant at the zoo.",
+      "prompt": "Cek grammar dasar (Nouns & Articles (A/An/The)): Complete: She wants to be ____ engineer.",
       "answer": "an",
       "options": [
-        "an",
-        "a",
         "the",
+        "a",
+        "an",
         "-"
       ]
     },
     {
       "id": "nouns-articles-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Nouns & Articles (A/An/The)): Complete: ____ sun rises in the east.",
-      "answer": "The",
+      "prompt": "Cek grammar dasar (Nouns & Articles (A/An/The)): Choose the correct plural: one child, two ____.",
+      "answer": "children",
       "options": [
-        "A",
-        "An",
-        "-",
-        "The"
+        "childes",
+        "children",
+        "childs",
+        "childrens"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "nouns-articles-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Nouns & Articles (A/An/The)): Choose the correct phrase.",
-      "answer": "some information",
+      "prompt": "Pilih struktur terbaik (Nouns & Articles (A/An/The)): Complete: Could you give me ____ advice about my CV?",
+      "answer": "some",
       "options": [
-        "an information",
-        "many information",
-        "a few information",
-        "some information"
+        "an",
+        "a few",
+        "many",
+        "some"
       ]
     },
     {
       "id": "nouns-articles-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Nouns & Articles (A/An/The)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Nouns & Articles (A/An/The)): Complete: ____ Nile is the longest river in Africa.",
+      "answer": "The",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "The",
+        "-",
+        "An",
+        "A"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "nouns-articles-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Nouns & Articles (A/An/The)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Nouns & Articles (A/An/The)): Complete: ____ rich should contribute more to public services, the report argues.",
+      "answer": "The",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "The",
+        "-",
+        "Some",
+        "A"
       ]
     },
     {
       "id": "nouns-articles-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Nouns & Articles (A/An/The)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Nouns & Articles (A/An/The)): Which sentence uses articles correctly?",
+      "answer": "She plays the violin in an orchestra.",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "She plays violin in a orchestra.",
+        "She plays a violin in orchestra.",
+        "She plays the violin in a orchestra.",
+        "She plays the violin in an orchestra."
       ]
     }
   ]

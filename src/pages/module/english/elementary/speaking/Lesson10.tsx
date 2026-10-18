@@ -162,8 +162,8 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "Please ___ on the TV.",
     options: [
-      { text: "open", correct: false },
       { text: "turn", correct: true },
+      { text: "open", correct: false },
       { text: "make", correct: false }
     ],
     explanation: "Gunakan 'turn on' (atau switch on) untuk elektronik, bukan 'open'."
@@ -172,8 +172,8 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "I need to ___ my phone. The battery is low.",
     options: [
-      { text: "charge", correct: true },
       { text: "fill", correct: false },
+      { text: "charge", correct: true },
       { text: "load", correct: false }
     ],
     explanation: "Kita 'charge' baterai."
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "To enter the website, you must log ___.",
     options: [
-      { text: "on", correct: false },
+      { text: "to", correct: false },
       { text: "in", correct: true },
-      { text: "to", correct: false }
+      { text: "on", correct: false }
     ],
     explanation: "Frasa kerjanya adalah 'log in' (atau sign in)."
   },
@@ -192,9 +192,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "What is the Wi-Fi ___?",
     options: [
+      { text: "password", correct: true },
       { text: "passport", correct: false },
-      { text: "word", correct: false },
-      { text: "password", correct: true }
+      { text: "word", correct: false }
     ],
     explanation: "Kode rahasianya adalah 'password' (kata sandi)."
   },
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Kameranya terlihat luar biasa.\"?",
     options: [
-      { text: "My phone is dying.", correct: false },
+      { text: "The camera looks amazing.", correct: true },
       { text: "Do you have the Uber app?", correct: false },
-      { text: "The camera looks amazing.", correct: true }
+      { text: "My phone is dying.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kameranya terlihat luar biasa.\" adalah \"The camera looks amazing.\"."
   },
@@ -222,9 +222,9 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"My phone is ___.\"\n(Arti: HP-ku mau mati (habis baterai).)",
     options: [
-      { text: "dying", correct: true },
       { text: "on", correct: false },
-      { text: "three", correct: false }
+      { text: "three", correct: false },
+      { text: "dying", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'dying'."
   },
@@ -232,8 +232,8 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"Are you on Instagram?\"?",
     options: [
-      { text: "Kamu punya Instagram?", correct: true },
       { text: "Pakai website apa?", correct: false },
+      { text: "Kamu punya Instagram?", correct: true },
       { text: "Halo? Bisa dengar saya?", correct: false }
     ],
     explanation: "Kalimat \"Are you on Instagram?\" memiliki arti \"Kamu punya Instagram?\"."
@@ -242,9 +242,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Sepertinya iya. Aku coba tiga kali.\"?",
     options: [
+      { text: "I will follow you.", correct: false },
       { text: "I think so. I tried three times.", correct: true },
-      { text: "Maybe you have a virus.", correct: false },
-      { text: "I will follow you.", correct: false }
+      { text: "Maybe you have a virus.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Sepertinya iya. Aku coba tiga kali.\" adalah \"I think so. I tried three times.\"."
   },
@@ -253,8 +253,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Or ___ restart it.\"\n(Arti: Atau restart saja.)",
     options: [
       { text: "just", correct: true },
-      { text: "you", correct: false },
-      { text: "breaking", correct: false }
+      { text: "breaking", correct: false },
+      { text: "you", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'just'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"Can you send me the photo?\"?",
     options: [
+      { text: "Bisa kirim fotonya ke saya?", correct: true },
       { text: "Lupa kata sandi?", correct: false },
-      { text: "Suaramu putus-putus.", correct: false },
-      { text: "Bisa kirim fotonya ke saya?", correct: true }
+      { text: "Suaramu putus-putus.", correct: false }
     ],
     explanation: "Kalimat \"Can you send me the photo?\" memiliki arti \"Bisa kirim fotonya ke saya?\"."
   },
@@ -272,8 +272,8 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Suaramu putus-putus.\"?",
     options: [
-      { text: "You are breaking up.", correct: true },
       { text: "The signal is very bad here.", correct: false },
+      { text: "You are breaking up.", correct: true },
       { text: "I used Amazon. It was cheap.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Suaramu putus-putus.\" adalah \"You are breaking up.\"."
@@ -282,8 +282,8 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"What is ___ Wi-Fi password?\"\n(Arti: Apa kata sandi Wi-Fi nya?)",
     options: [
-      { text: "Thanks", correct: false },
       { text: "can't", correct: false },
+      { text: "Thanks", correct: false },
       { text: "the", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'the'."
@@ -292,8 +292,8 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"I can't log in to my account.\"?",
     options: [
-      { text: "Tentu, saya akan email ke Anda.", correct: false },
       { text: "Aku gak bisa masuk ke akunku.", correct: true },
+      { text: "Tentu, saya akan email ke Anda.", correct: false },
       { text: "Atau restart saja.", correct: false }
     ],
     explanation: "Kalimat \"I can't log in to my account.\" memiliki arti \"Aku gak bisa masuk ke akunku.\"."
@@ -312,9 +312,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"___, capital C.\"\n(Arti: Ya, C besar.)",
     options: [
-      { text: "follow", correct: false },
       { text: "Yes", correct: true },
-      { text: "virus", correct: false }
+      { text: "virus", correct: false },
+      { text: "follow", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'Yes'."
   },
@@ -322,8 +322,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"I will follow you.\"?",
     options: [
-      { text: "Pakai Amazon. Murah kok. (bukan ini)", correct: false },
       { text: "Pakai Amazon. Murah kok. (sekitar sini)", correct: false },
+      { text: "Pakai Amazon. Murah kok. (bukan ini)", correct: false },
       { text: "Aku akan follow kamu.", correct: true }
     ],
     explanation: "Kalimat \"I will follow you.\" memiliki arti \"Aku akan follow kamu.\"."
@@ -333,8 +333,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Mungkin ada virus.\"?",
     options: [
       { text: "No, I left it at home.", correct: false },
-      { text: "Maybe you have a virus.", correct: true },
-      { text: "What is the Wi-Fi password?", correct: false }
+      { text: "What is the Wi-Fi password?", correct: false },
+      { text: "Maybe you have a virus.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Mungkin ada virus.\" adalah \"Maybe you have a virus.\"."
   },
@@ -342,9 +342,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"No, I need to download ___.\"\n(Arti: Tidak, saya perlu download dulu.)",
     options: [
-      { text: "was", correct: false },
+      { text: "Can", correct: false },
       { text: "it", correct: true },
-      { text: "Can", correct: false }
+      { text: "was", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'it'."
   }

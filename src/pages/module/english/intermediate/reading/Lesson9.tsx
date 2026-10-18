@@ -4,286 +4,68 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "What is the main topic of John's advertisement?",
-    "opts": [
-      "Selling a dog",
-      "Hiring a dog walker",
-      "Buying dog food",
-      "Veterinary services"
-    ],
-    "ans": "Hiring a dog walker",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When will the water supply be shut off?",
-    "opts": [
-      "Sunday",
-      "Saturday",
-      "Friday",
-      "Monday"
-    ],
-    "ans": "Saturday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is Sarah writing to?",
-    "opts": [
-      "Clients",
-      "The team",
-      "Her manager",
-      "The public"
-    ],
-    "ans": "The team",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Where can employees get water during maintenance?",
-    "opts": [
-      "Near the elevator",
-      "In the staff lounge",
-      "Outside the building",
-      "In the manager's office"
-    ],
-    "ans": "In the staff lounge",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'exhausting' mean?",
-    "opts": [
-      "Relaxing",
-      "Very tiring",
-      "Fast",
-      "Boring"
-    ],
-    "ans": "Very tiring",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What kind of environment was Chloe's new café?",
-    "opts": [
-      "Loud and busy",
-      "Cozy",
-      "Expensive",
-      "Modern and sterile"
-    ],
-    "ans": "Cozy",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'pushed back' mean?",
-    "opts": [
-      "Delayed",
-      "Canceled",
-      "Moved forward",
-      "Advanced"
-    ],
-    "ans": "Delayed",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is Chloe looking forward to?",
-    "opts": [
-      "Mia's visit in the summer",
-      "Buying a new house",
-      "Getting a promotion",
-      "Moving again"
-    ],
-    "ans": "Mia's visit in the summer",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What must John's dog walker have experience with?",
-    "opts": [
-      "Small breeds",
-      "Large dogs",
-      "Sick dogs",
-      "Puppies"
-    ],
-    "ans": "Large dogs",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Which restrooms have a backup water tank?",
-    "opts": [
-      "Top floor",
-      "Ground floor",
-      "Second floor",
-      "Basement"
-    ],
-    "ans": "Ground floor",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does John's dog walker need to provide?",
-    "opts": [
-      "A reference",
-      "A resume",
-      "A car",
-      "Dog treats"
-    ],
-    "ans": "A reference",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Why did Sarah reschedule the meeting?",
-    "opts": [
-      "She is sick",
-      "Stakeholders are traveling",
-      "Room is booked",
-      "Project canceled"
-    ],
-    "ans": "Stakeholders are traveling",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When is the new kick-off meeting?",
-    "opts": [
-      "Wednesday 10 AM",
-      "Thursday 10 AM",
-      "Friday 10 AM",
-      "Friday 3 PM"
-    ],
-    "ans": "Friday 10 AM",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What day does Chloe start her job?",
-    "opts": [
-      "Friday",
-      "Monday",
-      "Wednesday",
-      "Sunday"
-    ],
-    "ans": "Monday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is moving to London?",
-    "opts": [
-      "Jane",
-      "Mia",
-      "Chloe",
-      "Sarah"
-    ],
-    "ans": "Chloe",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What was Chloe's major problem?",
-    "opts": [
-      "Internet was down",
-      "Lost boxes",
-      "Missed a train",
-      "Got sick"
-    ],
-    "ans": "Lost boxes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "How much is John paying per walk?",
-    "opts": [
-      "$10",
-      "$15",
-      "$20",
-      "$25"
-    ],
-    "ans": "$15",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "According to the email, what should team members review?",
-    "opts": [
-      "Budget reports",
-      "Attached agenda",
-      "Marketing strategy",
-      "Holiday schedule"
-    ],
-    "ans": "Attached agenda",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What breed is John's dog?",
-    "opts": [
-      "Poodle",
-      "Husky",
-      "Golden Retriever",
-      "Bulldog"
-    ],
-    "ans": "Golden Retriever",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What did the workplace notice announce?",
-    "opts": [
-      "Pay raise",
-      "Maintenance on water pipes",
-      "Fire drill",
-      "New manager"
-    ],
-    "ans": "Maintenance on water pipes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[9], 'intermediate/reading/9');
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Everyday Advert: Dog Walker",
+  passageTitle: "Everyday Advert: Babysitter Wanted",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Dog Walker Wanted!</strong><br/><br/>Busy professional seeking a reliable and energetic dog walker for an active Golden Retriever, Max. Needed Monday to Friday for a 45-minute walk around 12:00 PM. Pay is $15 per walk. Must have experience with large dogs and provide at least one reference. If interested, email John at john.doe@email.com." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Babysitter Needed!</strong><br/><br/>Working parents looking for a kind and patient babysitter for two children, Lily (6) and Sam (4). Needed every Tuesday and Thursday evening from 6:00 PM to 9:00 PM while we attend evening classes. Pay is £11 per hour. Duties include giving the children dinner, helping with bath time and reading bedtime stories. Must be a non-smoker and have first-aid training. Please call Anna on 07700 900456 after 5 PM." }} />
   ),
   questions: [
   {
-    "q": "How many days a week does John need the walker?",
+    "q": "Why do the parents need a babysitter?",
     "opts": [
-      "2 days",
-      "3 days",
-      "5 days",
-      "7 days"
+      "They work night shifts.",
+      "They are going on holiday for a week.",
+      "They attend evening classes.",
+      "They have just moved house."
     ],
-    "ans": "5 days"
+    "ans": "They attend evening classes."
   },
   {
-    "q": "What is a strict requirement?",
+    "q": "How many hours a week will the babysitter work?",
     "opts": [
-      "Must be a vet.",
-      "Must have experience with large dogs.",
-      "Must own a dog.",
-      "Must be available mornings."
+      "3",
+      "6",
+      "4",
+      "9"
     ],
-    "ans": "Must have experience with large dogs."
+    "ans": "6"
   },
   {
-    "q": "How much will the walker earn in a week?",
+    "q": "Which of these is NOT one of the babysitter's duties?",
     "opts": [
-      "$15",
-      "$45",
-      "$60",
-      "$75"
+      "Reading bedtime stories",
+      "Taking the children to school",
+      "Helping with bath time",
+      "Giving the children dinner"
     ],
-    "ans": "$75"
+    "ans": "Taking the children to school"
   },
   {
-    "q": "How long is the walk?",
+    "q": "Which is a requirement for the job?",
     "opts": [
-      "15 mins",
-      "45 mins",
-      "1 hour",
-      "2 hours"
+      "Having first-aid training",
+      "Having a full UK driving licence",
+      "Being able to cook",
+      "Living nearby"
     ],
-    "ans": "45 mins"
+    "ans": "Having first-aid training"
   },
   {
-    "q": "How should candidates apply?",
+    "q": "When should people phone Anna?",
     "opts": [
-      "Call John",
-      "Email John",
-      "Visit John's house",
-      "Send a letter"
+      "Before 9 AM",
+      "Only on Tuesdays",
+      "At lunchtime",
+      "After 5 PM"
     ],
-    "ans": "Email John"
+    "ans": "After 5 PM"
   }
 ]
 };
@@ -324,7 +106,7 @@ export default function InterReadingLesson9(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Everyday Advert: Dog Walker</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Advertisements and Details</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -353,7 +135,7 @@ export default function InterReadingLesson9(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Everyday Advert: Dog Walker</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>
@@ -361,12 +143,12 @@ export default function InterReadingLesson9(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Teks ini melatih kemampuan ekstraksi informasi:
+                    {lessonTips[9].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Pemahaman Fakta:</strong> Cari tahu poin penting (waktu, orang, syarat).</li>
-                    <li><strong className="text-slate-800">Makna Kata:</strong> Coba pahami kosakata baru dari konteks kalimat.</li>
-                    <li><strong className="text-slate-800">Tujuan Teks:</strong> Kenapa teks ini ditulis?</li>
+                    {lessonTips[9].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mengevaluasi bacaanmu!

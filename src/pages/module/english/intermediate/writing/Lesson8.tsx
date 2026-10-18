@@ -4,287 +4,69 @@ import { QuizEngine, WritingCard, ComprehensionSection, getCompletedWritingLesso
 import type { QuizItem, ComprehensionQ } from './writingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Identify the contrast linker in paragraph one:",
-    "opts": [
-      "While",
-      "Consequently",
-      "Foundation",
-      "Indicates"
-    ],
-    "ans": "While",
-    "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
-  },
-  {
-    "q": "What does \"Consequently\" mean in this context?",
-    "opts": [
-      "Before",
-      "As a logical result",
-      "In addition",
-      "However"
-    ],
-    "ans": "As a logical result",
-    "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
-  },
-  {
-    "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
-    "opts": [
-      "Students",
-      "Literature",
-      "Reading extensive literature (Gerund phrase)",
-      "Exposes"
-    ],
-    "ans": "Reading extensive literature (Gerund phrase)",
-    "exp": "The entire gerund phrase acts as the subject."
-  },
-  {
-    "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
-    "opts": [
-      "Easy to see",
-      "Occurring repeatedly and constantly",
-      "Funny",
-      "Grammatical"
-    ],
-    "ans": "Occurring repeatedly and constantly",
-    "exp": "\"Persistent\" means something stubborn that keeps happening."
-  },
-  {
-    "q": "Why is \"Therefore\" used in the last paragraph?",
-    "opts": [
-      "To introduce a cause",
-      "To conclude a logical argument",
-      "To change subjects",
-      "To start a story"
-    ],
-    "ans": "To conclude a logical argument",
-    "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
-  },
-  {
-    "q": "Which sentence is an opinion, not a fact?",
-    "opts": [
-      "Water boils at 100 degrees.",
-      "The population of Tokyo is huge.",
-      "Pineapples are the most delicious fruit.",
-      "Paris is the capital of France."
-    ],
-    "ans": "Pineapples are the most delicious fruit.",
-    "exp": "\"The most delicious\" adalah penilaian subjektif atau opini."
-  },
-  {
-    "q": "\"Due to\" is primarily used to indicate...",
-    "opts": [
-      "Addition",
-      "Time",
-      "Cause or Reason",
-      "Condition"
-    ],
-    "ans": "Cause or Reason",
-    "exp": "\"Due to\" (= because of) digunakan untuk menunjukkan alasan/penyebab dari sesuatu."
-  },
-  {
-    "q": "Which phrase is most appropriate for a formal email greeting?",
-    "opts": [
-      "Hi mate,",
-      "Hey there,",
-      "Dear Mr. Smith,",
-      "What’s up Smith,"
-    ],
-    "ans": "Dear Mr. Smith,",
-    "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
-  },
-  {
-    "q": "In writing, what does \"proofreading\" mean?",
-    "opts": [
-      "Writing the first draft wildly",
-      "Finding academic sources",
-      "Carefully checking for grammatical and spelling errors",
-      "Outlining paragraphs"
-    ],
-    "ans": "Carefully checking for grammatical and spelling errors",
-    "exp": "Proofreading adalah tahapan akhir untuk membaca ulang dan memperbaiki kesalahan minor."
-  },
-  {
-    "q": "How do you make this formal? \"Send me the files ASAP.\"",
-    "opts": [
-      "Please dispatch the files really quick.",
-      "I require the files immediately.",
-      "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
-    ],
-    "ans": "Please send the documents at your earliest convenience.",
-    "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
-  },
-  {
-    "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
-    "opts": [
-      "immediately",
-      "action",
-      "goverment",
-      "should"
-    ],
-    "ans": "goverment",
-    "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
-  },
-  {
-    "q": "Identify the compound adjective: \"She bought a ___ car.\"",
-    "opts": [
-      "very fast",
-      "brand-new",
-      "beautifully",
-      "red"
-    ],
-    "ans": "brand-new",
-    "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
-  },
-  {
-    "q": "What is a \"Topic Sentence\"?",
-    "opts": [
-      "The last sentence of a text",
-      "A sentence that explains the main idea of a paragraph",
-      "A famous quote",
-      "The title of an essay"
-    ],
-    "ans": "A sentence that explains the main idea of a paragraph",
-    "exp": "Topic sentence (kalimat utama) memberi tahu pembaca apa gagasan pokok dari paragraf tersebut."
-  },
-  {
-    "q": "Which word modifies a verb strongly?",
-    "opts": [
-      "Beautiful",
-      "Quick",
-      "Significantly",
-      "Happy"
-    ],
-    "ans": "Significantly",
-    "exp": "\"Significantly\" adalah adverb (kata keterangan) yang memodifikasi/menjelaskan verb."
-  },
-  {
-    "q": "Choose the correct preposition: \"I am writing to complain ___ the poor service.\"",
-    "opts": [
-      "about",
-      "for",
-      "to",
-      "with"
-    ],
-    "ans": "about",
-    "exp": "Kata kerja \"complain\" diikuti oleh preposisi \"about\" untuk menunjukkan hal yang dikeluhkan."
-  },
-  {
-    "q": "Choose the sentence with correct parallel structure:",
-    "opts": [
-      "I like swimming, to read, and hike.",
-      "I like to swim, reading, and to hike.",
-      "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
-    ],
-    "ans": "I like swimming, reading, and hiking.",
-    "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
-  },
-  {
-    "q": "Which phrase is best for SUMMARISING an essay?",
-    "opts": [
-      "First of all",
-      "In contrast",
-      "To conclude",
-      "For instance"
-    ],
-    "ans": "To conclude",
-    "exp": "\"To conclude\" (atau In conclusion) secara spesifik digunakan di paragraf terakhir untuk merangkum tulisan."
-  },
-  {
-    "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
-    "opts": [
-      "On the second hand...",
-      "On the other side...",
-      "On the other hand...",
-      "However..."
-    ],
-    "ans": "On the other hand...",
-    "exp": "Pasangan frasa idiomatis ini selalu \"On the one hand... On the other hand...\" untuk membandingkan dua sisi."
-  },
-  {
-    "q": "What is the function of \"therefore\"?",
-    "opts": [
-      "To add a point",
-      "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
-    ],
-    "ans": "To show a result or consequence",
-    "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
-  },
-  {
-    "q": "Which sentence uses the PASSIVE voice correctly?",
-    "opts": [
-      "The report was finished by Anna yesterday.",
-      "The report finished Anna yesterday.",
-      "Anna was finished the report yesterday.",
-      "The report was finish by Anna."
-    ],
-    "ans": "The report was finished by Anna yesterday.",
-    "exp": "Pasif: Subject (The report) + to be (was) + Past Participle (finished)."
-  }
-];
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateWritingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateWritingQuizBank[8], 'intermediate/writing/8');
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
   passageTitle: '✍️ Food I Love',
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">If I had to choose one dish to eat for the rest of my life, it would be soto ayam, a fragrant chicken soup that is popular all over Indonesia. Every region has its own version, but my favourite is the one my mother makes on rainy Sunday mornings.\n\nThe broth is bright yellow because of the turmeric, and it smells wonderfully of lemongrass, garlic and lime leaves. It is served with shredded chicken, rice noodles, a boiled egg and fresh bean sprouts. On top, my mother adds crunchy fried shallots and a spoonful of spicy sambal. The combination of soft noodles, crisp shallots and warm, slightly sour broth is simply perfect.\n\nFor me, soto ayam is more than just food. It reminds me of my family sitting around the kitchen table, chatting and laughing while the rain falls outside. Whenever I feel homesick, a bowl of soto instantly makes me feel better.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What kind of dish is soto ayam?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "A fried rice dish",
+      "A chicken soup",
+      "A sweet dessert",
+      "A beef curry"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "A chicken soup"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Why is the broth bright yellow?",
     "opts": [
-      "Knowing 1000 words",
-      "Typing fast",
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "Because of the egg",
+      "Because of the sambal",
+      "Because of the lime leaves",
+      "Because of the turmeric"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Because of the turmeric"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "When does the writer's mother usually make it?",
     "opts": [
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "On rainy Sunday mornings",
+      "On hot Friday evenings",
+      "Only on birthdays",
+      "Every day for lunch"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "On rainy Sunday mornings"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What does the mother add on top of the soup?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "Cheese and tomatoes",
+      "Grated cheese and sliced tomatoes",
+      "Fried shallots and sambal",
+      "Rice and peanuts"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Fried shallots and sambal"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "How does soto ayam make the writer feel when homesick?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "More homesick",
+      "Sleepy",
+      "Better",
+      "Angry"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Better"
   }
 ],
 };
@@ -362,12 +144,12 @@ export default function InterWritingLesson8(): React.ReactElement {
 
                 <WritingCard title="Target Mekanikal" icon="🎯">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Untuk menaklukkan level B1-B2 dalam tulisan <strong>food i love</strong>, perhatikan elemen berikut:
+                    {lessonTips[8].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl shadow-inner border border-slate-100">
-                    <li><strong className="text-slate-800">Advanced Lexical Resource:</strong> Hindari kosakata berulang. Gunakan sinonim yang lebih kaya (e.g. <i>crucial, significantly, furthermore</i>).</li>
-                    <li><strong className="text-slate-800">Cohesive Devices:</strong> Jangan hanya bertumpu pada 'and', 'but', 'so'. Gunakan <i>Despite, Nevertheless, Consequently, Moreover</i>.</li>
-                    <li><strong className="text-slate-800">Sentence Variety:</strong> Padukan kalimat pendek dengan <i>Complex Sentences</i> (Relative clauses, if-clauses).</li>
+                    {lessonTips[8].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-indigo-700 mt-4 font-bold bg-indigo-50 p-3 rounded-lg border border-indigo-100 inline-block w-full">
                     👉 Buka tab "Pemahaman" untuk membaca esai contoh lengkap dan uji akurasi bacaanmu!

@@ -4,229 +4,10 @@ import { QuizEngine, DialoguePlayer, FillBlankExercise, getCompletedListeningLes
 import type { QuizItem } from './listeningUtils';
 import { Headphones, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateListeningQuizBank } from './quizBank';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "What does 'overcome' mean?",
-    "opts": [
-      "To fail repeatedly",
-      "To successfully deal with a problem",
-      "To ignore an issue",
-      "To cry about something"
-    ],
-    "ans": "To successfully deal with a problem",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Which of the following is a 'hidden gem' according to the travel context?",
-    "opts": [
-      "A popular tourist trap",
-      "An undiscovered, great place to visit",
-      "A literal diamond",
-      "A closed restaurant"
-    ],
-    "ans": "An undiscovered, great place to visit",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Why should you pack warm clothes for Pine Valley?",
-    "opts": [
-      "Because it snows heavily",
-      "Because it is chilly at night",
-      "Because of the air conditioning",
-      "Because it's currently winter"
-    ],
-    "ans": "Because it is chilly at night",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does the nutritionist recommend doing right after waking up?",
-    "opts": [
-      "Check emails",
-      "Drink water",
-      "Go for a run",
-      "Eat breakfast"
-    ],
-    "ans": "Drink water",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Where does Elena recommend going for a weekend trip?",
-    "opts": [
-      "Crowded beaches",
-      "Pine Valley mountains",
-      "A big foreign city",
-      "A local shopping mall"
-    ],
-    "ans": "Pine Valley mountains",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the primary goal of the GreenTech app?",
-    "opts": [
-      "To sell solar panels",
-      "To track and lower carbon footprint",
-      "To chat with neighbors",
-      "To play games"
-    ],
-    "ans": "To track and lower carbon footprint",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the synonym for 'chilly'?",
-    "opts": [
-      "Boiling",
-      "Cold",
-      "Windy",
-      "Sunny"
-    ],
-    "ans": "Cold",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does a 10-minute walk after lunch prevent?",
-    "opts": [
-      "Evening fatigue",
-      "Heart disease",
-      "Morning sickness",
-      "Getting bored"
-    ],
-    "ans": "Evening fatigue",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What kind of professional is David?",
-    "opts": [
-      "Surgeon",
-      "Nutritionist",
-      "Dentist",
-      "Personal Trainer"
-    ],
-    "ans": "Nutritionist",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How long should a post-lunch walk be according to David?",
-    "opts": [
-      "5 minutes",
-      "10 minutes",
-      "30 minutes",
-      "1 hour"
-    ],
-    "ans": "10 minutes",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does GreenTech Solutions' new app do?",
-    "opts": [
-      "Sells electronics",
-      "Tracks electricity usage",
-      "Plays music",
-      "Calls an electrician"
-    ],
-    "ans": "Tracks electricity usage",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the name of the radio host doing the travel show?",
-    "opts": [
-      "Mark",
-      "John",
-      "Kevin",
-      "David"
-    ],
-    "ans": "Kevin",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "When does the app send an alert to your phone?",
-    "opts": [
-      "When the battery is low",
-      "When someone calls you",
-      "When appliances are left on too long",
-      "When you pay your bills"
-    ],
-    "ans": "When appliances are left on too long",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'fatigue' mean?",
-    "opts": [
-      "Anger",
-      "Happiness",
-      "Extreme tiredness",
-      "Hunger"
-    ],
-    "ans": "Extreme tiredness",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'authentic' mean in the context of writing an essay?",
-    "opts": [
-      "Copied from the internet",
-      "Fake",
-      "Genuine and real",
-      "Very long"
-    ],
-    "ans": "Genuine and real",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Who is the guest talking about the tech app?",
-    "opts": [
-      "Maya",
-      "Jenna",
-      "Sarah",
-      "Elena"
-    ],
-    "ans": "Maya",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is Mr. Roberts looking for in a personal essay?",
-    "opts": [
-      "Perfect grammar",
-      "A funny story",
-      "True motivation and character",
-      "A list of awards"
-    ],
-    "ans": "True motivation and character",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What should applicants write about in their essay?",
-    "opts": [
-      "Their family tree",
-      "A real challenge they overcame",
-      "Their favorite movies",
-      "What the admission board wants to hear"
-    ],
-    "ans": "A real challenge they overcame",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the meaning of 'usage'?",
-    "opts": [
-      "The amount of something that is used",
-      "Paying a bill",
-      "Electric wires",
-      "A new mobile phone"
-    ],
-    "ans": "The amount of something that is used",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How far is the Pine Valley cabin from the city?",
-    "opts": [
-      "1 hour",
-      "2 hours",
-      "4 hours",
-      "A whole day"
-    ],
-    "ans": "2 hours",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateListeningQuizBank[13], 'intermediate/listening/13');
 
 export default function InterListeningLesson13(): React.ReactElement {
   const navigate = useNavigate();
@@ -237,9 +18,9 @@ export default function InterListeningLesson13(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(13); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Getaway","id":"Liburan singkat"},{"en":"Hidden gem","id":"Permata tersembunyi / Tempat rahasia yang bagus"},{"en":"Cabin","id":"Pondok kayu"},{"en":"Chilly","id":"Terasa dingin"}];
-  const DIALOGUE = [{"speaker":"DJ Kevin","text":"It’s Friday evening! If you're looking for a weekend getaway, travel blogger Elena is here. So Elena, what is a great hidden gem for a two-day trip?","translation":"Ini Jumat malam! Jika Anda mencari liburan akhir pekan, blogger perjalanan Elena ada di sini. Jadi Elena, apa permata tersembunyi yang bagus untuk perjalanan dua hari?","avatar":"🎧"},{"speaker":"Elena","text":"Forget the crowded beaches! Head to the Pine Valley mountains. You can rent a small cabin. It is incredibly peaceful and only a two-hour drive from the city. Make sure to pack warm clothes because it gets quite chilly at night.","translation":"Lupakan pantai yang ramai! Pergilah ke pegunungan Lembah Pinus. Anda bisa menyewa kabin kecil. Ini sangat damai dan hanya dua jam berkendara dari kota. Pastikan untuk membawa pakaian hangat karena cukup dingin di malam hari.","avatar":"🎒"}];
-  const BLANKS = [{"sentence":"If you're looking for a weekend ___.","blank":"getaway","opts":["getaway","job","house","car"],"hint":"Liburan / Jalan-jalan"},{"sentence":"Forget the crowded ___! Head to the mountains.","blank":"beaches","opts":["beaches","bars","offices","malls"],"hint":"Pantai"},{"sentence":"Pack warm clothes because it gets ___ at night.","blank":"chilly","opts":["chilly","hot","dark","bright"],"hint":"Agak dingin"}];
+  const vocab = [{"en":"Campsite","id":"Bumi perkemahan"},{"en":"Waterproof","id":"Tahan air"},{"en":"Torch","id":"Senter"},{"en":"Sleeping bag","id":"Kantong tidur"}];
+  const DIALOGUE = [{"speaker":"Host","text":"Welcome to 'Weekend Escapes'. I'm Amy. The forecast looks sunny for the next few days, so I've invited outdoor expert Josh to talk about camping. Josh, is camping a good option for beginners?","translation":"Selamat datang di 'Weekend Escapes'. Saya Amy. Prakiraan cuaca beberapa hari ke depan tampak cerah, jadi saya mengundang pakar kegiatan alam terbuka Josh untuk membahas berkemah. Josh, apakah berkemah pilihan yang baik untuk pemula?","avatar":"🎧"},{"speaker":"Josh","text":"Definitely, Amy. It's one of the cheapest getaways there is. For your first trip, I'd recommend a campsite with toilets and showers – it makes everything much more comfortable.","translation":"Tentu saja, Amy. Ini salah satu liburan termurah. Untuk perjalanan pertama, saya sarankan bumi perkemahan yang memiliki toilet dan kamar mandi – itu membuat semuanya jauh lebih nyaman.","avatar":"⛺"},{"speaker":"Host","text":"What should people remember to pack?","translation":"Apa yang harus diingat untuk dibawa?","avatar":"🎧"},{"speaker":"Josh","text":"A waterproof jacket, even if the forecast is good, plus a torch and a warm sleeping bag. And practise putting up your tent in the garden before you leave. It's much easier than doing it in the dark!","translation":"Jaket tahan air, meskipun prakiraan cuacanya bagus, ditambah senter dan kantong tidur yang hangat. Dan berlatihlah mendirikan tenda di halaman sebelum berangkat. Itu jauh lebih mudah daripada melakukannya dalam gelap!","avatar":"⛺"},{"speaker":"Host","text":"Ha! I learnt that the hard way. Anything else?","translation":"Ha! Saya belajar itu dari pengalaman pahit. Ada lagi?","avatar":"🎧"},{"speaker":"Josh","text":"Respect nature. Take all your rubbish home with you, and only light fires where it's allowed.","translation":"Hormati alam. Bawa pulang semua sampah Anda, dan hanya nyalakan api di tempat yang diizinkan.","avatar":"⛺"}];
+  const BLANKS = [{"sentence":"Choose a ___ with toilets and showers.","blank":"campsite","opts":["campsite","museum","stadium","station"],"hint":"Bumi perkemahan"},{"sentence":"Pack a ___ jacket, even if the forecast is good.","blank":"waterproof","opts":["waterproof","paper","summer","silk"],"hint":"Tahan air"},{"sentence":"Practise putting up your ___ in the garden.","blank":"tent","opts":["tent","shelf","fence","sign"],"hint":"Tenda"}];
 
   return (
     <>
@@ -267,7 +48,7 @@ export default function InterListeningLesson13(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Weekend Getaway Tips</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Camping for Beginners</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L13</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -295,7 +76,7 @@ export default function InterListeningLesson13(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Talk Show: Travel Guide</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Talk Show: Camping for Beginners</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -315,7 +96,7 @@ export default function InterListeningLesson13(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Talk Show: Travel Guide" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Talk Show: Camping for Beginners" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

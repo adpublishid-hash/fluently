@@ -71,7 +71,7 @@ export default function ProficiencySpeakingPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">Materi speaking C2 dengan ekspresi, model jawaban TTS, latihan rekaman, dan kuis 20 soal.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">Materi speaking C2 dengan ekspresi, model jawaban TTS, latihan rekaman, dan kuis 15 soal.</p>
 
           <div className="space-y-3">
             {proficiencySpeakingLessons.map((lesson, index) => {

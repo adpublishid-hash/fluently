@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Lina won a national science competition at sixteen.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Lina is a young inventor who now helps other students learn.",
-        "Lina won a national science competition at sixteen."
-      ],
       "id": "biography-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "How old was Lina when she built her first robot?",
+      "answer": "twelve",
+      "options": [
+        "ten",
+        "twenty",
+        "twelve",
+        "sixteen"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "inventor",
-      "options": [
-        "understanding timeline and achievements",
-        "main idea",
-        "inventor",
-        "a person who creates something new"
-      ],
       "id": "biography-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What did Lina build first?",
+      "answer": "a simple robot",
+      "options": [
+        "a small car",
+        "a simple robot",
+        "a science book",
+        "a computer game"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "The Young Inventor",
-      "options": [
-        "No title is possible.",
-        "The Young Inventor",
-        "Short Biography",
-        "to introduce an inspiring young inventor"
-      ],
       "id": "biography-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What does Lina do now?",
+      "answer": "She teaches younger students.",
+      "options": [
+        "She teaches younger students.",
+        "She studies at a university abroad.",
+        "She sells robots online.",
+        "She works in a car factory."
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Short Biography.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Lina is a young inventor who now helps other students learn.",
-      "options": [
-        "a person who creates something new",
-        "understanding timeline and achievements",
-        "The text is only about spelling.",
-        "Lina is a young inventor who now helps other students learn."
-      ],
       "id": "biography-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What materials does Lina use with her students?",
+      "answer": "recycled materials",
+      "options": [
+        "new plastic parts",
+        "wooden blocks only",
+        "recycled materials",
+        "expensive metals"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"inventor\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Lina won a national science competition at sixteen.",
-      "options": [
-        "The text says the opposite.",
-        "a person who creates something new",
-        "to introduce an inspiring young inventor",
-        "Lina won a national science competition at sixteen."
-      ],
       "id": "biography-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which event happened second in Lina's life?",
+      "answer": "She won a national science competition.",
+      "options": [
+        "She built her first simple robot.",
+        "She won a national science competition.",
+        "She designed small machines for a big company.",
+        "She started teaching younger students."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to introduce an inspiring young inventor",
-      "options": [
-        "understanding timeline and achievements",
-        "to introduce an inspiring young inventor",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "biography-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What does \"design\" mean in the last sentence?",
+      "answer": "plan and create",
+      "options": [
+        "sell to others",
+        "paint with colours",
+        "break into pieces",
+        "plan and create"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Lina is a young inventor who now helps other students learn.",
-      "options": [
-        "Lina is a young inventor who now helps other students learn.",
-        "Lina won a national science competition at sixteen.",
-        "a person who creates something new",
-        "Only one small word matters."
-      ],
       "id": "biography-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which sentence best shows how Lina's role has changed over time?",
+      "answer": "She went from building robots to teaching others.",
+      "options": [
+        "She stopped liking science after sixteen.",
+        "She has always worked only as a teacher.",
+        "She moved from teaching to selling her robots in shops online.",
+        "She went from building robots to teaching others."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "Lina is interested in both science and education.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Lina won a national science competition at sixteen.",
-        "Lina is interested in both science and education."
-      ],
       "id": "biography-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Why does the writer most likely mention recycled materials?",
+      "answer": "to show that Lina also cares about the environment",
+      "options": [
+        "to complain about the cost of robots",
+        "to show that Lina's robots are cheap and of very poor quality",
+        "to show that Lina also cares about the environment",
+        "to explain why Lina lost the competition"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Lina won a national science competition at sixteen.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Lina is a young inventor who now helps other students learn.",
-        "Lina won a national science competition at sixteen."
-      ],
       "id": "biography-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Berapa usia Lina ketika ia membuat robot pertamanya?",
+      "answer": "twelve",
+      "options": [
+        "ten",
+        "twenty",
+        "twelve",
+        "sixteen"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "inventor",
-      "options": [
-        "understanding timeline and achievements",
-        "main idea",
-        "inventor",
-        "a person who creates something new"
-      ],
       "id": "biography-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang pertama kali dibuat Lina?",
+      "answer": "a simple robot",
+      "options": [
+        "a small car",
+        "a simple robot",
+        "a science book",
+        "a computer game"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "The Young Inventor",
-      "options": [
-        "No title is possible.",
-        "The Young Inventor",
-        "Short Biography",
-        "to introduce an inspiring young inventor"
-      ],
       "id": "biography-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang Lina lakukan sekarang?",
+      "answer": "She teaches younger students.",
+      "options": [
+        "She teaches younger students.",
+        "She studies at a university abroad.",
+        "She sells robots online.",
+        "She works in a car factory."
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Short Biography.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Lina is a young inventor who now helps other students learn.",
-      "options": [
-        "a person who creates something new",
-        "understanding timeline and achievements",
-        "The text is only about spelling.",
-        "Lina is a young inventor who now helps other students learn."
-      ],
       "id": "biography-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Bahan apa yang digunakan Lina bersama murid-muridnya?",
+      "answer": "recycled materials",
+      "options": [
+        "new plastic parts",
+        "wooden blocks only",
+        "recycled materials",
+        "expensive metals"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"inventor\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Lina won a national science competition at sixteen.",
-      "options": [
-        "The text says the opposite.",
-        "a person who creates something new",
-        "to introduce an inspiring young inventor",
-        "Lina won a national science competition at sixteen."
-      ],
       "id": "biography-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Peristiwa mana yang terjadi kedua dalam hidup Lina?",
+      "answer": "She won a national science competition.",
+      "options": [
+        "She built her first simple robot.",
+        "She won a national science competition.",
+        "She designed small machines for a big company.",
+        "She started teaching younger students."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to introduce an inspiring young inventor",
-      "options": [
-        "understanding timeline and achievements",
-        "to introduce an inspiring young inventor",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "biography-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa arti kata \"design\" pada kalimat terakhir?",
+      "answer": "plan and create",
+      "options": [
+        "sell to others",
+        "paint with colours",
+        "break into pieces",
+        "plan and create"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Lina is a young inventor who now helps other students learn.",
-      "options": [
-        "Lina is a young inventor who now helps other students learn.",
-        "Lina won a national science competition at sixteen.",
-        "a person who creates something new",
-        "Only one small word matters."
-      ],
       "id": "biography-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Kalimat mana yang paling menunjukkan bagaimana peran Lina berubah dari waktu ke waktu?",
+      "answer": "She went from building robots to teaching others.",
+      "options": [
+        "She stopped liking science after sixteen.",
+        "She has always worked only as a teacher.",
+        "She moved from teaching to selling her robots in shops online.",
+        "She went from building robots to teaching others."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "Lina is interested in both science and education.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Lina won a national science competition at sixteen.",
-        "Lina is interested in both science and education."
-      ],
       "id": "biography-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Mengapa penulis kemungkinan besar menyebut bahan daur ulang?",
+      "answer": "to show that Lina also cares about the environment",
+      "options": [
+        "to complain about the cost of robots",
+        "to show that Lina's robots are cheap and of very poor quality",
+        "to show that Lina also cares about the environment",
+        "to explain why Lina lost the competition"
+      ]
     }
   ]
 };

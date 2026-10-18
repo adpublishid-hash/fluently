@@ -1,7 +1,7 @@
 import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, type ChoiceQuestion } from '../../../utils/quiz';
 import { japaneseGrammarBank } from '../../module/japanese/japaneseGrammarBank';
-import { getJapaneseLesson } from '../../module/japanese/japaneseLessonContent';
-import type { JapaneseLevelId, JapaneseSkillId } from '../../module/japanese/japaneseModuleData';
+import { getJapaneseLesson, getJapaneseTopicList } from '../../module/japanese/japaneseLessonContent';
+import { japaneseSkills, type JapaneseLevelId, type JapaneseSkillId } from '../../module/japanese/japaneseModuleData';
 import { getJapaneseLevelWords } from '../../module/japanese/japaneseVocabularyBank';
 import { getJapaneseLessonCorePool } from '../../module/japanese/lessonCore';
 
@@ -15,13 +15,8 @@ export const JAPANESE_PRACTICE_LENGTH = 10;
 
 type Word = { japanese: string; romaji: string; meaning: string };
 
-/**
- * Practice session for one topic. Uses the same content as the lesson but with
- * skill-specific question types (audio for listening/pronunciation, reverse
- * translation for writing/speaking) and its own seed, so it is not a copy of
- * the lesson quiz.
- */
-export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSkillId, topicNumber: number): JapanesePracticeQuestion[] {
+/** Every question one topic can ask, in priority order (deduplicated, not yet trimmed). */
+function candidateQuestions(level: JapaneseLevelId, skill: JapaneseSkillId, topicNumber: number): JapanesePracticeQuestion[] {
   const lesson = getJapaneseLesson(skill, topicNumber, level);
   const random = seededRandom(hashSeed('japanese-practice', level, skill, topicNumber));
   const words: Word[] = lesson.vocabulary;
@@ -94,6 +89,16 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
       `${word.japanese} dilafalkan "${word.romaji}". Perhatikan panjang vokal dan small tsu.`,
       word.japanese,
     );
+  const sayWord = (word: Word) =>
+    withExplanation(
+      buildChoiceQuestion(`Untuk mengucapkan "${word.meaning}", kamu berkata...`, word.romaji, levelWords.map((item) => item.romaji), random),
+      `"${word.meaning}" diucapkan "${word.romaji}" (${word.japanese}).`,
+    );
+  const saySentence = (sentence: Word) =>
+    withExplanation(
+      buildChoiceQuestion(`Untuk menyampaikan "${sentence.meaning}", kamu berkata...`, sentence.japanese, levelSentences.map((item) => item.japanese), random),
+      `"${sentence.meaning}" → ${sentence.japanese} (${sentence.romaji}).`,
+    );
   const patternUse = () => {
     const point = levelPatterns[(topicNumber - 1) % levelPatterns.length];
     return withExplanation(
@@ -134,10 +139,9 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
       shuffledWords().forEach((word) => questions.push(listenWord(word)));
     },
     speaking: () => {
-      shuffledSentences().forEach((sentence) => questions.push(sentenceFor(sentence)));
-      shuffledWords().slice(0, 4).forEach((word) => questions.push(wordFor(word)));
+      shuffledSentences().forEach((sentence) => questions.push(saySentence(sentence)));
+      shuffledWords().forEach((word) => questions.push(sayWord(word)));
       shuffledSentences().slice(0, 2).forEach((sentence) => questions.push(listenSentence(sentence)));
-      questions.push(patternUse());
     },
     pronunciation: () => {
       shuffledSentences().forEach((sentence) => questions.push(listenSentence(sentence)));
@@ -151,5 +155,42 @@ export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSki
   questions.forEach((question) => {
     if (question && !unique.has(`${question.question}|${question.answer}`)) unique.set(`${question.question}|${question.answer}`, question);
   });
-  return [...unique.values()].slice(0, JAPANESE_PRACTICE_LENGTH);
+  return [...unique.values()];
+}
+
+const keyOf = (question: JapanesePracticeQuestion) => `${question.question}|${question.answer}`;
+const levelCache = new Map<JapaneseLevelId, Map<string, JapanesePracticeQuestion[]>>();
+
+/**
+ * Picks every topic's questions for a whole level at once (skills and topics
+ * in a fixed order), preferring questions no earlier topic has asked, so a
+ * word shared by several topics is drilled once instead of in each of them.
+ */
+function levelPractice(level: JapaneseLevelId): Map<string, JapanesePracticeQuestion[]> {
+  const cached = levelCache.get(level);
+  if (cached) return cached;
+  const used = new Set<string>();
+  const result = new Map<string, JapanesePracticeQuestion[]>();
+  japaneseSkills.forEach(({ id: skill }) => {
+    getJapaneseTopicList(level, skill).forEach((_, index) => {
+      const candidates = candidateQuestions(level, skill, index + 1);
+      const fresh = candidates.filter((question) => !used.has(keyOf(question)));
+      const stale = candidates.filter((question) => used.has(keyOf(question)));
+      const picked = [...fresh, ...stale].slice(0, JAPANESE_PRACTICE_LENGTH);
+      picked.forEach((question) => used.add(keyOf(question)));
+      result.set(`${skill}/${index + 1}`, picked);
+    });
+  });
+  levelCache.set(level, result);
+  return result;
+}
+
+/**
+ * Practice session for one topic. Uses the same content as the lesson but with
+ * skill-specific question types (audio for listening/pronunciation, reverse
+ * translation for writing, spoken forms for speaking) and its own seed, so it
+ * is not a copy of the lesson quiz.
+ */
+export function buildJapanesePractice(level: JapaneseLevelId, skill: JapaneseSkillId, topicNumber: number): JapanesePracticeQuestion[] {
+  return levelPractice(level).get(`${skill}/${topicNumber}`) ?? candidateQuestions(level, skill, topicNumber).slice(0, JAPANESE_PRACTICE_LENGTH);
 }

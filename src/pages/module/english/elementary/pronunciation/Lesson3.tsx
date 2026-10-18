@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, TrendUpIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 type StressRule = {
   id: string;
   name: string;
@@ -72,148 +74,7 @@ const PRACTICE_WORDS = [
   { word: "Discussion", syllables: ["Dis", "CUS", "sion"], correctIndex: 1, hint: "Berakhiran -sion" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Di mana tekanan pada 'Situation'?",
-    options: ['SI-tu-a-tion', 'Si-tu-A-tion', 'Si-tu-a-TION'],
-    answer: 'Si-tu-A-tion',
-    explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 2,
-    question: "Pola apa yang diikuti 'Biology'?",
-    options: ['Tekan suku kata ke-1', 'Tekan suku kata terakhir', 'Tekan ke-3 dari belakang'],
-    answer: 'Tekan ke-3 dari belakang',
-    explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
-  },
-  {
-    id: 3,
-    question: "Dengarkan 'Laptop'. Di mana tekanannya?",
-    options: ['LAP-top', 'lap-TOP'],
-    answer: 'LAP-top',
-    explanation: "Kata benda majemuk (Lap + Top) menekan bagian pertama."
-  },
-  {
-    id: 4,
-    question: "Di mana tekanan pada 'Electric'?",
-    options: ['E-lec-tric', 'e-LEC-tric', 'e-lec-TRIC'],
-    answer: 'e-LEC-tric',
-    explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 5,
-    question: "Suku kata yang ditekankan selalu...",
-    options: ['Lebih Cepat dan Lebih Pelan', 'Lebih Keras dan Lebih Panjang'],
-    answer: 'Lebih Keras dan Lebih Panjang',
-    explanation: "Ini adalah definisi tekanan kata dalam bahasa Inggris."
-  },
-  {
-    id: 6,
-    question: "Di mana tekanan pada 'Situation' ?",
-    options: ["SI-tu-a-tion","Si-tu-A-tion","Si-tu-a-TION"],
-    answer: "Si-tu-A-tion",
-    explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 7,
-    question: "Pola apa yang diikuti 'Biology' ?",
-    options: ["Tekan suku kata ke-1","Tekan suku kata terakhir","Tekan ke-3 dari belakang"],
-    answer: "Tekan ke-3 dari belakang",
-    explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
-  },
-  {
-    id: 8,
-    question: "Dengarkan 'Laptop'. Di mana tekanannya?",
-    options: ["LAP-top","lap-TOP"],
-    answer: "LAP-top",
-    explanation: "Kata benda majemuk (Lap + Top) menekan bagian pertama."
-  },
-  {
-    id: 9,
-    question: "Di mana tekanan pada 'Electric'?",
-    options: ["E-lec-tric","e-LEC-tric","e-lec-TRIC"],
-    answer: "e-LEC-tric",
-    explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 10,
-    question: "Suku kata yang ditekankan selalu...",
-    options: ["Lebih Cepat dan Lebih Pelan","Lebih Keras dan Lebih Panjang"],
-    answer: "Lebih Keras dan Lebih Panjang",
-    explanation: "Ini adalah definisi tekanan kata dalam bahasa Inggris."
-  },
-  {
-    id: 11,
-    question: "Di mana tekanan pada 'Situation'?",
-    options: ["SI-tu-a-tion","Si-tu-A-tion","Si-tu-a-TION"],
-    answer: "Si-tu-A-tion",
-    explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 12,
-    question: "Pola apa yang diikuti 'Biology'?",
-    options: ["Tekan suku kata ke-1","Tekan suku kata terakhir","Tekan ke-3 dari belakang"],
-    answer: "Tekan ke-3 dari belakang",
-    explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
-  },
-  {
-    id: 13,
-    question: "Dengarkan 'Laptop'. Di mana tekanannya?",
-    options: ["LAP-top","lap-TOP"],
-    answer: "LAP-top",
-    explanation: "Kata benda majemuk (Lap + Top) menekan bagian pertama."
-  },
-  {
-    id: 14,
-    question: "Di mana tekanan pada 'Electric' ?",
-    options: ["E-lec-tric","e-LEC-tric","e-lec-TRIC"],
-    answer: "e-LEC-tric",
-    explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 15,
-    question: "Suku kata yang ditekankan selalu:",
-    options: ["Lebih Cepat dan Lebih Pelan","Lebih Keras dan Lebih Panjang"],
-    answer: "Lebih Keras dan Lebih Panjang",
-    explanation: "Ini adalah definisi tekanan kata dalam bahasa Inggris."
-  },
-  {
-    id: 16,
-    question: "Di mana tekanan pada 'Situation'...",
-    options: ["SI-tu-a-tion","Si-tu-A-tion","Si-tu-a-TION"],
-    answer: "Si-tu-A-tion",
-    explanation: "Kata berakhiran -tion ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 17,
-    question: "Pola apa yang diikuti 'Biology' ?",
-    options: ["Tekan suku kata ke-1","Tekan suku kata terakhir","Tekan ke-3 dari belakang"],
-    answer: "Tekan ke-3 dari belakang",
-    explanation: "Kata berakhiran -gy memiliki tekanan pada antepenultimate (ke-3 dari akhir) suku kata."
-  },
-  {
-    id: 18,
-    question: "Dengarkan 'Laptop'. Di mana tekanannya?",
-    options: ["LAP-top","lap-TOP"],
-    answer: "LAP-top",
-    explanation: "Kata benda majemuk (Lap + Top) menekan bagian pertama."
-  },
-  {
-    id: 19,
-    question: "Di mana tekanan pada 'Electric'...",
-    options: ["E-lec-tric","e-LEC-tric","e-lec-TRIC"],
-    answer: "e-LEC-tric",
-    explanation: "Kata berakhiran -ic ditekankan pada suku kata sebelum akhiran."
-  },
-  {
-    id: 20,
-    question: "Suku kata yang ditekankan selalu...",
-    options: ["Lebih Cepat dan Lebih Pelan","Lebih Keras dan Lebih Panjang"],
-    answer: "Lebih Keras dan Lebih Panjang",
-    explanation: "Ini adalah definisi tekanan kata dalam bahasa Inggris."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[3], 'elementary/pronunciation/3'));
 
 const ElemPronunLesson3: React.FC = () => {
   const navigate = useNavigate();

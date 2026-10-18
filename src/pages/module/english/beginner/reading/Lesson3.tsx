@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"GRAND OPENING" pada poster toko artinya...', opts: ['Penutupan toko', 'Pembukaan perdana', 'Pindah lokasi', 'Renovasi'], ans: 'Pembukaan perdana', exp: '"Grand Opening" = pembukaan perdana / acara besar pertama kali.' },
-  { q: '"50% OFF" pada iklan artinya...', opts: ['Harga naik 50%', 'Diskon 50%', 'Beli 2 diskon 50', 'Gratis 50 item'], ans: 'Diskon 50%', exp: '"OFF" dalam konteks harga = potongan harga. "50% off" = diskon 50%.' },
-  { q: '"BUY 1 GET 1 FREE" artinya...', opts: ['Beli 2 bayar 1', 'Beli 1 dapat 1 gratis', 'Beli 1 diskon 50%', 'Gratis 1 produk'], ans: 'Beli 1 dapat 1 gratis', exp: '"Buy 1 Get 1 Free" = BOGO = beli satu dapat satu gratis.' },
-  { q: '"COMING SOON" pada poster artinya...', opts: ['Sudah hadir', 'Segera hadir', 'Sudah habis', 'Tidak tersedia'], ans: 'Segera hadir', exp: '"Coming soon" = segera hadir / akan datang segera.' },
-  { q: '"LIMITED OFFER" artinya...', opts: ['Penawaran tak terbatas', 'Penawaran terbatas', 'Penawaran tetap', 'Penawaran khusus'], ans: 'Penawaran terbatas', exp: '"Limited offer" = penawaran terbatas (stok atau waktu).' },
-  { q: '"FREE DELIVERY" artinya...', opts: ['Pengiriman berbayar', 'Pengiriman cepat', 'Pengiriman gratis', 'Ambil sendiri'], ans: 'Pengiriman gratis', exp: '"Free delivery" = pengiriman/ongkir gratis.' },
-  { q: '"SPECIAL PRICE" artinya...', opts: ['Harga normal', 'Harga spesial/murah', 'Harga penuh', 'Harga mahal'], ans: 'Harga spesial/murah', exp: '"Special price" = harga khusus yang lebih murah dari biasanya.' },
-  { q: '"LIVE MUSIC" pada poster acara artinya...', opts: ['Rekaman musik', 'Musik langsung/live', 'Musik klasik', 'Tidak ada musik'], ans: 'Musik langsung/live', exp: '"Live music" = penampilan musik secara langsung.' },
-  { q: '"ADMISSION FREE" pada poster artinya...', opts: ['Tiket mahal', 'Masuk berbayar', 'Masuk gratis', 'Tempat terbatas'], ans: 'Masuk gratis', exp: '"Admission free" = gratis masuk / tidak dipungut biaya masuk.' },
+  { q: '"GRAND OPENING" pada poster toko artinya...', opts: ['Renovasi', 'Penutupan toko', 'Pembukaan perdana', 'Pindah lokasi'], ans: 'Pembukaan perdana', exp: '"Grand Opening" = pembukaan perdana / acara besar pertama kali.' },
+  { q: '"50% OFF" pada iklan artinya...', opts: ['Diskon 50%', 'Harga naik 50%', 'Gratis 50 item', 'Beli 2 diskon 50'], ans: 'Diskon 50%', exp: '"OFF" dalam konteks harga = potongan harga. "50% off" = diskon 50%.' },
+  { q: '"BUY 1 GET 1 FREE" artinya...', opts: ['Gratis 1 produk', 'Beli 2 bayar 1', 'Beli 1 dapat 1 gratis', 'Beli 1 diskon 50%'], ans: 'Beli 1 dapat 1 gratis', exp: '"Buy 1 Get 1 Free" = BOGO = beli satu dapat satu gratis.' },
+  { q: '"COMING SOON" pada poster artinya...', opts: ['Sudah hadir', 'Tidak tersedia', 'Sudah habis', 'Segera hadir'], ans: 'Segera hadir', exp: '"Coming soon" = segera hadir / akan datang segera.' },
+  { q: '"LIMITED OFFER" artinya...', opts: ['Penawaran terbatas', 'Penawaran tak terbatas', 'Penawaran khusus', 'Penawaran tetap'], ans: 'Penawaran terbatas', exp: '"Limited offer" = penawaran terbatas (stok atau waktu).' },
+  { q: '"FREE DELIVERY" artinya...', opts: ['Pengiriman gratis', 'Ambil sendiri', 'Pengiriman cepat', 'Pengiriman berbayar'], ans: 'Pengiriman gratis', exp: '"Free delivery" = pengiriman/ongkir gratis.' },
+  { q: '"SPECIAL PRICE" artinya...', opts: ['Harga spesial/murah', 'Harga mahal', 'Harga penuh', 'Harga normal'], ans: 'Harga spesial/murah', exp: '"Special price" = harga khusus yang lebih murah dari biasanya.' },
+  { q: '"LIVE MUSIC" pada poster acara artinya...', opts: ['Musik langsung/live', 'Musik klasik', 'Tidak ada musik', 'Rekaman musik'], ans: 'Musik langsung/live', exp: '"Live music" = penampilan musik secara langsung.' },
+  { q: '"ADMISSION FREE" pada poster artinya...', opts: ['Masuk berbayar', 'Tiket mahal', 'Tempat terbatas', 'Masuk gratis'], ans: 'Masuk gratis', exp: '"Admission free" = gratis masuk / tidak dipungut biaya masuk.' },
   { q: '"VALID UNTIL" pada kupon artinya...', opts: ['Berlaku mulai', 'Berlaku hingga', 'Tidak berlaku', 'Berlaku selamanya'], ans: 'Berlaku hingga', exp: '"Valid until" = berlaku sampai dengan tanggal tertentu.' },
-  { q: '"NEW ARRIVAL" pada toko pakaian artinya...', opts: ['Produk lama', 'Produk baru datang', 'Produk diskon', 'Produk terlaris'], ans: 'Produk baru datang', exp: '"New arrival" = produk yang baru tiba/masuk stok.' },
+  { q: '"NEW ARRIVAL" pada toko pakaian artinya...', opts: ['Produk diskon', 'Produk terlaris', 'Produk lama', 'Produk baru datang'], ans: 'Produk baru datang', exp: '"New arrival" = produk yang baru tiba/masuk stok.' },
   { q: '"CLEARANCE SALE" artinya...', opts: ['Penjualan normal', 'Obral/cuci gudang', 'Penjualan eksklusif', 'Peluncuran produk'], ans: 'Obral/cuci gudang', exp: '"Clearance sale" = obral untuk menghabiskan stok lama.' },
-  { q: '"TERMS AND CONDITIONS APPLY" artinya...', opts: ['Berlaku tanpa syarat', 'Syarat dan ketentuan berlaku', 'Gratis tanpa syarat', 'Syarat mudah'], ans: 'Syarat dan ketentuan berlaku', exp: '"Terms and conditions apply" = ada syarat dan ketentuan.' },
-  { q: '"SOLD OUT" artinya...', opts: ['Tersedia banyak', 'Habis terjual', 'Sedang promo', 'Baru masuk'], ans: 'Habis terjual', exp: '"Sold out" = habis / kehabisan stok.' },
-  { q: '"HURRY! LAST 3 DAYS" artinya...', opts: ['Masih 30 hari', 'Dimulai 3 hari lagi', 'Cepat! Tinggal 3 hari lagi', 'Sudah berakhir'], ans: 'Cepat! Tinggal 3 hari lagi', exp: '"Hurry" = cepat. "Last 3 days" = tinggal 3 hari lagi.' },
-  { q: '"ALL ITEMS" dalam katalog artinya...', opts: ['1 item', 'Item terpilih', 'Semua item', 'Item mahal'], ans: 'Semua item', exp: '"All items" = semua produk/barang.' },
-  { q: '"FLASH SALE" artinya...', opts: ['Penjualan lambat', 'Promo kilat/terbatas waktu', 'Penjualan malam', 'Obral besar'], ans: 'Promo kilat/terbatas waktu', exp: '"Flash sale" = promo terbatas waktu yang sangat singkat.' },
-  { q: '"ENTER HERE" pada poster artinya...', opts: ['Keluar di sini', 'Masuk di sini', 'Beli di sini', 'Daftar di sini'], ans: 'Masuk di sini', exp: '"Enter here" = masuk di sini.' },
-  { q: '"DISCOUNT" artinya...', opts: ['Kenaikan harga', 'Harga penuh', 'Potongan harga', 'Harga khusus VIP'], ans: 'Potongan harga', exp: '"Discount" = potongan harga / diskon.' },
-  { q: '"WIN BIG PRIZES" pada poster artinya...', opts: ['Menang hadiah kecil', 'Menangkan hadiah besar', 'Beli hadiah besar', 'Tukar hadiah'], ans: 'Menangkan hadiah besar', exp: '"Win big prizes" = menangkan hadiah-hadiah besar.' },
+  { q: '"TERMS AND CONDITIONS APPLY" artinya...', opts: ['Syarat dan ketentuan berlaku', 'Gratis tanpa syarat', 'Syarat mudah', 'Berlaku tanpa syarat'], ans: 'Syarat dan ketentuan berlaku', exp: '"Terms and conditions apply" = ada syarat dan ketentuan.' },
+  { q: '"SOLD OUT" artinya...', opts: ['Habis terjual', 'Baru masuk', 'Tersedia banyak', 'Sedang promo'], ans: 'Habis terjual', exp: '"Sold out" = habis / kehabisan stok.' },
+  { q: '"HURRY! LAST 3 DAYS" artinya...', opts: ['Masih 30 hari', 'Cepat! Tinggal 3 hari lagi', 'Dimulai 3 hari lagi', 'Sudah berakhir'], ans: 'Cepat! Tinggal 3 hari lagi', exp: '"Hurry" = cepat. "Last 3 days" = tinggal 3 hari lagi.' },
+  { q: '"ALL ITEMS" dalam katalog artinya...', opts: ['1 item', 'Semua item', 'Item terpilih', 'Item mahal'], ans: 'Semua item', exp: '"All items" = semua produk/barang.' },
+  { q: '"FLASH SALE" artinya...', opts: ['Penjualan lambat', 'Penjualan malam', 'Promo kilat/terbatas waktu', 'Obral besar'], ans: 'Promo kilat/terbatas waktu', exp: '"Flash sale" = promo terbatas waktu yang sangat singkat.' },
+  { q: '"ENTER HERE" pada poster artinya...', opts: ['Beli di sini', 'Daftar di sini', 'Keluar di sini', 'Masuk di sini'], ans: 'Masuk di sini', exp: '"Enter here" = masuk di sini.' },
+  { q: '"DISCOUNT" artinya...', opts: ['Kenaikan harga', 'Potongan harga', 'Harga khusus VIP', 'Harga penuh'], ans: 'Potongan harga', exp: '"Discount" = potongan harga / diskon.' },
+  { q: '"WIN BIG PRIZES" pada poster artinya...', opts: ['Menangkan hadiah besar', 'Menang hadiah kecil', 'Tukar hadiah', 'Beli hadiah besar'], ans: 'Menangkan hadiah besar', exp: '"Win big prizes" = menangkan hadiah-hadiah besar.' },
 ];
 
 const POSTER_DATA = {
@@ -46,11 +46,11 @@ const POSTER_DATA = {
     </div>
   ),
   questions: [
-    { q: 'Acara ini diadakan pada hari apa?', opts: ['Jumat', 'Sabtu', 'Minggu', 'Senin'], ans: 'Sabtu' },
-    { q: 'Jam berapa bazaar dimulai?', opts: ['8 AM', '9 AM', '10 AM', '11 AM'], ans: '10 AM' },
-    { q: 'Berapa biaya masuk ke bazaar?', opts: ['Rp 50.000', 'Rp 100.000', 'Gratis', 'Tidak disebutkan'], ans: 'Gratis' },
-    { q: 'Pukul berapa live music diadakan?', opts: ['5 PM', '6 PM', '7 PM', '8 PM'], ans: '7 PM' },
-    { q: 'Apa saja yang ada di bazaar ini?', opts: ['Hanya makanan', 'Food, Fashion, Entertainment', 'Hanya musik', 'Pakaian saja'], ans: 'Food, Fashion, Entertainment' },
+    { q: 'Acara ini diadakan pada hari apa?', opts: ['Sabtu', 'Senin', 'Jumat', 'Minggu'], ans: 'Sabtu' },
+    { q: 'Jam berapa bazaar dimulai?', opts: ['9 AM', '10 AM', '11 AM', '8 AM'], ans: '10 AM' },
+    { q: 'Berapa biaya masuk ke bazaar?', opts: ['Rp 100.000', 'Tidak disebutkan', 'Gratis', 'Rp 50.000'], ans: 'Gratis' },
+    { q: 'Pukul berapa live music diadakan?', opts: ['7 PM', '6 PM', '5 PM', '8 PM'], ans: '7 PM' },
+    { q: 'Apa saja yang ada di bazaar ini?', opts: ['Hanya makanan', 'Pakaian saja', 'Hanya musik', 'Food, Fashion, Entertainment'], ans: 'Food, Fashion, Entertainment' },
   ] as ComprehensionQ[],
 };
 

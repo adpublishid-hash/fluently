@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Read + identify issue + revise + check meaning.",
-      "options": [
-        "The corrected sentence is",
-        "but",
-        "The meaning is now clear.",
-        "Read + identify issue + revise + check meaning."
-      ],
       "id": "editing-proofreading-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence has correct capitalisation?",
+      "answer": "We visited London in July.",
+      "options": [
+        "We visited london in July.",
+        "We Visited London In July.",
+        "we visited london in july.",
+        "We visited London in July."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Editing & Proofreading.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "She does not like coffee, but she drinks tea every morning.",
-      "options": [
-        "And because but however.",
-        "She does not like coffee, but she drinks tea every morning.",
-        "The corrected sentence is",
-        "The meaning is now clear."
-      ],
       "id": "editing-proofreading-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the corrected version of this sentence: 'He go to work every day.'",
+      "answer": "He goes to work every day.",
+      "options": [
+        "He going to work every day.",
+        "He goes to work every day.",
+        "He goes to work every days.",
+        "He gone to work every day."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Read + identify issue + revise + check meaning.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Read + identify issue + revise + check meaning."
-      ],
       "id": "editing-proofreading-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence uses the apostrophe correctly?",
+      "answer": "This is my sister's bag.",
+      "options": [
+        "This is my sister bag's.",
+        "This is my sisters bag.",
+        "This is my sisters' bag's.",
+        "This is my sister's bag."
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "but",
-      "options": [
-        "The meaning is now clear.",
-        "edited sentence or paragraph",
-        "but",
-        "The corrected sentence is"
-      ],
       "id": "editing-proofreading-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which revision corrects the comma splice? 'I was tired, I went to bed early.'",
+      "answer": "I was tired, so I went to bed early.",
+      "options": [
+        "I was, tired so I went to bed early.",
+        "I was tired, so I went to bed early.",
+        "I was tired, I went, to bed early.",
+        "I was tired I went to bed early."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "The meaning is now clear.",
-      "options": [
-        "but",
-        "The meaning is now clear.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "editing-proofreading-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which revision is clearest and most concise? Draft: 'In my personal opinion, I think that the meeting was too long in length.'",
+      "answer": "I think the meeting was too long.",
+      "options": [
+        "Personally, in my opinion, the meeting was long in length.",
+        "In my opinion, I think the meeting was too long in length.",
+        "I think the meeting was too long.",
+        "I think that, in my opinion, the meeting was too long."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Read + identify issue + revise + check meaning.",
-      "options": [
-        "The corrected sentence is",
-        "but",
-        "The meaning is now clear.",
-        "Read + identify issue + revise + check meaning."
-      ],
       "id": "editing-proofreading-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggunakan huruf kapital dengan benar?",
+      "answer": "We visited London in July.",
+      "options": [
+        "We visited london in July.",
+        "We Visited London In July.",
+        "we visited london in july.",
+        "We visited London in July."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Editing & Proofreading.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "She does not like coffee, but she drinks tea every morning.",
-      "options": [
-        "And because but however.",
-        "She does not like coffee, but she drinks tea every morning.",
-        "The corrected sentence is",
-        "The meaning is now clear."
-      ],
       "id": "editing-proofreading-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih versi yang sudah diperbaiki dari kalimat ini: 'He go to work every day.'",
+      "answer": "He goes to work every day.",
+      "options": [
+        "He going to work every day.",
+        "He goes to work every day.",
+        "He goes to work every days.",
+        "He gone to work every day."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Read + identify issue + revise + check meaning.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Read + identify issue + revise + check meaning."
-      ],
       "id": "editing-proofreading-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggunakan apostrof dengan benar?",
+      "answer": "This is my sister's bag.",
+      "options": [
+        "This is my sister bag's.",
+        "This is my sisters bag.",
+        "This is my sisters' bag's.",
+        "This is my sister's bag."
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "but",
-      "options": [
-        "The meaning is now clear.",
-        "edited sentence or paragraph",
-        "but",
-        "The corrected sentence is"
-      ],
       "id": "editing-proofreading-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Revisi mana yang memperbaiki comma splice? 'I was tired, I went to bed early.'",
+      "answer": "I was tired, so I went to bed early.",
+      "options": [
+        "I was, tired so I went to bed early.",
+        "I was tired, so I went to bed early.",
+        "I was tired, I went, to bed early.",
+        "I was tired I went to bed early."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "The meaning is now clear.",
-      "options": [
-        "but",
-        "The meaning is now clear.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "editing-proofreading-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Revisi mana yang paling jelas dan ringkas? Draft: 'In my personal opinion, I think that the meeting was too long in length.'",
+      "answer": "I think the meeting was too long.",
+      "options": [
+        "Personally, in my opinion, the meeting was long in length.",
+        "In my opinion, I think the meeting was too long in length.",
+        "I think the meeting was too long.",
+        "I think that, in my opinion, the meeting was too long."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

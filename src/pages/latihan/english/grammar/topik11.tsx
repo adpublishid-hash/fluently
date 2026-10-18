@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "relative-clauses-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Relative Clauses (Who/Which/That)): Complete: The woman ____ teaches us is kind.",
+      "prompt": "Basic grammar check (Relative Clauses (Who/Which/That)): Complete: I have a friend ____ lives in London.",
       "answer": "who",
       "options": [
-        "who",
         "which",
-        "where",
-        "when"
+        "who",
+        "whose",
+        "where"
       ]
     },
     {
       "id": "relative-clauses-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Relative Clauses (Who/Which/That)): Complete: This is the phone ____ I bought yesterday.",
-      "answer": "that",
+      "prompt": "Basic grammar check (Relative Clauses (Who/Which/That)): Complete: This is the cake ____ my mum made.",
+      "answer": "which",
       "options": [
-        "who",
+        "which",
         "where",
-        "when",
-        "that"
+        "who",
+        "whom"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "relative-clauses-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Relative Clauses (Who/Which/That)): Complete: The city ____ I was born is beautiful.",
-      "answer": "where",
+      "prompt": "Choose the best structure (Relative Clauses (Who/Which/That)): Complete: That is the man ____ car was stolen.",
+      "answer": "whose",
       "options": [
-        "which",
+        "who's",
         "who",
-        "that",
-        "where"
+        "whose",
+        "which"
       ]
     },
     {
       "id": "relative-clauses-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Relative Clauses (Who/Which/That)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Relative Clauses (Who/Which/That)): Complete: I remember the day ____ we first met.",
+      "answer": "when",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "whose",
+        "when",
+        "which",
+        "who"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "relative-clauses-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Relative Clauses (Who/Which/That)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Relative Clauses (Who/Which/That)): Complete: The manager, to ____ I sent the report, has not replied.",
+      "answer": "whom",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "which",
+        "whom",
+        "who",
+        "that"
       ]
     },
     {
       "id": "relative-clauses-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Relative Clauses (Who/Which/That)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Relative Clauses (Who/Which/That)): Complete: He failed the test, ____ surprised everyone.",
+      "answer": "which",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "what",
+        "that",
+        "which",
+        "who"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "relative-clauses-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Relative Clauses (Who/Which/That)): Complete: The woman ____ teaches us is kind.",
+      "prompt": "Cek grammar dasar (Relative Clauses (Who/Which/That)): Complete: I have a friend ____ lives in London.",
       "answer": "who",
       "options": [
-        "who",
         "which",
-        "where",
-        "when"
+        "who",
+        "whose",
+        "where"
       ]
     },
     {
       "id": "relative-clauses-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Relative Clauses (Who/Which/That)): Complete: This is the phone ____ I bought yesterday.",
-      "answer": "that",
+      "prompt": "Cek grammar dasar (Relative Clauses (Who/Which/That)): Complete: This is the cake ____ my mum made.",
+      "answer": "which",
       "options": [
-        "who",
+        "which",
         "where",
-        "when",
-        "that"
+        "who",
+        "whom"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "relative-clauses-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Relative Clauses (Who/Which/That)): Complete: The city ____ I was born is beautiful.",
-      "answer": "where",
+      "prompt": "Pilih struktur terbaik (Relative Clauses (Who/Which/That)): Complete: That is the man ____ car was stolen.",
+      "answer": "whose",
       "options": [
-        "which",
+        "who's",
         "who",
-        "that",
-        "where"
+        "whose",
+        "which"
       ]
     },
     {
       "id": "relative-clauses-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Relative Clauses (Who/Which/That)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Relative Clauses (Who/Which/That)): Complete: I remember the day ____ we first met.",
+      "answer": "when",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "whose",
+        "when",
+        "which",
+        "who"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "relative-clauses-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Relative Clauses (Who/Which/That)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Relative Clauses (Who/Which/That)): Complete: The manager, to ____ I sent the report, has not replied.",
+      "answer": "whom",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "which",
+        "whom",
+        "who",
+        "that"
       ]
     },
     {
       "id": "relative-clauses-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Relative Clauses (Who/Which/That)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Relative Clauses (Who/Which/That)): Complete: He failed the test, ____ surprised everyone.",
+      "answer": "which",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "what",
+        "that",
+        "which",
+        "who"
       ]
     }
   ]

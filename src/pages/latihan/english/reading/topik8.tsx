@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Residents separate paper, plastic, and food scraps.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Waste sorting helped Maple Street become cleaner.",
-        "Residents separate paper, plastic, and food scraps."
-      ],
       "id": "environment-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Where do the residents live?",
+      "answer": "Maple Street",
+      "options": [
+        "Oak Avenue",
+        "Green Hill Road",
+        "Park Road",
+        "Maple Street"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "residents",
-      "options": [
-        "tracking cause and result",
-        "main idea",
-        "residents",
-        "people who live in a place"
-      ],
       "id": "environment-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "When did the residents start sorting their waste?",
+      "answer": "last month",
+      "options": [
+        "last month",
+        "last year",
+        "next week",
+        "ten years ago"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Cleaner Neighborhoods",
-      "options": [
-        "No title is possible.",
-        "Cleaner Neighborhoods",
-        "Environment",
-        "to describe a community recycling effort"
-      ],
       "id": "environment-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which type of waste is NOT mentioned in the passage?",
+      "answer": "glass",
+      "options": [
+        "paper",
+        "food scraps",
+        "glass",
+        "plastic"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Environment.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Waste sorting helped Maple Street become cleaner.",
-      "options": [
-        "people who live in a place",
-        "tracking cause and result",
-        "The text is only about spelling.",
-        "Waste sorting helped Maple Street become cleaner."
-      ],
       "id": "environment-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"dividing into groups\"?",
+      "answer": "sorting",
+      "options": [
+        "joining",
+        "program",
+        "started",
+        "sorting"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"residents\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Residents separate paper, plastic, and food scraps.",
-      "options": [
-        "The text says the opposite.",
-        "people who live in a place",
-        "to describe a community recycling effort",
-        "Residents separate paper, plastic, and food scraps."
-      ],
       "id": "environment-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "According to the passage, what is one result of the program?",
+      "answer": "The area has less trash.",
+      "options": [
+        "The area has less trash.",
+        "The street has more cars.",
+        "Food prices have gone up.",
+        "Families are moving away."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to describe a community recycling effort",
-      "options": [
-        "tracking cause and result",
-        "to describe a community recycling effort",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "environment-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which phrase in the passage signals a result?",
+      "answer": "As a result",
+      "options": [
+        "As a result",
+        "Last month",
+        "In addition",
+        "For example"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Waste sorting helped Maple Street become cleaner.",
-      "options": [
-        "Waste sorting helped Maple Street become cleaner.",
-        "Residents separate paper, plastic, and food scraps.",
-        "people who live in a place",
-        "Only one small word matters."
-      ],
       "id": "environment-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "What does the fact that more families are joining suggest about the program?",
+      "answer": "Neighbours have noticed its benefits.",
+      "options": [
+        "The program is too difficult.",
+        "The program is about to end.",
+        "Neighbours have noticed its benefits.",
+        "Families are paid a lot of money to take part."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The program is becoming more popular.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Residents separate paper, plastic, and food scraps.",
-        "The program is becoming more popular."
-      ],
       "id": "environment-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which cause-and-effect chain best matches the passage?",
+      "answer": "sorting waste, then less trash, then more families join",
+      "options": [
+        "sorting waste, then more trash, then families complain",
+        "sorting waste, then less trash, then more families join",
+        "less trash, then sorting waste, then families leave",
+        "more families join, then sorting stops, then more trash"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Residents separate paper, plastic, and food scraps.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Waste sorting helped Maple Street become cleaner.",
-        "Residents separate paper, plastic, and food scraps."
-      ],
       "id": "environment-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Di mana para warga tinggal?",
+      "answer": "Maple Street",
+      "options": [
+        "Oak Avenue",
+        "Green Hill Road",
+        "Park Road",
+        "Maple Street"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "residents",
-      "options": [
-        "tracking cause and result",
-        "main idea",
-        "residents",
-        "people who live in a place"
-      ],
       "id": "environment-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kapan para warga mulai memilah sampah mereka?",
+      "answer": "last month",
+      "options": [
+        "last month",
+        "last year",
+        "next week",
+        "ten years ago"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Cleaner Neighborhoods",
-      "options": [
-        "No title is possible.",
-        "Cleaner Neighborhoods",
-        "Environment",
-        "to describe a community recycling effort"
-      ],
       "id": "environment-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Jenis sampah mana yang TIDAK disebutkan dalam bacaan?",
+      "answer": "glass",
+      "options": [
+        "paper",
+        "food scraps",
+        "glass",
+        "plastic"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Environment.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Waste sorting helped Maple Street become cleaner.",
-      "options": [
-        "people who live in a place",
-        "tracking cause and result",
-        "The text is only about spelling.",
-        "Waste sorting helped Maple Street become cleaner."
-      ],
       "id": "environment-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"dividing into groups\"?",
+      "answer": "sorting",
+      "options": [
+        "joining",
+        "program",
+        "started",
+        "sorting"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"residents\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Residents separate paper, plastic, and food scraps.",
-      "options": [
-        "The text says the opposite.",
-        "people who live in a place",
-        "to describe a community recycling effort",
-        "Residents separate paper, plastic, and food scraps."
-      ],
       "id": "environment-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Menurut bacaan, apa salah satu hasil dari program tersebut?",
+      "answer": "The area has less trash.",
+      "options": [
+        "The area has less trash.",
+        "The street has more cars.",
+        "Food prices have gone up.",
+        "Families are moving away."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to describe a community recycling effort",
-      "options": [
-        "tracking cause and result",
-        "to describe a community recycling effort",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "environment-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Frasa mana dalam bacaan yang menandakan sebuah akibat?",
+      "answer": "As a result",
+      "options": [
+        "As a result",
+        "Last month",
+        "In addition",
+        "For example"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Waste sorting helped Maple Street become cleaner.",
-      "options": [
-        "Waste sorting helped Maple Street become cleaner.",
-        "Residents separate paper, plastic, and food scraps.",
-        "people who live in a place",
-        "Only one small word matters."
-      ],
       "id": "environment-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Apa yang ditunjukkan oleh fakta bahwa semakin banyak keluarga bergabung tentang program ini?",
+      "answer": "Neighbours have noticed its benefits.",
+      "options": [
+        "The program is too difficult.",
+        "The program is about to end.",
+        "Neighbours have noticed its benefits.",
+        "Families are paid a lot of money to take part."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The program is becoming more popular.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Residents separate paper, plastic, and food scraps.",
-        "The program is becoming more popular."
-      ],
       "id": "environment-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Rantai sebab-akibat mana yang paling sesuai dengan bacaan?",
+      "answer": "sorting waste, then less trash, then more families join",
+      "options": [
+        "sorting waste, then more trash, then families complain",
+        "sorting waste, then less trash, then more families join",
+        "less trash, then sorting waste, then families leave",
+        "more families join, then sorting stops, then more trash"
+      ]
     }
   ]
 };

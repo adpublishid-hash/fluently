@@ -27,8 +27,8 @@ const BUILD_ITEMS = [
     prompt: "The party starts ___ 8 PM.",
     blank: "at",
     options: [
-      "on",
       "in",
+      "on",
       "at"
     ],
     answer: "at"
@@ -38,9 +38,9 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam): ",
     opts: [
-      "at",
       "on",
-      "in"
+      "in",
+      "at"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -58,25 +58,15 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R3)",
     opts: [
-      "in",
       "on",
-      "at"
+      "at",
+      "in"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
   },
   {
     q: "Preposisi untuk waktu (Jam):  (R4)",
-    opts: [
-      "in",
-      "on",
-      "at"
-    ],
-    ans: "at",
-    exp: "Jam selalu menggunakan \"at\"."
-  },
-  {
-    q: "Preposisi untuk waktu (Jam):  (R5)",
     opts: [
       "at",
       "on",
@@ -86,11 +76,21 @@ const QUIZ = [
     exp: "Jam selalu menggunakan \"at\"."
   },
   {
+    q: "Preposisi untuk waktu (Jam):  (R5)",
+    opts: [
+      "on",
+      "at",
+      "in"
+    ],
+    ans: "at",
+    exp: "Jam selalu menggunakan \"at\"."
+  },
+  {
     q: "Preposisi untuk waktu (Jam):  (R6)",
     opts: [
-      "in",
+      "at",
       "on",
-      "at"
+      "in"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -98,9 +98,9 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R7)",
     opts: [
-      "in",
       "on",
-      "at"
+      "at",
+      "in"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -108,9 +108,9 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R8)",
     opts: [
-      "in",
+      "at",
       "on",
-      "at"
+      "in"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -118,9 +118,9 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R9)",
     opts: [
-      "in",
       "on",
-      "at"
+      "at",
+      "in"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -128,8 +128,8 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R10)",
     opts: [
-      "in",
       "on",
+      "in",
       "at"
     ],
     ans: "at",
@@ -148,8 +148,8 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R12)",
     opts: [
-      "in",
       "on",
+      "in",
       "at"
     ],
     ans: "at",
@@ -168,8 +168,8 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R14)",
     opts: [
-      "at",
       "on",
+      "at",
       "in"
     ],
     ans: "at",
@@ -179,8 +179,8 @@ const QUIZ = [
     q: "Preposisi untuk waktu (Jam):  (R15)",
     opts: [
       "on",
-      "in",
-      "at"
+      "at",
+      "in"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -188,8 +188,8 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R16)",
     opts: [
-      "on",
       "in",
+      "on",
       "at"
     ],
     ans: "at",
@@ -208,8 +208,8 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R18)",
     opts: [
-      "on",
       "in",
+      "on",
       "at"
     ],
     ans: "at",
@@ -219,8 +219,8 @@ const QUIZ = [
     q: "Preposisi untuk waktu (Jam):  (R19)",
     opts: [
       "in",
-      "on",
-      "at"
+      "at",
+      "on"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."
@@ -228,9 +228,9 @@ const QUIZ = [
   {
     q: "Preposisi untuk waktu (Jam):  (R20)",
     opts: [
-      "at",
+      "in",
       "on",
-      "in"
+      "at"
     ],
     ans: "at",
     exp: "Jam selalu menggunakan \"at\"."

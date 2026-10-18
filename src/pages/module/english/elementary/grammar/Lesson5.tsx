@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const COMPARISON = [
   {
     title: "Present Simple",
@@ -61,148 +63,7 @@ const EXAMPLES = [
   { type: "Continuous (Rencana)", en: "I am leaving tomorrow.", id: "Saya akan berangkat besok." }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Dengar! Bayi itu ___.",
-    options: ['cries', 'is crying', 'cry'],
-    answer: 'is crying',
-    explanation: "'Dengar!' adalah sinyal bahwa sesuatu sedang terjadi sekarang (Continuous)."
-  },
-  {
-    id: 2,
-    question: "Saya biasanya ___ musik di mobil.",
-    options: ['listen', 'am listening', 'listening'],
-    answer: 'listen',
-    explanation: "'Biasanya' menggambarkan kebiasaan (Simple)."
-  },
-  {
-    id: 3,
-    question: "Dia ___ (want) es krim.",
-    options: ['is wanting', 'wants', 'want'],
-    answer: 'wants',
-    explanation: "'Want' adalah kata kerja stative. Kita tidak menggunakannya dengan -ing."
-  },
-  {
-    id: 4,
-    question: "Ke mana ___ kamu pergi?",
-    options: ['do', 'are', 'is'],
-    answer: 'are',
-    explanation: "Dengan -ing (going), kita membutuhkan 'are' (To Be). 'Where are you going?'"
-  },
-  {
-    id: 5,
-    question: "Dia ___ bahasa Inggris setiap hari.",
-    options: ['is studying', 'study', 'studies'],
-    answer: 'studies',
-    explanation: "'Setiap hari' menunjukkan rutinitas (Simple). He + studies."
-  },
-  {
-    id: 6,
-    question: "Dengar! Bayi itu ___.",
-    options: ["cries","is crying","cry"],
-    answer: "is crying",
-    explanation: "'Dengar!' adalah sinyal bahwa sesuatu sedang terjadi sekarang (Continuous)."
-  },
-  {
-    id: 7,
-    question: "Saya biasanya ___ musik di mobil.",
-    options: ["listen","am listening","listening"],
-    answer: "listen",
-    explanation: "'Biasanya' menggambarkan kebiasaan (Simple)."
-  },
-  {
-    id: 8,
-    question: "Dia ___ (want) es krim.",
-    options: ["is wanting","wants","want"],
-    answer: "wants",
-    explanation: "'Want' adalah kata kerja stative. Kita tidak menggunakannya dengan -ing."
-  },
-  {
-    id: 9,
-    question: "Ke mana ___ kamu pergi?",
-    options: ["do","are","is"],
-    answer: "are",
-    explanation: "Dengan -ing (going), kita membutuhkan 'are' (To Be). 'Where are you going?'"
-  },
-  {
-    id: 10,
-    question: "Dia ___ bahasa Inggris setiap hari.",
-    options: ["is studying","study","studies"],
-    answer: "studies",
-    explanation: "'Setiap hari' menunjukkan rutinitas (Simple). My brother + studies."
-  },
-  {
-    id: 11,
-    question: "Dengar! Bayi itu ___.",
-    options: ["cries","is crying","cry"],
-    answer: "is crying",
-    explanation: "'Dengar!' adalah sinyal bahwa sesuatu sedang terjadi sekarang (Continuous)."
-  },
-  {
-    id: 12,
-    question: "Saya biasanya ___ musik di mobil.",
-    options: ["listen","am listening","listening"],
-    answer: "listen",
-    explanation: "'Biasanya' menggambarkan kebiasaan (Simple)."
-  },
-  {
-    id: 13,
-    question: "Dia ___ (want) es krim.",
-    options: ["is wanting","wants","want"],
-    answer: "wants",
-    explanation: "'Want' adalah kata kerja stative. Kita tidak menggunakannya dengan -ing."
-  },
-  {
-    id: 14,
-    question: "Ke mana ___ kamu pergi?",
-    options: ["do","are","is"],
-    answer: "are",
-    explanation: "Dengan -ing (going), kita membutuhkan 'are' (To Be). 'Where are you going?'"
-  },
-  {
-    id: 15,
-    question: "Dia ___ bahasa Inggris setiap hari.",
-    options: ["is studying","study","studies"],
-    answer: "studies",
-    explanation: "'Setiap hari' menunjukkan rutinitas (Simple). He + studies."
-  },
-  {
-    id: 16,
-    question: "Dengar! Bayi itu ___.",
-    options: ["cries","is crying","cry"],
-    answer: "is crying",
-    explanation: "'Dengar!' adalah sinyal bahwa sesuatu sedang terjadi sekarang (Continuous)."
-  },
-  {
-    id: 17,
-    question: "Saya biasanya ___ musik di mobil.",
-    options: ["listen","am listening","listening"],
-    answer: "listen",
-    explanation: "'Biasanya' menggambarkan kebiasaan (Simple)."
-  },
-  {
-    id: 18,
-    question: "Dia ___ (want) es krim.",
-    options: ["is wanting","wants","want"],
-    answer: "wants",
-    explanation: "'Want' adalah kata kerja stative. Kita tidak menggunakannya dengan -ing."
-  },
-  {
-    id: 19,
-    question: "Ke mana ___ kamu pergi?",
-    options: ["do","are","is"],
-    answer: "are",
-    explanation: "Dengan -ing (going), kita membutuhkan 'are' (To Be). 'Where are you going?'"
-  },
-  {
-    id: 20,
-    question: "Dia ___ bahasa Inggris setiap hari.",
-    options: ["is studying","study","studies"],
-    answer: "studies",
-    explanation: "'Setiap hari' menunjukkan rutinitas (Simple). He + studies."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[5], 'elementary/grammar/5'));
 
 const ElemGrammarLesson5: React.FC = () => {
   const navigate = useNavigate();

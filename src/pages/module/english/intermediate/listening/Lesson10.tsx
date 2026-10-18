@@ -4,229 +4,10 @@ import { QuizEngine, DialoguePlayer, FillBlankExercise, getCompletedListeningLes
 import type { QuizItem } from './listeningUtils';
 import { Headphones, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateListeningQuizBank } from './quizBank';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "How far is the Pine Valley cabin from the city?",
-    "opts": [
-      "1 hour",
-      "2 hours",
-      "4 hours",
-      "A whole day"
-    ],
-    "ans": "2 hours",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'overcome' mean?",
-    "opts": [
-      "To fail repeatedly",
-      "To successfully deal with a problem",
-      "To ignore an issue",
-      "To cry about something"
-    ],
-    "ans": "To successfully deal with a problem",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the primary goal of the GreenTech app?",
-    "opts": [
-      "To sell solar panels",
-      "To track and lower carbon footprint",
-      "To chat with neighbors",
-      "To play games"
-    ],
-    "ans": "To track and lower carbon footprint",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What should applicants write about in their essay?",
-    "opts": [
-      "Their family tree",
-      "A real challenge they overcame",
-      "Their favorite movies",
-      "What the admission board wants to hear"
-    ],
-    "ans": "A real challenge they overcame",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Where does Elena recommend going for a weekend trip?",
-    "opts": [
-      "Crowded beaches",
-      "Pine Valley mountains",
-      "A big foreign city",
-      "A local shopping mall"
-    ],
-    "ans": "Pine Valley mountains",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the synonym for 'chilly'?",
-    "opts": [
-      "Boiling",
-      "Cold",
-      "Windy",
-      "Sunny"
-    ],
-    "ans": "Cold",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does the nutritionist recommend doing right after waking up?",
-    "opts": [
-      "Check emails",
-      "Drink water",
-      "Go for a run",
-      "Eat breakfast"
-    ],
-    "ans": "Drink water",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the name of the radio host doing the travel show?",
-    "opts": [
-      "Mark",
-      "John",
-      "Kevin",
-      "David"
-    ],
-    "ans": "Kevin",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Who is the guest talking about the tech app?",
-    "opts": [
-      "Maya",
-      "Jenna",
-      "Sarah",
-      "Elena"
-    ],
-    "ans": "Maya",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'authentic' mean in the context of writing an essay?",
-    "opts": [
-      "Copied from the internet",
-      "Fake",
-      "Genuine and real",
-      "Very long"
-    ],
-    "ans": "Genuine and real",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How long should a post-lunch walk be according to David?",
-    "opts": [
-      "5 minutes",
-      "10 minutes",
-      "30 minutes",
-      "1 hour"
-    ],
-    "ans": "10 minutes",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Why should you pack warm clothes for Pine Valley?",
-    "opts": [
-      "Because it snows heavily",
-      "Because it is chilly at night",
-      "Because of the air conditioning",
-      "Because it's currently winter"
-    ],
-    "ans": "Because it is chilly at night",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is Mr. Roberts looking for in a personal essay?",
-    "opts": [
-      "Perfect grammar",
-      "A funny story",
-      "True motivation and character",
-      "A list of awards"
-    ],
-    "ans": "True motivation and character",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "When does the app send an alert to your phone?",
-    "opts": [
-      "When the battery is low",
-      "When someone calls you",
-      "When appliances are left on too long",
-      "When you pay your bills"
-    ],
-    "ans": "When appliances are left on too long",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'fatigue' mean?",
-    "opts": [
-      "Anger",
-      "Happiness",
-      "Extreme tiredness",
-      "Hunger"
-    ],
-    "ans": "Extreme tiredness",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What kind of professional is David?",
-    "opts": [
-      "Surgeon",
-      "Nutritionist",
-      "Dentist",
-      "Personal Trainer"
-    ],
-    "ans": "Nutritionist",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does GreenTech Solutions' new app do?",
-    "opts": [
-      "Sells electronics",
-      "Tracks electricity usage",
-      "Plays music",
-      "Calls an electrician"
-    ],
-    "ans": "Tracks electricity usage",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the meaning of 'usage'?",
-    "opts": [
-      "The amount of something that is used",
-      "Paying a bill",
-      "Electric wires",
-      "A new mobile phone"
-    ],
-    "ans": "The amount of something that is used",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Which of the following is a 'hidden gem' according to the travel context?",
-    "opts": [
-      "A popular tourist trap",
-      "An undiscovered, great place to visit",
-      "A literal diamond",
-      "A closed restaurant"
-    ],
-    "ans": "An undiscovered, great place to visit",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does a 10-minute walk after lunch prevent?",
-    "opts": [
-      "Evening fatigue",
-      "Heart disease",
-      "Morning sickness",
-      "Getting bored"
-    ],
-    "ans": "Evening fatigue",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateListeningQuizBank[10], 'intermediate/listening/10');
 
 export default function InterListeningLesson10(): React.ReactElement {
   const navigate = useNavigate();
@@ -237,9 +18,9 @@ export default function InterListeningLesson10(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(10); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Nutritionist","id":"Ahli Gizi"},{"en":"Habits","id":"Kebiasaan"},{"en":"Routine","id":"Rutinitas"},{"en":"Digestion","id":"Pencernaan"}];
-  const DIALOGUE = [{"speaker":"Host","text":"Welcome to the 'Daily Health' podcast. I'm Jenna. Today my guest is nutritionist David. We are checking out simple healthy habits you can easily add to your busy routine. Thanks for coming, David.","translation":"Selamat datang di podcast 'Kesehatan Harian'. Saya Jenna. Hari ini tamu saya adalah ahli gizi David. Kita akan melihat kebiasaan sehat sederhana yang dapat dengan mudah ditambahkan ke rutinitas sibuk Anda. Terima kasih telah datang, David.","avatar":"🎙️"},{"speaker":"David","text":"Thanks for having me, Jenna. A great start is drinking water right after you wake up. Also, taking a short ten-minute walk after lunch dramatically improves digestion and reduces evening fatigue.","translation":"Terima kasih telah mengundang saya, Jenna. Awal yang baik adalah meminum air putih segera setelah bangun. Selain itu, berjalan kaki singkat sepuluh menit setelah makan siang secara dramatis memperbaiki pencernaan dan mengurangi kelelahan di sore hari.","avatar":"👨‍⚕️"}];
-  const BLANKS = [{"sentence":"We are checking out simple healthy ___ you can add to your routine.","blank":"habits","opts":["habits","books","clothes","foods"],"hint":"Kebiasaan"},{"sentence":"Drinking water right after you ___ up.","blank":"wake","opts":["wake","stand","look","give"],"hint":"Bangun tidur"},{"sentence":"Taking a 10-minute walk improves ___.","blank":"digestion","opts":["digestion","sleep","hair","vision"],"hint":"Pencernaan"}];
+  const vocab = [{"en":"Costly","id":"Mahal"},{"en":"Shopping list","id":"Daftar belanja"},{"en":"Batch cook","id":"Memasak banyak sekaligus"},{"en":"Nutritious","id":"Bergizi"}];
+  const DIALOGUE = [{"speaker":"Host","text":"Welcome to 'Eat Well, Spend Less'. I'm Olivia. Lots of listeners tell us that healthy food is too expensive, so I've invited Ben, who runs cookery classes at our community centre. Ben, is eating well really that costly?","translation":"Selamat datang di 'Eat Well, Spend Less'. Saya Olivia. Banyak pendengar mengatakan kepada kami bahwa makanan sehat terlalu mahal, jadi saya mengundang Ben, yang mengadakan kelas memasak di balai warga kami. Ben, apakah makan sehat memang semahal itu?","avatar":"🎙️"},{"speaker":"Ben","text":"Not at all, Olivia. The secret is planning. On Sunday, I write a menu for the week and only buy what's on my shopping list. That way, I waste less food and I'm not tempted by snacks.","translation":"Sama sekali tidak, Olivia. Rahasianya adalah perencanaan. Pada hari Minggu, saya menulis menu untuk seminggu dan hanya membeli apa yang ada di daftar belanja saya. Dengan begitu, saya membuang lebih sedikit makanan dan tidak tergoda membeli camilan.","avatar":"👨‍🍳"},{"speaker":"Host","text":"Do you cook every single evening?","translation":"Apakah Anda memasak setiap malam?","avatar":"🎙️"},{"speaker":"Ben","text":"No, I batch cook. I make a big pot of vegetable soup or lentil curry, divide it into portions and freeze them. Frozen vegetables are a great choice too – they're cheap and just as nutritious as fresh ones.","translation":"Tidak, saya memasak dalam jumlah besar sekaligus. Saya membuat sepanci besar sup sayur atau kari kacang lentil, membaginya menjadi beberapa porsi, lalu membekukannya. Sayuran beku juga pilihan yang bagus – harganya murah dan sama bergizinya dengan sayuran segar.","avatar":"👨‍🍳"},{"speaker":"Host","text":"Brilliant. So a little preparation at the weekend saves both time and money.","translation":"Luar biasa. Jadi sedikit persiapan di akhir pekan menghemat waktu sekaligus uang.","avatar":"🎙️"}];
+  const BLANKS = [{"sentence":"I only buy what's on my shopping ___.","blank":"list","opts":["list","bag","trolley","card"],"hint":"Daftar"},{"sentence":"I make a big pot of soup, divide it into portions and ___ them.","blank":"freeze","opts":["freeze","sell","paint","wash"],"hint":"Membekukan"},{"sentence":"Frozen vegetables are cheap and just as ___ as fresh ones.","blank":"nutritious","opts":["nutritious","expensive","heavy","noisy"],"hint":"Bergizi"}];
 
   return (
     <>
@@ -267,7 +48,7 @@ export default function InterListeningLesson10(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Healthy Lifestyle Habits</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Eat Well, Spend Less</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L10</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -295,7 +76,7 @@ export default function InterListeningLesson10(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Healthy Habits</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio: Eat Well, Spend Less</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -315,7 +96,7 @@ export default function InterListeningLesson10(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Podcast: Healthy Habits" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Radio: Eat Well, Spend Less" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

@@ -65,49 +65,49 @@ const ASSESSMENT_QUESTIONS = [
   {
     id: 1,
     question: "She ___ to the gym every Monday.",
-    options: ['go', 'goes', 'going'],
+    options: ['going', 'goes', 'go'],
     answer: 'goes',
     explanation: "Present Simple: Orang ketiga tunggal (She) menambahkan -es pada 'go'."
   },
   {
     id: 2,
     question: "___ you play tennis yesterday?",
-    options: ['Do', 'Did', 'Are'],
+    options: ['Did', 'Are', 'Do'],
     answer: 'Did',
     explanation: "Pertanyaan Past Simple menggunakan 'Did' + Kata Kerja Dasar."
   },
   {
     id: 3,
     question: "There ___ two birds in the tree.",
-    options: ['is', 'are', 'am'],
+    options: ['am', 'are', 'is'],
     answer: 'are',
     explanation: "'Two birds' jamak, jadi kita gunakan 'There are'."
   },
   {
     id: 4,
     question: "I want to eat ___ apple.",
-    options: ['a', 'an', 'the'],
+    options: ['a', 'the', 'an'],
     answer: 'an',
     explanation: "Apple dimulai dengan bunyi vokal, jadi kita gunakan 'an'."
   },
   {
     id: 5,
     question: "He ___ swim very well.",
-    options: ['no can', 'cannot', 'don\'t can'],
+    options: ['cannot', 'don\'t can', 'no can'],
     answer: 'cannot',
     explanation: "Negatif dari 'can' adalah 'cannot' (atau 'can't'). Kita tidak pernah mengatakan 'don't can'."
   },
   {
     id: 6,
     question: "My birthday is ___ October.",
-    options: ['on', 'at', 'in'],
+    options: ['at', 'in', 'on'],
     answer: 'in',
     explanation: "Untuk bulan, kita gunakan kata depan 'IN'."
   },
   {
     id: 7,
     question: "___ open the window, please.",
-    options: ['Not', 'Don\'t', 'No'],
+    options: ['No', 'Not', 'Don\'t'],
     answer: 'Don\'t',
     explanation: "Imperatif negatif selalu dimulai dengan 'Don't'."
   },
@@ -121,84 +121,84 @@ const ASSESSMENT_QUESTIONS = [
   {
     id: 9,
     question: "Where ___ you live?",
-    options: ['do', 'does', 'are'],
+    options: ['does', 'do', 'are'],
     answer: 'do',
     explanation: "Pertanyaan dengan 'You' menggunakan kata bantu 'Do'."
   },
   {
     id: 10,
     question: "This is ___ book.",
-    options: ['my', 'I', 'mine'],
+    options: ['I', 'mine', 'my'],
     answer: 'my',
     explanation: "Kata sifat kepemilikan sebelum kata benda: 'my book'."
   },
   {
     id: 11,
     question: "He ___ (study) English now.",
-    options: ['studies', 'is studying', 'study'],
+    options: ['is studying', 'study', 'studies'],
     answer: 'studies',
     explanation: "Diasumsikan kebiasaan Present Simple: He studies."
   },
   {
     id: 12,
     question: "I usually get up ___ 7 o'clock.",
-    options: ['on', 'in', 'at'],
+    options: ['on', 'at', 'in'],
     answer: 'at',
     explanation: "Untuk waktu jam yang spesifik, kita gunakan 'AT'."
   },
   {
     id: 13,
     question: "Look at ___ moon!",
-    options: ['a', 'an', 'the'],
+    options: ['a', 'the', 'an'],
     answer: 'the',
     explanation: "Kita menggunakan 'the' karena hanya ada satu bulan."
   },
   {
     id: 14,
     question: "___ she like chocolate?",
-    options: ['Do', 'Does', 'Is'],
+    options: ['Is', 'Does', 'Do'],
     answer: 'Does',
     explanation: "Pertanyaan dengan 'She' menggunakan kata bantu 'Does'."
   },
   {
     id: 15,
     question: "I ___ a new car.",
-    options: ['have', 'has', 'haves'],
+    options: ['have', 'haves', 'has'],
     answer: 'have',
     explanation: "'I' menggunakan 'have'. 'He/She/It' menggunakan 'has'."
   },
   {
     id: 16,
     question: "We ___ soccer every Sunday.",
-    options: ['plays', 'playing', 'play'],
+    options: ['plays', 'play', 'playing'],
     answer: 'play',
     explanation: "'We' adalah jamak, jadi gunakan kata kerja dasar 'play'."
   },
   {
     id: 17,
     question: "___ is your name?",
-    options: ['Who', 'What', 'Where'],
+    options: ['What', 'Who', 'Where'],
     answer: 'What',
     explanation: "Menanyakan nama menggunakan 'What'."
   },
   {
     id: 18,
     question: "She can ___ very well.",
-    options: ['cooks', 'cooking', 'cook'],
+    options: ['cook', 'cooking', 'cooks'],
     answer: 'cook',
     explanation: "Setelah 'can' selalu gunakan Kata Kerja Dasar."
   },
   {
     id: 19,
     question: "They ___ happy today.",
-    options: ['is', 'am', 'are'],
+    options: ['are', 'is', 'am'],
     answer: 'are',
     explanation: "'They' pasangannya adalah 'are'."
   },
   {
     id: 20,
     question: "I didn't ___ to school yesterday.",
-    options: ['go', 'went', 'going'],
+    options: ['going', 'went', 'go'],
     answer: 'go',
     explanation: "Setelah 'didn't', gunakan Kata Kerja Dasar."
   }

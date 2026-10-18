@@ -64,7 +64,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 1,
       question: "Kata mana yang ditekan dalam: 'She eats apples'?",
-      options: ['She, Eats', 'Eats, Apples', 'She, Apples'],
+      options: ['Eats, Apples', 'She, Apples', 'She, Eats'],
       answer: 'Eats, Apples',
       explanation: "Verb (Eats) dan Noun (Apples) adalah kata isi. 'She' adalah kata ganti (lemah)."
    },
@@ -79,7 +79,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 3,
       question: "Kata mana yang biasanya TIDAK DITEKAN (Lemah)?",
-      options: ['House', 'Beautiful', 'The'],
+      options: ['The', 'House', 'Beautiful'],
       answer: 'The',
       explanation: "'The' adalah artikel (kata fungsi) dan biasanya diucapkan sangat cepat."
    },
@@ -93,7 +93,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 5,
       question: "Kata mana yang ditekan dalam: 'I love cats'?",
-      options: ['I, Cats', 'Love, Cats', 'I, Love'],
+      options: ['Love, Cats', 'I, Cats', 'I, Love'],
       answer: 'Love, Cats',
       explanation: "Love (verb) dan Cats (noun) adalah kata isi yang ditekan."
    },
@@ -107,7 +107,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 7,
       question: "Kata mana yang TIDAK ditekan dalam: 'The dog is  big'?",
-      options: ['Dog', 'The, Is', 'Big'],
+      options: ['Big', 'Dog', 'The, Is'],
       answer: 'The, Is',
       audioText: "The dog is big",
       explanation: "'The' (artikel) dan 'is' (be verb) adalah kata fungsi yang lemah."
@@ -122,7 +122,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 9,
       question: "Kata mana yang ditekan dalam: 'He runs fast'?",
-      options: ['He, Fast', 'Runs, Fast', 'He, Runs'],
+      options: ['He, Runs', 'Runs, Fast', 'He, Fast'],
       answer: 'Runs, Fast',
       audioText: "He runs fast",
       explanation: "Runs (verb) dan Fast (adverb) adalah kata isi yang ditekan."
@@ -137,7 +137,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 11,
       question: "Kata mana yang ditekan dalam: 'I want to go'?",
-      options: ['I, To', 'Want, Go', 'To, Go'],
+      options: ['Want, Go', 'I, To', 'To, Go'],
       answer: 'Want, Go',
       audioText: "I want to go",
       explanation: "Want dan Go adalah kata kerja (kata isi) yang ditekan."
@@ -145,14 +145,14 @@ const QUIZ_QUESTIONS = [
    {
       id: 12,
       question: "Pronoun (I, You, He, She) biasanya...",
-      options: ['Ditekan kuat', 'Tidak ditekan', 'Kadang ditekan'],
+      options: ['Kadang ditekan', 'Ditekan kuat', 'Tidak ditekan'],
       answer: 'Tidak ditekan',
       explanation: "Pronoun adalah kata fungsi yang biasanya diucapkan cepat dan lemah."
    },
    {
       id: 13,
       question: "Kata mana yang ditekan dalam: 'Cats and dogs'?",
-      options: ['Cats, And, Dogs', 'Cats, Dogs', 'And, Dogs'],
+      options: ['And, Dogs', 'Cats, Dogs', 'Cats, And, Dogs'],
       answer: 'Cats, Dogs',
       audioText: "Cats and dogs",
       explanation: "Cats dan Dogs adalah kata benda (kata isi). 'And' adalah konjungsi lemah."
@@ -160,14 +160,14 @@ const QUIZ_QUESTIONS = [
    {
       id: 14,
       question: "Artikel (a, an, the) biasanya...",
-      options: ['Ditekan kuat', 'Tidak ditekan', 'Selalu ditekan'],
+      options: ['Ditekan kuat', 'Selalu ditekan', 'Tidak ditekan'],
       answer: 'Tidak ditekan',
       explanation: "Artikel adalah kata fungsi yang sangat lemah dan cepat."
    },
    {
       id: 15,
       question: "Kata mana yang ditekan dalam: 'She is happy'?",
-      options: ['She, Is', 'Is, Happy', 'She, Happy'],
+      options: ['Is, Happy', 'She, Happy', 'She, Is'],
       answer: 'She, Happy',
       audioText: "She is happy",
       explanation: "She (untuk penekanan konteks) dan Happy (adjective) ditekan. 'Is' lemah."
@@ -175,14 +175,14 @@ const QUIZ_QUESTIONS = [
    {
       id: 16,
       question: "Negatives (not, don't, can't) biasanya...",
-      options: ['Tidak ditekan', 'Ditekan kuat', 'Sangat lemah'],
+      options: ['Sangat lemah', 'Tidak ditekan', 'Ditekan kuat'],
       answer: 'Ditekan kuat',
       explanation: "Kata negatif biasanya ditekan karena penting untuk makna."
    },
    {
       id: 17,
       question: "Kata mana yang ditekan dalam: 'I don't like it'?",
-      options: ['I, It', "Don't, Like", 'Like, It'],
+      options: ['Like, It', "Don't, Like", 'I, It'],
       answer: "Don't, Like",
       audioText: "I don't like it",
         explanation: "Don't (negative) dan Like (verb) adalah kata penting yang ditekan."
@@ -190,14 +190,14 @@ const QUIZ_QUESTIONS = [
    {
       id: 18,
       question: "Prepositions (in, on, at) biasanya...",
-      options: ['Ditekan kuat', 'Tidak ditekan', 'Kadang ditekan'],
+      options: ['Tidak ditekan', 'Ditekan kuat', 'Kadang ditekan'],
       answer: 'Tidak ditekan',
       explanation: "Preposisi adalah kata fungsi yang lemah."
    },
    {
       id: 19,
       question: "Kata mana yang ditekan dalam: 'Go to the park'?",
-      options: ['Go, Park', 'To, Park', 'The, Park'],
+      options: ['The, Park', 'Go, Park', 'To, Park'],
       answer: 'Go, Park',
       audioText: "Go to the park",
       explanation: "Go (verb) dan Park (noun) adalah kata isi. 'To' dan 'the' lemah."
@@ -205,7 +205,7 @@ const QUIZ_QUESTIONS = [
    {
       id: 20,
       question: "Kenapa kita tidak menekan semua kata dalam bahasa Inggris?",
-      options: ['Terlalu lelah', 'Untuk membuat irama alami', 'Tidak ada alasan'],
+      options: ['Terlalu lelah', 'Tidak ada alasan', 'Untuk membuat irama alami'],
       answer: 'Untuk membuat irama alami',
       explanation: "Bahasa Inggris memiliki irama stress-timed yang membuat ucapan alami dan musikal."
    }

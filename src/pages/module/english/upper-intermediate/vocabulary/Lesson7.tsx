@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { upperInterVocabularyQuizBank } from './quizBank';
 interface VocabItem { word: string; ipa: string; meaning: string; }
 interface QuizItem { q: string; opts: string[]; ans: string; exp: string; }
 
@@ -63,330 +65,109 @@ const CAT1: VocabItem[] = [
 ];
 const CAT2: VocabItem[] = [
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Commission",
+    "ipa": "/kəˈmɪʃən/",
+    "meaning": "Memesan karya seni secara resmi"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Exhibit",
+    "ipa": "/ɪɡˈzɪbɪt/",
+    "meaning": "Memamerkan karya di galeri atau museum"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Depict",
+    "ipa": "/dɪˈpɪkt/",
+    "meaning": "Menggambarkan dalam lukisan atau karya"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Portray",
+    "ipa": "/pɔːˈtreɪ/",
+    "meaning": "Memerankan atau menggambarkan tokoh"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Compose",
+    "ipa": "/kəmˈpəʊz/",
+    "meaning": "Menggubah musik"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Choreograph",
+    "ipa": "/ˈkɒriəɡrɑːf/",
+    "meaning": "Menata gerak tari (koreografi)"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Sculpt",
+    "ipa": "/skʌlpt/",
+    "meaning": "Memahat patung"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Rehearse",
+    "ipa": "/rɪˈhɜːs/",
+    "meaning": "Berlatih sebelum pertunjukan"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Revive",
+    "ipa": "/rɪˈvaɪv/",
+    "meaning": "Menghidupkan kembali tradisi atau karya lama"
   },
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Showcase",
+    "ipa": "/ˈʃəʊkeɪs/",
+    "meaning": "Menampilkan bakat atau karya"
   }
 ];
 const CAT3: VocabItem[] = [
   {
-    "word": "Innovate",
-    "ipa": "/ˈɪnəveɪt/",
-    "meaning": "Berinovasi – memperkenalkan perubahan baru"
+    "word": "Work of art",
+    "ipa": "/wɜːk əv ɑːt/",
+    "meaning": "Karya seni"
   },
   {
-    "word": "Perspective",
-    "ipa": "/pərˈspektɪv/",
-    "meaning": "Perspektif – sudut pandang tertentu"
+    "word": "Standing ovation",
+    "ipa": "/ˈstændɪŋ əʊˈveɪʃən/",
+    "meaning": "Tepuk tangan meriah sambil berdiri"
   },
   {
-    "word": "Implication",
-    "ipa": "/ˌɪmplɪˈkeɪʃən/",
-    "meaning": "Implikasi – konsekuensi tidak langsung"
+    "word": "Critical acclaim",
+    "ipa": "/ˈkrɪtɪkəl əˈkleɪm/",
+    "meaning": "Pujian luas dari para kritikus"
   },
   {
-    "word": "Controversy",
-    "ipa": "/ˈkɒntrəvɜːrsi/",
-    "meaning": "Kontroversi – perdebatan publik yang serius"
+    "word": "Open to interpretation",
+    "ipa": "/ˈəʊpən tə ɪnˌtɜːprɪˈteɪʃən/",
+    "meaning": "Terbuka untuk berbagai tafsiran"
   },
   {
-    "word": "Implement",
-    "ipa": "/ˈɪmplɪment/",
-    "meaning": "Mengimplementasikan – menerapkan rencana"
+    "word": "Behind the scenes",
+    "ipa": "/bɪˈhaɪnd ðə siːnz/",
+    "meaning": "Di balik layar"
   },
   {
-    "word": "Acknowledge",
-    "ipa": "/əkˈnɒlɪdʒ/",
-    "meaning": "Mengakui / mengakui keberadaan sesuatu"
+    "word": "Box-office hit",
+    "ipa": "/ˈbɒks ˌɒfɪs hɪt/",
+    "meaning": "Film yang laris di bioskop"
   },
   {
-    "word": "Substantial",
-    "ipa": "/səbˈstænʃəl/",
-    "meaning": "Substansial – besar atau penting secara signifikan"
+    "word": "Art for art's sake",
+    "ipa": "/ɑːt fər ɑːts seɪk/",
+    "meaning": "Seni demi seni itu sendiri"
   },
   {
-    "word": "Navigate",
-    "ipa": "/ˈnævɪɡeɪt/",
-    "meaning": "Menavigasi – menemukan jalan melalui suatu situasi"
+    "word": "Stage fright",
+    "ipa": "/steɪdʒ fraɪt/",
+    "meaning": "Demam panggung"
   },
   {
-    "word": "Advocate",
-    "ipa": "/ˈædvəkeɪt/",
-    "meaning": "Mengadvokasi – mendukung secara aktif sebuah cause"
+    "word": "Sell-out show",
+    "ipa": "/ˈsel aʊt ʃəʊ/",
+    "meaning": "Pertunjukan yang tiketnya habis terjual"
   },
   {
-    "word": "Emerge",
-    "ipa": "/ɪˈmɜːrdʒ/",
-    "meaning": "Muncul – menjadi terlihat atau dikenal"
+    "word": "Street art",
+    "ipa": "/striːt ɑːt/",
+    "meaning": "Seni jalanan seperti mural dan grafiti"
   }
 ];
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Which word best describes introducing a new idea in the field of Arts & Culture?",
-    "opts": [
-      "Innovate",
-      "Navigate",
-      "Acknowledge",
-      "Emerge"
-    ],
-    "ans": "Innovate",
-    "exp": "To innovate berarti memperkenalkan ide, metode, atau produk baru yang mengubah cara sesuatu dilakukan."
-  },
-  {
-    "q": "A point of view or way of thinking is called a ___",
-    "opts": [
-      "Perspective",
-      "Controversy",
-      "Implication",
-      "Advocate"
-    ],
-    "ans": "Perspective",
-    "exp": "Perspective adalah cara melihat atau memaknai sesuatu berdasarkan sudut pandang tertentu."
-  },
-  {
-    "q": "The indirect consequence of an action is its ___",
-    "opts": [
-      "Implement",
-      "Substantial",
-      "Implication",
-      "Navigate"
-    ],
-    "ans": "Implication",
-    "exp": "Implication adalah efek atau konsekuensi tidak langsung dari suatu tindakan atau pernyataan."
-  },
-  {
-    "q": "A public debate where people strongly disagree is called a ___",
-    "opts": [
-      "Controversy",
-      "Perspective",
-      "Implementation",
-      "Emergence"
-    ],
-    "ans": "Controversy",
-    "exp": "Controversy adalah perdebatan atau perselisihan publik yang hangat dan seringkali berlangsung lama."
-  },
-  {
-    "q": "To put a plan or policy into action is to ___ it.",
-    "opts": [
-      "Acknowledge",
-      "Advocate",
-      "Navigate",
-      "Implement"
-    ],
-    "ans": "Implement",
-    "exp": "To implement berarti menerapkan atau melaksanakan suatu rencana, kebijakan, atau sistem."
-  },
-  {
-    "q": "To admit or recognize something officially is to ___ it.",
-    "opts": [
-      "Emerge",
-      "Acknowledge",
-      "Innovate",
-      "Implement"
-    ],
-    "ans": "Acknowledge",
-    "exp": "To acknowledge berarti mengakui atau mengakui secara resmi keberadaan atau kebenaran sesuatu."
-  },
-  {
-    "q": "A ___ amount is one that is large and significant.",
-    "opts": [
-      "Potential",
-      "Controversial",
-      "Substantial",
-      "Emerging"
-    ],
-    "ans": "Substantial",
-    "exp": "Substantial berarti besar, signifikan, atau cukup penting untuk diperhatikan."
-  },
-  {
-    "q": "To ___ a complex situation means to successfully manage your way through it.",
-    "opts": [
-      "Emerge",
-      "Advocate",
-      "Navigate",
-      "Innovate"
-    ],
-    "ans": "Navigate",
-    "exp": "To navigate berarti menemukan cara untuk melewati situasi yang kompleks atau sulit."
-  },
-  {
-    "q": "Someone who publicly supports a cause is called an ___",
-    "opts": [
-      "Innovator",
-      "Advocate",
-      "Perspective",
-      "Enabler"
-    ],
-    "ans": "Advocate",
-    "exp": "An advocate adalah orang yang secara aktif mendukung atau membela sebuah cause atauide."
-  },
-  {
-    "q": "When a new trend ___ it becomes gradually visible in society.",
-    "opts": [
-      "Innovates",
-      "Navigates",
-      "Emerges",
-      "Implements"
-    ],
-    "ans": "Emerges",
-    "exp": "To emerge berarti muncul atau menjadi terlihat secara bertahap, seringkali dari situasi tersembunyi."
-  },
-  {
-    "q": "The act of putting a strategy into practice is called its ___",
-    "opts": [
-      "Innovation",
-      "Implication",
-      "Implementation",
-      "Controversy"
-    ],
-    "ans": "Implementation",
-    "exp": "Implementation adalah proses penerapan nyata dari rencana, kebijakan, atau sistem."
-  },
-  {
-    "q": "To look at a problem from a different ___ can reveal new solutions.",
-    "opts": [
-      "Implication",
-      "Advocacy",
-      "Perspective",
-      "Innovation"
-    ],
-    "ans": "Perspective",
-    "exp": "Perspective berbeda berarti melihat masalah dari sudut pandang yang berbeda untuk mendapatkan solusi baru."
-  },
-  {
-    "q": "Which adjective describes something that is significant and important in size or scale?",
-    "opts": [
-      "Emerging",
-      "Substantial",
-      "Controversial",
-      "Innovative"
-    ],
-    "ans": "Substantial",
-    "exp": "Substantial digunakan untuk menggambarkan sesuatu yang besar, bermakna, atau signifikan."
-  },
-  {
-    "q": "New technologies ___ from scientific research constantly.",
-    "opts": [
-      "Advocate",
-      "Navigate",
-      "Innovate",
-      "Emerge"
-    ],
-    "ans": "Emerge",
-    "exp": "Teknologi baru emerge (muncul) dari penelitian ilmiah secara terus-menerus."
-  },
-  {
-    "q": "The ___ of a new policy on society must be carefully considered.",
-    "opts": [
-      "Innovation",
-      "Controversy",
-      "Implications",
-      "Navigation"
-    ],
-    "ans": "Implications",
-    "exp": "Implications of a policy adalah dampak atau konsekuensi tidak langsung yang perlu dianalisis."
-  },
-  {
-    "q": "To ___ a cause means to speak in its defense publicly.",
-    "opts": [
-      "Implement",
-      "Acknowledge",
-      "Navigate",
-      "Advocate"
-    ],
-    "ans": "Advocate",
-    "exp": "To advocate for something berarti berbicara atau bertindak mendukung sebuah tujuan atau cause."
-  },
-  {
-    "q": "A solution that is creative and uses new methods is called ___",
-    "opts": [
-      "Substantial",
-      "Controversial",
-      "Innovative",
-      "Navigable"
-    ],
-    "ans": "Innovative",
-    "exp": "Innovative berarti menggunakan pendekatan atau ide baru yang kreatif dan berbeda dari yang sudah ada."
-  },
-  {
-    "q": "Accepting and admitting mistakes is important for ___",
-    "opts": [
-      "Navigation",
-      "Controversy",
-      "Acknowledgement",
-      "Innovation"
-    ],
-    "ans": "Acknowledgement",
-    "exp": "Acknowledgement of mistakes berarti pengakuan resmi atas kesalahan, penting untuk kepercayaan dan integritas."
-  },
-  {
-    "q": "The new policy promised to ___ a national digital education programme.",
-    "opts": [
-      "Acknowledge",
-      "Navigate",
-      "Emerge",
-      "Implement"
-    ],
-    "ans": "Implement",
-    "exp": "To implement a programme berarti menerapkan dan menjalankan program tersebut secara aktif."
-  },
-  {
-    "q": "An issue that causes strong public disagreement is described as ___",
-    "opts": [
-      "Substantial",
-      "Innovative",
-      "Controversial",
-      "Navigable"
-    ],
-    "ans": "Controversial",
-    "exp": "Controversial mendeskripsikan topik atau isu yang memancing perdebatan kuat dan perbedaan pendapat."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(upperInterVocabularyQuizBank[7], 'upper-intermediate/vocabulary/7');
 
 const UpperInterVocabLesson7: React.FC = () => {
   const navigate = useNavigate();

@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, FlameIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 type WeakWordGroup = {
   category: string;
   color: string;
@@ -63,148 +65,7 @@ const PRACTICE_SENTENCES = [
   { id: 4, text: "Wait for us at the door.", weakWords: ["for", "at", "the"], focus: "for (/fər/), at (/ət/)" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Kapan kata 'CAN' biasanya kuat (/kæn/)?",
-    options: ['Dalam kalimat biasa', 'Di akhir kalimat ("Yes, I can")', 'Tidak pernah'],
-    answer: 'Di akhir kalimat ("Yes, I can")',
-    explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
-  },
-  {
-    id: 2,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming'?",
-    options: ['/fɔːr/ (Four)', '/fər/ (Fur)'],
-    answer: '/fər/ (Fur)',
-    explanation: "Ia direduksi menjadi bentuk lemah /fər/."
-  },
-  {
-    id: 3,
-    question: "Suara mana yang mewakili vokal lemah (Schwa)?",
-    options: ['/ə/', '/e/', '/i/'],
-    answer: '/ə/',
-    explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
-  },
-  {
-    id: 4,
-    question: "Dengarkan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ['Menjadi Kuat', 'Menjadi Lemah (/n/)'],
-    answer: 'Menjadi Lemah (/n/)',
-    explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
-  },
-  {
-    id: 5,
-    question: "Kapan kata 'CAN' biasanya kuat (/kæn/)?",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
-    answer: "Di akhir kalimat (\"Yes, I can\")",
-    explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
-  },
-  {
-    id: 6,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming' ?",
-    options: ["/fɔːr/ (Four)","/fər/ (Fur)"],
-    answer: "/fər/ (Fur)",
-    explanation: "Ia direduksi menjadi bentuk lemah /fər/."
-  },
-  {
-    id: 7,
-    question: "Suara mana yang mewakili vokal lemah (Schwa)?",
-    options: ["/ə/","/e/","/i/"],
-    answer: "/ə/",
-    explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
-  },
-  {
-    id: 8,
-    question: "Perhatikan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
-    answer: "Menjadi Lemah (/n/)",
-    explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
-  },
-  {
-    id: 9,
-    question: "Kapan kata 'CAN' biasanya kuat (/kæn/) ?",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
-    answer: "Di akhir kalimat (\"Yes, I can\")",
-    explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
-  },
-  {
-    id: 10,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming'...",
-    options: ["/fɔːr/ (Four)","/fər/ (Fur)"],
-    answer: "/fər/ (Fur)",
-    explanation: "Ia direduksi menjadi bentuk lemah /fər/."
-  },
-  {
-    id: 11,
-    question: "Suara mana yang mewakili vokal lemah (Schwa)?",
-    options: ["/ə/","/e/","/i/"],
-    answer: "/ə/",
-    explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
-  },
-  {
-    id: 12,
-    question: "Dengarkan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
-    answer: "Menjadi Lemah (/n/)",
-    explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
-  },
-  {
-    id: 13,
-    question: "Kapan kata 'CAN' biasanya kuat (/kæn/)?",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
-    answer: "Di akhir kalimat (\"Yes, I can\")",
-    explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
-  },
-  {
-    id: 14,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming'...",
-    options: ["/fɔːr/ (Four)","/fər/ (Fur)"],
-    answer: "/fər/ (Fur)",
-    explanation: "Ia direduksi menjadi bentuk lemah /fər/."
-  },
-  {
-    id: 15,
-    question: "Suara mana yang mewakili vokal lemah (Schwa)...",
-    options: ["/ə/","/e/","/i/"],
-    answer: "/ə/",
-    explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
-  },
-  {
-    id: 16,
-    question: "Fokus pada: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
-    answer: "Menjadi Lemah (/n/)",
-    explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
-  },
-  {
-    id: 17,
-    question: "Kapan kata 'CAN' biasanya kuat (/kæn/)...",
-    options: ["Dalam kalimat biasa","Di akhir kalimat (\"Yes, I can\")","Tidak pernah"],
-    answer: "Di akhir kalimat (\"Yes, I can\")",
-    explanation: "Kata fungsi kuat ketika berada di akhir kalimat atau ditekankan."
-  },
-  {
-    id: 18,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'FOR' dalam 'Thanks for coming'?",
-    options: ["/fɔːr/ (Four)","/fər/ (Fur)"],
-    answer: "/fər/ (Fur)",
-    explanation: "Ia direduksi menjadi bentuk lemah /fər/."
-  },
-  {
-    id: 19,
-    question: "Suara mana yang mewakili vokal lemah (Schwa) ?",
-    options: ["/ə/","/e/","/i/"],
-    answer: "/ə/",
-    explanation: "Schwa /ə/ adalah suara paling umum dalam bahasa Inggris, digunakan dalam bentuk lemah."
-  },
-  {
-    id: 20,
-    question: "Dengarkan: 'Rock n Roll'. Apa yang terjadi pada 'AND'?",
-    options: ["Menjadi Kuat","Menjadi Lemah (/n/)"],
-    answer: "Menjadi Lemah (/n/)",
-    explanation: "'And' sering kehilangan suara 'd' dan 'a', menjadi hanya 'n'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[5], 'elementary/pronunciation/5'));
 
 const ElemPronunLesson5: React.FC = () => {
   const navigate = useNavigate();

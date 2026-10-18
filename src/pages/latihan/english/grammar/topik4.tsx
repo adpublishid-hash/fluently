@@ -123,24 +123,24 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "prepositions-time-place-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Prepositions of Time & Place): Complete: The meeting is ____ Monday.",
-      "answer": "on",
+      "prompt": "Basic grammar check (Prepositions of Time & Place): Complete: My birthday is ____ July.",
+      "answer": "in",
       "options": [
-        "on",
-        "in",
         "at",
-        "by"
+        "to",
+        "on",
+        "in"
       ]
     },
     {
       "id": "prepositions-time-place-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Prepositions of Time & Place): Complete: She lives ____ Jakarta.",
-      "answer": "in",
+      "prompt": "Basic grammar check (Prepositions of Time & Place): Complete: The picture is ____ the wall.",
+      "answer": "on",
       "options": [
-        "on",
         "at",
         "to",
+        "on",
         "in"
       ]
     },
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "prepositions-time-place-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Prepositions of Time & Place): Complete: I wake up ____ 6 a.m.",
-      "answer": "at",
+      "prompt": "Choose the best structure (Prepositions of Time & Place): Complete: We met ____ the bus stop ____ 8 o'clock.",
+      "answer": "at / at",
       "options": [
-        "on",
-        "in",
-        "from",
-        "at"
+        "at / at",
+        "on / in",
+        "at / on",
+        "in / on"
       ]
     },
     {
       "id": "prepositions-time-place-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Prepositions of Time & Place): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Prepositions of Time & Place): Complete: The shop is closed ____ Christmas Day.",
+      "answer": "on",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "at",
+        "during",
+        "in",
+        "on"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "prepositions-time-place-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Prepositions of Time & Place): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Prepositions of Time & Place): Complete: The contract must be signed ____ the end of the month at the latest.",
+      "answer": "by",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "until",
+        "till",
+        "in",
+        "by"
       ]
     },
     {
       "id": "prepositions-time-place-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Prepositions of Time & Place): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Prepositions of Time & Place): Complete: Applications will be accepted ____ 1 May onwards.",
+      "answer": "from",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "from",
+        "by",
+        "until",
+        "since"
       ]
     }
   ],
@@ -485,24 +485,24 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "prepositions-time-place-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Prepositions of Time & Place): Complete: The meeting is ____ Monday.",
-      "answer": "on",
+      "prompt": "Cek grammar dasar (Prepositions of Time & Place): Complete: My birthday is ____ July.",
+      "answer": "in",
       "options": [
-        "on",
-        "in",
         "at",
-        "by"
+        "to",
+        "on",
+        "in"
       ]
     },
     {
       "id": "prepositions-time-place-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Prepositions of Time & Place): Complete: She lives ____ Jakarta.",
-      "answer": "in",
+      "prompt": "Cek grammar dasar (Prepositions of Time & Place): Complete: The picture is ____ the wall.",
+      "answer": "on",
       "options": [
-        "on",
         "at",
         "to",
+        "on",
         "in"
       ]
     },
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "prepositions-time-place-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Prepositions of Time & Place): Complete: I wake up ____ 6 a.m.",
-      "answer": "at",
+      "prompt": "Pilih struktur terbaik (Prepositions of Time & Place): Complete: We met ____ the bus stop ____ 8 o'clock.",
+      "answer": "at / at",
       "options": [
-        "on",
-        "in",
-        "from",
-        "at"
+        "at / at",
+        "on / in",
+        "at / on",
+        "in / on"
       ]
     },
     {
       "id": "prepositions-time-place-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Prepositions of Time & Place): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Prepositions of Time & Place): Complete: The shop is closed ____ Christmas Day.",
+      "answer": "on",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "at",
+        "during",
+        "in",
+        "on"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "prepositions-time-place-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Prepositions of Time & Place): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Prepositions of Time & Place): Complete: The contract must be signed ____ the end of the month at the latest.",
+      "answer": "by",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "until",
+        "till",
+        "in",
+        "by"
       ]
     },
     {
       "id": "prepositions-time-place-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Prepositions of Time & Place): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Prepositions of Time & Place): Complete: Applications will be accepted ____ 1 May onwards.",
+      "answer": "from",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "from",
+        "by",
+        "until",
+        "since"
       ]
     }
   ]

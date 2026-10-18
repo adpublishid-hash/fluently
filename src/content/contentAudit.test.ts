@@ -5,6 +5,12 @@ import { arabicLessonCounts } from '../pages/module/arabic/arabicModuleData';
 // Quality gate for generated lessons in every language and level.
 const audits = runContentAudit();
 
+// English pages whose quiz lives inside the component and still repeats
+// templated questions; each floor only stops it from getting worse.
+const knownLowVariety: Record<string, number> = {
+};
+const knownDuplicateLessons = new Set<string>();
+
 describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] as const))('%s', (_, audit) => {
   it('has lessons with practice questions', () => {
     expect(audit.lessons).toBeGreaterThan(0);
@@ -16,6 +22,7 @@ describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] 
   });
 
   it('has no duplicated lessons', () => {
+    if (knownDuplicateLessons.has(`${audit.language}/${audit.level}`)) return;
     expect(audit.duplicateLessons).toEqual([]);
   });
 
@@ -23,9 +30,13 @@ describe.each(audits.map((audit) => [`${audit.language}/${audit.level}`, audit] 
     expect(audit.answerFirstRatio).toBeLessThan(0.5);
   });
 
-  // Guards against shared drills flooding every lesson of a level again.
+  // Guards against shared drills flooding every lesson of a level again
+  // (every level is at 84% or more; this leaves a small margin). The English
+  // groups listed in knownLowVariety still repeat templated questions; their
+  // floor only stops them from getting worse until they are rewritten.
   it('keeps most practice questions varied across lessons', () => {
-    expect(audit.uniqueQuestionRatio).toBeGreaterThan(0.35);
+    const floor = knownLowVariety[`${audit.language}/${audit.level}`] ?? 0.8;
+    expect(audit.uniqueQuestionRatio).toBeGreaterThan(floor);
   });
 });
 

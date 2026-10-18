@@ -4,29 +4,11 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-    { q: 'What is the main purpose of Sarah’s letter?', opts: ["To invite Jane to a party","To update Jane about her new job and life","To complain about her boss","To ask for money"], ans: "To update Jane about her new job and life", exp: 'Surat ini berisi pembaruan tentang kehidupan dan pekerjaan barunya (updating about new job and life).' },
-    { q: 'How long has Sarah been working at the new company?', opts: ["A few days","Almost a month","Six months","A year"], ans: "Almost a month", exp: 'Di paragraf pertama ia menyebutkan "It’s been almost a month since I started my new job..."' },
-    { q: 'What is Sarah’s current position?', opts: ["Graphic Designer","Junior Marketing Assistant","Marketing Manager","Sales Executive"], ans: "Junior Marketing Assistant", exp: 'Ia menyebut peran barunya sebagai "Junior Marketing Assistant" di agensi.' },
-    { q: 'How did Sarah feel during her first week?', opts: ["Very confident and relaxed","Excited but overwhelmed","Bored and tired","Angry and frustrated"], ans: "Excited but overwhelmed", exp: 'Di awal ia merasa "I was quite overwhelmed at first..." (Awalnya saya cukup kewalahan).' },
-    { q: 'What kind of tasks does Sarah do every day?', opts: ["Only making coffee for the boss","Writing code for websites","Writing social media posts and analyzing data","Calling customers to sell products"], ans: "Writing social media posts and analyzing data", exp: 'Tugasnya meliputi "drafting social media posts and analyzing engagement metrics".' },
-    { q: 'Who is Mr. Peterson?', opts: ["Sarah’s colleague","Sarah’s manager","Jane’s boss","A client"], ans: "Sarah’s manager", exp: 'Mr. Peterson disebutkan sebagai "My manager, Mr. Peterson..."' },
-    { q: 'What does Sarah think about Mr. Peterson?', opts: ["He is strict but supportive.","He is lazy and rude.","He doesn't care about the team.","He gives too much unpaid work."], ans: "He is strict but supportive.", exp: 'Ia dideskripsikan sebagai "strict when it comes to deadlines, but he’s incredibly supportive." (Tegas tetapi sangat mendukung).' },
-    { q: 'What happened last Friday?', opts: ["Sarah got promoted.","The team had a welcome lunch for Sarah.","Sarah resigned from the job.","They lost a major client."], ans: "The team had a welcome lunch for Sarah.", exp: '"Last Friday, the team took me out for a welcome lunch..."' },
-    { q: 'Where did they go for the welcome lunch?', opts: ["A French bakery","An Italian restaurant near the office","A fast-food chain","A coffee shop"], ans: "An Italian restaurant near the office", exp: 'Mereka pergi ke "a fantastic Italian restaurant just around the corner." (restoran Italia terdekat).' },
-    { q: 'What is Sarah’s hope for next month?', opts: ["To quit her job","To lead her own campaign","To travel to Europe","To buy a new car"], ans: "To lead her own campaign", exp: 'Ia berharap: "I really hope to be given the chance to lead my own small campaign next month."' },
-    { q: 'Which phrase is used to describe the coworkers?', opts: ["Competitive and mean","Friendly and welcoming","Quiet and reserved","Lazy and unhelpful"], ans: "Friendly and welcoming", exp: 'Rekan kerjanya dideskripsikan "everyone has been so friendly and welcoming."' },
-    { q: 'What does "overwhelmed" mean in this context?', opts: ["Merasa luar biasa bahagia","Merasa kewalahan atau kelebihan beban","Merasa sangat bosan","Merasa tidak peduli"], ans: "Merasa kewalahan atau kelebihan beban", exp: '"Overwhelmed" berarti merasa terlalu banyak hal yang harus ditangani sekaligus (kewalahan).' },
-    { q: 'Why did Sarah feel overwhelmed initially?', opts: ["Because she hated the office","Because there was so much new information to learn","Because she didn't like Jane","Because her computer was broken"], ans: "Because there was so much new information to learn", exp: 'Kewalahan terjadi karena "there was so much to learn regarding their internal systems".' },
-    { q: 'What event is happening next weekend?', opts: ["Sarah is moving to a new apartment.","Sarah and Jane are planning to meet for coffee.","There is a company party.","Sarah is going on a business trip."], ans: "Sarah and Jane are planning to meet for coffee.", exp: 'Di akhir surat: "Let’s catch up properly next weekend. Are you free for coffee on Saturday?"' },
-    { q: 'What does "catch up" mean in a personal letter?', opts: ["Berlari bersama","Bertemu untuk saling bertukar kabar","Menangkap bola","Mengejar kereta"], ans: "Bertemu untuk saling bertukar kabar", exp: '"Catch up" adalah phrasal verb umum untuk bertemu teman dan mengobrol tentang kabar terbaru.' },
-    { q: 'What describes the "pace" (ritme) of her new workplace?', opts: ["Very slow","Fast-paced","Relaxed and quiet","Boring"], ans: "Fast-paced", exp: 'Lingkungannya digambarkan sebagai "fast-paced environment".' },
-    { q: 'How does Sarah feel about her teammates?', opts: ["She feels disconnected from them.","She appreciates their help.","She thinks they are not smart.","She has never met them."], ans: "She appreciates their help.", exp: 'Ia menghargai mereka ("they were always ready to answer my questions").' },
-    { q: 'What did they eat at the lunch?', opts: ["Sushi","Pizza and pasta","Burgers","Steak"], ans: "Pizza and pasta", exp: 'Karena itu adalah restoran Italia (Italian restaurant), Pizza dan Pasta adalah makanan khas yang dihidangkan.' },
-    { q: 'Is the tone of this letter formal or informal?', opts: ["Very formal (Business)","Informal (Personal)","Academic","Legal"], ans: "Informal (Personal)", exp: 'Surat ini ditujukan kepada teman ("Dear Jane", "Let\'s catch up"), menggunakan bahasa santai.' },
-    { q: 'What is Sarah seeking in her career right now?', opts: ["Growth and learning opportunities","A chance to sleep at work","A job in a completely different field","Early retirement"], ans: "Growth and learning opportunities", exp: 'Dia berbicara tentang harapannya memimpin kampanye dan belajar dari manajernya, menunjukkan keinginan untuk berkembang.' }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[1], 'intermediate/reading/1');
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -58,10 +40,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   ),
   questions: [
     { q: 'Siapa yang menulis surat ini?', opts: ["Jane", "Sarah", "Mr. Peterson", "Tidak diketahui"], ans: 'Sarah' },
-    { q: 'Berapa lama Sarah sudah bekerja di pekerjaan barunya?', opts: ["1 Tahun", "Hampir sebulan", "Satu minggu", "Baru saja mulai besok"], ans: 'Hampir sebulan' },
-    { q: 'Apa jenis perusahaan tempat Sarah bekerja sekarang?', opts: ["Perusahaan IT", "Agensi Periklanan (Advertising agency)", "Restoran Italia", "Rumah Sakit"], ans: 'Agensi Periklanan (Advertising agency)' },
-    { q: 'Apa yang dilakukan tim Sarah untuk merayakan kedatangannya?', opts: ["Membelikannya mobil", "Mengundangnya makan siang (welcome lunch)", "Memberikan banyak pekerjaan", "Memecatnya"], ans: 'Mengundangnya makan siang (welcome lunch)' },
-    { q: 'Apa harapan Sarah untuk bulan depan secara profesional?', opts: ["Resign dari perusahaan", "Bekerja dari rumah", "Memimpin campaign-nya sendiri", "Menjadi CEO"], ans: 'Memimpin campaign-nya sendiri' },
+    { q: 'Berapa lama Sarah sudah bekerja di pekerjaan barunya?', opts: ["Baru saja mulai besok", "1 Tahun", "Hampir sebulan", "Satu minggu"], ans: 'Hampir sebulan' },
+    { q: 'Apa jenis perusahaan tempat Sarah bekerja sekarang?', opts: ["Perusahaan teknologi informasi (IT company)", "Rumah Sakit", "Restoran Italia", "Agensi Periklanan (Advertising agency)"], ans: 'Agensi Periklanan (Advertising agency)' },
+    { q: 'Apa yang dilakukan tim Sarah untuk merayakan kedatangannya?', opts: ["Mengundangnya makan siang (welcome lunch)", "Memberinya banyak pekerjaan tambahan di hari pertama", "Memecatnya", "Membelikannya mobil"], ans: 'Mengundangnya makan siang (welcome lunch)' },
+    { q: 'Apa harapan Sarah untuk bulan depan secara profesional?', opts: ["Bekerja dari rumah", "Resign dan pindah ke perusahaan lain", "Menjadi CEO", "Memimpin campaign-nya sendiri"], ans: 'Memimpin campaign-nya sendiri' },
   ],
 };
 
@@ -139,12 +121,12 @@ export default function InterReadingLesson1(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Di latihan ini, kamu akan membaca surat dari seorang kerabat. Perhatikan cara ia menceritakan kondisinya di tempat baru:
+                    {lessonTips[1].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Events:</strong> Apa yang terjadi padanya minggu lalu?</li>
-                    <li><strong className="text-slate-800">Feelings:</strong> Bagaimana perasaannya di minggu pertama bekerja?</li>
-                    <li><strong className="text-slate-800">Wishes:</strong> Apa harapannya di masa depan?</li>
+                    {lessonTips[1].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mulai membaca teks!

@@ -56,56 +56,56 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "A video that becomes very popular very quickly is going ___.",
-    options: ['viral', 'glitch', 'wireless'],
+    options: ['wireless', 'glitch', 'viral'],
     answer: 'viral',
     explanation: "Viral (Viral) berarti menyebar dengan cepat melalui internet."
   },
   {
     id: 2,
     question: "You should always ___ your important files to a hard drive.",
-    options: ['hack', 'backup', 'stream'],
+    options: ['stream', 'backup', 'hack'],
     answer: 'backup',
     explanation: "To backup (Mencadangkan) berarti membuat salinan data jika yang asli hilang."
   },
   {
     id: 3,
     question: "This software uses ___ to learn from user behavior.",
-    options: ['Artificial Intelligence', 'Malware', 'Browser'],
+    options: ['Browser', 'Artificial Intelligence', 'Malware'],
     answer: 'Artificial Intelligence',
     explanation: "AI (Kecerdasan Buatan) mengacu pada sistem komputer yang dapat melakukan tugas yang membutuhkan kecerdasan manusia."
   },
   {
     id: 4,
     question: "My phone has a ___; the screen keeps freezing.",
-    options: ['subscription', 'glitch', 'network'],
+    options: ['glitch', 'subscription', 'network'],
     answer: 'glitch',
     explanation: "Glitch (Gangguan) adalah kerusakan mendadak, biasanya sementara."
   },
   {
     id: 5,
     question: "You need to update your ___ to the latest version.",
-    options: ['Operating System', 'Cyberbullying', 'Influencer'],
+    options: ['Cyberbullying', 'Influencer', 'Operating System'],
     answer: 'Operating System',
     explanation: "Operating System (seperti Windows, iOS) perlu pembaruan agar berjalan lancar."
   },
   {
     id: 6,
     question: "The ___ determines what posts you see on social media.",
-    options: ['algorithm', 'interface', 'device'],
+    options: ['algorithm', 'device', 'interface'],
     answer: 'algorithm',
     explanation: "Algorithm (Algoritma) adalah set aturan yang digunakan komputer untuk membuat keputusan tentang konten yang ditampilkan."
   },
   {
     id: 7,
     question: "Many young people want to become social media ___.",
-    options: ['browsers', 'influencers', 'glitches'],
+    options: ['glitches', 'browsers', 'influencers'],
     answer: 'influencers',
     explanation: "Influencers (Pemberi pengaruh) adalah orang yang memiliki kekuatan untuk mempengaruhi keputusan pembelian orang lain."
   },
   {
     id: 8,
     question: "I pay a monthly ___ to watch movies on this ___.",
-    options: ['subscription, platform', 'encryption, device', 'notification, browser'],
+    options: ['notification, browser', 'encryption, device', 'subscription, platform'],
     answer: 'subscription, platform',
     explanation: "Subscription (Langganan) adalah pembayaran berkala untuk layanan di Platform (Wadah digital)."
   },
@@ -119,42 +119,42 @@ const QUIZ_QUESTIONS = [
   {
     id: 10,
     question: "This app is not ___ with older phones.",
-    options: ['trending', 'compatible', 'viral'],
+    options: ['compatible', 'trending', 'viral'],
     answer: 'compatible',
     explanation: "Compatible (Kompatibel) berarti dapat bekerja dengan baik dengan sistem lain."
   },
   {
     id: 11,
     question: "I received a ___ that someone liked my photo.",
-    options: ['hacker', 'notification', 'database'],
+    options: ['notification', 'hacker', 'database'],
     answer: 'notification',
     explanation: "Notification (Pemberitahuan) adalah pesan yang memberi tahu Anda tentang aktivitas."
   },
   {
     id: 12,
     question: "The ___ was friendly and easy to navigate.",
-    options: ['interface', 'malware', 'privacy'],
+    options: ['privacy', 'malware', 'interface'],
     answer: 'interface',
     explanation: "Interface (Antarmuka) adalah cara pengguna berinteraksi dengan software atau hardware."
   },
   {
     id: 13,
     question: "A ___ stole credit card information from the website.",
-    options: ['browser', 'hacker', 'platform'],
+    options: ['platform', 'browser', 'hacker'],
     answer: 'hacker',
     explanation: "Hacker (Peretas) adalah seseorang yang mengakses sistem komputer secara ilegal."
   },
   {
     id: 14,
     question: "___ is a serious problem for children online.",
-    options: ['Cyberbullying', 'Streaming', 'Authentication'],
+    options: ['Streaming', 'Cyberbullying', 'Authentication'],
     answer: 'Cyberbullying',
     explanation: "Cyberbullying (Perundungan dunia maya) adalah intimidasi yang terjadi melalui platform digital."
   },
   {
     id: 15,
     question: "My internet connection is ___, so I don't need cables.",
-    options: ['wireless', 'viral', 'trending'],
+    options: ['wireless', 'trending', 'viral'],
     answer: 'wireless',
     explanation: "Wireless (Nirkabel) berarti tidak memerlukan kabel fisik untuk koneksi."
   },
@@ -168,28 +168,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "He uses ___ to watch live gaming videos.",
-    options: ['malware', 'stream', 'innovation'],
+    options: ['innovation', 'stream', 'malware'],
     answer: 'stream',
     explanation: "To stream (Menyiarkan/Menonton siaran langsung) berarti menonton atau mengirim video secara real-time."
   },
   {
     id: 18,
     question: "___ technology creates immersive gaming experiences.",
-    options: ['Viral', 'Virtual Reality', 'Trending'],
+    options: ['Viral', 'Trending', 'Virtual Reality'],
     answer: 'Virtual Reality',
     explanation: "Virtual Reality (Realitas Maya) menciptakan lingkungan simulasi 3D yang dapat dijelajahi."
   },
   {
     id: 19,
     question: "Use two-factor ___ to secure your account.",
-    options: ['engagement', 'authentication', 'content'],
+    options: ['authentication', 'content', 'engagement'],
     answer: 'authentication',
     explanation: "Authentication (Otentikasi) adalah proses memverifikasi identitas pengguna."
   },
   {
     id: 20,
     question: "The company is known for its technological ___.",
-    options: ['glitch', 'innovation', 'malware'],
+    options: ['glitch', 'malware', 'innovation'],
     answer: 'innovation',
     explanation: "Innovation (Inovasi) adalah pengenalan ide, metode, atau produk baru."
   }

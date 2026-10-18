@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "modal-verbs-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Modal Verbs): Complete: You ____ wear a helmet.",
-      "answer": "must",
+      "prompt": "Basic grammar check (Modal Verbs): Complete: I ____ swim when I was five.",
+      "answer": "could",
       "options": [
+        "could",
         "must",
-        "can",
-        "may",
-        "would"
+        "should",
+        "can"
       ]
     },
     {
       "id": "modal-verbs-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Modal Verbs): Complete: ____ I borrow your pen?",
-      "answer": "May",
+      "prompt": "Basic grammar check (Modal Verbs): Complete: You ____ smoke in the hospital.",
+      "answer": "mustn't",
       "options": [
-        "Must",
-        "Should",
-        "Have",
-        "May"
+        "don't need",
+        "mightn't",
+        "needn't",
+        "mustn't"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "modal-verbs-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Modal Verbs): Complete: You ____ see a doctor if you feel worse.",
-      "answer": "should",
+      "prompt": "Choose the best structure (Modal Verbs): Complete: She ____ be at home; I just saw her at the office.",
+      "answer": "can't",
       "options": [
-        "can",
-        "may",
-        "will",
-        "should"
+        "mustn't",
+        "can't",
+        "shouldn't",
+        "needn't"
       ]
     },
     {
       "id": "modal-verbs-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Modal Verbs): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Modal Verbs): Complete: You ____ have told me earlier; I could have helped.",
+      "answer": "should",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "should",
+        "can",
+        "must",
+        "will"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "modal-verbs-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Modal Verbs): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Modal Verbs): Complete: He ____ have taken the train; his car is still in the garage.",
+      "answer": "must",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "must",
+        "can",
+        "should",
+        "ought"
       ]
     },
     {
       "id": "modal-verbs-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Modal Verbs): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Modal Verbs): Complete: You ____ have brought food; there was plenty at the party.",
+      "answer": "needn't",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "mustn't",
+        "needn't",
+        "can't",
+        "couldn't"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "modal-verbs-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Modal Verbs): Complete: You ____ wear a helmet.",
-      "answer": "must",
+      "prompt": "Cek grammar dasar (Modal Verbs): Complete: I ____ swim when I was five.",
+      "answer": "could",
       "options": [
+        "could",
         "must",
-        "can",
-        "may",
-        "would"
+        "should",
+        "can"
       ]
     },
     {
       "id": "modal-verbs-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Modal Verbs): Complete: ____ I borrow your pen?",
-      "answer": "May",
+      "prompt": "Cek grammar dasar (Modal Verbs): Complete: You ____ smoke in the hospital.",
+      "answer": "mustn't",
       "options": [
-        "Must",
-        "Should",
-        "Have",
-        "May"
+        "don't need",
+        "mightn't",
+        "needn't",
+        "mustn't"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "modal-verbs-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Modal Verbs): Complete: You ____ see a doctor if you feel worse.",
-      "answer": "should",
+      "prompt": "Pilih struktur terbaik (Modal Verbs): Complete: She ____ be at home; I just saw her at the office.",
+      "answer": "can't",
       "options": [
-        "can",
-        "may",
-        "will",
-        "should"
+        "mustn't",
+        "can't",
+        "shouldn't",
+        "needn't"
       ]
     },
     {
       "id": "modal-verbs-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Modal Verbs): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Modal Verbs): Complete: You ____ have told me earlier; I could have helped.",
+      "answer": "should",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "should",
+        "can",
+        "must",
+        "will"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "modal-verbs-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Modal Verbs): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Modal Verbs): Complete: He ____ have taken the train; his car is still in the garage.",
+      "answer": "must",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "must",
+        "can",
+        "should",
+        "ought"
       ]
     },
     {
       "id": "modal-verbs-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Modal Verbs): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Modal Verbs): Complete: You ____ have brought food; there was plenty at the party.",
+      "answer": "needn't",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "mustn't",
+        "needn't",
+        "can't",
+        "couldn't"
       ]
     }
   ]

@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - What time does the breakfast buffet close?', opts: ["8 PM","7 AM","12 PM","10 AM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Can you bring a dog to the resort?', opts: ["No, pets are not allowed","Yes, anytime","Yes, but only in the room","Yes, but not at the beach"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - When does the swimming pool close?', opts: ["Midnight","7 AM","10 AM","8 PM"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - Is the Wi-Fi free?', opts: ["Only at the beach","Only during breakfast","Yes, in all rooms","No, you have to pay"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What kind of access does the resort have?', opts: ["Only a lake","No beach","Public pool only","Private beach access"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - What time does the breakfast buffet close?', opts: ["8 PM","12 PM","10 AM","7 AM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Can you bring a dog to the resort?', opts: ["Yes, but not at the beach","Yes, but only in the room","Yes, anytime","No, pets are not allowed"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - When does the swimming pool close?', opts: ["Midnight","7 AM","10 AM","8 PM"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - Is the Wi-Fi free?', opts: ["Yes, in all rooms","No, you have to pay","Only during breakfast","Only at the beach"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - What time does the breakfast buffet close?', opts: ["7 AM", "8 PM", "10 AM", "12 PM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Can you bring a dog to the resort?', opts: ["Yes, but only in the room", "Yes, anytime", "No, pets are not allowed", "Yes, but not at the beach"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - When does the swimming pool close?', opts: ["10 AM", "8 PM", "7 AM", "Midnight"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - Is the Wi-Fi free?', opts: ["Only during breakfast", "No, you have to pay", "Only at the beach", "Yes, in all rooms"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - What kind of access does the resort have?', opts: ["Public pool only", "Private beach access", "No beach", "Only a lake"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - What time does the breakfast buffet close?', opts: ["7 AM", "8 PM", "12 PM", "10 AM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Can you bring a dog to the resort?', opts: ["Yes, but only in the room", "No, pets are not allowed", "Yes, anytime", "Yes, but not at the beach"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - When does the swimming pool close?', opts: ["7 AM", "8 PM", "10 AM", "Midnight"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - Is the Wi-Fi free?', opts: ["Only during breakfast", "Only at the beach", "Yes, in all rooms", "No, you have to pay"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 10 - What kind of access does the resort have?', opts: ["Private beach access","Public pool only","No beach","Only a lake"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - What time does the breakfast buffet close?', opts: ["7 AM","8 PM","10 AM","12 PM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - What time does the breakfast buffet close?', opts: ["8 PM", "12 PM", "10 AM", "7 AM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Mencari Fakta) Latihan 12 - Can you bring a dog to the resort?', opts: ["Yes, anytime","Yes, but not at the beach","Yes, but only in the room","No, pets are not allowed"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - When does the swimming pool close?', opts: ["Midnight","10 AM","7 AM","8 PM"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - Is the Wi-Fi free?', opts: ["Only during breakfast","Only at the beach","No, you have to pay","Yes, in all rooms"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What kind of access does the resort have?', opts: ["No beach","Public pool only","Only a lake","Private beach access"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - What time does the breakfast buffet close?', opts: ["10 AM","7 AM","8 PM","12 PM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Can you bring a dog to the resort?', opts: ["No, pets are not allowed","Yes, anytime","Yes, but not at the beach","Yes, but only in the room"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - When does the swimming pool close?', opts: ["8 PM","10 AM","7 AM","Midnight"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - When does the swimming pool close?', opts: ["7 AM", "8 PM", "10 AM", "Midnight"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - Is the Wi-Fi free?', opts: ["Only at the beach", "Yes, in all rooms", "No, you have to pay", "Only during breakfast"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - What kind of access does the resort have?', opts: ["Public pool only", "No beach", "Private beach access", "Only a lake"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - What time does the breakfast buffet close?', opts: ["7 AM", "10 AM", "12 PM", "8 PM"], ans: "10 AM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Can you bring a dog to the resort?', opts: ["Yes, but not at the beach", "Yes, but only in the room", "Yes, anytime", "No, pets are not allowed"], ans: "No, pets are not allowed", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - When does the swimming pool close?', opts: ["10 AM", "8 PM", "Midnight", "7 AM"], ans: "8 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Analisis Singkat) Latihan 19 - Is the Wi-Fi free?', opts: ["Only during breakfast","Only at the beach","No, you have to pay","Yes, in all rooms"], ans: "Yes, in all rooms", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What kind of access does the resort have?', opts: ["Private beach access","Only a lake","Public pool only","No beach"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Mencari Fakta) Latihan 20 - What kind of access does the resort have?', opts: ["Public pool only", "Only a lake", "Private beach access", "No beach"], ans: "Private beach access", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'What time does the breakfast buffet close?', opts: ["10 AM","7 AM","8 PM","12 PM"], ans: '10 AM' },
-    { q: 'Can you bring a dog to the resort?', opts: ["Yes, but not at the beach","Yes, but only in the room","Yes, anytime","No, pets are not allowed"], ans: 'No, pets are not allowed' },
+    { q: 'What time does the breakfast buffet close?', opts: ["7 AM", "12 PM", "10 AM", "8 PM"], ans: '10 AM' },
+    { q: 'Can you bring a dog to the resort?', opts: ["Yes, but not at the beach", "Yes, anytime", "Yes, but only in the room", "No, pets are not allowed"], ans: 'No, pets are not allowed' },
     { q: 'When does the swimming pool close?', opts: ["10 AM","7 AM","8 PM","Midnight"], ans: '8 PM' },
-    { q: 'Is the Wi-Fi free?', opts: ["Only during breakfast","Only at the beach","No, you have to pay","Yes, in all rooms"], ans: 'Yes, in all rooms' },
-    { q: 'What kind of access does the resort have?', opts: ["Only a lake","No beach","Public pool only","Private beach access"], ans: 'Private beach access' },
+    { q: 'Is the Wi-Fi free?', opts: ["Only during breakfast", "Yes, in all rooms", "No, you have to pay", "Only at the beach"], ans: 'Yes, in all rooms' },
+    { q: 'What kind of access does the resort have?', opts: ["No beach", "Public pool only", "Private beach access", "Only a lake"], ans: 'Private beach access' },
   ],
 };
 

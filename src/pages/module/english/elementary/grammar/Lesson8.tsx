@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const COMPARISON_RULES = [
   {
     type: "1 Suku Kata (Pendek)",
@@ -69,148 +71,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Superlatif", en: "It is the most expensive hotel.", id: "Ini adalah hotel paling mahal.", icon: "🏨" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "This box is ___ than that one.",
-    options: ['heavyer', 'heavier', 'more heavy'],
-    answer: 'heavier',
-    explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
-  },
-  {
-    id: 2,
-    question: "He is the ___ player on the team.",
-    options: ['best', 'goodest', 'most good'],
-    answer: 'best',
-    explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
-  },
-  {
-    id: 3,
-    question: "Ferrari is ___ than a Toyota.",
-    options: ['expensive', 'more expensive', 'expensiver'],
-    answer: 'more expensive',
-    explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
-  },
-  {
-    id: 4,
-    question: "She is the ___ girl in school.",
-    options: ['prettyest', 'prettiest', 'most pretty'],
-    answer: 'prettiest',
-    explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
-  },
-  {
-    id: 5,
-    question: "Your joke was ___ than mine.",
-    options: ['badder', 'worse', 'bad'],
-    answer: 'worse',
-    explanation: "Bad itu tidak beraturan. Komparatifnya adalah 'Worse'."
-  },
-  {
-    id: 6,
-    question: "This box is ___ than that one.",
-    options: ["heavyer","heavier","more heavy"],
-    answer: "heavier",
-    explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
-  },
-  {
-    id: 7,
-    question: "He is the ___ player on the team.",
-    options: ["best","goodest","most good"],
-    answer: "best",
-    explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
-  },
-  {
-    id: 8,
-    question: "Ferrari is ___ than a Toyota.",
-    options: ["expensive","more expensive","expensiver"],
-    answer: "more expensive",
-    explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
-  },
-  {
-    id: 9,
-    question: "The girl is the ___ girl in school.",
-    options: ["prettyest","prettiest","most pretty"],
-    answer: "prettiest",
-    explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
-  },
-  {
-    id: 10,
-    question: "Your joke was ___ than mine.",
-    options: ["badder","worse","bad"],
-    answer: "worse",
-    explanation: "Bad itu tidak beraturan. Komparatifnya adalah 'Worse'."
-  },
-  {
-    id: 11,
-    question: "This box is ___ than that one.",
-    options: ["heavyer","heavier","more heavy"],
-    answer: "heavier",
-    explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
-  },
-  {
-    id: 12,
-    question: "My father is the ___ player on the team.",
-    options: ["best","goodest","most good"],
-    answer: "best",
-    explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
-  },
-  {
-    id: 13,
-    question: "Ferrari is ___ than a Toyota.",
-    options: ["expensive","more expensive","expensiver"],
-    answer: "more expensive",
-    explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
-  },
-  {
-    id: 14,
-    question: "She is the ___ girl in school.",
-    options: ["prettyest","prettiest","most pretty"],
-    answer: "prettiest",
-    explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
-  },
-  {
-    id: 15,
-    question: "Your joke was ___ than mine.",
-    options: ["badder","worse","bad"],
-    answer: "worse",
-    explanation: "Bad itu tidak beraturan. Komparatifnya adalah 'Worse'."
-  },
-  {
-    id: 16,
-    question: "This box is ___ than that one.",
-    options: ["heavyer","heavier","more heavy"],
-    answer: "heavier",
-    explanation: "Heavy berakhiran 'y', jadi ubah 'y' menjadi 'i' + er."
-  },
-  {
-    id: 17,
-    question: "He is the ___ player on the team.",
-    options: ["best","goodest","most good"],
-    answer: "best",
-    explanation: "Good itu tidak beraturan. Superlatifnya adalah 'The Best'."
-  },
-  {
-    id: 18,
-    question: "Ferrari is ___ than a Toyota.",
-    options: ["expensive","more expensive","expensiver"],
-    answer: "more expensive",
-    explanation: "Expensive adalah kata panjang (3 suku kata). Gunakan 'more'."
-  },
-  {
-    id: 19,
-    question: "She is the ___ girl in school.",
-    options: ["prettyest","prettiest","most pretty"],
-    answer: "prettiest",
-    explanation: "Pretty berakhiran 'y', jadi ubah 'y' menjadi 'i' + est."
-  },
-  {
-    id: 20,
-    question: "Your joke was ___ than mine.",
-    options: ["badder","worse","bad"],
-    answer: "worse",
-    explanation: "Bad itu tidak beraturan. Komparatifnya adalah 'Worse'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[8], 'elementary/grammar/8'));
 
 const ElemGrammarLesson8: React.FC = () => {
   const navigate = useNavigate();

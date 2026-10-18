@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const GRAMMAR_RULES = [
   {
     title: "Gerunds (Verb + -ing)",
@@ -51,148 +53,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Infinitif", en: "It is important to study.", id: "Penting untuk belajar.", icon: "📝" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "I want ___ a new phone.",
-    options: ['buy', 'buying', 'to buy'],
-    answer: 'to buy',
-    explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 2,
-    question: "She enjoys ___ TV.",
-    options: ['watch', 'watching', 'to watch'],
-    answer: 'watching',
-    explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
-  },
-  {
-    id: 3,
-    question: "We decided ___ home.",
-    options: ['stay', 'staying', 'to stay'],
-    answer: 'to stay',
-    explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 4,
-    question: "Please stop ___ noise.",
-    options: ['make', 'making', 'to make'],
-    answer: 'making',
-    explanation: "Setelah 'Stop' (berhenti melakukan sesuatu), gunakan Gerund."
-  },
-  {
-    id: 5,
-    question: "He needs ___ a doctor.",
-    options: ['see', 'seeing', 'to see'],
-    answer: 'to see',
-    explanation: "Setelah 'Need', gunakan Infinitive."
-  },
-  {
-    id: 6,
-    question: "I want ___ a new phone.",
-    options: ["buy","buying","to buy"],
-    answer: "to buy",
-    explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 7,
-    question: "My sister enjoys ___ TV.",
-    options: ["watch","watching","to watch"],
-    answer: "watching",
-    explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
-  },
-  {
-    id: 8,
-    question: "They decided ___ home.",
-    options: ["stay","staying","to stay"],
-    answer: "to stay",
-    explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 9,
-    question: "Please stop ___ noise.",
-    options: ["make","making","to make"],
-    answer: "making",
-    explanation: "Setelah 'Stop' (berhenti melakukan sesuatu), gunakan Gerund."
-  },
-  {
-    id: 10,
-    question: "Mark needs ___ a doctor.",
-    options: ["see","seeing","to see"],
-    answer: "to see",
-    explanation: "Setelah 'Need', gunakan Infinitive."
-  },
-  {
-    id: 11,
-    question: "I want ___ a new phone.",
-    options: ["buy","buying","to buy"],
-    answer: "to buy",
-    explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 12,
-    question: "My mother enjoys ___ TV.",
-    options: ["watch","watching","to watch"],
-    answer: "watching",
-    explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
-  },
-  {
-    id: 13,
-    question: "We decided ___ home.",
-    options: ["stay","staying","to stay"],
-    answer: "to stay",
-    explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 14,
-    question: "Please stop ___ noise.",
-    options: ["make","making","to make"],
-    answer: "making",
-    explanation: "Setelah 'Stop' (berhenti melakukan sesuatu), gunakan Gerund."
-  },
-  {
-    id: 15,
-    question: "She needs ___ a doctor.",
-    options: ["see","seeing","to see"],
-    answer: "to see",
-    explanation: "Setelah 'Need', gunakan Infinitive."
-  },
-  {
-    id: 16,
-    question: "I want ___ a new phone.",
-    options: ["buy","buying","to buy"],
-    answer: "to buy",
-    explanation: "Setelah 'Want', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 17,
-    question: "She enjoys ___ TV.",
-    options: ["watch","watching","to watch"],
-    answer: "watching",
-    explanation: "Setelah 'Enjoy', gunakan Gerund (verb + ing)."
-  },
-  {
-    id: 18,
-    question: "We decided ___ home.",
-    options: ["stay","staying","to stay"],
-    answer: "to stay",
-    explanation: "Setelah 'Decide', gunakan Infinitive (to + verb)."
-  },
-  {
-    id: 19,
-    question: "Please stop ___ noise.",
-    options: ["make","making","to make"],
-    answer: "making",
-    explanation: "Setelah 'Stop' (berhenti melakukan sesuatu), gunakan Gerund."
-  },
-  {
-    id: 20,
-    question: "He needs ___ a doctor.",
-    options: ["see","seeing","to see"],
-    answer: "to see",
-    explanation: "Setelah 'Need', gunakan Infinitive."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[10], 'elementary/grammar/10'));
 
 const ElemGrammarLesson10: React.FC = () => {
   const navigate = useNavigate();

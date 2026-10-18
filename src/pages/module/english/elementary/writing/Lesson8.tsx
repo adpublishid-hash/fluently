@@ -27,9 +27,9 @@ const BUILD_ITEMS = [
     prompt: "Please contact me ___ 555-1234.",
     blank: "at",
     options: [
-      "on",
+      "in",
       "at",
-      "in"
+      "on"
     ],
     answer: "at"
   }
@@ -38,9 +38,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan: ",
     opts: [
-      "I am sad.",
       "Please contact 0812-xxx if found.",
-      "Good bye."
+      "Good bye.",
+      "I am sad."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -49,8 +49,8 @@ const QUIZ = [
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R2)",
     opts: [
       "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
+      "I am sad.",
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -58,8 +58,8 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R3)",
     opts: [
-      "I am sad.",
       "Please contact 0812-xxx if found.",
+      "I am sad.",
       "Good bye."
     ],
     ans: "Please contact 0812-xxx if found.",
@@ -69,8 +69,8 @@ const QUIZ = [
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R4)",
     opts: [
       "Please contact 0812-xxx if found.",
-      "Good bye.",
-      "I am sad."
+      "I am sad.",
+      "Good bye."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -78,9 +78,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R5)",
     opts: [
+      "I am sad.",
       "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -98,9 +98,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R7)",
     opts: [
+      "I am sad.",
       "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -109,8 +109,8 @@ const QUIZ = [
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R8)",
     opts: [
       "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
+      "I am sad.",
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -118,9 +118,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R9)",
     opts: [
+      "Good bye.",
       "I am sad.",
-      "Please contact 0812-xxx if found.",
-      "Good bye."
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -128,9 +128,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R10)",
     opts: [
-      "I am sad.",
       "Please contact 0812-xxx if found.",
-      "Good bye."
+      "Good bye.",
+      "I am sad."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -139,8 +139,8 @@ const QUIZ = [
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R11)",
     opts: [
       "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
+      "I am sad.",
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -148,9 +148,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R12)",
     opts: [
-      "Good bye.",
       "Please contact 0812-xxx if found.",
-      "I am sad."
+      "I am sad.",
+      "Good bye."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -158,9 +158,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R13)",
     opts: [
-      "Good bye.",
+      "I am sad.",
       "Please contact 0812-xxx if found.",
-      "I am sad."
+      "Good bye."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -168,9 +168,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R14)",
     opts: [
-      "I am sad.",
       "Please contact 0812-xxx if found.",
-      "Good bye."
+      "Good bye.",
+      "I am sad."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -178,9 +178,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R15)",
     opts: [
-      "I am sad.",
+      "Good bye.",
       "Please contact 0812-xxx if found.",
-      "Good bye."
+      "I am sad."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -188,6 +188,16 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R16)",
     opts: [
+      "Good bye.",
+      "I am sad.",
+      "Please contact 0812-xxx if found."
+    ],
+    ans: "Please contact 0812-xxx if found.",
+    exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
+  },
+  {
+    q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R17)",
+    opts: [
       "I am sad.",
       "Please contact 0812-xxx if found.",
       "Good bye."
@@ -196,21 +206,11 @@ const QUIZ = [
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
   },
   {
-    q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R17)",
-    opts: [
-      "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
-    ],
-    ans: "Please contact 0812-xxx if found.",
-    exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
-  },
-  {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R18)",
     opts: [
+      "I am sad.",
       "Good bye.",
-      "Please contact 0812-xxx if found.",
-      "I am sad."
+      "Please contact 0812-xxx if found."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."
@@ -218,9 +218,9 @@ const QUIZ = [
   {
     q: "Papan pengumuman kucing hilang sebaiknya diakhiri dengan:  (R19)",
     opts: [
-      "Good bye.",
+      "Please contact 0812-xxx if found.",
       "I am sad.",
-      "Please contact 0812-xxx if found."
+      "Good bye."
     ],
     ans: "Please contact 0812-xxx if found.",
     exp: "Pengumuman hilang perlu aksi yang jelas (nomor kontak)."

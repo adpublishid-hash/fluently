@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const USAGE_RULES = [
   {
     title: "Sedang Terjadi",
@@ -56,148 +58,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Pertanyaan (?)", en: "Why are you laughing?", id: "Kenapa kamu tertawa?" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Pilih kalimat yang benar:",
-    options: ['She is runing.', 'She is running.', 'She running.'],
-    answer: 'She is running.',
-    explanation: "Run berakhiran CVC (Konsonan-Vokal-Konsonan), jadi kita menggandakan 'n'. Jangan lupakan 'is'!"
-  },
-  {
-    id: 2,
-    question: "I ___ to music right now.",
-    options: ['listen', 'am listening', 'listening'],
-    answer: 'am listening',
-    explanation: "Untuk 'I', gunakan 'am' + verb-ing."
-  },
-  {
-    id: 3,
-    question: "___ they watching TV?",
-    options: ['Is', 'Am', 'Are'],
-    answer: 'Are',
-    explanation: "Untuk 'They', gunakan 'Are'."
-  },
-  {
-    id: 4,
-    question: "He ___ (not / work) today.",
-    options: ['isn\'t working', 'not working', 'isn\'t work'],
-    answer: 'isn\'t working',
-    explanation: "Struktur negatif: Subjek + is/are + not + verb-ing."
-  },
-  {
-    id: 5,
-    question: "Ejaan: Make (verb) ➝ ___ (continuous)",
-    options: ['Makeing', 'Making', 'Makking'],
-    answer: 'Making',
-    explanation: "Hapus 'e' sebelum menambahkan 'ing'."
-  },
-  {
-    id: 6,
-    question: "Pilih kalimat yang benar:",
-    options: ["My sister is runing.","My sister is running.","My sister running."],
-    answer: "My sister is running.",
-    explanation: "Run berakhiran CVC (Konsonan-Vokal-Konsonan), jadi kita menggandakan 'n'. Jangan lupakan 'is'!"
-  },
-  {
-    id: 7,
-    question: "I ___ to music right now.",
-    options: ["listen","am listening","listening"],
-    answer: "am listening",
-    explanation: "Untuk 'I', gunakan 'am' + verb-ing."
-  },
-  {
-    id: 8,
-    question: "___ they watching TV?",
-    options: ["Is","Am","Are"],
-    answer: "Are",
-    explanation: "Untuk 'The dogs', gunakan 'Are'."
-  },
-  {
-    id: 9,
-    question: "He ___ (not / work) today.",
-    options: ["isn't working","not working","isn't work"],
-    answer: "isn't working",
-    explanation: "Struktur negatif: Subjek + is/are + not + verb-ing."
-  },
-  {
-    id: 10,
-    question: "Ejaan: Make (verb) ➝ ___ (continuous)",
-    options: ["Makeing","Making","Makking"],
-    answer: "Making",
-    explanation: "Hapus 'e' sebelum menambahkan 'ing'."
-  },
-  {
-    id: 11,
-    question: "Pilih kalimat yang benar:",
-    options: ["My mother is runing.","My mother is running.","My mother running."],
-    answer: "My mother is running.",
-    explanation: "Run berakhiran CVC (Konsonan-Vokal-Konsonan), jadi kita menggandakan 'n'. Jangan lupakan 'is'!"
-  },
-  {
-    id: 12,
-    question: "I ___ to music right now.",
-    options: ["listen","am listening","listening"],
-    answer: "am listening",
-    explanation: "Untuk 'I', gunakan 'am' + verb-ing."
-  },
-  {
-    id: 13,
-    question: "___ we watching TV?",
-    options: ["Is","Am","Are"],
-    answer: "Are",
-    explanation: "Untuk 'The teachers', gunakan 'Are'."
-  },
-  {
-    id: 14,
-    question: "My sister ___ (not / work) this morning.",
-    options: ["isn't working","not working","isn't work"],
-    answer: "isn't working",
-    explanation: "Struktur negatif: Subjek + is/are + not + verb-ing."
-  },
-  {
-    id: 15,
-    question: "Ejaan: Make (verb) ➝ ___ (continuous)",
-    options: ["Makeing","Making","Makking"],
-    answer: "Making",
-    explanation: "Hapus 'e' sebelum menambahkan 'ing'."
-  },
-  {
-    id: 16,
-    question: "Pilih kalimat yang benar:",
-    options: ["She is runing.","She is running.","She running."],
-    answer: "She is running.",
-    explanation: "Run berakhiran CVC (Konsonan-Vokal-Konsonan), jadi kita menggandakan 'n'. Jangan lupakan 'is'!"
-  },
-  {
-    id: 17,
-    question: "I ___ to music right now.",
-    options: ["listen","am listening","listening"],
-    answer: "am listening",
-    explanation: "Untuk 'I', gunakan 'am' + verb-ing."
-  },
-  {
-    id: 18,
-    question: "___ the kids watching TV?",
-    options: ["Is","Am","Are"],
-    answer: "Are",
-    explanation: "Untuk 'The teachers', gunakan 'Are'."
-  },
-  {
-    id: 19,
-    question: "He ___ (not / work) today.",
-    options: ["isn't working","not working","isn't work"],
-    answer: "isn't working",
-    explanation: "Struktur negatif: Subjek + is/are + not + verb-ing."
-  },
-  {
-    id: 20,
-    question: "Ejaan: Make (verb) ➝ ___ (continuous)",
-    options: ["Makeing","Making","Makking"],
-    answer: "Making",
-    explanation: "Hapus 'e' sebelum menambahkan 'ing'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[4], 'elementary/grammar/4'));
 
 const ElemGrammarLesson4: React.FC = () => {
   const navigate = useNavigate();

@@ -152,8 +152,8 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "What is the weather ___?",
     options: [
-      { text: "look", correct: false },
       { text: "like", correct: true },
+      { text: "look", correct: false },
       { text: "love", correct: false }
     ],
     explanation: "Pertanyaan standarnya adalah 'What is the weather like?'."
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "It is raining. Take an ___.",
     options: [
-      { text: "umbrella", correct: true },
+      { text: "ice cream", correct: false },
       { text: "sunglasses", correct: false },
-      { text: "ice cream", correct: false }
+      { text: "umbrella", correct: true }
     ],
     explanation: "Kamu butuh payung (umbrella) saat hujan."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "The temperature is very low. It is ___.",
     options: [
-      { text: "boiling", correct: false },
       { text: "freezing", correct: true },
-      { text: "burning", correct: false }
+      { text: "burning", correct: false },
+      { text: "boiling", correct: false }
     ],
     explanation: "'Freezing' berarti sangat dingin (di bawah 0°C)."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "Flowers bloom in ___.",
     options: [
+      { text: "autumn", correct: false },
       { text: "winter", correct: false },
-      { text: "spring", correct: true },
-      { text: "autumn", correct: false }
+      { text: "spring", correct: true }
     ],
     explanation: "Musim semi (Spring) adalah musim saat bunga mulai tumbuh."
   },
@@ -192,9 +192,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "I check the ___ to know if it will rain.",
     options: [
-      { text: "menu", correct: false },
       { text: "receipt", correct: false },
-      { text: "forecast", correct: true }
+      { text: "forecast", correct: true },
+      { text: "menu", correct: false }
     ],
     explanation: "Prakiraan cuaca (weather forecast) memprediksi cuaca."
   },
@@ -203,8 +203,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"I feel sticky and hot.\"?",
     options: [
       { text: "Aku merasa lengket dan panas.", correct: true },
-      { text: "Badai akan segera datang.", correct: false },
-      { text: "Wah, semuanya putih.", correct: false }
+      { text: "Wah, semuanya putih.", correct: false },
+      { text: "Badai akan segera datang.", correct: false }
     ],
     explanation: "Kalimat \"I feel sticky and hot.\" memiliki arti \"Aku merasa lengket dan panas.\"."
   },
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Musim apa yang paling kamu suka?\"?",
     options: [
-      { text: "The ocean is very blue today.", correct: false },
+      { text: "Which season do you like best?", correct: true },
       { text: "It is so high and beautiful.", correct: false },
-      { text: "Which season do you like best?", correct: true }
+      { text: "The ocean is very blue today.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Musim apa yang paling kamu suka?\" adalah \"Which season do you like best?\"."
   },
@@ -222,8 +222,8 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"A ___ is coming soon.\"\n(Arti: Badai akan segera datang.)",
     options: [
-      { text: "at", correct: false },
       { text: "home", correct: false },
+      { text: "at", correct: false },
       { text: "storm", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'storm'."
@@ -242,9 +242,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Lihat awan gelap itu.\"?",
     options: [
-      { text: "Perfect for a walk.", correct: false },
+      { text: "Autumn is a beautiful season.", correct: false },
       { text: "Look at those dark clouds.", correct: true },
-      { text: "Autumn is a beautiful season.", correct: false }
+      { text: "Perfect for a walk.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Lihat awan gelap itu.\" adalah \"Look at those dark clouds.\"."
   },
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"Wait, I need ___ first.\"\n(Arti: Tunggu, aku butuh tabir surya dulu.)",
     options: [
-      { text: "a", correct: false },
       { text: "umbrella", correct: false },
-      { text: "sunscreen", correct: true }
+      { text: "sunscreen", correct: true },
+      { text: "a", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'sunscreen'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"I should bring an umbrella.\"?",
     options: [
-      { text: "Lihat awan gelap itu.", correct: false },
       { text: "Saya harus bawa payung.", correct: true },
-      { text: "Badai akan segera datang.", correct: false }
+      { text: "Badai akan segera datang.", correct: false },
+      { text: "Lihat awan gelap itu.", correct: false }
     ],
     explanation: "Kalimat \"I should bring an umbrella.\" memiliki arti \"Saya harus bawa payung.\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"Do you think ___ will rain?\"\n(Arti: Apa menurutmu akan hujan?)",
     options: [
-      { text: "flowers", correct: false },
       { text: "weather", correct: false },
-      { text: "it", correct: true }
+      { text: "it", correct: true },
+      { text: "flowers", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'it'."
   },
@@ -292,9 +292,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"What is the weather like?\"?",
     options: [
+      { text: "Oke, aku ambil sarung tanganku.", correct: false },
       { text: "Bagaimana cuacanya?", correct: true },
-      { text: "Musim gugur adalah musim yang indah.", correct: false },
-      { text: "Oke, aku ambil sarung tanganku.", correct: false }
+      { text: "Musim gugur adalah musim yang indah.", correct: false }
     ],
     explanation: "Kalimat \"What is the weather like?\" memiliki arti \"Bagaimana cuacanya?\"."
   },
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Aku suka Musim Semi karena bunga-bunganya.\"?",
     options: [
+      { text: "It is so humid today.", correct: false },
       { text: "I love Spring because of the flowers.", correct: true },
-      { text: "I should bring an umbrella.", correct: false },
-      { text: "It is so humid today.", correct: false }
+      { text: "I should bring an umbrella.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku suka Musim Semi karena bunga-bunganya.\" adalah \"I love Spring because of the flowers.\"."
   },
@@ -312,8 +312,8 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"___, I am just happy looking.\"\n(Arti: Tidak, aku senang melihatnya saja.)",
     options: [
-      { text: "rain", correct: false },
       { text: "Don't", correct: false },
+      { text: "rain", correct: false },
       { text: "No", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'No'."
@@ -322,8 +322,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Definitely. Don't get wet.\"?",
     options: [
-      { text: "Pasti. Jangan sampai basah.", correct: true },
       { text: "Aku tahu. Suhunya minus 5 derajat.", correct: false },
+      { text: "Pasti. Jangan sampai basah.", correct: true },
       { text: "Ya, tapi musim dingin akan datang.", correct: false }
     ],
     explanation: "Kalimat \"Definitely. Don't get wet.\" memiliki arti \"Pasti. Jangan sampai basah.\"."
@@ -332,9 +332,9 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Lari! Aku merasa hujan mulai turun.\"?",
     options: [
+      { text: "It is so humid today.", correct: false },
       { text: "Run! I feel the rain starting.", correct: true },
-      { text: "Definitely. Don't get wet.", correct: false },
-      { text: "It is so humid today.", correct: false }
+      { text: "Definitely. Don't get wet.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Lari! Aku merasa hujan mulai turun.\" adalah \"Run! I feel the rain starting.\"."
   },
@@ -342,9 +342,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"It is snowing ___!\"\n(Arti: Di luar turun salju!)",
     options: [
-      { text: "outside", correct: true },
+      { text: "Wow", correct: false },
       { text: "sunny", correct: false },
-      { text: "Wow", correct: false }
+      { text: "outside", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'outside'."
   }

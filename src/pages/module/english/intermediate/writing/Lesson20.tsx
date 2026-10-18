@@ -4,287 +4,69 @@ import { QuizEngine, WritingCard, ComprehensionSection, getCompletedWritingLesso
 import type { QuizItem, ComprehensionQ } from './writingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Identify the contrast linker in paragraph one:",
-    "opts": [
-      "While",
-      "Consequently",
-      "Foundation",
-      "Indicates"
-    ],
-    "ans": "While",
-    "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
-  },
-  {
-    "q": "What does \"Consequently\" mean in this context?",
-    "opts": [
-      "Before",
-      "As a logical result",
-      "In addition",
-      "However"
-    ],
-    "ans": "As a logical result",
-    "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
-  },
-  {
-    "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
-    "opts": [
-      "Students",
-      "Literature",
-      "Reading extensive literature (Gerund phrase)",
-      "Exposes"
-    ],
-    "ans": "Reading extensive literature (Gerund phrase)",
-    "exp": "The entire gerund phrase acts as the subject."
-  },
-  {
-    "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
-    "opts": [
-      "Easy to see",
-      "Occurring repeatedly and constantly",
-      "Funny",
-      "Grammatical"
-    ],
-    "ans": "Occurring repeatedly and constantly",
-    "exp": "\"Persistent\" means something stubborn that keeps happening."
-  },
-  {
-    "q": "Why is \"Therefore\" used in the last paragraph?",
-    "opts": [
-      "To introduce a cause",
-      "To conclude a logical argument",
-      "To change subjects",
-      "To start a story"
-    ],
-    "ans": "To conclude a logical argument",
-    "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
-  },
-  {
-    "q": "Which phrase is most appropriate for a formal email greeting?",
-    "opts": [
-      "Hi mate,",
-      "Hey there,",
-      "Dear Mr. Smith,",
-      "What’s up Smith,"
-    ],
-    "ans": "Dear Mr. Smith,",
-    "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
-  },
-  {
-    "q": "Which cohesive device BEST shows CONTRAST?",
-    "opts": [
-      "Consequently",
-      "Nevertheless",
-      "Furthermore",
-      "Similarly"
-    ],
-    "ans": "Nevertheless",
-    "exp": "\"Nevertheless\" setara dengan \"However\" atau \"Despite that\", digunakan untuk menunjukkan kontras yang kuat."
-  },
-  {
-    "q": "Choose the correct structure: \"Not only ___ fast, but she is also strong.\"",
-    "opts": [
-      "she runs",
-      "runs she",
-      "is she running",
-      "does she run"
-    ],
-    "ans": "does she run",
-    "exp": "Struktur Inversion: Saat kalimat diawali \"Not only\", dilanjutkan dengan auxiliary + subjek (does she run)."
-  },
-  {
-    "q": "How do you make this formal? \"Send me the files ASAP.\"",
-    "opts": [
-      "Please dispatch the files really quick.",
-      "I require the files immediately.",
-      "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
-    ],
-    "ans": "Please send the documents at your earliest convenience.",
-    "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
-  },
-  {
-    "q": "Choose the most FORMAL word to replace \"but\":",
-    "opts": [
-      "However",
-      "Also",
-      "So",
-      "And"
-    ],
-    "ans": "However",
-    "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
-  },
-  {
-    "q": "What is the purpose of a thesis statement in an essay?",
-    "opts": [
-      "To greet the reader",
-      "To state the main argument or focus of the essay",
-      "To ask a rhetorical question",
-      "To give a dictionary definition"
-    ],
-    "ans": "To state the main argument or focus of the essay",
-    "exp": "Thesis statement berada di paragraf pertama untuk menjabarkan argumen/titik berat esai."
-  },
-  {
-    "q": "What is the function of \"For instance\"?",
-    "opts": [
-      "To contrast",
-      "To conclude",
-      "To provide an example",
-      "To show cause"
-    ],
-    "ans": "To provide an example",
-    "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
-  },
-  {
-    "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
-    "opts": [
-      "immediately",
-      "action",
-      "goverment",
-      "should"
-    ],
-    "ans": "goverment",
-    "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
-  },
-  {
-    "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
-    "opts": [
-      "have",
-      "had",
-      "have had",
-      "having"
-    ],
-    "ans": "had",
-    "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
-  },
-  {
-    "q": "In writing, what does \"proofreading\" mean?",
-    "opts": [
-      "Writing the first draft wildly",
-      "Finding academic sources",
-      "Carefully checking for grammatical and spelling errors",
-      "Outlining paragraphs"
-    ],
-    "ans": "Carefully checking for grammatical and spelling errors",
-    "exp": "Proofreading adalah tahapan akhir untuk membaca ulang dan memperbaiki kesalahan minor."
-  },
-  {
-    "q": "Which is correctly punctuated?",
-    "opts": [
-      "Although, it was raining we went out.",
-      "Although it was raining, we went out.",
-      "Although it was raining we went out,",
-      "Although, it was raining, we went out."
-    ],
-    "ans": "Although it was raining, we went out.",
-    "exp": "Jika kalimat dimulai dengan konjungsi subordinatif (Although), gunakan koma sebelum klausa utama."
-  },
-  {
-    "q": "How would you combine these sentences with a relative clause? \"The man called the police. His car was stolen.\"",
-    "opts": [
-      "The man called the police whose car was stolen.",
-      "The man whose car was stolen called the police.",
-      "The man whom car was stolen called the police.",
-      "The man whom called the police had his car stolen."
-    ],
-    "ans": "The man whose car was stolen called the police.",
-    "exp": "\"Whose\" digunakan untuk kepemilikan. Klausul relative disematkan langsung setelah \"The man\"."
-  },
-  {
-    "q": "Choose the sentence with correct parallel structure:",
-    "opts": [
-      "I like swimming, to read, and hike.",
-      "I like to swim, reading, and to hike.",
-      "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
-    ],
-    "ans": "I like swimming, reading, and hiking.",
-    "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
-  },
-  {
-    "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
-    "opts": [
-      "It was late so I kept writing.",
-      "Although it was late, I kept writing.",
-      "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
-    ],
-    "ans": "Although it was late, I kept writing.",
-    "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
-  },
-  {
-    "q": "What is the function of \"therefore\"?",
-    "opts": [
-      "To add a point",
-      "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
-    ],
-    "ans": "To show a result or consequence",
-    "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
-  }
-];
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateWritingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateWritingQuizBank[20], 'intermediate/writing/20');
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
   passageTitle: '✍️ Review & Writing Test',
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Task: 'Should teenagers have part-time jobs?' Write an essay of 150–180 words.\n\nNowadays, more and more teenagers work part-time, for example in cafés, shops or online businesses. While this trend has clear advantages, it also has some drawbacks.\n\nOn the one hand, a part-time job teaches young people valuable skills. They learn how to manage money, communicate with customers and arrive on time. Moreover, earning their own money can make teenagers more independent and less reliant on their parents.\n\nOn the other hand, working too many hours can damage students' education. If a teenager works every evening, they may not have enough time to do homework or rest properly. As a result, their marks might fall and they could feel stressed.\n\nIn conclusion, I believe a part-time job can be beneficial, provided that students work only a few hours a week, preferably at weekends. In this way, they can gain experience without neglecting their studies.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "What type of essay is this model answer?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "A story about a holiday",
+      "A for-and-against essay",
+      "A formal complaint",
+      "A product review"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "A for-and-against essay"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "Which skill does the writer say a part-time job teaches?",
     "opts": [
-      "Knowing 1000 words",
-      "Typing fast",
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "Cooking",
+      "Driving",
+      "Managing money",
+      "Playing music"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "Managing money"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What might happen if a teenager works every evening?",
     "opts": [
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "Their marks might fall",
+      "They will earn less money",
+      "They will lose their friends",
+      "Their parents will be angry"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Their marks might fall"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "Which phrase introduces the disadvantages?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "On the one hand",
+      "Moreover",
+      "In conclusion",
+      "On the other hand"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "On the other hand"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "When does the writer think a part-time job is beneficial?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "When students work every evening and at weekends",
+      "When students work only a few hours a week",
+      "When students leave school early",
+      "When parents pay for everything"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "When students work only a few hours a week"
   }
 ],
 };
@@ -362,12 +144,12 @@ export default function InterWritingLesson20(): React.ReactElement {
 
                 <WritingCard title="Target Mekanikal" icon="🎯">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Untuk menaklukkan level B1-B2 dalam tulisan <strong>review & writing test</strong>, perhatikan elemen berikut:
+                    {lessonTips[20].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl shadow-inner border border-slate-100">
-                    <li><strong className="text-slate-800">Advanced Lexical Resource:</strong> Hindari kosakata berulang. Gunakan sinonim yang lebih kaya (e.g. <i>crucial, significantly, furthermore</i>).</li>
-                    <li><strong className="text-slate-800">Cohesive Devices:</strong> Jangan hanya bertumpu pada 'and', 'but', 'so'. Gunakan <i>Despite, Nevertheless, Consequently, Moreover</i>.</li>
-                    <li><strong className="text-slate-800">Sentence Variety:</strong> Padukan kalimat pendek dengan <i>Complex Sentences</i> (Relative clauses, if-clauses).</li>
+                    {lessonTips[20].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-indigo-700 mt-4 font-bold bg-indigo-50 p-3 rounded-lg border border-indigo-100 inline-block w-full">
                     👉 Buka tab "Pemahaman" untuk membaca esai contoh lengkap dan uji akurasi bacaanmu!

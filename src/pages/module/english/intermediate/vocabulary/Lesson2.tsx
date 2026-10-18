@@ -56,7 +56,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "You need to pay your ___ to attend the university.",
-    options: ['Scholarship', 'Tuition', 'Salary'],
+    options: ['Scholarship', 'Salary', 'Tuition'],
     answer: 'Tuition',
     explanation: "Tuition (Biaya kuliah) adalah uang yang Anda bayarkan untuk diajar di perguruan tinggi atau universitas."
   },
@@ -70,21 +70,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "A short period of work, often unpaid, to gain experience is an ___.",
-    options: ['Internship', 'Enrollment', 'Interview'],
+    options: ['Enrollment', 'Interview', 'Internship'],
     answer: 'Internship',
     explanation: "Internship (Magang) memberikan pengalaman praktis kepada siswa atau lulusan baru."
   },
   {
     id: 4,
     question: "The professor gave a very interesting ___ today.",
-    options: ['Faculty', 'Lecture', 'Vacancy'],
+    options: ['Vacancy', 'Lecture', 'Faculty'],
     answer: 'Lecture',
     explanation: "Lecture (Kuliah) adalah ceramah pendidikan yang diberikan kepada siswa oleh seorang profesor."
   },
   {
     id: 5,
     question: "We must finish this project before the ___.",
-    options: ['Deadline', 'Bonus', 'Candidate'],
+    options: ['Deadline', 'Candidate', 'Bonus'],
     answer: 'Deadline',
     explanation: "Deadline (Tenggat waktu) adalah waktu atau tanggal terakhir di mana sesuatu harus diselesaikan."
   },
@@ -98,63 +98,63 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "She won a ___ to study at Harvard.",
-    options: ['salary', 'scholarship', 'reference'],
+    options: ['scholarship', 'reference', 'salary'],
     answer: 'scholarship',
     explanation: "Scholarship (Beasiswa) adalah bantuan keuangan untuk pendidikan."
   },
   {
     id: 8,
     question: "The ___ of the university includes many experienced professors.",
-    options: ['campus', 'faculty', 'semester'],
+    options: ['campus', 'semester', 'faculty'],
     answer: 'faculty',
     explanation: "Faculty (Fakultas/Staf pengajar) merujuk pada kelompok pengajar di institusi pendidikan."
   },
   {
     id: 9,
     question: "There is a job ___ for a marketing manager.",
-    options: ['vacancy', 'thesis', 'curriculum'],
+    options: ['vacancy', 'curriculum', 'thesis'],
     answer: 'vacancy',
     explanation: "Vacancy (Lowongan) adalah posisi pekerjaan yang tersedia dan belum diisi."
   },
   {
     id: 10,
     question: "He submitted his ___ for the PhD program.",
-    options: ['assignment', 'thesis', 'bonus'],
+    options: ['bonus', 'assignment', 'thesis'],
     answer: 'thesis',
     explanation: "Thesis (Tesis/Skripsi) adalah karya tulis penelitian untuk gelar akademis."
   },
   {
     id: 11,
     question: "I need to ___ in the course before next Monday.",
-    options: ['enroll', 'resign', 'negotiate'],
+    options: ['enroll', 'negotiate', 'resign'],
     answer: 'enroll',
     explanation: "To enroll (Mendaftar) berarti mendaftarkan diri untuk program atau kursus."
   },
   {
     id: 12,
     question: "The ___ for this position requires a master's degree.",
-    options: ['applicant', 'qualification', 'colleague'],
+    options: ['qualification', 'applicant', 'colleague'],
     answer: 'qualification',
     explanation: "Qualification (Kualifikasi) adalah kemampuan, pengalaman, atau pendidikan yang diperlukan."
   },
   {
     id: 13,
     question: "My ___ at work are very friendly and helpful.",
-    options: ['colleagues', 'candidates', 'applicants'],
+    options: ['candidates', 'applicants', 'colleagues'],
     answer: 'colleagues',
     explanation: "Colleagues (Rekan kerja) adalah orang-orang yang bekerja dengan Anda."
   },
   {
     id: 14,
     question: "He can ___ his salary with the new employer.",
-    options: ['manage', 'negotiate', 'organize'],
+    options: ['organize', 'negotiate', 'manage'],
     answer: 'negotiate',
     explanation: "To negotiate (Bernegosiasi) berarti berdiskusi untuk mencapai kesepakatan."
   },
   {
     id: 15,
     question: "She handed in her ___ letter after accepting another job.",
-    options: ['reference', 'resignation', 'interview'],
+    options: ['interview', 'reference', 'resignation'],
     answer: 'resignation',
     explanation: "Resignation (Pengunduran diri) adalah tindakan formal meninggalkan pekerjaan."
   },
@@ -168,28 +168,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 17,
     question: "The ___ was very nervous before the job ___.",
-    options: ['applicant, interview', 'colleague, deadline', 'faculty, campus'],
+    options: ['faculty, campus', 'applicant, interview', 'colleague, deadline'],
     answer: 'applicant, interview',
     explanation: "Applicant (Pelamar) adalah orang yang melamar pekerjaan, Interview (Wawancara) adalah pertemuan formal."
   },
   {
     id: 18,
     question: "He will ___ next year after 30 years of service.",
-    options: ['enroll', 'retire', 'recruit'],
+    options: ['retire', 'recruit', 'enroll'],
     answer: 'retire',
     explanation: "To retire (Pensiun) berarti berhenti bekerja karena sudah mencapai usia tertentu."
   },
   {
     id: 19,
     question: "Everyone received a year-end ___ for good performance.",
-    options: ['salary', 'bonus', 'tuition'],
+    options: ['tuition', 'salary', 'bonus'],
     answer: 'bonus',
     explanation: "Bonus adalah uang tambahan yang diberikan sebagai penghargaan atas kinerja baik."
   },
   {
     id: 20,
     question: "The teacher gave us a challenging ___ to complete.",
-    options: ['assignment', 'reference', 'network'],
+    options: ['network', 'reference', 'assignment'],
     answer: 'assignment',
     explanation: "Assignment (Tugas) adalah pekerjaan yang diberikan kepada siswa untuk dikerjakan."
   }

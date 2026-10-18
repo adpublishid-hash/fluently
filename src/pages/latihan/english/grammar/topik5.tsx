@@ -123,24 +123,24 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "quantifiers-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Quantifiers (Much/Many/Some/Any)): Complete: How ____ water do you drink?",
-      "answer": "much",
+      "prompt": "Basic grammar check (Quantifiers (Much/Many/Some/Any)): Complete: There are ____ apples in the basket.",
+      "answer": "some",
       "options": [
+        "some",
         "much",
-        "many",
-        "few",
-        "several"
+        "a little",
+        "any"
       ]
     },
     {
       "id": "quantifiers-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Quantifiers (Much/Many/Some/Any)): Complete: I have ____ friends in this city.",
+      "prompt": "Basic grammar check (Quantifiers (Much/Many/Some/Any)): Complete: How ____ brothers do you have?",
       "answer": "many",
       "options": [
-        "much",
         "any",
-        "little",
+        "some",
+        "much",
         "many"
       ]
     },
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "quantifiers-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Quantifiers (Much/Many/Some/Any)): Complete: We do not have ____ sugar left.",
-      "answer": "any",
+      "prompt": "Choose the best structure (Quantifiers (Much/Many/Some/Any)): Complete: I have ____ money, so I can buy a coffee.",
+      "answer": "a little",
       "options": [
-        "some",
-        "many",
         "few",
-        "any"
+        "a little",
+        "little",
+        "a few"
       ]
     },
     {
       "id": "quantifiers-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Quantifiers (Much/Many/Some/Any)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Quantifiers (Much/Many/Some/Any)): Complete: Is there ____ milk in the fridge?",
+      "answer": "any",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "few",
+        "many",
+        "any",
+        "a few"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "quantifiers-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Quantifiers (Much/Many/Some/Any)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Quantifiers (Much/Many/Some/Any)): Complete: ____ of the two candidates was suitable for the role.",
+      "answer": "Neither",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "Neither",
+        "None",
+        "No",
+        "Any"
       ]
     },
     {
       "id": "quantifiers-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Quantifiers (Much/Many/Some/Any)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Quantifiers (Much/Many/Some/Any)): Complete: Very ____ people attended the lecture, which disappointed the organisers.",
+      "answer": "few",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "little",
+        "few",
+        "less",
+        "much"
       ]
     }
   ],
@@ -485,24 +485,24 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "quantifiers-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Quantifiers (Much/Many/Some/Any)): Complete: How ____ water do you drink?",
-      "answer": "much",
+      "prompt": "Cek grammar dasar (Quantifiers (Much/Many/Some/Any)): Complete: There are ____ apples in the basket.",
+      "answer": "some",
       "options": [
+        "some",
         "much",
-        "many",
-        "few",
-        "several"
+        "a little",
+        "any"
       ]
     },
     {
       "id": "quantifiers-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Quantifiers (Much/Many/Some/Any)): Complete: I have ____ friends in this city.",
+      "prompt": "Cek grammar dasar (Quantifiers (Much/Many/Some/Any)): Complete: How ____ brothers do you have?",
       "answer": "many",
       "options": [
-        "much",
         "any",
-        "little",
+        "some",
+        "much",
         "many"
       ]
     },
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "quantifiers-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Quantifiers (Much/Many/Some/Any)): Complete: We do not have ____ sugar left.",
-      "answer": "any",
+      "prompt": "Pilih struktur terbaik (Quantifiers (Much/Many/Some/Any)): Complete: I have ____ money, so I can buy a coffee.",
+      "answer": "a little",
       "options": [
-        "some",
-        "many",
         "few",
-        "any"
+        "a little",
+        "little",
+        "a few"
       ]
     },
     {
       "id": "quantifiers-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Quantifiers (Much/Many/Some/Any)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Quantifiers (Much/Many/Some/Any)): Complete: Is there ____ milk in the fridge?",
+      "answer": "any",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "few",
+        "many",
+        "any",
+        "a few"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "quantifiers-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Quantifiers (Much/Many/Some/Any)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Quantifiers (Much/Many/Some/Any)): Complete: ____ of the two candidates was suitable for the role.",
+      "answer": "Neither",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "Neither",
+        "None",
+        "No",
+        "Any"
       ]
     },
     {
       "id": "quantifiers-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Quantifiers (Much/Many/Some/Any)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Quantifiers (Much/Many/Some/Any)): Complete: Very ____ people attended the lecture, which disappointed the organisers.",
+      "answer": "few",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "little",
+        "few",
+        "less",
+        "much"
       ]
     }
   ]

@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "In my previous role, I ___. That helped me ___.",
-      "options": [
-        "describe experience, strength, and motivation clearly",
-        "confident falling intonation in final statements",
-        "Use one concrete example instead of listing too many points.",
-        "In my previous role, I ___. That helped me ___."
-      ],
       "id": "job-interview-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The interviewer says, \"Please, have a seat.\" Which reply is best?",
+      "answer": "Thank you. It's nice to be here.",
+      "options": [
+        "Thank you. It's nice to be there.",
+        "Okay. Where is the coffee, then?",
+        "No, I prefer to stand all day.",
+        "Thank you. It's nice to be here."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe experience, strength, and motivation clearly",
-      "options": [
-        "confident falling intonation in final statements",
-        "answer without listening to the question",
-        "describe experience, strength, and motivation clearly",
-        "Menjawab pertanyaan interview dengan terstruktur."
-      ],
       "id": "job-interview-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence describes a strength?",
+      "answer": "I am good at working in a team.",
+      "options": [
+        "I am good at working in a team.",
+        "I am good in working at a team.",
+        "I am well at working in a team.",
+        "I am good at work in the team."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "In my previous role, I handled user feedback. That helped me improve product decisions.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "In my previous role, I handled user feedback. That helped me improve product decisions.",
-        "I believe my experience in communication would be valuable for this role.",
-        "I went there yesterday because blue."
-      ],
       "id": "job-interview-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The interviewer asks, \"Why do you want this job?\" Which answer is best?",
+      "answer": "I enjoy helping customers, and this role lets me do that.",
+      "options": [
+        "I need money, and this office is close to my house.",
+        "I enjoy helping customers, but I don't like people.",
+        "I enjoy helping customers, and this role lets me do that.",
+        "I don't know. My friend told me to apply here."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Job Interview\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe experience, strength, and motivation clearly",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe experience, strength, and motivation clearly"
-      ],
       "id": "job-interview-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question is good to ask at the end of an interview?",
+      "answer": "What does a typical day in this role look like?",
+      "options": [
+        "How many holidays can I take in my first week?",
+        "Did the other candidates do better than me?",
+        "Can I leave early every Friday afternoon?",
+        "What does a typical day in this role look like?"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "I believe my experience in communication would be valuable for this role.",
-      "options": [
-        "Let me give a more specific example.",
-        "In my previous role, I handled user feedback. That helped me improve product decisions.",
-        "I believe my experience in communication would be valuable for this role.",
-        "I think my communication skills fit this role well."
-      ],
       "id": "job-interview-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Asked \"What is your biggest weakness?\", which answer is most effective?",
+      "answer": "I used to over-check my work, so now I set clear review deadlines.",
+      "options": [
+        "I don't have any weaknesses. I'm perfect at everything I do.",
+        "I used to over-check my work, so now I set clear review deadlines.",
+        "My biggest weakness is that I work far too hard, honestly.",
+        "I'm often late, and I don't really plan to change that habit."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Let me give a more specific example.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me give a more specific example.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "job-interview-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Asked to describe a challenge, which answer follows a clear situation-action-result structure?",
+      "answer": "Our launch was delayed, so I reorganised the tasks, and we finished on time.",
+      "options": [
+        "Our launch was delayed, so I reorganised the tasks, and we finished on time.",
+        "I reorganised tasks, and things happened, and then we finished something.",
+        "Our launch was delayed. It was stressful. That's all I remember about it.",
+        "We finished on time, but I honestly don't know why the launch was delayed."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "In my previous role, I ___. That helped me ___.",
-      "options": [
-        "describe experience, strength, and motivation clearly",
-        "confident falling intonation in final statements",
-        "Use one concrete example instead of listing too many points.",
-        "In my previous role, I ___. That helped me ___."
-      ],
       "id": "job-interview-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pewawancara berkata, \"Please, have a seat.\" Balasan mana yang paling tepat?",
+      "answer": "Thank you. It's nice to be here.",
+      "options": [
+        "Thank you. It's nice to be there.",
+        "Okay. Where is the coffee, then?",
+        "No, I prefer to stand all day.",
+        "Thank you. It's nice to be here."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe experience, strength, and motivation clearly",
-      "options": [
-        "confident falling intonation in final statements",
-        "answer without listening to the question",
-        "describe experience, strength, and motivation clearly",
-        "Menjawab pertanyaan interview dengan terstruktur."
-      ],
       "id": "job-interview-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggambarkan sebuah kelebihan?",
+      "answer": "I am good at working in a team.",
+      "options": [
+        "I am good at working in a team.",
+        "I am good in working at a team.",
+        "I am well at working in a team.",
+        "I am good at work in the team."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "In my previous role, I handled user feedback. That helped me improve product decisions.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "In my previous role, I handled user feedback. That helped me improve product decisions.",
-        "I believe my experience in communication would be valuable for this role.",
-        "I went there yesterday because blue."
-      ],
       "id": "job-interview-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pewawancara bertanya, \"Why do you want this job?\" Jawaban mana yang paling tepat?",
+      "answer": "I enjoy helping customers, and this role lets me do that.",
+      "options": [
+        "I need money, and this office is close to my house.",
+        "I enjoy helping customers, but I don't like people.",
+        "I enjoy helping customers, and this role lets me do that.",
+        "I don't know. My friend told me to apply here."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Job Interview\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe experience, strength, and motivation clearly",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe experience, strength, and motivation clearly"
-      ],
       "id": "job-interview-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang baik diajukan di akhir wawancara?",
+      "answer": "What does a typical day in this role look like?",
+      "options": [
+        "How many holidays can I take in my first week?",
+        "Did the other candidates do better than me?",
+        "Can I leave early every Friday afternoon?",
+        "What does a typical day in this role look like?"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "I believe my experience in communication would be valuable for this role.",
-      "options": [
-        "Let me give a more specific example.",
-        "In my previous role, I handled user feedback. That helped me improve product decisions.",
-        "I believe my experience in communication would be valuable for this role.",
-        "I think my communication skills fit this role well."
-      ],
       "id": "job-interview-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Saat ditanya \"What is your biggest weakness?\", jawaban mana yang paling efektif?",
+      "answer": "I used to over-check my work, so now I set clear review deadlines.",
+      "options": [
+        "I don't have any weaknesses. I'm perfect at everything I do.",
+        "I used to over-check my work, so now I set clear review deadlines.",
+        "My biggest weakness is that I work far too hard, honestly.",
+        "I'm often late, and I don't really plan to change that habit."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Let me give a more specific example.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me give a more specific example.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "job-interview-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Saat diminta menceritakan sebuah tantangan, jawaban mana yang mengikuti struktur situasi-tindakan-hasil dengan jelas?",
+      "answer": "Our launch was delayed, so I reorganised the tasks, and we finished on time.",
+      "options": [
+        "Our launch was delayed, so I reorganised the tasks, and we finished on time.",
+        "I reorganised tasks, and things happened, and then we finished something.",
+        "Our launch was delayed. It was stressful. That's all I remember about it.",
+        "We finished on time, but I honestly don't know why the launch was delayed."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

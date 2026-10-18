@@ -90,14 +90,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "Apa artinya 'Enunciate'?",
-    options: ['Bicara cepat', 'Bicara jelas dan mengucapkan bunyi sepenuhnya', 'Bicara pelan'],
+    options: ['Bicara jelas dan mengucapkan bunyi sepenuhnya', 'Bicara pelan', 'Bicara cepat'],
     answer: 'Bicara jelas dan mengucapkan bunyi sepenuhnya',
     explanation: "Enunciation adalah tindakan mengucapkan kata-kata dengan jelas dan tegas."
   },
   {
     id: 3,
     question: "Kalimat mana yang terdengar lebih profesional?",
-    options: ['"Gimme that paper."', '"Could you pass me the paper?"'],
+    options: ['"Could you pass me the paper?"', '"Gimme that paper."'],
     answer: '"Could you pass me the paper?"',
     explanation: "Menggunakan kata kerja modal penuh (Could you) dan pengucapan yang jelas adalah profesional."
   },
@@ -111,25 +111,25 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Bagaimana Anda mengucapkan '-ing' dalam pidato formal?",
-    options: ['/ɪn/ (Workin\')', '/ɪŋ/ (Working)'],
+    options: ['/ɪŋ/ (Working)', '/ɪn/ (Workin\')'],
     answer: '/ɪŋ/ (Working)',
     explanation: "Ucapkan bunyi 'ng' sepenuhnya. Menghilangkan 'g' adalah kasual."
   },
   { id: 6, question: "'Lemme' adalah reduksi dari...", options: ['Let me', 'Leave me', 'Let them'], answer: 'Let me', explanation: "'Lemme' is casual. Use 'Let me' formally." },
   { id: 7, question: "Dalam formal context, gunakan...", options: ['Contractions (I\'m, you\'re)', 'Full forms (I am, you are)', 'Slang'], answer: 'Full forms (I am, you are)', explanation: "Full forms sound more professional and clear." },
-  { id: 8, question: "Untuk request formal, use rising intonation...", options: ['Always', 'For politeness', 'Never'], answer: 'For politeness', explanation: "Rising tone ↗ softens requests, sounds more polite." },
-  { id: 9, question: "'Dunno' dalam formal setting harus menjadi...", options: ['I do not know', 'I dunno', 'Idk'], answer: 'I do not know', explanation: "Full, clear pronunciation = professional." },
-  { id: 10, question: "Pronounce final consonants clearly untuk...", options: ['Sound smart', 'Clarity and professionalism', 'Nothing'], answer: 'Clarity and professionalism', explanation: "Dropping finals (goin\', doin\') = casual. Keep them formal." },
-  { id: 11, question: "'Kinda', 'sorta' dalam formal speech adalah...", options: ['Good', 'Too casual, avoid', 'Required'], answer: 'Too casual, avoid', explanation: "Use 'kind of', 'sort of' fully pronounced." },
+  { id: 8, question: "Untuk request formal, use rising intonation...", options: ['Never', 'Always', 'For politeness'], answer: 'For politeness', explanation: "Rising tone ↗ softens requests, sounds more polite." },
+  { id: 9, question: "'Dunno' dalam formal setting harus menjadi...", options: ['Idk', 'I do not know', 'I dunno'], answer: 'I do not know', explanation: "Full, clear pronunciation = professional." },
+  { id: 10, question: "Pronounce final consonants clearly untuk...", options: ['Nothing', 'Clarity and professionalism', 'Sound smart'], answer: 'Clarity and professionalism', explanation: "Dropping finals (goin\', doin\') = casual. Keep them formal." },
+  { id: 11, question: "'Kinda', 'sorta' dalam formal speech adalah...", options: ['Required', 'Good', 'Too casual, avoid'], answer: 'Too casual, avoid', explanation: "Use 'kind of', 'sort of' fully pronounced." },
   { id: 12, question: "Pauses dalam presentations show...", options: ['Nervousness', 'Control and confidence', 'Confusion'], answer: 'Control and confidence', explanation: "Strategic pauses = deliberate, thoughtful delivery." },
-  { id: 13, question: "Articulate clearly means...", options: ['Speak fast', 'Pronounce each sound distinctly', 'Use big words'], answer: 'Pronounce each sound distinctly', explanation: "Clear enunciation = professional communication." },
-  { id: 14, question: "Dalam interview, avoid...", options: ['Eye contact', 'Filler words (um, like, you know)', 'Pauses'], answer: 'Filler words (um, like, you know)', explanation: "Fillers diminish professionalism. Use pauses instead." },
+  { id: 13, question: "Articulate clearly means...", options: ['Use big words', 'Pronounce each sound distinctly', 'Speak fast'], answer: 'Pronounce each sound distinctly', explanation: "Clear enunciation = professional communication." },
+  { id: 14, question: "Dalam interview, avoid...", options: ['Pauses', 'Eye contact', 'Filler words (um, like, you know)'], answer: 'Filler words (um, like, you know)', explanation: "Fillers diminish professionalism. Use pauses instead." },
   { id: 15, question: "'Yeah' dalam formal setting harus menjadi...", options: ['Yes', 'Yep', 'Uh-huh'], answer: 'Yes', explanation: "'Yes' is formal and clear. 'Yeah' is casual." },
-  { id: 16, question: "Volume dalam professional speaking harus...", options: ['Very loud', 'Moderate, steady, clear', 'Soft whisper'], answer: 'Moderate, steady, clear', explanation: "Consistent volume = confident and controlled." },
-  { id: 17, question: "Pronounce 'ask' as...", options: ['/æsk/ (Correct)', '/æks/ (Aks - dialect)'], answer: '/æsk/ (Correct)', explanation: "Standard pronunciation = /æsk/. Avoid /æks/ in formal." },
-  { id: 18, question: "'Probably' harus diucapkan...", options: ['/ˈprɑbəbli/ (Full)', "/ˈprɑbli/ (Probly)"], answer: '/ˈprɑbəbli/ (Full)', explanation: "Pronounce all syllables clearly in formal speech." },
-  { id: 19, question: "Tempo formal speaking harus...", options: ['Very fast', 'Deliberately paced, clear', 'Extremely slow'], answer: 'Deliberately paced, clear', explanation: "Measured pace = professionalism and clarity." },
-  { id: 20, question: "Best formal pronunciation mindset?", options: ['Sound native', 'Clarity, full pronunciation, controlled delivery', 'Use complex words'], answer: 'Clarity, full pronunciation, controlled delivery', explanation: "Formal = precise, clear, confident articulation!" }
+  { id: 16, question: "Volume dalam professional speaking harus...", options: ['Moderate, steady, clear', 'Very loud', 'Soft whisper'], answer: 'Moderate, steady, clear', explanation: "Consistent volume = confident and controlled." },
+  { id: 17, question: "Pronounce 'ask' as...", options: ['/æks/ (Aks - dialect)', '/æsk/ (Correct)'], answer: '/æsk/ (Correct)', explanation: "Standard pronunciation = /æsk/. Avoid /æks/ in formal." },
+  { id: 18, question: "'Probably' harus diucapkan...", options: ["/ˈprɑbli/ (Probly)", '/ˈprɑbəbli/ (Full)'], answer: '/ˈprɑbəbli/ (Full)', explanation: "Pronounce all syllables clearly in formal speech." },
+  { id: 19, question: "Tempo formal speaking harus...", options: ['Deliberately paced, clear', 'Very fast', 'Extremely slow'], answer: 'Deliberately paced, clear', explanation: "Measured pace = professionalism and clarity." },
+  { id: 20, question: "Best formal pronunciation mindset?", options: ['Clarity, full pronunciation, controlled delivery', 'Sound native', 'Use complex words'], answer: 'Clarity, full pronunciation, controlled delivery', explanation: "Formal = precise, clear, confident articulation!" }
 ];
 
 const InterPronunLesson18: React.FC = () => {

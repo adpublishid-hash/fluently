@@ -88,21 +88,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "___ five students in the class.",
-    options: ['There is', 'There are', 'Is there'],
+    options: ['There is', 'Is there', 'There are'],
     answer: 'There are',
     explanation: "'Five students' adalah jamak, jadi kita gunakan 'There are'."
   },
   {
     id: 2,
     question: "___ a pen on the table.",
-    options: ['There is', 'There are', 'Are there'],
+    options: ['Are there', 'There are', 'There is'],
     answer: 'There is',
     explanation: "'A pen' adalah tunggal, jadi kita gunakan 'There is'."
   },
   {
     id: 3,
     question: "___ any water in the bottle?",
-    options: ['Is there', 'Are there', 'There is'],
+    options: ['Is there', 'There is', 'Are there'],
     answer: 'Is there',
     explanation: "Air (water) tidak bisa dihitung (tunggal), dan ini adalah pertanyaan."
   },
@@ -116,49 +116,49 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "___ many cars on the road.",
-    options: ['There is', 'There are', 'There'],
+    options: ['There is', 'There', 'There are'],
     answer: 'There are',
     explanation: "'Cars' adalah jamak, jadi gunakan 'There are'."
   },
   {
     id: 6,
     question: "___ a problem?",
-    options: ['Is there', 'Are there', 'There is'],
+    options: ['There is', 'Is there', 'Are there'],
     answer: 'Is there',
     explanation: "'A problem' tunggal, bentuk tanya dibalik jadi 'Is there'."
   },
   {
     id: 7,
     question: "There ___ no money left.",
-    options: ['is', 'are', 'were'],
+    options: ['is', 'were', 'are'],
     answer: 'is',
     explanation: "'Money' (uang) dianggap uncountable (tunggal) dalam grammar."
   },
   {
     id: 8,
     question: "___ two cats under the chair.",
-    options: ['There is', 'There are', 'Is there'],
+    options: ['Is there', 'There is', 'There are'],
     answer: 'There are',
     explanation: "'Two cats' = jamak -> There are."
   },
   {
     id: 9,
     question: "There ___ an apple on the desk.",
-    options: ['is', 'are', 'am'],
+    options: ['am', 'are', 'is'],
     answer: 'is',
     explanation: "'An apple' = tunggal -> There is."
   },
   {
     id: 10,
     question: "___ any people here?",
-    options: ['Is there', 'Are there', 'There are'],
+    options: ['Is there', 'There are', 'Are there'],
     answer: 'Are there',
     explanation: "'People' (orang-orang) adalah jamak -> Are there."
   },
   {
     id: 11,
     question: "There ___ some information for you.",
-    options: ['is', 'are', 'have'],
+    options: ['have', 'are', 'is'],
     answer: 'is',
     explanation: "'Information' adalah uncountable (tak bisa dihitung) -> There is."
   },
@@ -172,21 +172,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "___ a hotel near here?",
-    options: ['Is there', 'Are there', 'There is'],
+    options: ['Is there', 'There is', 'Are there'],
     answer: 'Is there',
     explanation: "Pertanyaan untuk tempat tunggal 'a hotel'."
   },
   {
     id: 14,
     question: "There ___ lots of sugar in this tea.",
-    options: ['is', 'are', 'were'],
+    options: ['is', 'were', 'are'],
     answer: 'is',
     explanation: "'Sugar' (gula) = uncountable noun -> is."
   },
   {
     id: 15,
     question: "There ___ one teacher and ten students.",
-    options: ['is', 'are', 'has'],
+    options: ['is', 'has', 'are'],
     answer: 'is',
     explanation: "Kita ikuti kata benda PERTAMA (one teacher), jadi gunakan 'is'."
   },
@@ -207,21 +207,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "There ___ three books on the shelf.",
-    options: ['is', 'are', 'was'],
+    options: ['is', 'was', 'are'],
     answer: 'are',
     explanation: "'Three books' = jamak."
   },
   {
     id: 19,
     question: "___ a good movie on TV?",
-    options: ['Is there', 'Are there', 'There'],
+    options: ['Is there', 'There', 'Are there'],
     answer: 'Is there',
     explanation: "Pertanyaan tunggal 'a movie'."
   },
   {
     id: 20,
     question: "There ___ children in the park.",
-    options: ['is', 'are', 'am'],
+    options: ['are', 'am', 'is'],
     answer: 'are',
     explanation: "'Children' (anak-anak) adalah jamak."
   }

@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "gerunds-infinitives-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Gerunds vs. Infinitives): Complete: I enjoy ____ music.",
-      "answer": "listening to",
+      "prompt": "Basic grammar check (Gerunds vs. Infinitives): Complete: I want ____ a new bike.",
+      "answer": "to buy",
       "options": [
-        "listening to",
-        "to listen",
-        "listen to",
-        "listened to"
+        "buying",
+        "buy",
+        "bought",
+        "to buy"
       ]
     },
     {
       "id": "gerunds-infinitives-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Gerunds vs. Infinitives): Complete: She decided ____ abroad.",
-      "answer": "to study",
+      "prompt": "Basic grammar check (Gerunds vs. Infinitives): Complete: Thank you for ____ me.",
+      "answer": "helping",
       "options": [
-        "studying",
-        "study",
-        "studied",
-        "to study"
+        "helping",
+        "helped",
+        "to help",
+        "help"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "gerunds-infinitives-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Gerunds vs. Infinitives): Complete: He avoided ____ late.",
-      "answer": "being",
+      "prompt": "Choose the best structure (Gerunds vs. Infinitives): Complete: I remember ____ the door, so I'm sure it's locked.",
+      "answer": "locking",
       "options": [
-        "to be",
-        "be",
-        "been",
-        "being"
+        "lock",
+        "locked",
+        "locking",
+        "to lock"
       ]
     },
     {
       "id": "gerunds-infinitives-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Gerunds vs. Infinitives): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Gerunds vs. Infinitives): Complete: She can't afford ____ her laptop this year.",
+      "answer": "to replace",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "replacing",
+        "replace",
+        "replaced",
+        "to replace"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "gerunds-infinitives-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Gerunds vs. Infinitives): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Gerunds vs. Infinitives): Complete: The committee is considering ____ the deadline.",
+      "answer": "extending",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "extend",
+        "extended",
+        "to extend",
+        "extending"
       ]
     },
     {
       "id": "gerunds-infinitives-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Gerunds vs. Infinitives): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Gerunds vs. Infinitives): Complete: I regret ____ you that your application was unsuccessful.",
+      "answer": "to inform",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "inform",
+        "informed",
+        "to inform",
+        "informing"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "gerunds-infinitives-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Gerunds vs. Infinitives): Complete: I enjoy ____ music.",
-      "answer": "listening to",
+      "prompt": "Cek grammar dasar (Gerunds vs. Infinitives): Complete: I want ____ a new bike.",
+      "answer": "to buy",
       "options": [
-        "listening to",
-        "to listen",
-        "listen to",
-        "listened to"
+        "buying",
+        "buy",
+        "bought",
+        "to buy"
       ]
     },
     {
       "id": "gerunds-infinitives-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Gerunds vs. Infinitives): Complete: She decided ____ abroad.",
-      "answer": "to study",
+      "prompt": "Cek grammar dasar (Gerunds vs. Infinitives): Complete: Thank you for ____ me.",
+      "answer": "helping",
       "options": [
-        "studying",
-        "study",
-        "studied",
-        "to study"
+        "helping",
+        "helped",
+        "to help",
+        "help"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "gerunds-infinitives-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Gerunds vs. Infinitives): Complete: He avoided ____ late.",
-      "answer": "being",
+      "prompt": "Pilih struktur terbaik (Gerunds vs. Infinitives): Complete: I remember ____ the door, so I'm sure it's locked.",
+      "answer": "locking",
       "options": [
-        "to be",
-        "be",
-        "been",
-        "being"
+        "lock",
+        "locked",
+        "locking",
+        "to lock"
       ]
     },
     {
       "id": "gerunds-infinitives-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Gerunds vs. Infinitives): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Gerunds vs. Infinitives): Complete: She can't afford ____ her laptop this year.",
+      "answer": "to replace",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "replacing",
+        "replace",
+        "replaced",
+        "to replace"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "gerunds-infinitives-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Gerunds vs. Infinitives): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Gerunds vs. Infinitives): Complete: The committee is considering ____ the deadline.",
+      "answer": "extending",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "extend",
+        "extended",
+        "to extend",
+        "extending"
       ]
     },
     {
       "id": "gerunds-infinitives-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Gerunds vs. Infinitives): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Gerunds vs. Infinitives): Complete: I regret ____ you that your application was unsuccessful.",
+      "answer": "to inform",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "inform",
+        "informed",
+        "to inform",
+        "informing"
       ]
     }
   ]

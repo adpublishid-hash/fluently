@@ -3,7 +3,7 @@ import { buildChoiceQuestion, hashSeed, seededRandom, shuffleQuestionOptions, ty
 import { getArabicUpperLevelWords, getArabicUpperTheme, isArabicUpperLevel } from '../upper/arabicUpperThemes';
 import { getFoundationLesson, getFoundationTopic } from '../foundation/arabicFoundationLessons';
 import { getArabicUpperPassage, type ArabicPassageSentence } from '../upper/passages';
-import { buildArabicThemePractice } from '../upper/arabicThemePractice';
+import { buildArabicThemePractice, buildArabicWordDrill } from '../upper/arabicThemePractice';
 import { arabicThemeSentences, getArabicThemeSentences } from '../upper/themeSentences';
 import { getArabicLessonCore, getArabicLessonCorePool } from '../upper/lessonCore';
 import { buildLessonCorePractice } from '../upper/lessonCore/practice';
@@ -1746,11 +1746,8 @@ export function getGeneratedArabicLesson(skillId: ArabicSkillId, lesson: number,
 // Shared skill drills repeat across all 20 lessons, so each lesson only shows a
 // rotating slice of them; lesson-specific questions (theme words, theme
 // sentences, passage) carry the rest.
-const SHARED_DRILLS_PER_LESSON = 3;
+const SHARED_DRILLS_PER_LESSON = 1;
 const MIN_UPPER_PRACTICE = 12;
-// Spreads the theme-word and passage questions over the seven skills that
-// share a lesson number, instead of asking all of them in every skill.
-const skillSlot: Record<ArabicSkillId, number> = { mufradat: 0, qiraah: 0, istima: 1, kalam: 1, kitabah: 2, grammar: 3, pronunciation: 2 };
 // Skill-wide patterns, vocabulary and examples are the same for all 20 lessons;
 // each lesson shows a rotating window so its own material leads.
 // Lessons with authored core material need less of the shared bank.
@@ -1767,13 +1764,6 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
   const theme = getArabicUpperTheme(level, Math.max(1, Math.min(20, lessonId)));
   if (!theme) return lesson;
   const random = seededRandom(hashSeed('arabic-theme', level, skillId, lessonId));
-  const meanings = getArabicUpperLevelWords(level).map((word) => word.meaning);
-  const slot = skillSlot[skillId];
-  // Mufradat quizzes every theme word; other skills take the one word in their slot.
-  const quizWords = skillId === 'mufradat' ? theme.vocabulary : theme.vocabulary.filter((_, index) => index === slot % theme.vocabulary.length);
-  const themeQuiz = quizWords
-    .map((word) => buildChoiceQuestion(`Apa arti「${word.arabic}」(${word.transliteration})?`, word.meaning, meanings, random))
-    .filter((question): question is ChoiceQuestion => question !== null);
   const passage = getArabicUpperPassage(level, Math.max(1, Math.min(20, lessonId)));
   const passageQuiz: ChoiceQuestion[] = [];
   if (passage) {
@@ -1781,11 +1771,10 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
       .map((item) => buildChoiceQuestion(`Bacaan: ${item.question}`, item.answer, item.distractors, random))
       .filter((question): question is ChoiceQuestion => question !== null);
     // Receptive skills get every comprehension question plus a sentence-meaning item;
-    // the others get one comprehension question, a different one per skill.
+    // the other skills practise the passage sentences through their own drills.
     const receptive = skillId === 'qiraah' || skillId === 'istima';
-    if (receptive) passageQuiz.push(...comprehension);
-    else if (comprehension.length) passageQuiz.push(comprehension[slot % comprehension.length]);
     if (receptive) {
+      passageQuiz.push(...comprehension);
       const sentence = passage.sentences[Math.floor(random() * passage.sentences.length)];
       const sentenceMeanings = passage.sentences.map((item) => item.meaning);
       const meaningQuestion = buildChoiceQuestion(`Arti kalimat bacaan「${sentence.arabic}」adalah...`, sentence.meaning, sentenceMeanings, random);
@@ -1795,13 +1784,15 @@ function withUpperTheme(lesson: GeneratedArabicLesson, skillId: ArabicSkillId, l
   const lessonNumber = Math.max(1, Math.min(20, lessonId));
   const toSentence = ([arabic, transliteration, meaning]: [string, string, string]) => ({ arabic, transliteration, meaning });
   const themeSentences = getArabicThemeSentences(level, lessonNumber).map(toSentence);
-  const specific = buildArabicThemePractice(skillId, {
+  const material = {
     sentences: [...themeSentences, ...(passage?.sentences ?? [])],
     words: theme.vocabulary,
     levelSentences: levelThemeSentences(level),
     levelWords: getArabicUpperLevelWords(level),
     pairedSentences: themeSentences.length,
-  }, hashSeed('arabic-theme-practice', level, skillId, lessonNumber));
+  };
+  const specific = buildArabicThemePractice(skillId, material, hashSeed('arabic-theme-practice', level, skillId, lessonNumber));
+  const themeQuiz = buildArabicWordDrill(skillId, material, hashSeed('arabic-theme', level, skillId, lessonNumber));
 
   const core = getArabicLessonCore(level, skillId, lessonNumber);
   const coreQuiz = core

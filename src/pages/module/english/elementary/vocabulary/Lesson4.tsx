@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const PROFESSIONS_VOCAB = [
   { word: "Doctor", ipa: "/ˈdɒktər/", meaning: "Dokter" },
@@ -46,148 +48,7 @@ const EMPLOYMENT_VOCAB = [
   { word: "Apply", ipa: "/əˈplaɪ/", meaning: "Melamar (Pekerjaan)" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "A person who designs buildings or machines is an ___.",
-    options: ['Engineer', 'Accountant', 'Chef'],
-    answer: 'Engineer',
-    explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
-  },
-  {
-    id: 2,
-    question: "You need a ___ to apply for a job.",
-    options: ['Menu', 'Resume', 'Receipt'],
-    answer: 'Resume',
-    explanation: "Resume (atau CV) mencantumkan keahlian dan pengalamanmu untuk pemberi kerja."
-  },
-  {
-    id: 3,
-    question: "If you work 40 hours a week, you work ___.",
-    options: ['Part-time', 'Full-time', 'Retired'],
-    answer: 'Full-time',
-    explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
-  },
-  {
-    id: 4,
-    question: "The person you work with is your ___.",
-    options: ['Customer', 'Colleague', 'Patient'],
-    answer: 'Colleague',
-    explanation: "Colleague adalah rekan kerja (co-worker)."
-  },
-  {
-    id: 5,
-    question: "He stopped working because he is 65. He is ___.",
-    options: ['Fired', 'Hired', 'Retired'],
-    answer: 'Retired',
-    explanation: "Retirement (Pensiun) adalah saat kamu berhenti bekerja karena faktor usia."
-  },
-  {
-    id: 6,
-    question: "A person who designs buildings or machines is an ___.",
-    options: ["Engineer","Accountant","Chef"],
-    answer: "Engineer",
-    explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
-  },
-  {
-    id: 7,
-    question: "You need a ___ to apply for a job.",
-    options: ["Menu","Resume","Receipt"],
-    answer: "Resume",
-    explanation: "Resume (atau CV) mencantumkan keahlian dan pengalamanmu untuk pemberi kerja."
-  },
-  {
-    id: 8,
-    question: "If you work 40 hours a week, you work ___.",
-    options: ["Part-time","Full-time","Retired"],
-    answer: "Full-time",
-    explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
-  },
-  {
-    id: 9,
-    question: "The person you job with is your ___.",
-    options: ["Customer","Colleague","Patient"],
-    answer: "Colleague",
-    explanation: "Colleague adalah rekan kerja (co-worker)."
-  },
-  {
-    id: 10,
-    question: "My friend stopped working because he is 65. My friend is ___.",
-    options: ["Fired","Hired","Retired"],
-    answer: "Retired",
-    explanation: "Retirement (Pensiun) adalah saat kamu berhenti bekerja karena faktor usia."
-  },
-  {
-    id: 11,
-    question: "A person who designs buildings or machines is an ___.",
-    options: ["Engineer","Accountant","Chef"],
-    answer: "Engineer",
-    explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
-  },
-  {
-    id: 12,
-    question: "You need a ___ to apply for a job.",
-    options: ["Menu","Resume","Receipt"],
-    answer: "Resume",
-    explanation: "Resume (atau CV) mencantumkan keahlian dan pengalamanmu untuk pemberi kerja."
-  },
-  {
-    id: 13,
-    question: "If you work 40 hours a week, you work ___.",
-    options: ["Part-time","Full-time","Retired"],
-    answer: "Full-time",
-    explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
-  },
-  {
-    id: 14,
-    question: "The person you work with is your ___.",
-    options: ["Customer","Colleague","Patient"],
-    answer: "Colleague",
-    explanation: "Colleague adalah rekan kerja (co-worker)."
-  },
-  {
-    id: 15,
-    question: "My brother stopped working because he is 65. My brother is ___.",
-    options: ["Fired","Hired","Retired"],
-    answer: "Retired",
-    explanation: "Retirement (Pensiun) adalah saat kamu berhenti bekerja karena faktor usia."
-  },
-  {
-    id: 16,
-    question: "A person who designs buildings or machines is an ___.",
-    options: ["Engineer","Accountant","Chef"],
-    answer: "Engineer",
-    explanation: "Engineer (Insinyur) bekerja dengan desain, mesin, dan struktur."
-  },
-  {
-    id: 17,
-    question: "You need a ___ to apply for a job.",
-    options: ["Menu","Resume","Receipt"],
-    answer: "Resume",
-    explanation: "Resume (atau CV) mencantumkan keahlian dan pengalamanmu untuk pemberi kerja."
-  },
-  {
-    id: 18,
-    question: "If you job 40 hours a week, you job ___.",
-    options: ["Part-time","Full-time","Retired"],
-    answer: "Full-time",
-    explanation: "Full-time (Purna waktu) biasanya mengacu pada jam kerja standar (sekitar 35-40 jam/minggu)."
-  },
-  {
-    id: 19,
-    question: "The person you building with is your ___.",
-    options: ["Customer","Colleague","Patient"],
-    answer: "Colleague",
-    explanation: "Colleague adalah rekan kerja (co-worker)."
-  },
-  {
-    id: 20,
-    question: "The man stopped working because he is 65. The man is ___.",
-    options: ["Fired","Hired","Retired"],
-    answer: "Retired",
-    explanation: "Retirement (Pensiun) adalah saat kamu berhenti bekerja karena faktor usia."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[4], 'elementary/vocabulary/4'));
 
 const Lesson4: React.FC = () => {
   const navigate = useNavigate();

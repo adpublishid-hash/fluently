@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Place + details + atmosphere + personal impression.",
-      "options": [
-        "One place I like is",
-        "also",
-        "That is why I enjoy going there.",
-        "Place + details + atmosphere + personal impression."
-      ],
       "id": "descriptive-place-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which adjective best completes the description? 'The beach was ___, with soft white sand and clear water.'",
+      "answer": "beautiful",
+      "options": [
+        "noisily",
+        "beautiful",
+        "angry",
+        "dangerously"
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Describing a Place.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "My favorite cafe is small but comfortable. It has warm lights, wooden tables, and quiet music.",
-      "options": [
-        "And because but however.",
-        "My favorite cafe is small but comfortable. It has warm lights, wooden tables, and quiet music.",
-        "One place I like is",
-        "That is why I enjoy going there."
-      ],
       "id": "descriptive-place-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence uses the sense of sound to describe a place?",
+      "answer": "I can hear birds singing in the trees.",
+      "options": [
+        "The park has green grass and tall trees.",
+        "The flowers smell sweet in the morning.",
+        "The bench feels cold and hard to sit on.",
+        "I can hear birds singing in the trees."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Place + details + atmosphere + personal impression.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Place + details + atmosphere + personal impression."
-      ],
       "id": "descriptive-place-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct preposition: 'The library is ___ the bank and the post office.'",
+      "answer": "between",
+      "options": [
+        "among",
+        "between",
+        "inside of",
+        "under"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "also",
-      "options": [
-        "That is why I enjoy going there.",
-        "descriptive paragraph",
-        "also",
-        "One place I like is"
-      ],
       "id": "descriptive-place-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which revision replaces the vague word most effectively? Draft: 'The market was nice.'",
+      "answer": "The market was lively, colourful and full of fresh fruit.",
+      "options": [
+        "The market was very, very nice indeed.",
+        "The market was a place where people can go and buy many things.",
+        "The market was good and also nice.",
+        "The market was lively, colourful and full of fresh fruit."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "That is why I enjoy going there.",
-      "options": [
-        "also",
-        "That is why I enjoy going there.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "descriptive-place-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best creates the atmosphere of an old library?",
+      "answer": "Dusty shelves stretched into the shadows, and the air smelt of old paper.",
+      "options": [
+        "Dusty shelves stretched into the shadows, and the air smelt of old paper.",
+        "There are about two thousand books in the old library.",
+        "The library is located near the main road in the town centre area.",
+        "The library opens at eight and closes at five on weekdays."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Place + details + atmosphere + personal impression.",
-      "options": [
-        "One place I like is",
-        "also",
-        "That is why I enjoy going there.",
-        "Place + details + atmosphere + personal impression."
-      ],
       "id": "descriptive-place-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata sifat mana yang paling tepat melengkapi deskripsi? 'The beach was ___, with soft white sand and clear water.'",
+      "answer": "beautiful",
+      "options": [
+        "noisily",
+        "beautiful",
+        "angry",
+        "dangerously"
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Describing a Place.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "My favorite cafe is small but comfortable. It has warm lights, wooden tables, and quiet music.",
-      "options": [
-        "And because but however.",
-        "My favorite cafe is small but comfortable. It has warm lights, wooden tables, and quiet music.",
-        "One place I like is",
-        "That is why I enjoy going there."
-      ],
       "id": "descriptive-place-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggunakan indera pendengaran untuk mendeskripsikan tempat?",
+      "answer": "I can hear birds singing in the trees.",
+      "options": [
+        "The park has green grass and tall trees.",
+        "The flowers smell sweet in the morning.",
+        "The bench feels cold and hard to sit on.",
+        "I can hear birds singing in the trees."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Place + details + atmosphere + personal impression.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Place + details + atmosphere + personal impression."
-      ],
       "id": "descriptive-place-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih preposisi yang benar: 'The library is ___ the bank and the post office.'",
+      "answer": "between",
+      "options": [
+        "among",
+        "between",
+        "inside of",
+        "under"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "also",
-      "options": [
-        "That is why I enjoy going there.",
-        "descriptive paragraph",
-        "also",
-        "One place I like is"
-      ],
       "id": "descriptive-place-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Revisi mana yang mengganti kata yang samar dengan paling efektif? Draft: 'The market was nice.'",
+      "answer": "The market was lively, colourful and full of fresh fruit.",
+      "options": [
+        "The market was very, very nice indeed.",
+        "The market was a place where people can go and buy many things.",
+        "The market was good and also nice.",
+        "The market was lively, colourful and full of fresh fruit."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "That is why I enjoy going there.",
-      "options": [
-        "also",
-        "That is why I enjoy going there.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "descriptive-place-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling baik membangun suasana sebuah perpustakaan tua?",
+      "answer": "Dusty shelves stretched into the shadows, and the air smelt of old paper.",
+      "options": [
+        "Dusty shelves stretched into the shadows, and the air smelt of old paper.",
+        "There are about two thousand books in the old library.",
+        "The library is located near the main road in the town centre area.",
+        "The library opens at eight and closes at five on weekdays."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const PASSIVE_RULES = [
   {
     title: "Kalimat Aktif",
@@ -66,148 +68,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Present (+)", en: "Football is played everywhere.", id: "Sepak bola dimainkan di mana-mana.", icon: "⚽" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "This book ___ written by JK Rowling.",
-    options: ['is', 'was', 'were'],
-    answer: 'was',
-    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
-  },
-  {
-    id: 2,
-    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
-    options: ['is', 'are', 'was'],
-    answer: 'is',
-    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
-  },
-  {
-    id: 3,
-    question: "The photos ___ taken yesterday.",
-    options: ['was', 'were', 'is'],
-    answer: 'were',
-    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
-  },
-  {
-    id: 4,
-    question: "This car is ___ in Japan.",
-    options: ['make', 'made', 'making'],
-    answer: 'made',
-    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
-  },
-  {
-    id: 5,
-    question: "Choose the Passive sentence:",
-    options: ['He eats the apple.', 'The apple is eaten.', 'He is eating.'],
-    answer: 'The apple is eaten.',
-    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
-  },
-  {
-    id: 6,
-    question: "This book ___ written by JK Rowling.",
-    options: ["is","was","were"],
-    answer: "was",
-    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
-  },
-  {
-    id: 7,
-    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
-    options: ["is","are","was"],
-    answer: "is",
-    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
-  },
-  {
-    id: 8,
-    question: "The photos ___ taken last night.",
-    options: ["was","were","is"],
-    answer: "were",
-    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
-  },
-  {
-    id: 9,
-    question: "This bike is ___ in Japan.",
-    options: ["make","made","making"],
-    answer: "made",
-    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
-  },
-  {
-    id: 10,
-    question: "Choose the Passive sentence:",
-    options: ["My father eats the orange.","The orange is eaten.","My father is eating."],
-    answer: "The orange is eaten.",
-    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
-  },
-  {
-    id: 11,
-    question: "This book ___ written by JK Rowling.",
-    options: ["is","was","were"],
-    answer: "was",
-    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
-  },
-  {
-    id: 12,
-    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
-    options: ["is","are","was"],
-    answer: "is",
-    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
-  },
-  {
-    id: 13,
-    question: "The photos ___ taken this morning.",
-    options: ["was","were","is"],
-    answer: "were",
-    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
-  },
-  {
-    id: 14,
-    question: "This car is ___ in Japan.",
-    options: ["make","made","making"],
-    answer: "made",
-    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
-  },
-  {
-    id: 15,
-    question: "Choose the Passive sentence:",
-    options: ["He eats the peach.","The peach is eaten.","He is eating."],
-    answer: "The peach is eaten.",
-    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
-  },
-  {
-    id: 16,
-    question: "This book ___ written by JK Rowling.",
-    options: ["is","was","were"],
-    answer: "was",
-    explanation: "Buku itu ditulis di masa lampau, dan 'book' tunggal, jadi kita gunakan 'was'."
-  },
-  {
-    id: 17,
-    question: "Active: 'People speak English.' Passive: 'English ___ spoken.'",
-    options: ["is","are","was"],
-    answer: "is",
-    explanation: "Present simple passive: 'English' tunggal, jadi kita gunakan 'is'."
-  },
-  {
-    id: 18,
-    question: "The photos ___ taken yesterday.",
-    options: ["was","were","is"],
-    answer: "were",
-    explanation: "Past simple jamak ('photos'), jadi kita gunakan 'were'."
-  },
-  {
-    id: 19,
-    question: "This bus is ___ in Japan.",
-    options: ["make","made","making"],
-    answer: "made",
-    explanation: "Kalimat pasif selalu menggunakan Past Participle (V3). Make -> Made."
-  },
-  {
-    id: 20,
-    question: "Choose the Passive sentence:",
-    options: ["My father eats the apple.","The apple is eaten.","My father is eating."],
-    answer: "The apple is eaten.",
-    explanation: "Dalam kalimat pasif, objek (apel) datang lebih dulu dan menerima aksi."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[14], 'elementary/grammar/14'));
 
 const ElemGrammarLesson14: React.FC = () => {
   const navigate = useNavigate();

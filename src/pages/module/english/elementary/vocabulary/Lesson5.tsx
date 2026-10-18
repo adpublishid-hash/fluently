@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const PLACES_PEOPLE_VOCAB = [
   { word: "University", ipa: "/ˌjuːnɪˈvɜːrsɪti/", meaning: "Universitas" },
@@ -46,148 +48,7 @@ const STUDY_VERBS_VOCAB = [
   { word: "Improve", ipa: "/ɪmˈpruːv/", meaning: "Meningkatkan" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "You go to the ___ to borrow books.",
-    options: ['Laboratory', 'Library', 'Classroom'],
-    answer: 'Library',
-    explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
-  },
-  {
-    id: 2,
-    question: "If you get a good score, you ___ the exam.",
-    options: ['fail', 'pass', 'miss'],
-    answer: 'pass',
-    explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
-  },
-  {
-    id: 3,
-    question: "A person who teaches at a university is a ___.",
-    options: ['Student', 'Principal', 'Professor'],
-    answer: 'Professor',
-    explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
-  },
-  {
-    id: 4,
-    question: "Math, Science, and History are ___.",
-    options: ['Subjects', 'Grades', 'Projects'],
-    answer: 'Subjects',
-    explanation: "Subjects (Mata pelajaran) adalah topik yang kamu pelajari di sekolah."
-  },
-  {
-    id: 5,
-    question: "When you finish university, you ___.",
-    options: ['fail', 'graduate', 'start'],
-    answer: 'graduate',
-    explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
-  },
-  {
-    id: 6,
-    question: "You go to the ___ to borrow books.",
-    options: ["Laboratory","Library","Classroom"],
-    answer: "Library",
-    explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
-  },
-  {
-    id: 7,
-    question: "If you get a good score, you ___ the exam.",
-    options: ["fail","pass","miss"],
-    answer: "pass",
-    explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
-  },
-  {
-    id: 8,
-    question: "A person who teaches at a university is a ___.",
-    options: ["Student","Principal","Professor"],
-    answer: "Professor",
-    explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
-  },
-  {
-    id: 9,
-    question: "Math, Science, and History are ___.",
-    options: ["Subjects","Grades","Projects"],
-    answer: "Subjects",
-    explanation: "Subjects (Mata pelajaran) adalah topik yang kamu pelajari di sekolah."
-  },
-  {
-    id: 10,
-    question: "When you finish university, you ___.",
-    options: ["fail","graduate","start"],
-    answer: "graduate",
-    explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
-  },
-  {
-    id: 11,
-    question: "You go to the ___ to borrow books.",
-    options: ["Laboratory","Library","Classroom"],
-    answer: "Library",
-    explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
-  },
-  {
-    id: 12,
-    question: "If you get a good score, you ___ the exam.",
-    options: ["fail","pass","miss"],
-    answer: "pass",
-    explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
-  },
-  {
-    id: 13,
-    question: "A person who teaches at a university is a ___.",
-    options: ["Student","Principal","Professor"],
-    answer: "Professor",
-    explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
-  },
-  {
-    id: 14,
-    question: "Math, Science, and History are ___.",
-    options: ["Subjects","Grades","Projects"],
-    answer: "Subjects",
-    explanation: "Subjects (Mata pelajaran) adalah topik yang kamu pelajari di sekolah."
-  },
-  {
-    id: 15,
-    question: "When you finish university, you ___.",
-    options: ["fail","graduate","start"],
-    answer: "graduate",
-    explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
-  },
-  {
-    id: 16,
-    question: "You go to the ___ to borrow books.",
-    options: ["Laboratory","Library","Classroom"],
-    answer: "Library",
-    explanation: "Library (Perpustakaan) adalah tempat buku disimpan untuk dibaca atau dipinjam."
-  },
-  {
-    id: 17,
-    question: "If you get a good score, you ___ the exam.",
-    options: ["fail","pass","miss"],
-    answer: "pass",
-    explanation: "To pass (lulus) berarti berhasil dalam tes atau ujian."
-  },
-  {
-    id: 18,
-    question: "A person who teaches at a university is a ___.",
-    options: ["Student","Principal","Professor"],
-    answer: "Professor",
-    explanation: "Professor adalah pengajar tingkat tinggi di perguruan tinggi atau universitas."
-  },
-  {
-    id: 19,
-    question: "Math, Science, and History are ___.",
-    options: ["Subjects","Grades","Projects"],
-    answer: "Subjects",
-    explanation: "Subjects (Mata pelajaran) adalah topik yang kamu pelajari di sekolah."
-  },
-  {
-    id: 20,
-    question: "When you finish university, you ___.",
-    options: ["fail","graduate","start"],
-    answer: "graduate",
-    explanation: "Graduate (Lulus/Wisuda) berarti berhasil menyelesaikan gelar atau kursus."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[5], 'elementary/vocabulary/5'));
 
 const Lesson5: React.FC = () => {
   const navigate = useNavigate();

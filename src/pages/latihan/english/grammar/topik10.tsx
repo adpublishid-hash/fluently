@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "question-tags-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Question Tags): Complete: You are tired, ____?",
-      "answer": "aren't you",
+      "prompt": "Basic grammar check (Question Tags): Complete: He is your brother, ____?",
+      "answer": "isn't he",
       "options": [
-        "aren't you",
-        "are you",
-        "don't you",
-        "weren't you"
+        "doesn't he",
+        "wasn't he",
+        "is he",
+        "isn't he"
       ]
     },
     {
       "id": "question-tags-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Question Tags): Complete: She likes tea, ____?",
-      "answer": "doesn't she",
+      "prompt": "Basic grammar check (Question Tags): Complete: You can swim, ____?",
+      "answer": "can't you",
       "options": [
-        "isn't she",
-        "does she",
-        "didn't she",
-        "doesn't she"
+        "don't you",
+        "aren't you",
+        "can't you",
+        "can you"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "question-tags-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Question Tags): Complete: They did not come, ____?",
-      "answer": "did they",
+      "prompt": "Choose the best structure (Question Tags): Complete: Let's go for a walk, ____?",
+      "answer": "shall we",
       "options": [
-        "didn't they",
-        "do they",
-        "are they",
-        "did they"
+        "don't we",
+        "let we",
+        "shall we",
+        "will we"
       ]
     },
     {
       "id": "question-tags-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Question Tags): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Question Tags): Complete: Nobody called, ____?",
+      "answer": "did they",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "does they",
+        "didn't anybody",
+        "didn't they",
+        "did they"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "question-tags-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Question Tags): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Question Tags): Complete: I am late again, ____?",
+      "answer": "aren't I",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "isn't I",
+        "don't I",
+        "am not I",
+        "aren't I"
       ]
     },
     {
       "id": "question-tags-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Question Tags): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Question Tags): Complete: She has hardly eaten anything, ____?",
+      "answer": "has she",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "did she",
+        "doesn't she",
+        "has she",
+        "hasn't she"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "question-tags-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Question Tags): Complete: You are tired, ____?",
-      "answer": "aren't you",
+      "prompt": "Cek grammar dasar (Question Tags): Complete: He is your brother, ____?",
+      "answer": "isn't he",
       "options": [
-        "aren't you",
-        "are you",
-        "don't you",
-        "weren't you"
+        "doesn't he",
+        "wasn't he",
+        "is he",
+        "isn't he"
       ]
     },
     {
       "id": "question-tags-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Question Tags): Complete: She likes tea, ____?",
-      "answer": "doesn't she",
+      "prompt": "Cek grammar dasar (Question Tags): Complete: You can swim, ____?",
+      "answer": "can't you",
       "options": [
-        "isn't she",
-        "does she",
-        "didn't she",
-        "doesn't she"
+        "don't you",
+        "aren't you",
+        "can't you",
+        "can you"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "question-tags-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Question Tags): Complete: They did not come, ____?",
-      "answer": "did they",
+      "prompt": "Pilih struktur terbaik (Question Tags): Complete: Let's go for a walk, ____?",
+      "answer": "shall we",
       "options": [
-        "didn't they",
-        "do they",
-        "are they",
-        "did they"
+        "don't we",
+        "let we",
+        "shall we",
+        "will we"
       ]
     },
     {
       "id": "question-tags-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Question Tags): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Question Tags): Complete: Nobody called, ____?",
+      "answer": "did they",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "does they",
+        "didn't anybody",
+        "didn't they",
+        "did they"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "question-tags-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Question Tags): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Question Tags): Complete: I am late again, ____?",
+      "answer": "aren't I",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "isn't I",
+        "don't I",
+        "am not I",
+        "aren't I"
       ]
     },
     {
       "id": "question-tags-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Question Tags): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Question Tags): Complete: She has hardly eaten anything, ____?",
+      "answer": "has she",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "did she",
+        "doesn't she",
+        "has she",
+        "hasn't she"
       ]
     }
   ]

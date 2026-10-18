@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const DAILY_ROUTINE_VOCAB = [
   { word: "Wake up", ipa: "/weɪk ʌp/", meaning: "Bangun (membuka mata)" },
@@ -46,148 +48,7 @@ const ESSENTIAL_ACTIONS_VOCAB = [
   { word: "Throw away", ipa: "/θroʊ əˈweɪ/", meaning: "Membuang" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "It is dark in here. Please ___ the light.",
-    options: ['turn off', 'turn on', 'get on'],
-    answer: 'turn on',
-    explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
-  },
-  {
-    id: 2,
-    question: "You need to ___ your shoes before entering the mosque.",
-    options: ['take off', 'put on', 'get off'],
-    answer: 'take off',
-    explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
-  },
-  {
-    id: 3,
-    question: "The bus is here! Let's ___.",
-    options: ['get in', 'get on', 'get up'],
-    answer: 'get on',
-    explanation: "Kami menggunakan 'get on' untuk transportasi umum seperti bus dan kereta."
-  },
-  {
-    id: 4,
-    question: "I lost my keys. Can you help me ___ them?",
-    options: ['look at', 'look after', 'look for'],
-    answer: 'look for',
-    explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
-  },
-  {
-    id: 5,
-    question: "This shirt looks nice. I want to ___ it ___.",
-    options: ['try / on', 'put / away', 'fill / in'],
-    answer: 'try / on',
-    explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
-  },
-  {
-    id: 6,
-    question: "It is dark in here. Please ___ the light.",
-    options: ["turn off","turn on","get on"],
-    answer: "turn on",
-    explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
-  },
-  {
-    id: 7,
-    question: "You need to ___ your shoes before entering the mosque.",
-    options: ["take off","put on","get off"],
-    answer: "take off",
-    explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
-  },
-  {
-    id: 8,
-    question: "The bus is here! Let's ___.",
-    options: ["get in","get on","get up"],
-    answer: "get on",
-    explanation: "Kami menggunakan 'get on' untuk transportasi umum seperti bus dan kereta."
-  },
-  {
-    id: 9,
-    question: "I lost my keys. Can you help me ___ them?",
-    options: ["look at","look after","look for"],
-    answer: "look for",
-    explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
-  },
-  {
-    id: 10,
-    question: "This shirt looks nice. I want to ___ it ___.",
-    options: ["try / on","put / away","fill / in"],
-    answer: "try / on",
-    explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
-  },
-  {
-    id: 11,
-    question: "It is dark in here. Please ___ the light.",
-    options: ["turn off","turn on","get on"],
-    answer: "turn on",
-    explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
-  },
-  {
-    id: 12,
-    question: "You need to ___ your shoes before entering the mosque.",
-    options: ["take off","put on","get off"],
-    answer: "take off",
-    explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
-  },
-  {
-    id: 13,
-    question: "The bus is here! Let's ___.",
-    options: ["get in","get on","get up"],
-    answer: "get on",
-    explanation: "Kami menggunakan 'get on' untuk transportasi umum seperti bus dan kereta."
-  },
-  {
-    id: 14,
-    question: "I lost my keys. Can you help me ___ them?",
-    options: ["look at","look after","look for"],
-    answer: "look for",
-    explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
-  },
-  {
-    id: 15,
-    question: "This shirt looks nice. I want to ___ it ___.",
-    options: ["try / on","put / away","fill / in"],
-    answer: "try / on",
-    explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
-  },
-  {
-    id: 16,
-    question: "It is dark in here. Please ___ the light.",
-    options: ["turn off","turn on","get on"],
-    answer: "turn on",
-    explanation: "Turn on (menyalakan) berarti mengaktifkan lampu atau mesin."
-  },
-  {
-    id: 17,
-    question: "You need to ___ your shoes before entering the mosque.",
-    options: ["take off","put on","get off"],
-    answer: "take off",
-    explanation: "Take off (melepas) berarti melepaskan pakaian atau sepatu."
-  },
-  {
-    id: 18,
-    question: "The bus is here! Let's ___.",
-    options: ["get in","get on","get up"],
-    answer: "get on",
-    explanation: "Kami menggunakan 'get on' untuk transportasi umum seperti bus dan kereta."
-  },
-  {
-    id: 19,
-    question: "I lost my keys. Can you help me ___ them?",
-    options: ["look at","look after","look for"],
-    answer: "look for",
-    explanation: "Look for (mencari) berarti berusaha menemukan sesuatu."
-  },
-  {
-    id: 20,
-    question: "This shirt looks nice. I want to ___ it ___.",
-    options: ["try / on","put / away","fill / in"],
-    answer: "try / on",
-    explanation: "Try on (mencoba) berarti mengenakan pakaian untuk memeriksa apakah pas."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[14], 'elementary/vocabulary/14'));
 
 const Lesson14: React.FC = () => {
   const navigate = useNavigate();

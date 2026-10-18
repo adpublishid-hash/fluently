@@ -83,34 +83,34 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "Dalam Bahasa Inggris British Standar, 'R' di akhir kata 'Car' biasanya...",
-    options: ['Diucapkan dengan kuat', 'Diam / Lembut', 'Digulung seperti bahasa Spanyol'],
+    options: ['Diam / Lembut', 'Diucapkan dengan kuat', 'Digulung seperti bahasa Spanyol'],
     answer: 'Diam / Lembut',
     explanation: "Bahasa Inggris British Standar adalah non-rhotis, artinya mereka menghilangkan R di akhir kata."
   },
   {
     id: 3,
     question: "Orang Amerika biasanya mengucapkan 'T' dalam 'Water' seperti...",
-    options: ['T yang renyah', 'D yang lembut (Flap T)', 'Bunyi diam'],
+    options: ['Bunyi diam', 'T yang renyah', 'D yang lembut (Flap T)'],
     answer: 'D yang lembut (Flap T)',
     explanation: "Ini disebut 'Flap T'."
   },
   { id: 4, question: "Mengucapkan 'Sink' alih-alih 'Think' adalah...", options: ['Hanya aksen', 'Kesalahan pengucapan'], answer: 'Kesalahan pengucapan', explanation: "Ini adalah kesalahan karena mengubah arti kata." },
-  { id: 5, question: "Flap T (seperti dalam 'Water' = 'Wadder') paling umum di...", options: ['American English', 'British English', 'Australian English'], answer: 'American English', explanation: "Americans often pronounce /t/ between vowels as a soft D/flap." },
-  { id: 6, question: "'Non-rhotic' accent  berarti...", options: ['R di akhir kata tidak terdengar / silent', 'R sangat kuat', 'Semua R digulung'], answer: 'R di akhir kata tidak terdengar / silent', explanation: "Standard British English = non-rhotic (Car = 'Caa')." },
-  { id: 7, question: "'Rhotic' accent berarti...", options: ['R selalu diucapkan', 'R selalu silent', 'R digulung'], answer: 'R selalu diucapkan', explanation: "American English = rhotic (Car = 'Carrr')." },
-  { id: 8, question: "Tujuan pronunciation yang baik adalah...", options: ['Terdengar 100% native', 'Intelligibility / Kejelasan', 'No accent at all'], answer: 'Intelligibility / Kejelasan', explanation: "Goal = to be understood clearly, not to hide your identity." },
-  { id: 9, question: "'Tomato' di US vs UK dalam...", options: ['Consonants', 'Vowel sound', 'Stress pattern'], answer: 'Vowel sound', explanation: "US = to-MAY-to, UK = to-MAH-to." },
-  { id: 10, question: "'Schedule' di US dimulai dengan bunyi...", options: ['/sk/ (Sked)', '/ʃ/ (Shed)', '/tʃ/ (Ched)'], answer: '/sk/ (Sked)', explanation: "US = 'SKedule'. UK = 'SHedule'." },
-  { id: 11, question: "'Better' di American English sering terdengar seperti...", options: ['Bet-ter (T jelas)', 'Bed-der (Flap T)', 'Bet-uh (no T)'], answer: 'Bed-der (Flap T)', explanation: "T between vowels → soft D flap." },
+  { id: 5, question: "Flap T (seperti dalam 'Water' = 'Wadder') paling umum di...", options: ['American English', 'Australian English', 'British English'], answer: 'American English', explanation: "Americans often pronounce /t/ between vowels as a soft D/flap." },
+  { id: 6, question: "'Non-rhotic' accent  berarti...", options: ['Semua R digulung', 'R sangat kuat', 'R di akhir kata tidak terdengar / silent'], answer: 'R di akhir kata tidak terdengar / silent', explanation: "Standard British English = non-rhotic (Car = 'Caa')." },
+  { id: 7, question: "'Rhotic' accent berarti...", options: ['R digulung', 'R selalu silent', 'R selalu diucapkan'], answer: 'R selalu diucapkan', explanation: "American English = rhotic (Car = 'Carrr')." },
+  { id: 8, question: "Tujuan pronunciation yang baik adalah...", options: ['Intelligibility / Kejelasan', 'No accent at all', 'Terdengar 100% native'], answer: 'Intelligibility / Kejelasan', explanation: "Goal = to be understood clearly, not to hide your identity." },
+  { id: 9, question: "'Tomato' di US vs UK dalam...", options: ['Stress pattern', 'Consonants', 'Vowel sound'], answer: 'Vowel sound', explanation: "US = to-MAY-to, UK = to-MAH-to." },
+  { id: 10, question: "'Schedule' di US dimulai dengan bunyi...", options: ['/ʃ/ (Shed)', '/sk/ (Sked)', '/tʃ/ (Ched)'], answer: '/sk/ (Sked)', explanation: "US = 'SKedule'. UK = 'SHedule'." },
+  { id: 11, question: "'Better' di American English sering terdengar seperti...", options: ['Bed-der (Flap T)', 'Bet-uh (no T)', 'Bet-ter (T jelas)'], answer: 'Bed-der (Flap T)', explanation: "T between vowels → soft D flap." },
   { id: 12, question: "Apakah aksen menunjukkan level pendidikan?", options: ['Ya', 'Tidak'], answer: 'Tidak', explanation: "Accent shows where you're from, not intelligence or education." },
   { id: 13, question: "Jika pendengar sering salah paham dengan Anda, masalahnya mungkin...", options: ['Accent Anda', 'Pronunciation errors', 'Volume Anda'], answer: 'Pronunciation errors', explanation: "Errors (not accent) cause misunderstanding." },
-  { id: 14, question: "British RP (Received Pronunciation) sering menghilangkan bunyi...", options: ['R di akhir kata', 'T di akhir kata', 'L di akhir kata'], answer: 'R di akhir kata', explanation: "RP = non-rhotic, R often silent at end." },
+  { id: 14, question: "British RP (Received Pronunciation) sering menghilangkan bunyi...", options: ['L di akhir kata', 'R di akhir kata', 'T di akhir kata'], answer: 'R di akhir kata', explanation: "RP = non-rhotic, R often silent at end." },
   { id: 15, question: "'Bottle' di British English/Cockney sering diucapkan dengan...", options: ['Strong T', "Glottal stop (Bo'le)", 'No T sound'], answer: "Glottal stop (Bo'le)", explanation: "Glottal stop replaces T in many UK accents." },
-  { id: 16, question: "Untuk meningkatkan intelligibility, fokus pada...", options: ['Menghilangkan aksen sepenuhnya', 'Clear consonants, stress, dan intonation', 'Speaking louder'], answer: 'Clear consonants, stress, dan intonation', explanation: "Clarity comes from good articulation, stress, intonation." },
-  { id: 17, question: "Contoh 'acceptable accent'?", options: ['Indian English', 'Singaporean English', 'Nigerian English', 'All of the above'], answer: 'All of the above', explanation: "ALL accents are valid as long as you're clear!" },
-  { id: 18, question: "Jika Anda ingin terdengar American, practice...", options: ['Rhoticity (strong R), flap T', 'Silent R, clear T', 'Rolling Rs'], answer: 'Rhoticity (strong R), flap T', explanation: "American = R pronounced, T often becomes flap." },
-  { id: 19, question: "Jika Anda ingin terdengar British (RP), practice...", options: ['Non-rhoticity (silent R), clear T', 'Strong R, flap T', 'No T sounds'], answer: 'Non-rhoticity (silent R), clear T', explanation: "British RP = R often silent, T pronounced clearly." },
-  { id: 20, question: "Best mindset untuk pronunciation?", options: ['Harus sempurna seperti native', 'Clear dan confident, accent OK', 'Hide your accent'], answer: 'Clear dan confident, accent OK', explanation: "Confidence + clarity > perfect accent. Your accent is part of you!" }
+  { id: 16, question: "Untuk meningkatkan intelligibility, fokus pada...", options: ['Clear consonants, stress, dan intonation', 'Menghilangkan aksen sepenuhnya', 'Speaking louder'], answer: 'Clear consonants, stress, dan intonation', explanation: "Clarity comes from good articulation, stress, intonation." },
+  { id: 17, question: "Contoh 'acceptable accent'?", options: ['Singaporean English', 'Nigerian English', 'All of the above', 'Indian English'], answer: 'All of the above', explanation: "ALL accents are valid as long as you're clear!" },
+  { id: 18, question: "Jika Anda ingin terdengar American, practice...", options: ['Silent R, clear T', 'Rolling Rs', 'Rhoticity (strong R), flap T'], answer: 'Rhoticity (strong R), flap T', explanation: "American = R pronounced, T often becomes flap." },
+  { id: 19, question: "Jika Anda ingin terdengar British (RP), practice...", options: ['Strong R, flap T', 'No T sounds', 'Non-rhoticity (silent R), clear T'], answer: 'Non-rhoticity (silent R), clear T', explanation: "British RP = R often silent, T pronounced clearly." },
+  { id: 20, question: "Best mindset untuk pronunciation?", options: ['Clear dan confident, accent OK', 'Harus sempurna seperti native', 'Hide your accent'], answer: 'Clear dan confident, accent OK', explanation: "Confidence + clarity > perfect accent. Your accent is part of you!" }
 ];
 
 const InterPronunLesson14: React.FC = () => {

@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star, Lightbulb } from 'lucide-react';
 import { StarIcon, RefreshIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 type StressPair = {
   word: string;
   noun: { pronunciation: string; meaning: string; sentence: string };
@@ -50,148 +52,7 @@ const PRACTICE_ITEMS = [
   { id: 5, text: "They signed the ___ (agreement).", word: "Contract", correct: "CON-tract (Noun)", type: "Noun" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA BENDA (NOUN), di mana penekanannya?",
-    options: ['Suku Kata ke-1 (DA-da)', 'Suku Kata ke-2 (da-DA)'],
-    answer: 'Suku Kata ke-1 (DA-da)',
-    explanation: "Sebagian besar kata benda 2 suku kata menekankan bagian pertama (contoh: TA-ble, PEN-cil, RE-cord)."
-  },
-  {
-    id: 2,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA KERJA (VERB), di mana penekanannya?",
-    options: ['Suku Kata ke-1 (DA-da)', 'Suku Kata ke-2 (da-DA)'],
-    answer: 'Suku Kata ke-2 (da-DA)',
-    explanation: "Sebagian besar kata kerja 2 suku kata menekankan bagian kedua (contoh: be-GIN, re-LAX, re-CORD)."
-  },
-  {
-    id: 3,
-    question: "Pola penekanan mana yang cocok: 'I will PRE-sent the gift'?",
-    options: ['Benar', 'Salah'],
-    answer: 'Salah',
-    explanation: "Sebagai kata kerja (tindakan memberi), seharusnya pre-SENT."
-  },
-  {
-    id: 4,
-    question: "Dengarkan: 'DES-ert' (tempat kering) vs 'de-SERT' (meninggalkan). Mana yang merupakan kata benda?",
-    options: ['DES-ert', 'de-SERT'],
-    answer: 'DES-ert',
-    explanation: "Tempat (Kata Benda) ditekankan pada suku kata pertama."
-  },
-  {
-    id: 5,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA BENDA (NOUN), di mana penekanannya...",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-1 (DA-da)",
-    explanation: "Sebagian besar kata benda 2 suku kata menekankan bagian pertama (contoh: TA-ble, PEN-cil, RE-cord)."
-  },
-  {
-    id: 6,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA KERJA (VERB), di mana penekanannya...",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-2 (da-DA)",
-    explanation: "Sebagian besar kata kerja 2 suku kata menekankan bagian kedua (contoh: be-GIN, re-LAX, re-CORD)."
-  },
-  {
-    id: 7,
-    question: "Pola penekanan mana yang cocok: 'I will PRE-sent the gift' ?",
-    options: ["Benar","Salah"],
-    answer: "Salah",
-    explanation: "Sebagai kata kerja (tindakan memberi), seharusnya pre-SENT."
-  },
-  {
-    id: 8,
-    question: "Dengarkan: 'DES-ert' (tempat kering) vs 'de-SERT' (meninggalkan). Mana yang merupakan kata benda?",
-    options: ["DES-ert","de-SERT"],
-    answer: "DES-ert",
-    explanation: "Tempat (Kata Benda) ditekankan pada suku kata pertama."
-  },
-  {
-    id: 9,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA BENDA (NOUN), di mana penekanannya?",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-1 (DA-da)",
-    explanation: "Sebagian besar kata benda 2 suku kata menekankan bagian pertama (contoh: TA-ble, PEN-cil, RE-cord)."
-  },
-  {
-    id: 10,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA KERJA (VERB), di mana penekanannya...",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-2 (da-DA)",
-    explanation: "Sebagian besar kata kerja 2 suku kata menekankan bagian kedua (contoh: be-GIN, re-LAX, re-CORD)."
-  },
-  {
-    id: 11,
-    question: "Pola penekanan mana yang cocok: 'I will PRE-sent the gift' ?",
-    options: ["Benar","Salah"],
-    answer: "Salah",
-    explanation: "Sebagai kata kerja (tindakan memberi), seharusnya pre-SENT."
-  },
-  {
-    id: 12,
-    question: "Simak kata: 'DES-ert' (tempat kering) vs 'de-SERT' (meninggalkan). Mana yang merupakan kata benda ?",
-    options: ["DES-ert","de-SERT"],
-    answer: "DES-ert",
-    explanation: "Tempat (Kata Benda) ditekankan pada suku kata pertama."
-  },
-  {
-    id: 13,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA BENDA (NOUN), di mana penekanannya?",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-1 (DA-da)",
-    explanation: "Sebagian besar kata benda 2 suku kata menekankan bagian pertama (contoh: TA-ble, PEN-cil, RE-cord)."
-  },
-  {
-    id: 14,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA KERJA (VERB), di mana penekanannya?",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-2 (da-DA)",
-    explanation: "Sebagian besar kata kerja 2 suku kata menekankan bagian kedua (contoh: be-GIN, re-LAX, re-CORD)."
-  },
-  {
-    id: 15,
-    question: "Pola penekanan mana yang cocok: 'I will PRE-sent the gift' ?",
-    options: ["Benar","Salah"],
-    answer: "Salah",
-    explanation: "Sebagai kata kerja (tindakan memberi), seharusnya pre-SENT."
-  },
-  {
-    id: 16,
-    question: "Simak kata: 'DES-ert' (tempat kering) vs 'de-SERT' (meninggalkan). Mana yang merupakan kata benda?",
-    options: ["DES-ert","de-SERT"],
-    answer: "DES-ert",
-    explanation: "Tempat (Kata Benda) ditekankan pada suku kata pertama."
-  },
-  {
-    id: 17,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA BENDA (NOUN), di mana penekanannya?",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-1 (DA-da)",
-    explanation: "Sebagian besar kata benda 2 suku kata menekankan bagian pertama (contoh: TA-ble, PEN-cil, RE-cord)."
-  },
-  {
-    id: 18,
-    question: "Aturan Umum: Jika kata 2 suku kata adalah KATA KERJA (VERB), di mana penekanannya?",
-    options: ["Suku Kata ke-1 (DA-da)","Suku Kata ke-2 (da-DA)"],
-    answer: "Suku Kata ke-2 (da-DA)",
-    explanation: "Sebagian besar kata kerja 2 suku kata menekankan bagian kedua (contoh: be-GIN, re-LAX, re-CORD)."
-  },
-  {
-    id: 19,
-    question: "Pola penekanan mana yang cocok: 'I will PRE-sent the gift'...",
-    options: ["Benar","Salah"],
-    answer: "Salah",
-    explanation: "Sebagai kata kerja (tindakan memberi), seharusnya pre-SENT."
-  },
-  {
-    id: 20,
-    question: "Dengarkan: 'DES-ert' (tempat kering) vs 'de-SERT' (meninggalkan). Mana yang merupakan kata benda?",
-    options: ["DES-ert","de-SERT"],
-    answer: "DES-ert",
-    explanation: "Tempat (Kata Benda) ditekankan pada suku kata pertama."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[9], 'elementary/pronunciation/9'));
 
 const ElemPronunLesson9: React.FC = () => {
   const navigate = useNavigate();

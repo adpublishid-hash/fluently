@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const REGULAR_RULES = [
   {
     rule: "Aturan Umum (+ed)",
@@ -89,148 +91,7 @@ const NEGATIVE_QUESTION_RULES = [
   }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Apa bentuk lampau dari 'Stop'?",
-    options: ['Stoped', 'Stopped', 'Stopt'],
-    answer: 'Stopped',
-    explanation: "Aturan CVC: Satu vokal + satu konsonan di akhir = Gandakan konsonan (p -> pp)."
-  },
-  {
-    id: 2,
-    question: "I ___ (not / see) him yesterday.",
-    options: ['didn\'t saw', 'didn\'t see', 'don\'t saw'],
-    answer: 'didn\'t see',
-    explanation: "Setelah 'didn't', gunakan kata kerja DASAR (see)."
-  },
-  {
-    id: 3,
-    question: "She ___ (study) for the exam.",
-    options: ['studyed', 'stayed', 'studied'],
-    answer: 'studied',
-    explanation: "Aturan Konsonan + y: Ubah 'y' menjadi 'i' dan tambahkan 'ed'."
-  },
-  {
-    id: 4,
-    question: "Apa bentuk lampau dari 'Buy'?",
-    options: ['Buyed', 'Bought', 'Brought'],
-    answer: 'Bought',
-    explanation: "'Buy' tidak beraturan. Bentuk lampaunya adalah 'Bought'. ('Brought' adalah bentuk lampau dari 'Bring')."
-  },
-  {
-    id: 5,
-    question: "___ you go to the party?",
-    options: ['Do', 'Were', 'Did'],
-    answer: 'Did',
-    explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
-  },
-  {
-    id: 6,
-    question: "He ___ (come) to my house last night.",
-    options: ['comed', 'came', 'come'],
-    answer: 'came',
-    explanation: "'Come' tidak beraturan. Bentuk lampaunya adalah 'Came'."
-  },
-  {
-    id: 7,
-    question: "Apa bentuk lampau dari 'Stop'?",
-    options: ["Stoped","Stopped","Stopt"],
-    answer: "Stopped",
-    explanation: "Aturan CVC: Satu vokal + satu konsonan di akhir = Gandakan konsonan (p -> pp)."
-  },
-  {
-    id: 8,
-    question: "I ___ (not / see) him last month.",
-    options: ["didn't saw","didn't see","don't saw"],
-    answer: "didn't see",
-    explanation: "Setelah 'didn't', gunakan kata kerja DASAR (see)."
-  },
-  {
-    id: 9,
-    question: "She ___ (study) for the exam.",
-    options: ["studyed","stayed","studied"],
-    answer: "studied",
-    explanation: "Aturan Konsonan + y: Ubah 'y' menjadi 'i' dan tambahkan 'ed'."
-  },
-  {
-    id: 10,
-    question: "Apa bentuk lampau dari 'Buy'?",
-    options: ["Buyed","Bought","Brought"],
-    answer: "Bought",
-    explanation: "'Buy' tidak beraturan. Bentuk lampaunya adalah 'Bought'. ('Brought' adalah bentuk lampau dari 'Bring')."
-  },
-  {
-    id: 11,
-    question: "___ you go to the party?",
-    options: ["Do","Were","Did"],
-    answer: "Did",
-    explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
-  },
-  {
-    id: 12,
-    question: "She ___ (come) to my office last night.",
-    options: ["comed","came","come"],
-    answer: "came",
-    explanation: "'Come' tidak beraturan. Bentuk lampaunya adalah 'Came'."
-  },
-  {
-    id: 13,
-    question: "Apa bentuk lampau dari 'Stop'?",
-    options: ["Stoped","Stopped","Stopt"],
-    answer: "Stopped",
-    explanation: "Aturan CVC: Satu vokal + satu konsonan di akhir = Gandakan konsonan (p -> pp)."
-  },
-  {
-    id: 14,
-    question: "I ___ (not / see) him this morning.",
-    options: ["didn't saw","didn't see","don't saw"],
-    answer: "didn't see",
-    explanation: "Setelah 'didn't', gunakan kata kerja DASAR (see)."
-  },
-  {
-    id: 15,
-    question: "My sister ___ (study) for the exam.",
-    options: ["studyed","stayed","studied"],
-    answer: "studied",
-    explanation: "Aturan Konsonan + y: Ubah 'y' menjadi 'i' dan tambahkan 'ed'."
-  },
-  {
-    id: 16,
-    question: "Apa bentuk lampau dari 'Buy'?",
-    options: ["Buyed","Bought","Brought"],
-    answer: "Bought",
-    explanation: "'Buy' tidak beraturan. Bentuk lampaunya adalah 'Bought'. ('Brought' adalah bentuk lampau dari 'Bring')."
-  },
-  {
-    id: 17,
-    question: "___ you go to the party?",
-    options: ["Do","Were","Did"],
-    answer: "Did",
-    explanation: "Gunakan 'Did' untuk pertanyaan waktu lampau dengan kata kerja tindakan."
-  },
-  {
-    id: 18,
-    question: "My father ___ (come) to my flat last night.",
-    options: ["comed","came","come"],
-    answer: "came",
-    explanation: "'Come' tidak beraturan. Bentuk lampaunya adalah 'Came'."
-  },
-  {
-    id: 19,
-    question: "Apa bentuk lampau dari 'Stop'?",
-    options: ["Stoped","Stopped","Stopt"],
-    answer: "Stopped",
-    explanation: "Aturan CVC: Satu vokal + satu konsonan di akhir = Gandakan konsonan (p -> pp)."
-  },
-  {
-    id: 20,
-    question: "I ___ (not / see) him last week.",
-    options: ["didn't saw","didn't see","don't saw"],
-    answer: "didn't see",
-    explanation: "Setelah 'didn't', gunakan kata kerja DASAR (see)."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[2], 'elementary/grammar/2'));
 
 const ElemGrammarLesson2: React.FC = () => {
   const navigate = useNavigate();

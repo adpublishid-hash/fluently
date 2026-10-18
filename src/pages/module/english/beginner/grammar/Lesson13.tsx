@@ -98,7 +98,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Manakah kalimat perintah negatif yang benar?",
-    options: ['No smoke here.', 'Not smoke here.', 'Don\'t smoke here.'],
+    options: ['Not smoke here.', 'Don\'t smoke here.', 'No smoke here.'],
     answer: 'Don\'t smoke here.',
     explanation: "Imperatif negatif selalu dimulai dengan 'Don't' + Kata Kerja Dasar."
   },
@@ -112,28 +112,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 3,
     question: "Manakah permintaan yang paling sopan?",
-    options: ['Open the window.', 'Open the window, please.', 'Could you open the window?'],
+    options: ['Open the window.', 'Could you open the window?', 'Open the window, please.'],
     answer: 'Could you open the window?',
     explanation: "'Could you...' lebih halus dan lebih sopan daripada perintah langsung, bahkan dengan 'please'."
   },
   {
     id: 4,
     question: "___ forget your keys!",
-    options: ['Don\'t', 'Not', 'No'],
+    options: ['No', 'Not', 'Don\'t'],
     answer: 'Don\'t',
     explanation: "Struktur imperatif negatif standar."
   },
   {
     id: 5,
     question: "Please ___ a seat.",
-    options: ['takes', 'taking', 'take'],
+    options: ['taking', 'take', 'takes'],
     answer: 'take',
     explanation: "Imperatif selalu menggunakan BENTUK DASAR dari kata kerja."
   },
   {
     id: 6,
     question: "___ the door.",
-    options: ['Close', 'Closes', 'Closing'],
+    options: ['Closing', 'Closes', 'Close'],
     answer: 'Close',
     explanation: "Gunakan kata kerja dasar: Close."
   },
@@ -154,7 +154,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "___ you pass the salt?",
-    options: ['Could', 'Do', 'Have'],
+    options: ['Have', 'Could', 'Do'],
     answer: 'Could',
     explanation: "Permintaan sopan: Could you...?"
   },
@@ -168,56 +168,56 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "___ quiet, please.",
-    options: ['Be', 'Get', 'Have'],
+    options: ['Get', 'Be', 'Have'],
     answer: 'Be',
     explanation: "Be quiet (diamlah)."
   },
   {
     id: 12,
     question: "___ up!",
-    options: ['Stand', 'Stands', 'Standing'],
+    options: ['Stands', 'Stand', 'Standing'],
     answer: 'Stand',
     explanation: "Stand up."
   },
   {
     id: 13,
     question: "Please ___ me.",
-    options: ['help', 'helps', 'helping'],
+    options: ['helps', 'helping', 'help'],
     answer: 'help',
     explanation: "Kata kerja dasar 'help'."
   },
   {
     id: 14,
     question: "___ late.",
-    options: ['Don\'t be', 'Not be', 'No be'],
+    options: ['Not be', 'Don\'t be', 'No be'],
     answer: 'Don\'t be',
     explanation: "Don't be late (Jangan terlambat)."
   },
   {
     id: 15,
     question: "___ left at the corner.",
-    options: ['Turn', 'Turns', 'Turning'],
+    options: ['Turns', 'Turning', 'Turn'],
     answer: 'Turn',
     explanation: "Instruksi arah: Turn left."
   },
   {
     id: 16,
     question: "___ worry.",
-    options: ['Don\'t', 'No', 'Not'],
+    options: ['Don\'t', 'Not', 'No'],
     answer: 'Don\'t',
     explanation: "Don't worry (Jangan khawatir)."
   },
   {
     id: 17,
     question: "Let's ___.",
-    options: ['go', 'goes', 'going'],
+    options: ['going', 'goes', 'go'],
     answer: 'go',
     explanation: "Let's + Verb 1 (go)."
   },
   {
     id: 18,
     question: "___ your vegetables.",
-    options: ['Eat', 'Eats', 'Eating'],
+    options: ['Eat', 'Eating', 'Eats'],
     answer: 'Eat',
     explanation: "Perintah: Eat (Makanlah)."
   },
@@ -231,7 +231,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "___ me the money.",
-    options: ['Show', 'Shows', 'Showing'],
+    options: ['Show', 'Showing', 'Shows'],
     answer: 'Show',
     explanation: "Show me (Tunjukkan padaku)."
   }

@@ -123,24 +123,24 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conjunctions-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Conjunctions (Kata Sambung)): Complete: I stayed home ____ I was sick.",
-      "answer": "because",
+      "prompt": "Basic grammar check (Conjunctions (Kata Sambung)): Complete: I like tea ____ coffee.",
+      "answer": "and",
       "options": [
-        "because",
         "but",
-        "although",
+        "so",
+        "because",
         "and"
       ]
     },
     {
       "id": "conjunctions-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Conjunctions (Kata Sambung)): Complete: She is tired ____ she keeps working.",
-      "answer": "but",
+      "prompt": "Basic grammar check (Conjunctions (Kata Sambung)): Complete: It was cold, ____ I wore a coat.",
+      "answer": "so",
       "options": [
-        "because",
         "so",
-        "and",
+        "although",
+        "because",
         "but"
       ]
     },
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conjunctions-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Conjunctions (Kata Sambung)): Complete: ____ it was raining, we went out.",
-      "answer": "Although",
+      "prompt": "Choose the best structure (Conjunctions (Kata Sambung)): Complete: You can have tea ____ coffee, but not both.",
+      "answer": "or",
       "options": [
-        "Because",
-        "So",
-        "And",
-        "Although"
+        "or",
+        "so",
+        "nor",
+        "and"
       ]
     },
     {
       "id": "conjunctions-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Conjunctions (Kata Sambung)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Conjunctions (Kata Sambung)): Complete: ____ he was tired, he finished the race.",
+      "answer": "Even though",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "In spite of",
+        "Despite",
+        "Because of",
+        "Even though"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conjunctions-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Conjunctions (Kata Sambung)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Conjunctions (Kata Sambung)): Complete: The project was completed on time ____ the limited budget.",
+      "answer": "despite",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "although",
+        "whereas",
+        "even though",
+        "despite"
       ]
     },
     {
       "id": "conjunctions-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Conjunctions (Kata Sambung)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Conjunctions (Kata Sambung)): Complete: ____ the weather improves, the match will be cancelled.",
+      "answer": "Unless",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "Unless",
+        "As long as",
+        "Provided",
+        "If"
       ]
     }
   ],
@@ -485,24 +485,24 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conjunctions-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Conjunctions (Kata Sambung)): Complete: I stayed home ____ I was sick.",
-      "answer": "because",
+      "prompt": "Cek grammar dasar (Conjunctions (Kata Sambung)): Complete: I like tea ____ coffee.",
+      "answer": "and",
       "options": [
-        "because",
         "but",
-        "although",
+        "so",
+        "because",
         "and"
       ]
     },
     {
       "id": "conjunctions-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Conjunctions (Kata Sambung)): Complete: She is tired ____ she keeps working.",
-      "answer": "but",
+      "prompt": "Cek grammar dasar (Conjunctions (Kata Sambung)): Complete: It was cold, ____ I wore a coat.",
+      "answer": "so",
       "options": [
-        "because",
         "so",
-        "and",
+        "although",
+        "because",
         "but"
       ]
     },
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conjunctions-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Conjunctions (Kata Sambung)): Complete: ____ it was raining, we went out.",
-      "answer": "Although",
+      "prompt": "Pilih struktur terbaik (Conjunctions (Kata Sambung)): Complete: You can have tea ____ coffee, but not both.",
+      "answer": "or",
       "options": [
-        "Because",
-        "So",
-        "And",
-        "Although"
+        "or",
+        "so",
+        "nor",
+        "and"
       ]
     },
     {
       "id": "conjunctions-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Conjunctions (Kata Sambung)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Conjunctions (Kata Sambung)): Complete: ____ he was tired, he finished the race.",
+      "answer": "Even though",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "In spite of",
+        "Despite",
+        "Because of",
+        "Even though"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conjunctions-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Conjunctions (Kata Sambung)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Conjunctions (Kata Sambung)): Complete: The project was completed on time ____ the limited budget.",
+      "answer": "despite",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "although",
+        "whereas",
+        "even though",
+        "despite"
       ]
     },
     {
       "id": "conjunctions-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Conjunctions (Kata Sambung)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Conjunctions (Kata Sambung)): Complete: ____ the weather improves, the match will be cancelled.",
+      "answer": "Unless",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "Unless",
+        "As long as",
+        "Provided",
+        "If"
       ]
     }
   ]

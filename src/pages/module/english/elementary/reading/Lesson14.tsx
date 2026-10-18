@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - How many eggs are needed?', opts: ["1","2","3","None"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - What do you do first?', opts: ["Melt butter in a pan","Pour the mix","Mix flour, milk, and egg in a bowl","Cook for 2 minutes"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - Where do you melt the butter?', opts: ["On a plate","In a bowl","In the oven","In a pan"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - How long should you cook it before flipping?', opts: ["Until it burns","5 minutes","2 minutes","1 minute"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What can you serve the pancakes with?', opts: ["Chocolate","Fruit","Jam or butter","Honey or sugar"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - How many eggs are needed?', opts: ["1", "3", "None", "2"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - What do you do first?', opts: ["Mix flour, milk, and egg in a bowl", "Cook for 2 minutes", "Pour the mix", "Melt butter in a pan"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - Where do you melt the butter?', opts: ["In a bowl", "In a pan", "On a plate", "In the oven"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - How long should you cook it before flipping?', opts: ["Until it burns", "1 minute", "2 minutes", "5 minutes"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - What can you serve the pancakes with?', opts: ["Honey or sugar", "Chocolate", "Fruit", "Jam or butter"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 6 - How many eggs are needed?', opts: ["3","None","2","1"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - What do you do first?', opts: ["Cook for 2 minutes","Mix flour, milk, and egg in a bowl","Melt butter in a pan","Pour the mix"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - Where do you melt the butter?', opts: ["In the oven","In a pan","In a bowl","On a plate"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - How long should you cook it before flipping?', opts: ["5 minutes","2 minutes","1 minute","Until it burns"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - What can you serve the pancakes with?', opts: ["Chocolate","Jam or butter","Fruit","Honey or sugar"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - How many eggs are needed?', opts: ["None","3","2","1"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - What do you do first?', opts: ["Cook for 2 minutes","Pour the mix","Melt butter in a pan","Mix flour, milk, and egg in a bowl"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - Where do you melt the butter?', opts: ["In the oven","In a bowl","In a pan","On a plate"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - How long should you cook it before flipping?', opts: ["1 minute","Until it burns","2 minutes","5 minutes"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What can you serve the pancakes with?', opts: ["Honey or sugar","Fruit","Chocolate","Jam or butter"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - How many eggs are needed?', opts: ["1","2","3","None"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - What do you do first?', opts: ["Pour the mix","Cook for 2 minutes","Melt butter in a pan","Mix flour, milk, and egg in a bowl"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - Where do you melt the butter?', opts: ["In the oven","On a plate","In a pan","In a bowl"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - How long should you cook it before flipping?', opts: ["2 minutes","1 minute","Until it burns","5 minutes"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What can you serve the pancakes with?', opts: ["Chocolate","Jam or butter","Fruit","Honey or sugar"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 7 - What do you do first?', opts: ["Melt butter in a pan", "Mix flour, milk, and egg in a bowl", "Cook for 2 minutes", "Pour the mix"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - Where do you melt the butter?', opts: ["In a pan", "In a bowl", "On a plate", "In the oven"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - How long should you cook it before flipping?', opts: ["2 minutes", "Until it burns", "1 minute", "5 minutes"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - What can you serve the pancakes with?', opts: ["Chocolate", "Honey or sugar", "Fruit", "Jam or butter"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - How many eggs are needed?', opts: ["None", "1", "2", "3"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - What do you do first?', opts: ["Mix flour, milk, and egg in a bowl", "Cook for 2 minutes", "Pour the mix", "Melt butter in a pan"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - Where do you melt the butter?', opts: ["In a bowl", "In a pan", "On a plate", "In the oven"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - How long should you cook it before flipping?', opts: ["1 minute", "2 minutes", "5 minutes", "Until it burns"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - What can you serve the pancakes with?', opts: ["Fruit", "Honey or sugar", "Jam or butter", "Chocolate"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - How many eggs are needed?', opts: ["1", "3", "None", "2"], ans: "1", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - What do you do first?', opts: ["Pour the mix", "Mix flour, milk, and egg in a bowl", "Melt butter in a pan", "Cook for 2 minutes"], ans: "Mix flour, milk, and egg in a bowl", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - Where do you melt the butter?', opts: ["On a plate", "In a pan", "In a bowl", "In the oven"], ans: "In a pan", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - How long should you cook it before flipping?', opts: ["1 minute", "5 minutes", "Until it burns", "2 minutes"], ans: "2 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - What can you serve the pancakes with?', opts: ["Fruit", "Honey or sugar", "Chocolate", "Jam or butter"], ans: "Honey or sugar", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'How many eggs are needed?', opts: ["None","3","2","1"], ans: '1' },
-    { q: 'What do you do first?', opts: ["Cook for 2 minutes","Pour the mix","Melt butter in a pan","Mix flour, milk, and egg in a bowl"], ans: 'Mix flour, milk, and egg in a bowl' },
-    { q: 'Where do you melt the butter?', opts: ["In a pan","In a bowl","In the oven","On a plate"], ans: 'In a pan' },
-    { q: 'How long should you cook it before flipping?', opts: ["5 minutes","1 minute","2 minutes","Until it burns"], ans: '2 minutes' },
-    { q: 'What can you serve the pancakes with?', opts: ["Fruit","Jam or butter","Honey or sugar","Chocolate"], ans: 'Honey or sugar' },
+    { q: 'How many eggs are needed?', opts: ["2", "3", "None", "1"], ans: '1' },
+    { q: 'What do you do first?', opts: ["Melt butter in a pan", "Mix flour, milk, and egg in a bowl", "Pour the mix", "Cook for 2 minutes"], ans: 'Mix flour, milk, and egg in a bowl' },
+    { q: 'Where do you melt the butter?', opts: ["In the oven", "On a plate", "In a pan", "In a bowl"], ans: 'In a pan' },
+    { q: 'How long should you cook it before flipping?', opts: ["1 minute", "Until it burns", "5 minutes", "2 minutes"], ans: '2 minutes' },
+    { q: 'What can you serve the pancakes with?', opts: ["Jam or butter", "Honey or sugar", "Chocolate", "Fruit"], ans: 'Honey or sugar' },
   ],
 };
 

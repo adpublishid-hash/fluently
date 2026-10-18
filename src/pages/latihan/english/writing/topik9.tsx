@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Hook + detail + feeling or call to action.",
-      "options": [
-        "A little moment from",
-        "with",
-        "What a day.",
-        "Hook + detail + feeling or call to action."
-      ],
       "id": "social-media-caption-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which caption best fits a photo of a birthday cake?",
+      "answer": "Another year older! Thanks for the lovely cake.",
+      "options": [
+        "Cake. Food. Table. Plate.",
+        "Please read my very long essay about baking in the comments.",
+        "Another year older! Thanks for the lovely cake.",
+        "This is a photo that I took of a cake."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Social Media Caption.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "A slow morning, a good book, and fresh coffee. Perfect start to the day.",
-      "options": [
-        "And because but however.",
-        "A slow morning, a good book, and fresh coffee. Perfect start to the day.",
-        "A little moment from",
-        "What a day."
-      ],
       "id": "social-media-caption-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which hashtag fits a beach holiday post?",
+      "answer": "#BeachDays",
+      "options": [
+        "#BeachDays",
+        "#MondayMeeting",
+        "#Homework",
+        "#WinterCoat"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Hook + detail + feeling or call to action.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Hook + detail + feeling or call to action."
-      ],
       "id": "social-media-caption-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which caption is friendly and short?",
+      "answer": "Sunday picnic with my best friends!",
+      "options": [
+        "This is a picnic. It was on Sunday. Friends were there.",
+        "Picnic photo number 4 of 27.",
+        "Sunday picnic with my best friends!",
+        "Today we went, we ate, we sat, we talked, we went home."
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "with",
-      "options": [
-        "What a day.",
-        "short caption",
-        "with",
-        "A little moment from"
-      ],
       "id": "social-media-caption-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which call to action best ends a caption for a new bakery?",
+      "answer": "Pop in this weekend and try our fresh croissants!",
+      "options": [
+        "Pop in this weekend and try our fresh croissants!",
+        "Our bakery opened, and the oven is very large.",
+        "Croissants are a type of French pastry with butter.",
+        "We sell bread, and the shop has four tables."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "What a day.",
-      "options": [
-        "with",
-        "What a day.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "social-media-caption-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which revision makes this caption more concise? Draft: 'This is a picture of the sunset that I saw yesterday evening when I was at the beach.'",
+      "answer": "Last night's beach sunset. Pure magic.",
+      "options": [
+        "This is a picture of a sunset that I saw at the beach.",
+        "A picture. Sunset. Beach. Yesterday. Evening.",
+        "Sunset picture from yesterday evening when I was at the beach.",
+        "Last night's beach sunset. Pure magic."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Hook + detail + feeling or call to action.",
-      "options": [
-        "A little moment from",
-        "with",
-        "What a day.",
-        "Hook + detail + feeling or call to action."
-      ],
       "id": "social-media-caption-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Caption mana yang paling sesuai untuk foto kue ulang tahun?",
+      "answer": "Another year older! Thanks for the lovely cake.",
+      "options": [
+        "Cake. Food. Table. Plate.",
+        "Please read my very long essay about baking in the comments.",
+        "Another year older! Thanks for the lovely cake.",
+        "This is a photo that I took of a cake."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Social Media Caption.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "A slow morning, a good book, and fresh coffee. Perfect start to the day.",
-      "options": [
-        "And because but however.",
-        "A slow morning, a good book, and fresh coffee. Perfect start to the day.",
-        "A little moment from",
-        "What a day."
-      ],
       "id": "social-media-caption-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Hashtag mana yang cocok untuk unggahan liburan di pantai?",
+      "answer": "#BeachDays",
+      "options": [
+        "#BeachDays",
+        "#MondayMeeting",
+        "#Homework",
+        "#WinterCoat"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Hook + detail + feeling or call to action.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Hook + detail + feeling or call to action."
-      ],
       "id": "social-media-caption-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Caption mana yang ramah dan singkat?",
+      "answer": "Sunday picnic with my best friends!",
+      "options": [
+        "This is a picnic. It was on Sunday. Friends were there.",
+        "Picnic photo number 4 of 27.",
+        "Sunday picnic with my best friends!",
+        "Today we went, we ate, we sat, we talked, we went home."
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "with",
-      "options": [
-        "What a day.",
-        "short caption",
-        "with",
-        "A little moment from"
-      ],
       "id": "social-media-caption-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Call to action mana yang paling tepat untuk menutup caption toko roti baru?",
+      "answer": "Pop in this weekend and try our fresh croissants!",
+      "options": [
+        "Pop in this weekend and try our fresh croissants!",
+        "Our bakery opened, and the oven is very large.",
+        "Croissants are a type of French pastry with butter.",
+        "We sell bread, and the shop has four tables."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "What a day.",
-      "options": [
-        "with",
-        "What a day.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "social-media-caption-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Revisi mana yang membuat caption ini lebih ringkas? Draft: 'This is a picture of the sunset that I saw yesterday evening when I was at the beach.'",
+      "answer": "Last night's beach sunset. Pure magic.",
+      "options": [
+        "This is a picture of a sunset that I saw at the beach.",
+        "A picture. Sunset. Beach. Yesterday. Evening.",
+        "Sunset picture from yesterday evening when I was at the beach.",
+        "Last night's beach sunset. Pure magic."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

@@ -52,7 +52,7 @@ export default function ProficiencyGrammarPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">Materi grammar C2 dengan rumus, contoh, latihan transformasi, dan kuis 20 soal.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">Materi grammar C2 dengan rumus, contoh, latihan transformasi, dan kuis 15 soal.</p>
 
           <div className="space-y-3">
             {proficiencyGrammarLessons.map((lesson, index) => {

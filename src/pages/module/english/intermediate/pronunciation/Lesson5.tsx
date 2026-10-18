@@ -89,26 +89,26 @@ const STRONG_VS_WEAK_SCENARIOS = [
 ];
 
 const QUIZ_QUESTIONS = [
-  { id: 1, question: "Kapan kata-kata fungsi (seperti 'to', 'for', 'can') biasanya KUAT?", options: ['Di tengah kalimat', 'Di akhir kalimat', 'Selalu'], answer: 'Di akhir kalimat', explanation: "Di akhir kalimat, kita biasanya menggunakan bentuk kuat (contoh: 'What are you looking AT?')." },
+  { id: 1, question: "Kapan kata-kata fungsi (seperti 'to', 'for', 'can') biasanya KUAT?", options: ['Di akhir kalimat', 'Selalu', 'Di tengah kalimat'], answer: 'Di akhir kalimat', explanation: "Di akhir kalimat, kita biasanya menggunakan bentuk kuat (contoh: 'What are you looking AT?')." },
   { id: 2, question: "Bagaimana 'AND' biasanya diucapkan dalam pembicaraan cepat (contoh: Rock and Roll)?", options: ['/ænd/', '/n/'], answer: '/n/', explanation: "Itu berkurang menjadi hanya bunyi /n/: 'Rock-n-Roll'." },
   { id: 3, question: "Kalimat mana yang menggunakan bentuk LEMAH dari 'CAN' (/kən/)?", options: ['I can swim.', 'Yes, I can.'], answer: 'I can swim.', explanation: "Sebelum kata kerja utama ('swim'), 'can' dikurangi menjadi /kən/." },
   { id: 4, question: "Disebut apakah bunyi vokal lemah itu?", options: ['The Stress', 'The Schwa (/ə/)', 'The Long Vowel'], answer: 'The Schwa (/ə/)', explanation: "The Schwa adalah bunyi 'uh' malas yang ditemukan di hampir semua bentuk lemah." },
   { id: 5, question: "'TO' dalam 'I want to go' diucapkan sebagai ___.", options: ['/tuː/', '/tə/'], answer: '/tə/', explanation: "Function word 'to' dikurangi menjadi /tə/ (bukan /tuː/)." },
   { id: 6, question: "'Fish and chips' terdengar seperti ___.", options: ['Fish-ænd-chips', 'Fish-n-chips'], answer: 'Fish-n-chips', explanation: "'And' berkurang drastis menjadi hanya bunyi /n/." },
-  { id: 7, question: "'Cup of tea' diucapkan sebagai ___.", options: ['Cup-ov-tea', 'Cup-a-tea'], answer: 'Cup-a-tea', explanation: "'Of' menjadi sangat lemah: /əv/ atau bahkan hanya /ə/." },
-  { id: 8, question: "Mengapa function words dilemahkan?", options: ['Karena tidak penting', 'Untuk menjaga ritme stress-timed', 'Karena terlalu panjang'], answer: 'Untuk menjaga ritme stress-timed', explanation: "Weak forms membantu menjaga beat teratur pada content words." },
+  { id: 7, question: "'Cup of tea' diucapkan sebagai ___.", options: ['Cup-a-tea', 'Cup-ov-tea'], answer: 'Cup-a-tea', explanation: "'Of' menjadi sangat lemah: /əv/ atau bahkan hanya /ə/." },
+  { id: 8, question: "Mengapa function words dilemahkan?", options: ['Untuk menjaga ritme stress-timed', 'Karena tidak penting', 'Karena terlalu panjang'], answer: 'Untuk menjaga ritme stress-timed', explanation: "Weak forms membantu menjaga beat teratur pada content words." },
   { id: 9, question: "'FOR' dalam 'This is for you' diucapkan ___.", options: ['/fɔːr/', '/fər/'], answer: '/fər/', explanation: "Bentuk lemah /fər/ digunakan di tengah kalimat." },
   { id: 10, question: "'What are you looking AT?' - 'AT' diucapkan ___.", options: ['Lemah (/ət/)', 'Kuat (/æt/)'], answer: 'Kuat (/æt/)', explanation: "Di akhir kalimat, 'at' menggunakan bentuk kuat." },
-  { id: 11, question: "'CAN' dalam 'Yes, I can.' diucapkan sebagai ___.", options: ['/kən/', '/kæn/'], answer: '/kæn/', explanation: "Jawaban pendek di akhir kalimat menggunakan bentuk kuat." },
-  { id: 12, question: "Function words yang paling umum dilemahkan adalah ___.", options: ['Nouns dan verbs', 'Articles, prepositions, auxiliaries', 'Adjectives'], answer: 'Articles, prepositions, auxiliaries', explanation: "The, to, for, and, can, was, dll. adalah function words yang sering lemah." },
-  { id: 13, question: "'WAS' dalam 'It was good' menjadi ___.", options: ['/wɒz/', '/wəz/'], answer: '/wəz/', explanation: "Vokal berubah menjadi schwa di bentuk lemah: /wəz/." },
+  { id: 11, question: "'CAN' dalam 'Yes, I can.' diucapkan sebagai ___.", options: ['/kæn/', '/kən/'], answer: '/kæn/', explanation: "Jawaban pendek di akhir kalimat menggunakan bentuk kuat." },
+  { id: 12, question: "Function words yang paling umum dilemahkan adalah ___.", options: ['Adjectives', 'Nouns dan verbs', 'Articles, prepositions, auxiliaries'], answer: 'Articles, prepositions, auxiliaries', explanation: "The, to, for, and, can, was, dll. adalah function words yang sering lemah." },
+  { id: 13, question: "'WAS' dalam 'It was good' menjadi ___.", options: ['/wəz/', '/wɒz/'], answer: '/wəz/', explanation: "Vokal berubah menjadi schwa di bentuk lemah: /wəz/." },
   { id: 14, question: "'Who is this FOR?' - 'FOR' diucapkan ___.", options: ['Lemah (/fər/)', 'Kuat (/fɔːr/)'], answer: 'Kuat (/fɔːr/)', explanation: "Preposisi di akhir kalimat pertanyaan menggunakan bentuk kuat." },
-  { id: 15, question: "Kapan 'WAS' menggunakan bentuk kuat /wɒz/?", options: ['Selalu', 'Di akhir kalimat atau untuk penekanan', 'Tidak pernah'], answer: 'Di akhir kalimat atau untuk penekanan', explanation: "Contoh: 'Yes, it WAS!' menggunakan bentuk kuat untuk penekanan." },
-  { id: 16, question: "'A cup of coffee' - bunyi apa yang hilang/sangat lemah?", options: ['cup', 'of', 'coffee'], answer: 'of', explanation: "'Of' menjadi hampir tidak terdengar: 'a cup-ə-coffee'." },
+  { id: 15, question: "Kapan 'WAS' menggunakan bentuk kuat /wɒz/?", options: ['Selalu', 'Tidak pernah', 'Di akhir kalimat atau untuk penekanan'], answer: 'Di akhir kalimat atau untuk penekanan', explanation: "Contoh: 'Yes, it WAS!' menggunakan bentuk kuat untuk penekanan." },
+  { id: 16, question: "'A cup of coffee' - bunyi apa yang hilang/sangat lemah?", options: ['of', 'cup', 'coffee'], answer: 'of', explanation: "'Of' menjadi hampir tidak terdengar: 'a cup-ə-coffee'." },
   { id: 17, question: "Weak forms membuat bahasa Inggris terdengar ___.", options: ['Lebih lambat', 'Lebih alami dan cepat', 'Lebih formal'], answer: 'Lebih alami dan cepat', explanation: "Native speakers selalu gunakan weak forms untuk kefasihan natural." },
-  { id: 18, question: "'I'm AT home' vs 'What are you looking AT?' - Mana yang lemah?", options: ['Pertama (AT home)', 'Kedua (looking AT)', 'Keduanya lemah'], answer: 'Pertama (AT home)', explanation: "'At home' = /ət/, tapi 'looking AT?' (akhir) = /æt/." },
-  { id: 19, question: "Apa perbedaan utama strong vs weak forms?", options: ['Panjang kata', 'Vokal berubah ke schwa', 'Konsonan hilang'], answer: 'Vokal berubah ke schwa', explanation: "Weak forms menggunakan /ə/ (schwa) sebagai vokal utama." },
-  { id: 20, question: "Untuk berbicara alami, Anda HARUS ___.", options: ['Ucapkan semua kata dengan jelas', 'Gunakan weak forms untuk function words', 'Hindari weak forms'], answer: 'Gunakan weak forms untuk function words', explanation: "Weak forms adalah ciri khas native English speech." }
+  { id: 18, question: "'I'm AT home' vs 'What are you looking AT?' - Mana yang lemah?", options: ['Kedua (looking AT)', 'Keduanya lemah', 'Pertama (AT home)'], answer: 'Pertama (AT home)', explanation: "'At home' = /ət/, tapi 'looking AT?' (akhir) = /æt/." },
+  { id: 19, question: "Apa perbedaan utama strong vs weak forms?", options: ['Panjang kata', 'Konsonan hilang', 'Vokal berubah ke schwa'], answer: 'Vokal berubah ke schwa', explanation: "Weak forms menggunakan /ə/ (schwa) sebagai vokal utama." },
+  { id: 20, question: "Untuk berbicara alami, Anda HARUS ___.", options: ['Ucapkan semua kata dengan jelas', 'Hindari weak forms', 'Gunakan weak forms untuk function words'], answer: 'Gunakan weak forms untuk function words', explanation: "Weak forms adalah ciri khas native English speech." }
 ];
 
 const InterPronunLesson5: React.FC = () => {

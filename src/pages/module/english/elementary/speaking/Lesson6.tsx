@@ -152,8 +152,8 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "A piece of paper that proves you bought something is a ___.",
     options: [
-      { text: "recipe", correct: false },
       { text: "receipt", correct: true },
+      { text: "recipe", correct: false },
       { text: "refund", correct: false }
     ],
     explanation: "'Receipt' (struk) adalah bukti pembelian."
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "If the clothes don't fit, you can take them to the ___.",
     options: [
+      { text: "living room", correct: false },
       { text: "fitting room", correct: true },
-      { text: "waiting room", correct: false },
-      { text: "living room", correct: false }
+      { text: "waiting room", correct: false }
     ],
     explanation: "'Fitting room' adalah tempat mencoba pakaian."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "I don't have cash. Can I pay ___ credit card?",
     options: [
+      { text: "by", correct: true },
       { text: "in", correct: false },
-      { text: "with", correct: false },
-      { text: "by", correct: true }
+      { text: "with", correct: false }
     ],
     explanation: "Kita bilang 'pay by credit card' atau 'pay by check'."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "When you get your money back, it is called a ___.",
     options: [
-      { text: "refund", correct: true },
+      { text: "reward", correct: false },
       { text: "return", correct: false },
-      { text: "reward", correct: false }
+      { text: "refund", correct: true }
     ],
     explanation: "'Refund' adalah uang yang dikembalikan padamu."
   },
@@ -192,9 +192,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "This item costs a lot of money. It is ___.",
     options: [
+      { text: "free", correct: false },
       { text: "cheap", correct: false },
-      { text: "expensive", correct: true },
-      { text: "free", correct: false }
+      { text: "expensive", correct: true }
     ],
     explanation: "'Expensive' (mahal) adalah lawan kata dari 'cheap' (murah)."
   },
@@ -202,8 +202,8 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"Yes, they arrived this morning.\"?",
     options: [
-      { text: "Ya, baru datang pagi ini.", correct: true },
       { text: "Oh, maaf. Saya kasih kurang.", correct: false },
+      { text: "Ya, baru datang pagi ini.", correct: true },
       { text: "Saya ambil lima buah.", correct: false }
     ],
     explanation: "Kalimat \"Yes, they arrived this morning.\" memiliki arti \"Ya, baru datang pagi ini.\"."
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Oke, 80 baht buat Anda.\"?",
     options: [
+      { text: "Is this jacket on sale?", correct: false },
       { text: "That will be $50, please.", correct: false },
-      { text: "Okay, 80 baht for you.", correct: true },
-      { text: "Is this jacket on sale?", correct: false }
+      { text: "Okay, 80 baht for you.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Oke, 80 baht buat Anda.\" adalah \"Okay, 80 baht for you.\"."
   },
@@ -223,8 +223,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Yes, it is 20% ___ today.\"\n(Arti: Ya, diskon 20% hari ini.)",
     options: [
       { text: "off", correct: true },
-      { text: "is", correct: false },
-      { text: "me", correct: false }
+      { text: "me", correct: false },
+      { text: "is", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'off'."
   },
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"It is $25.\"?",
     options: [
-      { text: "Harganya 25 dolar.", correct: true },
       { text: "Kapan paket saya akan sampai?", correct: false },
-      { text: "Beri tahu saya kalau butuh bantuan.", correct: false }
+      { text: "Beri tahu saya kalau butuh bantuan.", correct: false },
+      { text: "Harganya 25 dolar.", correct: true }
     ],
     explanation: "Kalimat \"It is $25.\" memiliki arti \"Harganya 25 dolar.\"."
   },
@@ -243,8 +243,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Permisi, berapa harga kemeja ini?\"?",
     options: [
       { text: "That will be $50, please.", correct: false },
-      { text: "Yes, I gave you a 50 bill.", correct: false },
-      { text: "Excuse me, how much is this shirt?", correct: true }
+      { text: "Excuse me, how much is this shirt?", correct: true },
+      { text: "Yes, I gave you a 50 bill.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Permisi, berapa harga kemeja ini?\" adalah \"Excuse me, how much is this shirt?\"."
   },
@@ -252,9 +252,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"I will take five of ___.\"\n(Arti: Saya ambil lima buah.)",
     options: [
-      { text: "them", correct: true },
+      { text: "$40", correct: false },
       { text: "Can", correct: false },
-      { text: "$40", correct: false }
+      { text: "them", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'them'."
   },
@@ -262,9 +262,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"Can I help you find something?\"?",
     options: [
-      { text: "Seharusnya sampai hari Jumat.", correct: false },
+      { text: "Bisa saya bantu carikan sesuatu?", correct: true },
       { text: "Terima kasih.", correct: false },
-      { text: "Bisa saya bantu carikan sesuatu?", correct: true }
+      { text: "Seharusnya sampai hari Jumat.", correct: false }
     ],
     explanation: "Kalimat \"Can I help you find something?\" memiliki arti \"Bisa saya bantu carikan sesuatu?\"."
   },
@@ -272,9 +272,9 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Jadinya 40 dolar.\"?",
     options: [
+      { text: "It comes to $40.", correct: true },
       { text: "Do you have the receipt?", correct: false },
-      { text: "Do you have this in Medium?", correct: false },
-      { text: "It comes to $40.", correct: true }
+      { text: "Do you have this in Medium?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Jadinya 40 dolar.\" adalah \"It comes to $40.\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"Here you ___.\"\n(Arti: Ini dia.)",
     options: [
-      { text: "go", correct: true },
+      { text: "gave", correct: false },
       { text: "your", correct: false },
-      { text: "gave", correct: false }
+      { text: "go", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'go'."
   },
@@ -292,9 +292,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Yes, please insert your card here.\"?",
     options: [
-      { text: "Ya, silakan masukkan kartu Anda di sini.", correct: true },
+      { text: "Bisa kasih diskon?", correct: false },
       { text: "Apakah ongkos kirimnya gratis?", correct: false },
-      { text: "Bisa kasih diskon?", correct: false }
+      { text: "Ya, silakan masukkan kartu Anda di sini.", correct: true }
     ],
     explanation: "Kalimat \"Yes, please insert your card here.\" memiliki arti \"Ya, silakan masukkan kartu Anda di sini.\"."
   },
@@ -302,8 +302,8 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Ya, saya tadi kasih uang 50.\"?",
     options: [
-      { text: "Yes, I gave you a 50 bill.", correct: true },
       { text: "It is 100 baht.", correct: false },
+      { text: "Yes, I gave you a 50 bill.", correct: true },
       { text: "I will take five of them.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Ya, saya tadi kasih uang 50.\" adalah \"Yes, I gave you a 50 bill.\"."
@@ -322,9 +322,9 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Here is your change.\"?",
     options: [
-      { text: "Ini kembalian Anda.", correct: true },
+      { text: "Apakah jaket ini lagi diskon?", correct: false },
       { text: "Apakah ongkos kirimnya gratis?", correct: false },
-      { text: "Apakah jaket ini lagi diskon?", correct: false }
+      { text: "Ini kembalian Anda.", correct: true }
     ],
     explanation: "Kalimat \"Here is your change.\" memiliki arti \"Ini kembalian Anda.\"."
   },
@@ -342,9 +342,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"It ___ arrive by Friday.\"\n(Arti: Seharusnya sampai hari Jumat.)",
     options: [
-      { text: "should", correct: true },
+      { text: "I", correct: false },
       { text: "over", correct: false },
-      { text: "I", correct: false }
+      { text: "should", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'should'."
   }

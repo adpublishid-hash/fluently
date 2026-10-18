@@ -1,3 +1,4 @@
+import { hashSeed, shuffleOpts } from '../../../../../utils/quiz';
 export type PronunciationModelLine = {
   text: string;
   focus: string;
@@ -315,7 +316,8 @@ export const advancedPronunciationLessons: AdvancedPronunciationLessonContent[] 
       'Did final consonants and grammatical endings remain clear?',
       'Did your intonation match the attitude: certain, cautious, polite, or contrastive?',
     ],
-    quiz: makeQuiz(id, title, modelLines, concepts),
+    // Options are written answer-first; shuffled per lesson so the answer is not always A.
+    quiz: shuffleOpts(makeQuiz(id, title, modelLines, concepts), hashSeed('advancedPronunciationContent', title)),
   };
 });
 

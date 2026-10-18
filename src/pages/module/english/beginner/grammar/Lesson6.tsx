@@ -80,140 +80,140 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Kalimat mana yang benar?",
-    options: ['He watchs TV.', 'He watches TV.', 'He watchies TV.'],
+    options: ['He watchies TV.', 'He watches TV.', 'He watchs TV.'],
     answer: 'He watches TV.',
     explanation: "Kata kerja berakhiran -ch ditambahkan -es (Watch -> Watches)."
   },
   {
     id: 2,
     question: "We ___ to school every day.",
-    options: ['go', 'goes', 'going'],
+    options: ['goes', 'going', 'go'],
     answer: 'go',
     explanation: "Subjek 'We' tidak menambahkan -s/-es pada kata kerja."
   },
   {
     id: 3,
     question: "She ___ English very well.",
-    options: ['speak', 'speaks', 'speaking'],
+    options: ['speaks', 'speaking', 'speak'],
     answer: 'speaks',
     explanation: "Orang ketiga tunggal (She) menambahkan 's' pada kata kerja."
   },
   {
     id: 4,
     question: "___ you live here?",
-    options: ['Does', 'Do', 'Are'],
+    options: ['Do', 'Are', 'Does'],
     answer: 'Do',
     explanation: "Pertanyaan untuk 'You' menggunakan 'Do'."
   },
   {
     id: 5,
     question: "The baby ___ a lot.",
-    options: ['cry', 'crys', 'cries'],
+    options: ['cry', 'cries', 'crys'],
     answer: 'cries',
     explanation: "Konsonan + y (Cry) berubah menjadi -ies (Cries)."
   },
   {
     id: 6,
     question: "John ___ football on Sundays.",
-    options: ['play', 'plays', 'plaies'],
+    options: ['plays', 'play', 'plaies'],
     answer: 'plays',
     explanation: "Vokal + y (Play) hanya ditambah 's' (Plays)."
   },
   {
     id: 7,
     question: "They ___ not like coffee.",
-    options: ['does', 'do', 'are'],
+    options: ['are', 'does', 'do'],
     answer: 'do',
     explanation: "Bentuk negatif untuk 'They' adalah 'do not' (don't)."
   },
   {
     id: 8,
     question: "My father ___ in a bank.",
-    options: ['work', 'works', 'working'],
+    options: ['works', 'working', 'work'],
     answer: 'works',
     explanation: "My father = He (Tunggal), jadi tambah 's' (works)."
   },
   {
     id: 9,
     question: "___ she have a car?",
-    options: ['Do', 'Does', 'Is'],
+    options: ['Does', 'Do', 'Is'],
     answer: 'Does',
     explanation: "Pertanyaan untuk 'She' menggunakan 'Does'."
   },
   {
     id: 10,
     question: "I ___ breakfast at 7 AM.",
-    options: ['eats', 'eat', 'eating'],
+    options: ['eat', 'eating', 'eats'],
     answer: 'eat',
     explanation: "Subjek 'I' menggunakan bentuk dasar (eat)."
   },
   {
     id: 11,
     question: "The sun ___ in the east.",
-    options: ['rise', 'rises', 'rising'],
+    options: ['rises', 'rise', 'rising'],
     answer: 'rises',
     explanation: "Fakta umum dengan subjek tunggal (The sun) pakai 's'."
   },
   {
     id: 12,
     question: "Where ___ you work?",
-    options: ['do', 'does', 'are'],
+    options: ['are', 'do', 'does'],
     answer: 'do',
     explanation: "Pertanyaan dengan 'You' menggunakan 'do'."
   },
   {
     id: 13,
     question: "He ___ his homework every night.",
-    options: ['do', 'does', 'dos'],
+    options: ['dos', 'do', 'does'],
     answer: 'does',
     explanation: "Kata kerja 'do' untuk orang ketiga tunggal menjadi 'does'."
   },
   {
     id: 14,
     question: "It ___ a lot here in December.",
-    options: ['rain', 'rains', 'raining'],
+    options: ['raining', 'rains', 'rain'],
     answer: 'rains',
     explanation: "Cuaca/Alam dengan subjek 'It' pakai 's'."
   },
   {
     id: 15,
     question: "We ___ want to go.",
-    options: ['doesn\'t', 'don\'t', 'not'],
+    options: ['doesn\'t', 'not', 'don\'t'],
     answer: 'don\'t',
     explanation: "Negatif untuk 'We' adalah 'don't'."
   },
   {
     id: 16,
     question: "The train ___ at 9 PM.",
-    options: ['leave', 'leaves', 'leaving'],
+    options: ['leaves', 'leave', 'leaving'],
     answer: 'leaves',
     explanation: "Jadwal (The train = It) menggunakan 's'."
   },
   {
     id: 17,
     question: "___ John and Mary live here?",
-    options: ['Does', 'Do', 'Are'],
+    options: ['Do', 'Does', 'Are'],
     answer: 'Do',
     explanation: "John and Mary = They (Jamak), pakai 'Do'."
   },
   {
     id: 18,
     question: "My sister ___ French.",
-    options: ['study', 'studies', 'studys'],
+    options: ['studys', 'study', 'studies'],
     answer: 'studies',
     explanation: "Konsonan + y (Study) berubah jadi 'ies'."
   },
   {
     id: 19,
     question: "You ___ look happy.",
-    options: ['doesn\'t', 'don\'t', 'no'],
+    options: ['no', 'doesn\'t', 'don\'t'],
     answer: 'don\'t',
     explanation: "Negatif untuk 'You' adalah 'don't'."
   },
   {
     id: 20,
     question: "Water ___ at 100 degrees.",
-    options: ['boil', 'boils', 'boiling'],
+    options: ['boils', 'boiling', 'boil'],
     answer: 'boils',
     explanation: "Fakta ilmiah (Water = It) pakai 's'."
   }

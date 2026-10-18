@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "In the picture, I can see ___. It looks like ___.",
-      "options": [
-        "describe people, place, action, and possible meaning",
-        "smooth linking in it looks like",
-        "Move from general details to specific observations.",
-        "In the picture, I can see ___. It looks like ___."
-      ],
       "id": "describing-picture-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence describes where something is in a picture?",
+      "answer": "There is a cat under the table.",
+      "options": [
+        "There is a cat under the table.",
+        "It has a cat under of the table.",
+        "There is a cat under of the table.",
+        "There are a cat under the table."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe people, place, action, and possible meaning",
-      "options": [
-        "smooth linking in it looks like",
-        "answer without listening to the question",
-        "describe people, place, action, and possible meaning",
-        "Mendeskripsikan gambar dengan urutan dan detail."
-      ],
       "id": "describing-picture-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The picture shows a man running in a park. Which sentence is correct?",
+      "answer": "A man is running in the park.",
+      "options": [
+        "A man are running in the park.",
+        "A man is running in the park.",
+        "A man runs in the park yesterday.",
+        "A man is run in the park."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "In the picture, I can see two people working in a cafe. It looks like they are planning a project.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "In the picture, I can see two people working in a cafe. It looks like they are planning a project.",
-        "The image appears to show a professional discussion.",
-        "I went there yesterday because blue."
-      ],
       "id": "describing-picture-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence talks about the background of a picture?",
+      "answer": "In the background, there are mountains.",
+      "options": [
+        "In the background, there are mountains.",
+        "On the background, there are mountains.",
+        "In the background, there is mountains.",
+        "In the back ground are some mountain."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Describing a Picture\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe people, place, action, and possible meaning",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe people, place, action, and possible meaning"
-      ],
       "id": "describing-picture-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence describes a person's feelings in a picture?",
+      "answer": "She looks happy and relaxed.",
+      "options": [
+        "She looks happy and relaxed.",
+        "She is looking happily relax.",
+        "She look happy and relaxed.",
+        "She looks happily and relaxed."
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "The image appears to show a professional discussion.",
-      "options": [
-        "I am not completely sure, but it seems like they are discussing work.",
-        "In the picture, I can see two people working in a cafe. It looks like they are planning a project.",
-        "The image appears to show a professional discussion.",
-        "It looks like two friends are working together."
-      ],
       "id": "describing-picture-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "A picture shows people with umbrellas on wet streets. Which speculation is best?",
+      "answer": "It must have been raining, because the streets look wet.",
+      "options": [
+        "It must have been raining, because the streets look wet.",
+        "It can't have rained, because the streets look wet.",
+        "It must be sunny, because nobody needs umbrellas today.",
+        "It will rain next year, because the streets look wet."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "I am not completely sure, but it seems like they are discussing work.",
-      "options": [
-        "Laugh and end the conversation.",
-        "I am not completely sure, but it seems like they are discussing work.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "describing-picture-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence moves logically from a general to a specific observation?",
+      "answer": "It's a busy market, and in the front a woman is choosing fruit.",
+      "options": [
+        "A woman is choosing fruit, and that's everything in the picture.",
+        "It's a busy market, and the market is busy with many market people.",
+        "In the front a woman, then busy market, then maybe some fruit.",
+        "It's a busy market, and in the front a woman is choosing fruit."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "In the picture, I can see ___. It looks like ___.",
-      "options": [
-        "describe people, place, action, and possible meaning",
-        "smooth linking in it looks like",
-        "Move from general details to specific observations.",
-        "In the picture, I can see ___. It looks like ___."
-      ],
       "id": "describing-picture-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggambarkan letak sesuatu di dalam gambar?",
+      "answer": "There is a cat under the table.",
+      "options": [
+        "There is a cat under the table.",
+        "It has a cat under of the table.",
+        "There is a cat under of the table.",
+        "There are a cat under the table."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe people, place, action, and possible meaning",
-      "options": [
-        "smooth linking in it looks like",
-        "answer without listening to the question",
-        "describe people, place, action, and possible meaning",
-        "Mendeskripsikan gambar dengan urutan dan detail."
-      ],
       "id": "describing-picture-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Gambar menunjukkan seorang pria sedang berlari di taman. Kalimat mana yang benar?",
+      "answer": "A man is running in the park.",
+      "options": [
+        "A man are running in the park.",
+        "A man is running in the park.",
+        "A man runs in the park yesterday.",
+        "A man is run in the park."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "In the picture, I can see two people working in a cafe. It looks like they are planning a project.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "In the picture, I can see two people working in a cafe. It looks like they are planning a project.",
-        "The image appears to show a professional discussion.",
-        "I went there yesterday because blue."
-      ],
       "id": "describing-picture-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang membahas latar belakang sebuah gambar?",
+      "answer": "In the background, there are mountains.",
+      "options": [
+        "In the background, there are mountains.",
+        "On the background, there are mountains.",
+        "In the background, there is mountains.",
+        "In the back ground are some mountain."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Describing a Picture\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe people, place, action, and possible meaning",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe people, place, action, and possible meaning"
-      ],
       "id": "describing-picture-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggambarkan perasaan seseorang di dalam gambar?",
+      "answer": "She looks happy and relaxed.",
+      "options": [
+        "She looks happy and relaxed.",
+        "She is looking happily relax.",
+        "She look happy and relaxed.",
+        "She looks happily and relaxed."
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "The image appears to show a professional discussion.",
-      "options": [
-        "I am not completely sure, but it seems like they are discussing work.",
-        "In the picture, I can see two people working in a cafe. It looks like they are planning a project.",
-        "The image appears to show a professional discussion.",
-        "It looks like two friends are working together."
-      ],
       "id": "describing-picture-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Gambar menunjukkan orang-orang membawa payung di jalan yang basah. Dugaan mana yang paling tepat?",
+      "answer": "It must have been raining, because the streets look wet.",
+      "options": [
+        "It must have been raining, because the streets look wet.",
+        "It can't have rained, because the streets look wet.",
+        "It must be sunny, because nobody needs umbrellas today.",
+        "It will rain next year, because the streets look wet."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "I am not completely sure, but it seems like they are discussing work.",
-      "options": [
-        "Laugh and end the conversation.",
-        "I am not completely sure, but it seems like they are discussing work.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "describing-picture-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang bergerak secara logis dari pengamatan umum ke yang spesifik?",
+      "answer": "It's a busy market, and in the front a woman is choosing fruit.",
+      "options": [
+        "A woman is choosing fruit, and that's everything in the picture.",
+        "It's a busy market, and the market is busy with many market people.",
+        "In the front a woman, then busy market, then maybe some fruit.",
+        "It's a busy market, and in the front a woman is choosing fruit."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

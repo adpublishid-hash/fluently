@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const NUTRITION_VOCAB = [
   { word: "Healthy", ipa: "/ˈhɛlθi/", meaning: "Sehat" },
@@ -46,148 +48,7 @@ const HEALTH_SYMPTOMS_VOCAB = [
   { word: "Rest", ipa: "/rɛst/", meaning: "Istirahat" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "To cook bread or cake, you usually ___ it.",
-    options: ['boil', 'bake', 'fry'],
-    answer: 'bake',
-    explanation: "Baking (memanggang) adalah memasak makanan (seperti kue/roti) di oven."
-  },
-  {
-    id: 2,
-    question: "Apples and oranges are healthy because they have ___.",
-    options: ['fat', 'vitamins', 'salt'],
-    answer: 'vitamins',
-    explanation: "Buah-buahan kaya akan vitamins (vitamin)."
-  },
-  {
-    id: 3,
-    question: "My head hurts. I have a ___.",
-    options: ['stomachache', 'headache', 'fever'],
-    answer: 'headache',
-    explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
-  },
-  {
-    id: 4,
-    question: "You should ___ vegetables before cooking them.",
-    options: ['chop', 'drink', 'rest'],
-    answer: 'chop',
-    explanation: "To chop berarti memotong menjadi potongan-potongan."
-  },
-  {
-    id: 5,
-    question: "If you have a cold, you should take some ___.",
-    options: ['sugar', 'medicine', 'exercise'],
-    answer: 'medicine',
-    explanation: "Medicine (obat) membantu menyembuhkan penyakit."
-  },
-  {
-    id: 6,
-    question: "To cook bread or cake, you usually ___ it.",
-    options: ["boil","bake","fry"],
-    answer: "bake",
-    explanation: "Baking (memanggang) adalah memasak makanan (seperti kue/roti) di oven."
-  },
-  {
-    id: 7,
-    question: "Apples and oranges are healthy because they have ___.",
-    options: ["fat","vitamins","salt"],
-    answer: "vitamins",
-    explanation: "Buah-buahan kaya akan vitamins (vitamin)."
-  },
-  {
-    id: 8,
-    question: "My head hurts. I have a ___.",
-    options: ["stomachache","headache","fever"],
-    answer: "headache",
-    explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
-  },
-  {
-    id: 9,
-    question: "You should ___ vegetables before cooking them.",
-    options: ["chop","drink","rest"],
-    answer: "chop",
-    explanation: "To chop berarti memotong menjadi potongan-potongan."
-  },
-  {
-    id: 10,
-    question: "If you have a cold, you should take some ___.",
-    options: ["sugar","medicine","exercise"],
-    answer: "medicine",
-    explanation: "Medicine (obat) membantu menyembuhkan penyakit."
-  },
-  {
-    id: 11,
-    question: "To cook bread or cake, you usually ___ it.",
-    options: ["boil","bake","fry"],
-    answer: "bake",
-    explanation: "Baking (memanggang) adalah memasak makanan (seperti kue/roti) di oven."
-  },
-  {
-    id: 12,
-    question: "Apples and oranges are healthy because they have ___.",
-    options: ["fat","vitamins","salt"],
-    answer: "vitamins",
-    explanation: "Buah-buahan kaya akan vitamins (vitamin)."
-  },
-  {
-    id: 13,
-    question: "My head hurts. I have a ___.",
-    options: ["stomachache","headache","fever"],
-    answer: "headache",
-    explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
-  },
-  {
-    id: 14,
-    question: "You should ___ vegetables before cooking them.",
-    options: ["chop","drink","rest"],
-    answer: "chop",
-    explanation: "To chop berarti memotong menjadi potongan-potongan."
-  },
-  {
-    id: 15,
-    question: "If you have a cold, you should take some ___.",
-    options: ["sugar","medicine","exercise"],
-    answer: "medicine",
-    explanation: "Medicine (obat) membantu menyembuhkan penyakit."
-  },
-  {
-    id: 16,
-    question: "To cook bread or cake, you usually ___ it.",
-    options: ["boil","bake","fry"],
-    answer: "bake",
-    explanation: "Baking (memanggang) adalah memasak makanan (seperti kue/roti) di oven."
-  },
-  {
-    id: 17,
-    question: "Apples and oranges are healthy because they have ___.",
-    options: ["fat","vitamins","salt"],
-    answer: "vitamins",
-    explanation: "Buah-buahan kaya akan vitamins (vitamin)."
-  },
-  {
-    id: 18,
-    question: "My head hurts. I have a ___.",
-    options: ["stomachache","headache","fever"],
-    answer: "headache",
-    explanation: "Rasa sakit di kepala disebut headache (sakit kepala)."
-  },
-  {
-    id: 19,
-    question: "You should ___ vegetables before cooking them.",
-    options: ["chop","drink","rest"],
-    answer: "chop",
-    explanation: "To chop berarti memotong menjadi potongan-potongan."
-  },
-  {
-    id: 20,
-    question: "If you have a cold, you should take some ___.",
-    options: ["sugar","medicine","exercise"],
-    answer: "medicine",
-    explanation: "Medicine (obat) membantu menyembuhkan penyakit."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[7], 'elementary/vocabulary/7'));
 
 const Lesson7: React.FC = () => {
   const navigate = useNavigate();

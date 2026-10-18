@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - What time does Train 103 depart?', opts: ["08:30 AM","12:15 PM","04:00 PM","03:30 PM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Which platform does Train 101 use?', opts: ["Platform 5","Platform 3","Platform 4","Platform 1"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - When should passengers arrive at the station?', opts: ["45 minutes before departure","1 hour early","Just in time","10 minutes before"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - How long is the journey for EuroStar 105?', opts: ["3 hours 30 minutes","3 hours 15 minutes","2 hours","4 hours"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - Which train leaves in the morning?', opts: ["EuroStar 105","EuroStar 101","EuroStar 103","None"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - What time does Train 103 depart?', opts: ["12:15 PM","08:30 AM","03:30 PM","04:00 PM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Which platform does Train 101 use?', opts: ["Platform 1","Platform 5","Platform 3","Platform 4"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - When should passengers arrive at the station?', opts: ["10 minutes before","1 hour early","45 minutes before departure","Just in time"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - How long is the journey for EuroStar 105?', opts: ["3 hours 30 minutes","3 hours 15 minutes","2 hours","4 hours"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - Which train leaves in the morning?', opts: ["None","EuroStar 105","EuroStar 103","EuroStar 101"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - What time does Train 103 depart?', opts: ["12:15 PM","08:30 AM","04:00 PM","03:30 PM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Which platform does Train 101 use?', opts: ["Platform 5","Platform 3","Platform 4","Platform 1"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - When should passengers arrive at the station?', opts: ["45 minutes before departure","10 minutes before","1 hour early","Just in time"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - How long is the journey for EuroStar 105?', opts: ["4 hours","2 hours","3 hours 30 minutes","3 hours 15 minutes"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - Which train leaves in the morning?', opts: ["None","EuroStar 105","EuroStar 103","EuroStar 101"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - What time does Train 103 depart?', opts: ["04:00 PM", "12:15 PM", "08:30 AM", "03:30 PM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Which platform does Train 101 use?', opts: ["Platform 4", "Platform 3", "Platform 5", "Platform 1"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - When should passengers arrive at the station?', opts: ["45 minutes before departure", "Just in time", "10 minutes before", "1 hour early"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - How long is the journey for EuroStar 105?', opts: ["3 hours 30 minutes", "2 hours", "4 hours", "3 hours 15 minutes"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - Which train leaves in the morning?', opts: ["None", "EuroStar 105", "EuroStar 101", "EuroStar 103"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - What time does Train 103 depart?', opts: ["12:15 PM", "03:30 PM", "04:00 PM", "08:30 AM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Which platform does Train 101 use?', opts: ["Platform 4", "Platform 1", "Platform 5", "Platform 3"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - When should passengers arrive at the station?', opts: ["10 minutes before", "45 minutes before departure", "1 hour early", "Just in time"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - How long is the journey for EuroStar 105?', opts: ["4 hours", "3 hours 30 minutes", "3 hours 15 minutes", "2 hours"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - Which train leaves in the morning?', opts: ["EuroStar 103", "EuroStar 105", "None", "EuroStar 101"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - What time does Train 103 depart?', opts: ["12:15 PM", "04:00 PM", "08:30 AM", "03:30 PM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Which platform does Train 101 use?', opts: ["Platform 5", "Platform 4", "Platform 1", "Platform 3"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - When should passengers arrive at the station?', opts: ["45 minutes before departure", "1 hour early", "10 minutes before", "Just in time"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - How long is the journey for EuroStar 105?', opts: ["4 hours", "3 hours 15 minutes", "3 hours 30 minutes", "2 hours"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - Which train leaves in the morning?', opts: ["EuroStar 101", "None", "EuroStar 105", "EuroStar 103"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Mencari Fakta) Latihan 16 - What time does Train 103 depart?', opts: ["03:30 PM","04:00 PM","08:30 AM","12:15 PM"], ans: "12:15 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Which platform does Train 101 use?', opts: ["Platform 3","Platform 1","Platform 4","Platform 5"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Which platform does Train 101 use?', opts: ["Platform 1", "Platform 5", "Platform 4", "Platform 3"], ans: "Platform 5", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 18 - When should passengers arrive at the station?', opts: ["10 minutes before","Just in time","1 hour early","45 minutes before departure"], ans: "45 minutes before departure", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - How long is the journey for EuroStar 105?', opts: ["3 hours 15 minutes","4 hours","3 hours 30 minutes","2 hours"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - Which train leaves in the morning?', opts: ["EuroStar 105","EuroStar 103","EuroStar 101","None"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 19 - How long is the journey for EuroStar 105?', opts: ["4 hours", "3 hours 15 minutes", "2 hours", "3 hours 30 minutes"], ans: "3 hours 15 minutes", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - Which train leaves in the morning?', opts: ["EuroStar 105", "EuroStar 101", "EuroStar 103", "None"], ans: "EuroStar 101", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'What time does Train 103 depart?', opts: ["12:15 PM","03:30 PM","08:30 AM","04:00 PM"], ans: '12:15 PM' },
-    { q: 'Which platform does Train 101 use?', opts: ["Platform 3","Platform 5","Platform 4","Platform 1"], ans: 'Platform 5' },
-    { q: 'When should passengers arrive at the station?', opts: ["Just in time","45 minutes before departure","1 hour early","10 minutes before"], ans: '45 minutes before departure' },
-    { q: 'How long is the journey for EuroStar 105?', opts: ["4 hours","2 hours","3 hours 30 minutes","3 hours 15 minutes"], ans: '3 hours 15 minutes' },
-    { q: 'Which train leaves in the morning?', opts: ["EuroStar 105","None","EuroStar 103","EuroStar 101"], ans: 'EuroStar 101' },
+    { q: 'What time does Train 103 depart?', opts: ["08:30 AM", "04:00 PM", "12:15 PM", "03:30 PM"], ans: '12:15 PM' },
+    { q: 'Which platform does Train 101 use?', opts: ["Platform 4", "Platform 5", "Platform 3", "Platform 1"], ans: 'Platform 5' },
+    { q: 'When should passengers arrive at the station?', opts: ["45 minutes before departure", "10 minutes before", "Just in time", "1 hour early"], ans: '45 minutes before departure' },
+    { q: 'How long is the journey for EuroStar 105?', opts: ["2 hours", "3 hours 30 minutes", "3 hours 15 minutes", "4 hours"], ans: '3 hours 15 minutes' },
+    { q: 'Which train leaves in the morning?', opts: ["None", "EuroStar 103", "EuroStar 101", "EuroStar 105"], ans: 'EuroStar 101' },
   ],
 };
 

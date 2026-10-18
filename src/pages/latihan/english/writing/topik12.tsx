@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Item + experience + positive/negative points + recommendation.",
-      "options": [
-        "I recently tried",
-        "however",
-        "I would recommend it to people who enjoy quiet places.",
-        "Item + experience + positive/negative points + recommendation."
-      ],
       "id": "review-writing-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence gives a positive point in a review?",
+      "answer": "The staff were kind and very helpful.",
+      "options": [
+        "The staff were kind and very helpful.",
+        "The food arrived cold and nearly an hour late.",
+        "The music was far too loud for us.",
+        "The room was small and quite dirty."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Review Writing.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "The restaurant has friendly service and fresh food. However, the waiting time was a little long.",
-      "options": [
-        "And because but however.",
-        "The restaurant has friendly service and fresh food. However, the waiting time was a little long.",
-        "I recently tried",
-        "I would recommend it to people who enjoy quiet places."
-      ],
       "id": "review-writing-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence gives a negative point in a review?",
+      "answer": "The film was too long and a bit boring.",
+      "options": [
+        "The story was exciting from start to end.",
+        "The actors were excellent and funny.",
+        "The film was too long and a bit boring.",
+        "The cinema seats were soft and comfortable."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Item + experience + positive/negative points + recommendation.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Item + experience + positive/negative points + recommendation."
-      ],
       "id": "review-writing-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which star rating fits this review? 'Terrible service, cold food and very high prices.'",
+      "answer": "1 star out of 5",
+      "options": [
+        "1 star out of 5",
+        "3 stars out of 5",
+        "4 stars out of 5",
+        "5 stars out of 5"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "however",
-      "options": [
-        "I would recommend it to people who enjoy quiet places.",
-        "review paragraph",
-        "however",
-        "I recently tried"
-      ],
       "id": "review-writing-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence gives the most useful recommendation?",
+      "answer": "I would recommend this hotel to families, but not to light sleepers.",
+      "options": [
+        "I would recommend this hotel to families, but not to light sleepers.",
+        "Everyone should go there right now because I said so, and that is final.",
+        "It was fine, I suppose, but I do not really know what to say.",
+        "This hotel is a hotel, and I stayed there for two nights last week."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "I would recommend it to people who enjoy quiet places.",
-      "options": [
-        "however",
-        "I would recommend it to people who enjoy quiet places.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "review-writing-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which review sentence is the most balanced?",
+      "answer": "The phone has an excellent camera, although the battery drains quickly.",
+      "options": [
+        "The phone is the best thing ever made, and it has no problems at all.",
+        "The phone is a phone that I bought last month, and I use it every single day.",
+        "The phone is completely useless, and nobody should ever buy it.",
+        "The phone has an excellent camera, although the battery drains quickly."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Item + experience + positive/negative points + recommendation.",
-      "options": [
-        "I recently tried",
-        "however",
-        "I would recommend it to people who enjoy quiet places.",
-        "Item + experience + positive/negative points + recommendation."
-      ],
       "id": "review-writing-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memberikan poin positif dalam ulasan?",
+      "answer": "The staff were kind and very helpful.",
+      "options": [
+        "The staff were kind and very helpful.",
+        "The food arrived cold and nearly an hour late.",
+        "The music was far too loud for us.",
+        "The room was small and quite dirty."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Review Writing.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "The restaurant has friendly service and fresh food. However, the waiting time was a little long.",
-      "options": [
-        "And because but however.",
-        "The restaurant has friendly service and fresh food. However, the waiting time was a little long.",
-        "I recently tried",
-        "I would recommend it to people who enjoy quiet places."
-      ],
       "id": "review-writing-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memberikan poin negatif dalam ulasan?",
+      "answer": "The film was too long and a bit boring.",
+      "options": [
+        "The story was exciting from start to end.",
+        "The actors were excellent and funny.",
+        "The film was too long and a bit boring.",
+        "The cinema seats were soft and comfortable."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Item + experience + positive/negative points + recommendation.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Item + experience + positive/negative points + recommendation."
-      ],
       "id": "review-writing-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Rating bintang mana yang sesuai untuk ulasan ini? 'Terrible service, cold food and very high prices.'",
+      "answer": "1 star out of 5",
+      "options": [
+        "1 star out of 5",
+        "3 stars out of 5",
+        "4 stars out of 5",
+        "5 stars out of 5"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "however",
-      "options": [
-        "I would recommend it to people who enjoy quiet places.",
-        "review paragraph",
-        "however",
-        "I recently tried"
-      ],
       "id": "review-writing-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang memberikan rekomendasi paling berguna?",
+      "answer": "I would recommend this hotel to families, but not to light sleepers.",
+      "options": [
+        "I would recommend this hotel to families, but not to light sleepers.",
+        "Everyone should go there right now because I said so, and that is final.",
+        "It was fine, I suppose, but I do not really know what to say.",
+        "This hotel is a hotel, and I stayed there for two nights last week."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "I would recommend it to people who enjoy quiet places.",
-      "options": [
-        "however",
-        "I would recommend it to people who enjoy quiet places.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "review-writing-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat ulasan mana yang paling seimbang?",
+      "answer": "The phone has an excellent camera, although the battery drains quickly.",
+      "options": [
+        "The phone is the best thing ever made, and it has no problems at all.",
+        "The phone is a phone that I bought last month, and I use it every single day.",
+        "The phone is completely useless, and nobody should ever buy it.",
+        "The phone has an excellent camera, although the battery drains quickly."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

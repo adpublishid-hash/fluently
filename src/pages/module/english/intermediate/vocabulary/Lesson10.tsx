@@ -53,26 +53,26 @@ const WORKPLACE_VOCAB = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "Money that you borrow from a bank is a ___.", options: ['Profit', 'Loan', 'Tax'], answer: 'Loan', explanation: "Loan (Pinjaman) adalah sejumlah uang yang diharapkan akan dibayarkan kembali dengan bunga." },
+  { id: 1, question: "Money that you borrow from a bank is a ___.", options: ['Tax', 'Profit', 'Loan'], answer: 'Loan', explanation: "Loan (Pinjaman) adalah sejumlah uang yang diharapkan akan dibayarkan kembali dengan bunga." },
   { id: 2, question: "A plan for how to spend your money is a ___.", options: ['Budget', 'Debt', 'Loss'], answer: 'Budget', explanation: "Budget (Anggaran) adalah perkiraan pendapatan dan pengeluaran untuk jangka waktu tertentu." },
-  { id: 3, question: "If a company makes more money than it spends, it makes a ___.", options: ['Loss', 'Debt', 'Profit'], answer: 'Profit', explanation: "Profit (Keuntungan) adalah keuntungan finansial dari aktivitas bisnis." },
-  { id: 4, question: "The date by which you must finish a task is the ___.", options: ['Meeting', 'Deadline', 'Strategy'], answer: 'Deadline', explanation: "Deadline (Tenggat waktu) adalah waktu atau tanggal terakhir di mana sesuatu harus diselesaikan." },
+  { id: 3, question: "If a company makes more money than it spends, it makes a ___.", options: ['Debt', 'Loss', 'Profit'], answer: 'Profit', explanation: "Profit (Keuntungan) adalah keuntungan finansial dari aktivitas bisnis." },
+  { id: 4, question: "The date by which you must finish a task is the ___.", options: ['Strategy', 'Meeting', 'Deadline'], answer: 'Deadline', explanation: "Deadline (Tenggat waktu) adalah waktu atau tanggal terakhir di mana sesuatu harus diselesaikan." },
   { id: 5, question: "A person who buys services from a professional is a ___.", options: ['Employee', 'Client', 'Manager'], answer: 'Client', explanation: "Client (Klien) melibatkan nasihat atau layanan profesional dari orang lain." },
-  { id: 6, question: "A business organization is called a ___.", options: ['company', 'salary', 'expense'], answer: 'company', explanation: "Company (Perusahaan) adalah organisasi komersial yang menjual barang atau jasa." },
+  { id: 6, question: "A business organization is called a ___.", options: ['expense', 'salary', 'company'], answer: 'company', explanation: "Company (Perusahaan) adalah organisasi komersial yang menjual barang atau jasa." },
   { id: 7, question: "The place where goods are bought and sold is the ___.", options: ['industry', 'market', 'brand'], answer: 'market', explanation: "Market (Pasar) adalah area atau arena tempat pertukaran komersial berlangsung." },
-  { id: 8, question: "Money you earn from work is your ___.", options: ['debt', 'income', 'expense'], answer: 'income', explanation: "Income (Pendapatan) adalah uang yang diterima untuk pekerjaan atau investasi." },
-  { id: 9, question: "Money you spend is an ___.", options: ['income', 'expense', 'investment'], answer: 'expense', explanation: "Expense (Pengeluaran) adalah biaya yang diperlukan untuk sesuatu." },
-  { id: 10, question: "Money you owe is ___.", options: ['profit', 'debt', 'salary'], answer: 'debt', explanation: "Debt (Utang) adalah sesuatu, biasanya uang, yang terutang." },
-  { id: 11, question: "Money paid regularly for work is a ___.", options: ['tax', 'salary', 'loan'], answer: 'salary', explanation: "Salary (Gaji) adalah pembayaran tetap yang diterima untuk pekerjaan secara teratur." },
-  { id: 12, question: "Money paid to the government is ___.", options: ['profit', 'tax', 'brand'], answer: 'tax', explanation: "Tax (Pajak) adalah kontribusi wajib kepada penerimaan negara." },
-  { id: 13, question: "Putting money into something to make a profit is ___.", options: ['expense', 'investment', 'loss'], answer: 'investment', explanation: "Investment (Investasi) adalah tindakan menempatkan uang dengan harapan keuntungan finansial." },
-  { id: 14, question: "The person who gives you a job is your ___.", options: ['employee', 'employer', 'colleague'], answer: 'employer', explanation: "Employer (Pemberi kerja) adalah orang atau organisasi yang mempekerjakan orang." },
-  { id: 15, question: "A person who works for a company is an ___.", options: ['employer', 'employee', 'client'], answer: 'employee', explanation: "Employee (Karyawan) adalah orang yang dipekerjakan untuk gaji atau upah." },
-  { id: 16, question: "A formal gathering for discussion is a ___.", options: ['deadline', 'meeting', 'contract'], answer: 'meeting', explanation: "Meeting (Rapat) adalah pertemuan orang untuk diskusi." },
-  { id: 17, question: "A written agreement between parties is a ___.", options: ['strategy', 'contract', 'project'], answer: 'contract', explanation: "Contract (Kontrak) adalah perjanjian formal yang sah mengikat." },
-  { id: 18, question: "People you work with are your ___.", options: ['clients', 'colleagues', 'managers'], answer: 'colleagues', explanation: "Colleagues (Rekan kerja) adalah orang yang bekerja dengan Anda di organisasi yang sama." },
-  { id: 19, question: "A planned piece of work is a ___.", options: ['meeting', 'project', 'budget'], answer: 'project', explanation: "Project (Proyek) adalah perusahaan yang direncanakan secara individual atau kolaboratif." },
-  { id: 20, question: "A recognizable name for a product is a ___.", options: ['market', 'brand', 'industry'], answer: 'brand', explanation: "Brand (Merek) adalah nama, istilah, atau simbol yang membedakan produk dari yang lain." }
+  { id: 8, question: "Money you earn from work is your ___.", options: ['income', 'expense', 'debt'], answer: 'income', explanation: "Income (Pendapatan) adalah uang yang diterima untuk pekerjaan atau investasi." },
+  { id: 9, question: "Money you spend is an ___.", options: ['investment', 'expense', 'income'], answer: 'expense', explanation: "Expense (Pengeluaran) adalah biaya yang diperlukan untuk sesuatu." },
+  { id: 10, question: "Money you owe is ___.", options: ['profit', 'salary', 'debt'], answer: 'debt', explanation: "Debt (Utang) adalah sesuatu, biasanya uang, yang terutang." },
+  { id: 11, question: "Money paid regularly for work is a ___.", options: ['tax', 'loan', 'salary'], answer: 'salary', explanation: "Salary (Gaji) adalah pembayaran tetap yang diterima untuk pekerjaan secara teratur." },
+  { id: 12, question: "Money paid to the government is ___.", options: ['tax', 'brand', 'profit'], answer: 'tax', explanation: "Tax (Pajak) adalah kontribusi wajib kepada penerimaan negara." },
+  { id: 13, question: "Putting money into something to make a profit is ___.", options: ['loss', 'expense', 'investment'], answer: 'investment', explanation: "Investment (Investasi) adalah tindakan menempatkan uang dengan harapan keuntungan finansial." },
+  { id: 14, question: "The person who gives you a job is your ___.", options: ['colleague', 'employer', 'employee'], answer: 'employer', explanation: "Employer (Pemberi kerja) adalah orang atau organisasi yang mempekerjakan orang." },
+  { id: 15, question: "A person who works for a company is an ___.", options: ['client', 'employee', 'employer'], answer: 'employee', explanation: "Employee (Karyawan) adalah orang yang dipekerjakan untuk gaji atau upah." },
+  { id: 16, question: "A formal gathering for discussion is a ___.", options: ['meeting', 'contract', 'deadline'], answer: 'meeting', explanation: "Meeting (Rapat) adalah pertemuan orang untuk diskusi." },
+  { id: 17, question: "A written agreement between parties is a ___.", options: ['project', 'strategy', 'contract'], answer: 'contract', explanation: "Contract (Kontrak) adalah perjanjian formal yang sah mengikat." },
+  { id: 18, question: "People you work with are your ___.", options: ['clients', 'managers', 'colleagues'], answer: 'colleagues', explanation: "Colleagues (Rekan kerja) adalah orang yang bekerja dengan Anda di organisasi yang sama." },
+  { id: 19, question: "A planned piece of work is a ___.", options: ['budget', 'project', 'meeting'], answer: 'project', explanation: "Project (Proyek) adalah perusahaan yang direncanakan secara individual atau kolaboratif." },
+  { id: 20, question: "A recognizable name for a product is a ___.", options: ['brand', 'industry', 'market'], answer: 'brand', explanation: "Brand (Merek) adalah nama, istilah, atau simbol yang membedakan produk dari yang lain." }
 
 ];
 

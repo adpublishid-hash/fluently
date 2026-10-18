@@ -4,287 +4,69 @@ import { QuizEngine, WritingCard, ComprehensionSection, getCompletedWritingLesso
 import type { QuizItem, ComprehensionQ } from './writingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Identify the contrast linker in paragraph one:",
-    "opts": [
-      "While",
-      "Consequently",
-      "Foundation",
-      "Indicates"
-    ],
-    "ans": "While",
-    "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
-  },
-  {
-    "q": "What does \"Consequently\" mean in this context?",
-    "opts": [
-      "Before",
-      "As a logical result",
-      "In addition",
-      "However"
-    ],
-    "ans": "As a logical result",
-    "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
-  },
-  {
-    "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
-    "opts": [
-      "Students",
-      "Literature",
-      "Reading extensive literature (Gerund phrase)",
-      "Exposes"
-    ],
-    "ans": "Reading extensive literature (Gerund phrase)",
-    "exp": "The entire gerund phrase acts as the subject."
-  },
-  {
-    "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
-    "opts": [
-      "Easy to see",
-      "Occurring repeatedly and constantly",
-      "Funny",
-      "Grammatical"
-    ],
-    "ans": "Occurring repeatedly and constantly",
-    "exp": "\"Persistent\" means something stubborn that keeps happening."
-  },
-  {
-    "q": "Why is \"Therefore\" used in the last paragraph?",
-    "opts": [
-      "To introduce a cause",
-      "To conclude a logical argument",
-      "To change subjects",
-      "To start a story"
-    ],
-    "ans": "To conclude a logical argument",
-    "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
-  },
-  {
-    "q": "Choose the most FORMAL word to replace \"but\":",
-    "opts": [
-      "However",
-      "Also",
-      "So",
-      "And"
-    ],
-    "ans": "However",
-    "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
-  },
-  {
-    "q": "\"Due to\" is primarily used to indicate...",
-    "opts": [
-      "Addition",
-      "Time",
-      "Cause or Reason",
-      "Condition"
-    ],
-    "ans": "Cause or Reason",
-    "exp": "\"Due to\" (= because of) digunakan untuk menunjukkan alasan/penyebab dari sesuatu."
-  },
-  {
-    "q": "Identify the error: \"I look forward to hear from you soon.\"",
-    "opts": [
-      "look forward",
-      "to hear",
-      "from you",
-      "soon"
-    ],
-    "ans": "to hear",
-    "exp": "Aturan baku: \"look forward to\" selalu diikuti oleh Gerund (V-ing), sehingga seharusnya \"to hearing\"."
-  },
-  {
-    "q": "What is the purpose of a thesis statement in an essay?",
-    "opts": [
-      "To greet the reader",
-      "To state the main argument or focus of the essay",
-      "To ask a rhetorical question",
-      "To give a dictionary definition"
-    ],
-    "ans": "To state the main argument or focus of the essay",
-    "exp": "Thesis statement berada di paragraf pertama untuk menjabarkan argumen/titik berat esai."
-  },
-  {
-    "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
-    "opts": [
-      "It was late so I kept writing.",
-      "Although it was late, I kept writing.",
-      "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
-    ],
-    "ans": "Although it was late, I kept writing.",
-    "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
-  },
-  {
-    "q": "How do you make this formal? \"Send me the files ASAP.\"",
-    "opts": [
-      "Please dispatch the files really quick.",
-      "I require the files immediately.",
-      "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
-    ],
-    "ans": "Please send the documents at your earliest convenience.",
-    "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
-  },
-  {
-    "q": "Which sentence adds INFORMATION?",
-    "opts": [
-      "Moreover, the city has excellent public transport.",
-      "Despite this, the city is loud.",
-      "Therefore, we left early.",
-      "As a result, prices increased."
-    ],
-    "ans": "Moreover, the city has excellent public transport.",
-    "exp": "\"Moreover\" (lebih lanjut lagi) digunakan untuk memberikan informasi tambahan yang mendukung argumen."
-  },
-  {
-    "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
-    "opts": [
-      "have",
-      "had",
-      "have had",
-      "having"
-    ],
-    "ans": "had",
-    "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
-  },
-  {
-    "q": "Which word modifies a verb strongly?",
-    "opts": [
-      "Beautiful",
-      "Quick",
-      "Significantly",
-      "Happy"
-    ],
-    "ans": "Significantly",
-    "exp": "\"Significantly\" adalah adverb (kata keterangan) yang memodifikasi/menjelaskan verb."
-  },
-  {
-    "q": "What is the function of \"For instance\"?",
-    "opts": [
-      "To contrast",
-      "To conclude",
-      "To provide an example",
-      "To show cause"
-    ],
-    "ans": "To provide an example",
-    "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
-  },
-  {
-    "q": "Identify the compound adjective: \"She bought a ___ car.\"",
-    "opts": [
-      "very fast",
-      "brand-new",
-      "beautifully",
-      "red"
-    ],
-    "ans": "brand-new",
-    "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
-  },
-  {
-    "q": "What is the function of \"therefore\"?",
-    "opts": [
-      "To add a point",
-      "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
-    ],
-    "ans": "To show a result or consequence",
-    "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
-  },
-  {
-    "q": "Which phrase is best for SUMMARISING an essay?",
-    "opts": [
-      "First of all",
-      "In contrast",
-      "To conclude",
-      "For instance"
-    ],
-    "ans": "To conclude",
-    "exp": "\"To conclude\" (atau In conclusion) secara spesifik digunakan di paragraf terakhir untuk merangkum tulisan."
-  },
-  {
-    "q": "Which phrase is most appropriate for a formal email greeting?",
-    "opts": [
-      "Hi mate,",
-      "Hey there,",
-      "Dear Mr. Smith,",
-      "What’s up Smith,"
-    ],
-    "ans": "Dear Mr. Smith,",
-    "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
-  },
-  {
-    "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
-    "opts": [
-      "immediately",
-      "action",
-      "goverment",
-      "should"
-    ],
-    "ans": "goverment",
-    "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
-  }
-];
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateWritingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateWritingQuizBank[4], 'intermediate/writing/4');
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
   passageTitle: '✍️ A Memorable Journey',
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Last August, my cousin and I took the overnight ferry from Surabaya to Lombok. We had planned the trip for months, and we were looking forward to three relaxing days on the beach. However, the journey turned out to be far more exciting than we had expected.\n\nAt around midnight, while most passengers were sleeping, the engine suddenly stopped. The lights went out and the ship began to rock from side to side. A few children started crying, and I must admit that I was terrified. Fortunately, the crew stayed calm. They handed out life jackets and explained that a mechanic was already fixing the problem.\n\nFour hours later, the engine finally started again. As the sun rose over the sea, everyone came out onto the deck to watch. Strangers who had been frightened in the dark were now sharing snacks and laughing together. We arrived in Lombok six hours late, tired but happy. Looking back, that night taught me that the most memorable journeys are rarely the ones that go according to plan.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "How did the writer and their cousin travel to Lombok?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "By plane from Surabaya",
+      "By overnight ferry",
+      "By bus and train",
+      "By a small fishing boat"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "By overnight ferry"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What happened at around midnight?",
     "opts": [
-      "Knowing 1000 words",
-      "Typing fast",
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "The ship arrived in Lombok",
+      "A storm damaged the deck and the lifeboats",
+      "The ship's engine suddenly stopped",
+      "The passengers had dinner"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "The ship's engine suddenly stopped"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "How did the crew react to the problem?",
     "opts": [
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "They stayed calm and handed out life jackets",
+      "They started shouting at the passengers",
+      "They asked the passengers to help the mechanic fix the engine",
+      "They turned the ship back to Surabaya"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "They stayed calm and handed out life jackets"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "How late did the ferry arrive in Lombok?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "Two hours late",
+      "Four hours late",
+      "One whole day late",
+      "Six hours late"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "Six hours late"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What lesson did the writer learn from the trip?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "Ferries are always dangerous",
+      "Memorable journeys rarely go according to plan",
+      "It is better to travel alone",
+      "Holidays should always be planned carefully for many months"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "Memorable journeys rarely go according to plan"
   }
 ],
 };
@@ -362,12 +144,12 @@ export default function InterWritingLesson4(): React.ReactElement {
 
                 <WritingCard title="Target Mekanikal" icon="🎯">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Untuk menaklukkan level B1-B2 dalam tulisan <strong>a memorable journey</strong>, perhatikan elemen berikut:
+                    {lessonTips[4].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl shadow-inner border border-slate-100">
-                    <li><strong className="text-slate-800">Advanced Lexical Resource:</strong> Hindari kosakata berulang. Gunakan sinonim yang lebih kaya (e.g. <i>crucial, significantly, furthermore</i>).</li>
-                    <li><strong className="text-slate-800">Cohesive Devices:</strong> Jangan hanya bertumpu pada 'and', 'but', 'so'. Gunakan <i>Despite, Nevertheless, Consequently, Moreover</i>.</li>
-                    <li><strong className="text-slate-800">Sentence Variety:</strong> Padukan kalimat pendek dengan <i>Complex Sentences</i> (Relative clauses, if-clauses).</li>
+                    {lessonTips[4].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-indigo-700 mt-4 font-bold bg-indigo-50 p-3 rounded-lg border border-indigo-100 inline-block w-full">
                     👉 Buka tab "Pemahaman" untuk membaca esai contoh lengkap dan uji akurasi bacaanmu!

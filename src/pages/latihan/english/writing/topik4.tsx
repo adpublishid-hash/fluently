@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Opinion + reason + example + concluding sentence.",
-      "options": [
-        "In my opinion,",
-        "for example",
-        "For these reasons, I agree with this idea.",
-        "Opinion + reason + example + concluding sentence."
-      ],
       "id": "opinion-paragraph-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence clearly states an opinion?",
+      "answer": "I believe school uniforms are a good idea.",
+      "options": [
+        "Uniforms are usually blue or white.",
+        "Students wear uniforms from Monday to Friday.",
+        "Many schools in Indonesia have uniforms.",
+        "I believe school uniforms are a good idea."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Opinion Paragraph.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "I think online learning is useful because it is flexible. For example, students can study from home.",
-      "options": [
-        "And because but however.",
-        "I think online learning is useful because it is flexible. For example, students can study from home.",
-        "In my opinion,",
-        "For these reasons, I agree with this idea."
-      ],
       "id": "opinion-paragraph-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the best word to introduce a reason: 'I like cycling ___ it keeps me healthy.'",
+      "answer": "because",
+      "options": [
+        "but",
+        "or",
+        "because",
+        "although"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Opinion + reason + example + concluding sentence.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Opinion + reason + example + concluding sentence."
-      ],
       "id": "opinion-paragraph-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase is used to give an opinion?",
+      "answer": "I think that",
+      "options": [
+        "Once upon a time",
+        "Dear Sir or Madam",
+        "Yours sincerely",
+        "I think that"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "for example",
-      "options": [
-        "For these reasons, I agree with this idea.",
-        "opinion paragraph",
-        "for example",
-        "In my opinion,"
-      ],
       "id": "opinion-paragraph-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which example best supports this opinion? 'Public libraries are still important today.'",
+      "answer": "For example, they offer free internet to people without it at home.",
+      "options": [
+        "For example, many people prefer to buy books online these days.",
+        "For example, they offer free internet to people without it at home.",
+        "For example, some libraries have very old wooden doors and big windows.",
+        "For example, I visited a library once when I was a small child."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "For these reasons, I agree with this idea.",
-      "options": [
-        "for example",
-        "For these reasons, I agree with this idea.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "opinion-paragraph-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which concluding sentence best fits an opinion paragraph about working from home?",
+      "answer": "Overall, working from home saves time and improves balance.",
+      "options": [
+        "Overall, working from home saves time and improves balance.",
+        "Many people work from home, and many people do not.",
+        "Also, some offices have a free coffee machine for staff.",
+        "Overall, I am not really sure what I think about this topic at all."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Opinion + reason + example + concluding sentence.",
-      "options": [
-        "In my opinion,",
-        "for example",
-        "For these reasons, I agree with this idea.",
-        "Opinion + reason + example + concluding sentence."
-      ],
       "id": "opinion-paragraph-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang jelas menyatakan pendapat?",
+      "answer": "I believe school uniforms are a good idea.",
+      "options": [
+        "Uniforms are usually blue or white.",
+        "Students wear uniforms from Monday to Friday.",
+        "Many schools in Indonesia have uniforms.",
+        "I believe school uniforms are a good idea."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Opinion Paragraph.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "I think online learning is useful because it is flexible. For example, students can study from home.",
-      "options": [
-        "And because but however.",
-        "I think online learning is useful because it is flexible. For example, students can study from home.",
-        "In my opinion,",
-        "For these reasons, I agree with this idea."
-      ],
       "id": "opinion-paragraph-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kata terbaik untuk memperkenalkan alasan: 'I like cycling ___ it keeps me healthy.'",
+      "answer": "because",
+      "options": [
+        "but",
+        "or",
+        "because",
+        "although"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Opinion + reason + example + concluding sentence.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Opinion + reason + example + concluding sentence."
-      ],
       "id": "opinion-paragraph-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang digunakan untuk memberikan pendapat?",
+      "answer": "I think that",
+      "options": [
+        "Once upon a time",
+        "Dear Sir or Madam",
+        "Yours sincerely",
+        "I think that"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "for example",
-      "options": [
-        "For these reasons, I agree with this idea.",
-        "opinion paragraph",
-        "for example",
-        "In my opinion,"
-      ],
       "id": "opinion-paragraph-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Contoh mana yang paling mendukung pendapat ini? 'Public libraries are still important today.'",
+      "answer": "For example, they offer free internet to people without it at home.",
+      "options": [
+        "For example, many people prefer to buy books online these days.",
+        "For example, they offer free internet to people without it at home.",
+        "For example, some libraries have very old wooden doors and big windows.",
+        "For example, I visited a library once when I was a small child."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "For these reasons, I agree with this idea.",
-      "options": [
-        "for example",
-        "For these reasons, I agree with this idea.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "opinion-paragraph-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat penutup mana yang paling sesuai untuk paragraf opini tentang bekerja dari rumah?",
+      "answer": "Overall, working from home saves time and improves balance.",
+      "options": [
+        "Overall, working from home saves time and improves balance.",
+        "Many people work from home, and many people do not.",
+        "Also, some offices have a free coffee machine for staff.",
+        "Overall, I am not really sure what I think about this topic at all."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

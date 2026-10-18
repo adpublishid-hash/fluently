@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"STEP 1:" pada petunjuk penggunaan artinya...', opts: ['Langkah terakhir', 'Langkah pertama', 'Langkah pilihan', 'Langkah utama'], ans: 'Langkah pertama', exp: '"Step 1" = langkah pertama dalam instruksi urutan.' },
-  { q: '"DO NOT" pada instruksi artinya...', opts: ['Lakukan segera', 'Boleh dilakukan', 'Jangan dilakukan', 'Harus dilakukan'], ans: 'Jangan dilakukan', exp: '"Do not" = jangan / dilarang.' },
-  { q: '"Turn left at the traffic light." artinya...', opts: ['Belok kanan di lampu merah', 'Belok kiri di lampu merah/traffic light', 'Lurus terus', 'Putar balik'], ans: 'Belok kiri di lampu merah/traffic light', exp: '"Turn left" = belok kiri. "Traffic light" = lampu lalu lintas.' },
-  { q: '"KEEP OUT OF REACH OF CHILDREN" artinya...', opts: ['Aman untuk anak-anak', 'Jauhkan dari jangkauan anak-anak', 'Untuk anak-anak saja', 'Mainan anak'], ans: 'Jauhkan dari jangkauan anak-anak', exp: 'Ini peringatan keamanan produk berbahaya.' },
-  { q: '"ADD WATER AND STIR WELL" artinya...', opts: ['Tambahkan gula dan aduk', 'Tambahkan air panas saja', 'Tambahkan air dan aduk dengan baik', 'Tuangkan dan biarkan'], ans: 'Tambahkan air dan aduk dengan baik', exp: '"Add" = tambahkan. "Stir" = aduk. "Well" = dengan baik.' },
-  { q: '"WARNING: HOT SURFACE" artinya...', opts: ['Permukaan dingin', 'Peringatan: permukaan panas', 'Jangan sentuh', 'Area berbahaya'], ans: 'Peringatan: permukaan panas', exp: '"Warning" = peringatan. "Hot surface" = permukaan panas.' },
-  { q: '"Go straight for 500 meters." artinya...', opts: ['Belok kanan 500 meter', 'Lurus terus sejauh 500 meter', 'Mundur 500 meter', 'Belok kiri 500 meter'], ans: 'Lurus terus sejauh 500 meter', exp: '"Go straight" = lurus terus. "For 500 meters" = sejauh 500 meter.' },
-  { q: '"PRESS TO OPEN" artinya...', opts: ['Tarik untuk buka', 'Dorong untuk buka', 'Tekan untuk buka', 'Putar untuk buka'], ans: 'Tekan untuk buka', exp: '"Press" = tekan.' },
-  { q: '"HANDLE WITH CARE" artinya...', opts: ['Lempar dengan hati-hati', 'Tangani dengan hati-hati', 'Simpan dengan aman', 'Buka dengan hati-hati'], ans: 'Tangani dengan hati-hati', exp: '"Handle" = tangani/perlakukan. "With care" = dengan hati-hati.' },
-  { q: '"BEFORE USE, READ INSTRUCTIONS" artinya...', opts: ['Setelah digunakan, baca instruksi', 'Sebelum digunakan, baca instruksi', 'Selama digunakan, baca instruksi', 'Hapus instruksi'], ans: 'Sebelum digunakan, baca instruksi', exp: '"Before use" = sebelum digunakan.' },
-  { q: '"Turn right at the hospital." artinya...', opts: ['Belok kiri di rumah sakit', 'Lurus terus di rumah sakit', 'Belok kanan di rumah sakit', 'Berhenti di rumah sakit'], ans: 'Belok kanan di rumah sakit', exp: '"Turn right" = belok kanan.' },
-  { q: '"INSERT COIN HERE" artinya...', opts: ['Ambil koin di sini', 'Masukkan koin di sini', 'Tukar koin di sini', 'Simpan koin di sini'], ans: 'Masukkan koin di sini', exp: '"Insert" = masukkan. "Coin" = koin.' },
-  { q: '"KEEP AWAY FROM FIRE" artinya...', opts: ['Jauhkan dari api', 'Dekatkan ke api untuk mengaktifkan', 'Simpan di tempat panas', 'Gunakan dekat api'], ans: 'Jauhkan dari api', exp: '"Keep away from" = jauhkan dari.' },
-  { q: '"The pharmacy is next to the bank." artinya...', opts: ['Apotek ada di dalam bank', 'Apotek ada di sebelah bank', 'Apotek ada di atas bank', 'Apotek ada di depan bank'], ans: 'Apotek ada di sebelah bank', exp: '"Next to" = di sebelah / berdampingan dengan.' },
-  { q: '"SHAKE WELL, THEN REFRIGERATE" artinya...', opts: ['Dinginkan, lalu kocok', 'Kocok dahulu, lalu dinginkan', 'Hanya kocok saja', 'Hanya dinginkan saja'], ans: 'Kocok dahulu, lalu dinginkan', exp: '"Shake well" = kocok dengan baik. "Then" = lalu/kemudian. "Refrigerate" = dinginkan.' },
-  { q: '"The bus stop is opposite the park." artinya...', opts: ['Halte bus ada di sebelah taman', 'Halte bus ada di dalam taman', 'Halte bus ada di seberang/depan taman', 'Halte bus ada di belakang taman'], ans: 'Halte bus ada di seberang/depan taman', exp: '"Opposite" = di seberang / berhadapan dengan.' },
-  { q: '"CAUTION: MAY CAUSE DIZZINESS" artinya...', opts: ['Aman dikonsumsi', 'Hati-hati: dapat menyebabkan pusing', 'Dinginkan sebelum digunakan', 'Jangan diminum'], ans: 'Hati-hati: dapat menyebabkan pusing', exp: '"May cause dizziness" = dapat menyebabkan pusing.' },
-  { q: '"ALLOW TO COOL BEFORE OPENING" artinya...', opts: ['Buka secepatnya', 'Biarkan dingin sebelum membuka', 'Panaskan sebelum membuka', 'Jangan dibuka'], ans: 'Biarkan dingin sebelum membuka', exp: '"Allow to cool" = biarkan menjadi dingin. "Before opening" = sebelum membuka.' },
-  { q: '"Take the second street on the right." artinya...', opts: ['Belok di jalan pertama kanan', 'Ambil jalan kedua di sebelah kanan', 'Jalan terus 2 blok', 'Belok kiri dua kali'], ans: 'Ambil jalan kedua di sebelah kanan', exp: '"Second street" = jalan kedua. "On the right" = di sebelah kanan.' },
-  { q: '"FOR EXTERNAL USE ONLY" artinya...', opts: ['Bisa diminum', 'Hanya untuk pemakaian luar/oles', 'Untuk semua penggunaan', 'Untuk internal perusahaan'], ans: 'Hanya untuk pemakaian luar/oles', exp: '"External use only" = hanya untuk dioleskan di luar tubuh (tidak diminum).' },
+  { q: '"STEP 1:" pada petunjuk penggunaan artinya...', opts: ['Langkah pilihan', 'Langkah pertama', 'Langkah terakhir', 'Langkah utama'], ans: 'Langkah pertama', exp: '"Step 1" = langkah pertama dalam instruksi urutan.' },
+  { q: '"DO NOT" pada instruksi artinya...', opts: ['Boleh dilakukan', 'Jangan dilakukan', 'Harus dilakukan', 'Lakukan segera'], ans: 'Jangan dilakukan', exp: '"Do not" = jangan / dilarang.' },
+  { q: '"Turn left at the traffic light." artinya...', opts: ['Belok kanan di lampu merah', 'Lurus terus', 'Belok kiri di lampu merah/traffic light', 'Putar balik'], ans: 'Belok kiri di lampu merah/traffic light', exp: '"Turn left" = belok kiri. "Traffic light" = lampu lalu lintas.' },
+  { q: '"KEEP OUT OF REACH OF CHILDREN" artinya...', opts: ['Aman untuk anak-anak', 'Untuk anak-anak saja', 'Mainan anak', 'Jauhkan dari jangkauan anak-anak'], ans: 'Jauhkan dari jangkauan anak-anak', exp: 'Ini peringatan keamanan produk berbahaya.' },
+  { q: '"ADD WATER AND STIR WELL" artinya...', opts: ['Tambahkan gula dan aduk', 'Tambahkan air dan aduk dengan baik', 'Tuangkan dan biarkan', 'Tambahkan air panas saja'], ans: 'Tambahkan air dan aduk dengan baik', exp: '"Add" = tambahkan. "Stir" = aduk. "Well" = dengan baik.' },
+  { q: '"WARNING: HOT SURFACE" artinya...', opts: ['Peringatan: permukaan panas', 'Permukaan dingin', 'Area berbahaya', 'Jangan sentuh'], ans: 'Peringatan: permukaan panas', exp: '"Warning" = peringatan. "Hot surface" = permukaan panas.' },
+  { q: '"Go straight for 500 meters." artinya...', opts: ['Lurus terus sejauh 500 meter', 'Belok kanan 500 meter', 'Belok kiri 500 meter', 'Mundur 500 meter'], ans: 'Lurus terus sejauh 500 meter', exp: '"Go straight" = lurus terus. "For 500 meters" = sejauh 500 meter.' },
+  { q: '"PRESS TO OPEN" artinya...', opts: ['Putar untuk buka', 'Tarik untuk buka', 'Dorong untuk buka', 'Tekan untuk buka'], ans: 'Tekan untuk buka', exp: '"Press" = tekan.' },
+  { q: '"HANDLE WITH CARE" artinya...', opts: ['Lempar dengan hati-hati', 'Simpan dengan aman', 'Buka dengan hati-hati', 'Tangani dengan hati-hati'], ans: 'Tangani dengan hati-hati', exp: '"Handle" = tangani/perlakukan. "With care" = dengan hati-hati.' },
+  { q: '"BEFORE USE, READ INSTRUCTIONS" artinya...', opts: ['Setelah digunakan, baca instruksi', 'Selama digunakan, baca instruksi', 'Hapus instruksi', 'Sebelum digunakan, baca instruksi'], ans: 'Sebelum digunakan, baca instruksi', exp: '"Before use" = sebelum digunakan.' },
+  { q: '"Turn right at the hospital." artinya...', opts: ['Belok kanan di rumah sakit', 'Berhenti di rumah sakit', 'Belok kiri di rumah sakit', 'Lurus terus di rumah sakit'], ans: 'Belok kanan di rumah sakit', exp: '"Turn right" = belok kanan.' },
+  { q: '"INSERT COIN HERE" artinya...', opts: ['Masukkan koin di sini', 'Tukar koin di sini', 'Simpan koin di sini', 'Ambil koin di sini'], ans: 'Masukkan koin di sini', exp: '"Insert" = masukkan. "Coin" = koin.' },
+  { q: '"KEEP AWAY FROM FIRE" artinya...', opts: ['Jauhkan dari api', 'Simpan di tempat panas', 'Gunakan dekat api', 'Dekatkan ke api untuk mengaktifkan'], ans: 'Jauhkan dari api', exp: '"Keep away from" = jauhkan dari.' },
+  { q: '"The pharmacy is next to the bank." artinya...', opts: ['Apotek ada di atas bank', 'Apotek ada di depan bank', 'Apotek ada di dalam bank', 'Apotek ada di sebelah bank'], ans: 'Apotek ada di sebelah bank', exp: '"Next to" = di sebelah / berdampingan dengan.' },
+  { q: '"SHAKE WELL, THEN REFRIGERATE" artinya...', opts: ['Hanya kocok saja', 'Hanya dinginkan saja', 'Dinginkan, lalu kocok', 'Kocok dahulu, lalu dinginkan'], ans: 'Kocok dahulu, lalu dinginkan', exp: '"Shake well" = kocok dengan baik. "Then" = lalu/kemudian. "Refrigerate" = dinginkan.' },
+  { q: '"The bus stop is opposite the park." artinya...', opts: ['Halte bus ada di sebelah taman', 'Halte bus ada di belakang taman', 'Halte bus ada di seberang/depan taman', 'Halte bus ada di dalam taman'], ans: 'Halte bus ada di seberang/depan taman', exp: '"Opposite" = di seberang / berhadapan dengan.' },
+  { q: '"CAUTION: MAY CAUSE DIZZINESS" artinya...', opts: ['Hati-hati: dapat menyebabkan pusing', 'Jangan diminum', 'Aman dikonsumsi', 'Dinginkan sebelum digunakan'], ans: 'Hati-hati: dapat menyebabkan pusing', exp: '"May cause dizziness" = dapat menyebabkan pusing.' },
+  { q: '"ALLOW TO COOL BEFORE OPENING" artinya...', opts: ['Jangan dibuka', 'Buka secepatnya', 'Biarkan dingin sebelum membuka', 'Panaskan sebelum membuka'], ans: 'Biarkan dingin sebelum membuka', exp: '"Allow to cool" = biarkan menjadi dingin. "Before opening" = sebelum membuka.' },
+  { q: '"Take the second street on the right." artinya...', opts: ['Belok di jalan pertama kanan', 'Jalan terus 2 blok', 'Ambil jalan kedua di sebelah kanan', 'Belok kiri dua kali'], ans: 'Ambil jalan kedua di sebelah kanan', exp: '"Second street" = jalan kedua. "On the right" = di sebelah kanan.' },
+  { q: '"FOR EXTERNAL USE ONLY" artinya...', opts: ['Untuk semua penggunaan', 'Untuk internal perusahaan', 'Bisa diminum', 'Hanya untuk pemakaian luar/oles'], ans: 'Hanya untuk pemakaian luar/oles', exp: '"External use only" = hanya untuk dioleskan di luar tubuh (tidak diminum).' },
 ];
 
 const INSTRUCTION_PASSAGE = {
@@ -43,11 +43,11 @@ const INSTRUCTION_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Dari hotel, kamu harus belok ke mana dulu?', opts: ['Kanan', 'Kiri', 'Lurus', 'Putar balik'], ans: 'Kiri' },
-    { q: 'Seberapa jauh kamu harus berjalan lurus?', opts: ['200 meter', '300 meter', '500 meter', '1 kilometer'], ans: '500 meter' },
-    { q: 'Di mana kamu belok kanan?', opts: ['Di depan taman', 'Di lampu merah dekat Indomaret', 'Di depan hotel', 'Di perempatan utama'], ans: 'Di lampu merah dekat Indomaret' },
-    { q: 'Rumah sakit ada di sisi mana jalan?', opts: ['Kanan', 'Kiri', 'Tengah jalan', 'Di persimpangan'], ans: 'Kiri' },
-    { q: 'Berapa lama perkiraan waktu berjalan kaki?', opts: ['5 menit', '10 menit', '15 menit', '20 menit'], ans: '10 menit' },
+    { q: 'Dari hotel, kamu harus belok ke mana dulu?', opts: ['Kiri', 'Putar balik', 'Kanan', 'Lurus'], ans: 'Kiri' },
+    { q: 'Seberapa jauh kamu harus berjalan lurus?', opts: ['200 meter', '1 kilometer', '500 meter', '300 meter'], ans: '500 meter' },
+    { q: 'Di mana kamu belok kanan?', opts: ['Di depan hotel', 'Di perempatan utama', 'Di depan taman', 'Di lampu merah dekat Indomaret'], ans: 'Di lampu merah dekat Indomaret' },
+    { q: 'Rumah sakit ada di sisi mana jalan?', opts: ['Di persimpangan', 'Kanan', 'Kiri', 'Tengah jalan'], ans: 'Kiri' },
+    { q: 'Berapa lama perkiraan waktu berjalan kaki?', opts: ['15 menit', '20 menit', '5 menit', '10 menit'], ans: '10 menit' },
   ] as ComprehensionQ[],
 };
 

@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - What is on sale?', opts: ["Shoes, T-shirts, and Electronics","Only shoes","Food and drinks","Cars and bikes"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - How much are the shoes now?', opts: ["$10","$60","$30","$50"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - What is the discount for Electronics?', opts: ["50% OFF","10% OFF","30% OFF","20% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - When does the sale end?', opts: ["December 31st","Tomorrow","Next week","January 1st"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What happens if you buy 2 T-shirts?', opts: ["Nothing","You pay double","You get 50% off","You get 1 free"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - What is on sale?', opts: ["Food and drinks", "Cars and bikes", "Shoes, T-shirts, and Electronics", "Only shoes"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - How much are the shoes now?', opts: ["$10", "$50", "$30", "$60"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - What is the discount for Electronics?', opts: ["10% OFF", "30% OFF", "20% OFF", "50% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - When does the sale end?', opts: ["January 1st", "December 31st", "Tomorrow", "Next week"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - What happens if you buy 2 T-shirts?', opts: ["You pay double", "You get 1 free", "Nothing", "You get 50% off"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 6 - What is on sale?', opts: ["Cars and bikes","Food and drinks","Only shoes","Shoes, T-shirts, and Electronics"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - How much are the shoes now?', opts: ["$10","$60","$30","$50"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - What is the discount for Electronics?', opts: ["20% OFF","50% OFF","30% OFF","10% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - When does the sale end?', opts: ["January 1st","Tomorrow","Next week","December 31st"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - What happens if you buy 2 T-shirts?', opts: ["You get 50% off","You pay double","You get 1 free","Nothing"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - What is on sale?', opts: ["Shoes, T-shirts, and Electronics","Cars and bikes","Only shoes","Food and drinks"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - How much are the shoes now?', opts: ["$10","$60","$50","$30"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - What is the discount for Electronics?', opts: ["20% OFF","30% OFF","50% OFF","10% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - When does the sale end?', opts: ["December 31st","Tomorrow","Next week","January 1st"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What happens if you buy 2 T-shirts?', opts: ["You get 1 free","Nothing","You pay double","You get 50% off"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - What is on sale?', opts: ["Shoes, T-shirts, and Electronics","Cars and bikes","Only shoes","Food and drinks"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - How much are the shoes now?', opts: ["$10","$50","$60","$30"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - What is the discount for Electronics?', opts: ["30% OFF","20% OFF","50% OFF","10% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - When does the sale end?', opts: ["Next week","January 1st","Tomorrow","December 31st"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What happens if you buy 2 T-shirts?', opts: ["Nothing","You pay double","You get 1 free","You get 50% off"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 7 - How much are the shoes now?', opts: ["$60", "$50", "$10", "$30"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - What is the discount for Electronics?', opts: ["50% OFF", "10% OFF", "20% OFF", "30% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - When does the sale end?', opts: ["January 1st", "December 31st", "Next week", "Tomorrow"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - What happens if you buy 2 T-shirts?', opts: ["You get 50% off", "Nothing", "You get 1 free", "You pay double"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - What is on sale?', opts: ["Shoes, T-shirts, and Electronics", "Food and drinks", "Only shoes", "Cars and bikes"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - How much are the shoes now?', opts: ["$50", "$60", "$10", "$30"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - What is the discount for Electronics?', opts: ["30% OFF", "10% OFF", "20% OFF", "50% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - When does the sale end?', opts: ["Tomorrow", "January 1st", "December 31st", "Next week"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - What happens if you buy 2 T-shirts?', opts: ["Nothing", "You get 50% off", "You get 1 free", "You pay double"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - What is on sale?', opts: ["Only shoes", "Food and drinks", "Shoes, T-shirts, and Electronics", "Cars and bikes"], ans: "Shoes, T-shirts, and Electronics", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - How much are the shoes now?', opts: ["$50", "$30", "$60", "$10"], ans: "$30", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - What is the discount for Electronics?', opts: ["20% OFF", "10% OFF", "30% OFF", "50% OFF"], ans: "20% OFF", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - When does the sale end?', opts: ["Next week", "Tomorrow", "December 31st", "January 1st"], ans: "December 31st", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - What happens if you buy 2 T-shirts?', opts: ["Nothing", "You get 1 free", "You get 50% off", "You pay double"], ans: "You get 1 free", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -36,10 +36,10 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   ),
   questions: [
     { q: 'What is on sale?', opts: ["Shoes, T-shirts, and Electronics","Only shoes","Cars and bikes","Food and drinks"], ans: 'Shoes, T-shirts, and Electronics' },
-    { q: 'How much are the shoes now?', opts: ["$50","$10","$60","$30"], ans: '$30' },
-    { q: 'What is the discount for Electronics?', opts: ["50% OFF","20% OFF","30% OFF","10% OFF"], ans: '20% OFF' },
+    { q: 'How much are the shoes now?', opts: ["$50", "$30", "$60", "$10"], ans: '$30' },
+    { q: 'What is the discount for Electronics?', opts: ["50% OFF", "30% OFF", "20% OFF", "10% OFF"], ans: '20% OFF' },
     { q: 'When does the sale end?', opts: ["Next week","January 1st","December 31st","Tomorrow"], ans: 'December 31st' },
-    { q: 'What happens if you buy 2 T-shirts?', opts: ["You get 50% off","Nothing","You pay double","You get 1 free"], ans: 'You get 1 free' },
+    { q: 'What happens if you buy 2 T-shirts?', opts: ["You pay double", "You get 1 free", "Nothing", "You get 50% off"], ans: 'You get 1 free' },
   ],
 };
 

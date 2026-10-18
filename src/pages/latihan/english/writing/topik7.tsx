@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Similarity + difference + preference or conclusion.",
-      "options": [
-        "Both options",
-        "however",
-        "Overall, I prefer the second option.",
-        "Similarity + difference + preference or conclusion."
-      ],
       "id": "compare-contrast-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the best word to show similarity: '___ cats and dogs make good pets.'",
+      "answer": "Both",
+      "options": [
+        "However",
+        "Either",
+        "Unlike",
+        "Both"
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Compare & Contrast.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Both buses and trains are affordable. However, trains are usually faster and more comfortable.",
-      "options": [
-        "And because but however.",
-        "Both buses and trains are affordable. However, trains are usually faster and more comfortable.",
-        "Both options",
-        "Overall, I prefer the second option."
-      ],
       "id": "compare-contrast-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct comparative form: 'A car is ___ than a bicycle.'",
+      "answer": "faster",
+      "options": [
+        "fast",
+        "more fast",
+        "faster",
+        "fastest"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Similarity + difference + preference or conclusion.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Similarity + difference + preference or conclusion."
-      ],
       "id": "compare-contrast-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence shows a difference?",
+      "answer": "Tea is hot, but juice is cold.",
+      "options": [
+        "Tea and juice are both drinks.",
+        "I drink tea, and I drink juice too.",
+        "Both tea and juice are popular.",
+        "Tea is hot, but juice is cold."
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "however",
-      "options": [
-        "Overall, I prefer the second option.",
-        "comparison paragraph",
-        "however",
-        "Both options"
-      ],
       "id": "compare-contrast-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which connector best completes the comparison? 'Living in a city is exciting; ___, living in a village is more peaceful.'",
+      "answer": "in contrast",
+      "options": [
+        "for example",
+        "in contrast",
+        "similarly",
+        "as a result"
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "Overall, I prefer the second option.",
-      "options": [
-        "however",
-        "Overall, I prefer the second option.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "compare-contrast-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence compares two options most clearly?",
+      "answer": "Unlike printed books, e-books are lighter and easier to carry.",
+      "options": [
+        "Printed books are books, and e-books are books too.",
+        "E-books and printed books are different in many ways, I think.",
+        "Unlike printed books, e-books are lighter and easier to carry.",
+        "E-books are lighter, and also printed books are also nice."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Similarity + difference + preference or conclusion.",
-      "options": [
-        "Both options",
-        "however",
-        "Overall, I prefer the second option.",
-        "Similarity + difference + preference or conclusion."
-      ],
       "id": "compare-contrast-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kata terbaik untuk menunjukkan persamaan: '___ cats and dogs make good pets.'",
+      "answer": "Both",
+      "options": [
+        "However",
+        "Either",
+        "Unlike",
+        "Both"
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Compare & Contrast.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Both buses and trains are affordable. However, trains are usually faster and more comfortable.",
-      "options": [
-        "And because but however.",
-        "Both buses and trains are affordable. However, trains are usually faster and more comfortable.",
-        "Both options",
-        "Overall, I prefer the second option."
-      ],
       "id": "compare-contrast-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih bentuk comparative yang benar: 'A car is ___ than a bicycle.'",
+      "answer": "faster",
+      "options": [
+        "fast",
+        "more fast",
+        "faster",
+        "fastest"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Similarity + difference + preference or conclusion.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Similarity + difference + preference or conclusion."
-      ],
       "id": "compare-contrast-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menunjukkan perbedaan?",
+      "answer": "Tea is hot, but juice is cold.",
+      "options": [
+        "Tea and juice are both drinks.",
+        "I drink tea, and I drink juice too.",
+        "Both tea and juice are popular.",
+        "Tea is hot, but juice is cold."
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "however",
-      "options": [
-        "Overall, I prefer the second option.",
-        "comparison paragraph",
-        "however",
-        "Both options"
-      ],
       "id": "compare-contrast-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Connector mana yang paling tepat melengkapi perbandingan? 'Living in a city is exciting; ___, living in a village is more peaceful.'",
+      "answer": "in contrast",
+      "options": [
+        "for example",
+        "in contrast",
+        "similarly",
+        "as a result"
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "Overall, I prefer the second option.",
-      "options": [
-        "however",
-        "Overall, I prefer the second option.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "compare-contrast-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang membandingkan dua pilihan dengan paling jelas?",
+      "answer": "Unlike printed books, e-books are lighter and easier to carry.",
+      "options": [
+        "Printed books are books, and e-books are books too.",
+        "E-books and printed books are different in many ways, I think.",
+        "Unlike printed books, e-books are lighter and easier to carry.",
+        "E-books are lighter, and also printed books are also nice."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Time marker + event + feeling + reflection.",
-      "options": [
-        "Today,",
-        "because",
-        "I learned something useful.",
-        "Time marker + event + feeling + reflection."
-      ],
       "id": "daily-journal-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct past tense verb for this journal entry: 'Yesterday, I ___ my grandmother.'",
+      "answer": "visited",
+      "options": [
+        "visit",
+        "visits",
+        "visiting",
+        "visited"
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Daily Journal.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Today, I finished my work early. I felt relieved because I had time to rest.",
-      "options": [
-        "And because but however.",
-        "Today, I finished my work early. I felt relieved because I had time to rest.",
-        "Today,",
-        "I learned something useful."
-      ],
       "id": "daily-journal-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which time marker best starts a journal entry about this evening?",
+      "answer": "This evening,",
+      "options": [
+        "Next week,",
+        "This evening,",
+        "In the future,",
+        "Tomorrow morning,"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Time marker + event + feeling + reflection.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Time marker + event + feeling + reflection."
-      ],
       "id": "daily-journal-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence describes a feeling in a journal entry?",
+      "answer": "I felt nervous before my test.",
+      "options": [
+        "My test was at nine o'clock.",
+        "The classroom has thirty chairs.",
+        "I took the bus to school.",
+        "I felt nervous before my test."
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "because",
-      "options": [
-        "I learned something useful.",
-        "short journal paragraph",
-        "because",
-        "Today,"
-      ],
       "id": "daily-journal-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Put the journal events in the best order: (A) Then I met Sara for lunch. (B) In the morning, I went to the market. (C) Finally, I went home and rested.",
+      "answer": "B, A, C",
+      "options": [
+        "A, C, B",
+        "B, A, C",
+        "A, B, C",
+        "C, B, A"
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "I learned something useful.",
-      "options": [
-        "because",
-        "I learned something useful.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "daily-journal-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence adds a thoughtful reflection to this entry? 'Today, I missed the bus and arrived late for work.'",
+      "answer": "Next time, I will leave home ten minutes earlier.",
+      "options": [
+        "My office is on the third floor of the building.",
+        "The bus was blue and very crowded this morning.",
+        "Next time, I will leave home ten minutes earlier.",
+        "Tomorrow is Friday, and the weather will be sunny."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Time marker + event + feeling + reflection.",
-      "options": [
-        "Today,",
-        "because",
-        "I learned something useful.",
-        "Time marker + event + feeling + reflection."
-      ],
       "id": "daily-journal-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kata kerja past tense yang benar untuk catatan harian ini: 'Yesterday, I ___ my grandmother.'",
+      "answer": "visited",
+      "options": [
+        "visit",
+        "visits",
+        "visiting",
+        "visited"
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Daily Journal.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Today, I finished my work early. I felt relieved because I had time to rest.",
-      "options": [
-        "And because but however.",
-        "Today, I finished my work early. I felt relieved because I had time to rest.",
-        "Today,",
-        "I learned something useful."
-      ],
       "id": "daily-journal-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Penanda waktu mana yang paling tepat untuk memulai catatan harian tentang malam ini?",
+      "answer": "This evening,",
+      "options": [
+        "Next week,",
+        "This evening,",
+        "In the future,",
+        "Tomorrow morning,"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Time marker + event + feeling + reflection.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Time marker + event + feeling + reflection."
-      ],
       "id": "daily-journal-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menggambarkan perasaan dalam catatan harian?",
+      "answer": "I felt nervous before my test.",
+      "options": [
+        "My test was at nine o'clock.",
+        "The classroom has thirty chairs.",
+        "I took the bus to school.",
+        "I felt nervous before my test."
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "because",
-      "options": [
-        "I learned something useful.",
-        "short journal paragraph",
-        "because",
-        "Today,"
-      ],
       "id": "daily-journal-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Urutkan kejadian dalam catatan harian ini dengan urutan terbaik: (A) Then I met Sara for lunch. (B) In the morning, I went to the market. (C) Finally, I went home and rested.",
+      "answer": "B, A, C",
+      "options": [
+        "A, C, B",
+        "B, A, C",
+        "A, B, C",
+        "C, B, A"
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "I learned something useful.",
-      "options": [
-        "because",
-        "I learned something useful.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "daily-journal-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang menambahkan refleksi yang bermakna pada catatan ini? 'Today, I missed the bus and arrived late for work.'",
+      "answer": "Next time, I will leave home ten minutes earlier.",
+      "options": [
+        "My office is on the third floor of the building.",
+        "The bus was blue and very crowded this morning.",
+        "Next time, I will leave home ten minutes earlier.",
+        "Tomorrow is Friday, and the weather will be sunny."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

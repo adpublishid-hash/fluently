@@ -4,287 +4,69 @@ import { QuizEngine, WritingCard, ComprehensionSection, getCompletedWritingLesso
 import type { QuizItem, ComprehensionQ } from './writingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Identify the contrast linker in paragraph one:",
-    "opts": [
-      "While",
-      "Consequently",
-      "Foundation",
-      "Indicates"
-    ],
-    "ans": "While",
-    "exp": "\"While vocabulary forms the base, the ability to weave...\" sets up a contrast of importance."
-  },
-  {
-    "q": "What does \"Consequently\" mean in this context?",
-    "opts": [
-      "Before",
-      "As a logical result",
-      "In addition",
-      "However"
-    ],
-    "ans": "As a logical result",
-    "exp": "Because paragraphing shows proficiency, AS A RESULT, learners must focus on cohesion."
-  },
-  {
-    "q": "What is the grammatical subject of \"reading extensive literature exposes students\"?",
-    "opts": [
-      "Students",
-      "Literature",
-      "Reading extensive literature (Gerund phrase)",
-      "Exposes"
-    ],
-    "ans": "Reading extensive literature (Gerund phrase)",
-    "exp": "The entire gerund phrase acts as the subject."
-  },
-  {
-    "q": "In the phrase \"can highlight persistent errors\", what does \"persistent\" mean?",
-    "opts": [
-      "Easy to see",
-      "Occurring repeatedly and constantly",
-      "Funny",
-      "Grammatical"
-    ],
-    "ans": "Occurring repeatedly and constantly",
-    "exp": "\"Persistent\" means something stubborn that keeps happening."
-  },
-  {
-    "q": "Why is \"Therefore\" used in the last paragraph?",
-    "opts": [
-      "To introduce a cause",
-      "To conclude a logical argument",
-      "To change subjects",
-      "To start a story"
-    ],
-    "ans": "To conclude a logical argument",
-    "exp": "It logically connects the objective (clarity) with the necessary action (proper punctuation)."
-  },
-  {
-    "q": "Which choice correctly joins these: \"It was late. I kept writing.\"",
-    "opts": [
-      "It was late so I kept writing.",
-      "Although it was late, I kept writing.",
-      "Because it was late, I kept writing.",
-      "It was late, therefore I kept writing."
-    ],
-    "ans": "Although it was late, I kept writing.",
-    "exp": "Konteks kalimat menunjukkan kontras (sudah malam tapi tetap nulis), jadi \"Although\" adalah yang paling masuk akal."
-  },
-  {
-    "q": "What is the function of \"For instance\"?",
-    "opts": [
-      "To contrast",
-      "To conclude",
-      "To provide an example",
-      "To show cause"
-    ],
-    "ans": "To provide an example",
-    "exp": "\"For instance\" adalah variasi formal dari \"For example\" pada level B1/B2."
-  },
-  {
-    "q": "Identify the spelling error in this formal text: \"The goverment should take action immediately.\"",
-    "opts": [
-      "immediately",
-      "action",
-      "goverment",
-      "should"
-    ],
-    "ans": "goverment",
-    "exp": "Ejaan yang benar adalah \"governMENT\" (ada huruf n yang sering terlupa)."
-  },
-  {
-    "q": "Which option is less formal? \"Commence\"",
-    "opts": [
-      "Begin",
-      "Terminate",
-      "Execute",
-      "Finalize"
-    ],
-    "ans": "Begin",
-    "exp": "\"Commence\" adalah bentuk sangat formal untuk kata \"begin\" atau \"start\"."
-  },
-  {
-    "q": "\"On the one hand... ___\". What finishes this paired conjunction?",
-    "opts": [
-      "On the second hand...",
-      "On the other side...",
-      "On the other hand...",
-      "However..."
-    ],
-    "ans": "On the other hand...",
-    "exp": "Pasangan frasa idiomatis ini selalu \"On the one hand... On the other hand...\" untuk membandingkan dua sisi."
-  },
-  {
-    "q": "How do you make this formal? \"Send me the files ASAP.\"",
-    "opts": [
-      "Please dispatch the files really quick.",
-      "I require the files immediately.",
-      "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
-    ],
-    "ans": "Please send the documents at your earliest convenience.",
-    "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
-  },
-  {
-    "q": "Choose the most FORMAL word to replace \"but\":",
-    "opts": [
-      "However",
-      "Also",
-      "So",
-      "And"
-    ],
-    "ans": "However",
-    "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
-  },
-  {
-    "q": "What is the function of \"therefore\"?",
-    "opts": [
-      "To add a point",
-      "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
-    ],
-    "ans": "To show a result or consequence",
-    "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
-  },
-  {
-    "q": "Which phrase is best for SUMMARISING an essay?",
-    "opts": [
-      "First of all",
-      "In contrast",
-      "To conclude",
-      "For instance"
-    ],
-    "ans": "To conclude",
-    "exp": "\"To conclude\" (atau In conclusion) secara spesifik digunakan di paragraf terakhir untuk merangkum tulisan."
-  },
-  {
-    "q": "Which sentence uses the PASSIVE voice correctly?",
-    "opts": [
-      "The report was finished by Anna yesterday.",
-      "The report finished Anna yesterday.",
-      "Anna was finished the report yesterday.",
-      "The report was finish by Anna."
-    ],
-    "ans": "The report was finished by Anna yesterday.",
-    "exp": "Pasif: Subject (The report) + to be (was) + Past Participle (finished)."
-  },
-  {
-    "q": "Choose the correct preposition: \"I am writing to complain ___ the poor service.\"",
-    "opts": [
-      "about",
-      "for",
-      "to",
-      "with"
-    ],
-    "ans": "about",
-    "exp": "Kata kerja \"complain\" diikuti oleh preposisi \"about\" untuk menunjukkan hal yang dikeluhkan."
-  },
-  {
-    "q": "What is the purpose of a thesis statement in an essay?",
-    "opts": [
-      "To greet the reader",
-      "To state the main argument or focus of the essay",
-      "To ask a rhetorical question",
-      "To give a dictionary definition"
-    ],
-    "ans": "To state the main argument or focus of the essay",
-    "exp": "Thesis statement berada di paragraf pertama untuk menjabarkan argumen/titik berat esai."
-  },
-  {
-    "q": "Identify the compound adjective: \"She bought a ___ car.\"",
-    "opts": [
-      "very fast",
-      "brand-new",
-      "beautifully",
-      "red"
-    ],
-    "ans": "brand-new",
-    "exp": "\"Brand-new\" adalah adjective gabungan (compound adjective) yang dihubungkan dengan hyphen."
-  },
-  {
-    "q": "Identify the error: \"I look forward to hear from you soon.\"",
-    "opts": [
-      "look forward",
-      "to hear",
-      "from you",
-      "soon"
-    ],
-    "ans": "to hear",
-    "exp": "Aturan baku: \"look forward to\" selalu diikuti oleh Gerund (V-ing), sehingga seharusnya \"to hearing\"."
-  },
-  {
-    "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
-    "opts": [
-      "for",
-      "from",
-      "with",
-      "about"
-    ],
-    "ans": "for",
-    "exp": "\"Apologise\" selalu diikut oleh \"for\" ketika merujuk pada alasan (apologise for something)."
-  }
-];
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateWritingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateWritingQuizBank[17], 'intermediate/writing/17');
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
   passageTitle: '✍️ My Neighbourhood',
   passage: (
     <>
       <div className="bg-amber-50 p-6 font-serif rounded-xl border border-amber-100 shadow-inner text-slate-800 leading-relaxed text-[15px]" 
-           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">Learning to write effectively in a second language is a journey that requires both patience and practice. While vocabulary and grammar form the foundation, the ability to weave sentences into a coherent paragraph is what truly indicates proficiency. Consequently, intermediate learners must focus significantly on cohesive devices.\n\nThere are several methods to improve writing fluency. Reading extensive literature exposes students to varied sentence structures and formal registers. Additionally, seeking peer review can highlight persistent errors that a student might conventionally overlook. By comparing feedback, learners can identify their weaknesses.\n\nUltimately, writing is a communicative tool. The primary objective is to convey ideas as clearly and concisely as possible. Therefore, minimizing ambiguity through proper punctuation and strict paragraphing rules is essential. Mastery is not achieved overnight, but through consistent, deliberate practice.</p>" }} />
+           dangerouslySetInnerHTML={{ __html: "<p className=\"mb-4\">I live in Cempaka, a small residential neighbourhood on the southern edge of Depok. It is not a famous place, and you will not find it in any guidebook, but to me it is the most comfortable place in the world.\n\nThe streets in Cempaka are narrow and lined with small houses painted in bright colours. At the end of my street there is a traditional market, which opens before sunrise. By six o'clock it is already busy with people buying fresh vegetables, fish and warm kue for breakfast. Opposite the market there is a small mosque and a football pitch where teenagers gather every afternoon.\n\nThe best thing about my neighbourhood is the people. Neighbours greet each other by name, and once a month everyone takes part in kerja bakti, a community clean-up day. However, Cempaka is not perfect. The drains often flood during the rainy season, and the main road is very crowded in the evenings. Even so, I cannot imagine living anywhere else.</p>" }} />
     </>
   ),
   questions: [
   {
-    "q": "What is considered the foundation of writing according to the text?",
+    "q": "Where is Cempaka?",
     "opts": [
-      "Spelling and reading",
-      "Vocabulary and grammar",
-      "Speaking loudly",
-      "Finding errors"
+      "In the centre of Jakarta",
+      "On the southern edge of Depok",
+      "Next to the beach in Bali",
+      "Near a famous tourist site in the mountains"
     ],
-    "ans": "Vocabulary and grammar"
+    "ans": "On the southern edge of Depok"
   },
   {
-    "q": "What indicates true proficiency?",
+    "q": "What is at the end of the writer's street?",
     "opts": [
-      "Knowing 1000 words",
-      "Typing fast",
-      "The ability to weave sentences into a coherent paragraph",
-      "Using passive voice"
+      "A traditional market",
+      "A shopping mall",
+      "A school",
+      "A train station"
     ],
-    "ans": "The ability to weave sentences into a coherent paragraph"
+    "ans": "A traditional market"
   },
   {
-    "q": "How does reading literature help?",
+    "q": "What do teenagers do every afternoon?",
     "opts": [
-      "It wastes time",
-      "It exposes students to varied structures and registers",
-      "It hurts visibility",
-      "It makes you sleepy"
+      "Clean the drains",
+      "Sell kue at the market for pocket money",
+      "Gather at the football pitch",
+      "Study at the mosque"
     ],
-    "ans": "It exposes students to varied structures and registers"
+    "ans": "Gather at the football pitch"
   },
   {
-    "q": "What is the primary objective of writing?",
+    "q": "What happens once a month in the neighbourhood?",
     "opts": [
-      "To confuse the reader",
-      "To convey ideas clearly and concisely",
-      "To get a high score",
-      "To write long sentences"
+      "A music festival",
+      "A football tournament for local teenagers",
+      "A night market",
+      "A community clean-up day"
     ],
-    "ans": "To convey ideas clearly and concisely"
+    "ans": "A community clean-up day"
   },
   {
-    "q": "How is mastery achieved?",
+    "q": "What problem does the neighbourhood have in the rainy season?",
     "opts": [
-      "Through consistent, deliberate practice",
-      "Overnight magically",
-      "By buying special pens",
-      "By ignoring rules"
+      "The market closes",
+      "The drains often flood",
+      "The mosque is crowded",
+      "The houses lose their colour"
     ],
-    "ans": "Through consistent, deliberate practice"
+    "ans": "The drains often flood"
   }
 ],
 };
@@ -362,12 +144,12 @@ export default function InterWritingLesson17(): React.ReactElement {
 
                 <WritingCard title="Target Mekanikal" icon="🎯">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Untuk menaklukkan level B1-B2 dalam tulisan <strong>my neighbourhood</strong>, perhatikan elemen berikut:
+                    {lessonTips[17].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl shadow-inner border border-slate-100">
-                    <li><strong className="text-slate-800">Advanced Lexical Resource:</strong> Hindari kosakata berulang. Gunakan sinonim yang lebih kaya (e.g. <i>crucial, significantly, furthermore</i>).</li>
-                    <li><strong className="text-slate-800">Cohesive Devices:</strong> Jangan hanya bertumpu pada 'and', 'but', 'so'. Gunakan <i>Despite, Nevertheless, Consequently, Moreover</i>.</li>
-                    <li><strong className="text-slate-800">Sentence Variety:</strong> Padukan kalimat pendek dengan <i>Complex Sentences</i> (Relative clauses, if-clauses).</li>
+                    {lessonTips[17].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-indigo-700 mt-4 font-bold bg-indigo-50 p-3 rounded-lg border border-indigo-100 inline-block w-full">
                     👉 Buka tab "Pemahaman" untuk membaca esai contoh lengkap dan uji akurasi bacaanmu!

@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Indoor plants are often placed near windows.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Plants need sunlight to make food and grow well.",
-        "Indoor plants are often placed near windows."
-      ],
       "id": "science-fact-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What do plants use to make food?",
+      "answer": "sunlight",
+      "options": [
+        "moonlight",
+        "plastic",
+        "sunlight",
+        "sand"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "process",
-      "options": [
-        "understanding explanations and scientific terms",
-        "main idea",
-        "process",
-        "a series of actions or changes"
-      ],
       "id": "science-fact-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Where are indoor plants often placed?",
+      "answer": "near windows",
+      "options": [
+        "near windows",
+        "inside a cupboard",
+        "in a dark corner",
+        "under the bed"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Why Plants Need Light",
-      "options": [
-        "No title is possible.",
-        "Why Plants Need Light",
-        "Science Fact",
-        "to explain why light matters for plant growth"
-      ],
       "id": "science-fact-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What is the name of the process in the passage?",
+      "answer": "photosynthesis",
+      "options": [
+        "evaporation",
+        "pollination",
+        "digestion",
+        "photosynthesis"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Science Fact.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Plants need sunlight to make food and grow well.",
-      "options": [
-        "a series of actions or changes",
-        "understanding explanations and scientific terms",
-        "The text is only about spelling.",
-        "Plants need sunlight to make food and grow well."
-      ],
       "id": "science-fact-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"not strong\"?",
+      "answer": "weak",
+      "options": [
+        "slowly",
+        "enough",
+        "weak",
+        "indoor"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"process\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Indoor plants are often placed near windows.",
-      "options": [
-        "The text says the opposite.",
-        "a series of actions or changes",
-        "to explain why light matters for plant growth",
-        "Indoor plants are often placed near windows."
-      ],
       "id": "science-fact-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What happens to many plants without enough light?",
+      "answer": "They grow slowly or become weak.",
+      "options": [
+        "They make more food than usual.",
+        "They grow faster and taller.",
+        "They grow slowly or become weak.",
+        "They change colour to bright red."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to explain why light matters for plant growth",
-      "options": [
-        "understanding explanations and scientific terms",
-        "to explain why light matters for plant growth",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "science-fact-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which phrase in the last sentence links the cause to its result?",
+      "answer": "This is why",
+      "options": [
+        "This is why",
+        "indoor plants",
+        "near windows",
+        "often placed"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Plants need sunlight to make food and grow well.",
-      "options": [
-        "Plants need sunlight to make food and grow well.",
-        "Indoor plants are often placed near windows.",
-        "a series of actions or changes",
-        "Only one small word matters."
-      ],
       "id": "science-fact-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "A plant kept in a windowless room looks pale and small. Which explanation best fits the passage?",
+      "answer": "It cannot make enough food without light.",
+      "options": [
+        "It cannot make enough food without light.",
+        "It needs to be placed further from windows.",
+        "It is growing faster than normal plants.",
+        "It is getting too much sunlight."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "A dark room is not ideal for many plants.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Indoor plants are often placed near windows.",
-        "A dark room is not ideal for many plants."
-      ],
       "id": "science-fact-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "How is the information in the passage mainly organised?",
+      "answer": "a fact, then its effect, then a real-life example",
+      "options": [
+        "a list of opinions from experts",
+        "a problem followed by several complaints from gardeners",
+        "a story told in time order",
+        "a fact, then its effect, then a real-life example"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Indoor plants are often placed near windows.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Plants need sunlight to make food and grow well.",
-        "Indoor plants are often placed near windows."
-      ],
       "id": "science-fact-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang digunakan tumbuhan untuk membuat makanan?",
+      "answer": "sunlight",
+      "options": [
+        "moonlight",
+        "plastic",
+        "sunlight",
+        "sand"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "process",
-      "options": [
-        "understanding explanations and scientific terms",
-        "main idea",
-        "process",
-        "a series of actions or changes"
-      ],
       "id": "science-fact-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Di mana tanaman dalam ruangan sering diletakkan?",
+      "answer": "near windows",
+      "options": [
+        "near windows",
+        "inside a cupboard",
+        "in a dark corner",
+        "under the bed"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Why Plants Need Light",
-      "options": [
-        "No title is possible.",
-        "Why Plants Need Light",
-        "Science Fact",
-        "to explain why light matters for plant growth"
-      ],
       "id": "science-fact-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa nama proses yang disebutkan dalam bacaan?",
+      "answer": "photosynthesis",
+      "options": [
+        "evaporation",
+        "pollination",
+        "digestion",
+        "photosynthesis"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Science Fact.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Plants need sunlight to make food and grow well.",
-      "options": [
-        "a series of actions or changes",
-        "understanding explanations and scientific terms",
-        "The text is only about spelling.",
-        "Plants need sunlight to make food and grow well."
-      ],
       "id": "science-fact-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"not strong\"?",
+      "answer": "weak",
+      "options": [
+        "slowly",
+        "enough",
+        "weak",
+        "indoor"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"process\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Indoor plants are often placed near windows.",
-      "options": [
-        "The text says the opposite.",
-        "a series of actions or changes",
-        "to explain why light matters for plant growth",
-        "Indoor plants are often placed near windows."
-      ],
       "id": "science-fact-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa yang terjadi pada banyak tumbuhan tanpa cahaya yang cukup?",
+      "answer": "They grow slowly or become weak.",
+      "options": [
+        "They make more food than usual.",
+        "They grow faster and taller.",
+        "They grow slowly or become weak.",
+        "They change colour to bright red."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to explain why light matters for plant growth",
-      "options": [
-        "understanding explanations and scientific terms",
-        "to explain why light matters for plant growth",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "science-fact-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Frasa mana dalam kalimat terakhir yang menghubungkan sebab dengan akibatnya?",
+      "answer": "This is why",
+      "options": [
+        "This is why",
+        "indoor plants",
+        "near windows",
+        "often placed"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Plants need sunlight to make food and grow well.",
-      "options": [
-        "Plants need sunlight to make food and grow well.",
-        "Indoor plants are often placed near windows.",
-        "a series of actions or changes",
-        "Only one small word matters."
-      ],
       "id": "science-fact-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Sebuah tanaman yang disimpan di ruangan tanpa jendela terlihat pucat dan kecil. Penjelasan mana yang paling sesuai dengan bacaan?",
+      "answer": "It cannot make enough food without light.",
+      "options": [
+        "It cannot make enough food without light.",
+        "It needs to be placed further from windows.",
+        "It is growing faster than normal plants.",
+        "It is getting too much sunlight."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "A dark room is not ideal for many plants.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Indoor plants are often placed near windows.",
-        "A dark room is not ideal for many plants."
-      ],
       "id": "science-fact-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Bagaimana informasi dalam bacaan terutama disusun?",
+      "answer": "a fact, then its effect, then a real-life example",
+      "options": [
+        "a list of opinions from experts",
+        "a problem followed by several complaints from gardeners",
+        "a story told in time order",
+        "a fact, then its effect, then a real-life example"
+      ]
     }
   ]
 };

@@ -61,21 +61,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "We usually have lunch ___ noon.",
-    options: ['in', 'on', 'at'],
+    options: ['on', 'in', 'at'],
     answer: 'at',
     explanation: "'Noon' adalah momen tepat (12:00 PM), jadi kita gunakan AT."
   },
   {
     id: 2,
     question: "My birthday is ___ October.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'in',
     explanation: "Untuk bulan (tanpa tanggal spesifik), kita gunakan IN."
   },
   {
     id: 3,
     question: "I will see you ___ Monday.",
-    options: ['in', 'on', 'at'],
+    options: ['on', 'at', 'in'],
     answer: 'on',
     explanation: "Untuk hari-hari tertentu dalam seminggu, kita selalu menggunakan ON."
   },
@@ -89,7 +89,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "The book is ___ the table.",
-    options: ['in', 'on', 'at'],
+    options: ['on', 'in', 'at'],
     answer: 'on',
     explanation: "Benda itu menempel di permukaan atas, jadi gunakan ON."
   },
@@ -103,42 +103,42 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "She was born ___ 1990.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'in',
     explanation: "Untuk tahun, gunakan IN."
   },
   {
     id: 8,
     question: "We have a meeting ___ the morning.",
-    options: ['on', 'in', 'at'],
+    options: ['in', 'at', 'on'],
     answer: 'in',
     explanation: "Waktu bagian hari (morning, afternoon, evening) menggunakan IN."
   },
   {
     id: 9,
     question: "My party is ___ Friday night.",
-    options: ['in', 'on', 'at'],
+    options: ['on', 'at', 'in'],
     answer: 'on',
     explanation: "Spesifik 'Hari' + Bagian hari, tetap menggunakan ON (karena harinya)."
   },
   {
     id: 10,
     question: "They are ___ the bus.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'on',
     explanation: "Transportasi umum yang bisa kita berjalan di dalamnya (Bus, Train, Plane) menggunakan ON."
   },
   {
     id: 11,
     question: "She is ___ the car.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'in',
     explanation: "Transportasi kecil/pribadi (Car, Taxi) menggunakan IN."
   },
   {
     id: 12,
     question: "I am ___ home.",
-    options: ['on', 'in', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'at',
     explanation: "Tempat spesifik/poin lokasi 'Home' menggunakan AT."
   },
@@ -159,35 +159,35 @@ const QUIZ_QUESTIONS = [
   {
     id: 15,
     question: "My birthday is ___ 12th May.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'on',
     explanation: "Tanggal lengkap/spesifik menggunakan ON."
   },
   {
     id: 16,
     question: "She is waiting ___ the bus stop.",
-    options: ['in', 'on', 'at'],
+    options: ['in', 'at', 'on'],
     answer: 'at',
     explanation: "Lokasi titik tertentu (Bus stop) menggunakan AT."
   },
   {
     id: 17,
     question: "It happened ___ summer.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'in', 'on'],
     answer: 'in',
     explanation: "Musim (Summer, Winter) menggunakan IN."
   },
   {
     id: 18,
     question: "I read it ___ the newspaper.",
-    options: ['in', 'on', 'at'],
+    options: ['in', 'at', 'on'],
     answer: 'in',
     explanation: "Media cetak/isi buku menggunakan IN."
   },
   {
     id: 19,
     question: "There is a spider ___ the ceiling.",
-    options: ['in', 'on', 'at'],
+    options: ['at', 'on', 'in'],
     answer: 'on',
     explanation: "Menempel di permukaan (langit-langit) menggunakan ON."
   },

@@ -53,25 +53,25 @@ const CONNECTORS_QUALIFIERS = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "We need to ___ the data to understand the problem.", options: ['illustrate', 'analyze', 'assume'], answer: 'analyze', explanation: "Analyze (Menganalisis) berarti memeriksa sesuatu secara rinci." },
+  { id: 1, question: "We need to ___ the data to understand the problem.", options: ['illustrate', 'assume', 'analyze'], answer: 'analyze', explanation: "Analyze (Menganalisis) berarti memeriksa sesuatu secara rinci." },
   { id: 2, question: "There is no scientific ___ to support this theory.", options: ['evidence', 'context', 'component'], answer: 'evidence', explanation: "Evidence (Bukti) merujuk pada fakta atau informasi yang menunjukkan apakah sesuatu itu benar." },
   { id: 3, question: "It rained all day; ___, the game was canceled.", options: ['furthermore', 'initially', 'consequently'], answer: 'consequently', explanation: "Consequently (Akibatnya) menghubungkan sebab (hujan) dengan akibat (pembatalan)." },
   { id: 4, question: "This discovery is very ___ for the medical field.", options: ['significant', 'approximate', 'sufficient'], answer: 'significant', explanation: "Significant (Signifikan) berarti cukup besar atau penting." },
-  { id: 5, question: "The teacher used a diagram to ___ how the engine works.", options: ['require', 'demonstrate', 'evaluate'], answer: 'demonstrate', explanation: "Demonstrate (Mendemonstrasikan) berarti menunjukkan dengan jelas bagaimana sesuatu bekerja." },
+  { id: 5, question: "The teacher used a diagram to ___ how the engine works.", options: ['demonstrate', 'require', 'evaluate'], answer: 'demonstrate', explanation: "Demonstrate (Mendemonstrasikan) berarti menunjukkan dengan jelas bagaimana sesuatu bekerja." },
   { id: 6, question: "The scientist will ___ different factors in the experiment.", options: ['identify', 'assume', 'require'], answer: 'identify', explanation: "Identify (Mengidentifikasi) berarti mengenali atau menemukan sesuatu." },
-  { id: 7, question: "We need to ___ whether this method is effective.", options: ['illustrate', 'evaluate', 'assume'], answer: 'evaluate', explanation: "Evaluate (Mengevaluasi) berarti menilai nilai atau kualitas sesuatu." },
-  { id: 8, question: "The research will ___ the impact of pollution.", options: ['illustrate', 'investigate', 'assume'], answer: 'investigate', explanation: "Investigate (Menyelidiki) berarti memeriksa sesuatu secara sistematis." },
-  { id: 9, question: "The results ___ a clear pattern.", options: ['require', 'indicate', 'assume'], answer: 'indicate', explanation: "Indicate (Menunjukkan) berarti menandakan atau menyarankan sesuatu." },
-  { id: 10, question: "Our ___ is that prices will rise.", options: ['principle', 'hypothesis', 'component'], answer: 'hypothesis', explanation: "Hypothesis (Hipotesis) adalah dugaan yang perlu diuji." },
-  { id: 11, question: "The study follows a strict ___.", options: ['context', 'methodology', 'perspective'], answer: 'methodology', explanation: "Methodology (Metodologi) adalah sistem metode yang digunakan dalam studi." },
-  { id: 12, question: "Based on the findings, we can draw a ___.", options: ['hypothesis', 'conclusion', 'component'], answer: 'conclusion', explanation: "Conclusion (Kesimpulan) adalah penilaian akhir berdasarkan penalaran." },
-  { id: 13, question: "Understanding the historical ___ is important.", options: ['component', 'context', 'principle'], answer: 'context', explanation: "Context (Konteks) adalah situasi atau latar belakang sesuatu." },
-  { id: 14, question: "Safety is one of the main ___ of the design.", options: ['principles', 'hypotheses', 'components'], answer: 'principles', explanation: "Principle (Prinsip) adalah aturan atau keyakinan fundamental." },
+  { id: 7, question: "We need to ___ whether this method is effective.", options: ['evaluate', 'illustrate', 'assume'], answer: 'evaluate', explanation: "Evaluate (Mengevaluasi) berarti menilai nilai atau kualitas sesuatu." },
+  { id: 8, question: "The research will ___ the impact of pollution.", options: ['assume', 'illustrate', 'investigate'], answer: 'investigate', explanation: "Investigate (Menyelidiki) berarti memeriksa sesuatu secara sistematis." },
+  { id: 9, question: "The results ___ a clear pattern.", options: ['assume', 'indicate', 'require'], answer: 'indicate', explanation: "Indicate (Menunjukkan) berarti menandakan atau menyarankan sesuatu." },
+  { id: 10, question: "Our ___ is that prices will rise.", options: ['hypothesis', 'principle', 'component'], answer: 'hypothesis', explanation: "Hypothesis (Hipotesis) adalah dugaan yang perlu diuji." },
+  { id: 11, question: "The study follows a strict ___.", options: ['perspective', 'context', 'methodology'], answer: 'methodology', explanation: "Methodology (Metodologi) adalah sistem metode yang digunakan dalam studi." },
+  { id: 12, question: "Based on the findings, we can draw a ___.", options: ['conclusion', 'hypothesis', 'component'], answer: 'conclusion', explanation: "Conclusion (Kesimpulan) adalah penilaian akhir berdasarkan penalaran." },
+  { id: 13, question: "Understanding the historical ___ is important.", options: ['component', 'principle', 'context'], answer: 'context', explanation: "Context (Konteks) adalah situasi atau latar belakang sesuatu." },
+  { id: 14, question: "Safety is one of the main ___ of the design.", options: ['principles', 'components', 'hypotheses'], answer: 'principles', explanation: "Principle (Prinsip) adalah aturan atau keyakinan fundamental." },
   { id: 15, question: "The law ___ all citizens to pay taxes.", options: ['illustrates', 'requires', 'evaluates'], answer: 'requires', explanation: "Require (Mewajibkan) berarti memerlukanatau mengharuskan sesuatu." },
-  { id: 16, question: "___, the project was successful.", options: ['Consequently', 'Nevertheless', 'Initially'], answer: 'Nevertheless', explanation: "Nevertheless (Namun demikian) digunakan untuk menunjukkan kontras." },
-  { id: 17, question: "The amount is ___ 50 dollars.", options: ['significantly', 'approximately', 'sufficiently'], answer: 'approximately', explanation: "Approximately (Kira-kira) berarti hampir tetapi tidak persis." },
+  { id: 16, question: "___, the project was successful.", options: ['Consequently', 'Initially', 'Nevertheless'], answer: 'Nevertheless', explanation: "Nevertheless (Namun demikian) digunakan untuk menunjukkan kontras." },
+  { id: 17, question: "The amount is ___ 50 dollars.", options: ['significantly', 'sufficiently', 'approximately'], answer: 'approximately', explanation: "Approximately (Kira-kira) berarti hampir tetapi tidak persis." },
   { id: 18, question: "This information is not ___ to the discussion.", options: ['significant', 'relevant', 'sufficient'], answer: 'relevant', explanation: "Relevant (Relevan) berarti berkaitan erat dengan topik." },
-  { id: 19, question: "The research ___ a new connection between diet and health.", options: ['established', 'assumed', 'illustrated'], answer: 'established', explanation: "Establish (Menetapkan) berarti menunjukkan atau membuktikan sesuatu." },
+  { id: 19, question: "The research ___ a new connection between diet and health.", options: ['assumed', 'established', 'illustrated'], answer: 'established', explanation: "Establish (Menetapkan) berarti menunjukkan atau membuktikan sesuatu." },
   { id: 20, question: "___, we need to gather more data.", options: ['Consequently', 'Furthermore', 'Nevertheless'], answer: 'Furthermore', explanation: "Furthermore (Selanjutnya) digunakan untuk menambahkan informasi." }
 
 ];

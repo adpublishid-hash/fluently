@@ -71,7 +71,7 @@ export default function ProficiencyWritingPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">Materi writing C2 dengan model text, language tools, latihan, checklist, dan kuis 20 soal.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">Materi writing C2 dengan model text, language tools, latihan, checklist, dan kuis 15 soal.</p>
 
           <div className="space-y-3">
             {proficiencyWritingLessons.map((lesson, index) => {

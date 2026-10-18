@@ -153,8 +153,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "I have nothing to do. I feel ___.",
     options: [
       { text: "boring", correct: false },
-      { text: "bored", correct: true },
-      { text: "happy", correct: false }
+      { text: "happy", correct: false },
+      { text: "bored", correct: true }
     ],
     explanation: "Gunakan '-ed' untuk mendeskripsikan perasaanmu. 'I am bored'."
   },
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "The movie was not interesting. It was ___.",
     options: [
-      { text: "bored", correct: false },
+      { text: "excited", correct: false },
       { text: "boring", correct: true },
-      { text: "excited", correct: false }
+      { text: "bored", correct: false }
     ],
     explanation: "Gunakan '-ing' untuk mendeskripsikan hal yang menyebabkan perasaan. 'The movie is boring'."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "She passed her exam. She is ___.",
     options: [
-      { text: "angry", correct: false },
       { text: "happy", correct: true },
-      { text: "scared", correct: false }
+      { text: "scared", correct: false },
+      { text: "angry", correct: false }
     ],
     explanation: "Lulus ujian adalah kejadian yang membahagiakan (happy)."
   },
@@ -183,8 +183,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "I worked all day. I am ___.",
     options: [
       { text: "tired", correct: true },
-      { text: "tiring", correct: false },
-      { text: "confused", correct: false }
+      { text: "confused", correct: false },
+      { text: "tiring", correct: false }
     ],
     explanation: "Tired (lelah) mendeskripsikan kondisi fisik kelelahan."
   },
@@ -202,9 +202,9 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"Hi Mary! What are you doing here?\"?",
     options: [
-      { text: "John? Aku kaget banget lihat kamu!", correct: false },
+      { text: "Hai Mary! Sedang apa kamu di sini?", correct: true },
       { text: "Kamu harus tidur lebih awal.", correct: false },
-      { text: "Hai Mary! Sedang apa kamu di sini?", correct: true }
+      { text: "John? Aku kaget banget lihat kamu!", correct: false }
     ],
     explanation: "Kalimat \"Hi Mary! What are you doing here?\" memiliki arti \"Hai Mary! Sedang apa kamu di sini?\"."
   },
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Aku juga. Tidak ada yang bisa dilakukan.\"?",
     options: [
+      { text: "I thought you moved to London.", correct: false },
       { text: "Me too. There is nothing to do.", correct: true },
-      { text: "Do you want to watch a movie?", correct: false },
-      { text: "I thought you moved to London.", correct: false }
+      { text: "Do you want to watch a movie?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku juga. Tidak ada yang bisa dilakukan.\" adalah \"Me too. There is nothing to do.\"."
   },
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"Thanks. I am really scared for him.\"?",
     options: [
-      { text: "Makasih. Aku benar-benar takut terjadi apa-apa padanya.", correct: true },
+      { text: "Biar saya tunjukkan jalannya.", correct: false },
       { text: "Ya, saudaraku merusakkan HP-ku.", correct: false },
-      { text: "Biar saya tunjukkan jalannya.", correct: false }
+      { text: "Makasih. Aku benar-benar takut terjadi apa-apa padanya.", correct: true }
     ],
     explanation: "Kalimat \"Thanks. I am really scared for him.\" memiliki arti \"Makasih. Aku benar-benar takut terjadi apa-apa padanya.\"."
   },
@@ -242,9 +242,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Peta ini sangat membingungkan.\"?",
     options: [
+      { text: "Are you okay? You look worried.", correct: false },
       { text: "This map is very confusing.", correct: true },
-      { text: "No, that makes me even more upset.", correct: false },
-      { text: "Are you okay? You look worried.", correct: false }
+      { text: "No, that makes me even more upset.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Peta ini sangat membingungkan.\" adalah \"This map is very confusing.\"."
   },
@@ -253,8 +253,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Yes, my ___ broke my phone.\"\n(Arti: Ya, saudaraku merusakkan HP-ku.)",
     options: [
       { text: "came", correct: false },
-      { text: "brother", correct: true },
-      { text: "I", correct: false }
+      { text: "I", correct: false },
+      { text: "brother", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'brother'."
   },
@@ -263,8 +263,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"I am. I worked for 12 hours today.\"?",
     options: [
       { text: "Apa kamu marah?", correct: false },
-      { text: "Iya. Aku kerja 12 jam hari ini.", correct: true },
-      { text: "Ya, saudaraku merusakkan HP-ku.", correct: false }
+      { text: "Ya, saudaraku merusakkan HP-ku.", correct: false },
+      { text: "Iya. Aku kerja 12 jam hari ini.", correct: true }
     ],
     explanation: "Kalimat \"I am. I worked for 12 hours today.\" memiliki arti \"Iya. Aku kerja 12 jam hari ini.\"."
   },
@@ -273,8 +273,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Aku kembali minggu lalu. Pokoknya, aku senang.\"?",
     options: [
       { text: "I am a little nervous about the interview. (opsi lain)", correct: false },
-      { text: "I came back last week. Whatever, I am happy.", correct: true },
-      { text: "I am a little nervous about the interview. (opsi salah)", correct: false }
+      { text: "I am a little nervous about the interview. (opsi salah)", correct: false },
+      { text: "I came back last week. Whatever, I am happy.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Aku kembali minggu lalu. Pokoknya, aku senang.\" adalah \"I came back last week. Whatever, I am happy.\"."
   },
@@ -282,9 +282,9 @@ const PRACTICE_QUESTIONS = [
     id: 14,
     prompt: "Lengkapi kalimat: \"Why are you ___?\"\n(Arti: Kenapa kamu menangis?)",
     options: [
+      { text: "crying", correct: true },
       { text: "you", correct: false },
-      { text: "Don't", correct: false },
-      { text: "crying", correct: true }
+      { text: "Don't", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'crying'."
   },
@@ -292,8 +292,8 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Don't worry. Just relax.\"?",
     options: [
-      { text: "Jangan khawatir. Santai saja.", correct: true },
       { text: "Terima kasih. Saya akan mencoba yang terbaik.", correct: false },
+      { text: "Jangan khawatir. Santai saja.", correct: true },
       { text: "Aku sangat bersemangat!", correct: false }
     ],
     explanation: "Kalimat \"Don't worry. Just relax.\" memiliki arti \"Jangan khawatir. Santai saja.\"."
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Biar saya tunjukkan jalannya.\"?",
     options: [
+      { text: "Let me show you the way.", correct: true },
       { text: "Don't worry. Just relax.", correct: false },
-      { text: "I hope he gets better soon.", correct: false },
-      { text: "Let me show you the way.", correct: true }
+      { text: "I hope he gets better soon.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Biar saya tunjukkan jalannya.\" adalah \"Let me show you the way.\"."
   },
@@ -312,9 +312,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"That is ___. I am proud of you.\"\n(Arti: Itu luar biasa. Aku bangga padamu.)",
     options: [
+      { text: "amazing", correct: true },
       { text: "gets", correct: false },
-      { text: "my", correct: false },
-      { text: "amazing", correct: true }
+      { text: "my", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'amazing'."
   },
@@ -322,9 +322,9 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Yes, my dog is sick.\"?",
     options: [
+      { text: "Biar saya tunjukkan jalannya.", correct: false },
       { text: "Ya, anjingku sakit.", correct: true },
-      { text: "Mau nonton film?", correct: false },
-      { text: "Biar saya tunjukkan jalannya.", correct: false }
+      { text: "Mau nonton film?", correct: false }
     ],
     explanation: "Kalimat \"Yes, my dog is sick.\" memiliki arti \"Ya, anjingku sakit.\"."
   },
@@ -332,9 +332,9 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Semoga dia cepat sembuh.\"?",
     options: [
+      { text: "That is terrible. Did he apologize?", correct: false },
       { text: "I hope he gets better soon.", correct: true },
-      { text: "I feel really sad and angry at myself.", correct: false },
-      { text: "That is terrible. Did he apologize?", correct: false }
+      { text: "I feel really sad and angry at myself.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Semoga dia cepat sembuh.\" adalah \"I hope he gets better soon.\"."
   },
@@ -342,9 +342,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"I am so ___!\"\n(Arti: Aku sangat bersemangat!)",
     options: [
-      { text: "excited", correct: true },
       { text: "are", correct: false },
-      { text: "Thanks", correct: false }
+      { text: "Thanks", correct: false },
+      { text: "excited", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'excited'."
   }

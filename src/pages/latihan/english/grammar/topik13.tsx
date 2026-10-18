@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "participles-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Participles (-ed vs -ing)): Complete: I am ____ in science.",
-      "answer": "interested",
+      "prompt": "Basic grammar check (Participles (-ed vs -ing)): Complete: I am ____ because I have nothing to do.",
+      "answer": "bored",
       "options": [
-        "interested",
-        "interesting",
-        "interest",
-        "interests"
+        "bored",
+        "bores",
+        "bore",
+        "boring"
       ]
     },
     {
       "id": "participles-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Participles (-ed vs -ing)): Complete: The movie was very ____.",
-      "answer": "boring",
+      "prompt": "Basic grammar check (Participles (-ed vs -ing)): Complete: The game was really ____.",
+      "answer": "exciting",
       "options": [
-        "bored",
-        "bore",
-        "bores",
-        "boring"
+        "excited",
+        "excite",
+        "excites",
+        "exciting"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "participles-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Participles (-ed vs -ing)): Complete: The children were ____ by the story.",
-      "answer": "excited",
+      "prompt": "Choose the best structure (Participles (-ed vs -ing)): Complete: She was ____ by the long, complicated instructions.",
+      "answer": "confused",
       "options": [
-        "exciting",
-        "excite",
-        "excitement",
-        "excited"
+        "confusion",
+        "confused",
+        "confusing",
+        "confuse"
       ]
     },
     {
       "id": "participles-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Participles (-ed vs -ing)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Participles (-ed vs -ing)): Complete: It was an ____ experience; I will never forget it.",
+      "answer": "amazing",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "amaze",
+        "amazed",
+        "amazing",
+        "amazement"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "participles-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Participles (-ed vs -ing)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Participles (-ed vs -ing)): Complete: The minister's ____ remarks caused widespread outrage.",
+      "answer": "shocking",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "shockingly",
+        "shocked",
+        "shocking",
+        "shockedly"
       ]
     },
     {
       "id": "participles-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Participles (-ed vs -ing)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Participles (-ed vs -ing)): Complete: Investors were ____ by the company's sudden collapse.",
+      "answer": "dismayed",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "dismays",
+        "dismayed",
+        "dismaying",
+        "dismay"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "participles-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Participles (-ed vs -ing)): Complete: I am ____ in science.",
-      "answer": "interested",
+      "prompt": "Cek grammar dasar (Participles (-ed vs -ing)): Complete: I am ____ because I have nothing to do.",
+      "answer": "bored",
       "options": [
-        "interested",
-        "interesting",
-        "interest",
-        "interests"
+        "bored",
+        "bores",
+        "bore",
+        "boring"
       ]
     },
     {
       "id": "participles-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Participles (-ed vs -ing)): Complete: The movie was very ____.",
-      "answer": "boring",
+      "prompt": "Cek grammar dasar (Participles (-ed vs -ing)): Complete: The game was really ____.",
+      "answer": "exciting",
       "options": [
-        "bored",
-        "bore",
-        "bores",
-        "boring"
+        "excited",
+        "excite",
+        "excites",
+        "exciting"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "participles-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Participles (-ed vs -ing)): Complete: The children were ____ by the story.",
-      "answer": "excited",
+      "prompt": "Pilih struktur terbaik (Participles (-ed vs -ing)): Complete: She was ____ by the long, complicated instructions.",
+      "answer": "confused",
       "options": [
-        "exciting",
-        "excite",
-        "excitement",
-        "excited"
+        "confusion",
+        "confused",
+        "confusing",
+        "confuse"
       ]
     },
     {
       "id": "participles-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Participles (-ed vs -ing)): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Participles (-ed vs -ing)): Complete: It was an ____ experience; I will never forget it.",
+      "answer": "amazing",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "amaze",
+        "amazed",
+        "amazing",
+        "amazement"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "participles-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Participles (-ed vs -ing)): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Participles (-ed vs -ing)): Complete: The minister's ____ remarks caused widespread outrage.",
+      "answer": "shocking",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "shockingly",
+        "shocked",
+        "shocking",
+        "shockedly"
       ]
     },
     {
       "id": "participles-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Participles (-ed vs -ing)): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Participles (-ed vs -ing)): Complete: Investors were ____ by the company's sudden collapse.",
+      "answer": "dismayed",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "dismays",
+        "dismayed",
+        "dismaying",
+        "dismay"
       ]
     }
   ]

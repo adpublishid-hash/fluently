@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "adjectives-adverbs-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Adjectives vs. Adverbs): Complete: She speaks English ____.",
-      "answer": "fluently",
+      "prompt": "Basic grammar check (Adjectives vs. Adverbs): Complete: He runs very ____.",
+      "answer": "fast",
       "options": [
-        "fluently",
-        "fluent",
-        "more fluent",
-        "fluency"
+        "fastly",
+        "fastest",
+        "fastness",
+        "fast"
       ]
     },
     {
       "id": "adjectives-adverbs-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Adjectives vs. Adverbs): Complete: This is a ____ answer.",
-      "answer": "clear",
+      "prompt": "Basic grammar check (Adjectives vs. Adverbs): Complete: She is a ____ singer.",
+      "answer": "beautiful",
       "options": [
-        "clearly",
-        "clearerly",
-        "clearness",
-        "clear"
+        "beauty",
+        "beautify",
+        "beautiful",
+        "beautifully"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "adjectives-adverbs-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Adjectives vs. Adverbs): Complete: Drive ____ in the rain.",
-      "answer": "carefully",
+      "prompt": "Choose the best structure (Adjectives vs. Adverbs): Complete: The soup smells ____.",
+      "answer": "delicious",
       "options": [
-        "careful",
-        "care",
-        "more careful",
-        "carefully"
+        "delicious",
+        "delicacy",
+        "more deliciously",
+        "deliciously"
       ]
     },
     {
       "id": "adjectives-adverbs-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Adjectives vs. Adverbs): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Adjectives vs. Adverbs): Complete: He did ____ in the exam.",
+      "answer": "well",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "good",
+        "goodly",
+        "gooder",
+        "well"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "adjectives-adverbs-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Adjectives vs. Adverbs): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Adjectives vs. Adverbs): Complete: The results were ____ different from what we had expected.",
+      "answer": "strikingly",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "striking",
+        "strikingness",
+        "strike",
+        "strikingly"
       ]
     },
     {
       "id": "adjectives-adverbs-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Adjectives vs. Adverbs): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Adjectives vs. Adverbs): Complete: She felt ____ after hearing the bad news.",
+      "answer": "miserable",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "miserable",
+        "miserableness",
+        "misery",
+        "miserably"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "adjectives-adverbs-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Adjectives vs. Adverbs): Complete: She speaks English ____.",
-      "answer": "fluently",
+      "prompt": "Cek grammar dasar (Adjectives vs. Adverbs): Complete: He runs very ____.",
+      "answer": "fast",
       "options": [
-        "fluently",
-        "fluent",
-        "more fluent",
-        "fluency"
+        "fastly",
+        "fastest",
+        "fastness",
+        "fast"
       ]
     },
     {
       "id": "adjectives-adverbs-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Adjectives vs. Adverbs): Complete: This is a ____ answer.",
-      "answer": "clear",
+      "prompt": "Cek grammar dasar (Adjectives vs. Adverbs): Complete: She is a ____ singer.",
+      "answer": "beautiful",
       "options": [
-        "clearly",
-        "clearerly",
-        "clearness",
-        "clear"
+        "beauty",
+        "beautify",
+        "beautiful",
+        "beautifully"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "adjectives-adverbs-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Adjectives vs. Adverbs): Complete: Drive ____ in the rain.",
-      "answer": "carefully",
+      "prompt": "Pilih struktur terbaik (Adjectives vs. Adverbs): Complete: The soup smells ____.",
+      "answer": "delicious",
       "options": [
-        "careful",
-        "care",
-        "more careful",
-        "carefully"
+        "delicious",
+        "delicacy",
+        "more deliciously",
+        "deliciously"
       ]
     },
     {
       "id": "adjectives-adverbs-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Adjectives vs. Adverbs): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Adjectives vs. Adverbs): Complete: He did ____ in the exam.",
+      "answer": "well",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "good",
+        "goodly",
+        "gooder",
+        "well"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "adjectives-adverbs-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Adjectives vs. Adverbs): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Adjectives vs. Adverbs): Complete: The results were ____ different from what we had expected.",
+      "answer": "strikingly",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "striking",
+        "strikingness",
+        "strike",
+        "strikingly"
       ]
     },
     {
       "id": "adjectives-adverbs-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Adjectives vs. Adverbs): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Adjectives vs. Adverbs): Complete: She felt ____ after hearing the bad news.",
+      "answer": "miserable",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "miserable",
+        "miserableness",
+        "misery",
+        "miserably"
       ]
     }
   ]

@@ -4,286 +4,68 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "What breed is John's dog?",
-    "opts": [
-      "Poodle",
-      "Husky",
-      "Golden Retriever",
-      "Bulldog"
-    ],
-    "ans": "Golden Retriever",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Where can employees get water during maintenance?",
-    "opts": [
-      "Near the elevator",
-      "In the staff lounge",
-      "Outside the building",
-      "In the manager's office"
-    ],
-    "ans": "In the staff lounge",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What kind of environment was Chloe's new café?",
-    "opts": [
-      "Loud and busy",
-      "Cozy",
-      "Expensive",
-      "Modern and sterile"
-    ],
-    "ans": "Cozy",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Which restrooms have a backup water tank?",
-    "opts": [
-      "Top floor",
-      "Ground floor",
-      "Second floor",
-      "Basement"
-    ],
-    "ans": "Ground floor",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What day does Chloe start her job?",
-    "opts": [
-      "Friday",
-      "Monday",
-      "Wednesday",
-      "Sunday"
-    ],
-    "ans": "Monday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is the main topic of John's advertisement?",
-    "opts": [
-      "Selling a dog",
-      "Hiring a dog walker",
-      "Buying dog food",
-      "Veterinary services"
-    ],
-    "ans": "Hiring a dog walker",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What was Chloe's major problem?",
-    "opts": [
-      "Internet was down",
-      "Lost boxes",
-      "Missed a train",
-      "Got sick"
-    ],
-    "ans": "Lost boxes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What did the workplace notice announce?",
-    "opts": [
-      "Pay raise",
-      "Maintenance on water pipes",
-      "Fire drill",
-      "New manager"
-    ],
-    "ans": "Maintenance on water pipes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'pushed back' mean?",
-    "opts": [
-      "Delayed",
-      "Canceled",
-      "Moved forward",
-      "Advanced"
-    ],
-    "ans": "Delayed",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is Chloe looking forward to?",
-    "opts": [
-      "Mia's visit in the summer",
-      "Buying a new house",
-      "Getting a promotion",
-      "Moving again"
-    ],
-    "ans": "Mia's visit in the summer",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When will the water supply be shut off?",
-    "opts": [
-      "Sunday",
-      "Saturday",
-      "Friday",
-      "Monday"
-    ],
-    "ans": "Saturday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What must John's dog walker have experience with?",
-    "opts": [
-      "Small breeds",
-      "Large dogs",
-      "Sick dogs",
-      "Puppies"
-    ],
-    "ans": "Large dogs",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is moving to London?",
-    "opts": [
-      "Jane",
-      "Mia",
-      "Chloe",
-      "Sarah"
-    ],
-    "ans": "Chloe",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'exhausting' mean?",
-    "opts": [
-      "Relaxing",
-      "Very tiring",
-      "Fast",
-      "Boring"
-    ],
-    "ans": "Very tiring",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does John's dog walker need to provide?",
-    "opts": [
-      "A reference",
-      "A resume",
-      "A car",
-      "Dog treats"
-    ],
-    "ans": "A reference",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When is the new kick-off meeting?",
-    "opts": [
-      "Wednesday 10 AM",
-      "Thursday 10 AM",
-      "Friday 10 AM",
-      "Friday 3 PM"
-    ],
-    "ans": "Friday 10 AM",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Why did Sarah reschedule the meeting?",
-    "opts": [
-      "She is sick",
-      "Stakeholders are traveling",
-      "Room is booked",
-      "Project canceled"
-    ],
-    "ans": "Stakeholders are traveling",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "According to the email, what should team members review?",
-    "opts": [
-      "Budget reports",
-      "Attached agenda",
-      "Marketing strategy",
-      "Holiday schedule"
-    ],
-    "ans": "Attached agenda",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is Sarah writing to?",
-    "opts": [
-      "Clients",
-      "The team",
-      "Her manager",
-      "The public"
-    ],
-    "ans": "The team",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "How much is John paying per walk?",
-    "opts": [
-      "$10",
-      "$15",
-      "$20",
-      "$25"
-    ],
-    "ans": "$15",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[20], 'intermediate/reading/20');
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Personal Letter: Moving to London",
+  passageTitle: "Personal Letter: A Year in Manchester",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Mia,<br/><br/>I'm writing this while sitting in my new apartment in London! The move was absolutely exhausting. Half of my boxes ended up at the wrong address, and I spent two days trying to track them down. Honestly, I felt so overwhelmed and almost cried multiple times.<br/><br/>But things are finally settling down. The city is amazing, and I've already found a cozy little café near my place where I can work on my laptop. I'm hoping to start my new job next Monday. I miss you so much and I am really looking forward to your visit in the summer.<br/><br/>Love,<br/>Chloe" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Dimas,<br/><br/>I can't believe my year in Manchester is nearly over! When I first arrived, I could barely understand the local accent, and I spent most evenings alone in my room. Everything felt strange, from the food to the weather.<br/><br/>Things changed when I joined the university's hiking club. I made friends quickly, and my English improved because I had to speak it every weekend. Last month I passed my final English exam with a high score, which made me really proud. I'll miss the people here, but I'm excited to come home in July and tell you everything in person.<br/><br/>Take care,<br/>Sinta" }} />
   ),
   questions: [
   {
-    "q": "How did Chloe feel during the move?",
+    "q": "How did Sinta feel when she first arrived?",
     "opts": [
-      "Excited",
-      "Overwhelmed and exhausted",
-      "Angry",
-      "Bored"
+      "Happy and relaxed",
+      "Lonely and unsure",
+      "Bored but healthy",
+      "Angry with her friends"
     ],
-    "ans": "Overwhelmed and exhausted"
+    "ans": "Lonely and unsure"
   },
   {
-    "q": "What specific problem happened?",
+    "q": "What helped Sinta make friends?",
     "opts": [
-      "Her laptop broke",
-      "Boxes went to the wrong address",
-      "She lost her job",
-      "She lost her passport"
+      "Living with a local family",
+      "Working in a café",
+      "Joining the hiking club",
+      "Taking an English exam"
     ],
-    "ans": "Boxes went to the wrong address"
+    "ans": "Joining the hiking club"
   },
   {
-    "q": "What did Chloe find near her apartment?",
+    "q": "Why did Sinta's English improve?",
     "opts": [
-      "A shopping mall",
-      "A cozy café",
-      "A library",
-      "A gym"
+      "She watched a lot of TV.",
+      "She had to speak it every weekend.",
+      "She took extra evening classes at a language school.",
+      "She lived alone."
     ],
-    "ans": "A cozy café"
+    "ans": "She had to speak it every weekend."
   },
   {
-    "q": "What is Chloe's hope for Mia?",
+    "q": "What does 'barely' mean in 'I could barely understand the local accent'?",
     "opts": [
-      "She hopes Mia gets a job in London.",
-      "She hopes Mia visits in the summer.",
-      "She hopes Mia buys her boxes.",
-      "She hopes Mia moves in."
+      "Almost not",
+      "Easily",
+      "Often",
+      "Completely"
     ],
-    "ans": "She hopes Mia visits in the summer."
+    "ans": "Almost not"
   },
   {
-    "q": "When does Chloe start working?",
+    "q": "When will Sinta return home?",
     "opts": [
-      "Next Monday",
-      "Tomorrow",
-      "In a month",
-      "She is unemployed"
+      "In June",
+      "In August",
+      "Next month",
+      "In July"
     ],
-    "ans": "Next Monday"
+    "ans": "In July"
   }
 ]
 };
@@ -324,7 +106,7 @@ export default function InterReadingLesson20(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Personal Letter: Moving to London</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Changes and Feelings</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -353,7 +135,7 @@ export default function InterReadingLesson20(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Personal Letter: Moving to London</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>
@@ -361,12 +143,12 @@ export default function InterReadingLesson20(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Teks ini melatih kemampuan ekstraksi informasi:
+                    {lessonTips[20].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Pemahaman Fakta:</strong> Cari tahu poin penting (waktu, orang, syarat).</li>
-                    <li><strong className="text-slate-800">Makna Kata:</strong> Coba pahami kosakata baru dari konteks kalimat.</li>
-                    <li><strong className="text-slate-800">Tujuan Teks:</strong> Kenapa teks ini ditulis?</li>
+                    {lessonTips[20].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mengevaluasi bacaanmu!

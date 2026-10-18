@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - Why are the classes canceled?', opts: ["Teacher is sick","Because of the rain","Due to heavy snow","It's a holiday"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - Which classes are canceled?', opts: ["Morning classes on Tuesday","Afternoon classes","All classes on Tuesday","Wednesday classes"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - Is the library closed?', opts: ["Only in the afternoon","Only in the morning","No, it will remain open","Yes, it is closed"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 4 - When will afternoon classes start?', opts: ["They are canceled","At 12:00 PM","At 2:00 PM","At 1:00 PM"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - Where should students check for updates?', opts: ["Their student email","The library","The teacher","The news"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - Why are the classes canceled?', opts: ["Teacher is sick","Because of the rain","Due to heavy snow","It's a holiday"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - Which classes are canceled?', opts: ["All classes on Tuesday","Morning classes on Tuesday","Afternoon classes","Wednesday classes"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - Is the library closed?', opts: ["No, it will remain open","Only in the afternoon","Only in the morning","Yes, it is closed"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - When will afternoon classes start?', opts: ["They are canceled","At 12:00 PM","At 2:00 PM","At 1:00 PM"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - Where should students check for updates?', opts: ["Their student email","The news","The library","The teacher"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - Why are the classes canceled?', opts: ["Because of the rain","It's a holiday","Due to heavy snow","Teacher is sick"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - Which classes are canceled?', opts: ["Wednesday classes","All classes on Tuesday","Morning classes on Tuesday","Afternoon classes"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - Is the library closed?', opts: ["Only in the afternoon","Only in the morning","No, it will remain open","Yes, it is closed"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - Why are the classes canceled?', opts: ["Due to heavy snow", "It's a holiday", "Because of the rain", "Teacher is sick"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - Which classes are canceled?', opts: ["Afternoon classes", "All classes on Tuesday", "Wednesday classes", "Morning classes on Tuesday"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - Is the library closed?', opts: ["Only in the afternoon", "No, it will remain open", "Yes, it is closed", "Only in the morning"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 4 - When will afternoon classes start?', opts: ["At 2:00 PM", "At 1:00 PM", "They are canceled", "At 12:00 PM"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 5 - Where should students check for updates?', opts: ["The teacher", "The news", "Their student email", "The library"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - Why are the classes canceled?', opts: ["Because of the rain", "It's a holiday", "Due to heavy snow", "Teacher is sick"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - Which classes are canceled?', opts: ["All classes on Tuesday", "Wednesday classes", "Afternoon classes", "Morning classes on Tuesday"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - Is the library closed?', opts: ["No, it will remain open", "Yes, it is closed", "Only in the morning", "Only in the afternoon"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - When will afternoon classes start?', opts: ["At 12:00 PM", "At 1:00 PM", "They are canceled", "At 2:00 PM"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - Where should students check for updates?', opts: ["The library", "The teacher", "The news", "Their student email"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - Why are the classes canceled?', opts: ["It's a holiday", "Teacher is sick", "Because of the rain", "Due to heavy snow"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - Which classes are canceled?', opts: ["All classes on Tuesday", "Afternoon classes", "Morning classes on Tuesday", "Wednesday classes"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - Is the library closed?', opts: ["Only in the afternoon", "Yes, it is closed", "No, it will remain open", "Only in the morning"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Pemahaman Cepat) Latihan 14 - When will afternoon classes start?', opts: ["At 2:00 PM","At 1:00 PM","At 12:00 PM","They are canceled"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - Where should students check for updates?', opts: ["The news","The teacher","The library","Their student email"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - Why are the classes canceled?', opts: ["It's a holiday","Teacher is sick","Due to heavy snow","Because of the rain"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - Which classes are canceled?', opts: ["Wednesday classes","All classes on Tuesday","Afternoon classes","Morning classes on Tuesday"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - Is the library closed?', opts: ["No, it will remain open","Yes, it is closed","Only in the morning","Only in the afternoon"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - When will afternoon classes start?', opts: ["At 2:00 PM","At 1:00 PM","At 12:00 PM","They are canceled"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - Where should students check for updates?', opts: ["The library","The news","Their student email","The teacher"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Analisis Singkat) Latihan 15 - Where should students check for updates?', opts: ["The news", "The library", "The teacher", "Their student email"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - Why are the classes canceled?', opts: ["Teacher is sick", "Due to heavy snow", "Because of the rain", "It's a holiday"], ans: "Due to heavy snow", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - Which classes are canceled?', opts: ["Afternoon classes", "Morning classes on Tuesday", "Wednesday classes", "All classes on Tuesday"], ans: "Morning classes on Tuesday", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - Is the library closed?', opts: ["No, it will remain open", "Only in the morning", "Yes, it is closed", "Only in the afternoon"], ans: "No, it will remain open", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - When will afternoon classes start?', opts: ["At 1:00 PM", "At 12:00 PM", "They are canceled", "At 2:00 PM"], ans: "At 1:00 PM", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - Where should students check for updates?', opts: ["Their student email", "The teacher", "The news", "The library"], ans: "Their student email", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'Why are the classes canceled?', opts: ["It's a holiday","Due to heavy snow","Because of the rain","Teacher is sick"], ans: 'Due to heavy snow' },
-    { q: 'Which classes are canceled?', opts: ["Wednesday classes","All classes on Tuesday","Afternoon classes","Morning classes on Tuesday"], ans: 'Morning classes on Tuesday' },
-    { q: 'Is the library closed?', opts: ["No, it will remain open","Yes, it is closed","Only in the morning","Only in the afternoon"], ans: 'No, it will remain open' },
-    { q: 'When will afternoon classes start?', opts: ["At 12:00 PM","They are canceled","At 2:00 PM","At 1:00 PM"], ans: 'At 1:00 PM' },
-    { q: 'Where should students check for updates?', opts: ["The news","The library","Their student email","The teacher"], ans: 'Their student email' },
+    { q: 'Why are the classes canceled?', opts: ["Due to heavy snow", "Teacher is sick", "Because of the rain", "It's a holiday"], ans: 'Due to heavy snow' },
+    { q: 'Which classes are canceled?', opts: ["Afternoon classes", "Morning classes on Tuesday", "All classes on Tuesday", "Wednesday classes"], ans: 'Morning classes on Tuesday' },
+    { q: 'Is the library closed?', opts: ["Only in the afternoon", "No, it will remain open", "Yes, it is closed", "Only in the morning"], ans: 'No, it will remain open' },
+    { q: 'When will afternoon classes start?', opts: ["At 1:00 PM", "At 12:00 PM", "They are canceled", "At 2:00 PM"], ans: 'At 1:00 PM' },
+    { q: 'Where should students check for updates?', opts: ["Their student email", "The teacher", "The news", "The library"], ans: 'Their student email' },
   ],
 };
 

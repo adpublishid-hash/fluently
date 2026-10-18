@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "A simple meal can show kindness, respect, and friendship.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Sharing food can be an important gesture of welcome and respect.",
-        "A simple meal can show kindness, respect, and friendship."
-      ],
       "id": "culture-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "In many families, what is sharing food a way to do?",
+      "answer": "welcome guests",
+      "options": [
+        "welcome guests",
+        "save money",
+        "sell products",
+        "clean the kitchen"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "gesture",
-      "options": [
-        "interpreting meaning beyond literal details",
-        "main idea",
-        "gesture",
-        "an action that shows a feeling or intention"
-      ],
       "id": "culture-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What kind of meal can show kindness?",
+      "answer": "a simple meal",
+      "options": [
+        "a meal eaten alone",
+        "a fast-food meal",
+        "a very expensive meal",
+        "a simple meal"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Sharing Food",
-      "options": [
-        "No title is possible.",
-        "Sharing Food",
-        "Culture",
-        "to explain the cultural meaning of sharing food"
-      ],
       "id": "culture-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"important or special\"?",
+      "answer": "meaningful",
+      "options": [
+        "simple",
+        "friendship",
+        "meaningful",
+        "expensive"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Culture.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Sharing food can be an important gesture of welcome and respect.",
-      "options": [
-        "an action that shows a feeling or intention",
-        "interpreting meaning beyond literal details",
-        "The text is only about spelling.",
-        "Sharing food can be an important gesture of welcome and respect."
-      ],
       "id": "culture-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which value is NOT mentioned in the passage?",
+      "answer": "honesty",
+      "options": [
+        "honesty",
+        "respect",
+        "kindness",
+        "friendship"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"gesture\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "A simple meal can show kindness, respect, and friendship.",
-      "options": [
-        "The text says the opposite.",
-        "an action that shows a feeling or intention",
-        "to explain the cultural meaning of sharing food",
-        "A simple meal can show kindness, respect, and friendship."
-      ],
       "id": "culture-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What does \"Even when the food is not expensive\" suggest?",
+      "answer": "Cheap food can still carry deep meaning.",
+      "options": [
+        "Families should always spend more money on meals.",
+        "Simple meals are rude to guests.",
+        "Guests only like expensive food.",
+        "Cheap food can still carry deep meaning."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to explain the cultural meaning of sharing food",
-      "options": [
-        "interpreting meaning beyond literal details",
-        "to explain the cultural meaning of sharing food",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "culture-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "In the first sentence, who is food shared with?",
+      "answer": "guests",
+      "options": [
+        "shop owners",
+        "guests",
+        "strangers online",
+        "teachers"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Sharing food can be an important gesture of welcome and respect.",
-      "options": [
-        "Sharing food can be an important gesture of welcome and respect.",
-        "A simple meal can show kindness, respect, and friendship.",
-        "an action that shows a feeling or intention",
-        "Only one small word matters."
-      ],
       "id": "culture-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which statement best captures the writer's view of hospitality?",
+      "answer": "The intention behind the act matters more than its cost.",
+      "options": [
+        "Sharing food is only polite in rich families.",
+        "The intention behind the act matters more than its cost.",
+        "Hosts must serve costly food to show respect.",
+        "Guests should always bring their own meals to a family home."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The meaning of sharing food is not only about price.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "A simple meal can show kindness, respect, and friendship.",
-        "The meaning of sharing food is not only about price."
-      ],
       "id": "culture-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which word best describes the writer's attitude towards sharing food?",
+      "answer": "appreciative",
+      "options": [
+        "appreciative",
+        "suspicious",
+        "dismissive",
+        "uninterested"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "A simple meal can show kindness, respect, and friendship.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Sharing food can be an important gesture of welcome and respect.",
-        "A simple meal can show kindness, respect, and friendship."
-      ],
       "id": "culture-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Di banyak keluarga, berbagi makanan adalah cara untuk melakukan apa?",
+      "answer": "welcome guests",
+      "options": [
+        "welcome guests",
+        "save money",
+        "sell products",
+        "clean the kitchen"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "gesture",
-      "options": [
-        "interpreting meaning beyond literal details",
-        "main idea",
-        "gesture",
-        "an action that shows a feeling or intention"
-      ],
       "id": "culture-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Makanan seperti apa yang dapat menunjukkan kebaikan?",
+      "answer": "a simple meal",
+      "options": [
+        "a meal eaten alone",
+        "a fast-food meal",
+        "a very expensive meal",
+        "a simple meal"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Sharing Food",
-      "options": [
-        "No title is possible.",
-        "Sharing Food",
-        "Culture",
-        "to explain the cultural meaning of sharing food"
-      ],
       "id": "culture-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"important or special\"?",
+      "answer": "meaningful",
+      "options": [
+        "simple",
+        "friendship",
+        "meaningful",
+        "expensive"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Culture.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Sharing food can be an important gesture of welcome and respect.",
-      "options": [
-        "an action that shows a feeling or intention",
-        "interpreting meaning beyond literal details",
-        "The text is only about spelling.",
-        "Sharing food can be an important gesture of welcome and respect."
-      ],
       "id": "culture-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Nilai mana yang TIDAK disebutkan dalam bacaan?",
+      "answer": "honesty",
+      "options": [
+        "honesty",
+        "respect",
+        "kindness",
+        "friendship"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"gesture\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "A simple meal can show kindness, respect, and friendship.",
-      "options": [
-        "The text says the opposite.",
-        "an action that shows a feeling or intention",
-        "to explain the cultural meaning of sharing food",
-        "A simple meal can show kindness, respect, and friendship."
-      ],
       "id": "culture-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa yang disiratkan oleh \"Even when the food is not expensive\"?",
+      "answer": "Cheap food can still carry deep meaning.",
+      "options": [
+        "Families should always spend more money on meals.",
+        "Simple meals are rude to guests.",
+        "Guests only like expensive food.",
+        "Cheap food can still carry deep meaning."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to explain the cultural meaning of sharing food",
-      "options": [
-        "interpreting meaning beyond literal details",
-        "to explain the cultural meaning of sharing food",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "culture-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Pada kalimat pertama, dengan siapa makanan dibagikan?",
+      "answer": "guests",
+      "options": [
+        "shop owners",
+        "guests",
+        "strangers online",
+        "teachers"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Sharing food can be an important gesture of welcome and respect.",
-      "options": [
-        "Sharing food can be an important gesture of welcome and respect.",
-        "A simple meal can show kindness, respect, and friendship.",
-        "an action that shows a feeling or intention",
-        "Only one small word matters."
-      ],
       "id": "culture-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Pernyataan mana yang paling tepat menggambarkan pandangan penulis tentang keramahtamahan?",
+      "answer": "The intention behind the act matters more than its cost.",
+      "options": [
+        "Sharing food is only polite in rich families.",
+        "The intention behind the act matters more than its cost.",
+        "Hosts must serve costly food to show respect.",
+        "Guests should always bring their own meals to a family home."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The meaning of sharing food is not only about price.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "A simple meal can show kindness, respect, and friendship.",
-        "The meaning of sharing food is not only about price."
-      ],
       "id": "culture-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Kata mana yang paling tepat menggambarkan sikap penulis terhadap berbagi makanan?",
+      "answer": "appreciative",
+      "options": [
+        "appreciative",
+        "suspicious",
+        "dismissive",
+        "uninterested"
+      ]
     }
   ]
 };

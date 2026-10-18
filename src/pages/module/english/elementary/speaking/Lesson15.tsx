@@ -153,8 +153,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "I work ___ a doctor.",
     options: [
       { text: "in", correct: false },
-      { text: "as", correct: true },
-      { text: "for", correct: false }
+      { text: "for", correct: false },
+      { text: "as", correct: true }
     ],
     explanation: "Gunakan 'as' (sebagai) untuk profesi."
   },
@@ -162,9 +162,9 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "She ___ blue eyes and long hair.",
     options: [
-      { text: "is", correct: false },
       { text: "has", correct: true },
-      { text: "have", correct: false }
+      { text: "have", correct: false },
+      { text: "is", correct: false }
     ],
     explanation: "Gunakan 'has' (memiliki) untuk ciri fisik."
   },
@@ -172,9 +172,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "It is raining. Take an ___.",
     options: [
-      { text: "umbrella", correct: true },
       { text: "sunglasses", correct: false },
-      { text: "screen", correct: false }
+      { text: "screen", correct: false },
+      { text: "umbrella", correct: true }
     ],
     explanation: "Umbrella (payung) melindungi dari hujan."
   },
@@ -182,9 +182,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "I usually ___ breakfast at 7 AM.",
     options: [
-      { text: "do", correct: false },
       { text: "have", correct: true },
-      { text: "make to", correct: false }
+      { text: "make to", correct: false },
+      { text: "do", correct: false }
     ],
     explanation: "Gunakan 'have' untuk makan (have breakfast = sarapan)."
   },
@@ -192,8 +192,8 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "The flight is ___. It will be late.",
     options: [
-      { text: "delayed", correct: true },
       { text: "arrived", correct: false },
+      { text: "delayed", correct: true },
       { text: "boarding", correct: false }
     ],
     explanation: "Delayed berarti terlambat."
@@ -212,9 +212,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Sempurna. Sampai jumpa nanti.\"?",
     options: [
-      { text: "Would you like to come to dinner?", correct: false },
+      { text: "Perfect. See you then.", correct: true },
       { text: "You should see a doctor.", correct: false },
-      { text: "Perfect. See you then.", correct: true }
+      { text: "Would you like to come to dinner?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Sempurna. Sampai jumpa nanti.\" adalah \"Perfect. See you then.\"."
   },
@@ -223,8 +223,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"It is ___. Would you like to try it on?\"\n(Arti: Harganya 50 dolar. Mau dicoba?)",
     options: [
       { text: "forgot", correct: false },
-      { text: "I", correct: false },
-      { text: "$50", correct: true }
+      { text: "$50", correct: true },
+      { text: "I", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah '$50'."
   },
@@ -232,9 +232,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"I get up at 6:30 and have coffee.\"?",
     options: [
-      { text: "Kamu punya charger?", correct: false },
+      { text: "Aku bangun jam 6:30 dan minum kopi.", correct: true },
       { text: "Harganya 50 dolar. Mau dicoba?", correct: false },
-      { text: "Aku bangun jam 6:30 dan minum kopi.", correct: true }
+      { text: "Kamu punya charger?", correct: false }
     ],
     explanation: "Kalimat \"I get up at 6:30 and have coffee.\" memiliki arti \"Aku bangun jam 6:30 dan minum kopi.\"."
   },
@@ -242,9 +242,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Tidak, ketinggalan di rumah.\"?",
     options: [
+      { text: "No, I forgot it at home.", correct: true },
       { text: "Yes, I go for a run before work.", correct: false },
-      { text: "Around 7 PM on Friday.", correct: false },
-      { text: "No, I forgot it at home.", correct: true }
+      { text: "Around 7 PM on Friday.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Tidak, ketinggalan di rumah.\" adalah \"No, I forgot it at home.\"."
   },
@@ -283,8 +283,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Around 7 PM on ___.\"\n(Arti: Sekitar jam 7 malam hari Jumat.)",
     options: [
       { text: "Should", correct: false },
-      { text: "get", correct: false },
-      { text: "Friday", correct: true }
+      { text: "Friday", correct: true },
+      { text: "get", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'Friday'."
   },
@@ -292,9 +292,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Yes, it might get cold later.\"?",
     options: [
-      { text: "Baterai HP-ku lemah.", correct: false },
+      { text: "Ya, nanti mungkin jadi dingin.", correct: true },
       { text: "Berangkat sepuluh menit lagi dari Peron 5.", correct: false },
-      { text: "Ya, nanti mungkin jadi dingin.", correct: true }
+      { text: "Baterai HP-ku lemah.", correct: false }
     ],
     explanation: "Kalimat \"Yes, it might get cold later.\" memiliki arti \"Ya, nanti mungkin jadi dingin.\"."
   },
@@ -302,9 +302,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Haruskah aku bawa mantel?\"?",
     options: [
-      { text: "Should I take a coat?", correct: true },
+      { text: "Perfect. See you then.", correct: false },
       { text: "He is tall and has glasses.", correct: false },
-      { text: "Perfect. See you then.", correct: false }
+      { text: "Should I take a coat?", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Haruskah aku bawa mantel?\" adalah \"Should I take a coat?\"."
   },
@@ -313,8 +313,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"He is very friendly and ___.\"\n(Arti: Dia sangat ramah dan pekerja keras.)",
     options: [
       { text: "weekends", correct: false },
-      { text: "phone", correct: false },
-      { text: "hardworking", correct: true }
+      { text: "hardworking", correct: true },
+      { text: "phone", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'hardworking'."
   },
@@ -343,8 +343,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Do you play ___ sports?\"\n(Arti: Apa kamu main olahraga?)",
     options: [
       { text: "any", correct: true },
-      { text: "too", correct: false },
-      { text: "London", correct: false }
+      { text: "London", correct: false },
+      { text: "too", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'any'."
   }

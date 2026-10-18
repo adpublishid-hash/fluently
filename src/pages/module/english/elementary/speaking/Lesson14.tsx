@@ -154,9 +154,9 @@ const PRACTICE_QUESTIONS = [
     id: 1,
     prompt: "I need to find my keys. I am ___ them.",
     options: [
-      { text: "looking for", correct: true },
       { text: "looking after", correct: false },
-      { text: "looking up", correct: false }
+      { text: "looking up", correct: false },
+      { text: "looking for", correct: true }
     ],
     explanation: "'Look for' artinya mencari. 'Look after' artinya merawat/menjaga."
   },
@@ -164,8 +164,8 @@ const PRACTICE_QUESTIONS = [
     id: 2,
     prompt: "It is dark. Please ___ the light.",
     options: [
-      { text: "turn off", correct: false },
       { text: "turn on", correct: true },
+      { text: "turn off", correct: false },
       { text: "turn up", correct: false }
     ],
     explanation: "'Turn on' artinya menyalakan daya/lampu."
@@ -175,8 +175,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "When you enter a house, usually you ___ your shoes.",
     options: [
       { text: "put on", correct: false },
-      { text: "take off", correct: true },
-      { text: "get off", correct: false }
+      { text: "get off", correct: false },
+      { text: "take off", correct: true }
     ],
     explanation: "'Take off' artinya melepas pakaian/sepatu."
   },
@@ -184,9 +184,9 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "To leave a bus, you ___.",
     options: [
+      { text: "get up", correct: false },
       { text: "get out", correct: false },
-      { text: "get off", correct: true },
-      { text: "get up", correct: false }
+      { text: "get off", correct: true }
     ],
     explanation: "Untuk transportasi umum (bus, kereta, pesawat), kita bilang 'get off'."
   },
@@ -194,9 +194,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "Please ___ the form with your name.",
     options: [
-      { text: "fill in", correct: true },
+      { text: "write in", correct: false },
       { text: "fill up", correct: false },
-      { text: "write in", correct: false }
+      { text: "fill in", correct: true }
     ],
     explanation: "'Fill in' (atau fill out) artinya melengkapi formulir."
   },
@@ -204,9 +204,9 @@ const PRACTICE_QUESTIONS = [
     id: 6,
     prompt: "Apa arti dari kalimat: \"Okay, I am getting up now.\"?",
     options: [
-      { text: "Maaf, aku akan mengecilkannya.", correct: false },
+      { text: "Bisa tolong jaga kucingku?", correct: false },
       { text: "Oke, aku bangun sekarang.", correct: true },
-      { text: "Bisa tolong jaga kucingku?", correct: false }
+      { text: "Maaf, aku akan mengecilkannya.", correct: false }
     ],
     explanation: "Kalimat \"Okay, I am getting up now.\" memiliki arti \"Oke, aku bangun sekarang.\"."
   },
@@ -214,9 +214,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Makasih. Dia suka kabur.\"?",
     options: [
+      { text: "Let's look up the answer together.", correct: false },
       { text: "Good idea. I don't want cold feet.", correct: false },
-      { text: "Thanks. He likes to run away.", correct: true },
-      { text: "Let's look up the answer together.", correct: false }
+      { text: "Thanks. He likes to run away.", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Makasih. Dia suka kabur.\" adalah \"Thanks. He likes to run away.\"."
   },
@@ -225,8 +225,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"Can you look ___ my cat?\"\n(Arti: Bisa tolong jaga kucingku?)",
     options: [
       { text: "after", correct: true },
-      { text: "This", correct: false },
-      { text: "stop", correct: false }
+      { text: "stop", correct: false },
+      { text: "This", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'after'."
   },
@@ -245,8 +245,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Kita turun di pemberhentian berikutnya.\"?",
     options: [
       { text: "Do you get along with your sister?", correct: false },
-      { text: "Quick, get on the bus!", correct: false },
-      { text: "We get off at the next stop.", correct: true }
+      { text: "We get off at the next stop.", correct: true },
+      { text: "Quick, get on the bus!", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kita turun di pemberhentian berikutnya.\" adalah \"We get off at the next stop.\"."
   },
@@ -254,9 +254,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"Let's look up the ___ together.\"\n(Arti: Ayo kita cari jawabannya bersama.)",
     options: [
-      { text: "answer", correct: true },
+      { text: "bin", correct: false },
       { text: "keys", correct: false },
-      { text: "bin", correct: false }
+      { text: "answer", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'answer'."
   },
@@ -264,9 +264,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"I am looking for my keys.\"?",
     options: [
+      { text: "Cepat, naik busnya!", correct: false },
       { text: "Aku sedang mencari kunciku.", correct: true },
-      { text: "Ayolah, nyalakan lampunya.", correct: false },
-      { text: "Cepat, naik busnya!", correct: false }
+      { text: "Ayolah, nyalakan lampunya.", correct: false }
     ],
     explanation: "Kalimat \"I am looking for my keys.\" memiliki arti \"Aku sedang mencari kunciku.\"."
   },
@@ -294,9 +294,9 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Good idea. I don't want cold feet.\"?",
     options: [
-      { text: "Bagus. Tolong isi formulir ini.", correct: false },
       { text: "Ide bagus. Aku tidak mau kakiku kedinginan.", correct: true },
-      { text: "Ayo kita cari jawabannya bersama.", correct: false }
+      { text: "Ayo kita cari jawabannya bersama.", correct: false },
+      { text: "Bagus. Tolong isi formulir ini.", correct: false }
     ],
     explanation: "Kalimat \"Good idea. I don't want cold feet.\" memiliki arti \"Ide bagus. Aku tidak mau kakiku kedinginan.\"."
   },
@@ -304,9 +304,9 @@ const PRACTICE_QUESTIONS = [
     id: 16,
     prompt: "Bagaimana cara mengatakan: \"Kami perlu check in jam 2 siang.\"?",
     options: [
+      { text: "We need to check in at 2 PM.", correct: true },
       { text: "That is nice. I often argue with mine.", correct: false },
-      { text: "You should try to make up.", correct: false },
-      { text: "We need to check in at 2 PM.", correct: true }
+      { text: "You should try to make up.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kami perlu check in jam 2 siang.\" adalah \"We need to check in at 2 PM.\"."
   },
@@ -314,8 +314,8 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"Yes, ___ on your boots instead.\"\n(Arti: Ya, pakailah sepatu botmu sebagai gantinya.)",
     options: [
-      { text: "do", correct: false },
       { text: "Did", correct: false },
+      { text: "do", correct: false },
       { text: "put", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'put'."
@@ -324,8 +324,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"Did you pick them up?\"?",
     options: [
-      { text: "Tidak, aku menaruhnya di sini.", correct: false },
       { text: "Apa kamu tadi mengambilnya?", correct: true },
+      { text: "Tidak, aku menaruhnya di sini.", correct: false },
       { text: "Sudah jam 7 pagi. Bangun!", correct: false }
     ],
     explanation: "Kalimat \"Did you pick them up?\" memiliki arti \"Apa kamu tadi mengambilnya?\"."
@@ -345,8 +345,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Lengkapi kalimat: \"I am awake, but I can't get ___.\"\n(Arti: Aku sudah bangun (sadar), tapi gak bisa bangun (dari kasur).)",
     options: [
       { text: "you", correct: false },
-      { text: "check", correct: false },
-      { text: "up", correct: true }
+      { text: "up", correct: true },
+      { text: "check", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'up'."
   }

@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "Hi, I am ___. I am from ___, and I am interested in ___.",
-      "options": [
-        "introduce your name, background, and one personal detail",
-        "clear word stress in introduction phrases",
-        "Pause briefly after your name and keep the ending clear.",
-        "Hi, I am ___. I am from ___, and I am interested in ___."
-      ],
       "id": "self-introduction-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "A new classmate asks, \"What's your name?\" Which reply is best?",
+      "answer": "My name is Dina. Nice to meet you.",
+      "options": [
+        "My name is Dina. Nice to meet you.",
+        "I am fine, thank you very much.",
+        "It is Monday today, I think.",
+        "Yes, I like my name a lot."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "introduce your name, background, and one personal detail",
-      "options": [
-        "clear word stress in introduction phrases",
-        "answer without listening to the question",
-        "introduce your name, background, and one personal detail",
-        "Latihan memperkenalkan diri dengan natural dan percaya diri."
-      ],
       "id": "self-introduction-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Someone asks, \"Where are you from?\" Which answer is correct?",
+      "answer": "I am from Surabaya, in East Java.",
+      "options": [
+        "I go to work by bus every day.",
+        "I am at the office on Mondays.",
+        "I am twenty-one years old now.",
+        "I am from Surabaya, in East Java."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "Hi, I am Raka. I am from Bandung, and I am interested in product design.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Hi, I am Raka. I am from Bandung, and I am interested in product design.",
-        "It is a pleasure to meet you.",
-        "I went there yesterday because blue."
-      ],
       "id": "self-introduction-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question can you ask to keep an introduction going?",
+      "answer": "What do you do in your free time?",
+      "options": [
+        "How much money do you earn now?",
+        "Can you leave me alone, please?",
+        "What do you do in your free time?",
+        "Why are you so late again today?"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Self Introduction\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "introduce your name, background, and one personal detail",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "introduce your name, background, and one personal detail"
-      ],
       "id": "self-introduction-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Complete the introduction: \"Hi, I ___ Sara, and I ___ a nurse.\"",
+      "answer": "am / work as",
+      "options": [
+        "am / work as",
+        "are / working",
+        "is / works as",
+        "be / work at"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "It is a pleasure to meet you.",
-      "options": [
-        "Let me say that again more clearly.",
-        "Hi, I am Raka. I am from Bandung, and I am interested in product design.",
-        "It is a pleasure to meet you.",
-        "Nice to meet you."
-      ],
       "id": "self-introduction-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "A new coworker says, \"I'm Leo from the sales team.\" Which reply introduces you and continues the conversation best?",
+      "answer": "Nice to meet you, Leo. I'm Ana from finance. How long have you been here?",
+      "options": [
+        "Nice to meet you, Leo. I'm Ana from finance. How long have you been here?",
+        "Okay. I'm Ana. I don't really need to know anything else about you.",
+        "Nice to meet you too, Leo. Sales must be really boring work, though.",
+        "I'm Ana. I have nothing else to say about myself, so see you around."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Let me say that again more clearly.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me say that again more clearly.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "self-introduction-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "At a job orientation, which sentence adds a relevant personal detail to your introduction?",
+      "answer": "Outside work, I enjoy hiking, so I'd love to hear about trails nearby.",
+      "options": [
+        "I don't really have any hobbies or interests at all, sorry.",
+        "Outside work, I enjoy hiking, so I'd love to hear about trails nearby.",
+        "Outside work, I enjoy hiking, but I won't talk about anything else.",
+        "My salary at my last job was higher than everyone's here."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "Hi, I am ___. I am from ___, and I am interested in ___.",
-      "options": [
-        "introduce your name, background, and one personal detail",
-        "clear word stress in introduction phrases",
-        "Pause briefly after your name and keep the ending clear.",
-        "Hi, I am ___. I am from ___, and I am interested in ___."
-      ],
       "id": "self-introduction-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Teman sekelas baru bertanya, \"What's your name?\" Balasan mana yang paling tepat?",
+      "answer": "My name is Dina. Nice to meet you.",
+      "options": [
+        "My name is Dina. Nice to meet you.",
+        "I am fine, thank you very much.",
+        "It is Monday today, I think.",
+        "Yes, I like my name a lot."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "introduce your name, background, and one personal detail",
-      "options": [
-        "clear word stress in introduction phrases",
-        "answer without listening to the question",
-        "introduce your name, background, and one personal detail",
-        "Latihan memperkenalkan diri dengan natural dan percaya diri."
-      ],
       "id": "self-introduction-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Seseorang bertanya, \"Where are you from?\" Jawaban mana yang benar?",
+      "answer": "I am from Surabaya, in East Java.",
+      "options": [
+        "I go to work by bus every day.",
+        "I am at the office on Mondays.",
+        "I am twenty-one years old now.",
+        "I am from Surabaya, in East Java."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "Hi, I am Raka. I am from Bandung, and I am interested in product design.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Hi, I am Raka. I am from Bandung, and I am interested in product design.",
-        "It is a pleasure to meet you.",
-        "I went there yesterday because blue."
-      ],
       "id": "self-introduction-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang bisa kamu ajukan agar perkenalan terus berlanjut?",
+      "answer": "What do you do in your free time?",
+      "options": [
+        "How much money do you earn now?",
+        "Can you leave me alone, please?",
+        "What do you do in your free time?",
+        "Why are you so late again today?"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Self Introduction\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "introduce your name, background, and one personal detail",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "introduce your name, background, and one personal detail"
-      ],
       "id": "self-introduction-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Lengkapi perkenalan ini: \"Hi, I ___ Sara, and I ___ a nurse.\"",
+      "answer": "am / work as",
+      "options": [
+        "am / work as",
+        "are / working",
+        "is / works as",
+        "be / work at"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "It is a pleasure to meet you.",
-      "options": [
-        "Let me say that again more clearly.",
-        "Hi, I am Raka. I am from Bandung, and I am interested in product design.",
-        "It is a pleasure to meet you.",
-        "Nice to meet you."
-      ],
       "id": "self-introduction-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Rekan kerja baru berkata, \"I'm Leo from the sales team.\" Balasan mana yang paling baik untuk memperkenalkan diri dan melanjutkan obrolan?",
+      "answer": "Nice to meet you, Leo. I'm Ana from finance. How long have you been here?",
+      "options": [
+        "Nice to meet you, Leo. I'm Ana from finance. How long have you been here?",
+        "Okay. I'm Ana. I don't really need to know anything else about you.",
+        "Nice to meet you too, Leo. Sales must be really boring work, though.",
+        "I'm Ana. I have nothing else to say about myself, so see you around."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Let me say that again more clearly.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me say that again more clearly.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "self-introduction-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Saat orientasi kerja, kalimat mana yang menambahkan detail pribadi yang relevan pada perkenalanmu?",
+      "answer": "Outside work, I enjoy hiking, so I'd love to hear about trails nearby.",
+      "options": [
+        "I don't really have any hobbies or interests at all, sorry.",
+        "Outside work, I enjoy hiking, so I'd love to hear about trails nearby.",
+        "Outside work, I enjoy hiking, but I won't talk about anything else.",
+        "My salary at my last job was higher than everyone's here."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

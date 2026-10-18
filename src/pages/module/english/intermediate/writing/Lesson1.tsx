@@ -4,228 +4,10 @@ import { QuizEngine, WritingCard, ComprehensionSection, getCompletedWritingLesso
 import type { QuizItem, ComprehensionQ } from './writingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
-const QUIZ: QuizItem[] = [
-  {
-    "q": "What is the function of the FIRST sentence in paragraph two?",
-    "opts": [
-      "To conclude the essay",
-      "To introduce the main topic of that paragraph (culinary & fashion)",
-      "To ask a question",
-      "To provide a specific example"
-    ],
-    "ans": "To introduce the main topic of that paragraph (culinary & fashion)",
-    "exp": "It serves as the topic sentence for the second paragraph."
-  },
-  {
-    "q": "In the text, what does the phrase \"flock to the city\" mean?",
-    "opts": [
-      "To leave a place",
-      "To gather or travel in large numbers",
-      "To fly like birds",
-      "To complain loudly"
-    ],
-    "ans": "To gather or travel in large numbers",
-    "exp": "\"Flock\" means people travel there in large groups."
-  },
-  {
-    "q": "Which cohesive device is used to contrast traffic with people's warmth?",
-    "opts": [
-      "Also",
-      "Despite",
-      "Because",
-      "Furthermore"
-    ],
-    "ans": "Despite",
-    "exp": "\"Despite the heavy traffic... people remain warm\" contrasts a negative with a positive."
-  },
-  {
-    "q": "Identify the adjective used to describe the mountains:",
-    "opts": [
-      "Trendy",
-      "Volcanic",
-      "Traditional",
-      "Vibrant"
-    ],
-    "ans": "Volcanic",
-    "exp": "The text specifically mentions \"volcanic mountains\"."
-  },
-  {
-    "q": "What happens to the structure of the last paragraph?",
-    "opts": [
-      "It only talks about food",
-      "It summarizes personal feelings and closes the text logically",
-      "It introduces a totally new city",
-      "It ends without a clear point"
-    ],
-    "ans": "It summarizes personal feelings and closes the text logically",
-    "exp": "The conclusion shares feelings (\"proud\") and summarizes the balance of the city."
-  },
-  {
-    "q": "In writing, what does \"proofreading\" mean?",
-    "opts": [
-      "Writing the first draft wildly",
-      "Finding academic sources",
-      "Carefully checking for grammatical and spelling errors",
-      "Outlining paragraphs"
-    ],
-    "ans": "Carefully checking for grammatical and spelling errors",
-    "exp": "Proofreading adalah tahapan akhir untuk membaca ulang dan memperbaiki kesalahan minor."
-  },
-  {
-    "q": "Which sentence adds INFORMATION?",
-    "opts": [
-      "Moreover, the city has excellent public transport.",
-      "Despite this, the city is loud.",
-      "Therefore, we left early.",
-      "As a result, prices increased."
-    ],
-    "ans": "Moreover, the city has excellent public transport.",
-    "exp": "\"Moreover\" (lebih lanjut lagi) digunakan untuk memberikan informasi tambahan yang mendukung argumen."
-  },
-  {
-    "q": "Choose the sentence with correct parallel structure:",
-    "opts": [
-      "I like swimming, to read, and hike.",
-      "I like to swim, reading, and to hike.",
-      "I like swimming, reading, and hiking.",
-      "I like swim, read, and hike."
-    ],
-    "ans": "I like swimming, reading, and hiking.",
-    "exp": "Struktur paralel mengharuskan semua elemen dalam daftar memiliki bentuk gramatikal yang sama (V-ing, V-ing, V-ing)."
-  },
-  {
-    "q": "Which option is less formal? \"Commence\"",
-    "opts": [
-      "Begin",
-      "Terminate",
-      "Execute",
-      "Finalize"
-    ],
-    "ans": "Begin",
-    "exp": "\"Commence\" adalah bentuk sangat formal untuk kata \"begin\" atau \"start\"."
-  },
-  {
-    "q": "Choose the correct form: \"If I ___ more time, I would check the document again.\"",
-    "opts": [
-      "have",
-      "had",
-      "have had",
-      "having"
-    ],
-    "ans": "had",
-    "exp": "Ini adalah Conditional Type 2 (unreal present): If + Past Simple (had), Subject + would + V1."
-  },
-  {
-    "q": "Choose the most FORMAL word to replace \"but\":",
-    "opts": [
-      "However",
-      "Also",
-      "So",
-      "And"
-    ],
-    "ans": "However",
-    "exp": "\"However\" adalah transisi formal yang sangat baik untuk menggantikan \"but\" di awal kalimat."
-  },
-  {
-    "q": "How would you combine these sentences with a relative clause? \"The man called the police. His car was stolen.\"",
-    "opts": [
-      "The man called the police whose car was stolen.",
-      "The man whose car was stolen called the police.",
-      "The man whom car was stolen called the police.",
-      "The man whom called the police had his car stolen."
-    ],
-    "ans": "The man whose car was stolen called the police.",
-    "exp": "\"Whose\" digunakan untuk kepemilikan. Klausul relative disematkan langsung setelah \"The man\"."
-  },
-  {
-    "q": "Choose the correct structure: \"Not only ___ fast, but she is also strong.\"",
-    "opts": [
-      "she runs",
-      "runs she",
-      "is she running",
-      "does she run"
-    ],
-    "ans": "does she run",
-    "exp": "Struktur Inversion: Saat kalimat diawali \"Not only\", dilanjutkan dengan auxiliary + subjek (does she run)."
-  },
-  {
-    "q": "Which sentence is an opinion, not a fact?",
-    "opts": [
-      "Water boils at 100 degrees.",
-      "The population of Tokyo is huge.",
-      "Pineapples are the most delicious fruit.",
-      "Paris is the capital of France."
-    ],
-    "ans": "Pineapples are the most delicious fruit.",
-    "exp": "\"The most delicious\" adalah penilaian subjektif atau opini."
-  },
-  {
-    "q": "What is a \"Topic Sentence\"?",
-    "opts": [
-      "The last sentence of a text",
-      "A sentence that explains the main idea of a paragraph",
-      "A famous quote",
-      "The title of an essay"
-    ],
-    "ans": "A sentence that explains the main idea of a paragraph",
-    "exp": "Topic sentence (kalimat utama) memberi tahu pembaca apa gagasan pokok dari paragraf tersebut."
-  },
-  {
-    "q": "Which phrase is most appropriate for a formal email greeting?",
-    "opts": [
-      "Hi mate,",
-      "Hey there,",
-      "Dear Mr. Smith,",
-      "What’s up Smith,"
-    ],
-    "ans": "Dear Mr. Smith,",
-    "exp": "Dalam email formal, sapaan standar adalah \"Dear [Title] [Last Name],\"."
-  },
-  {
-    "q": "What is the function of \"therefore\"?",
-    "opts": [
-      "To add a point",
-      "To show a difference",
-      "To show a result or consequence",
-      "To give an example"
-    ],
-    "ans": "To show a result or consequence",
-    "exp": "\"Therefore\" berarti \"oleh karena itu\", digunakan untuk menunjukkan akibat dari kalimat sebelumnya."
-  },
-  {
-    "q": "Which word means \"in addition\"?",
-    "opts": [
-      "However",
-      "Instead",
-      "Furthermore",
-      "Whereas"
-    ],
-    "ans": "Furthermore",
-    "exp": "\"Furthermore\" adalah adverb formal yang fungsinya menambah argumen atau informasi."
-  },
-  {
-    "q": "How do you make this formal? \"Send me the files ASAP.\"",
-    "opts": [
-      "Please dispatch the files really quick.",
-      "I require the files immediately.",
-      "Please send the documents at your earliest convenience.",
-      "Shoot the documents to me."
-    ],
-    "ans": "Please send the documents at your earliest convenience.",
-    "exp": "\"At your earliest convenience\" adalah frasa kesopanan baku dalam korespondensi bisnis/formal."
-  },
-  {
-    "q": "Select the correct preposition: \"I apologise ___ the delay.\"",
-    "opts": [
-      "for",
-      "from",
-      "with",
-      "about"
-    ],
-    "ans": "for",
-    "exp": "\"Apologise\" selalu diikut oleh \"for\" ketika merujuk pada alasan (apologise for something)."
-  }
-];
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateWritingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateWritingQuizBank[1], 'intermediate/writing/1');
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
   passageTitle: '✍️ My Hometown',
@@ -240,49 +22,49 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     "q": "Why is Bandung called the \"Paris of Java\"?",
     "opts": [
       "Because it is in France",
-      "Due to its cool climate and historical architecture",
-      "Because it is extremely hot",
-      "Because of its traffic"
+      "Because it is extremely hot and dry all year, with very little rain",
+      "Because of its traffic",
+      "Due to its cool climate and historical architecture"
     ],
     "ans": "Due to its cool climate and historical architecture"
   },
   {
     "q": "What is mentioned as a geographical feature of Bandung?",
     "opts": [
-      "A large ocean",
       "A huge desert",
-      "Surrounded by volcanic mountains",
-      "A flat prairie"
+      "A large ocean",
+      "A flat plain full of rice fields and rivers",
+      "Surrounded by volcanic mountains"
     ],
     "ans": "Surrounded by volcanic mountains"
   },
   {
     "q": "What can tourists find along Dago and Riau streets?",
     "opts": [
-      "Government offices",
+      "Schools and universities",
+      "Government offices and large international hotels",
       "Trendy cafes and factory outlets",
-      "Farms and barns",
-      "Schools and universities"
+      "Farms and barns"
     ],
     "ans": "Trendy cafes and factory outlets"
   },
   {
     "q": "What negative aspect of Bandung is mentioned in the text?",
     "opts": [
-      "Poor food quality",
-      "Heavy traffic congestion",
       "Unfriendly people",
-      "Lack of art galleries"
+      "A lack of art galleries and music venues",
+      "Poor food quality",
+      "Heavy traffic congestion"
     ],
     "ans": "Heavy traffic congestion"
   },
   {
     "q": "How does the writer feel about their hometown?",
     "opts": [
-      "Indifferent",
-      "Ashamed",
       "Disappointed",
-      "Immensely proud"
+      "Immensely proud",
+      "Indifferent",
+      "Ashamed"
     ],
     "ans": "Immensely proud"
   }
@@ -362,12 +144,12 @@ export default function InterWritingLesson1(): React.ReactElement {
 
                 <WritingCard title="Target Mekanikal" icon="🎯">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Untuk menaklukkan level B1-B2 dalam tulisan <strong>hometown</strong>, perhatikan elemen berikut:
+                    {lessonTips[1].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl shadow-inner border border-slate-100">
-                    <li><strong className="text-slate-800">Advanced Lexical Resource:</strong> Hindari kosakata berulang. Gunakan sinonim yang lebih kaya (e.g. <i>crucial, significantly, furthermore</i>).</li>
-                    <li><strong className="text-slate-800">Cohesive Devices:</strong> Jangan hanya bertumpu pada 'and', 'but', 'so'. Gunakan <i>Despite, Nevertheless, Consequently, Moreover</i>.</li>
-                    <li><strong className="text-slate-800">Sentence Variety:</strong> Padukan kalimat pendek dengan <i>Complex Sentences</i> (Relative clauses, if-clauses).</li>
+                    {lessonTips[1].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-indigo-700 mt-4 font-bold bg-indigo-50 p-3 rounded-lg border border-indigo-100 inline-block w-full">
                     👉 Buka tab "Pemahaman" untuk membaca esai contoh lengkap dan uji akurasi bacaanmu!

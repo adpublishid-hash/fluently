@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const HARDWARE_VOCAB = [
   { word: "Computer", ipa: "/kəmˈpjuːtər/", meaning: "Komputer" },
@@ -46,148 +48,7 @@ const TECH_ACTIONS_VOCAB = [
   { word: "Message", ipa: "/ˈmɛsɪdʒ/", meaning: "Mengirim pesan" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "You need to ___ your username and password to access your email.",
-    options: ['click', 'type', 'draw'],
-    answer: 'type',
-    explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
-  },
-  {
-    id: 2,
-    question: "This device is portable and smaller than a laptop.",
-    options: ['Tablet', 'Computer', 'Screen'],
-    answer: 'Tablet',
-    explanation: "Tablet adalah komputer portabel dengan layar sentuh."
-  },
-  {
-    id: 3,
-    question: "To keep a file, you must ___ it.",
-    options: ['delete', 'save', 'search'],
-    answer: 'save',
-    explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
-  },
-  {
-    id: 4,
-    question: "If you don't want a photo anymore, you ___ it.",
-    options: ['upload', 'delete', 'download'],
-    answer: 'delete',
-    explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
-  },
-  {
-    id: 5,
-    question: "You need a ___ to connect to the internet wirelessly.",
-    options: ['Mouse', 'Wi-Fi', 'Battery'],
-    answer: 'Wi-Fi',
-    explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
-  },
-  {
-    id: 6,
-    question: "You need to ___ your username and password to access your email.",
-    options: ["click","type","draw"],
-    answer: "type",
-    explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
-  },
-  {
-    id: 7,
-    question: "This device is portable and smaller than a laptop.",
-    options: ["Tablet","Computer","Screen"],
-    answer: "Tablet",
-    explanation: "Tablet adalah komputer portabel dengan layar sentuh."
-  },
-  {
-    id: 8,
-    question: "To keep a file, you must ___ it.",
-    options: ["delete","save","search"],
-    answer: "save",
-    explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
-  },
-  {
-    id: 9,
-    question: "If you don't want a photo anymore, you ___ it.",
-    options: ["upload","delete","download"],
-    answer: "delete",
-    explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
-  },
-  {
-    id: 10,
-    question: "You need a ___ to connect to the internet wirelessly.",
-    options: ["Mouse","Wi-Fi","Battery"],
-    answer: "Wi-Fi",
-    explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
-  },
-  {
-    id: 11,
-    question: "You need to ___ your username and password to access your email.",
-    options: ["click","type","draw"],
-    answer: "type",
-    explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
-  },
-  {
-    id: 12,
-    question: "This device is portable and smaller than a laptop.",
-    options: ["Tablet","Computer","Screen"],
-    answer: "Tablet",
-    explanation: "Tablet adalah komputer portabel dengan layar sentuh."
-  },
-  {
-    id: 13,
-    question: "To keep a file, you must ___ it.",
-    options: ["delete","save","search"],
-    answer: "save",
-    explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
-  },
-  {
-    id: 14,
-    question: "If you don't want a photo anymore, you ___ it.",
-    options: ["upload","delete","download"],
-    answer: "delete",
-    explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
-  },
-  {
-    id: 15,
-    question: "You need a ___ to connect to the internet wirelessly.",
-    options: ["Mouse","Wi-Fi","Battery"],
-    answer: "Wi-Fi",
-    explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
-  },
-  {
-    id: 16,
-    question: "You need to ___ your username and password to access your email.",
-    options: ["click","type","draw"],
-    answer: "type",
-    explanation: "Kamu type (mengetik) informasi menggunakan keyboard."
-  },
-  {
-    id: 17,
-    question: "This device is portable and smaller than a laptop.",
-    options: ["Tablet","Computer","Screen"],
-    answer: "Tablet",
-    explanation: "Tablet adalah komputer portabel dengan layar sentuh."
-  },
-  {
-    id: 18,
-    question: "To keep a file, you must ___ it.",
-    options: ["delete","save","search"],
-    answer: "save",
-    explanation: "Saving (menyimpan) mengamankan file agar tidak hilang."
-  },
-  {
-    id: 19,
-    question: "If you don't want a photo anymore, you ___ it.",
-    options: ["upload","delete","download"],
-    answer: "delete",
-    explanation: "Deleting (menghapus) menghilangkan data dari perangkatmu."
-  },
-  {
-    id: 20,
-    question: "You need a ___ to connect to the internet wirelessly.",
-    options: ["Mouse","Wi-Fi","Battery"],
-    answer: "Wi-Fi",
-    explanation: "Wi-Fi memungkinkan koneksi internet nirkabel."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[10], 'elementary/vocabulary/10'));
 
 const Lesson10: React.FC = () => {
   const navigate = useNavigate();

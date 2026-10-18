@@ -1,7 +1,7 @@
-import { buildChoiceQuestion, hashSeed, seededRandom, seededShuffle, shuffleQuestionOptions, type ChoiceQuestion } from '../../../utils/quiz';
-import { getMandarinLevelThemeWords, getMandarinTheme } from './mandarinThemeBank';
+import { hashSeed, shuffleQuestionOptions } from '../../../utils/quiz';
+import { getMandarinTheme } from './mandarinThemeBank';
 import { getMandarinLevelThemeSentences, getMandarinThemeSentences } from './mandarinThemeSentences';
-import { buildLessonPractice, type PracticeMaterial } from './mandarinPracticeGenerator';
+import { buildLessonPractice, buildWordDrill, type PracticeMaterial } from './mandarinPracticeGenerator';
 import { getMandarinPackSentences } from './mandarinPackSentences';
 import { getMandarinLessonCore, getMandarinLessonCorePool } from './lessonCore';
 import { buildMandarinCorePractice } from './lessonCore/practice';
@@ -2160,16 +2160,6 @@ const proficiencyThemeVocabulary: MandarinLesson['vocabulary'][] = [
 ];
 
 /** Vocabulary questions for a lesson theme (HSK 5 and HSK 7-9). */
-function themeQuestions(level: MandarinLevelId, skillId: MandarinSkillId, lesson: number): ChoiceQuestion[] {
-  const theme = getMandarinTheme(level, lesson);
-  if (!theme) return [];
-  const random = seededRandom(hashSeed('mandarin-theme', level, skillId, lesson));
-  const pool = getMandarinLevelThemeWords(level).map((word) => word.meaning);
-  return theme.vocabulary
-    .map((word) => buildChoiceQuestion(`${word.hanzi} (${word.pinyin}) berarti...`, word.meaning, pool, random))
-    .filter((question): question is ChoiceQuestion => question !== null);
-}
-
 export function getMandarinLessonPreview(skillId: MandarinSkillId, lesson: number, level: MandarinLevelId = 'beginner') {
   const safeLesson = Math.max(1, Math.min(20, lesson));
   const coreTitle = getMandarinLessonCore(level, skillId, safeLesson)?.title;
@@ -2239,12 +2229,15 @@ export function getMandarinLesson(skillId: MandarinSkillId, lesson: number, leve
   const safeLesson = Math.max(1, Math.min(20, lesson));
   const generated = buildMandarinLesson(skillId, safeLesson, level);
   // Lesson-specific questions go first; shared drills fill the rest up to the original length.
-  const specific = buildLessonPractice(skillId, practiceMaterial(level, safeLesson), hashSeed('mandarin-practice', level, skillId, safeLesson));
+  const material = practiceMaterial(level, safeLesson);
+  const specific = buildLessonPractice(skillId, material, hashSeed('mandarin-practice', level, skillId, safeLesson));
+  // HSK 5+ lessons share one theme across skills; each skill drills its words in its own form.
+  const drill = packsFor(level) ? [] : buildWordDrill(skillId, material, hashSeed('mandarin-drill', level, skillId, safeLesson));
   // Authored material for this exact skill lesson comes before everything else.
   const core = getMandarinLessonCore(level, skillId, safeLesson);
   const coreQuiz = core ? buildMandarinCorePractice(skillId, core, getMandarinLessonCorePool(level), hashSeed('mandarin-core', level, skillId, safeLesson)) : [];
   const seen = new Set<string>();
-  const practice = [...coreQuiz, ...specific, ...generated.practice]
+  const practice = [...coreQuiz, ...specific, ...drill, ...generated.practice]
     .filter((item) => (seen.has(item.question) ? false : (seen.add(item.question), true)))
     .slice(0, Math.max(generated.practice.length, specific.length, packsFor(level) ? 0 : 20));
   return {
@@ -2316,7 +2309,6 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
     { hanzi: '由此可见', pinyin: 'yóucǐ kějiàn', meaning: 'dari sini dapat terlihat' },
   ];
   const lessonTheme = getMandarinTheme(level, safeLesson);
-  const lessonThemeQuiz = themeQuestions(level, skillId, safeLesson);
   const lessonThemeSentences = getMandarinThemeSentences(level, safeLesson);
   const advancedPack = {
     goal: advancedTheme.goal,
@@ -2328,7 +2320,6 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       { hanzi: '由此可见，我们不能只看短期效率，还要考虑长期影响。', pinyin: 'Yóu cǐ kě jiàn, wǒ men bù néng zhǐ kàn duǎn qī xiào lǜ, hái yào kǎo lǜ cháng qī yǐng xiǎng.', meaning: 'Dari sini terlihat bahwa kita tidak boleh hanya melihat efisiensi jangka pendek, tetapi juga mempertimbangkan dampak jangka panjang.' },
     ],
     quiz: [
-      ...lessonThemeQuiz,
       { question: '由此可见 biasanya dipakai untuk...', options: ['menarik kesimpulan dari argumen', 'menanyakan nama', 'membuka harga'], answer: 'menarik kesimpulan dari argumen' },
       { question: '趋势 berarti...', options: ['tren/arah perkembangan', 'kamar tidur', 'nada netral'], answer: 'tren/arah perkembangan' },
       { question: '忽视 berarti...', options: ['mengabaikan', 'mempercepat', 'membayar'], answer: 'mengabaikan' },
@@ -2446,7 +2437,6 @@ function buildMandarinLesson(skillId: MandarinSkillId, lesson: number, level: Ma
       ...proficiencyPack.examples.slice(proficiencyThemeExamples.length),
     ],
     quiz: [
-      ...lessonThemeQuiz,
       { question: `${postHskConfig.code} output harus menonjolkan...`, options: ['argumen matang dan register akademik', 'sapaan dasar', 'hafalan angka'], answer: 'argumen matang dan register akademik' },
       { question: '原创性论点 berarti...', options: ['argumen orisinal', 'kalimat sapaan', 'jadwal harian'], answer: 'argumen orisinal' },
       ...proficiencyPack.quiz,

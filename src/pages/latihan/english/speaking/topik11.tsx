@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "Last week, I ___. At first, ___. In the end, ___.",
-      "options": [
-        "explain what happened, how you felt, and what you learned",
-        "past tense endings in happened, learned, and helped",
-        "Use time markers to make your story easy to follow.",
-        "Last week, I ___. At first, ___. In the end, ___."
-      ],
       "id": "storytelling-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct past tense sentence.",
+      "answer": "Yesterday I visited my grandmother.",
+      "options": [
+        "Yesterday I visited my grandmother.",
+        "Yesterday I visit my grandmother.",
+        "Yesterday I am visiting my grandmother.",
+        "Yesterday I will visit my grandmother."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "explain what happened, how you felt, and what you learned",
-      "options": [
-        "past tense endings in happened, learned, and helped",
-        "answer without listening to the question",
-        "explain what happened, how you felt, and what you learned",
-        "Menceritakan pengalaman singkat dengan alur jelas."
-      ],
       "id": "storytelling-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase starts a story about the past?",
+      "answer": "Once, when I was ten, ...",
+      "options": [
+        "Next week, when I was ten, ...",
+        "Soon, when I will be ten, ...",
+        "Tomorrow, when I am ten, ...",
+        "Once, when I was ten, ..."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.",
-        "That experience taught me to prepare more carefully.",
-        "I went there yesterday because blue."
-      ],
       "id": "storytelling-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Complete the story: \"I lost my keys, ___ I called my sister.\"",
+      "answer": "so",
+      "options": [
+        "although",
+        "unless",
+        "so",
+        "because"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Storytelling\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "explain what happened, how you felt, and what you learned",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "explain what happened, how you felt, and what you learned"
-      ],
       "id": "storytelling-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question shows interest in someone's story?",
+      "answer": "Really? What happened next?",
+      "options": [
+        "Really? What happened next?",
+        "Really? What happens yesterday?",
+        "Really? What happen next?",
+        "Okay. Can we stop now?"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "That experience taught me to prepare more carefully.",
-      "options": [
-        "Let me start from the beginning.",
-        "Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.",
-        "That experience taught me to prepare more carefully.",
-        "It taught me to plan better next time."
-      ],
       "id": "storytelling-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence uses the past continuous to set the scene?",
+      "answer": "I was walking home when it suddenly started to rain.",
+      "options": [
+        "I am walking home when it suddenly started to rain.",
+        "I had walking home when it suddenly started to rain.",
+        "I was walking home when it suddenly started to rain.",
+        "I was walk home when it suddenly started to rain."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Let me start from the beginning.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me start from the beginning.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "storytelling-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which ending gives the story a clear reflection?",
+      "answer": "Looking back, it taught me to always double-check the date.",
+      "options": [
+        "Looking back, it teaches me to always double-checking the date.",
+        "Looking back, it taught me to always double-check the date.",
+        "Looking back, it was a Tuesday, and the weather was cloudy.",
+        "Anyway, that's the story. I don't know what else to say."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "Last week, I ___. At first, ___. In the end, ___.",
-      "options": [
-        "explain what happened, how you felt, and what you learned",
-        "past tense endings in happened, learned, and helped",
-        "Use time markers to make your story easy to follow.",
-        "Last week, I ___. At first, ___. In the end, ___."
-      ],
       "id": "storytelling-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kalimat past tense yang benar.",
+      "answer": "Yesterday I visited my grandmother.",
+      "options": [
+        "Yesterday I visited my grandmother.",
+        "Yesterday I visit my grandmother.",
+        "Yesterday I am visiting my grandmother.",
+        "Yesterday I will visit my grandmother."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "explain what happened, how you felt, and what you learned",
-      "options": [
-        "past tense endings in happened, learned, and helped",
-        "answer without listening to the question",
-        "explain what happened, how you felt, and what you learned",
-        "Menceritakan pengalaman singkat dengan alur jelas."
-      ],
       "id": "storytelling-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang memulai cerita tentang masa lalu?",
+      "answer": "Once, when I was ten, ...",
+      "options": [
+        "Next week, when I was ten, ...",
+        "Soon, when I will be ten, ...",
+        "Tomorrow, when I am ten, ...",
+        "Once, when I was ten, ..."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.",
-        "That experience taught me to prepare more carefully.",
-        "I went there yesterday because blue."
-      ],
       "id": "storytelling-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Lengkapi cerita ini: \"I lost my keys, ___ I called my sister.\"",
+      "answer": "so",
+      "options": [
+        "although",
+        "unless",
+        "so",
+        "because"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Storytelling\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "explain what happened, how you felt, and what you learned",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "explain what happened, how you felt, and what you learned"
-      ],
       "id": "storytelling-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang menunjukkan ketertarikan pada cerita seseorang?",
+      "answer": "Really? What happened next?",
+      "options": [
+        "Really? What happened next?",
+        "Really? What happens yesterday?",
+        "Really? What happen next?",
+        "Okay. Can we stop now?"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "That experience taught me to prepare more carefully.",
-      "options": [
-        "Let me start from the beginning.",
-        "Last week, I missed my bus. At first, I felt stressed. In the end, I learned to leave earlier.",
-        "That experience taught me to prepare more carefully.",
-        "It taught me to plan better next time."
-      ],
       "id": "storytelling-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang memakai past continuous untuk membangun latar cerita?",
+      "answer": "I was walking home when it suddenly started to rain.",
+      "options": [
+        "I am walking home when it suddenly started to rain.",
+        "I had walking home when it suddenly started to rain.",
+        "I was walking home when it suddenly started to rain.",
+        "I was walk home when it suddenly started to rain."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Let me start from the beginning.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me start from the beginning.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "storytelling-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Penutup mana yang memberi refleksi yang jelas pada cerita?",
+      "answer": "Looking back, it taught me to always double-check the date.",
+      "options": [
+        "Looking back, it teaches me to always double-checking the date.",
+        "Looking back, it taught me to always double-check the date.",
+        "Looking back, it was a Tuesday, and the weather was cloudy.",
+        "Anyway, that's the story. I don't know what else to say."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

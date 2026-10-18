@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const WEATHER_VOCAB = [
   { word: "Sunny", ipa: "/ˈsʌni/", meaning: "Cerah" },
@@ -46,148 +48,7 @@ const SEASON_TEMP_VOCAB = [
   { word: "Degrees", ipa: "/dɪˈɡriːz/", meaning: "Derajat (Suhu)" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "You hear a loud boom during a storm. It is ___.",
-    options: ['Lightning', 'Thunder', 'Fog'],
-    answer: 'Thunder',
-    explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
-  },
-  {
-    id: 2,
-    question: "It is very ___ in the desert. There is no water.",
-    options: ['wet', 'cold', 'hot'],
-    answer: 'hot',
-    explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
-  },
-  {
-    id: 3,
-    question: "Water that flows to the sea is a ___.",
-    options: ['Lake', 'River', 'Pond'],
-    answer: 'River',
-    explanation: "River (sungai) adalah aliran air alami yang besar yang mengalir ke laut."
-  },
-  {
-    id: 4,
-    question: "A: What is the weather ___? B: It is sunny.",
-    options: ['like', 'look', 'do'],
-    answer: 'like',
-    explanation: "Format pertanyaan yang benar adalah 'What is the weather like?'."
-  },
-  {
-    id: 5,
-    question: "In Winter, it is usually ___.",
-    options: ['hot', 'warm', 'cold'],
-    answer: 'cold',
-    explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
-  },
-  {
-    id: 6,
-    question: "You hear a loud boom during a storm. It is ___.",
-    options: ["Lightning","Thunder","Fog"],
-    answer: "Thunder",
-    explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
-  },
-  {
-    id: 7,
-    question: "It is very ___ in the desert. There is no water.",
-    options: ["wet","cold","hot"],
-    answer: "hot",
-    explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
-  },
-  {
-    id: 8,
-    question: "Water that flows to the sea is a ___.",
-    options: ["Lake","River","Pond"],
-    answer: "River",
-    explanation: "River (sungai) adalah aliran air alami yang besar yang mengalir ke laut."
-  },
-  {
-    id: 9,
-    question: "A: What is the weather ___? B: It is sunny.",
-    options: ["like","look","do"],
-    answer: "like",
-    explanation: "Format pertanyaan yang benar adalah 'What is the weather like?'."
-  },
-  {
-    id: 10,
-    question: "In Winter, it is usually ___.",
-    options: ["hot","warm","cold"],
-    answer: "cold",
-    explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
-  },
-  {
-    id: 11,
-    question: "You hear a loud boom during a storm. It is ___.",
-    options: ["Lightning","Thunder","Fog"],
-    answer: "Thunder",
-    explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
-  },
-  {
-    id: 12,
-    question: "It is very ___ in the desert. There is no water.",
-    options: ["wet","cold","hot"],
-    answer: "hot",
-    explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
-  },
-  {
-    id: 13,
-    question: "Water that flows to the sea is a ___.",
-    options: ["Lake","River","Pond"],
-    answer: "River",
-    explanation: "River (sungai) adalah aliran air alami yang besar yang mengalir ke laut."
-  },
-  {
-    id: 14,
-    question: "A: What is the weather ___? B: It is sunny.",
-    options: ["like","look","do"],
-    answer: "like",
-    explanation: "Format pertanyaan yang benar adalah 'What is the weather like?'."
-  },
-  {
-    id: 15,
-    question: "In Winter, it is usually ___.",
-    options: ["hot","warm","cold"],
-    answer: "cold",
-    explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
-  },
-  {
-    id: 16,
-    question: "You hear a loud boom during a storm. It is ___.",
-    options: ["Lightning","Thunder","Fog"],
-    answer: "Thunder",
-    explanation: "Thunder (guntur) adalah suara yang disebabkan oleh kilat."
-  },
-  {
-    id: 17,
-    question: "It is very ___ in the desert. There is no water.",
-    options: ["wet","cold","hot"],
-    answer: "hot",
-    explanation: "Gurun biasanya adalah tempat yang hot (panas) dan kering."
-  },
-  {
-    id: 18,
-    question: "Water that flows to the sea is a ___.",
-    options: ["Lake","River","Pond"],
-    answer: "River",
-    explanation: "River (sungai) adalah aliran air alami yang besar yang mengalir ke laut."
-  },
-  {
-    id: 19,
-    question: "A: What is the weather ___? B: It is sunny.",
-    options: ["like","look","do"],
-    answer: "like",
-    explanation: "Format pertanyaan yang benar adalah 'What is the weather like?'."
-  },
-  {
-    id: 20,
-    question: "In Winter, it is usually ___.",
-    options: ["hot","warm","cold"],
-    answer: "cold",
-    explanation: "Winter (musim dingin) adalah musim terdingin dalam setahun."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[9], 'elementary/vocabulary/9'));
 
 const Lesson9: React.FC = () => {
   const navigate = useNavigate();

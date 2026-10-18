@@ -53,26 +53,26 @@ const DAILY_LIFE_PHRASAL = [
 
 const QUIZ_QUESTIONS = [
 
-  { id: 1, question: "I need someone to ___ my cat while I am on holiday.", options: ['look for', 'look after', 'look up'], answer: 'look after', explanation: "Look after (Merawat) berarti menjaga seseorang atau sesuatu." },
-  { id: 2, question: "The meeting was ___ because the boss was sick.", options: ['called off', 'carried on', 'set off'], answer: 'called off', explanation: "Call off (Membatalkan) berarti membatalkan suatu acara." },
-  { id: 3, question: "We have ___ milk. I need to buy more.", options: ['run out of', 'filled out', 'cut down on'], answer: 'run out of', explanation: "Run out of (Kehabisan) berarti Anda telah menggunakan semuanya." },
-  { id: 4, question: "Don't ___! You can do it.", options: ['give up', 'grow up', 'cheer up'], answer: 'give up', explanation: "Give up (Menyerah) berarti berhenti mencoba." },
-  { id: 5, question: "I really ___ my older brother. He is so smart.", options: ['look down on', 'look up to', 'look into'], answer: 'look up to', explanation: "Look up to (Mengagumi) berarti mengagumi dan menghormati seseorang." },
-  { id: 6, question: "They ___ after 5 years of marriage.", options: ['broke up', 'made up', 'cheered up'], answer: 'broke up', explanation: "Break up (Putus) berarti mengakhiri hubungan." },
-  { id: 7, question: "Children ___ so fast these days!", options: ['break up', 'grow up', 'give up'], answer: 'grow up', explanation: "Grow up (Tumbuh dewasa) berarti menjadi dewasa." },
+  { id: 1, question: "I need someone to ___ my cat while I am on holiday.", options: ['look up', 'look for', 'look after'], answer: 'look after', explanation: "Look after (Merawat) berarti menjaga seseorang atau sesuatu." },
+  { id: 2, question: "The meeting was ___ because the boss was sick.", options: ['set off', 'carried on', 'called off'], answer: 'called off', explanation: "Call off (Membatalkan) berarti membatalkan suatu acara." },
+  { id: 3, question: "We have ___ milk. I need to buy more.", options: ['cut down on', 'filled out', 'run out of'], answer: 'run out of', explanation: "Run out of (Kehabisan) berarti Anda telah menggunakan semuanya." },
+  { id: 4, question: "Don't ___! You can do it.", options: ['cheer up', 'grow up', 'give up'], answer: 'give up', explanation: "Give up (Menyerah) berarti berhenti mencoba." },
+  { id: 5, question: "I really ___ my older brother. He is so smart.", options: ['look down on', 'look into', 'look up to'], answer: 'look up to', explanation: "Look up to (Mengagumi) berarti mengagumi dan menghormati seseorang." },
+  { id: 6, question: "They ___ after 5 years of marriage.", options: ['cheered up', 'made up', 'broke up'], answer: 'broke up', explanation: "Break up (Putus) berarti mengakhiri hubungan." },
+  { id: 7, question: "Children ___ so fast these days!", options: ['break up', 'give up', 'grow up'], answer: 'grow up', explanation: "Grow up (Tumbuh dewasa) berarti menjadi dewasa." },
   { id: 8, question: "You can ___ me. I will help you.", options: ['count on', 'look after', 'take after'], answer: 'count on', explanation: "Count on (Mengandalkan) berarti percaya bahwa seseorang akan membantu." },
-  { id: 9, question: "Please ___ this form with your personal information.", options: ['fill out', 'figure out', 'find out'], answer: 'fill out', explanation: "Fill out (Mengisi) berarti mengisi formulir atau dokumen." },
-  { id: 10, question: "I finally___ the answer to the problem!", options: ['gave up', 'figured out', 'put off'], answer: 'figured out', explanation: "Figure out (Memecahkan) berarti menemukan solusi atau jawaban." },
-  { id: 11, question: "The investigation will ___ the cause of the accident.", options: ['look into', 'look after', 'look up to'], answer: 'look into', explanation: "Look into (Menyelidiki) berarti memeriksa atau menyelidiki sesuatu." },
-  { id: 12, question: "I need to ___ smoking for my health.", options: ['give up', 'pick up', 'grow up'], answer: 'give up', explanation: "Give up berarti berhenti melakukan kebiasaan buruk." },
-  { id: 13, question: "We will ___ at 6 AM tomorrow.", options: ['set off', 'call off', 'put off'], answer: 'set off', explanation: "Set off (Berangkat) berarti memulai perjalanan." },
-  { id: 14, question: "Can you ___ me at the airport?", options: ['pick up', 'drop off', 'throw away'], answer: 'pick up', explanation: "Pick up (Menjemput) berarti mengambil seseorang dengan kendaraan." },
+  { id: 9, question: "Please ___ this form with your personal information.", options: ['figure out', 'fill out', 'find out'], answer: 'fill out', explanation: "Fill out (Mengisi) berarti mengisi formulir atau dokumen." },
+  { id: 10, question: "I finally___ the answer to the problem!", options: ['figured out', 'gave up', 'put off'], answer: 'figured out', explanation: "Figure out (Memecahkan) berarti menemukan solusi atau jawaban." },
+  { id: 11, question: "The investigation will ___ the cause of the accident.", options: ['look up to', 'look after', 'look into'], answer: 'look into', explanation: "Look into (Menyelidiki) berarti memeriksa atau menyelidiki sesuatu." },
+  { id: 12, question: "I need to ___ smoking for my health.", options: ['grow up', 'give up', 'pick up'], answer: 'give up', explanation: "Give up berarti berhenti melakukan kebiasaan buruk." },
+  { id: 13, question: "We will ___ at 6 AM tomorrow.", options: ['put off', 'call off', 'set off'], answer: 'set off', explanation: "Set off (Berangkat) berarti memulai perjalanan." },
+  { id: 14, question: "Can you ___ me at the airport?", options: ['throw away', 'pick up', 'drop off'], answer: 'pick up', explanation: "Pick up (Menjemput) berarti mengambil seseorang dengan kendaraan." },
   { id: 15, question: "I ___ my mother; we have the same personality.", options: ['look after', 'take after', 'look up to'], answer: 'take after', explanation: "Take after (Mirip) berarti menyerupai orang tua atau kerabat." },
-  { id: 16, question: "I really ___ meeting you next week!", options: ['look forward to', 'put up with', 'run out of'], answer: 'look forward to', explanation: "Look forward to (Menantikan) berarti dengan senang hati menunggu sesuatu." },
-  { id: 17, question: "I can't ___ this noise anymore!", options: ['put up with', 'pick up', 'cheer up'], answer: 'put up with', explanation: "Put up with (Menoleransi) berarti bertahan terhadap sesuatu yang tidak menyenangkan." },
-  { id: 18, question: "Please don't ___ these old photos.", options: ['throw away', 'hand in', 'carry on'], answer: 'throw away', explanation: "Throw away (Membuang) berarti membuang sesuatu." },
-  { id: 19, question: "Despite the problems, we decided to ___.", options: ['call off', 'carry on', 'drop off'], answer: 'carry on', explanation: "Carry on (Melanjutkan) berarti terus melakukan sesuatu." },
-  { id: 20, question: "I need to ___ on coffee; I drink too much.", options: ['cut down on', 'look up to', 'keep up with'], answer: 'cut down on', explanation: "Cut down on (Mengurangi) berarti mengurangi konsumsi atau penggunaan." }
+  { id: 16, question: "I really ___ meeting you next week!", options: ['run out of', 'put up with', 'look forward to'], answer: 'look forward to', explanation: "Look forward to (Menantikan) berarti dengan senang hati menunggu sesuatu." },
+  { id: 17, question: "I can't ___ this noise anymore!", options: ['put up with', 'cheer up', 'pick up'], answer: 'put up with', explanation: "Put up with (Menoleransi) berarti bertahan terhadap sesuatu yang tidak menyenangkan." },
+  { id: 18, question: "Please don't ___ these old photos.", options: ['hand in', 'throw away', 'carry on'], answer: 'throw away', explanation: "Throw away (Membuang) berarti membuang sesuatu." },
+  { id: 19, question: "Despite the problems, we decided to ___.", options: ['call off', 'drop off', 'carry on'], answer: 'carry on', explanation: "Carry on (Melanjutkan) berarti terus melakukan sesuatu." },
+  { id: 20, question: "I need to ___ on coffee; I drink too much.", options: ['cut down on', 'keep up with', 'look up to'], answer: 'cut down on', explanation: "Cut down on (Mengurangi) berarti mengurangi konsumsi atau penggunaan." }
 
 ];
 

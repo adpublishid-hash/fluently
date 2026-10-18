@@ -4,229 +4,10 @@ import { QuizEngine, DialoguePlayer, FillBlankExercise, getCompletedListeningLes
 import type { QuizItem } from './listeningUtils';
 import { Headphones, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateListeningQuizBank } from './quizBank';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "Where does Elena recommend going for a weekend trip?",
-    "opts": [
-      "Crowded beaches",
-      "Pine Valley mountains",
-      "A big foreign city",
-      "A local shopping mall"
-    ],
-    "ans": "Pine Valley mountains",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does GreenTech Solutions' new app do?",
-    "opts": [
-      "Sells electronics",
-      "Tracks electricity usage",
-      "Plays music",
-      "Calls an electrician"
-    ],
-    "ans": "Tracks electricity usage",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the meaning of 'usage'?",
-    "opts": [
-      "The amount of something that is used",
-      "Paying a bill",
-      "Electric wires",
-      "A new mobile phone"
-    ],
-    "ans": "The amount of something that is used",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What should applicants write about in their essay?",
-    "opts": [
-      "Their family tree",
-      "A real challenge they overcame",
-      "Their favorite movies",
-      "What the admission board wants to hear"
-    ],
-    "ans": "A real challenge they overcame",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How long should a post-lunch walk be according to David?",
-    "opts": [
-      "5 minutes",
-      "10 minutes",
-      "30 minutes",
-      "1 hour"
-    ],
-    "ans": "10 minutes",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'overcome' mean?",
-    "opts": [
-      "To fail repeatedly",
-      "To successfully deal with a problem",
-      "To ignore an issue",
-      "To cry about something"
-    ],
-    "ans": "To successfully deal with a problem",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Why should you pack warm clothes for Pine Valley?",
-    "opts": [
-      "Because it snows heavily",
-      "Because it is chilly at night",
-      "Because of the air conditioning",
-      "Because it's currently winter"
-    ],
-    "ans": "Because it is chilly at night",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What kind of professional is David?",
-    "opts": [
-      "Surgeon",
-      "Nutritionist",
-      "Dentist",
-      "Personal Trainer"
-    ],
-    "ans": "Nutritionist",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the primary goal of the GreenTech app?",
-    "opts": [
-      "To sell solar panels",
-      "To track and lower carbon footprint",
-      "To chat with neighbors",
-      "To play games"
-    ],
-    "ans": "To track and lower carbon footprint",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does a 10-minute walk after lunch prevent?",
-    "opts": [
-      "Evening fatigue",
-      "Heart disease",
-      "Morning sickness",
-      "Getting bored"
-    ],
-    "ans": "Evening fatigue",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is Mr. Roberts looking for in a personal essay?",
-    "opts": [
-      "Perfect grammar",
-      "A funny story",
-      "True motivation and character",
-      "A list of awards"
-    ],
-    "ans": "True motivation and character",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the synonym for 'chilly'?",
-    "opts": [
-      "Boiling",
-      "Cold",
-      "Windy",
-      "Sunny"
-    ],
-    "ans": "Cold",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Who is the guest talking about the tech app?",
-    "opts": [
-      "Maya",
-      "Jenna",
-      "Sarah",
-      "Elena"
-    ],
-    "ans": "Maya",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "How far is the Pine Valley cabin from the city?",
-    "opts": [
-      "1 hour",
-      "2 hours",
-      "4 hours",
-      "A whole day"
-    ],
-    "ans": "2 hours",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does the nutritionist recommend doing right after waking up?",
-    "opts": [
-      "Check emails",
-      "Drink water",
-      "Go for a run",
-      "Eat breakfast"
-    ],
-    "ans": "Drink water",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "Which of the following is a 'hidden gem' according to the travel context?",
-    "opts": [
-      "A popular tourist trap",
-      "An undiscovered, great place to visit",
-      "A literal diamond",
-      "A closed restaurant"
-    ],
-    "ans": "An undiscovered, great place to visit",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'authentic' mean in the context of writing an essay?",
-    "opts": [
-      "Copied from the internet",
-      "Fake",
-      "Genuine and real",
-      "Very long"
-    ],
-    "ans": "Genuine and real",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What does 'fatigue' mean?",
-    "opts": [
-      "Anger",
-      "Happiness",
-      "Extreme tiredness",
-      "Hunger"
-    ],
-    "ans": "Extreme tiredness",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "When does the app send an alert to your phone?",
-    "opts": [
-      "When the battery is low",
-      "When someone calls you",
-      "When appliances are left on too long",
-      "When you pay your bills"
-    ],
-    "ans": "When appliances are left on too long",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  },
-  {
-    "q": "What is the name of the radio host doing the travel show?",
-    "opts": [
-      "Mark",
-      "John",
-      "Kevin",
-      "David"
-    ],
-    "ans": "Kevin",
-    "exp": "B1 Listening Comprehension: Identifying specifics, vocabulary from contexts, and main ideas."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateListeningQuizBank[8], 'intermediate/listening/8');
 
 export default function InterListeningLesson8(): React.ReactElement {
   const navigate = useNavigate();
@@ -237,9 +18,9 @@ export default function InterListeningLesson8(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(8); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Admission","id":"Penerimaan masuk"},{"en":"Application","id":"Berkas pendaftaran"},{"en":"Authentic","id":"Asli / Jujur"},{"en":"Overcome","id":"Mengatasi"}];
-  const DIALOGUE = [{"speaker":"Interviewer","text":"Hello and welcome to our student advice segment. I am sitting with Mr. Roberts from the University Admission board. What is the most important part of an application, Mr. Roberts?","translation":"Halo dan selamat datang di segmen saran mahasiswa kami. Saya duduk dengan Tuan Roberts dari Dewan Penerimaan Universitas. Apa bagian terpenting dari sebuah lamaran, Tuan Roberts?","avatar":"🎤"},{"speaker":"Mr. Roberts","text":"Besides good grades, we really look at the personal essay. Your personal essay shows us your true motivation and character. My best advice is to be authentic and write about a real challenge you overcame, not just what you think we want to hear.","translation":"Selain nilai yang bagus, kami sangat melihat esai pribadi. Esai pribadi Anda menunjukkan motivasi dan karakter Anda yang sebenarnya. Saran terbaik saya adalah jujur dan tulis tentang tantangan nyata yang pernah Anda atasi, bukan sekadar apa yang Anda pikir ingin kami dengar.","avatar":"👨‍🏫"}];
-  const BLANKS = [{"sentence":"I am sitting with Mr. Roberts from the University Admission ___.","blank":"board","opts":["board","room","bus","team"],"hint":"Dewan / Panitia"},{"sentence":"Your personal essay shows us your true ___ and character.","blank":"motivation","opts":["motivation","face","friends","grades"],"hint":"Motivasi / Dorongan"},{"sentence":"Write about a real ___ you overcame.","blank":"challenge","opts":["challenge","book","game","party"],"hint":"Tantangan"}];
+  const vocab = [{"en":"Scholarship","id":"Beasiswa"},{"en":"Qualify","id":"Memenuhi syarat"},{"en":"Eligible","id":"Berhak / Memenuhi syarat"},{"en":"Deadline","id":"Tenggat waktu"}];
+  const DIALOGUE = [{"speaker":"Interviewer","text":"Welcome back to 'Campus Talk'. Many families worry about the cost of university, so today I'm joined by Ms Lewis, a scholarship adviser. Ms Lewis, who can apply for a scholarship?","translation":"Selamat datang kembali di 'Campus Talk'. Banyak keluarga khawatir tentang biaya kuliah, jadi hari ini saya ditemani Ibu Lewis, seorang penasihat beasiswa. Ibu Lewis, siapa yang bisa mendaftar beasiswa?","avatar":"🎤"},{"speaker":"Ms Lewis","text":"More students than you might think! Some scholarships reward excellent grades, but others are for talented athletes, musicians or students from low-income families. Many students simply never apply because they assume they won't qualify.","translation":"Lebih banyak siswa daripada yang Anda kira! Beberapa beasiswa diberikan untuk nilai yang sangat baik, tetapi ada juga yang untuk atlet berbakat, musisi, atau siswa dari keluarga berpenghasilan rendah. Banyak siswa tidak pernah mendaftar karena mereka mengira tidak akan memenuhi syarat.","avatar":"👩‍🏫"},{"speaker":"Interviewer","text":"When should students start looking?","translation":"Kapan siswa sebaiknya mulai mencari?","avatar":"🎤"},{"speaker":"Ms Lewis","text":"Ideally a year before they start university. Scholarship deadlines are often much earlier than course deadlines, so make a list of every scholarship you're eligible for and note each deadline in a calendar.","translation":"Idealnya setahun sebelum mereka mulai kuliah. Tenggat beasiswa sering jauh lebih awal daripada tenggat pendaftaran jurusan, jadi buatlah daftar semua beasiswa yang bisa Anda ikuti dan catat setiap tenggatnya di kalender.","avatar":"👩‍🏫"},{"speaker":"Interviewer","text":"Any final tips for the application itself?","translation":"Ada tips terakhir untuk formulir pendaftarannya?","avatar":"🎤"},{"speaker":"Ms Lewis","text":"Read the instructions carefully and ask a teacher to check your form. A small mistake can cost you thousands of pounds.","translation":"Bacalah petunjuknya dengan teliti dan minta guru memeriksa formulir Anda. Kesalahan kecil bisa membuat Anda kehilangan ribuan pound.","avatar":"👩‍🏫"}];
+  const BLANKS = [{"sentence":"Many families worry about the ___ of university.","blank":"cost","opts":["cost","size","name","colour"],"hint":"Biaya"},{"sentence":"They assume they won't ___.","blank":"qualify","opts":["qualify","travel","remember","sleep"],"hint":"Memenuhi syarat"},{"sentence":"Note each ___ in a calendar.","blank":"deadline","opts":["deadline","holiday","birthday","recipe"],"hint":"Tenggat waktu"}];
 
   return (
     <>
@@ -267,7 +48,7 @@ export default function InterListeningLesson8(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">College Admission Guide</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Finding a Scholarship</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L8</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -295,7 +76,7 @@ export default function InterListeningLesson8(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: University Admissions</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: Scholarship Advice</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -315,7 +96,7 @@ export default function InterListeningLesson8(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Interview: University Admissions" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Interview: Scholarship Advice" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

@@ -52,7 +52,7 @@ export default function ProficiencyPronunciationPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">Materi pronunciation C2 dengan audio TTS, drill rekaman, self-check, dan kuis 20 soal.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">Materi pronunciation C2 dengan audio TTS, drill rekaman, self-check, dan kuis 15 soal.</p>
 
           <div className="space-y-3">
             {proficiencyPronunciationLessons.map((lesson, index) => {

@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Salutation + purpose + details + request + closing.",
-      "options": [
-        "Dear Manager,",
-        "regarding",
-        "Sincerely,",
-        "Salutation + purpose + details + request + closing."
-      ],
       "id": "formal-letter-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which salutation is best when you do not know the reader's name?",
+      "answer": "Dear Sir or Madam,",
+      "options": [
+        "Hey there,",
+        "Dear Sir or Madam,",
+        "Yo, manager!",
+        "To whoever reads this thing,"
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Formal Letter.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Dear Manager, I am writing to request a copy of the official receipt for my recent purchase.",
-      "options": [
-        "And because but however.",
-        "Dear Manager, I am writing to request a copy of the official receipt for my recent purchase.",
-        "Dear Manager,",
-        "Sincerely,"
-      ],
       "id": "formal-letter-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which closing matches a formal letter that starts 'Dear Mr Hall,'?",
+      "answer": "Yours sincerely,",
+      "options": [
+        "Cheers,",
+        "See you soon, mate,",
+        "Love,",
+        "Yours sincerely,"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Salutation + purpose + details + request + closing.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Salutation + purpose + details + request + closing."
-      ],
       "id": "formal-letter-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence is written in a formal tone?",
+      "answer": "I would like to request a meeting with you.",
+      "options": [
+        "I wanna meet you, OK?",
+        "I would like to request a meeting with you.",
+        "Gonna need a quick meeting with you, thanks a lot.",
+        "Can we hang out and chat soon?"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "regarding",
-      "options": [
-        "Sincerely,",
-        "formal letter",
-        "regarding",
-        "Dear Manager,"
-      ],
       "id": "formal-letter-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence states the purpose of the letter most clearly?",
+      "answer": "I am writing to apply for a refund on order 4512.",
+      "options": [
+        "I am writing because of some things that happened.",
+        "Please find my thoughts on various matters below.",
+        "I would like to tell you about my week and my order.",
+        "I am writing to apply for a refund on order 4512."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "Sincerely,",
-      "options": [
-        "regarding",
-        "Sincerely,",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "formal-letter-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which revision makes this line more formal? Draft: 'Thanks a lot, can't wait to hear back!'",
+      "answer": "Thank you for your attention; I look forward to your reply.",
+      "options": [
+        "Thank you for your attention; I look forward to your reply.",
+        "Cheers for that, hope to hear back from you soon, mate.",
+        "Thanks a lot, can't wait to hear back from you soon!",
+        "Thanks so much, I really can't wait to hear back from you all!"
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Salutation + purpose + details + request + closing.",
-      "options": [
-        "Dear Manager,",
-        "regarding",
-        "Sincerely,",
-        "Salutation + purpose + details + request + closing."
-      ],
       "id": "formal-letter-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Salam pembuka mana yang paling tepat jika Anda tidak tahu nama pembaca?",
+      "answer": "Dear Sir or Madam,",
+      "options": [
+        "Hey there,",
+        "Dear Sir or Madam,",
+        "Yo, manager!",
+        "To whoever reads this thing,"
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Formal Letter.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Dear Manager, I am writing to request a copy of the official receipt for my recent purchase.",
-      "options": [
-        "And because but however.",
-        "Dear Manager, I am writing to request a copy of the official receipt for my recent purchase.",
-        "Dear Manager,",
-        "Sincerely,"
-      ],
       "id": "formal-letter-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Penutup mana yang cocok untuk surat formal yang diawali 'Dear Mr Hall,'?",
+      "answer": "Yours sincerely,",
+      "options": [
+        "Cheers,",
+        "See you soon, mate,",
+        "Love,",
+        "Yours sincerely,"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Salutation + purpose + details + request + closing.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Salutation + purpose + details + request + closing."
-      ],
       "id": "formal-letter-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang ditulis dengan nada formal?",
+      "answer": "I would like to request a meeting with you.",
+      "options": [
+        "I wanna meet you, OK?",
+        "I would like to request a meeting with you.",
+        "Gonna need a quick meeting with you, thanks a lot.",
+        "Can we hang out and chat soon?"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "regarding",
-      "options": [
-        "Sincerely,",
-        "formal letter",
-        "regarding",
-        "Dear Manager,"
-      ],
       "id": "formal-letter-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang menyatakan tujuan surat dengan paling jelas?",
+      "answer": "I am writing to apply for a refund on order 4512.",
+      "options": [
+        "I am writing because of some things that happened.",
+        "Please find my thoughts on various matters below.",
+        "I would like to tell you about my week and my order.",
+        "I am writing to apply for a refund on order 4512."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "Sincerely,",
-      "options": [
-        "regarding",
-        "Sincerely,",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "formal-letter-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Revisi mana yang membuat kalimat ini lebih formal? Draft: 'Thanks a lot, can't wait to hear back!'",
+      "answer": "Thank you for your attention; I look forward to your reply.",
+      "options": [
+        "Thank you for your attention; I look forward to your reply.",
+        "Cheers for that, hope to hear back from you soon, mate.",
+        "Thanks a lot, can't wait to hear back from you soon!",
+        "Thanks so much, I really can't wait to hear back from you all!"
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

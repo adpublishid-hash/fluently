@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Greeting + reason + request + thanks + closing.",
-      "options": [
-        "Dear Sir or Madam,",
-        "I am writing to",
-        "Thank you for your time.",
-        "Greeting + reason + request + thanks + closing."
-      ],
       "id": "email-request-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which subject line best fits an email asking for a class timetable?",
+      "answer": "Request for Class Timetable",
+      "options": [
+        "Something about the classes maybe",
+        "Urgent!!! Read now",
+        "Hello, it's me again",
+        "Request for Class Timetable"
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Email Request.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Dear Ms. Lee, I am writing to ask for more information about the schedule. Thank you for your help.",
-      "options": [
-        "And because but however.",
-        "Dear Ms. Lee, I am writing to ask for more information about the schedule. Thank you for your help.",
-        "Dear Sir or Madam,",
-        "Thank you for your time."
-      ],
       "id": "email-request-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the most polite request for an email:",
+      "answer": "Could you please send me the form?",
+      "options": [
+        "Send me the form now.",
+        "Give me the form as soon as you can, okay?",
+        "Could you please send me the form?",
+        "You must send the form today."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Greeting + reason + request + thanks + closing.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Greeting + reason + request + thanks + closing."
-      ],
       "id": "email-request-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence gives a clear reason for the request? Email: 'Dear Mr Brown, ... Could you send me the reading list?'",
+      "answer": "I missed Monday's class because I was ill.",
+      "options": [
+        "I am usually quite a busy student during the week.",
+        "I have many friends in the class.",
+        "The weather is nice today.",
+        "I missed Monday's class because I was ill."
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "I am writing to",
-      "options": [
-        "Thank you for your time.",
-        "short formal email",
-        "I am writing to",
-        "Dear Sir or Madam,"
-      ],
       "id": "email-request-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence makes a request to a hotel about parking easiest to answer?",
+      "answer": "Could you tell me whether the hotel has free parking?",
+      "options": [
+        "Could you tell me everything about the hotel and the area?",
+        "Parking is something I am thinking about lately.",
+        "Could you tell me whether the hotel has free parking?",
+        "I have some questions, so please answer them all."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "Thank you for your time.",
-      "options": [
-        "I am writing to",
-        "Thank you for your time.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "email-request-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which follow-up line is most appropriate if you have had no reply after a week?",
+      "answer": "I am writing to follow up on my email of 3 March.",
+      "options": [
+        "I am writing to follow up on my email of 3 March.",
+        "Why have you ignored my email for a whole week?",
+        "Please reply to me immediately, or I will make a complaint.",
+        "Hey, did you forget about me or what?"
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Greeting + reason + request + thanks + closing.",
-      "options": [
-        "Dear Sir or Madam,",
-        "I am writing to",
-        "Thank you for your time.",
-        "Greeting + reason + request + thanks + closing."
-      ],
       "id": "email-request-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Subject line mana yang paling sesuai untuk email yang meminta jadwal kelas?",
+      "answer": "Request for Class Timetable",
+      "options": [
+        "Something about the classes maybe",
+        "Urgent!!! Read now",
+        "Hello, it's me again",
+        "Request for Class Timetable"
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Email Request.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Dear Ms. Lee, I am writing to ask for more information about the schedule. Thank you for your help.",
-      "options": [
-        "And because but however.",
-        "Dear Ms. Lee, I am writing to ask for more information about the schedule. Thank you for your help.",
-        "Dear Sir or Madam,",
-        "Thank you for your time."
-      ],
       "id": "email-request-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih permintaan yang paling sopan untuk email:",
+      "answer": "Could you please send me the form?",
+      "options": [
+        "Send me the form now.",
+        "Give me the form as soon as you can, okay?",
+        "Could you please send me the form?",
+        "You must send the form today."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Greeting + reason + request + thanks + closing.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Greeting + reason + request + thanks + closing."
-      ],
       "id": "email-request-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memberi alasan yang jelas untuk permintaan? Email: 'Dear Mr Brown, ... Could you send me the reading list?'",
+      "answer": "I missed Monday's class because I was ill.",
+      "options": [
+        "I am usually quite a busy student during the week.",
+        "I have many friends in the class.",
+        "The weather is nice today.",
+        "I missed Monday's class because I was ill."
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "I am writing to",
-      "options": [
-        "Thank you for your time.",
-        "short formal email",
-        "I am writing to",
-        "Dear Sir or Madam,"
-      ],
       "id": "email-request-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang membuat permintaan kepada hotel tentang parkir paling mudah dijawab?",
+      "answer": "Could you tell me whether the hotel has free parking?",
+      "options": [
+        "Could you tell me everything about the hotel and the area?",
+        "Parking is something I am thinking about lately.",
+        "Could you tell me whether the hotel has free parking?",
+        "I have some questions, so please answer them all."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "Thank you for your time.",
-      "options": [
-        "I am writing to",
-        "Thank you for your time.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "email-request-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat lanjutan mana yang paling tepat jika belum ada balasan setelah seminggu?",
+      "answer": "I am writing to follow up on my email of 3 March.",
+      "options": [
+        "I am writing to follow up on my email of 3 March.",
+        "Why have you ignored my email for a whole week?",
+        "Please reply to me immediately, or I will make a complaint.",
+        "Hey, did you forget about me or what?"
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

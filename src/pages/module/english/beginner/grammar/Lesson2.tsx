@@ -79,14 +79,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Kalimat mana yang benar?",
-    options: ['He are tall.', 'He am tall.', 'He is tall.'],
+    options: ['He is tall.', 'He am tall.', 'He are tall.'],
     answer: 'He is tall.',
     explanation: "'He' itu tunggal, jadi kita gunakan 'is'."
   },
   {
     id: 2,
     question: "Pilih kontraksi yang benar untuk 'I am':",
-    options: ['I\'re', 'I\'m', 'Im'],
+    options: ['I\'m', 'Im', 'I\'re'],
     answer: 'I\'m',
     explanation: "'I am' disingkat menjadi 'I'm'."
   },
@@ -100,14 +100,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 4,
     question: "Bentuk negatif dari 'She is':",
-    options: ['She not is', 'She is not', 'She no is'],
+    options: ['She is not', 'She no is', 'She not is'],
     answer: 'She is not',
     explanation: "Tambahkan 'not' setelah to be."
   },
   {
     id: 5,
     question: "Is ___ your brother?",
-    options: ['he', 'we', 'they'],
+    options: ['they', 'he', 'we'],
     answer: 'he',
     explanation: "'Is' digunakan dengan subjek tunggal (he/she/it)."
   },
@@ -128,49 +128,49 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "It ___ a cat.",
-    options: ['is', 'am', 'are'],
+    options: ['am', 'are', 'is'],
     answer: 'is',
     explanation: "'It' (benda/hewan tunggal) menggunakan 'is'."
   },
   {
     id: 9,
     question: "Kalimat tanya yang benar:",
-    options: ['Are you tired?', 'You fit tired?', 'Am you tired?'],
+    options: ['You fit tired?', 'Are you tired?', 'Am you tired?'],
     answer: 'Are you tired?',
     explanation: "Untuk pertanyaan dengan 'You', gunakan 'Are' di depan."
   },
   {
     id: 10,
     question: "Apa singkatan dari 'They are'?",
-    options: ['They\'re', 'They\'s', 'There'],
+    options: ['They\'s', 'They\'re', 'There'],
     answer: 'They\'re',
     explanation: "Bentuk pendek (contraction) dari 'They are' adalah 'They're'."
   },
   {
     id: 11,
     question: "John and Sarah ___ at home.",
-    options: ['is', 'am', 'are'],
+    options: ['are', 'am', 'is'],
     answer: 'are',
     explanation: "John dan Sarah = They (Mereka/Jamak), jadi gunakan 'are'."
   },
   {
     id: 12,
     question: "___ I late?",
-    options: ['Am', 'Is', 'Are'],
+    options: ['Are', 'Am', 'Is'],
     answer: 'Am',
     explanation: "Pasangan 'I' adalah 'Am'."
   },
   {
     id: 13,
     question: "You ___ not alone.",
-    options: ['is', 'am', 'are'],
+    options: ['is', 'are', 'am'],
     answer: 'are',
     explanation: "'You' selalu menggunakan 'are', baik untuk satu orang atau banyak."
   },
   {
     id: 14,
     question: "My dog ___ cute.",
-    options: ['are', 'am', 'is'],
+    options: ['are', 'is', 'am'],
     answer: 'is',
     explanation: "'My dog' = It (Tunggal), jadi gunakan 'is'."
   },
@@ -198,21 +198,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "Kontraksi 'She is not':",
-    options: ['She\'sn\'t', 'She isn\'t', 'She nots'],
+    options: ['She isn\'t', 'She nots', 'She\'sn\'t'],
     answer: 'She isn\'t',
     explanation: "'She is not' bisa disingkat menjadi 'She isn't' atau 'She's not'."
   },
   {
     id: 19,
     question: "Cats ___ animals.",
-    options: ['am', 'is', 'are'],
+    options: ['is', 'are', 'am'],
     answer: 'are',
     explanation: "'Cats' (jamak/banyak kucing) menggunakan 'are'."
   },
   {
     id: 20,
     question: "The sky ___ blue.",
-    options: ['is', 'are', 'am'],
+    options: ['am', 'is', 'are'],
     answer: 'is',
     explanation: "'The sky' = It (Tunggal), pakai 'is'."
   }

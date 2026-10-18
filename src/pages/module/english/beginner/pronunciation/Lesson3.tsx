@@ -68,7 +68,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Sentuh tenggorokanmu. Bunyi mana yang membuatnya BERGETAR?",
-    options: ['/s/ (Snake)', '/z/ (Zebra)'],
+    options: ['/z/ (Zebra)', '/s/ (Snake)'],
     answer: '/z/ (Zebra)',
     explanation: "Z adalah bunyi BERSUARA. Pita suaramu bergetar seperti lebah."
   },
@@ -97,14 +97,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Manakah pasangan Bersuara/Tak Bersuara yang benar?",
-    options: ['P (tak bersuara) - B (bersuara)', 'S (bersuara) - Z (tak bersuara)', 'F (bersuara) - V (tak bersuara)'],
+    options: ['F (bersuara) - V (tak bersuara)', 'S (bersuara) - Z (tak bersuara)', 'P (tak bersuara) - B (bersuara)'],
     answer: 'P (tak bersuara) - B (bersuara)',
     explanation: "P adalah tak bersuara (hanya udara), B adalah bersuara (getaran)."
   },
   {
     id: 6,
     question: "Kata 'Fan' dimulai dengan bunyi...",
-    options: ['Voiced (Bersuara)', 'Unvoiced (Tak Bersuara)'],
+    options: ['Unvoiced (Tak Bersuara)', 'Voiced (Bersuara)'],
     answer: 'Unvoiced (Tak Bersuara)',
     audioText: "Fan",
     explanation: "/f/ adalah tak bersuara. Bandingkan dengan Van (/v/) yang bersuara."
@@ -119,7 +119,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 8,
     question: "Kata 'Sue' dimulai dengan bunyi...",
-    options: ['Voiced (Bersuara)', 'Unvoiced (Tak Bersuara)'],
+    options: ['Unvoiced (Tak Bersuara)', 'Voiced (Bersuara)'],
     answer: 'Unvoiced (Tak Bersuara)',
     audioText: "Sue",
     explanation: "/s/ seperti ular adalah tak bersuara. Bandingkan dengan Zoo (/z/)."
@@ -127,14 +127,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "Pasangan mana yang keduanya BERSUARA?",
-    options: ['B dan D', 'P dan T', 'F dan S'],
+    options: ['F dan S', 'P dan T', 'B dan D'],
     answer: 'B dan D',
     explanation: "B dan D sama-sama bersuara. P, T, F, S adalah tak bersuara."
   },
   {
     id: 10,
     question: "Kata 'Gate' dimulai dengan bunyi...",
-    options: ['Voiced (Bersuara)', 'Unvoiced (Tak Bersuara)'],
+    options: ['Unvoiced (Tak Bersuara)', 'Voiced (Bersuara)'],
     answer: 'Voiced (Bersuara)',
     audioText: "Gate",
     explanation: "/g/ adalah bersuara (Gate). Bandingkan dengan Kate (/k/) yang tak bersuara."
@@ -142,7 +142,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 11,
     question: "Bunyi /k/ dibuat di...",
-    options: ['Bagian depan bibir', 'Bagian belakang tenggorokan', 'Ujung lidah'],
+    options: ['Bagian belakang tenggorokan', 'Bagian depan bibir', 'Ujung lidah'],
     answer: 'Bagian belakang tenggorokan',
     explanation: "/k/ dan /g/ adalah Back Kickers - dibuat di belakang mulut."
   },
@@ -164,14 +164,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "Bunyi /f/ dan /v/ dibuat dengan...",
-    options: ['Gigi atas menyentuh bibir bawah', 'Menutup kedua bibir', 'Lidah mengetuk gigi'],
+    options: ['Lidah mengetuk gigi', 'Gigi atas menyentuh bibir bawah', 'Menutup kedua bibir'],
     answer: 'Gigi atas menyentuh bibir bawah',
     explanation: "Keduanya adalah Lip Biters - gigi menggigit bibir."
   },
   {
     id: 15,
     question: "Kata 'Pen' dimulai dengan bunyi...",
-    options: ['Voiced (Bersuara)', 'Unvoiced (Tak Bersuara)'],
+    options: ['Unvoiced (Tak Bersuara)', 'Voiced (Bersuara)'],
     answer: 'Unvoiced (Tak Bersuara)',
     audioText: "Pen",
     explanation: "/p/ adalah tak bersuara. Bandingkan dengan Ben (/b/) yang bersuara."
@@ -179,21 +179,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Pasangan mana yang keduanya TAK BERSUARA?",
-    options: ['P dan K', 'B dan G', 'D dan V'],
+    options: ['D dan V', 'B dan G', 'P dan K'],
     answer: 'P dan K',
     explanation: "P dan K sama-sama tak bersuara (hanya udara)."
   },
   {
     id: 17,
     question: "Bunyi /t/ dan /d/ dibuat dengan...",
-    options: ['Ujung lidah mengetuk di belakang gigi atas', 'Bibir tertutup rapat', 'Lidah di belakang tenggorokan'],
+    options: ['Bibir tertutup rapat', 'Ujung lidah mengetuk di belakang gigi atas', 'Lidah di belakang tenggorokan'],
     answer: 'Ujung lidah mengetuk di belakang gigi atas',
     explanation: "Keduanya adalah Tongue Tappers."
   },
   {
     id: 18,
     question: "Kata 'Kate' dimulai dengan bunyi...",
-    options: ['Voiced (Bersuara)', 'Unvoiced (Tak Bersuara)'],
+    options: ['Unvoiced (Tak Bersuara)', 'Voiced (Bersuara)'],
     answer: 'Unvoiced (Tak Bersuara)',
     audioText: "Kate",
     explanation: "/k/ adalah tak bersuara. Bandingkan dengan Gate (/g/) yang bersuara."
@@ -201,14 +201,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 19,
     question: "Cara terbaik untuk merasakan perbedaan voiced/unvoiced adalah...",
-    options: ['Melihat di cermin', 'Menyentuh tenggorokan', 'Menutup mata'],
+    options: ['Menyentuh tenggorokan', 'Melihat di cermin', 'Menutup mata'],
     answer: 'Menyentuh tenggorokan',
     explanation: "Sentuh tenggorokan untuk merasakan getaran pada bunyi bersuara!"
   },
   {
     id: 20,
     question: "Kata 'Time' dimulai dengan bunyi...",
-    options: ['Voiced (Bersuara)', 'Unvoiced (Tak Bersuara)'],
+    options: ['Unvoiced (Tak Bersuara)', 'Voiced (Bersuara)'],
     answer: 'Unvoiced (Tak Bersuara)',
     audioText: "Time",
     explanation: "/t/ adalah tak bersuara. Bandingkan dengan Dime (/d/) yang bersuara."

@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Source/topic + main idea + key point + result.",
-      "options": [
-        "The text explains that",
-        "in addition",
-        "Overall, the main point is clear.",
-        "Source/topic + main idea + key point + result."
-      ],
       "id": "academic-summary-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence is a summary, not an opinion?",
+      "answer": "The article says that exercise reduces stress.",
+      "options": [
+        "Exercise is boring, so I never do it.",
+        "I think exercise is the best thing in the world.",
+        "The article says that exercise reduces stress.",
+        "In my opinion, the writer is completely wrong."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Academic Summary.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "The text explains that regular sleep improves focus and memory. It also shows that poor sleep affects learning.",
-      "options": [
-        "And because but however.",
-        "The text explains that regular sleep improves focus and memory. It also shows that poor sleep affects learning.",
-        "The text explains that",
-        "Overall, the main point is clear."
-      ],
       "id": "academic-summary-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase is best to begin a summary of a report?",
+      "answer": "According to the report,",
+      "options": [
+        "According to the report,",
+        "Let me tell you a story:",
+        "I personally feel that",
+        "Once upon a time,"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Source/topic + main idea + key point + result.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Source/topic + main idea + key point + result."
-      ],
       "id": "academic-summary-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word best completes the summary? 'The study ___ that children learn faster when they sleep well.'",
+      "answer": "shows",
+      "options": [
+        "showing",
+        "show",
+        "shows",
+        "shown"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "in addition",
-      "options": [
-        "Overall, the main point is clear.",
-        "academic summary",
-        "in addition",
-        "The text explains that"
-      ],
       "id": "academic-summary-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best summarises this text? 'Cities are planting more trees. Trees lower temperatures, clean the air and improve residents' mood.'",
+      "answer": "Cities are planting trees because they cool the air and benefit residents.",
+      "options": [
+        "Cities are planting trees because they cool the air and benefit residents.",
+        "Trees are green and very beautiful, so I love them in cities.",
+        "Some cities have trees, and some cities do not have many trees.",
+        "Cities lower temperatures by cleaning the mood of residents with air."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "Overall, the main point is clear.",
-      "options": [
-        "in addition",
-        "Overall, the main point is clear.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "academic-summary-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which revision makes this summary sentence more objective? Draft: 'The amazing author brilliantly proves that homework is useless.'",
+      "answer": "The author argues that homework has limited benefits.",
+      "options": [
+        "The amazing author proves that homework is totally useless.",
+        "I agree with the author that homework is a waste of time.",
+        "The author argues that homework has limited benefits.",
+        "The brilliant author shows us that homework is so useless."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Source/topic + main idea + key point + result.",
-      "options": [
-        "The text explains that",
-        "in addition",
-        "Overall, the main point is clear.",
-        "Source/topic + main idea + key point + result."
-      ],
       "id": "academic-summary-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang merupakan ringkasan, bukan opini?",
+      "answer": "The article says that exercise reduces stress.",
+      "options": [
+        "Exercise is boring, so I never do it.",
+        "I think exercise is the best thing in the world.",
+        "The article says that exercise reduces stress.",
+        "In my opinion, the writer is completely wrong."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Academic Summary.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "The text explains that regular sleep improves focus and memory. It also shows that poor sleep affects learning.",
-      "options": [
-        "And because but however.",
-        "The text explains that regular sleep improves focus and memory. It also shows that poor sleep affects learning.",
-        "The text explains that",
-        "Overall, the main point is clear."
-      ],
       "id": "academic-summary-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang paling tepat untuk memulai ringkasan sebuah laporan?",
+      "answer": "According to the report,",
+      "options": [
+        "According to the report,",
+        "Let me tell you a story:",
+        "I personally feel that",
+        "Once upon a time,"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Source/topic + main idea + key point + result.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Source/topic + main idea + key point + result."
-      ],
       "id": "academic-summary-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana yang paling tepat melengkapi ringkasan? 'The study ___ that children learn faster when they sleep well.'",
+      "answer": "shows",
+      "options": [
+        "showing",
+        "show",
+        "shows",
+        "shown"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "in addition",
-      "options": [
-        "Overall, the main point is clear.",
-        "academic summary",
-        "in addition",
-        "The text explains that"
-      ],
       "id": "academic-summary-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling baik merangkum teks ini? 'Cities are planting more trees. Trees lower temperatures, clean the air and improve residents' mood.'",
+      "answer": "Cities are planting trees because they cool the air and benefit residents.",
+      "options": [
+        "Cities are planting trees because they cool the air and benefit residents.",
+        "Trees are green and very beautiful, so I love them in cities.",
+        "Some cities have trees, and some cities do not have many trees.",
+        "Cities lower temperatures by cleaning the mood of residents with air."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "Overall, the main point is clear.",
-      "options": [
-        "in addition",
-        "Overall, the main point is clear.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "academic-summary-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Revisi mana yang membuat kalimat ringkasan ini lebih objektif? Draft: 'The amazing author brilliantly proves that homework is useless.'",
+      "answer": "The author argues that homework has limited benefits.",
+      "options": [
+        "The amazing author proves that homework is totally useless.",
+        "I agree with the author that homework is a waste of time.",
+        "The author argues that homework has limited benefits.",
+        "The brilliant author shows us that homework is so useless."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

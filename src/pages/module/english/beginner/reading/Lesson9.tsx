@@ -4,26 +4,26 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const QUIZ: QuizItem[] = [
-  { q: '"Hi! How are you?" adalah jenis pesan...', opts: ['Formal', 'Darurat', 'Informal/casual', 'Bisnis'], ans: 'Informal/casual', exp: '"Hi" = sapaan informal. Pesan ini bersifat santai / percakapan sehari-hari.' },
-  { q: '"Dear Mr. Santoso," adalah pembuka surat...', opts: ['Sangat informal', 'Formal', 'Darurat', 'Iklan'], ans: 'Formal', exp: '"Dear + gelar + nama" = pembuka surat formal.' },
-  { q: '"LOL" dalam pesan singkat artinya...', opts: ['Lots of love', 'Laughing out loud', 'Lots of luck', 'Leave on leave'], ans: 'Laughing out loud', exp: '"LOL" = Laughing Out Loud = tertawa terbahak-bahak (ekspresi humor).' },
+  { q: '"Hi! How are you?" adalah jenis pesan...', opts: ['Formal', 'Informal/casual', 'Bisnis', 'Darurat'], ans: 'Informal/casual', exp: '"Hi" = sapaan informal. Pesan ini bersifat santai / percakapan sehari-hari.' },
+  { q: '"Dear Mr. Santoso," adalah pembuka surat...', opts: ['Sangat informal', 'Iklan', 'Darurat', 'Formal'], ans: 'Formal', exp: '"Dear + gelar + nama" = pembuka surat formal.' },
+  { q: '"LOL" dalam pesan singkat artinya...', opts: ['Laughing out loud', 'Lots of luck', 'Leave on leave', 'Lots of love'], ans: 'Laughing out loud', exp: '"LOL" = Laughing Out Loud = tertawa terbahak-bahak (ekspresi humor).' },
   { q: '"Happy Birthday! 🎂" adalah...', opts: ['Kartu undangan', 'Kartu ucapan ulang tahun', 'Pesan bisnis', 'Tagihan'], ans: 'Kartu ucapan ulang tahun', exp: '"Happy Birthday" = selamat ulang tahun.' },
-  { q: '"Please call me back ASAP" artinya...', opts: ['Hubungi saya nanti-nanti', 'Hubungi saya secepatnya', 'Jangan hubungi saya', 'Saya yang menghubungi'], ans: 'Hubungi saya secepatnya', exp: '"ASAP" = As Soon As Possible = sesegera mungkin.' },
-  { q: '"Wish you were here!" artinya...', opts: ['Saya berharap kamu ada di sini', 'Pergilah dari sini', 'Tetap di sini', 'Kamu sudah di sini'], ans: 'Saya berharap kamu ada di sini', exp: 'Kalimat ini sering ditulis di kartu pos untuk mengatakan kamu merindukan seseorang.' },
-  { q: '"FYI" dalam pesan artinya...', opts: ['For Your Information (Sebagai info untukmu)', 'For Your Invitation', 'Find Your ID', 'Free Your Ideas'], ans: 'For Your Information (Sebagai info untukmu)', exp: '"FYI" = For Your Information = sebagai informasi.' },
-  { q: '"Congrats! 🎉" adalah singkatan dari...', opts: ['Continue', 'Congratulations (Selamat!)', 'Contact', 'Commerce'], ans: 'Congratulations (Selamat!)', exp: '"Congrats" = singkatan dari "Congratulations" = selamat!' },
-  { q: '"Best regards," di akhir pesan berarti...', opts: ['Salam hangat/hormat', 'Sampai jumpa', 'Maaf', 'Terima kasih'], ans: 'Salam hangat/hormat', exp: '"Best regards" = salam hormat (penutup surat formal/semi-formal).' },
-  { q: '"BTW" dalam chat artinya...', opts: ['Better to wait', 'By the way (ngomong-ngomong)', 'Between two walls', 'Buy two wins'], ans: 'By the way (ngomong-ngomong)', exp: '"BTW" = By The Way = ngomong-ngomong / oh iya.' },
-  { q: '"See you soon!" artinya...', opts: ['Sampai jumpa lagi!', 'Sudah lama tidak bertemu', 'Jangan pergi!', 'Semoga bertemu nanti!'], ans: 'Sampai jumpa lagi!', exp: '"See you soon" = sampai jumpa lagi / sampai bertemu lagi.' },
-  { q: '"Warm wishes" di akhir kartu ucapan artinya...', opts: ['Salam dingin', 'Salam hangat', 'Sampai jumpa', 'Terima kasih'], ans: 'Salam hangat', exp: '"Warm wishes" = salam hangat (penutup kartu ucapan yang ramah).' },
-  { q: '"OTW" dalam pesan singkat artinya...', opts: ['On The Way (sedang dalam perjalanan)', 'Over The Weekend', 'On Time Waiting', 'One Two Wait'], ans: 'On The Way (sedang dalam perjalanan)', exp: '"OTW" = On The Way = sedang dalam perjalanan menuju suatu tempat.' },
-  { q: '"Merry Christmas! 🎄" artinya...', opts: ['Selamat Tahun Baru', 'Selamat Hari Natal', 'Selamat Idul Fitri', 'Selamat Ulang Tahun'], ans: 'Selamat Hari Natal', exp: '"Merry Christmas" = Selamat Hari Natal.' },
-  { q: '"Missing you! 😊" artinya...', opts: ['Melupakanmu', 'Merindukan/kangen kamu', 'Menemukanmu', 'Mencarimu'], ans: 'Merindukan/kangen kamu', exp: '"Missing you" = merindukanmu / kangen kamu.' },
-  { q: '"TBH" dalam pesan chat artinya...', opts: ['Too Bad Honestly', 'To Be Honest (Jujur saja)', 'Take Back Home', 'Try Better Here'], ans: 'To Be Honest (Jujur saja)', exp: '"TBH" = To Be Honest = jujur saja / sejujurnya.' },
-  { q: '"Have a safe trip!" artinya...', opts: ['Selamat jalan-jalan', 'Semoga perjalananmu selamat', 'Hati-hati di jalan', 'Semua jawaban benar'], ans: 'Semua jawaban benar', exp: '"Have a safe trip" = semoga perjalananmu selamat (bisa bermakna semua pilihan itu).' },
-  { q: '"P.S." di akhir surat berarti...', opts: ['Please Send', 'Post Script (tambahan informasi di akhir)', 'Pay Service', 'Pretty Soon'], ans: 'Post Script (tambahan informasi di akhir)', exp: '"P.S." = Post Script = pesan tambahan yang ditulis setelah akhir surat.' },
-  { q: '"Happy New Year! 🎆" artinya...', opts: ['Selamat Hari Natal', 'Selamat Ulang Tahun', 'Selamat Tahun Baru', 'Selamat Hari Raya'], ans: 'Selamat Tahun Baru', exp: '"Happy New Year" = Selamat Tahun Baru.' },
-  { q: '"Take care!" di akhir pesan artinya...', opts: ['Ambil ini!', 'Jaga diri!', 'Perhatikan ini!', 'Bawa ini!'], ans: 'Jaga diri!', exp: '"Take care" = jaga diri ya! (ungkapan perhatian kepada orang lain).' },
+  { q: '"Please call me back ASAP" artinya...', opts: ['Saya yang menghubungi', 'Hubungi saya nanti-nanti', 'Hubungi saya secepatnya', 'Jangan hubungi saya'], ans: 'Hubungi saya secepatnya', exp: '"ASAP" = As Soon As Possible = sesegera mungkin.' },
+  { q: '"Wish you were here!" artinya...', opts: ['Pergilah dari sini', 'Tetap di sini', 'Kamu sudah di sini', 'Saya berharap kamu ada di sini'], ans: 'Saya berharap kamu ada di sini', exp: 'Kalimat ini sering ditulis di kartu pos untuk mengatakan kamu merindukan seseorang.' },
+  { q: '"FYI" dalam pesan artinya...', opts: ['For Your Invitation', 'Free Your Ideas', 'Find Your ID', 'For Your Information (Sebagai info untukmu)'], ans: 'For Your Information (Sebagai info untukmu)', exp: '"FYI" = For Your Information = sebagai informasi.' },
+  { q: '"Congrats! 🎉" adalah singkatan dari...', opts: ['Commerce', 'Continue', 'Congratulations (Selamat!)', 'Contact'], ans: 'Congratulations (Selamat!)', exp: '"Congrats" = singkatan dari "Congratulations" = selamat!' },
+  { q: '"Best regards," di akhir pesan berarti...', opts: ['Terima kasih', 'Salam hangat/hormat', 'Sampai jumpa', 'Maaf'], ans: 'Salam hangat/hormat', exp: '"Best regards" = salam hormat (penutup surat formal/semi-formal).' },
+  { q: '"BTW" dalam chat artinya...', opts: ['By the way (ngomong-ngomong)', 'Better to wait', 'Buy two wins', 'Between two walls'], ans: 'By the way (ngomong-ngomong)', exp: '"BTW" = By The Way = ngomong-ngomong / oh iya.' },
+  { q: '"See you soon!" artinya...', opts: ['Sudah lama tidak bertemu', 'Sampai jumpa lagi!', 'Semoga bertemu nanti!', 'Jangan pergi!'], ans: 'Sampai jumpa lagi!', exp: '"See you soon" = sampai jumpa lagi / sampai bertemu lagi.' },
+  { q: '"Warm wishes" di akhir kartu ucapan artinya...', opts: ['Salam dingin', 'Sampai jumpa', 'Terima kasih', 'Salam hangat'], ans: 'Salam hangat', exp: '"Warm wishes" = salam hangat (penutup kartu ucapan yang ramah).' },
+  { q: '"OTW" dalam pesan singkat artinya...', opts: ['On Time Waiting', 'One Two Wait', 'On The Way (sedang dalam perjalanan)', 'Over The Weekend'], ans: 'On The Way (sedang dalam perjalanan)', exp: '"OTW" = On The Way = sedang dalam perjalanan menuju suatu tempat.' },
+  { q: '"Merry Christmas! 🎄" artinya...', opts: ['Selamat Ulang Tahun', 'Selamat Tahun Baru', 'Selamat Hari Natal', 'Selamat Idul Fitri'], ans: 'Selamat Hari Natal', exp: '"Merry Christmas" = Selamat Hari Natal.' },
+  { q: '"Missing you! 😊" artinya...', opts: ['Merindukan/kangen kamu', 'Mencarimu', 'Melupakanmu', 'Menemukanmu'], ans: 'Merindukan/kangen kamu', exp: '"Missing you" = merindukanmu / kangen kamu.' },
+  { q: '"TBH" dalam pesan chat artinya...', opts: ['To Be Honest (Jujur saja)', 'Too Bad Honestly', 'Try Better Here', 'Take Back Home'], ans: 'To Be Honest (Jujur saja)', exp: '"TBH" = To Be Honest = jujur saja / sejujurnya.' },
+  { q: '"Have a safe trip!" artinya...', opts: ['Hati-hati di jalan', 'Semua jawaban benar', 'Semoga perjalananmu selamat', 'Selamat jalan-jalan'], ans: 'Semua jawaban benar', exp: '"Have a safe trip" = semoga perjalananmu selamat (bisa bermakna semua pilihan itu).' },
+  { q: '"P.S." di akhir surat berarti...', opts: ['Pay Service', 'Pretty Soon', 'Please Send', 'Post Script (tambahan informasi di akhir)'], ans: 'Post Script (tambahan informasi di akhir)', exp: '"P.S." = Post Script = pesan tambahan yang ditulis setelah akhir surat.' },
+  { q: '"Happy New Year! 🎆" artinya...', opts: ['Selamat Ulang Tahun', 'Selamat Hari Natal', 'Selamat Hari Raya', 'Selamat Tahun Baru'], ans: 'Selamat Tahun Baru', exp: '"Happy New Year" = Selamat Tahun Baru.' },
+  { q: '"Take care!" di akhir pesan artinya...', opts: ['Jaga diri!', 'Perhatikan ini!', 'Bawa ini!', 'Ambil ini!'], ans: 'Jaga diri!', exp: '"Take care" = jaga diri ya! (ungkapan perhatian kepada orang lain).' },
 ];
 
 const MESSAGE_PASSAGE = {
@@ -65,11 +65,11 @@ const MESSAGE_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Dari mana Rina mengirim kartu pos?', opts: ['Jakarta', 'Surabaya', 'Bali', 'Lombok'], ans: 'Bali' },
-    { q: 'Tempat wisata apa yang Rina kunjungi?', opts: ['Kuta Beach', 'Tanah Lot temple', 'Uluwatu', 'Seminyak'], ans: 'Tanah Lot temple' },
-    { q: '"Wish you were here!" artinya...', opts: ['Rina minta dijemput', 'Rina merindukan keluarganya', 'Rina sudah pulang', 'Rina ingin pindah ke Bali'], ans: 'Rina merindukan keluarganya' },
-    { q: '"OTW" dalam chat Budi artinya...', opts: ['Sudah tiba', 'Sedang dalam perjalanan', 'Akan berangkat', 'Tidak bisa datang'], ans: 'Sedang dalam perjalanan' },
-    { q: '"ETA 10 mins" artinya...', opts: ['Terlambat 10 menit', 'Perkiraan tiba 10 menit lagi', 'Butuh 10 menit', 'Istirahat 10 menit'], ans: 'Perkiraan tiba 10 menit lagi' },
+    { q: 'Dari mana Rina mengirim kartu pos?', opts: ['Bali', 'Surabaya', 'Jakarta', 'Lombok'], ans: 'Bali' },
+    { q: 'Tempat wisata apa yang Rina kunjungi?', opts: ['Uluwatu', 'Tanah Lot temple', 'Kuta Beach', 'Seminyak'], ans: 'Tanah Lot temple' },
+    { q: '"Wish you were here!" artinya...', opts: ['Rina merindukan keluarganya', 'Rina sudah pulang', 'Rina ingin pindah ke Bali', 'Rina minta dijemput'], ans: 'Rina merindukan keluarganya' },
+    { q: '"OTW" dalam chat Budi artinya...', opts: ['Akan berangkat', 'Sedang dalam perjalanan', 'Sudah tiba', 'Tidak bisa datang'], ans: 'Sedang dalam perjalanan' },
+    { q: '"ETA 10 mins" artinya...', opts: ['Istirahat 10 menit', 'Terlambat 10 menit', 'Perkiraan tiba 10 menit lagi', 'Butuh 10 menit'], ans: 'Perkiraan tiba 10 menit lagi' },
   ] as ComprehensionQ[],
 };
 

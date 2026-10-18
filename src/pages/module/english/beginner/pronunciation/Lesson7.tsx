@@ -73,7 +73,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 1,
     question: "Kalimat mana yang biasanya memiliki intonasi TURUN (↘)?",
-    options: ['Are you busy?', 'I am busy.', 'Can you help?'],
+    options: ['Can you help?', 'I am busy.', 'Are you busy?'],
     answer: 'I am busy.',
     explanation: "Pernyataan biasanya memiliki nada yang turun."
   },
@@ -101,7 +101,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 5,
     question: "Pertanyaan 'Is she a teacher?' memiliki intonasi...",
-    options: ['Turun (↘)', 'Naik (↗)'],
+    options: ['Naik (↗)', 'Turun (↘)'],
     answer: 'Naik (↗)',
     explanation: "Pertanyaan Ya/Tidak (Is, Are, Do, Does) memiliki nada naik."
   },
@@ -115,28 +115,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 7,
     question: "Manakah yang merupakan pertanyaan Ya/Tidak?",
-    options: ['Where are you?', 'Can you swim?', 'Who is that?'],
+    options: ['Who is that?', 'Where are you?', 'Can you swim?'],
     answer: 'Can you swim?',
     explanation: "Can you swim? bisa dijawab dengan Ya atau Tidak, jadi nadanya naik."
   },
   {
     id: 8,
     question: "Kalimat 'Sit down, please.' memiliki intonasi...",
-    options: ['Turun (↘)', 'Naik (↗)'],
+    options: ['Naik (↗)', 'Turun (↘)'],
     answer: 'Turun (↘)',
     explanation: "Perintah biasanya memiliki nada turun."
   },
   {
     id: 9,
     question: "Kata 'Really?' dengan nada naik menunjukkan...",
-    options: ['Pernyataan', 'Keterkejutan', 'Perintah'],
+    options: ['Perintah', 'Pernyataan', 'Keterkejutan'],
     answer: 'Keterkejutan',
     explanation: "Nada naik menunjukkan Anda terkejut atau tidak percaya."
   },
   {
     id: 10,
     question: "Pertanyaan 'How are you?' memiliki intonasi...",
-    options: ['Turun (↘)', 'Naik (↗)'],
+    options: ['Naik (↗)', 'Turun (↘)'],
     answer: 'Turun (↘)',
     explanation: "How adalah pertanyaan Wh-, jadi nadanya turun."
   },
@@ -157,14 +157,14 @@ const QUIZ_QUESTIONS = [
   {
     id: 13,
     question: "Manakah pertanyaan Wh-?",
-    options: ['When did you arrive?', 'Did you arrive?', 'You arrived?'],
+    options: ['When did you arrive?', 'You arrived?', 'Did you arrive?'],
     answer: 'When did you arrive?',
     explanation: "When adalah Wh-word (pertanyaan informasi)."
   },
   {
     id: 14,
     question: "Kalimat 'Why are you late?' memiliki intonasi...",
-    options: ['Turun (↘)', 'Naik (↗)'],
+    options: ['Naik (↗)', 'Turun (↘)'],
     answer: 'Turun (↘)',
     explanation: "Why adalah pertanyaan Wh-, nadanya turun."
   },
@@ -178,21 +178,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Jika Anda berbicara datar (tanpa intonasi), Anda terdengar...",
-    options: ['Ramah', 'Bosan/Robot', 'Excited'],
+    options: ['Bosan/Robot', 'Ramah', 'Excited'],
     answer: 'Bosan/Robot',
     explanation: "Intonasi membuat ucapan terdengar natural dan hidup!"
   },
   {
     id: 17,
     question: "Kalimat 'Who is your teacher?' memiliki intonasi...",
-    options: ['Turun (↘)', 'Naik (↗)'],
+    options: ['Naik (↗)', 'Turun (↘)'],
     answer: 'Turun (↘)',
     explanation: "Who adalah pertanyaan Wh-, nadanya turun."
   },
   {
     id: 18,
     question: "Pertanyaan 'Have you finished?' memiliki intonasi...",
-    options: ['Turun (↘)', 'Naik (↗)'],
+    options: ['Naik (↗)', 'Turun (↘)'],
     answer: 'Naik (↗)',
     explanation: "Have you... adalah pertanyaan Ya/Tidak, nadanya naik."
   },
@@ -206,7 +206,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 20,
     question: "Kenapa intonasi penting dalam bahasa Inggris?",
-    options: ['Untuk menulis lebih baik', 'Untuk terdengar natural dan dipahami', 'Tidak penting'],
+    options: ['Untuk menulis lebih baik', 'Tidak penting', 'Untuk terdengar natural dan dipahami'],
     answer: 'Untuk terdengar natural dan dipahami',
     explanation: "Intonasi yang benar membuat Anda terdengar seperti penutur asli!"
   }

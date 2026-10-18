@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const MISTAKE_CATEGORIES = [
   {
     title: "Kata Kerja & Tenses",
@@ -59,148 +61,7 @@ const COMMON_ERRORS = [
   { type: "Tense", wrong: "I am knowing him.", correct: "I know him.", explanation: "'Know' adalah state verb. Tidak pakai -ing." }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Which sentence is correct?",
-    options: ['I am agree with you.', 'I agree with you.', 'I agreeing with you.'],
-    answer: 'I agree with you.',
-    explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
-  },
-  {
-    id: 2,
-    question: "I am married ___ a doctor.",
-    options: ['with', 'to', 'by'],
-    answer: 'to',
-    explanation: "Preposisi yang benar adalah 'Married TO'."
-  },
-  {
-    id: 3,
-    question: "I ___ the bus this morning.",
-    options: ['lost', 'missed', 'losed'],
-    answer: 'missed',
-    explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
-  },
-  {
-    id: 4,
-    question: "He plays football very ___.",
-    options: ['good', 'goodly', 'well'],
-    answer: 'well',
-    explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
-  },
-  {
-    id: 5,
-    question: "It depends ___ the price.",
-    options: ['of', 'from', 'on'],
-    answer: 'on',
-    explanation: "Selalu 'Depends ON'."
-  },
-  {
-    id: 6,
-    question: "Which sentence is correct?",
-    options: ["I am agree with you.","I agree with you.","I agreeing with you."],
-    answer: "I agree with you.",
-    explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
-  },
-  {
-    id: 7,
-    question: "I am married ___ a doctor.",
-    options: ["with","to","by"],
-    answer: "to",
-    explanation: "Preposisi yang benar adalah 'Married TO'."
-  },
-  {
-    id: 8,
-    question: "I ___ the bus this morning.",
-    options: ["lost","missed","losed"],
-    answer: "missed",
-    explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
-  },
-  {
-    id: 9,
-    question: "My brother plays chess very ___.",
-    options: ["good","goodly","well"],
-    answer: "well",
-    explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
-  },
-  {
-    id: 10,
-    question: "It depends ___ the price.",
-    options: ["of","from","on"],
-    answer: "on",
-    explanation: "Selalu 'Depends ON'."
-  },
-  {
-    id: 11,
-    question: "Which sentence is correct?",
-    options: ["I am agree with you.","I agree with you.","I agreeing with you."],
-    answer: "I agree with you.",
-    explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
-  },
-  {
-    id: 12,
-    question: "I am married ___ a doctor.",
-    options: ["with","to","by"],
-    answer: "to",
-    explanation: "Preposisi yang benar adalah 'Married TO'."
-  },
-  {
-    id: 13,
-    question: "I ___ the bus this morning.",
-    options: ["lost","missed","losed"],
-    answer: "missed",
-    explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
-  },
-  {
-    id: 14,
-    question: "Mark plays football very ___.",
-    options: ["good","goodly","well"],
-    answer: "well",
-    explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
-  },
-  {
-    id: 15,
-    question: "It depends ___ the price.",
-    options: ["of","from","on"],
-    answer: "on",
-    explanation: "Selalu 'Depends ON'."
-  },
-  {
-    id: 16,
-    question: "Which sentence is correct?",
-    options: ["I am agree with you.","I agree with you.","I agreeing with you."],
-    answer: "I agree with you.",
-    explanation: "'Agree' adalah kata kerja. Ini bertindak seperti 'I eat' atau 'I sleep'. Tidak perlu 'am'."
-  },
-  {
-    id: 17,
-    question: "I am married ___ a doctor.",
-    options: ["with","to","by"],
-    answer: "to",
-    explanation: "Preposisi yang benar adalah 'Married TO'."
-  },
-  {
-    id: 18,
-    question: "I ___ the bus this morning.",
-    options: ["lost","missed","losed"],
-    answer: "missed",
-    explanation: "Kita mengatakan 'Miss a bus/train/flight'. 'Lose' untuk kunci atau uang."
-  },
-  {
-    id: 19,
-    question: "He plays football very ___.",
-    options: ["great","goodly","well"],
-    answer: "well",
-    explanation: "'Play' adalah tindakan. Jelaskan tindakan dengan Adverbia (Well)."
-  },
-  {
-    id: 20,
-    question: "It depends ___ the price.",
-    options: ["of","from","on"],
-    answer: "on",
-    explanation: "Selalu 'Depends ON'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[19], 'elementary/grammar/19'));
 
 const ElemGrammarLesson19: React.FC = () => {
   const navigate = useNavigate();

@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "I usually ___ in the morning, then I ___ before ___.",
-      "options": [
-        "describe morning, work or study, and evening habits",
-        "final -s in third-person routine verbs",
-        "Use sequence words like first, then, after that, and finally.",
-        "I usually ___ in the morning, then I ___ before ___."
-      ],
       "id": "daily-routine-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct sentence about a daily routine.",
+      "answer": "She gets up at six every morning.",
+      "options": [
+        "She gets up at six every morning.",
+        "She getting up at six every morning.",
+        "She get up at six every morning.",
+        "She is get up at six every morning."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe morning, work or study, and evening habits",
-      "options": [
-        "final -s in third-person routine verbs",
-        "answer without listening to the question",
-        "describe morning, work or study, and evening habits",
-        "Bercerita tentang rutinitas harian dengan present simple."
-      ],
       "id": "daily-routine-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "A friend asks, \"What do you usually do after dinner?\" Which answer is best?",
+      "answer": "I usually wash the dishes and read a book.",
+      "options": [
+        "I washed the dishes and read a book yesterday.",
+        "I am usually wash the dishes and read a book.",
+        "I will wash the dishes and read a book later.",
+        "I usually wash the dishes and read a book."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "I usually check my schedule in the morning, then I study before lunch.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I usually check my schedule in the morning, then I study before lunch.",
-        "My routine is fairly consistent during the week.",
-        "I went there yesterday because blue."
-      ],
       "id": "daily-routine-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word completes the sentence? \"I ___ have breakfast, maybe once a week.\"",
+      "answer": "rarely",
+      "options": [
+        "rarely",
+        "often",
+        "usually",
+        "always"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Daily Routine\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe morning, work or study, and evening habits",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe morning, work or study, and evening habits"
-      ],
       "id": "daily-routine-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Put the routine in order: \"First, I wake up. ___, I take a shower. Finally, I leave for work.\"",
+      "answer": "Then",
+      "options": [
+        "Then",
+        "Before",
+        "Finally",
+        "Last"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "My routine is fairly consistent during the week.",
-      "options": [
-        "What I mean is, this is what I usually do.",
-        "I usually check my schedule in the morning, then I study before lunch.",
-        "My routine is fairly consistent during the week.",
-        "My days are pretty simple."
-      ],
       "id": "daily-routine-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Your colleague asks how your weekdays differ from your weekends. Which answer is clearest?",
+      "answer": "On weekdays I start at seven, but at weekends I usually sleep in until nine.",
+      "options": [
+        "On weekdays I start at seven, but at weekends I usually sleep in until nine.",
+        "On weekdays I started at seven, and at weekends I sleep in until nine yesterday.",
+        "Weekdays and weekends, I don't know, maybe everything is the same or different.",
+        "At weekends I am starting at seven, but on weekdays I sleeping until nine."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "What I mean is, this is what I usually do.",
-      "options": [
-        "Laugh and end the conversation.",
-        "What I mean is, this is what I usually do.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "daily-routine-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence correctly describes a routine that has changed recently?",
+      "answer": "These days I'm cycling to work instead of driving.",
+      "options": [
+        "These days I cycle to work yesterday instead of driving.",
+        "These days I'm cycling to work instead of driving.",
+        "These days I am cycle to work instead of driving.",
+        "These days I had cycled to work instead of driving."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "I usually ___ in the morning, then I ___ before ___.",
-      "options": [
-        "describe morning, work or study, and evening habits",
-        "final -s in third-person routine verbs",
-        "Use sequence words like first, then, after that, and finally.",
-        "I usually ___ in the morning, then I ___ before ___."
-      ],
       "id": "daily-routine-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kalimat yang benar tentang rutinitas harian.",
+      "answer": "She gets up at six every morning.",
+      "options": [
+        "She gets up at six every morning.",
+        "She getting up at six every morning.",
+        "She get up at six every morning.",
+        "She is get up at six every morning."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe morning, work or study, and evening habits",
-      "options": [
-        "final -s in third-person routine verbs",
-        "answer without listening to the question",
-        "describe morning, work or study, and evening habits",
-        "Bercerita tentang rutinitas harian dengan present simple."
-      ],
       "id": "daily-routine-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Seorang teman bertanya, \"What do you usually do after dinner?\" Jawaban mana yang paling tepat?",
+      "answer": "I usually wash the dishes and read a book.",
+      "options": [
+        "I washed the dishes and read a book yesterday.",
+        "I am usually wash the dishes and read a book.",
+        "I will wash the dishes and read a book later.",
+        "I usually wash the dishes and read a book."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "I usually check my schedule in the morning, then I study before lunch.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I usually check my schedule in the morning, then I study before lunch.",
-        "My routine is fairly consistent during the week.",
-        "I went there yesterday because blue."
-      ],
       "id": "daily-routine-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana yang melengkapi kalimat ini? \"I ___ have breakfast, maybe once a week.\"",
+      "answer": "rarely",
+      "options": [
+        "rarely",
+        "often",
+        "usually",
+        "always"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Daily Routine\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe morning, work or study, and evening habits",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe morning, work or study, and evening habits"
-      ],
       "id": "daily-routine-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Urutkan rutinitas ini: \"First, I wake up. ___, I take a shower. Finally, I leave for work.\"",
+      "answer": "Then",
+      "options": [
+        "Then",
+        "Before",
+        "Finally",
+        "Last"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "My routine is fairly consistent during the week.",
-      "options": [
-        "What I mean is, this is what I usually do.",
-        "I usually check my schedule in the morning, then I study before lunch.",
-        "My routine is fairly consistent during the week.",
-        "My days are pretty simple."
-      ],
       "id": "daily-routine-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Rekan kerjamu bertanya apa beda hari kerjamu dengan akhir pekanmu. Jawaban mana yang paling jelas?",
+      "answer": "On weekdays I start at seven, but at weekends I usually sleep in until nine.",
+      "options": [
+        "On weekdays I start at seven, but at weekends I usually sleep in until nine.",
+        "On weekdays I started at seven, and at weekends I sleep in until nine yesterday.",
+        "Weekdays and weekends, I don't know, maybe everything is the same or different.",
+        "At weekends I am starting at seven, but on weekdays I sleeping until nine."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "What I mean is, this is what I usually do.",
-      "options": [
-        "Laugh and end the conversation.",
-        "What I mean is, this is what I usually do.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "daily-routine-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang tepat untuk menggambarkan rutinitas yang baru-baru ini berubah?",
+      "answer": "These days I'm cycling to work instead of driving.",
+      "options": [
+        "These days I cycle to work yesterday instead of driving.",
+        "These days I'm cycling to work instead of driving.",
+        "These days I am cycle to work instead of driving.",
+        "These days I had cycled to work instead of driving."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

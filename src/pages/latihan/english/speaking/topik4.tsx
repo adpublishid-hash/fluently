@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "Excuse me, how do I get to ___ from here?",
-      "options": [
-        "ask for directions, repeat key landmarks, and thank the person",
-        "stress place names and direction words",
-        "Repeat the route in your own words to confirm understanding.",
-        "Excuse me, how do I get to ___ from here?"
-      ],
       "id": "asking-directions-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question asks for directions politely?",
+      "answer": "Excuse me, where is the nearest bank?",
+      "options": [
+        "Excuse me, where is the nearest bank?",
+        "Excuse me, who is the nearest bank?",
+        "Hey, bank where, tell me now?",
+        "Excuse me, when is the nearest bank?"
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "ask for directions, repeat key landmarks, and thank the person",
-      "options": [
-        "stress place names and direction words",
-        "answer without listening to the question",
-        "ask for directions, repeat key landmarks, and thank the person",
-        "Minta arah dan memastikan instruksi dengan jelas."
-      ],
       "id": "asking-directions-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Someone says, \"Turn left at the traffic lights.\" What should you do?",
+      "answer": "Go to the traffic lights and turn left.",
+      "options": [
+        "Go to the traffic lights and turn right.",
+        "Turn left before the traffic lights.",
+        "Go to the traffic lights and turn left.",
+        "Stop at the traffic lights and go back."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "Excuse me, how do I get to the train station from here?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Excuse me, how do I get to the train station from here?",
-        "Could you tell me the best way to reach the station?",
-        "I went there yesterday because blue."
-      ],
       "id": "asking-directions-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Complete the direction: \"The pharmacy is ___ the bakery and the post office.\"",
+      "answer": "between",
+      "options": [
+        "between",
+        "among",
+        "across",
+        "through"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Asking for Directions\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "ask for directions, repeat key landmarks, and thank the person",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "ask for directions, repeat key landmarks, and thank the person"
-      ],
       "id": "asking-directions-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "After getting directions, what is the best thing to say?",
+      "answer": "Thank you so much for your help.",
+      "options": [
+        "Thank you so much for your help.",
+        "That is not my problem, sorry.",
+        "I already knew the way, actually.",
+        "You speak much too fast, I think."
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "Could you tell me the best way to reach the station?",
-      "options": [
-        "So I go straight first, then turn left, right?",
-        "Excuse me, how do I get to the train station from here?",
-        "Could you tell me the best way to reach the station?",
-        "How do I get to the station?"
-      ],
       "id": "asking-directions-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "You are told, \"Go past the church, take the second right, and it's on your left.\" Which confirmation is accurate?",
+      "answer": "So past the church, second right, and it's on my left?",
+      "options": [
+        "So before the church, second right, and it's on my right?",
+        "So past the church, second left, and it's on my right?",
+        "So past the church, second right, and it's on my left?",
+        "So past the church, first right, and it's on my left?"
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "So I go straight first, then turn left, right?",
-      "options": [
-        "Laugh and end the conversation.",
-        "So I go straight first, then turn left, right?",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "asking-directions-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "You didn't catch the last part of the directions. Which phrase is most appropriate?",
+      "answer": "Sorry, could you repeat the part after the roundabout?",
+      "options": [
+        "Sorry, could you stop talking about the roundabout?",
+        "I understood everything, but please say it all again.",
+        "Roundabout? I don't need that part at all, thanks.",
+        "Sorry, could you repeat the part after the roundabout?"
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "Excuse me, how do I get to ___ from here?",
-      "options": [
-        "ask for directions, repeat key landmarks, and thank the person",
-        "stress place names and direction words",
-        "Repeat the route in your own words to confirm understanding.",
-        "Excuse me, how do I get to ___ from here?"
-      ],
       "id": "asking-directions-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang menanyakan arah dengan sopan?",
+      "answer": "Excuse me, where is the nearest bank?",
+      "options": [
+        "Excuse me, where is the nearest bank?",
+        "Excuse me, who is the nearest bank?",
+        "Hey, bank where, tell me now?",
+        "Excuse me, when is the nearest bank?"
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "ask for directions, repeat key landmarks, and thank the person",
-      "options": [
-        "stress place names and direction words",
-        "answer without listening to the question",
-        "ask for directions, repeat key landmarks, and thank the person",
-        "Minta arah dan memastikan instruksi dengan jelas."
-      ],
       "id": "asking-directions-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Seseorang berkata, \"Turn left at the traffic lights.\" Apa yang harus kamu lakukan?",
+      "answer": "Go to the traffic lights and turn left.",
+      "options": [
+        "Go to the traffic lights and turn right.",
+        "Turn left before the traffic lights.",
+        "Go to the traffic lights and turn left.",
+        "Stop at the traffic lights and go back."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "Excuse me, how do I get to the train station from here?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Excuse me, how do I get to the train station from here?",
-        "Could you tell me the best way to reach the station?",
-        "I went there yesterday because blue."
-      ],
       "id": "asking-directions-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Lengkapi petunjuk arah ini: \"The pharmacy is ___ the bakery and the post office.\"",
+      "answer": "between",
+      "options": [
+        "between",
+        "among",
+        "across",
+        "through"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Asking for Directions\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "ask for directions, repeat key landmarks, and thank the person",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "ask for directions, repeat key landmarks, and thank the person"
-      ],
       "id": "asking-directions-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Setelah mendapat petunjuk arah, apa yang paling baik diucapkan?",
+      "answer": "Thank you so much for your help.",
+      "options": [
+        "Thank you so much for your help.",
+        "That is not my problem, sorry.",
+        "I already knew the way, actually.",
+        "You speak much too fast, I think."
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "Could you tell me the best way to reach the station?",
-      "options": [
-        "So I go straight first, then turn left, right?",
-        "Excuse me, how do I get to the train station from here?",
-        "Could you tell me the best way to reach the station?",
-        "How do I get to the station?"
-      ],
       "id": "asking-directions-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kamu diberi tahu, \"Go past the church, take the second right, and it's on your left.\" Konfirmasi mana yang akurat?",
+      "answer": "So past the church, second right, and it's on my left?",
+      "options": [
+        "So before the church, second right, and it's on my right?",
+        "So past the church, second left, and it's on my right?",
+        "So past the church, second right, and it's on my left?",
+        "So past the church, first right, and it's on my left?"
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "So I go straight first, then turn left, right?",
-      "options": [
-        "Laugh and end the conversation.",
-        "So I go straight first, then turn left, right?",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "asking-directions-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kamu tidak menangkap bagian terakhir dari petunjuk arah. Frasa mana yang paling tepat?",
+      "answer": "Sorry, could you repeat the part after the roundabout?",
+      "options": [
+        "Sorry, could you stop talking about the roundabout?",
+        "I understood everything, but please say it all again.",
+        "Roundabout? I don't need that part at all, thanks.",
+        "Sorry, could you repeat the part after the roundabout?"
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

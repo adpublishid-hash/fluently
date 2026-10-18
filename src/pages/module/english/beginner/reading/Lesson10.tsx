@@ -4,26 +4,26 @@ import { QuizEngine, ComprehensionSection, getCompletedReadingLessons, markReadi
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 const FINAL_QUIZ: QuizItem[] = [
-  { q: '"OPEN" pada pintu toko artinya...', opts: ['Tutup', 'Buka', 'Pindah', 'Diskon'], ans: 'Buka', exp: '"OPEN" = toko sedang buka / melayani pelanggan.' },
-  { q: '"Best Before: 20 June 2025" artinya...', opts: ['Dibuat 20 Juni', 'Dijual hingga 20 Juni', 'Terbaik dikonsumsi sebelum 20 Juni', 'Kadaluarsa 20 Juni'], ans: 'Terbaik dikonsumsi sebelum 20 Juni', exp: '"Best before" = batas waktu terbaik dikonsumsi.' },
-  { q: '"Dr. Putri Wulandari" — gelar "Dr." menandakan...', opts: ['Insinyur', 'Dokter/Doktor', 'Direktur', 'Profesor'], ans: 'Dokter/Doktor', exp: '"Dr." = singkatan dari Doctor (dokter atau doktor).' },
-  { q: '"BUY 2 GET 1 FREE" artinya...', opts: ['Beli 1 dapat 2 gratis', 'Beli 2 dapat 1 gratis', 'Diskon 50%', 'Beli 3 bayar 2'], ans: 'Beli 2 dapat 1 gratis', exp: '"Buy 2 Get 1 Free" = beli dua, dapat satu gratis.' },
-  { q: '"Date of Birth" pada formulir artinya...', opts: ['Tempat lahir', 'Tanggal lahir', 'Usia', 'Tanggal daftar'], ans: 'Tanggal lahir', exp: '"Date of birth" = tanggal lahir (DOB).' },
+  { q: '"OPEN" pada pintu toko artinya...', opts: ['Pindah', 'Diskon', 'Tutup', 'Buka'], ans: 'Buka', exp: '"OPEN" = toko sedang buka / melayani pelanggan.' },
+  { q: '"Best Before: 20 June 2025" artinya...', opts: ['Dijual hingga 20 Juni', 'Kadaluarsa 20 Juni', 'Dibuat 20 Juni', 'Terbaik dikonsumsi sebelum 20 Juni'], ans: 'Terbaik dikonsumsi sebelum 20 Juni', exp: '"Best before" = batas waktu terbaik dikonsumsi.' },
+  { q: '"Dr. Putri Wulandari" — gelar "Dr." menandakan...', opts: ['Direktur', 'Profesor', 'Dokter/Doktor', 'Insinyur'], ans: 'Dokter/Doktor', exp: '"Dr." = singkatan dari Doctor (dokter atau doktor).' },
+  { q: '"BUY 2 GET 1 FREE" artinya...', opts: ['Beli 1 dapat 2 gratis', 'Diskon 50%', 'Beli 3 bayar 2', 'Beli 2 dapat 1 gratis'], ans: 'Beli 2 dapat 1 gratis', exp: '"Buy 2 Get 1 Free" = beli dua, dapat satu gratis.' },
+  { q: '"Date of Birth" pada formulir artinya...', opts: ['Tanggal lahir', 'Tanggal daftar', 'Usia', 'Tempat lahir'], ans: 'Tanggal lahir', exp: '"Date of birth" = tanggal lahir (DOB).' },
   { q: '"CAUTION: WET FLOOR" artinya...', opts: ['Lantai kering', 'Hati-hati lantai basah', 'Dilarang masuk', 'Lantai licin'], ans: 'Hati-hati lantai basah', exp: '"Caution" = hati-hati. "Wet floor" = lantai basah.' },
-  { q: '"Appetizer" pada menu restoran adalah...', opts: ['Hidangan utama', 'Makanan penutup', 'Hidangan pembuka', 'Minuman'], ans: 'Hidangan pembuka', exp: '"Appetizer" = hidangan pembuka.' },
-  { q: '"DELAYED" pada layar bandara artinya...', opts: ['Tepat waktu', 'Dibatalkan', 'Ditunda/terlambat', 'Sudah berangkat'], ans: 'Ditunda/terlambat', exp: '"Delayed" = ada penundaan keberangkatan.' },
-  { q: '"OTW" dalam chat artinya...', opts: ['One The Work', 'On The Way (sedang di perjalanan)', 'Off The Weekend', 'Over The World'], ans: 'On The Way (sedang di perjalanan)', exp: '"OTW" = On The Way = sedang dalam perjalanan.' },
-  { q: '"Turn left at the traffic light." artinya...', opts: ['Belok kanan di persimpangan', 'Lurus di lampu merah', 'Belok kiri di lampu merah', 'Putar balik'], ans: 'Belok kiri di lampu merah', exp: '"Turn left" = belok kiri. "Traffic light" = lampu lalu lintas.' },
-  { q: '"Nationality: Indonesian" pada formulir artinya...', opts: ['Nama: Indonesia', 'Bahasa: Indonesia', 'Kewarganegaraan: Indonesia', 'Alamat: Indonesia'], ans: 'Kewarganegaraan: Indonesia', exp: '"Nationality" = kewarganegaraan.' },
-  { q: '"STAFF ONLY" artinya...', opts: ['Untuk semua orang', 'Untuk pengunjung', 'Khusus untuk pegawai', 'Untuk pembeli'], ans: 'Khusus untuk pegawai', exp: '"Staff only" = hanya untuk staf/karyawan.' },
-  { q: '"FLASH SALE — LIMITED TIME!" pada iklan artinya...', opts: ['Penjualan lambat', 'Promo kilat — waktu terbatas!', 'Penjualan eksklusif', 'Diskon besar tetap'], ans: 'Promo kilat — waktu terbatas!', exp: '"Flash sale" = promo kilat. "Limited time" = waktu terbatas.' },
-  { q: '"Happy New Year! 🎆" artinya...', opts: ['Selamat Hari Natal', 'Selamat Ulang Tahun', 'Selamat Tahun Baru', 'Selamat Idul Fitri'], ans: 'Selamat Tahun Baru', exp: '"Happy New Year" = Selamat Tahun Baru.' },
-  { q: '"KEEP REFRIGERATED" pada label artinya...', opts: ['Simpan kering', 'Simpan di lemari es', 'Simpan di suhu ruang', 'Jangan dibekukan'], ans: 'Simpan di lemari es', exp: '"Refrigerated" = didinginkan. Simpan di kulkas.' },
-  { q: '"Mr." digunakan untuk...', opts: ['Wanita menikah', 'Wanita muda', 'Pria dewasa', 'Anak laki-laki'], ans: 'Pria dewasa', exp: '"Mr." (Mister) = gelar untuk pria dewasa.' },
-  { q: '"SOLD OUT" artinya...', opts: ['Baru tersedia', 'Habis terjual', 'Sedang diskon', 'Beli sekarang'], ans: 'Habis terjual', exp: '"Sold out" = stok habis / kehabisan.' },
-  { q: '"Service Charge: 10%" pada tagihan restoran artinya...', opts: ['Diskon 10%', 'Biaya servis 10%', 'Pajak 10%', 'Tip 10%'], ans: 'Biaya servis 10%', exp: '"Service charge" = biaya pelayanan yang ditambahkan ke tagihan.' },
-  { q: '"Best regards," di akhir email formal artinya...', opts: ['Terima kasih', 'Salam hangat/hormat', 'Permisi', 'Yth.'], ans: 'Salam hangat/hormat', exp: '"Best regards" = salam hormat. Penutup surat formal.' },
-  { q: '"EXIT" pada gedung artinya...', opts: ['Pintu masuk', 'Tangga darurat', 'Lift', 'Pintu keluar'], ans: 'Pintu keluar', exp: '"Exit" = pintu keluar / jalan keluar.' },
+  { q: '"Appetizer" pada menu restoran adalah...', opts: ['Makanan penutup', 'Hidangan pembuka', 'Minuman', 'Hidangan utama'], ans: 'Hidangan pembuka', exp: '"Appetizer" = hidangan pembuka.' },
+  { q: '"DELAYED" pada layar bandara artinya...', opts: ['Sudah berangkat', 'Tepat waktu', 'Dibatalkan', 'Ditunda/terlambat'], ans: 'Ditunda/terlambat', exp: '"Delayed" = ada penundaan keberangkatan.' },
+  { q: '"OTW" dalam chat artinya...', opts: ['One The Work', 'Over The World', 'Off The Weekend', 'On The Way (sedang di perjalanan)'], ans: 'On The Way (sedang di perjalanan)', exp: '"OTW" = On The Way = sedang dalam perjalanan.' },
+  { q: '"Turn left at the traffic light." artinya...', opts: ['Belok kanan di persimpangan', 'Putar balik', 'Belok kiri di lampu merah', 'Lurus di lampu merah'], ans: 'Belok kiri di lampu merah', exp: '"Turn left" = belok kiri. "Traffic light" = lampu lalu lintas.' },
+  { q: '"Nationality: Indonesian" pada formulir artinya...', opts: ['Bahasa: Indonesia', 'Alamat: Indonesia', 'Kewarganegaraan: Indonesia', 'Nama: Indonesia'], ans: 'Kewarganegaraan: Indonesia', exp: '"Nationality" = kewarganegaraan.' },
+  { q: '"STAFF ONLY" artinya...', opts: ['Untuk pengunjung', 'Untuk semua orang', 'Untuk pembeli', 'Khusus untuk pegawai'], ans: 'Khusus untuk pegawai', exp: '"Staff only" = hanya untuk staf/karyawan.' },
+  { q: '"FLASH SALE — LIMITED TIME!" pada iklan artinya...', opts: ['Promo kilat — waktu terbatas!', 'Penjualan eksklusif', 'Diskon besar tetap', 'Penjualan lambat'], ans: 'Promo kilat — waktu terbatas!', exp: '"Flash sale" = promo kilat. "Limited time" = waktu terbatas.' },
+  { q: '"Happy New Year! 🎆" artinya...', opts: ['Selamat Idul Fitri', 'Selamat Hari Natal', 'Selamat Ulang Tahun', 'Selamat Tahun Baru'], ans: 'Selamat Tahun Baru', exp: '"Happy New Year" = Selamat Tahun Baru.' },
+  { q: '"KEEP REFRIGERATED" pada label artinya...', opts: ['Simpan di suhu ruang', 'Jangan dibekukan', 'Simpan kering', 'Simpan di lemari es'], ans: 'Simpan di lemari es', exp: '"Refrigerated" = didinginkan. Simpan di kulkas.' },
+  { q: '"Mr." digunakan untuk...', opts: ['Pria dewasa', 'Anak laki-laki', 'Wanita muda', 'Wanita menikah'], ans: 'Pria dewasa', exp: '"Mr." (Mister) = gelar untuk pria dewasa.' },
+  { q: '"SOLD OUT" artinya...', opts: ['Sedang diskon', 'Beli sekarang', 'Habis terjual', 'Baru tersedia'], ans: 'Habis terjual', exp: '"Sold out" = stok habis / kehabisan.' },
+  { q: '"Service Charge: 10%" pada tagihan restoran artinya...', opts: ['Pajak 10%', 'Tip 10%', 'Diskon 10%', 'Biaya servis 10%'], ans: 'Biaya servis 10%', exp: '"Service charge" = biaya pelayanan yang ditambahkan ke tagihan.' },
+  { q: '"Best regards," di akhir email formal artinya...', opts: ['Permisi', 'Yth.', 'Terima kasih', 'Salam hangat/hormat'], ans: 'Salam hangat/hormat', exp: '"Best regards" = salam hormat. Penutup surat formal.' },
+  { q: '"EXIT" pada gedung artinya...', opts: ['Pintu keluar', 'Pintu masuk', 'Tangga darurat', 'Lift'], ans: 'Pintu keluar', exp: '"Exit" = pintu keluar / jalan keluar.' },
 ];
 
 const FINAL_PASSAGE = {
@@ -51,11 +51,11 @@ const FINAL_PASSAGE = {
     </div>
   ),
   questions: [
-    { q: 'Tur ini tersedia pada hari apa?', opts: ['Setiap hari', 'Senin–Jumat', 'Sabtu & Minggu', 'Hanya Sabtu'], ans: 'Sabtu & Minggu' },
-    { q: 'Jam berapa tur dimulai?', opts: ['07:00 AM', '08:00 AM', '09:00 AM', '10:00 AM'], ans: '08:00 AM' },
-    { q: 'Berapa harga per orang?', opts: ['Rp 250.000', 'Rp 300.000', 'Rp 350.000', 'Rp 400.000'], ans: 'Rp 350.000' },
-    { q: 'Apa saja tempat wisata yang dikunjungi?', opts: ['Bali, Lombok, NTT', 'Borobudur, Prambanan, Kraton', 'Jakarta, Bandung, Surabaya', 'Merapi, Merbabu, Lawu'], ans: 'Borobudur, Prambanan, Kraton' },
-    { q: 'Apakah perlu booking terlebih dahulu?', opts: ['Tidak perlu', 'Ya, perlu booking dulu', 'Beli langsung di tempat', 'Tidak disebutkan'], ans: 'Ya, perlu booking dulu' },
+    { q: 'Tur ini tersedia pada hari apa?', opts: ['Sabtu & Minggu', 'Hanya Sabtu', 'Setiap hari', 'Senin–Jumat'], ans: 'Sabtu & Minggu' },
+    { q: 'Jam berapa tur dimulai?', opts: ['10:00 AM', '07:00 AM', '08:00 AM', '09:00 AM'], ans: '08:00 AM' },
+    { q: 'Berapa harga per orang?', opts: ['Rp 250.000', 'Rp 350.000', 'Rp 300.000', 'Rp 400.000'], ans: 'Rp 350.000' },
+    { q: 'Apa saja tempat wisata yang dikunjungi?', opts: ['Bali, Lombok, NTT', 'Jakarta, Bandung, Surabaya', 'Borobudur, Prambanan, Kraton', 'Merapi, Merbabu, Lawu'], ans: 'Borobudur, Prambanan, Kraton' },
+    { q: 'Apakah perlu booking terlebih dahulu?', opts: ['Ya, perlu booking dulu', 'Tidak perlu', 'Tidak disebutkan', 'Beli langsung di tempat'], ans: 'Ya, perlu booking dulu' },
   ] as ComprehensionQ[],
 };
 

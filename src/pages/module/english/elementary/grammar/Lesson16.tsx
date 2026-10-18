@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const REPORTED_RULES = [
   {
     title: "Perubahan Tense (Backshift)",
@@ -70,148 +72,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Drink ➡️ Drank", en: "'I drink coffee.' ➜ He said he drank coffee.", id: "Dia berkata dia minum kopi.", reported: "He said he drank coffee.", icon: "☕" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "'I am tired.' ➡️ He said he ___ tired.",
-    options: ['is', 'was', 'were'],
-    answer: 'was',
-    explanation: "Present 'am' berubah menjadi Past 'was'."
-  },
-  {
-    id: 2,
-    question: "'I can fly.' ➡️ She said she ___ fly.",
-    options: ['can', 'could', 'canned'],
-    answer: 'could',
-    explanation: "'Can' berubah menjadi 'could' dalam reported speech."
-  },
-  {
-    id: 3,
-    question: "'I want pizza.' ➡️ He said he ___ pizza.",
-    options: ['wanted', 'want', 'wants'],
-    answer: 'wanted',
-    explanation: "Present Simple 'want' berubah menjadi Past Simple 'wanted'."
-  },
-  {
-    id: 4,
-    question: "'I will help.' ➡️ She said she ___ help.",
-    options: ['will', 'would', 'willed'],
-    answer: 'would',
-    explanation: "'Will' menjadi 'would'."
-  },
-  {
-    id: 5,
-    question: "'We are leaving.' ➡️ They said they ___ leaving.",
-    options: ['are', 'was', 'were'],
-    answer: 'were',
-    explanation: "'Are' berubah menjadi 'were'."
-  },
-  {
-    id: 6,
-    question: "'I am sad.' ➡️ The boy said he ___ sad.",
-    options: ["is","was","were"],
-    answer: "was",
-    explanation: "Present 'am' berubah menjadi Past 'was'."
-  },
-  {
-    id: 7,
-    question: "'I can fly.' ➡️ My sister said she ___ fly.",
-    options: ["can","could","canned"],
-    answer: "could",
-    explanation: "'Can' berubah menjadi 'could' dalam reported speech."
-  },
-  {
-    id: 8,
-    question: "'I want pizza.' ➡️ He said she ___ pizza.",
-    options: ["wanted","want","wants"],
-    answer: "wanted",
-    explanation: "Present Simple 'want' berubah menjadi Past Simple 'wanted'."
-  },
-  {
-    id: 9,
-    question: "'I will help.' ➡️ She said she ___ help.",
-    options: ["will","would","willed"],
-    answer: "would",
-    explanation: "'Will' menjadi 'would'."
-  },
-  {
-    id: 10,
-    question: "'They are leaving.' ➡️ They said we ___ leaving.",
-    options: ["are","was","were"],
-    answer: "were",
-    explanation: "'Are' berubah menjadi 'were'."
-  },
-  {
-    id: 11,
-    question: "'I am thirsty.' ➡️ My brother said he ___ thirsty.",
-    options: ["is","was","were"],
-    answer: "was",
-    explanation: "Present 'am' berubah menjadi Past 'was'."
-  },
-  {
-    id: 12,
-    question: "'I can fly.' ➡️ She said she ___ fly.",
-    options: ["can","could","canned"],
-    answer: "could",
-    explanation: "'Can' berubah menjadi 'could' dalam reported speech."
-  },
-  {
-    id: 13,
-    question: "'I want pasta.' ➡️ My father said he ___ pasta.",
-    options: ["wanted","want","wants"],
-    answer: "wanted",
-    explanation: "Present Simple 'want' berubah menjadi Past Simple 'wanted'."
-  },
-  {
-    id: 14,
-    question: "'I will help.' ➡️ She said he ___ help.",
-    options: ["will","would","willed"],
-    answer: "would",
-    explanation: "'Will' menjadi 'would'."
-  },
-  {
-    id: 15,
-    question: "'My parents are leaving.' ➡️ The teachers said they ___ leaving.",
-    options: ["are","was","were"],
-    answer: "were",
-    explanation: "'Are' berubah menjadi 'were'."
-  },
-  {
-    id: 16,
-    question: "'I am thirsty.' ➡️ She said she ___ thirsty.",
-    options: ["is","was","were"],
-    answer: "was",
-    explanation: "Present 'am' berubah menjadi Past 'was'."
-  },
-  {
-    id: 17,
-    question: "'I can fly.' ➡️ Mark said she ___ fly.",
-    options: ["can","could","canned"],
-    answer: "could",
-    explanation: "'Can' berubah menjadi 'could' dalam reported speech."
-  },
-  {
-    id: 18,
-    question: "'I want pizza.' ➡️ He said the boy ___ pizza.",
-    options: ["wanted","want","wants"],
-    answer: "wanted",
-    explanation: "Present Simple 'want' berubah menjadi Past Simple 'wanted'."
-  },
-  {
-    id: 19,
-    question: "'I will help.' ➡️ My father said the girl ___ help.",
-    options: ["will","would","willed"],
-    answer: "would",
-    explanation: "'Will' menjadi 'would'."
-  },
-  {
-    id: 20,
-    question: "'We are leaving.' ➡️ We said we ___ leaving.",
-    options: ["are","was","were"],
-    answer: "were",
-    explanation: "'Are' berubah menjadi 'were'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[16], 'elementary/grammar/16'));
 
 const ElemGrammarLesson16: React.FC = () => {
   const navigate = useNavigate();

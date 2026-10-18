@@ -4,286 +4,68 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "What day does Chloe start her job?",
-    "opts": [
-      "Friday",
-      "Monday",
-      "Wednesday",
-      "Sunday"
-    ],
-    "ans": "Monday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'pushed back' mean?",
-    "opts": [
-      "Delayed",
-      "Canceled",
-      "Moved forward",
-      "Advanced"
-    ],
-    "ans": "Delayed",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Where can employees get water during maintenance?",
-    "opts": [
-      "Near the elevator",
-      "In the staff lounge",
-      "Outside the building",
-      "In the manager's office"
-    ],
-    "ans": "In the staff lounge",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When will the water supply be shut off?",
-    "opts": [
-      "Sunday",
-      "Saturday",
-      "Friday",
-      "Monday"
-    ],
-    "ans": "Saturday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What did the workplace notice announce?",
-    "opts": [
-      "Pay raise",
-      "Maintenance on water pipes",
-      "Fire drill",
-      "New manager"
-    ],
-    "ans": "Maintenance on water pipes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "How much is John paying per walk?",
-    "opts": [
-      "$10",
-      "$15",
-      "$20",
-      "$25"
-    ],
-    "ans": "$15",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What kind of environment was Chloe's new café?",
-    "opts": [
-      "Loud and busy",
-      "Cozy",
-      "Expensive",
-      "Modern and sterile"
-    ],
-    "ans": "Cozy",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is Sarah writing to?",
-    "opts": [
-      "Clients",
-      "The team",
-      "Her manager",
-      "The public"
-    ],
-    "ans": "The team",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is moving to London?",
-    "opts": [
-      "Jane",
-      "Mia",
-      "Chloe",
-      "Sarah"
-    ],
-    "ans": "Chloe",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is the main topic of John's advertisement?",
-    "opts": [
-      "Selling a dog",
-      "Hiring a dog walker",
-      "Buying dog food",
-      "Veterinary services"
-    ],
-    "ans": "Hiring a dog walker",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What was Chloe's major problem?",
-    "opts": [
-      "Internet was down",
-      "Lost boxes",
-      "Missed a train",
-      "Got sick"
-    ],
-    "ans": "Lost boxes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'exhausting' mean?",
-    "opts": [
-      "Relaxing",
-      "Very tiring",
-      "Fast",
-      "Boring"
-    ],
-    "ans": "Very tiring",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Which restrooms have a backup water tank?",
-    "opts": [
-      "Top floor",
-      "Ground floor",
-      "Second floor",
-      "Basement"
-    ],
-    "ans": "Ground floor",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Why did Sarah reschedule the meeting?",
-    "opts": [
-      "She is sick",
-      "Stakeholders are traveling",
-      "Room is booked",
-      "Project canceled"
-    ],
-    "ans": "Stakeholders are traveling",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When is the new kick-off meeting?",
-    "opts": [
-      "Wednesday 10 AM",
-      "Thursday 10 AM",
-      "Friday 10 AM",
-      "Friday 3 PM"
-    ],
-    "ans": "Friday 10 AM",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What must John's dog walker have experience with?",
-    "opts": [
-      "Small breeds",
-      "Large dogs",
-      "Sick dogs",
-      "Puppies"
-    ],
-    "ans": "Large dogs",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "According to the email, what should team members review?",
-    "opts": [
-      "Budget reports",
-      "Attached agenda",
-      "Marketing strategy",
-      "Holiday schedule"
-    ],
-    "ans": "Attached agenda",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What breed is John's dog?",
-    "opts": [
-      "Poodle",
-      "Husky",
-      "Golden Retriever",
-      "Bulldog"
-    ],
-    "ans": "Golden Retriever",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does John's dog walker need to provide?",
-    "opts": [
-      "A reference",
-      "A resume",
-      "A car",
-      "Dog treats"
-    ],
-    "ans": "A reference",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is Chloe looking forward to?",
-    "opts": [
-      "Mia's visit in the summer",
-      "Buying a new house",
-      "Getting a promotion",
-      "Moving again"
-    ],
-    "ans": "Mia's visit in the summer",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[11], 'intermediate/reading/11');
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Workplace Notice: Maintenance",
+  passageTitle: "Workplace Notice: Summer Staff Party",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Maintenance Work</strong><br/><br/>Please be advised that the building's water supply will be shut off this Saturday from 8:00 AM to 2:00 PM due to scheduled maintenance on the main pipes. We apologize for the inconvenience this may cause to those coming in for weekend shifts. Bottled water will be provided in the staff lounge. Restrooms on the ground floor will remain operational using a backup water tank." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Summer Staff Party</strong><br/><br/>All employees are invited to the annual summer party on Friday 14 July from 4:00 PM to 8:00 PM in the rooftop garden. Food and soft drinks will be provided free of charge. Staff may bring one guest each, but guests must be registered with reception by Wednesday 12 July. In case of rain, the party will move to the ground-floor canteen. The office will close at 3:30 PM that day so that everyone can attend." }} />
   ),
   questions: [
   {
-    "q": "How long will the water supply be shut off?",
+    "q": "Where will the party be held if the weather is good?",
     "opts": [
-      "4 hours",
-      "6 hours",
-      "8 hours",
-      "The whole day"
+      "In the ground-floor canteen",
+      "In the rooftop garden",
+      "At reception",
+      "In a local restaurant"
     ],
-    "ans": "6 hours"
+    "ans": "In the rooftop garden"
   },
   {
-    "q": "Which facility will work normally?",
+    "q": "How many guests can each employee bring?",
     "opts": [
-      "Pipes on the second floor",
-      "All restrooms",
-      "Restrooms on the ground floor",
-      "The coffee machine"
+      "None",
+      "Two",
+      "As many as they like",
+      "One"
     ],
-    "ans": "Restrooms on the ground floor"
+    "ans": "One"
   },
   {
-    "q": "How is the company helping weekend staff?",
+    "q": "What is the deadline for registering guests?",
     "opts": [
-      "Giving them the day off",
-      "Providing bottled water",
-      "Moving them to a different building",
-      "Giving them extra pay"
+      "Wednesday 12 July",
+      "Friday 14 July",
+      "Tuesday 11 July",
+      "Monday 10 July"
     ],
-    "ans": "Providing bottled water"
+    "ans": "Wednesday 12 July"
   },
   {
-    "q": "Why is the water off?",
+    "q": "What will happen if it rains?",
     "opts": [
-      "Unpaid bills",
-      "Pipe maintenance",
-      "Cleaning operations",
-      "Emergency leak"
+      "The party will be cancelled.",
+      "The party will start an hour later than planned.",
+      "The party will move to the canteen.",
+      "Guests will not be allowed."
     ],
-    "ans": "Pipe maintenance"
+    "ans": "The party will move to the canteen."
   },
   {
-    "q": "When does the shut off end?",
+    "q": "Why will the office close at 3:30 PM on the day of the party?",
     "opts": [
-      "8:00 AM",
-      "12:00 PM",
-      "2:00 PM",
-      "Midnight"
+      "Because of maintenance work",
+      "So that everyone can attend",
+      "Because it is a bank holiday",
+      "So that the rooftop can be cleaned"
     ],
-    "ans": "2:00 PM"
+    "ans": "So that everyone can attend"
   }
 ]
 };
@@ -324,7 +106,7 @@ export default function InterReadingLesson11(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Workplace Notice: Maintenance</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Notice and Workplace Facilities</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -353,7 +135,7 @@ export default function InterReadingLesson11(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Workplace Notice: Maintenance</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>
@@ -361,12 +143,12 @@ export default function InterReadingLesson11(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Teks ini melatih kemampuan ekstraksi informasi:
+                    {lessonTips[11].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Pemahaman Fakta:</strong> Cari tahu poin penting (waktu, orang, syarat).</li>
-                    <li><strong className="text-slate-800">Makna Kata:</strong> Coba pahami kosakata baru dari konteks kalimat.</li>
-                    <li><strong className="text-slate-800">Tujuan Teks:</strong> Kenapa teks ini ditulis?</li>
+                    {lessonTips[11].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mengevaluasi bacaanmu!

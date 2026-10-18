@@ -76,7 +76,7 @@ export default function ProficiencyReadingLesson({ lessonId }: { lessonId: numbe
       </header>
 
       <div className="flex bg-white border-b border-slate-100 p-2 gap-2 sticky top-[65px] z-10">
-        {([['materi', 'Materi & Teks'], ['kuis', 'Kuis 20 Soal']] as const).map(([key, label]) => (
+        {([['materi', 'Materi & Teks'], ['kuis', 'Kuis 15 Soal']] as const).map(([key, label]) => (
           <button key={key} onClick={() => setTab(key)} className={`flex-1 py-3 text-sm font-bold rounded-xl transition-all ${tab === key ? 'text-white shadow-md' : 'text-slate-500'}`} style={tab === key ? { background: ACCENT } : undefined}>
             {label}
           </button>

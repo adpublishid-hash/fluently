@@ -1,0 +1,111 @@
+// Mandarin Aspect Master: aspect particles, negation and verb complements, 30 per level.
+// [prompt, Indonesian translation, answer, three wrong options, label, rule, timeline]
+// The label and rule are shown before answering, so they describe the pattern without naming the answer.
+export type Timeline = 'Past' | 'Now' | 'Future';
+export type AspectTuple = [prompt: string, translation: string, answer: string, wrong: string[], label: string, rule: string, time: Timeline];
+
+const DONE = 'V + penanda tindakan selesai';
+const PROGRESSIVE = 'penanda progresif + V';
+const EXPERIENCE = 'V + penanda pengalaman';
+const STATE = 'V + penanda keadaan berlanjut';
+const DEGREE = 'V + partikel + penilaian';
+const DIRECTION = 'V + komplemen arah';
+
+export const easyAspect: AspectTuple[] = [
+  ['我昨天买____一本书。', 'Kemarin saya membeli sebuah buku.', '了', ['过', '着', '在'], 'Tindakan selesai', DONE, 'Past'],
+  ['我____看书。', 'Saya sedang membaca buku.', '在', ['了', '过', '着'], 'Sedang berlangsung', PROGRESSIVE, 'Now'],
+  ['我去____北京。', 'Saya pernah ke Beijing.', '过', ['了', '在', '着'], 'Pengalaman', EXPERIENCE, 'Past'],
+  ['门开____。', 'Pintunya (dalam keadaan) terbuka.', '着', ['了', '过', '在'], 'Keadaan berlanjut', STATE, 'Now'],
+  ['我明天____去上海。', 'Besok saya akan ke Shanghai.', '要', ['了', '过', '着'], 'Rencana', 'kata bantu rencana + V', 'Future'],
+  ['他____在做作业。', 'Dia sedang mengerjakan PR.', '正', ['了', '过', '着'], 'Sedang berlangsung', '… + 在 + V (penekanan "tepat sedang")', 'Now'],
+  ['我吃____早饭了。', 'Saya sudah sarapan.', '了', ['过', '着', '在'], 'Tindakan selesai', DONE, 'Past'],
+  ['她穿____红色的衣服。', 'Dia (sedang) mengenakan baju merah.', '着', ['过', '在', '吗'], 'Keadaan berlanjut', STATE, 'Now'],
+  ['你看____这部电影吗？', 'Pernahkah kamu menonton film ini?', '过', ['着', '在', '呢'], 'Pengalaman', EXPERIENCE, 'Past'],
+  ['他们____吃饭。', 'Mereka sedang makan.', '在', ['了', '过', '着'], 'Sedang berlangsung', PROGRESSIVE, 'Now'],
+  ['我____去过日本。', 'Saya belum pernah ke Jepang.', '没', ['不', '了', '在'], 'Negasi pengalaman', 'negasi lampau + V + 过', 'Past'],
+  ['他今天____来。', 'Hari ini dia tidak akan datang.', '不', ['没', '了', '过'], 'Negasi rencana', 'negasi untuk kebiasaan/masa depan', 'Future'],
+  ['昨天我____去学校。', 'Kemarin saya tidak pergi ke sekolah.', '没', ['不', '了', '过'], 'Negasi lampau', 'negasi untuk kejadian yang tidak terjadi', 'Past'],
+  ['我们____上课了。', 'Pelajaran akan segera dimulai.', '要', ['过', '着', '在'], 'Segera terjadi', '… + V + 了 (akan segera)', 'Future'],
+  ['我已经吃完饭____。', 'Saya sudah selesai makan.', '了', ['过', '着', '在'], 'Perubahan keadaan', '已经 … + partikel akhir kalimat', 'Past'],
+  ['妈妈在做饭____。', 'Ibu sedang memasak.', '呢', ['了', '过', '吗'], 'Sedang berlangsung', '在 + V + partikel akhir', 'Now'],
+  ['我看____你的信。', 'Saya sudah membaca suratmu.', '了', ['着', '在', '吗'], 'Tindakan selesai', DONE, 'Past'],
+  ['外面____下雨。', 'Di luar sedang hujan.', '在', ['了', '过', '着'], 'Sedang berlangsung', PROGRESSIVE, 'Now'],
+  ['他喝____三杯咖啡。', 'Dia (tadi) minum tiga gelas kopi.', '了', ['着', '在', '吗'], 'Tindakan selesai', 'V + penanda selesai + jumlah', 'Past'],
+  ['我还____做完作业。', 'Saya masih belum selesai mengerjakan PR.', '没', ['不', '了', '过'], 'Belum selesai', '还 + negasi + V + hasil', 'Now'],
+  ['她唱____歌走进来。', 'Dia masuk sambil bernyanyi.', '着', ['了', '过', '在'], 'Cara melakukan', 'V1 + penanda keadaan + V2', 'Now'],
+  ['我们下个月____去旅游。', 'Bulan depan kami akan berwisata.', '要', ['了', '过', '着'], 'Rencana', 'kata bantu rencana + V', 'Future'],
+  ['他学____两年中文。', 'Dia belajar Mandarin selama dua tahun.', '了', ['着', '在', '吗'], 'Durasi selesai', 'V + penanda selesai + durasi', 'Past'],
+  ['我们见____面。', 'Kami pernah bertemu.', '过', ['着', '在', '吗'], 'Pengalaman', 'V + penanda pengalaman + O', 'Past'],
+  ['灯还亮____。', 'Lampunya masih menyala.', '着', ['过', '吗', '在'], 'Keadaan berlanjut', '还 + Adj/V + penanda keadaan', 'Now'],
+  ['你在做什么____？', 'Kamu sedang apa?', '呢', ['了', '过', '着'], 'Sedang berlangsung', '在 + V + partikel akhir', 'Now'],
+  ['明天____下雨。', 'Besok akan hujan.', '会', ['了', '过', '着'], 'Prediksi', 'kata bantu kemungkinan + V', 'Future'],
+  ['他已经走____。', 'Dia sudah pergi.', '了', ['过', '着', '在'], 'Perubahan keadaan', '已经 + V + partikel akhir', 'Past'],
+  ['我在听音乐____。', 'Saya sedang mendengarkan musik.', '呢', ['了', '过', '吗'], 'Sedang berlangsung', '在 + V + O + partikel akhir', 'Now'],
+  ['你去____长城吗？', 'Pernahkah kamu ke Tembok Besar?', '过', ['着', '在', '呢'], 'Pengalaman', EXPERIENCE, 'Past'],
+];
+
+export const mediumAspect: AspectTuple[] = [
+  ['我从来没去____日本。', 'Saya sama sekali belum pernah ke Jepang.', '过', ['了', '着', '在'], 'Pengalaman', '从来没 + V + penanda pengalaman', 'Past'],
+  ['下雨____！', 'Hujan turun (sekarang)!', '了', ['过', '着', '在'], 'Perubahan situasi', 'partikel akhir untuk situasi baru', 'Now'],
+  ['他笑____说："好。"', 'Dia berkata sambil tersenyum: "Baik."', '着', ['了', '过', '在'], 'Cara melakukan', 'V1 + penanda keadaan + V2', 'Past'],
+  ['我们快要到____。', 'Kita hampir sampai.', '了', ['过', '着', '在'], 'Segera terjadi', '快要 + V + partikel akhir', 'Future'],
+  ['作业我已经写____了。', 'PR-nya sudah selesai saya kerjakan.', '完', ['着', '在', '吗'], 'Komplemen hasil', 'V + hasil (tuntas)', 'Past'],
+  ['你听____我的话了吗？', 'Apakah kamu memahami ucapanku?', '懂', ['过', '在', '着'], 'Komplemen hasil', 'V + hasil (paham)', 'Past'],
+  ['我看____他了，他在门口。', 'Saya melihatnya, dia ada di pintu.', '见', ['完', '会', '在'], 'Komplemen hasil', 'V + hasil (tertangkap indra)', 'Past'],
+  ['我找____钥匙了！', 'Saya sudah menemukan kuncinya!', '到', ['完', '懂', '着'], 'Komplemen hasil', 'V + hasil (berhasil mencapai)', 'Past'],
+  ['饭做____了，快来吃吧。', 'Makanan sudah siap, ayo makan.', '好', ['懂', '见', '着'], 'Komplemen hasil', 'V + hasil (siap/baik)', 'Past'],
+  ['对不起，我写____了一个字。', 'Maaf, saya salah menulis satu karakter.', '错', ['好', '懂', '着'], 'Komplemen hasil', 'V + hasil (keliru)', 'Past'],
+  ['火车____要开了。', 'Kereta sebentar lagi berangkat.', '快', ['刚', '过', '在'], 'Segera terjadi', '… + 要 + V + 了 (tanpa keterangan waktu)', 'Future'],
+  ['我们下星期____要考试了。', 'Minggu depan kita sudah akan ujian.', '就', ['快', '刚', '在'], 'Segera terjadi', 'keterangan waktu + … + 要 + V + 了', 'Future'],
+  ['他____走，你就来了。', 'Dia baru saja pergi, kamu datang.', '刚', ['快', '就', '要'], 'Baru saja', 'adverbia "baru saja" + V', 'Past'],
+  ['我已经工作____三年了。', 'Saya sudah bekerja tiga tahun (sampai sekarang).', '了', ['着', '在', '过'], 'Durasi berlanjut', 'V + penanda + durasi + partikel akhir', 'Now'],
+  ['天气越来越冷____。', 'Cuaca semakin dingin.', '了', ['过', '着', '在'], 'Perubahan situasi', '越来越 + Adj + partikel akhir', 'Now'],
+  ['他戴____一顶帽子。', 'Dia memakai sebuah topi.', '着', ['在', '吗', '呢'], 'Keadaan berlanjut', STATE, 'Now'],
+  ['我看____这本书三遍了。', 'Saya sudah membaca buku ini tiga kali.', '了', ['着', '在', '得'], 'Frekuensi selesai', 'V + penanda + frekuensi + partikel akhir', 'Past'],
+  ['我们正在开会____。', 'Kami sedang rapat.', '呢', ['了', '过', '吗'], 'Sedang berlangsung', '正在 + V + partikel akhir', 'Now'],
+  ['他把门关____了。', 'Dia sudah menutup pintunya rapat.', '上', ['下', '来', '着'], 'Komplemen arah', 'V + arah (menutup rapat)', 'Past'],
+  ['请你坐____。', 'Silakan duduk.', '下', ['上', '出', '开'], 'Komplemen arah', 'V + arah (ke bawah)', 'Future'],
+  ['他跑____很快。', 'Dia berlari sangat cepat.', '得', ['的', '地', '着'], 'Komplemen derajat', DEGREE, 'Now'],
+  ['她高兴____说："谢谢！"', 'Dia berkata dengan gembira: "Terima kasih!"', '地', ['的', '得', '着'], 'Keterangan cara', 'Adj + partikel adverbial + V', 'Past'],
+  ['我还没想____。', 'Saya belum memutuskan (belum selesai berpikir).', '好', ['着', '在', '了'], 'Komplemen hasil', '还没 + V + hasil (tuntas)', 'Now'],
+  ['我听____有人敲门。', 'Saya mendengar ada yang mengetuk pintu.', '见', ['懂', '完', '会'], 'Komplemen hasil', 'V + hasil (tertangkap indra)', 'Past'],
+  ['这个问题我回答____了。', 'Pertanyaan ini sudah saya jawab dengan benar.', '对', ['见', '着', '在'], 'Komplemen hasil', 'V + hasil (tepat)', 'Past'],
+  ['我买____票了。', 'Saya sudah berhasil mendapatkan tiket.', '到', ['见', '懂', '着'], 'Komplemen hasil', 'V + hasil (berhasil mendapat)', 'Past'],
+  ['我昨天晚上睡____很好。', 'Tadi malam saya tidur nyenyak.', '得', ['地', '的', '着'], 'Komplemen derajat', DEGREE, 'Past'],
+  ['你学____游泳了吗？', 'Apakah kamu sudah bisa berenang (hasil belajar)?', '会', ['见', '着', '在'], 'Komplemen hasil', 'V + hasil (menguasai)', 'Past'],
+  ['电影____开始了。', 'Filmnya sudah dimulai.', '已经', ['曾经', '从来', '正在'], 'Sudah terjadi', 'adverbia "sudah" + V + 了', 'Past'],
+  ['孩子们在外面玩____很开心。', 'Anak-anak bermain dengan gembira di luar.', '得', ['地', '的', '着'], 'Komplemen derajat', DEGREE, 'Now'],
+];
+
+export const hardAspect: AspectTuple[] = [
+  ['我吃____饭就去。', 'Setelah makan saya langsung pergi.', '了', ['过', '着', '在'], 'Urutan tindakan', 'V1 + penanda selesai + 就 + V2', 'Future'],
+  ['墙上挂____一幅画。', 'Di dinding tergantung sebuah lukisan.', '着', ['过', '在', '完'], 'Eksistensi', 'Tempat + V + penanda keadaan + benda', 'Now'],
+  ['他把作业做____了。', 'Dia sudah menyelesaikan PR-nya.', '完', ['过', '着', '在'], '把 + hasil', '把 + O + V + hasil (tuntas)', 'Past'],
+  ['天气突然热____了。', 'Cuaca tiba-tiba mulai panas.', '起来', ['下去', '出来', '过来'], 'Mulai keadaan', 'Adj + komplemen arah (mulai)', 'Now'],
+  ['我学中文学____三年了。', 'Saya sudah belajar Mandarin tiga tahun (dan masih).', '了', ['过', '着', '在'], 'Durasi berlanjut', 'V + O + V + penanda + durasi + partikel akhir', 'Now'],
+  ['你说得对，请继续说____。', 'Kamu benar, silakan lanjutkan bicaramu.', '下去', ['起来', '出来', '过来'], 'Melanjutkan', 'V + komplemen arah (terus berlanjut)', 'Future'],
+  ['我想____了，他叫李明。', 'Saya sudah ingat, namanya Li Ming.', '起来', ['下去', '出来', '过去'], 'Mengingat kembali', DIRECTION + ' (memanggil ingatan)', 'Past'],
+  ['这个办法是我想____的。', 'Cara ini sayalah yang menemukannya.', '出来', ['起来', '下去', '过去'], 'Menghasilkan ide', DIRECTION + ' (memunculkan sesuatu baru)', 'Past'],
+  ['孩子突然哭____了。', 'Anak itu tiba-tiba mulai menangis.', '起来', ['下去', '出来', '过去'], 'Mulai tindakan', 'V + komplemen arah (mulai)', 'Past'],
+  ['你吃____饭再走吧。', 'Makanlah dulu, baru pergi.', '了', ['过', '着', '在'], 'Urutan tindakan', 'V1 + penanda selesai + 再 + V2', 'Future'],
+  ['我等____他一个小时。', 'Saya menunggunya selama satu jam.', '了', ['着', '在', '过'], 'Durasi selesai', 'V + penanda selesai + O + durasi', 'Past'],
+  ['我是坐飞机来____。', 'Saya datang naik pesawat (menekankan caranya).', '的', ['了', '过', '着'], 'Penekanan detail lampau', '是 + detail + V + partikel penekanan', 'Past'],
+  ['他是昨天到____。', 'Dia tibanya kemarin (menekankan waktu).', '的', ['了', '过', '着'], 'Penekanan detail lampau', '是 + waktu + V + partikel penekanan', 'Past'],
+  ['门口站____很多人。', 'Di depan pintu berdiri banyak orang.', '着', ['过', '在', '完'], 'Eksistensi', 'Tempat + V + penanda keadaan + orang', 'Now'],
+  ['他听了这个消息，高兴得跳了____。', 'Mendengar kabar itu, dia senang sampai melompat.', '起来', ['下去', '出来', '过去'], 'Mulai tindakan', 'V + 了 + komplemen arah (mulai)', 'Past'],
+  ['他把钱包忘____出租车上了。', 'Dia meninggalkan dompetnya di taksi.', '在', ['到', '着', '过'], '把 + lokasi', '把 + O + V + preposisi tempat', 'Past'],
+  ['我们已经走____一半了。', 'Kita sudah berjalan setengah jalan.', '了', ['着', '在', '得'], 'Progres', '已经 + V + penanda + jumlah + partikel akhir', 'Now'],
+  ['你把窗户打____吧。', 'Tolong buka jendelanya.', '开', ['上', '起', '着'], '把 + hasil', '把 + O + V + hasil (terbuka)', 'Future'],
+  ['我们走____说吧。', 'Ayo bicara sambil jalan.', '着', ['了', '过', '在'], 'Cara melakukan', 'V1 + penanda keadaan + V2', 'Future'],
+  ['这件衣服我穿____不合适。', 'Baju ini saat saya pakai ternyata tidak cocok.', '起来', ['下去', '出来', '过去'], 'Penilaian saat mencoba', 'V + komplemen arah (saat dicoba)', 'Now'],
+  ['他把书还____图书馆了。', 'Dia sudah mengembalikan buku ke perpustakaan.', '给', ['在', '着', '过'], '把 + penerima', '把 + O + V + preposisi penerima', 'Past'],
+  ['雨越下越大，我们只好在家待____。', 'Hujan makin deras, kami terpaksa tetap di rumah.', '着', ['过', '完', '好'], 'Keadaan berlanjut', STATE, 'Now'],
+  ['我差点儿就迟到____。', 'Saya hampir saja terlambat.', '了', ['过', '着', '在'], 'Hampir terjadi', '差点儿 + V + partikel akhir', 'Past'],
+  ['他说完话就走____。', 'Selesai bicara dia langsung pergi.', '了', ['过', '着', '在'], 'Urutan tindakan', 'V1 + hasil + 就 + V2 + partikel akhir', 'Past'],
+  ['你别站____，快坐下。', 'Jangan berdiri saja, cepat duduk.', '着', ['了', '过', '在'], 'Keadaan berlanjut', '别 + V + penanda keadaan', 'Now'],
+  ['他一下子就认____我来了。', 'Dia langsung mengenaliku.', '出', ['起', '下', '过'], 'Komplemen arah terpisah', 'V + arah₁ + O + 来', 'Past'],
+  ['这首歌听____很耳熟。', 'Lagu ini terdengar akrab.', '起来', ['下去', '出来', '过去'], 'Penilaian saat mencoba', 'V + komplemen arah (terasa/terdengar)', 'Now'],
+  ['我把作业交____老师了。', 'Saya sudah menyerahkan PR ke guru.', '给', ['在', '着', '过'], '把 + penerima', '把 + O + V + preposisi penerima', 'Past'],
+  ['我们坚持____，一定能成功。', 'Kalau kita terus bertahan, pasti berhasil.', '下去', ['起来', '出来', '过来'], 'Melanjutkan', 'V + komplemen arah (terus berlanjut)', 'Future'],
+  ['他把杯子打____了。', 'Dia memecahkan gelasnya.', '破', ['完', '好', '开'], '把 + hasil', '把 + O + V + hasil (pecah)', 'Past'],
+];

@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "The final session focuses on budgeting for healthy meals.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The community workshop has several scheduled activities.",
-        "The final session focuses on budgeting for healthy meals."
-      ],
       "id": "event-schedule-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What time does the workshop begin?",
+      "answer": "9 a.m.",
+      "options": [
+        "10 a.m.",
+        "8 a.m.",
+        "1 p.m.",
+        "9 a.m."
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "registration",
-      "options": [
-        "reading sequence and time information",
-        "main idea",
-        "registration",
-        "the act of signing up or checking in"
-      ],
       "id": "event-schedule-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What starts at 10 a.m.?",
+      "answer": "a cooking demonstration",
+      "options": [
+        "a cooking demonstration",
+        "registration",
+        "a lunch break",
+        "the session on budgeting"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Community Workshop",
-      "options": [
-        "No title is possible.",
-        "Community Workshop",
-        "Event Schedule",
-        "to show the order of workshop activities"
-      ],
       "id": "event-schedule-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What comes after the cooking demonstration?",
+      "answer": "a short lunch break",
+      "options": [
+        "registration",
+        "a long walk around the park",
+        "a short lunch break",
+        "a cooking contest"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Event Schedule.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "The community workshop has several scheduled activities.",
-      "options": [
-        "the act of signing up or checking in",
-        "reading sequence and time information",
-        "The text is only about spelling.",
-        "The community workshop has several scheduled activities."
-      ],
       "id": "event-schedule-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the schedule means \"last\"?",
+      "answer": "final",
+      "options": [
+        "short",
+        "begins",
+        "healthy",
+        "final"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"registration\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "The final session focuses on budgeting for healthy meals.",
-      "options": [
-        "The text says the opposite.",
-        "the act of signing up or checking in",
-        "to show the order of workshop activities",
-        "The final session focuses on budgeting for healthy meals."
-      ],
       "id": "event-schedule-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which list shows the correct order of activities?",
+      "answer": "registration, cooking demonstration, lunch, budgeting",
+      "options": [
+        "lunch, registration, budgeting, cooking demonstration",
+        "registration, budgeting, lunch, cooking demonstration",
+        "registration, cooking demonstration, lunch, budgeting",
+        "cooking demonstration, registration, budgeting, lunch"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to show the order of workshop activities",
-      "options": [
-        "reading sequence and time information",
-        "to show the order of workshop activities",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "event-schedule-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What time does the budgeting session start?",
+      "answer": "1 p.m.",
+      "options": [
+        "1 p.m.",
+        "10 a.m.",
+        "9 a.m.",
+        "12 p.m."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "The community workshop has several scheduled activities.",
-      "options": [
-        "The community workshop has several scheduled activities.",
-        "The final session focuses on budgeting for healthy meals.",
-        "the act of signing up or checking in",
-        "Only one small word matters."
-      ],
       "id": "event-schedule-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "A participant arrives at 10:30 a.m. Which activity have they partly missed?",
+      "answer": "the cooking demonstration",
+      "options": [
+        "the cooking demonstration",
+        "the session on healthy meal budgets",
+        "the lunch break",
+        "the final session"
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "Participants should arrive before the cooking demonstration starts.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The final session focuses on budgeting for healthy meals.",
-        "Participants should arrive before the cooking demonstration starts."
-      ],
       "id": "event-schedule-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "What is the most likely overall aim of the workshop?",
+      "answer": "to help people prepare healthy meals on a budget",
+      "options": [
+        "to train people to become professional chefs",
+        "to teach young children how to play outdoor team games",
+        "to help people prepare healthy meals on a budget",
+        "to sell expensive kitchen equipment"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "The final session focuses on budgeting for healthy meals.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The community workshop has several scheduled activities.",
-        "The final session focuses on budgeting for healthy meals."
-      ],
       "id": "event-schedule-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Jam berapa lokakarya dimulai?",
+      "answer": "9 a.m.",
+      "options": [
+        "10 a.m.",
+        "8 a.m.",
+        "1 p.m.",
+        "9 a.m."
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "registration",
-      "options": [
-        "reading sequence and time information",
-        "main idea",
-        "registration",
-        "the act of signing up or checking in"
-      ],
       "id": "event-schedule-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang dimulai pukul 10 pagi?",
+      "answer": "a cooking demonstration",
+      "options": [
+        "a cooking demonstration",
+        "registration",
+        "a lunch break",
+        "the session on budgeting"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Community Workshop",
-      "options": [
-        "No title is possible.",
-        "Community Workshop",
-        "Event Schedule",
-        "to show the order of workshop activities"
-      ],
       "id": "event-schedule-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang terjadi setelah demonstrasi memasak?",
+      "answer": "a short lunch break",
+      "options": [
+        "registration",
+        "a long walk around the park",
+        "a short lunch break",
+        "a cooking contest"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Event Schedule.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "The community workshop has several scheduled activities.",
-      "options": [
-        "the act of signing up or checking in",
-        "reading sequence and time information",
-        "The text is only about spelling.",
-        "The community workshop has several scheduled activities."
-      ],
       "id": "event-schedule-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam jadwal yang berarti \"last\"?",
+      "answer": "final",
+      "options": [
+        "short",
+        "begins",
+        "healthy",
+        "final"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"registration\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "The final session focuses on budgeting for healthy meals.",
-      "options": [
-        "The text says the opposite.",
-        "the act of signing up or checking in",
-        "to show the order of workshop activities",
-        "The final session focuses on budgeting for healthy meals."
-      ],
       "id": "event-schedule-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Daftar mana yang menunjukkan urutan kegiatan yang benar?",
+      "answer": "registration, cooking demonstration, lunch, budgeting",
+      "options": [
+        "lunch, registration, budgeting, cooking demonstration",
+        "registration, budgeting, lunch, cooking demonstration",
+        "registration, cooking demonstration, lunch, budgeting",
+        "cooking demonstration, registration, budgeting, lunch"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to show the order of workshop activities",
-      "options": [
-        "reading sequence and time information",
-        "to show the order of workshop activities",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "event-schedule-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Jam berapa sesi tentang anggaran dimulai?",
+      "answer": "1 p.m.",
+      "options": [
+        "1 p.m.",
+        "10 a.m.",
+        "9 a.m.",
+        "12 p.m."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "The community workshop has several scheduled activities.",
-      "options": [
-        "The community workshop has several scheduled activities.",
-        "The final session focuses on budgeting for healthy meals.",
-        "the act of signing up or checking in",
-        "Only one small word matters."
-      ],
       "id": "event-schedule-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Seorang peserta datang pukul 10.30 pagi. Kegiatan mana yang sebagian terlewatkan olehnya?",
+      "answer": "the cooking demonstration",
+      "options": [
+        "the cooking demonstration",
+        "the session on healthy meal budgets",
+        "the lunch break",
+        "the final session"
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "Participants should arrive before the cooking demonstration starts.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The final session focuses on budgeting for healthy meals.",
-        "Participants should arrive before the cooking demonstration starts."
-      ],
       "id": "event-schedule-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Apa tujuan keseluruhan yang paling mungkin dari lokakarya ini?",
+      "answer": "to help people prepare healthy meals on a budget",
+      "options": [
+        "to train people to become professional chefs",
+        "to teach young children how to play outdoor team games",
+        "to help people prepare healthy meals on a budget",
+        "to sell expensive kitchen equipment"
+      ]
     }
   ]
 };

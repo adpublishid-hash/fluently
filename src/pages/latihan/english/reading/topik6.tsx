@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "The seating area is small.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-        "The seating area is small."
-      ],
       "id": "restaurant-review-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which food does Green Bowl Cafe serve?",
+      "answer": "fresh salads",
+      "options": [
+        "pizza",
+        "fried chicken",
+        "fresh salads",
+        "grilled steak"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "recommends",
-      "options": [
-        "separating facts, opinions, and recommendations",
-        "main idea",
-        "recommends",
-        "suggests something as a good choice"
-      ],
       "id": "restaurant-review-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "How does the reviewer describe the service?",
+      "answer": "quick",
+      "options": [
+        "slow",
+        "expensive",
+        "rude",
+        "quick"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Green Bowl Cafe",
-      "options": [
-        "No title is possible.",
-        "Green Bowl Cafe",
-        "Restaurant Review",
-        "to review a cafe and give a practical suggestion"
-      ],
       "id": "restaurant-review-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "When does the cafe become crowded?",
+      "answer": "during lunch",
+      "options": [
+        "during lunch",
+        "on Monday evenings",
+        "late at night",
+        "early in the morning"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Restaurant Review.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-      "options": [
-        "suggests something as a good choice",
-        "separating facts, opinions, and recommendations",
-        "The text is only about spelling.",
-        "Green Bowl Cafe has fresh food and quick service, but limited seating."
-      ],
       "id": "restaurant-review-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which drink is mentioned in the review?",
+      "answer": "fruit drinks",
+      "options": [
+        "green tea",
+        "hot coffee",
+        "fruit drinks",
+        "iced lemon tea"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"recommends\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "The seating area is small.",
-      "options": [
-        "The text says the opposite.",
-        "suggests something as a good choice",
-        "to review a cafe and give a practical suggestion",
-        "The seating area is small."
-      ],
       "id": "restaurant-review-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence from the review is a recommendation?",
+      "answer": "Visit before noon because it becomes crowded.",
+      "options": [
+        "The service is quick.",
+        "The seating area is small.",
+        "Green Bowl Cafe serves fresh salads, soup, and fruit drinks.",
+        "Visit before noon because it becomes crowded."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to review a cafe and give a practical suggestion",
-      "options": [
-        "separating facts, opinions, and recommendations",
-        "to review a cafe and give a practical suggestion",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "restaurant-review-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which point in the review is a negative one?",
+      "answer": "The seating area is small.",
+      "options": [
+        "The service is quick.",
+        "The cafe serves fruit drinks.",
+        "The seating area is small.",
+        "The salads are fresh."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-      "options": [
-        "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-        "The seating area is small.",
-        "suggests something as a good choice",
-        "Only one small word matters."
-      ],
       "id": "restaurant-review-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Why does the reviewer most likely mention the small seating area before the advice about noon?",
+      "answer": "It explains why arriving early is a good idea.",
+      "options": [
+        "It shows that the food is too expensive.",
+        "It suggests that the cafe will close down very soon.",
+        "It explains why arriving early is a good idea.",
+        "It proves that the service is very slow."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The cafe is popular around lunch time.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The seating area is small.",
-        "The cafe is popular around lunch time."
-      ],
       "id": "restaurant-review-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which statement best describes the reviewer's overall attitude?",
+      "answer": "generally positive, with a practical warning",
+      "options": [
+        "neutral with no opinion at all",
+        "completely negative and disappointed about everything",
+        "generally positive, with a practical warning",
+        "excited but full of complaints"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "The seating area is small.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-        "The seating area is small."
-      ],
       "id": "restaurant-review-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Makanan apa yang disajikan Green Bowl Cafe?",
+      "answer": "fresh salads",
+      "options": [
+        "pizza",
+        "fried chicken",
+        "fresh salads",
+        "grilled steak"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "recommends",
-      "options": [
-        "separating facts, opinions, and recommendations",
-        "main idea",
-        "recommends",
-        "suggests something as a good choice"
-      ],
       "id": "restaurant-review-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Bagaimana pengulas menggambarkan pelayanannya?",
+      "answer": "quick",
+      "options": [
+        "slow",
+        "expensive",
+        "rude",
+        "quick"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Green Bowl Cafe",
-      "options": [
-        "No title is possible.",
-        "Green Bowl Cafe",
-        "Restaurant Review",
-        "to review a cafe and give a practical suggestion"
-      ],
       "id": "restaurant-review-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kapan kafe itu menjadi ramai?",
+      "answer": "during lunch",
+      "options": [
+        "during lunch",
+        "on Monday evenings",
+        "late at night",
+        "early in the morning"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Restaurant Review.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-      "options": [
-        "suggests something as a good choice",
-        "separating facts, opinions, and recommendations",
-        "The text is only about spelling.",
-        "Green Bowl Cafe has fresh food and quick service, but limited seating."
-      ],
       "id": "restaurant-review-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Minuman apa yang disebutkan dalam ulasan?",
+      "answer": "fruit drinks",
+      "options": [
+        "green tea",
+        "hot coffee",
+        "fruit drinks",
+        "iced lemon tea"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"recommends\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "The seating area is small.",
-      "options": [
-        "The text says the opposite.",
-        "suggests something as a good choice",
-        "to review a cafe and give a practical suggestion",
-        "The seating area is small."
-      ],
       "id": "restaurant-review-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana dari ulasan yang merupakan rekomendasi?",
+      "answer": "Visit before noon because it becomes crowded.",
+      "options": [
+        "The service is quick.",
+        "The seating area is small.",
+        "Green Bowl Cafe serves fresh salads, soup, and fruit drinks.",
+        "Visit before noon because it becomes crowded."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to review a cafe and give a practical suggestion",
-      "options": [
-        "separating facts, opinions, and recommendations",
-        "to review a cafe and give a practical suggestion",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "restaurant-review-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Poin mana dalam ulasan yang bersifat negatif?",
+      "answer": "The seating area is small.",
+      "options": [
+        "The service is quick.",
+        "The cafe serves fruit drinks.",
+        "The seating area is small.",
+        "The salads are fresh."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-      "options": [
-        "Green Bowl Cafe has fresh food and quick service, but limited seating.",
-        "The seating area is small.",
-        "suggests something as a good choice",
-        "Only one small word matters."
-      ],
       "id": "restaurant-review-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Mengapa pengulas kemungkinan besar menyebut area duduk yang kecil sebelum saran untuk datang sebelum siang?",
+      "answer": "It explains why arriving early is a good idea.",
+      "options": [
+        "It shows that the food is too expensive.",
+        "It suggests that the cafe will close down very soon.",
+        "It explains why arriving early is a good idea.",
+        "It proves that the service is very slow."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The cafe is popular around lunch time.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The seating area is small.",
-        "The cafe is popular around lunch time."
-      ],
       "id": "restaurant-review-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Pernyataan mana yang paling tepat menggambarkan sikap pengulas secara keseluruhan?",
+      "answer": "generally positive, with a practical warning",
+      "options": [
+        "neutral with no opinion at all",
+        "completely negative and disappointed about everything",
+        "generally positive, with a practical warning",
+        "excited but full of complaints"
+      ]
     }
   ]
 };

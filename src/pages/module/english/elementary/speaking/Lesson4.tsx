@@ -129,8 +129,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "I work ___ a doctor.",
     options: [
       { text: "for", correct: false },
-      { text: "as", correct: true },
-      { text: "in", correct: false }
+      { text: "in", correct: false },
+      { text: "as", correct: true }
     ],
     explanation: "Gunakan 'as' sebelum nama jabatan (Work as a doctor)."
   },
@@ -148,9 +148,9 @@ const PRACTICE_QUESTIONS = [
     id: 3,
     prompt: "She works ___ an office.",
     options: [
+      { text: "by", correct: false },
       { text: "in", correct: true },
-      { text: "as", correct: false },
-      { text: "by", correct: false }
+      { text: "as", correct: false }
     ],
     explanation: "Gunakan 'in' untuk tempat (Work in an office/hospital)."
   },
@@ -158,8 +158,8 @@ const PRACTICE_QUESTIONS = [
     id: 4,
     prompt: "A person who buys things is a ___.",
     options: [
-      { text: "Manager", correct: false },
       { text: "Customer", correct: true },
+      { text: "Manager", correct: false },
       { text: "Boss", correct: false }
     ],
     explanation: "Customer adalah orang yang membeli barang atau jasa."
@@ -168,9 +168,9 @@ const PRACTICE_QUESTIONS = [
     id: 5,
     prompt: "I am ___ duty (working).",
     options: [
+      { text: "at", correct: false },
       { text: "in", correct: false },
-      { text: "on", correct: true },
-      { text: "at", correct: false }
+      { text: "on", correct: true }
     ],
     explanation: "Kita bilang 'on duty' ketika seseorang sedang bertugas."
   },
@@ -179,8 +179,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Apa arti dari kalimat: \"We should call IT support.\"?",
     options: [
       { text: "Sudah cek kertasnya?", correct: false },
-      { text: "Di mana rapatnya?", correct: false },
-      { text: "Kita harus panggil dukungan IT.", correct: true }
+      { text: "Kita harus panggil dukungan IT.", correct: true },
+      { text: "Di mana rapatnya?", correct: false }
     ],
     explanation: "Kalimat \"We should call IT support.\" memiliki arti \"Kita harus panggil dukungan IT.\"."
   },
@@ -188,9 +188,9 @@ const PRACTICE_QUESTIONS = [
     id: 7,
     prompt: "Bagaimana cara mengatakan: \"Apa yang Anda lakukan di pagi hari?\"?",
     options: [
-      { text: "What do you do in the morning?", correct: true },
+      { text: "I am a Marketing Manager now.", correct: false },
       { text: "We should call IT support.", correct: false },
-      { text: "I am a Marketing Manager now.", correct: false }
+      { text: "What do you do in the morning?", correct: true }
     ],
     explanation: "Terjemahan yang tepat untuk \"Apa yang Anda lakukan di pagi hari?\" adalah \"What do you do in the morning?\"."
   },
@@ -198,9 +198,9 @@ const PRACTICE_QUESTIONS = [
     id: 8,
     prompt: "Lengkapi kalimat: \"The printer is not ___.\"\n(Arti: Printernya tidak berfungsi.)",
     options: [
+      { text: "working", correct: true },
       { text: "do", correct: false },
-      { text: "teacher", correct: false },
-      { text: "working", correct: true }
+      { text: "teacher", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'working'."
   },
@@ -208,9 +208,9 @@ const PRACTICE_QUESTIONS = [
     id: 9,
     prompt: "Apa arti dari kalimat: \"I am a teacher at the local school.\"?",
     options: [
-      { text: "Printernya tidak berfungsi.", correct: false },
+      { text: "Apa yang Anda lakukan di pagi hari?", correct: false },
       { text: "Saya guru di sekolah setempat.", correct: true },
-      { text: "Apa yang Anda lakukan di pagi hari?", correct: false }
+      { text: "Printernya tidak berfungsi.", correct: false }
     ],
     explanation: "Kalimat \"I am a teacher at the local school.\" memiliki arti \"Saya guru di sekolah setempat.\"."
   },
@@ -218,9 +218,9 @@ const PRACTICE_QUESTIONS = [
     id: 10,
     prompt: "Bagaimana cara mengatakan: \"Di mana Anda bekerja saat ini?\"?",
     options: [
-      { text: "What do you do in the morning?", correct: false },
       { text: "Yes, the phone rings all the time.", correct: false },
-      { text: "Where do you work currently?", correct: true }
+      { text: "Where do you work currently?", correct: true },
+      { text: "What do you do in the morning?", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Di mana Anda bekerja saat ini?\" adalah \"Where do you work currently?\"."
   },
@@ -228,9 +228,9 @@ const PRACTICE_QUESTIONS = [
     id: 11,
     prompt: "Lengkapi kalimat: \"That is fantastic ___.\"\n(Arti: Itu kabar yang luar biasa.)",
     options: [
-      { text: "news", correct: true },
       { text: "the", correct: false },
-      { text: "working", correct: false }
+      { text: "working", correct: false },
+      { text: "news", correct: true }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'news'."
   },
@@ -238,9 +238,9 @@ const PRACTICE_QUESTIONS = [
     id: 12,
     prompt: "Apa arti dari kalimat: \"Where is the meeting?\"?",
     options: [
-      { text: "Saya sekarang Manajer Pemasaran.", correct: false },
       { text: "Di mana rapatnya?", correct: true },
-      { text: "Selamat! Apa posisinya?", correct: false }
+      { text: "Selamat! Apa posisinya?", correct: false },
+      { text: "Saya sekarang Manajer Pemasaran.", correct: false }
     ],
     explanation: "Kalimat \"Where is the meeting?\" memiliki arti \"Di mana rapatnya?\"."
   },
@@ -248,9 +248,9 @@ const PRACTICE_QUESTIONS = [
     id: 13,
     prompt: "Bagaimana cara mengatakan: \"Jam berapa jam kerjamu?\"?",
     options: [
-      { text: "No, I usually take the train.", correct: false },
+      { text: "What are your working hours?", correct: true },
       { text: "Yes, the phone rings all the time.", correct: false },
-      { text: "What are your working hours?", correct: true }
+      { text: "No, I usually take the train.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Jam berapa jam kerjamu?\" adalah \"What are your working hours?\"."
   },
@@ -268,8 +268,8 @@ const PRACTICE_QUESTIONS = [
     id: 15,
     prompt: "Apa arti dari kalimat: \"Yes, the phone rings all the time.\"?",
     options: [
-      { text: "Saya sekarang Manajer Pemasaran.", correct: false },
       { text: "Sudah berapa lama Anda bekerja di sana?", correct: false },
+      { text: "Saya sekarang Manajer Pemasaran.", correct: false },
       { text: "Ya, telepon berdering terus-menerus.", correct: true }
     ],
     explanation: "Kalimat \"Yes, the phone rings all the time.\" memiliki arti \"Ya, telepon berdering terus-menerus.\"."
@@ -279,8 +279,8 @@ const PRACTICE_QUESTIONS = [
     prompt: "Bagaimana cara mengatakan: \"Ya, saya suka membantu siswa belajar.\"?",
     options: [
       { text: "That is fantastic news.", correct: false },
-      { text: "I am a teacher at the local school.", correct: false },
-      { text: "Yes, I love helping students learn.", correct: true }
+      { text: "Yes, I love helping students learn.", correct: true },
+      { text: "I am a teacher at the local school.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Ya, saya suka membantu siswa belajar.\" adalah \"Yes, I love helping students learn.\"."
   },
@@ -288,9 +288,9 @@ const PRACTICE_QUESTIONS = [
     id: 17,
     prompt: "Lengkapi kalimat: \"Yes, the ___ is full.\"\n(Arti: Ya, tempat kertasnya penuh.)",
     options: [
+      { text: "the", correct: false },
       { text: "tray", correct: true },
-      { text: "drive", correct: false },
-      { text: "the", correct: false }
+      { text: "drive", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'tray'."
   },
@@ -298,8 +298,8 @@ const PRACTICE_QUESTIONS = [
     id: 18,
     prompt: "Apa arti dari kalimat: \"I work for a bank in the city center.\"?",
     options: [
-      { text: "Saya bekerja untuk sebuah bank di pusat kota.", correct: true },
       { text: "Ya, tempat kertasnya penuh.", correct: false },
+      { text: "Saya bekerja untuk sebuah bank di pusat kota.", correct: true },
       { text: "Apa kamu kerja di akhir pekan?", correct: false }
     ],
     explanation: "Kalimat \"I work for a bank in the city center.\" memiliki arti \"Saya bekerja untuk sebuah bank di pusat kota.\"."
@@ -308,9 +308,9 @@ const PRACTICE_QUESTIONS = [
     id: 19,
     prompt: "Bagaimana cara mengatakan: \"Kamu menyetir?\"?",
     options: [
+      { text: "Do you drive?", correct: true },
       { text: "I work from 9 AM to 5 PM.", correct: false },
-      { text: "Yes, I love helping students learn.", correct: false },
-      { text: "Do you drive?", correct: true }
+      { text: "Yes, I love helping students learn.", correct: false }
     ],
     explanation: "Terjemahan yang tepat untuk \"Kamu menyetir?\" adalah \"Do you drive?\"."
   },
@@ -318,9 +318,9 @@ const PRACTICE_QUESTIONS = [
     id: 20,
     prompt: "Lengkapi kalimat: \"Is it usually ___?\"\n(Arti: Apakah biasanya sibuk?)",
     options: [
+      { text: "in", correct: false },
       { text: "busy", correct: true },
-      { text: "one", correct: false },
-      { text: "in", correct: false }
+      { text: "one", correct: false }
     ],
     explanation: "Kata yang hilang untuk melengkapi kalimat tersebut adalah 'busy'."
   }

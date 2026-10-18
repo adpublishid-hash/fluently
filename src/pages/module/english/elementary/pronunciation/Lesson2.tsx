@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, TrendUpIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 type Comparison = {
   id: string;
   title: string;
@@ -63,148 +65,7 @@ const LISTENING_CHALLENGE = [
   { id: 5, word: "Bed", options: ["E Pendek /e/", "A Pendek /æ/"], answer: "E Pendek /e/" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Untuk membuat suara /iː/ (seperti Sheep), kamu harus...",
-    options: ['Merilekskan mulut', 'Tersenyum lebar', 'Menurunkan rahang'],
-    answer: 'Tersenyum lebar',
-    explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
-  },
-  {
-    id: 2,
-    question: "Kata mana yang memiliki suara vokal yang sama dengan 'Good'?",
-    options: ['Food', 'Look', 'Blood'],
-    answer: 'Look',
-    explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
-  },
-  {
-    id: 3,
-    question: "Kata mana yang mengharuskanmu membuka mulut paling lebar?",
-    options: ['Men', 'Man', 'Min'],
-    answer: 'Man',
-    explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
-  },
-  {
-    id: 4,
-    question: "Dengarkan perbedaannya: 'Fill' vs 'Feel'. Mana yang lebih panjang?",
-    options: ['Fill', 'Feel'],
-    answer: 'Feel',
-    explanation: "'Feel' /iː/ adalah vokal panjang."
-  },
-  {
-    id: 5,
-    question: "Ketika menghasilkan bunyi /iː/ (seperti Weep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
-    answer: "Tersenyum lebar",
-    explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
-  },
-  {
-    id: 6,
-    question: "Pilih kata yang memiliki suara vokal yang sama dengan 'Good' ?",
-    options: ["Food","Look","Blood"],
-    answer: "Look",
-    explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
-  },
-  {
-    id: 7,
-    question: "Dari pilihan berikut, mana yang mengharuskanmu membuka mulut paling lebar?",
-    options: ["Men","Man","Min"],
-    answer: "Man",
-    explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
-  },
-  {
-    id: 8,
-    question: "Dengarkan perbedaannya: 'Fill' vs 'Feel'. Mana yang lebih panjang ?",
-    options: ["Fill","Feel"],
-    answer: "Feel",
-    explanation: "'Feel' /iː/ adalah vokal panjang."
-  },
-  {
-    id: 9,
-    question: "Untuk membuat suara /iː/ (seperti Weep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
-    answer: "Tersenyum lebar",
-    explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
-  },
-  {
-    id: 10,
-    question: "Dari pilihan berikut, mana yang memiliki suara vokal yang sama dengan 'Good'?",
-    options: ["Food","Look","Blood"],
-    answer: "Look",
-    explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
-  },
-  {
-    id: 11,
-    question: "Kata mana yang mengharuskanmu membuka mulut paling lebar ?",
-    options: ["Men","Man","Min"],
-    answer: "Man",
-    explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
-  },
-  {
-    id: 12,
-    question: "Dengarkan perbedaannya: 'Fill' vs 'Feel'. Mana yang lebih panjang?",
-    options: ["Fill","Feel"],
-    answer: "Feel",
-    explanation: "'Feel' /iː/ adalah vokal panjang."
-  },
-  {
-    id: 13,
-    question: "Saat mengucapkan suara /iː/ (seperti Sheep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
-    answer: "Tersenyum lebar",
-    explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
-  },
-  {
-    id: 14,
-    question: "Pilih kata yang memiliki suara vokal yang sama dengan 'Good' ?",
-    options: ["Food","Look","Blood"],
-    answer: "Look",
-    explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
-  },
-  {
-    id: 15,
-    question: "Dari pilihan berikut, mana yang mengharuskanmu membuka mulut paling lebar?",
-    options: ["Men","Man","Min"],
-    answer: "Man",
-    explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
-  },
-  {
-    id: 16,
-    question: "Dengarkan perbedaannya: 'Fill' vs 'Feel'. Mana yang lebih panjang ?",
-    options: ["Fill","Feel"],
-    answer: "Feel",
-    explanation: "'Feel' /iː/ adalah vokal panjang."
-  },
-  {
-    id: 17,
-    question: "Saat mengucapkan suara /iː/ (seperti Peep), kamu harus...",
-    options: ["Merilekskan mulut","Tersenyum lebar","Menurunkan rahang"],
-    answer: "Tersenyum lebar",
-    explanation: "Suara E Panjang /iː/ membutuhkan ketegangan senyum yang lebar."
-  },
-  {
-    id: 18,
-    question: "Manakah kata yang memiliki suara vokal yang sama dengan 'Good' ?",
-    options: ["Food","Look","Blood"],
-    answer: "Look",
-    explanation: "'Good' dan 'Look' keduanya menggunakan suara U Pendek /ʊ/."
-  },
-  {
-    id: 19,
-    question: "Manakah kata yang mengharuskanmu membuka mulut paling lebar ?",
-    options: ["Men","Man","Min"],
-    answer: "Man",
-    explanation: "Suara /æ/ dalam 'Man' membutuhkan rahang turun lebih rendah daripada /e/ atau /ɪ/."
-  },
-  {
-    id: 20,
-    question: "Dengarkan perbedaannya: 'Fill' vs 'Feel'. Mana yang lebih panjang...",
-    options: ["Fill","Feel"],
-    answer: "Feel",
-    explanation: "'Feel' /iː/ adalah vokal panjang."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[2], 'elementary/pronunciation/2'));
 
 const ElemPronunLesson2: React.FC = () => {
   const navigate = useNavigate();

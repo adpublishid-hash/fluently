@@ -57,3 +57,9 @@ export function shuffleQuestionOptions<T extends ChoiceQuestion>(questions: read
   const random = seededRandom(seed);
   return questions.map((item) => ({ ...item, options: seededShuffle(item.options, random) }));
 }
+
+/** Same as shuffleQuestionOptions for quiz items written as { q, opts, ans }. */
+export function shuffleOpts<T extends { opts: string[] }>(questions: readonly T[], seed: number): T[] {
+  const random = seededRandom(seed);
+  return questions.map((item) => ({ ...item, opts: seededShuffle(item.opts, random) }));
+}

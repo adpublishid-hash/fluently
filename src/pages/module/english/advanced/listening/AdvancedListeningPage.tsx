@@ -48,7 +48,7 @@ export default function AdvancedListeningPage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">Learning Path</h2>
-          <p className="text-[13px] text-[#6B7280] mb-5">20 pelajaran CEFR C1 Listening dengan audio AI Voice, transcript, strategi, dan kuis 20 soal.</p>
+          <p className="text-[13px] text-[#6B7280] mb-5">20 pelajaran CEFR C1 Listening dengan audio AI Voice, transcript, strategi, dan kuis 15 soal kontekstual.</p>
           <div className="space-y-3">
             {advancedListeningLessons.map((lesson, i) => {
               const done = completedIds.includes(lesson.id);

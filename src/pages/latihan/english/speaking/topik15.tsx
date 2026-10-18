@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "I am planning to ___ because ___. I hope it will ___.",
-      "options": [
-        "describe a plan, reason, and expected result",
-        "connected speech in going to and planning to",
-        "Connect your plan to a clear reason and outcome.",
-        "I am planning to ___ because ___. I hope it will ___."
-      ],
       "id": "future-plans-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct sentence about a future plan.",
+      "answer": "I'm going to visit Japan next year.",
+      "options": [
+        "I'm going to visit Japan next year.",
+        "I'm going visit Japan next year.",
+        "I going to visit Japan next year.",
+        "I'm going to visited Japan next year."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe a plan, reason, and expected result",
-      "options": [
-        "connected speech in going to and planning to",
-        "answer without listening to the question",
-        "describe a plan, reason, and expected result",
-        "Berbicara tentang rencana, target, dan harapan."
-      ],
       "id": "future-plans-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "A friend asks, \"What are you doing this weekend?\" Which answer fits?",
+      "answer": "I'm meeting my cousins on Saturday.",
+      "options": [
+        "I meet my cousins yesterday.",
+        "I'm meet my cousins on Saturday.",
+        "I met my cousins last Saturday.",
+        "I'm meeting my cousins on Saturday."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "I am planning to practice English every day because I want to speak more confidently.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I am planning to practice English every day because I want to speak more confidently.",
-        "My goal is to improve my speaking fluency over the next three months.",
-        "I went there yesterday because blue."
-      ],
       "id": "future-plans-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence talks about a hope for the future?",
+      "answer": "I hope to find a new job soon.",
+      "options": [
+        "I hope to find a new job soon.",
+        "I hope to found a new job soon.",
+        "I hoped finding a new job soon.",
+        "I hope finding a new job soon."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Future Plans\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "describe a plan, reason, and expected result",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe a plan, reason, and expected result"
-      ],
       "id": "future-plans-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which time expression refers to the future?",
+      "answer": "next month",
+      "options": [
+        "next month",
+        "last month",
+        "a month ago",
+        "yesterday"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "My goal is to improve my speaking fluency over the next three months.",
-      "options": [
-        "To be more specific, I want to focus on speaking fluency.",
-        "I am planning to practice English every day because I want to speak more confidently.",
-        "My goal is to improve my speaking fluency over the next three months.",
-        "I want to get better at speaking this year."
-      ],
       "id": "future-plans-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which answer links a plan to a reason and an expected result?",
+      "answer": "I'm taking an online course so that I can apply for data roles.",
+      "options": [
+        "I took an online course years ago, but I never used it at all.",
+        "I'm taking an online course, and I don't know why I'm doing it.",
+        "I'm taking an online course so that I can apply for data roles.",
+        "I'm taking an online course so that I can't apply for data roles."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "To be more specific, I want to focus on speaking fluency.",
-      "options": [
-        "Laugh and end the conversation.",
-        "To be more specific, I want to focus on speaking fluency.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "future-plans-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence expresses a plan with appropriate uncertainty?",
+      "answer": "I might move abroad, depending on how my studies go.",
+      "options": [
+        "I might move abroad, depending on how my studies went.",
+        "I might move abroad, depending on how my studies go.",
+        "I will definitely move abroad, depending on nothing at all.",
+        "I might moving abroad, depending on how my studies go."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "I am planning to ___ because ___. I hope it will ___.",
-      "options": [
-        "describe a plan, reason, and expected result",
-        "connected speech in going to and planning to",
-        "Connect your plan to a clear reason and outcome.",
-        "I am planning to ___ because ___. I hope it will ___."
-      ],
       "id": "future-plans-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kalimat yang benar tentang rencana masa depan.",
+      "answer": "I'm going to visit Japan next year.",
+      "options": [
+        "I'm going to visit Japan next year.",
+        "I'm going visit Japan next year.",
+        "I going to visit Japan next year.",
+        "I'm going to visited Japan next year."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe a plan, reason, and expected result",
-      "options": [
-        "connected speech in going to and planning to",
-        "answer without listening to the question",
-        "describe a plan, reason, and expected result",
-        "Berbicara tentang rencana, target, dan harapan."
-      ],
       "id": "future-plans-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Seorang teman bertanya, \"What are you doing this weekend?\" Jawaban mana yang cocok?",
+      "answer": "I'm meeting my cousins on Saturday.",
+      "options": [
+        "I meet my cousins yesterday.",
+        "I'm meet my cousins on Saturday.",
+        "I met my cousins last Saturday.",
+        "I'm meeting my cousins on Saturday."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "I am planning to practice English every day because I want to speak more confidently.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I am planning to practice English every day because I want to speak more confidently.",
-        "My goal is to improve my speaking fluency over the next three months.",
-        "I went there yesterday because blue."
-      ],
       "id": "future-plans-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang membicarakan harapan untuk masa depan?",
+      "answer": "I hope to find a new job soon.",
+      "options": [
+        "I hope to find a new job soon.",
+        "I hope to found a new job soon.",
+        "I hoped finding a new job soon.",
+        "I hope finding a new job soon."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Future Plans\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "describe a plan, reason, and expected result",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "describe a plan, reason, and expected result"
-      ],
       "id": "future-plans-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Ungkapan waktu mana yang merujuk ke masa depan?",
+      "answer": "next month",
+      "options": [
+        "next month",
+        "last month",
+        "a month ago",
+        "yesterday"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "My goal is to improve my speaking fluency over the next three months.",
-      "options": [
-        "To be more specific, I want to focus on speaking fluency.",
-        "I am planning to practice English every day because I want to speak more confidently.",
-        "My goal is to improve my speaking fluency over the next three months.",
-        "I want to get better at speaking this year."
-      ],
       "id": "future-plans-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Jawaban mana yang menghubungkan rencana dengan alasan dan hasil yang diharapkan?",
+      "answer": "I'm taking an online course so that I can apply for data roles.",
+      "options": [
+        "I took an online course years ago, but I never used it at all.",
+        "I'm taking an online course, and I don't know why I'm doing it.",
+        "I'm taking an online course so that I can apply for data roles.",
+        "I'm taking an online course so that I can't apply for data roles."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "To be more specific, I want to focus on speaking fluency.",
-      "options": [
-        "Laugh and end the conversation.",
-        "To be more specific, I want to focus on speaking fluency.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "future-plans-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang menyatakan rencana dengan tingkat ketidakpastian yang tepat?",
+      "answer": "I might move abroad, depending on how my studies go.",
+      "options": [
+        "I might move abroad, depending on how my studies went.",
+        "I might move abroad, depending on how my studies go.",
+        "I will definitely move abroad, depending on nothing at all.",
+        "I might moving abroad, depending on how my studies go."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

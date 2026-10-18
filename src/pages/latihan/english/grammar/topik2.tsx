@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "be-auxiliary-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Mastering \"To Be\" & Auxiliary Verbs): Complete: She ____ a teacher.",
-      "answer": "is",
+      "prompt": "Basic grammar check (Mastering \"To Be\" & Auxiliary Verbs): Complete: I ____ hungry now.",
+      "answer": "am",
       "options": [
-        "is",
+        "am",
         "are",
         "do",
-        "does"
+        "is"
       ]
     },
     {
       "id": "be-auxiliary-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Mastering \"To Be\" & Auxiliary Verbs): Complete: ____ they at home yesterday?",
-      "answer": "Were",
+      "prompt": "Basic grammar check (Mastering \"To Be\" & Auxiliary Verbs): Complete: ____ he play tennis on Saturdays?",
+      "answer": "Does",
       "options": [
-        "Was",
+        "Is",
+        "Are",
         "Do",
-        "Does",
-        "Were"
+        "Does"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "be-auxiliary-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Mastering \"To Be\" & Auxiliary Verbs): Complete: He ____ not like coffee.",
-      "answer": "does",
+      "prompt": "Choose the best structure (Mastering \"To Be\" & Auxiliary Verbs): Complete: Where ____ you go on holiday last year?",
+      "answer": "did",
       "options": [
-        "is",
-        "are",
+        "were",
+        "did",
         "was",
-        "does"
+        "do"
       ]
     },
     {
       "id": "be-auxiliary-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Mastering \"To Be\" & Auxiliary Verbs): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Mastering \"To Be\" & Auxiliary Verbs): Complete: The children ____ asleep when we got home.",
+      "answer": "were",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "were",
+        "was",
+        "did",
+        "have"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "be-auxiliary-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Mastering \"To Be\" & Auxiliary Verbs): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Mastering \"To Be\" & Auxiliary Verbs): Complete: Little ____ he realise how serious the problem was.",
+      "answer": "did",
       "options": [
-        "do",
-        "does",
-        "are",
+        "had",
+        "was",
+        "did",
         "is"
       ]
     },
     {
       "id": "be-auxiliary-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Mastering \"To Be\" & Auxiliary Verbs): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Mastering \"To Be\" & Auxiliary Verbs): Complete: The proposal, along with its appendices, ____ been approved.",
+      "answer": "has",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "were",
+        "has",
+        "have",
+        "is"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "be-auxiliary-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Mastering \"To Be\" & Auxiliary Verbs): Complete: She ____ a teacher.",
-      "answer": "is",
+      "prompt": "Cek grammar dasar (Mastering \"To Be\" & Auxiliary Verbs): Complete: I ____ hungry now.",
+      "answer": "am",
       "options": [
-        "is",
+        "am",
         "are",
         "do",
-        "does"
+        "is"
       ]
     },
     {
       "id": "be-auxiliary-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Mastering \"To Be\" & Auxiliary Verbs): Complete: ____ they at home yesterday?",
-      "answer": "Were",
+      "prompt": "Cek grammar dasar (Mastering \"To Be\" & Auxiliary Verbs): Complete: ____ he play tennis on Saturdays?",
+      "answer": "Does",
       "options": [
-        "Was",
+        "Is",
+        "Are",
         "Do",
-        "Does",
-        "Were"
+        "Does"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "be-auxiliary-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Mastering \"To Be\" & Auxiliary Verbs): Complete: He ____ not like coffee.",
-      "answer": "does",
+      "prompt": "Pilih struktur terbaik (Mastering \"To Be\" & Auxiliary Verbs): Complete: Where ____ you go on holiday last year?",
+      "answer": "did",
       "options": [
-        "is",
-        "are",
+        "were",
+        "did",
         "was",
-        "does"
+        "do"
       ]
     },
     {
       "id": "be-auxiliary-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Mastering \"To Be\" & Auxiliary Verbs): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Mastering \"To Be\" & Auxiliary Verbs): Complete: The children ____ asleep when we got home.",
+      "answer": "were",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "were",
+        "was",
+        "did",
+        "have"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "be-auxiliary-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Mastering \"To Be\" & Auxiliary Verbs): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Mastering \"To Be\" & Auxiliary Verbs): Complete: Little ____ he realise how serious the problem was.",
+      "answer": "did",
       "options": [
-        "do",
-        "does",
-        "are",
+        "had",
+        "was",
+        "did",
         "is"
       ]
     },
     {
       "id": "be-auxiliary-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Mastering \"To Be\" & Auxiliary Verbs): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Mastering \"To Be\" & Auxiliary Verbs): Complete: The proposal, along with its appendices, ____ been approved.",
+      "answer": "has",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "were",
+        "has",
+        "have",
+        "is"
       ]
     }
   ]

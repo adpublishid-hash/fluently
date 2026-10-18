@@ -139,10 +139,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is the main focus of today's lecture?",
     "opts": [
+      "History of the Industrial Revolution",
       "Nuclear energy safety",
       "The gap between scientific consensus and government action on climate",
-      "Economic growth in developing nations",
-      "History of the Industrial Revolution"
+      "Economic growth in developing nations"
     ],
     "ans": "The gap between scientific consensus and government action on climate",
     "exp": "Prof. Harrison explicitly states the lecture focuses on \"the gap between scientific consensus and actual government action.\""
@@ -151,9 +151,9 @@ const QUIZ: QuizItem[] = [
     "q": "According to the IPCC, by what percentage must carbon emissions be reduced by 2030?",
     "opts": [
       "15%",
-      "30%",
       "45%",
-      "60%"
+      "60%",
+      "30%"
     ],
     "ans": "45%",
     "exp": "The professor states: \"we need to reduce global carbon emissions by at least 45% by 2030.\""
@@ -161,10 +161,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What temperature limit is mentioned as the goal?",
     "opts": [
-      "1 degree Celsius",
       "1.5 degrees Celsius",
+      "3 degrees Celsius",
       "2 degrees Celsius",
-      "3 degrees Celsius"
+      "1 degree Celsius"
     ],
     "ans": "1.5 degrees Celsius",
     "exp": "\"to keep warming below 1.5 degrees Celsius\" — the IPCC target mentioned by the professor."
@@ -173,9 +173,9 @@ const QUIZ: QuizItem[] = [
     "q": "What term does the professor use for the challenge of getting nations to cooperate for a global good?",
     "opts": [
       "Free rider problem",
-      "Collective action problem",
+      "Tragedy of the commons",
       "Prisoner's dilemma",
-      "Tragedy of the commons"
+      "Collective action problem"
     ],
     "ans": "Collective action problem",
     "exp": "The professor specifically uses the phrase \"collective action problem\" to describe why nations fail to coordinate."
@@ -183,10 +183,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is identified as the fundamental weakness of the Paris Agreement?",
     "opts": [
-      "It was never signed",
-      "It only covers developing nations",
       "Commitments are voluntary with no binding enforcement",
-      "It focuses only on nuclear energy"
+      "It focuses only on nuclear energy",
+      "It was never signed",
+      "It only covers developing nations"
     ],
     "ans": "Commitments are voluntary with no binding enforcement",
     "exp": "The professor states \"it's voluntary... there is no binding enforcement mechanism.\""
@@ -194,10 +194,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What is described as \"one of the most economically efficient solutions\"?",
     "opts": [
-      "Banning all fossil fuels immediately",
-      "A global carbon price/tax",
       "Shutting down all factories",
-      "Planting a trillion trees"
+      "Planting a trillion trees",
+      "A global carbon price/tax",
+      "Banning all fossil fuels immediately"
     ],
     "ans": "A global carbon price/tax",
     "exp": "\"A global carbon price is one of the most economically efficient solutions proposed.\""
@@ -205,10 +205,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "How does a carbon price incentivise behaviour change?",
     "opts": [
-      "By putting people in prison",
       "By making emitting CO2 financially costly",
-      "By rewarding people for travelling more",
-      "By lowering electricity prices"
+      "By putting people in prison",
+      "By lowering electricity prices",
+      "By rewarding people for travelling more"
     ],
     "ans": "By making emitting CO2 financially costly",
     "exp": "When CO2 emission has a financial cost, individuals and companies are incentivised to reduce their footprint."
@@ -216,10 +216,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which countries does the professor mention as having high-renewable energy grids?",
     "opts": [
-      "USA and China",
-      "Brazil and India",
       "Denmark and Germany",
-      "Japan and South Korea"
+      "Japan and South Korea",
+      "Brazil and India",
+      "USA and China"
     ],
     "ans": "Denmark and Germany",
     "exp": "\"Some countries, like Denmark and Germany, are demonstrating that a high-renewable grid is operationally feasible.\""
@@ -228,9 +228,9 @@ const QUIZ: QuizItem[] = [
     "q": "What are mentioned as the real obstacles to renewable energy expansion?",
     "opts": [
       "Lack of sunlight and wind",
-      "Grid infrastructure, storage technology, and political will",
+      "Absence of international treaties",
       "Insufficient scientific research",
-      "Absence of international treaties"
+      "Grid infrastructure, storage technology, and political will"
     ],
     "ans": "Grid infrastructure, storage technology, and political will",
     "exp": "\"The real obstacles are grid infrastructure, energy storage technology, and political will.\""
@@ -239,9 +239,9 @@ const QUIZ: QuizItem[] = [
     "q": "The word \"anthropogenic\" means...",
     "opts": [
       "Relating to ancient history",
-      "Caused by human activity",
+      "Natural geological processes",
       "Related to animal migration",
-      "Natural geological processes"
+      "Caused by human activity"
     ],
     "ans": "Caused by human activity",
     "exp": "\"Anthropogenic\" refers to effects or changes caused by human activity — a key term in climate science."
@@ -249,10 +249,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Why is getting a global carbon price politically challenging?",
     "opts": [
-      "Scientists oppose it",
       "All economies must agree on a common price — requiring unprecedented cooperation",
-      "It would make energy free",
-      "No economists support it"
+      "Scientists oppose it",
+      "No economists support it",
+      "It would make energy free"
     ],
     "ans": "All economies must agree on a common price — requiring unprecedented cooperation",
     "exp": "\"Getting all major economies to agree on a common price per tonne of CO2 requires unprecedented international cooperation.\""
@@ -260,10 +260,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What have happened to solar and wind energy costs in the past decade?",
     "opts": [
+      "They have become unaffordable",
       "They have tripled",
       "They have stayed the same",
-      "They have dropped dramatically",
-      "They have become unaffordable"
+      "They have dropped dramatically"
     ],
     "ans": "They have dropped dramatically",
     "exp": "\"Solar and wind costs have dropped dramatically in the past decade.\""
@@ -272,9 +272,9 @@ const QUIZ: QuizItem[] = [
     "q": "Student A's point about Nationally Determined Contributions (NDCs) suggests...",
     "opts": [
       "They are strictly enforced",
-      "They are legally binding on all nations",
       "They represent voluntary national targets without legal consequences",
-      "They were rejected by all countries"
+      "They were rejected by all countries",
+      "They are legally binding on all nations"
     ],
     "ans": "They represent voluntary national targets without legal consequences",
     "exp": "The professor confirms NDCs are voluntary — countries can water down promises without legal consequences."
@@ -282,10 +282,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does \"mitigation\" mean in the context of climate change?",
     "opts": [
+      "To study the history of climate",
       "To increase emissions for economic growth",
       "Strategies to reduce the severity of climate change",
-      "To deny climate change exists",
-      "To study the history of climate"
+      "To deny climate change exists"
     ],
     "ans": "Strategies to reduce the severity of climate change",
     "exp": "\"Mitigation\" means actions taken to reduce or prevent greenhouse gas emissions to limit climate change impact."
@@ -293,10 +293,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The \"collective action problem\" refers to...",
     "opts": [
-      "When companies work together efficiently",
-      "The challenge of nations cooperating for collective benefit when individual incentives conflict",
       "A type of group exercise in politics",
-      "When governments fund collective art projects"
+      "When governments fund collective art projects",
+      "When companies work together efficiently",
+      "The challenge of nations cooperating for collective benefit when individual incentives conflict"
     ],
     "ans": "The challenge of nations cooperating for collective benefit when individual incentives conflict",
     "exp": "The collective action problem describes when rational individual choices lead to collectively bad outcomes."
@@ -304,10 +304,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "What does the professor imply about political will in the context of renewables?",
     "opts": [
-      "Political will is no longer needed",
       "There is already sufficient political will globally",
       "Political will is a critical missing component in many nations",
-      "Politicians are fully aligned with climate scientists"
+      "Politicians are fully aligned with climate scientists",
+      "Political will is no longer needed"
     ],
     "ans": "Political will is a critical missing component in many nations",
     "exp": "The professor flags \"political will\" as one of the real obstacles alongside infrastructure and technology."
@@ -315,10 +315,10 @@ const QUIZ: QuizItem[] = [
   {
     "q": "Which level of English listening describes the ability to follow complex academic lectures?",
     "opts": [
-      "A1",
       "A2",
-      "B1",
-      "B2"
+      "A1",
+      "B2",
+      "B1"
     ],
     "ans": "B2",
     "exp": "CEFR B2: Can understand extended speech and lectures and follow complex lines of argument on familiar topics."
@@ -327,9 +327,9 @@ const QUIZ: QuizItem[] = [
     "q": "What is a \"carbon footprint\"?",
     "opts": [
       "A physical mark left by carbon dioxide",
-      "The total amount of greenhouse gases caused by an individual or organisation",
+      "A step in the policy-making process",
       "A type of renewable energy",
-      "A step in the policy-making process"
+      "The total amount of greenhouse gases caused by an individual or organisation"
     ],
     "ans": "The total amount of greenhouse gases caused by an individual or organisation",
     "exp": "\"Carbon footprint\" refers to the total greenhouse gas emissions caused directly or indirectly by a person or organisation."
@@ -338,8 +338,8 @@ const QUIZ: QuizItem[] = [
     "q": "According to the lecture, what is missing from the Paris Agreement that would make it stronger?",
     "opts": [
       "More signatories",
-      "A binding legal enforcement mechanism with consequences",
       "Better scientific support",
+      "A binding legal enforcement mechanism with consequences",
       "More funding from wealthy nations"
     ],
     "ans": "A binding legal enforcement mechanism with consequences",
@@ -348,9 +348,9 @@ const QUIZ: QuizItem[] = [
   {
     "q": "The tone of the lecture is best described as...",
     "opts": [
-      "Casual and entertaining",
-      "Critical and analytical, exploring policy limitations",
       "Extremely optimistic about current policies",
+      "Critical and analytical, exploring policy limitations",
+      "Casual and entertaining",
       "Strongly opposed to all international agreements"
     ],
     "ans": "Critical and analytical, exploring policy limitations",

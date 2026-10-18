@@ -5,26 +5,26 @@ import type { QuizItem, ComprehensionQ } from './readingUtils';
 
 /* ══ DATA ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = [
-    { q: '(Review) Latihan 1 - What happens at 12:00?', opts: ["Arts and Crafts","Go Home","Swimming","Lunch Break"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 2 - What is the very first activity of the day?', opts: ["Lunch","Team Building Games","Swimming","Welcome and Registration"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 3 - When do the children go swimming?', opts: ["10:30","16:30","15:00","13:00"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 1 - What happens at 12:00?', opts: ["Arts and Crafts", "Lunch Break", "Swimming", "Go Home"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 2 - What is the very first activity of the day?', opts: ["Team Building Games", "Swimming", "Welcome and Registration", "Lunch"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 3 - When do the children go swimming?', opts: ["15:00", "13:00", "10:30", "16:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
     { q: '(Mencari Fakta) Latihan 4 - What do they do right before going home?', opts: ["Swimming","Lunch","Arts and Crafts","Team games"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 5 - What activity is planned for 13:00?', opts: ["Arts and Crafts","Lunch Break","Team Building Games","Swimming"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 6 - What happens at 12:00?', opts: ["Lunch Break","Swimming","Go Home","Arts and Crafts"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 7 - What is the very first activity of the day?', opts: ["Swimming","Lunch","Welcome and Registration","Team Building Games"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 8 - When do the children go swimming?', opts: ["15:00","16:30","13:00","10:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 9 - What do they do right before going home?', opts: ["Swimming","Lunch","Team games","Arts and Crafts"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 10 - What activity is planned for 13:00?', opts: ["Team Building Games","Swimming","Arts and Crafts","Lunch Break"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 11 - What happens at 12:00?', opts: ["Arts and Crafts","Go Home","Swimming","Lunch Break"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 12 - What is the very first activity of the day?', opts: ["Team Building Games","Welcome and Registration","Lunch","Swimming"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 13 - When do the children go swimming?', opts: ["15:00","16:30","13:00","10:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 14 - What do they do right before going home?', opts: ["Team games","Arts and Crafts","Lunch","Swimming"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 15 - What activity is planned for 13:00?', opts: ["Swimming","Team Building Games","Lunch Break","Arts and Crafts"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 16 - What happens at 12:00?', opts: ["Arts and Crafts","Lunch Break","Swimming","Go Home"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Review) Latihan 17 - What is the very first activity of the day?', opts: ["Lunch","Swimming","Welcome and Registration","Team Building Games"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Pemahaman Cepat) Latihan 18 - When do the children go swimming?', opts: ["10:30","13:00","15:00","16:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Analisis Singkat) Latihan 19 - What do they do right before going home?', opts: ["Swimming","Lunch","Arts and Crafts","Team games"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
-    { q: '(Mencari Fakta) Latihan 20 - What activity is planned for 13:00?', opts: ["Arts and Crafts","Swimming","Lunch Break","Team Building Games"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
+    { q: '(Review) Latihan 5 - What activity is planned for 13:00?', opts: ["Lunch Break", "Team Building Games", "Swimming", "Arts and Crafts"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 6 - What happens at 12:00?', opts: ["Lunch Break", "Go Home", "Arts and Crafts", "Swimming"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 7 - What is the very first activity of the day?', opts: ["Welcome and Registration", "Team Building Games", "Swimming", "Lunch"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 8 - When do the children go swimming?', opts: ["15:00", "10:30", "13:00", "16:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 9 - What do they do right before going home?', opts: ["Lunch", "Arts and Crafts", "Team games", "Swimming"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 10 - What activity is planned for 13:00?', opts: ["Arts and Crafts", "Swimming", "Team Building Games", "Lunch Break"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 11 - What happens at 12:00?', opts: ["Arts and Crafts", "Swimming", "Go Home", "Lunch Break"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 12 - What is the very first activity of the day?', opts: ["Welcome and Registration", "Swimming", "Lunch", "Team Building Games"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 13 - When do the children go swimming?', opts: ["13:00", "10:30", "15:00", "16:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 14 - What do they do right before going home?', opts: ["Team games", "Lunch", "Swimming", "Arts and Crafts"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 15 - What activity is planned for 13:00?', opts: ["Team Building Games", "Swimming", "Arts and Crafts", "Lunch Break"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 16 - What happens at 12:00?', opts: ["Arts and Crafts", "Swimming", "Go Home", "Lunch Break"], ans: "Lunch Break", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Review) Latihan 17 - What is the very first activity of the day?', opts: ["Lunch", "Team Building Games", "Welcome and Registration", "Swimming"], ans: "Welcome and Registration", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Pemahaman Cepat) Latihan 18 - When do the children go swimming?', opts: ["10:30", "15:00", "13:00", "16:30"], ans: "15:00", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Analisis Singkat) Latihan 19 - What do they do right before going home?', opts: ["Lunch", "Team games", "Swimming", "Arts and Crafts"], ans: "Swimming", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' },
+    { q: '(Mencari Fakta) Latihan 20 - What activity is planned for 13:00?', opts: ["Lunch Break", "Swimming", "Arts and Crafts", "Team Building Games"], ans: "Arts and Crafts", exp: 'Latihan menemukan detail spesifik (A2) dari teks berbahasa Inggris.' }
 ];
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -35,11 +35,11 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
     </>
   ),
   questions: [
-    { q: 'What happens at 12:00?', opts: ["Lunch Break","Swimming","Go Home","Arts and Crafts"], ans: 'Lunch Break' },
-    { q: 'What is the very first activity of the day?', opts: ["Lunch","Welcome and Registration","Team Building Games","Swimming"], ans: 'Welcome and Registration' },
-    { q: 'When do the children go swimming?', opts: ["16:30","15:00","13:00","10:30"], ans: '15:00' },
-    { q: 'What do they do right before going home?', opts: ["Lunch","Team games","Swimming","Arts and Crafts"], ans: 'Swimming' },
-    { q: 'What activity is planned for 13:00?', opts: ["Arts and Crafts","Swimming","Lunch Break","Team Building Games"], ans: 'Arts and Crafts' },
+    { q: 'What happens at 12:00?', opts: ["Go Home", "Arts and Crafts", "Lunch Break", "Swimming"], ans: 'Lunch Break' },
+    { q: 'What is the very first activity of the day?', opts: ["Welcome and Registration", "Swimming", "Team Building Games", "Lunch"], ans: 'Welcome and Registration' },
+    { q: 'When do the children go swimming?', opts: ["15:00", "10:30", "13:00", "16:30"], ans: '15:00' },
+    { q: 'What do they do right before going home?', opts: ["Team games", "Arts and Crafts", "Swimming", "Lunch"], ans: 'Swimming' },
+    { q: 'What activity is planned for 13:00?', opts: ["Lunch Break", "Team Building Games", "Swimming", "Arts and Crafts"], ans: 'Arts and Crafts' },
   ],
 };
 

@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const LINKING_RULES = [
   {
     word: "AND",
@@ -75,148 +77,7 @@ const EXAMPLE_SENTENCES = [
   { type: "OR (Pilihan)", en: "You can pay by cash or card.", id: "Bisa bayar tunai atau kartu.", icon: "💳" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "I was tired, ___ I went to bed early.",
-    options: ['because', 'but', 'so'],
-    answer: 'so',
-    explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
-  },
-  {
-    id: 2,
-    question: "He likes football, ___ he doesn't like tennis.",
-    options: ['and', 'but', 'or'],
-    answer: 'but',
-    explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
-  },
-  {
-    id: 3,
-    question: "She is studying ___ she has an exam tomorrow.",
-    options: ['because', 'so', 'and'],
-    answer: 'because',
-    explanation: "'Because' memperkenalkan alasannya (ada ujian)."
-  },
-  {
-    id: 4,
-    question: "Do you want to go to the cinema ___ the park?",
-    options: ['or', 'so', 'because'],
-    answer: 'or',
-    explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
-  },
-  {
-    id: 5,
-    question: "I have a brother ___ a sister.",
-    options: ['but', 'and', 'so'],
-    answer: 'and',
-    explanation: "'And' menambahkan informasi (saudara laki-laki + saudara perempuan)."
-  },
-  {
-    id: 6,
-    question: "I was tired, ___ I went to bed early.",
-    options: ["because","but","so"],
-    answer: "so",
-    explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
-  },
-  {
-    id: 7,
-    question: "Mark likes football, ___ he doesn't like tennis.",
-    options: ["and","but","or"],
-    answer: "but",
-    explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
-  },
-  {
-    id: 8,
-    question: "My mother is studying ___ she has an exam tomorrow.",
-    options: ["because","so","and"],
-    answer: "because",
-    explanation: "'Because' memperkenalkan alasannya (ada ujian)."
-  },
-  {
-    id: 9,
-    question: "Do you want to go to the cinema ___ the park?",
-    options: ["or","so","because"],
-    answer: "or",
-    explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
-  },
-  {
-    id: 10,
-    question: "I have a brother ___ a sister.",
-    options: ["but","and","so"],
-    answer: "and",
-    explanation: "'And' menambahkan informasi (saudara laki-laki + saudara perempuan)."
-  },
-  {
-    id: 11,
-    question: "I was tired, ___ I went to bed early.",
-    options: ["because","but","so"],
-    answer: "so",
-    explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
-  },
-  {
-    id: 12,
-    question: "She likes football, ___ he doesn't like tennis.",
-    options: ["and","but","or"],
-    answer: "but",
-    explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
-  },
-  {
-    id: 13,
-    question: "The girl is studying ___ he has an exam tomorrow.",
-    options: ["because","so","and"],
-    answer: "because",
-    explanation: "'Because' memperkenalkan alasannya (ada ujian)."
-  },
-  {
-    id: 14,
-    question: "Do you want to go to the cinema ___ the park?",
-    options: ["or","so","because"],
-    answer: "or",
-    explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
-  },
-  {
-    id: 15,
-    question: "I have a brother ___ a sister.",
-    options: ["but","and","so"],
-    answer: "and",
-    explanation: "'And' menambahkan informasi (saudara laki-laki + saudara perempuan)."
-  },
-  {
-    id: 16,
-    question: "I was tired, ___ I went to bed early.",
-    options: ["because","but","so"],
-    answer: "so",
-    explanation: "'So' memperkenalkan hasil (tidur lebih awal) dari kelelahan."
-  },
-  {
-    id: 17,
-    question: "He likes golf, ___ he doesn't like tennis.",
-    options: ["and","but","or"],
-    answer: "but",
-    explanation: "'But' menghubungkan dua ide yang kontras (suka vs tidak suka)."
-  },
-  {
-    id: 18,
-    question: "He is studying ___ the girl has an exam tomorrow.",
-    options: ["because","so","and"],
-    answer: "because",
-    explanation: "'Because' memperkenalkan alasannya (ada ujian)."
-  },
-  {
-    id: 19,
-    question: "Do you want to go to the cinema ___ the park?",
-    options: ["or","so","because"],
-    answer: "or",
-    explanation: "'Or' digunakan untuk menawarkan pilihan di antara opsi."
-  },
-  {
-    id: 20,
-    question: "I have a uncle ___ a sister.",
-    options: ["but","and","so"],
-    answer: "and",
-    explanation: "'And' menambahkan informasi (saudara laki-laki + saudara perempuan)."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[17], 'elementary/grammar/17'));
 
 const ElemGrammarLesson17: React.FC = () => {
   const navigate = useNavigate();

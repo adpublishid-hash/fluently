@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, MicIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 const ACCENT_CONCEPTS = [
   {
     title: "Aksen vs Kesalahan",
@@ -68,148 +70,7 @@ const ACCENT_COMPARISONS = [
   }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Apakah memiliki aksen itu buruk?",
-    options: ['Ya, selalu.', 'Tidak, asalkan kamu jelas.', 'Ya, kamu harus terdengar seperti orang Amerika.'],
-    answer: 'Tidak, asalkan kamu jelas.',
-    explanation: "Aksenmu adalah bagian dari identitasmu. Kejelasan adalah yang terpenting."
-  },
-  {
-    id: 2,
-    question: "Dalam Bahasa Inggris Britania Standar, 'R' di akhir 'Car' biasanya...",
-    options: ['Diucapkan dengan kuat', 'Diam / Lembut', 'Digulung seperti bahasa Spanyol'],
-    answer: 'Diam / Lembut',
-    explanation: "Bahasa Inggris Britania Standar bersifat non-rhotic, artinya mereka menghilangkan R di akhir kata."
-  },
-  {
-    id: 3,
-    question: "Orang Amerika biasanya mengucapkan 'T' dalam 'Water' seperti...",
-    options: ['T yang tajam', 'D lembut (Flap T)', 'Suara diam'],
-    answer: 'D lembut (Flap T)',
-    explanation: "Ini disebut 'Flap T'."
-  },
-  {
-    id: 4,
-    question: "Mengatakan 'Sink' daripada 'Think' adalah...",
-    options: ['Hanya aksen', 'Kesalahan pengucapan'],
-    answer: 'Kesalahan pengucapan',
-    explanation: "Ini adalah kesalahan karena mengubah arti kata tersebut."
-  },
-  {
-    id: 5,
-    question: "Apakah memiliki aksen itu buruk...",
-    options: ["Ya, selalu.","Tidak, asalkan kamu jelas.","Ya, kamu harus terdengar seperti orang Amerika."],
-    answer: "Tidak, asalkan kamu jelas.",
-    explanation: "Aksenmu adalah bagian dari identitasmu. Kejelasan adalah yang terpenting."
-  },
-  {
-    id: 6,
-    question: "Dalam Bahasa Inggris Britania Standar, 'R' di akhir 'Car' biasanya...",
-    options: ["Diucapkan dengan kuat","Diam / Lembut","Digulung seperti bahasa Spanyol"],
-    answer: "Diam / Lembut",
-    explanation: "Bahasa Inggris Britania Standar bersifat non-rhotic, artinya mereka menghilangkan R di akhir kata."
-  },
-  {
-    id: 7,
-    question: "Orang Amerika biasanya mengucapkan 'T' dalam 'Water' seperti... ?",
-    options: ["T yang tajam","D lembut (Flap T)","Suara diam"],
-    answer: "D lembut (Flap T)",
-    explanation: "Ini disebut 'Flap T'."
-  },
-  {
-    id: 8,
-    question: "Mengatakan 'Sit' daripada 'Thin' adalah:",
-    options: ["Hanya aksen","Kesalahan pengucapan"],
-    answer: "Kesalahan pengucapan",
-    explanation: "Ini adalah kesalahan karena mengubah arti kata tersebut."
-  },
-  {
-    id: 9,
-    question: "Apakah memiliki aksen itu buruk ?",
-    options: ["Ya, selalu.","Tidak, asalkan kamu jelas.","Ya, kamu harus terdengar seperti orang Amerika."],
-    answer: "Tidak, asalkan kamu jelas.",
-    explanation: "Aksenmu adalah bagian dari identitasmu. Kejelasan adalah yang terpenting."
-  },
-  {
-    id: 10,
-    question: "Dalam Bahasa Inggris Britania Standar, 'R' di akhir 'Car' biasanya...",
-    options: ["Diucapkan dengan kuat","Diam / Lembut","Digulung seperti bahasa Spanyol"],
-    answer: "Diam / Lembut",
-    explanation: "Bahasa Inggris Britania Standar bersifat non-rhotic, artinya mereka menghilangkan R di akhir kata."
-  },
-  {
-    id: 11,
-    question: "Orang Amerika biasanya mengucapkan 'T' dalam 'Water' seperti:",
-    options: ["T yang tajam","D lembut (Flap T)","Suara diam"],
-    answer: "D lembut (Flap T)",
-    explanation: "Ini disebut 'Flap T'."
-  },
-  {
-    id: 12,
-    question: "Mengatakan 'Sit' daripada 'Thank' adalah...",
-    options: ["Hanya aksen","Kesalahan pengucapan"],
-    answer: "Kesalahan pengucapan",
-    explanation: "Ini adalah kesalahan karena mengubah arti kata tersebut."
-  },
-  {
-    id: 13,
-    question: "Apakah memiliki aksen itu buruk?",
-    options: ["Ya, selalu.","Tidak, asalkan kamu jelas.","Ya, kamu harus terdengar seperti orang Amerika."],
-    answer: "Tidak, asalkan kamu jelas.",
-    explanation: "Aksenmu adalah bagian dari identitasmu. Kejelasan adalah yang terpenting."
-  },
-  {
-    id: 14,
-    question: "Dalam Bahasa Inggris Britania Standar, 'R' di akhir 'Car' biasanya... ?",
-    options: ["Diucapkan dengan kuat","Diam / Lembut","Digulung seperti bahasa Spanyol"],
-    answer: "Diam / Lembut",
-    explanation: "Bahasa Inggris Britania Standar bersifat non-rhotic, artinya mereka menghilangkan R di akhir kata."
-  },
-  {
-    id: 15,
-    question: "Orang Amerika biasanya mengucapkan 'T' dalam 'Water' seperti:",
-    options: ["T yang tajam","D lembut (Flap T)","Suara diam"],
-    answer: "D lembut (Flap T)",
-    explanation: "Ini disebut 'Flap T'."
-  },
-  {
-    id: 16,
-    question: "Mengatakan 'Sit' daripada 'Thank' adalah...",
-    options: ["Hanya aksen","Kesalahan pengucapan"],
-    answer: "Kesalahan pengucapan",
-    explanation: "Ini adalah kesalahan karena mengubah arti kata tersebut."
-  },
-  {
-    id: 17,
-    question: "Apakah memiliki aksen itu buruk?",
-    options: ["Ya, selalu.","Tidak, asalkan kamu jelas.","Ya, kamu harus terdengar seperti orang Amerika."],
-    answer: "Tidak, asalkan kamu jelas.",
-    explanation: "Aksenmu adalah bagian dari identitasmu. Kejelasan adalah yang terpenting."
-  },
-  {
-    id: 18,
-    question: "Dalam Bahasa Inggris Britania Standar, 'R' di akhir 'Car' biasanya...",
-    options: ["Diucapkan dengan kuat","Diam / Lembut","Digulung seperti bahasa Spanyol"],
-    answer: "Diam / Lembut",
-    explanation: "Bahasa Inggris Britania Standar bersifat non-rhotic, artinya mereka menghilangkan R di akhir kata."
-  },
-  {
-    id: 19,
-    question: "Orang Amerika biasanya mengucapkan 'T' dalam 'Water' seperti...  ?",
-    options: ["T yang tajam","D lembut (Flap T)","Suara diam"],
-    answer: "D lembut (Flap T)",
-    explanation: "Ini disebut 'Flap T'."
-  },
-  {
-    id: 20,
-    question: "Mengatakan 'Sick' daripada 'Thief' adalah... ...",
-    options: ["Hanya aksen","Kesalahan pengucapan"],
-    answer: "Kesalahan pengucapan",
-    explanation: "Ini adalah kesalahan karena mengubah arti kata tersebut."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[14], 'elementary/pronunciation/14'));
 
 const ElemPronunLesson14: React.FC = () => {
   const navigate = useNavigate();

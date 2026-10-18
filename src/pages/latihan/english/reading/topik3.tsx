@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Arif watched the sunset near the temple.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-        "Arif watched the sunset near the temple."
-      ],
       "id": "travel-blog-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Who did Arif travel with?",
+      "answer": "two friends",
+      "options": [
+        "two friends",
+        "three cousins",
+        "his teacher",
+        "his parents"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "explored",
-      "options": [
-        "understanding personal recounts and opinions",
-        "main idea",
-        "explored",
-        "traveled around a place to learn about it"
-      ],
       "id": "travel-blog-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "When did Arif visit Yogyakarta?",
+      "answer": "last weekend",
+      "options": [
+        "last month",
+        "last weekend",
+        "last year",
+        "next weekend"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "A Weekend in Yogyakarta",
-      "options": [
-        "No title is possible.",
-        "A Weekend in Yogyakarta",
-        "Travel Blog",
-        "to share a personal travel experience"
-      ],
       "id": "travel-blog-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"kind and welcoming\"?",
+      "answer": "friendly",
+      "options": [
+        "small",
+        "local",
+        "friendly",
+        "memorable"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Travel Blog.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-      "options": [
-        "traveled around a place to learn about it",
-        "understanding personal recounts and opinions",
-        "The text is only about spelling.",
-        "Arif enjoyed a short trip to Yogyakarta with memorable local experiences."
-      ],
       "id": "travel-blog-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which activity did Arif NOT do on the trip?",
+      "answer": "went shopping at a mall",
+      "options": [
+        "went shopping at a mall",
+        "watched the sunset near the temple",
+        "explored small streets",
+        "tried local food"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"explored\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Arif watched the sunset near the temple.",
-      "options": [
-        "The text says the opposite.",
-        "traveled around a place to learn about it",
-        "to share a personal travel experience",
-        "Arif watched the sunset near the temple."
-      ],
       "id": "travel-blog-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "According to Arif, what was the best part of the trip?",
+      "answer": "meeting friendly local artists",
+      "options": [
+        "exploring small streets",
+        "meeting friendly local artists",
+        "watching the sunset near the temple",
+        "trying local food"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to share a personal travel experience",
-      "options": [
-        "understanding personal recounts and opinions",
-        "to share a personal travel experience",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "travel-blog-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence in the passage expresses Arif's opinion rather than a fact?",
+      "answer": "The best part was meeting friendly local artists.",
+      "options": [
+        "They explored small streets.",
+        "They tried local food.",
+        "Last weekend, Arif visited Yogyakarta with two friends.",
+        "The best part was meeting friendly local artists."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-      "options": [
-        "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-        "Arif watched the sunset near the temple.",
-        "traveled around a place to learn about it",
-        "Only one small word matters."
-      ],
       "id": "travel-blog-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which statement is NOT supported by the passage?",
+      "answer": "Arif found the trip boring and too expensive.",
+      "options": [
+        "Arif valued meeting local people during his short trip.",
+        "Arif spent part of the trip outdoors.",
+        "Arif tried food from the local area.",
+        "Arif found the trip boring and too expensive."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "Arif enjoys cultural experiences when traveling.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Arif watched the sunset near the temple.",
-        "Arif enjoys cultural experiences when traveling."
-      ],
       "id": "travel-blog-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which tone best describes the blog post?",
+      "answer": "warm and enthusiastic",
+      "options": [
+        "warm and enthusiastic",
+        "bored and negative",
+        "formal and technical",
+        "cold and critical"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Arif watched the sunset near the temple.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-        "Arif watched the sunset near the temple."
-      ],
       "id": "travel-blog-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Dengan siapa Arif bepergian?",
+      "answer": "two friends",
+      "options": [
+        "two friends",
+        "three cousins",
+        "his teacher",
+        "his parents"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "explored",
-      "options": [
-        "understanding personal recounts and opinions",
-        "main idea",
-        "explored",
-        "traveled around a place to learn about it"
-      ],
       "id": "travel-blog-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kapan Arif mengunjungi Yogyakarta?",
+      "answer": "last weekend",
+      "options": [
+        "last month",
+        "last weekend",
+        "last year",
+        "next weekend"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "A Weekend in Yogyakarta",
-      "options": [
-        "No title is possible.",
-        "A Weekend in Yogyakarta",
-        "Travel Blog",
-        "to share a personal travel experience"
-      ],
       "id": "travel-blog-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"kind and welcoming\"?",
+      "answer": "friendly",
+      "options": [
+        "small",
+        "local",
+        "friendly",
+        "memorable"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Travel Blog.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-      "options": [
-        "traveled around a place to learn about it",
-        "understanding personal recounts and opinions",
-        "The text is only about spelling.",
-        "Arif enjoyed a short trip to Yogyakarta with memorable local experiences."
-      ],
       "id": "travel-blog-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kegiatan mana yang TIDAK dilakukan Arif dalam perjalanan?",
+      "answer": "went shopping at a mall",
+      "options": [
+        "went shopping at a mall",
+        "watched the sunset near the temple",
+        "explored small streets",
+        "tried local food"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"explored\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Arif watched the sunset near the temple.",
-      "options": [
-        "The text says the opposite.",
-        "traveled around a place to learn about it",
-        "to share a personal travel experience",
-        "Arif watched the sunset near the temple."
-      ],
       "id": "travel-blog-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Menurut Arif, apa bagian terbaik dari perjalanan itu?",
+      "answer": "meeting friendly local artists",
+      "options": [
+        "exploring small streets",
+        "meeting friendly local artists",
+        "watching the sunset near the temple",
+        "trying local food"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to share a personal travel experience",
-      "options": [
-        "understanding personal recounts and opinions",
-        "to share a personal travel experience",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "travel-blog-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana dalam bacaan yang menyatakan opini Arif, bukan fakta?",
+      "answer": "The best part was meeting friendly local artists.",
+      "options": [
+        "They explored small streets.",
+        "They tried local food.",
+        "Last weekend, Arif visited Yogyakarta with two friends.",
+        "The best part was meeting friendly local artists."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-      "options": [
-        "Arif enjoyed a short trip to Yogyakarta with memorable local experiences.",
-        "Arif watched the sunset near the temple.",
-        "traveled around a place to learn about it",
-        "Only one small word matters."
-      ],
       "id": "travel-blog-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Pernyataan mana yang TIDAK didukung oleh bacaan?",
+      "answer": "Arif found the trip boring and too expensive.",
+      "options": [
+        "Arif valued meeting local people during his short trip.",
+        "Arif spent part of the trip outdoors.",
+        "Arif tried food from the local area.",
+        "Arif found the trip boring and too expensive."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "Arif enjoys cultural experiences when traveling.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Arif watched the sunset near the temple.",
-        "Arif enjoys cultural experiences when traveling."
-      ],
       "id": "travel-blog-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Nada mana yang paling tepat menggambarkan tulisan blog ini?",
+      "answer": "warm and enthusiastic",
+      "options": [
+        "warm and enthusiastic",
+        "bored and negative",
+        "formal and technical",
+        "cold and critical"
+      ]
     }
   ]
 };

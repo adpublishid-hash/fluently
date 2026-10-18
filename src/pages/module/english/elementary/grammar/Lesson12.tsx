@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const COMPARISON_RULES = [
   {
     title: "Kata Sifat (Adjectives)",
@@ -59,148 +61,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Kata Keterangan", en: "She speaks perfectly.", id: "Dia berbicara dengan sempurna.", icon: "💬" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "This is a ___ car.",
-    options: ['slow', 'slowly'],
-    answer: 'slow',
-    explanation: "Car adalah kata benda. Kita butuh Kata Sifat untuk menjelaskannya."
-  },
-  {
-    id: 2,
-    question: "He plays the piano ___.",
-    options: ['good', 'well', 'goodly'],
-    answer: 'well',
-    explanation: "Play adalah kata kerja. Kita butuh kata keterangan 'Well'. 'Good' adalah kata sifat."
-  },
-  {
-    id: 3,
-    question: "Please speak ___.",
-    options: ['quiet', 'quietly'],
-    answer: 'quietly',
-    explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
-  },
-  {
-    id: 4,
-    question: "She works very ___.",
-    options: ['hard', 'hardly'],
-    answer: 'hard',
-    explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
-  },
-  {
-    id: 5,
-    question: "You look ___ today.",
-    options: ['happy', 'happily'],
-    answer: 'happy',
-    explanation: "Setelah kata kerja seperti 'Look', 'Feel', 'Smell', 'Sound' (Indra), gunakan Kata Sifat."
-  },
-  {
-    id: 6,
-    question: "This is a ___ car.",
-    options: ["slow","slowly"],
-    answer: "slow",
-    explanation: "Car adalah kata benda. Kita butuh Kata Sifat untuk menjelaskannya."
-  },
-  {
-    id: 7,
-    question: "He plays the piano ___.",
-    options: ["good","well","goodly"],
-    answer: "well",
-    explanation: "Play adalah kata kerja. Kita butuh kata keterangan 'Well'. 'Good' adalah kata sifat."
-  },
-  {
-    id: 8,
-    question: "Please speak ___.",
-    options: ["quiet","quietly"],
-    answer: "quietly",
-    explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
-  },
-  {
-    id: 9,
-    question: "My mother works very ___.",
-    options: ["hard","hardly"],
-    answer: "hard",
-    explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
-  },
-  {
-    id: 10,
-    question: "You look ___ today.",
-    options: ["happy","happily"],
-    answer: "happy",
-    explanation: "Setelah kata kerja seperti 'Look', 'Feel', 'Smell', 'Sound' (Indra), gunakan Kata Sifat."
-  },
-  {
-    id: 11,
-    question: "This is a ___ car.",
-    options: ["slow","slowly"],
-    answer: "slow",
-    explanation: "Car adalah kata benda. Kita butuh Kata Sifat untuk menjelaskannya."
-  },
-  {
-    id: 12,
-    question: "Mark plays the piano ___.",
-    options: ["nice","well","goodly"],
-    answer: "well",
-    explanation: "Play adalah kata kerja. Kita butuh kata keterangan 'Well'. 'Good' adalah kata sifat."
-  },
-  {
-    id: 13,
-    question: "Please speak ___.",
-    options: ["quiet","quietly"],
-    answer: "quietly",
-    explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
-  },
-  {
-    id: 14,
-    question: "She works very ___.",
-    options: ["hard","hardly"],
-    answer: "hard",
-    explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
-  },
-  {
-    id: 15,
-    question: "You look ___ today.",
-    options: ["happy","happily"],
-    answer: "happy",
-    explanation: "Setelah kata kerja seperti 'Look', 'Feel', 'Smell', 'Sound' (Indra), gunakan Kata Sifat."
-  },
-  {
-    id: 16,
-    question: "This is a ___ van.",
-    options: ["slow","slowly"],
-    answer: "slow",
-    explanation: "Car adalah kata benda. Kita butuh Kata Sifat untuk menjelaskannya."
-  },
-  {
-    id: 17,
-    question: "She plays the piano ___.",
-    options: ["excellent","well","goodly"],
-    answer: "well",
-    explanation: "Play adalah kata kerja. Kita butuh kata keterangan 'Well'. 'Good' adalah kata sifat."
-  },
-  {
-    id: 18,
-    question: "Please speak ___.",
-    options: ["quiet","quietly"],
-    answer: "quietly",
-    explanation: "Speak adalah kata kerja. Kita butuh Kata Keterangan (Bagaimana cara bicara? Quietly)."
-  },
-  {
-    id: 19,
-    question: "She works very ___.",
-    options: ["hard","hardly"],
-    answer: "hard",
-    explanation: "'Hard' tidak beraturan. Kata keterangannya adalah 'Hard'. ('Hardly' artinya 'hampir tidak')."
-  },
-  {
-    id: 20,
-    question: "You look ___ this morning.",
-    options: ["happy","happily"],
-    answer: "happy",
-    explanation: "Setelah kata kerja seperti 'Look', 'Feel', 'Smell', 'Sound' (Indra), gunakan Kata Sifat."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[12], 'elementary/grammar/12'));
 
 const ElemGrammarLesson12: React.FC = () => {
   const navigate = useNavigate();

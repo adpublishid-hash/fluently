@@ -63,42 +63,42 @@ const QUIZ_QUESTIONS = [
   {
     id: 2,
     question: "If you have a high fever, that is a ___ of an illness.",
-    options: ['symptom', 'muscle', 'habit'],
+    options: ['symptom', 'habit', 'muscle'],
     answer: 'symptom',
     explanation: "A symptom (Gejala) adalah tanda bahwa Anda sakit."
   },
   {
     id: 3,
     question: "She practices yoga to improve her ___.",
-    options: ['flexibility', 'infection', 'diagnosis'],
+    options: ['diagnosis', 'flexibility', 'infection'],
     answer: 'flexibility',
     explanation: "Flexibility (Kelenturan) adalah kemampuan untuk menekuk dengan mudah tanpa patah."
   },
   {
     id: 4,
     question: "Drinking enough water is important for ___.",
-    options: ['hydration', 'stress', 'emergency'],
+    options: ['stress', 'hydration', 'emergency'],
     answer: 'hydration',
     explanation: "Hydration (Hidrasi) mengacu pada penyerapan air."
   },
   {
     id: 5,
     question: "The doctor gave me a ___ for antibiotics.",
-    options: ['menu', 'prescription', 'receipt'],
+    options: ['receipt', 'menu', 'prescription'],
     answer: 'prescription',
     explanation: "A prescription (Resep) adalah kertas dari dokter untuk mendapatkan obat."
   },
   {
     id: 6,
     question: "Regular ___ helps you build ___ and lose weight.",
-    options: ['workout, muscle', 'diet, surgery', 'stress, vaccine'],
+    options: ['diet, surgery', 'stress, vaccine', 'workout, muscle'],
     answer: 'workout, muscle',
     explanation: "Workout (Latihan) membantu membangun Muscle (Otot)."
   },
   {
     id: 7,
     question: "Marathon runners need great ___ and ___.",
-    options: ['stamina, endurance', 'surgery, infection', 'prescription, diagnosis'],
+    options: ['prescription, diagnosis', 'stamina, endurance', 'surgery, infection'],
     answer: 'stamina, endurance',
     explanation: "Stamina (Stamina) dan Endurance (Daya tahan) diperlukan untuk lari jarak jauh."
   },
@@ -112,28 +112,28 @@ const QUIZ_QUESTIONS = [
   {
     id: 9,
     question: "After exercising, do a ___ to help your body relax.",
-    options: ['warm-up', 'cooldown', 'surgery'],
+    options: ['cooldown', 'warm-up', 'surgery'],
     answer: 'cooldown',
     explanation: "Cooldown (Pendinginan) membantu tubuh kembali normal setelah latihan intens."
   },
   {
     id: 10,
     question: "The ___ is still waiting for the doctor's ___.",
-    options: ['patient, diagnosis', 'muscle, workout', 'habit, stress'],
+    options: ['habit, stress', 'patient, diagnosis', 'muscle, workout'],
     answer: 'patient, diagnosis',
     explanation: "Patient (Pasien) menunggu Diagnosis (Diagnosis) dari dokter."
   },
   {
     id: 11,
     question: "She caught an ___ and needs ___.",
-    options: ['infection, treatment', 'aerobic, strength', 'posture, flexibility'],
+    options: ['posture, flexibility', 'infection, treatment', 'aerobic, strength'],
     answer: 'infection, treatment',
     explanation: "Infection (Infeksi) memerlukan Treatment (Pengobatan)."
   },
   {
     id: 12,
     question: "His ___ from the accident took several months.",
-    options: ['recovery', 'workout', 'habit'],
+    options: ['habit', 'recovery', 'workout'],
     answer: 'recovery',
     explanation: "Recovery (Pemulihan) adalah proses menjadi sehat kembali."
   },
@@ -147,7 +147,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 14,
     question: "Call an ambulance! This is an ___!",
-    options: ['emergency', 'aerobic', 'nutrition'],
+    options: ['aerobic', 'nutrition', 'emergency'],
     answer: 'emergency',
     explanation: "Emergency (Darurat) adalah situasi serius yang membutuhkan tindakan segera."
   },
@@ -161,7 +161,7 @@ const QUIZ_QUESTIONS = [
   {
     id: 16,
     question: "Good ___ includes fruits, vegetables, and protein.",
-    options: ['nutrition', 'stress', 'surgery'],
+    options: ['surgery', 'stress', 'nutrition'],
     answer: 'nutrition',
     explanation: "Nutrition (Nutrisi) adalah makanan yang dibutuhkan tubuh untuk tetap sehat."
   },
@@ -175,21 +175,21 @@ const QUIZ_QUESTIONS = [
   {
     id: 18,
     question: "A ___ lifestyle includes regular exercise and a healthy ___.",
-    options: ['balanced, diet', 'stressed, emergency', 'flexible, surgery'],
+    options: ['balanced, diet', 'flexible, surgery', 'stressed, emergency'],
     answer: 'balanced, diet',
     explanation: "Balanced (Seimbang) lifestyle termasuk Diet (Pola makan) yang sehat."
   },
   {
     id: 19,
     question: "I practice ___ and ___ to reduce stress.",
-    options: ['meditation, relaxation', 'surgery, infection', 'diagnosis, prescription'],
+    options: ['diagnosis, prescription', 'surgery, infection', 'meditation, relaxation'],
     answer: 'meditation, relaxation',
     explanation: "Meditation (Meditasi) dan Relaxation (Relaksasi) membantu mengurangi stres."
   },
   {
     id: 20,
     question: "Building a good ___ takes time and discipline.",
-    options: ['habit', 'symptom', 'emergency'],
+    options: ['emergency', 'habit', 'symptom'],
     answer: 'habit',
     explanation: "Habit (Kebiasaan) adalah sesuatu yang Anda lakukan secara teratur tanpa berpikir."
   }

@@ -78,7 +78,7 @@ export default function AdvancedVocabularyLesson({ lessonId }: { lessonId: numbe
             <div className="space-y-4">
               <section className="rounded-3xl p-6 text-white relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${ACCENT}, ${ACCENT}AA)` }}>
                 <BookOpen className="absolute top-4 right-4 w-20 h-20 opacity-10" />
-                <span className="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">30 advanced words</span>
+                <span className="text-xs font-bold bg-white/20 px-3 py-1 rounded-full">{lesson.words.length} advanced words</span>
                 <h2 className="text-xl font-black mt-3 mb-1">{lesson.title}</h2>
                 <p className="text-sm text-white/85">{lesson.focus}</p>
               </section>

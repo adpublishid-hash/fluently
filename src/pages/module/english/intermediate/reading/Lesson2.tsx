@@ -4,229 +4,11 @@ import { QuizEngine, ReadingCard, ComprehensionSection, getCompletedReadingLesso
 import type { QuizItem, ComprehensionQ } from './readingUtils';
 import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
+import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
-const QUIZ: QuizItem[] = [
-  {
-    "q": "What kind of environment was Chloe's new café?",
-    "opts": [
-      "Loud and busy",
-      "Cozy",
-      "Expensive",
-      "Modern and sterile"
-    ],
-    "ans": "Cozy",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What did the workplace notice announce?",
-    "opts": [
-      "Pay raise",
-      "Maintenance on water pipes",
-      "Fire drill",
-      "New manager"
-    ],
-    "ans": "Maintenance on water pipes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What was Chloe's major problem?",
-    "opts": [
-      "Internet was down",
-      "Lost boxes",
-      "Missed a train",
-      "Got sick"
-    ],
-    "ans": "Lost boxes",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'exhausting' mean?",
-    "opts": [
-      "Relaxing",
-      "Very tiring",
-      "Fast",
-      "Boring"
-    ],
-    "ans": "Very tiring",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Why did Sarah reschedule the meeting?",
-    "opts": [
-      "She is sick",
-      "Stakeholders are traveling",
-      "Room is booked",
-      "Project canceled"
-    ],
-    "ans": "Stakeholders are traveling",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "How much is John paying per walk?",
-    "opts": [
-      "$10",
-      "$15",
-      "$20",
-      "$25"
-    ],
-    "ans": "$15",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Where can employees get water during maintenance?",
-    "opts": [
-      "Near the elevator",
-      "In the staff lounge",
-      "Outside the building",
-      "In the manager's office"
-    ],
-    "ans": "In the staff lounge",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is moving to London?",
-    "opts": [
-      "Jane",
-      "Mia",
-      "Chloe",
-      "Sarah"
-    ],
-    "ans": "Chloe",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does John's dog walker need to provide?",
-    "opts": [
-      "A reference",
-      "A resume",
-      "A car",
-      "Dog treats"
-    ],
-    "ans": "A reference",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When will the water supply be shut off?",
-    "opts": [
-      "Sunday",
-      "Saturday",
-      "Friday",
-      "Monday"
-    ],
-    "ans": "Saturday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What does 'pushed back' mean?",
-    "opts": [
-      "Delayed",
-      "Canceled",
-      "Moved forward",
-      "Advanced"
-    ],
-    "ans": "Delayed",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Who is Sarah writing to?",
-    "opts": [
-      "Clients",
-      "The team",
-      "Her manager",
-      "The public"
-    ],
-    "ans": "The team",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What must John's dog walker have experience with?",
-    "opts": [
-      "Small breeds",
-      "Large dogs",
-      "Sick dogs",
-      "Puppies"
-    ],
-    "ans": "Large dogs",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is the main topic of John's advertisement?",
-    "opts": [
-      "Selling a dog",
-      "Hiring a dog walker",
-      "Buying dog food",
-      "Veterinary services"
-    ],
-    "ans": "Hiring a dog walker",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "When is the new kick-off meeting?",
-    "opts": [
-      "Wednesday 10 AM",
-      "Thursday 10 AM",
-      "Friday 10 AM",
-      "Friday 3 PM"
-    ],
-    "ans": "Friday 10 AM",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "According to the email, what should team members review?",
-    "opts": [
-      "Budget reports",
-      "Attached agenda",
-      "Marketing strategy",
-      "Holiday schedule"
-    ],
-    "ans": "Attached agenda",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What day does Chloe start her job?",
-    "opts": [
-      "Friday",
-      "Monday",
-      "Wednesday",
-      "Sunday"
-    ],
-    "ans": "Monday",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What breed is John's dog?",
-    "opts": [
-      "Poodle",
-      "Husky",
-      "Golden Retriever",
-      "Bulldog"
-    ],
-    "ans": "Golden Retriever",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "Which restrooms have a backup water tank?",
-    "opts": [
-      "Top floor",
-      "Ground floor",
-      "Second floor",
-      "Basement"
-    ],
-    "ans": "Ground floor",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  },
-  {
-    "q": "What is Chloe looking forward to?",
-    "opts": [
-      "Mia's visit in the summer",
-      "Buying a new house",
-      "Getting a promotion",
-      "Moving again"
-    ],
-    "ans": "Mia's visit in the summer",
-    "exp": "Comprehension of Intermediate texts (B1 standard)."
-  }
-];
+const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[2], 'intermediate/reading/2');
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -238,50 +20,50 @@ const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions
   {
     "q": "Why was the meeting rescheduled?",
     "opts": [
+      "The team needs more time to prepare.",
       "The conference room was booked by another team.",
       "Sarah is currently out of town.",
-      "Important stakeholders are traveling.",
-      "The team needs more time to prepare."
+      "Important stakeholders are traveling."
     ],
     "ans": "Important stakeholders are traveling."
   },
   {
     "q": "What should the team do before the meeting?",
     "opts": [
-      "Send their ideas via email.",
-      "Meet the stakeholders.",
       "Reschedule deadlines.",
-      "Read the attached agenda."
+      "Read the attached agenda.",
+      "Meet the stakeholders.",
+      "Send their ideas via email."
     ],
     "ans": "Read the attached agenda."
   },
   {
     "q": "What does 'pushed back' mean?",
     "opts": [
+      "Moved to an earlier time",
+      "Relocated",
       "Canceled",
-      "Delayed to a later time",
-      "Moved earlier",
-      "Relocated"
+      "Delayed to a later time"
     ],
     "ans": "Delayed to a later time"
   },
   {
     "q": "What should a member do if they cannot attend?",
     "opts": [
-      "Inform Sarah about conflicting deadlines.",
       "Call the stakeholders.",
       "Ignore the email.",
-      "Write a new agenda."
+      "Write a new agenda for the meeting on Friday.",
+      "Inform Sarah about conflicting deadlines."
     ],
     "ans": "Inform Sarah about conflicting deadlines."
   },
   {
     "q": "What time is the new meeting?",
     "opts": [
-      "Wednesday 10:00 AM",
       "Thursday 10:00 AM",
       "Friday 10:00 AM",
-      "Friday 2:00 PM"
+      "Friday 2:00 PM",
+      "Wednesday 10:00 AM"
     ],
     "ans": "Friday 10:00 AM"
   }
@@ -361,12 +143,12 @@ export default function InterReadingLesson2(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Teks ini melatih kemampuan ekstraksi informasi:
+                    {lessonTips[2].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Pemahaman Fakta:</strong> Cari tahu poin penting (waktu, orang, syarat).</li>
-                    <li><strong className="text-slate-800">Makna Kata:</strong> Coba pahami kosakata baru dari konteks kalimat.</li>
-                    <li><strong className="text-slate-800">Tujuan Teks:</strong> Kenapa teks ini ditulis?</li>
+                    {lessonTips[2].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mengevaluasi bacaanmu!

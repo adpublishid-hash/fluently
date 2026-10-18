@@ -32,9 +32,9 @@ const BUILD_ITEMS = [
     prompt: "___ Mr. Smith,",
     blank: "Dear",
     options: [
-      "Sincerely",
+      "Dear",
       "Hello to",
-      "Dear"
+      "Sincerely"
     ],
     answer: "Dear"
   }
@@ -43,10 +43,10 @@ const QUIZ = [
   {
     q: "Salam pembuka email profesional:",
     opts: [
-      "Hey John!",
       "Dear Mr. Smith,",
+      "Yo Smith",
       "What is up bro",
-      "Yo Smith"
+      "Hey John!"
     ],
     ans: "Dear Mr. Smith,",
     exp: "\"Dear\" + nama keluarga."
@@ -55,9 +55,9 @@ const QUIZ = [
     q: "Penutup email formal:",
     opts: [
       "Bye bye!",
-      "See ya!",
+      "XOXO",
       "Best regards,",
-      "XOXO"
+      "See ya!"
     ],
     ans: "Best regards,",
     exp: "\"Best regards\" untuk formal."
@@ -66,9 +66,9 @@ const QUIZ = [
     q: "\"I ___ writing to ask about the class.\"",
     opts: [
       "is",
-      "am",
+      "be",
       "are",
-      "be"
+      "am"
     ],
     ans: "am",
     exp: "\"I am writing...\" = opening email umum."
@@ -76,10 +76,10 @@ const QUIZ = [
   {
     q: "Subject email yang baik:",
     opts: [
-      "(kosong)",
-      "Hai",
       "Request for Meeting - March 5",
-      "aaa"
+      "aaa",
+      "(kosong)",
+      "Hai"
     ],
     ans: "Request for Meeting - March 5",
     exp: "Subject harus jelas dan spesifik."
@@ -87,10 +87,10 @@ const QUIZ = [
   {
     q: "\"Could you please ___ me the file?\"",
     opts: [
-      "sending",
       "sent",
-      "send",
-      "sends"
+      "sends",
+      "sending",
+      "send"
     ],
     ans: "send",
     exp: "Setelah \"please\", verb dasar."
@@ -98,10 +98,10 @@ const QUIZ = [
   {
     q: "Kalimat cocok di badan email:",
     opts: [
-      "Gimana kabar?",
       "Oi",
-      "I hope this email finds you well.",
-      "Yo bro"
+      "Yo bro",
+      "Gimana kabar?",
+      "I hope this email finds you well."
     ],
     ans: "I hope this email finds you well.",
     exp: "Frasa formal pembuka email."
@@ -109,10 +109,10 @@ const QUIZ = [
   {
     q: "\"Thank you ___ your reply.\"",
     opts: [
+      "in",
       "to",
       "for",
-      "at",
-      "in"
+      "at"
     ],
     ans: "for",
     exp: "\"Thank you for\" + noun."
@@ -120,10 +120,10 @@ const QUIZ = [
   {
     q: "\"I look forward ___ hearing from you.\"",
     opts: [
+      "to",
       "at",
       "for",
-      "in",
-      "to"
+      "in"
     ],
     ans: "to",
     exp: "\"Look forward to\" + noun/v-ing."
@@ -153,10 +153,10 @@ const QUIZ = [
   {
     q: "\"I would like to ___ a meeting.\"",
     opts: [
-      "scheduling",
       "schedule",
-      "scheduled",
-      "schedules"
+      "schedules",
+      "scheduling",
+      "scheduled"
     ],
     ans: "schedule",
     exp: "\"Would like to\" + verb dasar."
@@ -164,10 +164,10 @@ const QUIZ = [
   {
     q: "\"Kindly ___ me know.\"",
     opts: [
-      "lets",
       "letting",
-      "let",
-      "letted"
+      "lets",
+      "letted",
+      "let"
     ],
     ans: "let",
     exp: "\"Kindly let\" = tolong beritahu."
@@ -175,10 +175,10 @@ const QUIZ = [
   {
     q: "\"I apologize ___ the inconvenience.\"",
     opts: [
-      "to",
       "for",
-      "at",
-      "in"
+      "to",
+      "in",
+      "at"
     ],
     ans: "for",
     exp: "\"Apologize for\" + noun."
@@ -186,10 +186,10 @@ const QUIZ = [
   {
     q: "\"CC\" di email artinya:",
     opts: [
+      "Cancel Contact",
       "Carbon Copy",
       "Central Computer",
-      "Close Case",
-      "Cancel Contact"
+      "Close Case"
     ],
     ans: "Carbon Copy",
     exp: "CC = salinan email ke orang lain."
@@ -197,10 +197,10 @@ const QUIZ = [
   {
     q: "\"I will get ___ to you soon.\"",
     opts: [
-      "up",
       "back",
-      "down",
-      "in"
+      "in",
+      "up",
+      "down"
     ],
     ans: "back",
     exp: "\"Get back to\" = membalas."
@@ -208,9 +208,9 @@ const QUIZ = [
   {
     q: "\"Please ___ this email to your team.\"",
     opts: [
-      "forwarding",
-      "forwarded",
       "forward",
+      "forwarded",
+      "forwarding",
       "forwards"
     ],
     ans: "forward",
@@ -220,9 +220,9 @@ const QUIZ = [
     q: "\"I am ___ to inform you that...\"",
     opts: [
       "writing",
-      "write",
       "wrote",
-      "written"
+      "written",
+      "write"
     ],
     ans: "writing",
     exp: "\"Am writing\" = present continuous."
@@ -230,10 +230,10 @@ const QUIZ = [
   {
     q: "\"As ___ in my previous email...\"",
     opts: [
-      "mention",
-      "mentioned",
       "mentioning",
-      "mentions"
+      "mentions",
+      "mentioned",
+      "mention"
     ],
     ans: "mentioned",
     exp: "\"As mentioned\" = seperti yang disebutkan."
@@ -241,10 +241,10 @@ const QUIZ = [
   {
     q: "\"Regarding\" artinya:",
     opts: [
-      "Tentang",
       "Terhadap",
+      "Oleh",
       "Bersama",
-      "Oleh"
+      "Tentang"
     ],
     ans: "Tentang",
     exp: "\"Regarding\" = mengenai/tentang."
@@ -252,10 +252,10 @@ const QUIZ = [
   {
     q: "\"I ___ to hear from you soon.\"",
     opts: [
-      "hopes",
       "hope",
+      "hoped",
       "hoping",
-      "hoped"
+      "hopes"
     ],
     ans: "hope",
     exp: "\"I hope\" = simple present."

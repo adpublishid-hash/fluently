@@ -27,9 +27,9 @@ const BUILD_ITEMS = [
     prompt: "I highly ___ this restaurant!",
     blank: "recommend",
     options: [
+      "go",
       "hate",
-      "recommend",
-      "go"
+      "recommend"
     ],
     answer: "recommend"
   }
@@ -48,9 +48,9 @@ const QUIZ = [
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R2)",
     opts: [
-      "It is awful.",
       "I hate it.",
-      "It is amazing!"
+      "It is amazing!",
+      "It is awful."
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -68,35 +68,15 @@ const QUIZ = [
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R4)",
     opts: [
-      "It is amazing!",
       "It is awful.",
-      "I hate it."
+      "I hate it.",
+      "It is amazing!"
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
   },
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R5)",
-    opts: [
-      "It is amazing!",
-      "It is awful.",
-      "I hate it."
-    ],
-    ans: "It is amazing!",
-    exp: "Amazing adalah sentimen positif."
-  },
-  {
-    q: "Kata untuk menyatakan sangat menyukai:  (R6)",
-    opts: [
-      "It is amazing!",
-      "I hate it.",
-      "It is awful."
-    ],
-    ans: "It is amazing!",
-    exp: "Amazing adalah sentimen positif."
-  },
-  {
-    q: "Kata untuk menyatakan sangat menyukai:  (R7)",
     opts: [
       "I hate it.",
       "It is awful.",
@@ -106,11 +86,31 @@ const QUIZ = [
     exp: "Amazing adalah sentimen positif."
   },
   {
-    q: "Kata untuk menyatakan sangat menyukai:  (R8)",
+    q: "Kata untuk menyatakan sangat menyukai:  (R6)",
+    opts: [
+      "I hate it.",
+      "It is awful.",
+      "It is amazing!"
+    ],
+    ans: "It is amazing!",
+    exp: "Amazing adalah sentimen positif."
+  },
+  {
+    q: "Kata untuk menyatakan sangat menyukai:  (R7)",
     opts: [
       "It is amazing!",
+      "It is awful.",
+      "I hate it."
+    ],
+    ans: "It is amazing!",
+    exp: "Amazing adalah sentimen positif."
+  },
+  {
+    q: "Kata untuk menyatakan sangat menyukai:  (R8)",
+    opts: [
       "I hate it.",
-      "It is awful."
+      "It is awful.",
+      "It is amazing!"
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -118,9 +118,9 @@ const QUIZ = [
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R9)",
     opts: [
-      "It is amazing!",
+      "I hate it.",
       "It is awful.",
-      "I hate it."
+      "It is amazing!"
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -129,8 +129,8 @@ const QUIZ = [
     q: "Kata untuk menyatakan sangat menyukai:  (R10)",
     opts: [
       "I hate it.",
-      "It is awful.",
-      "It is amazing!"
+      "It is amazing!",
+      "It is awful."
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -138,8 +138,8 @@ const QUIZ = [
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R11)",
     opts: [
-      "It is awful.",
       "I hate it.",
+      "It is awful.",
       "It is amazing!"
     ],
     ans: "It is amazing!",
@@ -149,8 +149,8 @@ const QUIZ = [
     q: "Kata untuk menyatakan sangat menyukai:  (R12)",
     opts: [
       "It is awful.",
-      "It is amazing!",
-      "I hate it."
+      "I hate it.",
+      "It is amazing!"
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -158,9 +158,9 @@ const QUIZ = [
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R13)",
     opts: [
+      "It is amazing!",
       "I hate it.",
-      "It is awful.",
-      "It is amazing!"
+      "It is awful."
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -178,9 +178,9 @@ const QUIZ = [
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R15)",
     opts: [
+      "It is amazing!",
       "I hate it.",
-      "It is awful.",
-      "It is amazing!"
+      "It is awful."
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
@@ -189,34 +189,14 @@ const QUIZ = [
     q: "Kata untuk menyatakan sangat menyukai:  (R16)",
     opts: [
       "I hate it.",
-      "It is awful.",
-      "It is amazing!"
+      "It is amazing!",
+      "It is awful."
     ],
     ans: "It is amazing!",
     exp: "Amazing adalah sentimen positif."
   },
   {
     q: "Kata untuk menyatakan sangat menyukai:  (R17)",
-    opts: [
-      "It is awful.",
-      "I hate it.",
-      "It is amazing!"
-    ],
-    ans: "It is amazing!",
-    exp: "Amazing adalah sentimen positif."
-  },
-  {
-    q: "Kata untuk menyatakan sangat menyukai:  (R18)",
-    opts: [
-      "I hate it.",
-      "It is awful.",
-      "It is amazing!"
-    ],
-    ans: "It is amazing!",
-    exp: "Amazing adalah sentimen positif."
-  },
-  {
-    q: "Kata untuk menyatakan sangat menyukai:  (R19)",
     opts: [
       "It is amazing!",
       "It is awful.",
@@ -226,10 +206,30 @@ const QUIZ = [
     exp: "Amazing adalah sentimen positif."
   },
   {
-    q: "Kata untuk menyatakan sangat menyukai:  (R20)",
+    q: "Kata untuk menyatakan sangat menyukai:  (R18)",
     opts: [
       "I hate it.",
+      "It is amazing!",
+      "It is awful."
+    ],
+    ans: "It is amazing!",
+    exp: "Amazing adalah sentimen positif."
+  },
+  {
+    q: "Kata untuk menyatakan sangat menyukai:  (R19)",
+    opts: [
+      "I hate it.",
+      "It is amazing!",
+      "It is awful."
+    ],
+    ans: "It is amazing!",
+    exp: "Amazing adalah sentimen positif."
+  },
+  {
+    q: "Kata untuk menyatakan sangat menyukai:  (R20)",
+    opts: [
       "It is awful.",
+      "I hate it.",
       "It is amazing!"
     ],
     ans: "It is amazing!",

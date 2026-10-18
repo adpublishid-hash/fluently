@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Subject + verb + object/complement.",
-      "options": [
-        "I usually",
-        "and",
-        "every day.",
-        "Subject + verb + object/complement."
-      ],
       "id": "simple-sentences-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence is complete and correct?",
+      "answer": "My brother plays football on Saturdays.",
+      "options": [
+        "Plays football on Saturdays my brother.",
+        "My brother playing football on Saturdays.",
+        "My brother plays football on Saturdays.",
+        "My brother football on Saturdays."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Simple Sentences.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "I study English every morning.",
-      "options": [
-        "And because but however.",
-        "I study English every morning.",
-        "I usually",
-        "every day."
-      ],
       "id": "simple-sentences-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct verb to complete the sentence: 'She ___ to school by bus every day.'",
+      "answer": "goes",
+      "options": [
+        "goes",
+        "going",
+        "go",
+        "gone"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Subject + verb + object/complement.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Subject + verb + object/complement."
-      ],
       "id": "simple-sentences-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word is the subject in this sentence? 'The old cat sleeps on the sofa.'",
+      "answer": "cat",
+      "options": [
+        "sofa",
+        "old",
+        "cat",
+        "sleeps"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "and",
-      "options": [
-        "every day.",
-        "one complete sentence",
-        "and",
-        "I usually"
-      ],
       "id": "simple-sentences-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which option joins the two simple sentences most smoothly? 'I finished my homework. I watched a film.'",
+      "answer": "I finished my homework, and then I watched a film.",
+      "options": [
+        "I finished my homework, and then I watched a film.",
+        "I finished my homework and then watched to a film.",
+        "Finished my homework, and then I watched a film.",
+        "I finished my homework, I watched a film then."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "every day.",
-      "options": [
-        "and",
-        "every day.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "simple-sentences-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence avoids a sentence fragment?",
+      "answer": "We stayed inside because it was raining.",
+      "options": [
+        "Because it was raining outside all day.",
+        "When the rain started in the afternoon.",
+        "Stayed inside because of the heavy rain.",
+        "We stayed inside because it was raining."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Subject + verb + object/complement.",
-      "options": [
-        "I usually",
-        "and",
-        "every day.",
-        "Subject + verb + object/complement."
-      ],
       "id": "simple-sentences-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang lengkap dan benar?",
+      "answer": "My brother plays football on Saturdays.",
+      "options": [
+        "Plays football on Saturdays my brother.",
+        "My brother playing football on Saturdays.",
+        "My brother plays football on Saturdays.",
+        "My brother football on Saturdays."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Simple Sentences.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "I study English every morning.",
-      "options": [
-        "And because but however.",
-        "I study English every morning.",
-        "I usually",
-        "every day."
-      ],
       "id": "simple-sentences-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kata kerja yang benar untuk melengkapi kalimat: 'She ___ to school by bus every day.'",
+      "answer": "goes",
+      "options": [
+        "goes",
+        "going",
+        "go",
+        "gone"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Subject + verb + object/complement.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Subject + verb + object/complement."
-      ],
       "id": "simple-sentences-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana yang menjadi subjek dalam kalimat ini? 'The old cat sleeps on the sofa.'",
+      "answer": "cat",
+      "options": [
+        "sofa",
+        "old",
+        "cat",
+        "sleeps"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "and",
-      "options": [
-        "every day.",
-        "one complete sentence",
-        "and",
-        "I usually"
-      ],
       "id": "simple-sentences-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Pilihan mana yang paling lancar menggabungkan dua kalimat sederhana ini? 'I finished my homework. I watched a film.'",
+      "answer": "I finished my homework, and then I watched a film.",
+      "options": [
+        "I finished my homework, and then I watched a film.",
+        "I finished my homework and then watched to a film.",
+        "Finished my homework, and then I watched a film.",
+        "I finished my homework, I watched a film then."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "every day.",
-      "options": [
-        "and",
-        "every day.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "simple-sentences-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang tidak berupa fragmen kalimat?",
+      "answer": "We stayed inside because it was raining.",
+      "options": [
+        "Because it was raining outside all day.",
+        "When the rain started in the afternoon.",
+        "Stayed inside because of the heavy rain.",
+        "We stayed inside because it was raining."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

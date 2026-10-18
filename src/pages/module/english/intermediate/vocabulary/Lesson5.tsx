@@ -54,25 +54,25 @@ const SUSTAINABILITY_VOCAB = [
 const QUIZ_QUESTIONS = [
 
   { id: 1, question: "We should use ___ energy like solar and wind power.", options: ['fossil', 'renewable', 'waste'], answer: 'renewable', explanation: "Renewable (Terbarukan) energy comes from sources that don't run out." },
-  { id: 2, question: "Cutting down too many trees causes ___.", options: ['reforestation', 'deforestation', 'conservation'], answer: 'deforestation', explanation: "Deforestation (Penebangan hutan) is the action of clearing a wide area of trees." },
-  { id: 3, question: "Animals that might disappear forever are ___.", options: ['endangered', 'common', 'domestic'], answer: 'endangered', explanation: "Endangered (Terancam punah) species are at risk of extinction." },
-  { id: 4, question: "Please ___ your plastic bottles.", options: ['waste', 'pollute', 'recycle'], answer: 'recycle', explanation: "Recycling (Daur ulang) converts waste into reusable material." },
-  { id: 5, question: "A long period with no rain is called a ___.", options: ['flood', 'drought', 'storm'], answer: 'drought', explanation: "Drought (Kekeringan) adalah periode panjang dengan curah hujan yang sangat rendah." },
+  { id: 2, question: "Cutting down too many trees causes ___.", options: ['reforestation', 'conservation', 'deforestation'], answer: 'deforestation', explanation: "Deforestation (Penebangan hutan) is the action of clearing a wide area of trees." },
+  { id: 3, question: "Animals that might disappear forever are ___.", options: ['common', 'endangered', 'domestic'], answer: 'endangered', explanation: "Endangered (Terancam punah) species are at risk of extinction." },
+  { id: 4, question: "Please ___ your plastic bottles.", options: ['recycle', 'pollute', 'waste'], answer: 'recycle', explanation: "Recycling (Daur ulang) converts waste into reusable material." },
+  { id: 5, question: "A long period with no rain is called a ___.", options: ['drought', 'storm', 'flood'], answer: 'drought', explanation: "Drought (Kekeringan) adalah periode panjang dengan curah hujan yang sangat rendah." },
   { id: 6, question: "The ___ is the air surrounding Earth.", options: ['habitat', 'atmosphere', 'species'], answer: 'atmosphere', explanation: "Atmosphere (Atmosfer) adalah lapisan gas yang mengelilingi planet." },
-  { id: 7, question: "This product is ___, so it won't harm nature.", options: ['eco-friendly', 'polluted', 'contaminated'], answer: 'eco-friendly', explanation: "Eco-friendly (Ramah lingkungan) berarti tidak merusak alam." },
-  { id: 8, question: "___ warming is caused by greenhouse gases.", options: ['Local', 'Global', 'Regional'], answer: 'Global', explanation: "Global warming (Pemanasan global) adalah kenaikan suhu rata-rata Bumi." },
-  { id: 9, question: "Cars produce harmful ___.", options: ['emissions', 'conservation', 'biodiversity'], answer: 'emissions', explanation: "Emissions (Emisi) adalah gas atau polutan yang dilepaskan ke udara." },
-  { id: 10, question: "Too much ___ in the ocean kills fish.", options: ['conservation', 'pollution', 'agriculture'], answer: 'pollution', explanation: "Pollution (Polusi) adalah pengenalan zat berbahaya ke lingkungan." },
-  { id: 11, question: "Each animal lives in its natural ___.", options: ['habitat', 'waste', 'emission'], answer: 'habitat', explanation: "Habitat adalah tempat tinggal alami suatu organisme." },
-  { id: 12, question: "___ refers to the variety of life on Earth.", options: ['Waste', 'Biodiversity', 'Drought'], answer: 'Biodiversity', explanation: "Biodiversity (Keanekaragaman hayati)adalah keragaman makhluk hidup." },
-  { id: 13, question: "We need to ___ water and electricity.", options: ['waste', 'reduce', 'pollute'], answer: 'reduce', explanation: "Reduce (Mengurangi) berarti menggunakan lebih sedikit." },
-  { id: 14, question: "The panda is a ___ that might become extinct.", options: ['species', 'climate', 'resource'], answer: 'species', explanation: "Species (Spesies) adalah kelompok organisme yang dapat berkembang biak bersama." },
-  { id: 15, question: "___ panels convert sunlight into electricity.", options: ['Waste', 'Solar', 'Drought'], answer: 'Solar', explanation: "Solar (Tenaga surya) menggunakan energi dari matahari." },
-  { id: 16, question: "The ___ is all living and non-living things around us.", options: ['environment', 'extinction', 'flood'], answer: 'environment', explanation: "Environment (Lingkungan) adalah segala sesuatu di sekitar kita." },
-  { id: 17, question: "___ of forests leads to habitat loss.", options: ['Conservation', 'Deforestation', 'Recycling'], answer: 'Deforestation', explanation: "Deforestation menghancurkan rumah hewan." },
+  { id: 7, question: "This product is ___, so it won't harm nature.", options: ['eco-friendly', 'contaminated', 'polluted'], answer: 'eco-friendly', explanation: "Eco-friendly (Ramah lingkungan) berarti tidak merusak alam." },
+  { id: 8, question: "___ warming is caused by greenhouse gases.", options: ['Regional', 'Local', 'Global'], answer: 'Global', explanation: "Global warming (Pemanasan global) adalah kenaikan suhu rata-rata Bumi." },
+  { id: 9, question: "Cars produce harmful ___.", options: ['emissions', 'biodiversity', 'conservation'], answer: 'emissions', explanation: "Emissions (Emisi) adalah gas atau polutan yang dilepaskan ke udara." },
+  { id: 10, question: "Too much ___ in the ocean kills fish.", options: ['conservation', 'agriculture', 'pollution'], answer: 'pollution', explanation: "Pollution (Polusi) adalah pengenalan zat berbahaya ke lingkungan." },
+  { id: 11, question: "Each animal lives in its natural ___.", options: ['emission', 'waste', 'habitat'], answer: 'habitat', explanation: "Habitat adalah tempat tinggal alami suatu organisme." },
+  { id: 12, question: "___ refers to the variety of life on Earth.", options: ['Drought', 'Waste', 'Biodiversity'], answer: 'Biodiversity', explanation: "Biodiversity (Keanekaragaman hayati)adalah keragaman makhluk hidup." },
+  { id: 13, question: "We need to ___ water and electricity.", options: ['pollute', 'reduce', 'waste'], answer: 'reduce', explanation: "Reduce (Mengurangi) berarti menggunakan lebih sedikit." },
+  { id: 14, question: "The panda is a ___ that might become extinct.", options: ['species', 'resource', 'climate'], answer: 'species', explanation: "Species (Spesies) adalah kelompok organisme yang dapat berkembang biak bersama." },
+  { id: 15, question: "___ panels convert sunlight into electricity.", options: ['Drought', 'Waste', 'Solar'], answer: 'Solar', explanation: "Solar (Tenaga surya) menggunakan energi dari matahari." },
+  { id: 16, question: "The ___ is all living and non-living things around us.", options: ['extinction', 'environment', 'flood'], answer: 'environment', explanation: "Environment (Lingkungan) adalah segala sesuatu di sekitar kita." },
+  { id: 17, question: "___ of forests leads to habitat loss.", options: ['Recycling', 'Conservation', 'Deforestation'], answer: 'Deforestation', explanation: "Deforestation menghancurkan rumah hewan." },
   { id: 18, question: "We should buy ___ vegetables without chemicals.", options: ['polluted', 'organic', 'contaminated'], answer: 'organic', explanation: "Organic (Organik) ditanam tanpa pestisida kimia." },
-  { id: 19, question: "Heavy rain caused a ___ in the city.", options: ['drought', 'flood', 'climate'], answer: 'flood', explanation: "Flood (Banjir) terjadi ketika terlalu banyak air menutupi tanah." },
-  { id: 20, question: "___ is about using resources wisely for the future.", options: ['Waste', 'Sustainability', 'Extinction'], answer: 'Sustainability', explanation: "Sustainability (Keberlanjutan) berarti memenuhi kebutuhan tanpa merusak masa depan." }
+  { id: 19, question: "Heavy rain caused a ___ in the city.", options: ['climate', 'flood', 'drought'], answer: 'flood', explanation: "Flood (Banjir) terjadi ketika terlalu banyak air menutupi tanah." },
+  { id: 20, question: "___ is about using resources wisely for the future.", options: ['Waste', 'Extinction', 'Sustainability'], answer: 'Sustainability', explanation: "Sustainability (Keberlanjutan) berarti memenuhi kebutuhan tanpa merusak masa depan." }
 
 ];
 

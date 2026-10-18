@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "pronouns-possessives-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Pronouns & Possessives): Complete: This book is ____.",
-      "answer": "mine",
+      "prompt": "Basic grammar check (Pronouns & Possessives): Complete: Is this pen ____ or mine?",
+      "answer": "yours",
       "options": [
-        "mine",
-        "my",
-        "me",
-        "myself"
+        "you",
+        "yourself",
+        "yours",
+        "your"
       ]
     },
     {
       "id": "pronouns-possessives-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Pronouns & Possessives): Complete: I gave ____ a present.",
-      "answer": "her",
+      "prompt": "Basic grammar check (Pronouns & Possessives): Complete: ____ name is Tom.",
+      "answer": "His",
       "options": [
-        "she",
-        "hers",
-        "herself",
-        "her"
+        "Him",
+        "Himself",
+        "He",
+        "His"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "pronouns-possessives-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Pronouns & Possessives): Complete: He fixed the computer by ____.",
-      "answer": "himself",
+      "prompt": "Choose the best structure (Pronouns & Possessives): Complete: The dog wagged ____ tail happily.",
+      "answer": "its",
       "options": [
-        "him",
-        "his",
-        "he",
-        "himself"
+        "it's",
+        "itself",
+        "its",
+        "it"
       ]
     },
     {
       "id": "pronouns-possessives-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Pronouns & Possessives): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Pronouns & Possessives): Complete: Sarah and ____ went to the cinema.",
+      "answer": "I",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "I",
+        "me",
+        "my",
+        "myself"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "pronouns-possessives-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Pronouns & Possessives): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Pronouns & Possessives): Complete: The award went to the team ____ efforts had saved the project.",
+      "answer": "whose",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "whose",
+        "which",
+        "who's",
+        "their"
       ]
     },
     {
       "id": "pronouns-possessives-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Pronouns & Possessives): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Pronouns & Possessives): Complete: Between you and ____, I think the plan will fail.",
+      "answer": "me",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "I",
+        "me",
+        "mine",
+        "myself"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "pronouns-possessives-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Pronouns & Possessives): Complete: This book is ____.",
-      "answer": "mine",
+      "prompt": "Cek grammar dasar (Pronouns & Possessives): Complete: Is this pen ____ or mine?",
+      "answer": "yours",
       "options": [
-        "mine",
-        "my",
-        "me",
-        "myself"
+        "you",
+        "yourself",
+        "yours",
+        "your"
       ]
     },
     {
       "id": "pronouns-possessives-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Pronouns & Possessives): Complete: I gave ____ a present.",
-      "answer": "her",
+      "prompt": "Cek grammar dasar (Pronouns & Possessives): Complete: ____ name is Tom.",
+      "answer": "His",
       "options": [
-        "she",
-        "hers",
-        "herself",
-        "her"
+        "Him",
+        "Himself",
+        "He",
+        "His"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "pronouns-possessives-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Pronouns & Possessives): Complete: He fixed the computer by ____.",
-      "answer": "himself",
+      "prompt": "Pilih struktur terbaik (Pronouns & Possessives): Complete: The dog wagged ____ tail happily.",
+      "answer": "its",
       "options": [
-        "him",
-        "his",
-        "he",
-        "himself"
+        "it's",
+        "itself",
+        "its",
+        "it"
       ]
     },
     {
       "id": "pronouns-possessives-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Pronouns & Possessives): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Pronouns & Possessives): Complete: Sarah and ____ went to the cinema.",
+      "answer": "I",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "I",
+        "me",
+        "my",
+        "myself"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "pronouns-possessives-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Pronouns & Possessives): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Pronouns & Possessives): Complete: The award went to the team ____ efforts had saved the project.",
+      "answer": "whose",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "whose",
+        "which",
+        "who's",
+        "their"
       ]
     },
     {
       "id": "pronouns-possessives-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Pronouns & Possessives): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Pronouns & Possessives): Complete: Between you and ____, I think the plan will fail.",
+      "answer": "me",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "I",
+        "me",
+        "mine",
+        "myself"
       ]
     }
   ]
