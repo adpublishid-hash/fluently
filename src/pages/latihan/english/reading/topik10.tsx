@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "The original receipt is required for returns.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The store allows returns and exchanges under certain conditions.",
-        "The original receipt is required for returns."
-      ],
       "id": "shopping-policy-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "How many days do customers have to return unused items?",
+      "answer": "fourteen days",
+      "options": [
+        "fourteen days",
+        "thirty days",
+        "seven days",
+        "twenty-one days"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "exchanged",
-      "options": [
-        "reading rules and conditions carefully",
-        "main idea",
-        "exchanged",
-        "replaced with another item"
-      ],
       "id": "shopping-policy-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What must customers bring to return an item?",
+      "answer": "the original receipt",
+      "options": [
+        "a photo of the item",
+        "a store membership card",
+        "a letter from the bank",
+        "the original receipt"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Return Policy",
-      "options": [
-        "No title is possible.",
-        "Return Policy",
-        "Shopping Policy",
-        "to explain the store return policy"
-      ],
       "id": "shopping-policy-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which items cannot be returned?",
+      "answer": "sale items",
+      "options": [
+        "new items",
+        "small items",
+        "sale items",
+        "unused items"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Shopping Policy.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "The store allows returns and exchanges under certain conditions.",
-      "options": [
-        "replaced with another item",
-        "reading rules and conditions carefully",
-        "The text is only about spelling.",
-        "The store allows returns and exchanges under certain conditions."
-      ],
       "id": "shopping-policy-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the policy means \"needed\"?",
+      "answer": "required",
+      "options": [
+        "required",
+        "original",
+        "available",
+        "unused"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"exchanged\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "The original receipt is required for returns.",
-      "options": [
-        "The text says the opposite.",
-        "replaced with another item",
-        "to explain the store return policy",
-        "The original receipt is required for returns."
-      ],
       "id": "shopping-policy-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "A customer bought a sale shirt in the wrong size. What can they do?",
+      "answer": "exchange it for another size if one is in stock",
+      "options": [
+        "return it for a full refund at any time after the sale",
+        "return it without a receipt",
+        "keep it and get a free gift",
+        "exchange it for another size if one is in stock"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to explain the store return policy",
-      "options": [
-        "reading rules and conditions carefully",
-        "to explain the store return policy",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "shopping-policy-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which condition applies to all returns?",
+      "answer": "The item must be unused.",
+      "options": [
+        "The item must be on sale.",
+        "The item must be unused.",
+        "The item must be returned in a gift box.",
+        "The item must be bought online."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "The store allows returns and exchanges under certain conditions.",
-      "options": [
-        "The store allows returns and exchanges under certain conditions.",
-        "The original receipt is required for returns.",
-        "replaced with another item",
-        "Only one small word matters."
-      ],
       "id": "shopping-policy-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "A customer returns an unused, full-price jacket after ten days but has lost the receipt. What is the most likely outcome?",
+      "answer": "The return will be refused.",
+      "options": [
+        "The customer receives extra store credit.",
+        "The return will be refused.",
+        "The customer gets a full refund.",
+        "The jacket is exchanged for a sale item."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "A sale item can only be changed if another size is in stock.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The original receipt is required for returns.",
-        "A sale item can only be changed if another size is in stock."
-      ],
       "id": "shopping-policy-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which phrase limits when a sale item can be exchanged?",
+      "answer": "if stock is available",
+      "options": [
+        "Sale items cannot",
+        "Customers may return",
+        "if stock is available",
+        "for a different size"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "The original receipt is required for returns.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The store allows returns and exchanges under certain conditions.",
-        "The original receipt is required for returns."
-      ],
       "id": "shopping-policy-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Berapa hari waktu yang dimiliki pelanggan untuk mengembalikan barang yang belum dipakai?",
+      "answer": "fourteen days",
+      "options": [
+        "fourteen days",
+        "thirty days",
+        "seven days",
+        "twenty-one days"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "exchanged",
-      "options": [
-        "reading rules and conditions carefully",
-        "main idea",
-        "exchanged",
-        "replaced with another item"
-      ],
       "id": "shopping-policy-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang harus dibawa pelanggan untuk mengembalikan barang?",
+      "answer": "the original receipt",
+      "options": [
+        "a photo of the item",
+        "a store membership card",
+        "a letter from the bank",
+        "the original receipt"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Return Policy",
-      "options": [
-        "No title is possible.",
-        "Return Policy",
-        "Shopping Policy",
-        "to explain the store return policy"
-      ],
       "id": "shopping-policy-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Barang mana yang tidak dapat dikembalikan?",
+      "answer": "sale items",
+      "options": [
+        "new items",
+        "small items",
+        "sale items",
+        "unused items"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Shopping Policy.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "The store allows returns and exchanges under certain conditions.",
-      "options": [
-        "replaced with another item",
-        "reading rules and conditions carefully",
-        "The text is only about spelling.",
-        "The store allows returns and exchanges under certain conditions."
-      ],
       "id": "shopping-policy-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam kebijakan ini yang berarti \"needed\"?",
+      "answer": "required",
+      "options": [
+        "required",
+        "original",
+        "available",
+        "unused"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"exchanged\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "The original receipt is required for returns.",
-      "options": [
-        "The text says the opposite.",
-        "replaced with another item",
-        "to explain the store return policy",
-        "The original receipt is required for returns."
-      ],
       "id": "shopping-policy-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Seorang pelanggan membeli kemeja diskon dengan ukuran yang salah. Apa yang dapat ia lakukan?",
+      "answer": "exchange it for another size if one is in stock",
+      "options": [
+        "return it for a full refund at any time after the sale",
+        "return it without a receipt",
+        "keep it and get a free gift",
+        "exchange it for another size if one is in stock"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to explain the store return policy",
-      "options": [
-        "reading rules and conditions carefully",
-        "to explain the store return policy",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "shopping-policy-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Syarat mana yang berlaku untuk semua pengembalian?",
+      "answer": "The item must be unused.",
+      "options": [
+        "The item must be on sale.",
+        "The item must be unused.",
+        "The item must be returned in a gift box.",
+        "The item must be bought online."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "The store allows returns and exchanges under certain conditions.",
-      "options": [
-        "The store allows returns and exchanges under certain conditions.",
-        "The original receipt is required for returns.",
-        "replaced with another item",
-        "Only one small word matters."
-      ],
       "id": "shopping-policy-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Seorang pelanggan mengembalikan jaket harga normal yang belum dipakai setelah sepuluh hari, tetapi kehilangan struknya. Apa hasil yang paling mungkin?",
+      "answer": "The return will be refused.",
+      "options": [
+        "The customer receives extra store credit.",
+        "The return will be refused.",
+        "The customer gets a full refund.",
+        "The jacket is exchanged for a sale item."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "A sale item can only be changed if another size is in stock.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The original receipt is required for returns.",
-        "A sale item can only be changed if another size is in stock."
-      ],
       "id": "shopping-policy-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Frasa mana yang membatasi kapan barang diskon dapat ditukar?",
+      "answer": "if stock is available",
+      "options": [
+        "Sale items cannot",
+        "Customers may return",
+        "if stock is available",
+        "for a different size"
+      ]
     }
   ]
 };

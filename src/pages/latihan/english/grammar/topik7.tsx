@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "tenses-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (The 12 Tenses Challenge): Complete: I ____ dinner when you called.",
-      "answer": "was cooking",
+      "prompt": "Basic grammar check (The 12 Tenses Challenge): Complete: He ____ to work by bus every day.",
+      "answer": "goes",
       "options": [
-        "was cooking",
-        "cook",
-        "have cooked",
-        "am cook"
+        "go",
+        "is go",
+        "goes",
+        "going"
       ]
     },
     {
       "id": "tenses-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (The 12 Tenses Challenge): Complete: She ____ in Bali since 2020.",
-      "answer": "has lived",
+      "prompt": "Basic grammar check (The 12 Tenses Challenge): Complete: Look! It ____.",
+      "answer": "is raining",
       "options": [
-        "lives",
-        "lived",
-        "is living",
-        "has lived"
+        "rain",
+        "rains",
+        "is raining",
+        "raining"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "tenses-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (The 12 Tenses Challenge): Complete: They ____ tomorrow morning.",
-      "answer": "will arrive",
+      "prompt": "Choose the best structure (The 12 Tenses Challenge): Complete: I ____ this book three times so far.",
+      "answer": "have read",
       "options": [
-        "arrived",
-        "arrives",
-        "have arrived",
-        "will arrive"
+        "have read",
+        "am reading",
+        "read",
+        "had been reading"
       ]
     },
     {
       "id": "tenses-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (The 12 Tenses Challenge): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (The 12 Tenses Challenge): Complete: When I arrived at the station, the train ____.",
+      "answer": "had already left",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "is already leaving",
+        "had already left",
+        "already leaves",
+        "has already left"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "tenses-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (The 12 Tenses Challenge): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (The 12 Tenses Challenge): Complete: By next June, she ____ at the company for ten years.",
+      "answer": "will have worked",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "will work",
+        "will have worked",
+        "would work",
+        "has worked"
       ]
     },
     {
       "id": "tenses-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (The 12 Tenses Challenge): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (The 12 Tenses Challenge): Complete: They ____ for two hours when the rescue team finally found them.",
+      "answer": "had been walking",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "had been walking",
+        "have been walking",
+        "were walked",
+        "are walking"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "tenses-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (The 12 Tenses Challenge): Complete: I ____ dinner when you called.",
-      "answer": "was cooking",
+      "prompt": "Cek grammar dasar (The 12 Tenses Challenge): Complete: He ____ to work by bus every day.",
+      "answer": "goes",
       "options": [
-        "was cooking",
-        "cook",
-        "have cooked",
-        "am cook"
+        "go",
+        "is go",
+        "goes",
+        "going"
       ]
     },
     {
       "id": "tenses-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (The 12 Tenses Challenge): Complete: She ____ in Bali since 2020.",
-      "answer": "has lived",
+      "prompt": "Cek grammar dasar (The 12 Tenses Challenge): Complete: Look! It ____.",
+      "answer": "is raining",
       "options": [
-        "lives",
-        "lived",
-        "is living",
-        "has lived"
+        "rain",
+        "rains",
+        "is raining",
+        "raining"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "tenses-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (The 12 Tenses Challenge): Complete: They ____ tomorrow morning.",
-      "answer": "will arrive",
+      "prompt": "Pilih struktur terbaik (The 12 Tenses Challenge): Complete: I ____ this book three times so far.",
+      "answer": "have read",
       "options": [
-        "arrived",
-        "arrives",
-        "have arrived",
-        "will arrive"
+        "have read",
+        "am reading",
+        "read",
+        "had been reading"
       ]
     },
     {
       "id": "tenses-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (The 12 Tenses Challenge): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (The 12 Tenses Challenge): Complete: When I arrived at the station, the train ____.",
+      "answer": "had already left",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "is already leaving",
+        "had already left",
+        "already leaves",
+        "has already left"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "tenses-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (The 12 Tenses Challenge): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (The 12 Tenses Challenge): Complete: By next June, she ____ at the company for ten years.",
+      "answer": "will have worked",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "will work",
+        "will have worked",
+        "would work",
+        "has worked"
       ]
     },
     {
       "id": "tenses-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (The 12 Tenses Challenge): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (The 12 Tenses Challenge): Complete: They ____ for two hours when the rescue team finally found them.",
+      "answer": "had been walking",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "had been walking",
+        "have been walking",
+        "were walked",
+        "are walking"
       ]
     }
   ]

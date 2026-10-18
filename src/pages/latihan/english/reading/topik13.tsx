@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Parks give children safe spaces to play.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The writer believes every neighborhood should have a clean park.",
-        "Parks give children safe spaces to play."
-      ],
       "id": "opinion-column-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "According to the writer, who can play safely in parks?",
+      "answer": "children",
+      "options": [
+        "tourists",
+        "drivers",
+        "pets only",
+        "children"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "accessible",
-      "options": [
-        "identifying opinion, reason, and persuasion",
-        "main idea",
-        "accessible",
-        "easy to reach or use"
-      ],
       "id": "opinion-column-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What can adults do in parks?",
+      "answer": "exercise outdoors",
+      "options": [
+        "exercise outdoors",
+        "work in offices",
+        "watch films",
+        "park their cars all day"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Why Parks Matter",
-      "options": [
-        "No title is possible.",
-        "Why Parks Matter",
-        "Opinion Column",
-        "to persuade readers that parks are important"
-      ],
       "id": "opinion-column-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase shows the writer's opinion?",
+      "answer": "In my view",
+      "options": [
+        "City parks",
+        "places to relax",
+        "In my view",
+        "safe spaces"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Opinion Column.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "The writer believes every neighborhood should have a clean park.",
-      "options": [
-        "easy to reach or use",
-        "identifying opinion, reason, and persuasion",
-        "The text is only about spelling.",
-        "The writer believes every neighborhood should have a clean park."
-      ],
       "id": "opinion-column-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"not dirty\"?",
+      "answer": "clean",
+      "options": [
+        "every",
+        "relax",
+        "safe",
+        "clean"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"accessible\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Parks give children safe spaces to play.",
-      "options": [
-        "The text says the opposite.",
-        "easy to reach or use",
-        "to persuade readers that parks are important",
-        "Parks give children safe spaces to play."
-      ],
       "id": "opinion-column-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which reason does the writer give to support the opinion?",
+      "answer": "Parks help adults exercise outdoors.",
+      "options": [
+        "Parks help adults exercise outdoors.",
+        "Parks are cheaper than schools.",
+        "Parks bring many foreign tourists to the city.",
+        "Parks make houses more expensive."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to persuade readers that parks are important",
-      "options": [
-        "identifying opinion, reason, and persuasion",
-        "to persuade readers that parks are important",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "opinion-column-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What does the writer mean by \"more than places to relax\"?",
+      "answer": "Parks have other important uses too.",
+      "options": [
+        "Parks should only be used for sleeping.",
+        "Parks are too busy to relax in.",
+        "Parks have other important uses too.",
+        "Relaxing in parks is not allowed."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "The writer believes every neighborhood should have a clean park.",
-      "options": [
-        "The writer believes every neighborhood should have a clean park.",
-        "Parks give children safe spaces to play.",
-        "easy to reach or use",
-        "Only one small word matters."
-      ],
       "id": "opinion-column-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which argument would a critic most likely use against the writer's view?",
+      "answer": "Building and cleaning parks in every area costs a lot.",
+      "options": [
+        "Building and cleaning parks in every area costs a lot.",
+        "Adults benefit greatly from regular exercise outdoors in green spaces.",
+        "Children need safe places to play.",
+        "Clean parks are pleasant for everyone."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The writer values public spaces that support health and community life.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Parks give children safe spaces to play.",
-        "The writer values public spaces that support health and community life."
-      ],
       "id": "opinion-column-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which word in the final sentence makes the writer's claim strongest?",
+      "answer": "should",
+      "options": [
+        "view",
+        "should",
+        "clean",
+        "park"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Parks give children safe spaces to play.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The writer believes every neighborhood should have a clean park.",
-        "Parks give children safe spaces to play."
-      ],
       "id": "opinion-column-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Menurut penulis, siapa yang dapat bermain dengan aman di taman?",
+      "answer": "children",
+      "options": [
+        "tourists",
+        "drivers",
+        "pets only",
+        "children"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "accessible",
-      "options": [
-        "identifying opinion, reason, and persuasion",
-        "main idea",
-        "accessible",
-        "easy to reach or use"
-      ],
       "id": "opinion-column-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang dapat dilakukan orang dewasa di taman?",
+      "answer": "exercise outdoors",
+      "options": [
+        "exercise outdoors",
+        "work in offices",
+        "watch films",
+        "park their cars all day"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Why Parks Matter",
-      "options": [
-        "No title is possible.",
-        "Why Parks Matter",
-        "Opinion Column",
-        "to persuade readers that parks are important"
-      ],
       "id": "opinion-column-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang menunjukkan opini penulis?",
+      "answer": "In my view",
+      "options": [
+        "City parks",
+        "places to relax",
+        "In my view",
+        "safe spaces"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Opinion Column.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "The writer believes every neighborhood should have a clean park.",
-      "options": [
-        "easy to reach or use",
-        "identifying opinion, reason, and persuasion",
-        "The text is only about spelling.",
-        "The writer believes every neighborhood should have a clean park."
-      ],
       "id": "opinion-column-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"not dirty\"?",
+      "answer": "clean",
+      "options": [
+        "every",
+        "relax",
+        "safe",
+        "clean"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"accessible\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Parks give children safe spaces to play.",
-      "options": [
-        "The text says the opposite.",
-        "easy to reach or use",
-        "to persuade readers that parks are important",
-        "Parks give children safe spaces to play."
-      ],
       "id": "opinion-column-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Alasan mana yang diberikan penulis untuk mendukung opininya?",
+      "answer": "Parks help adults exercise outdoors.",
+      "options": [
+        "Parks help adults exercise outdoors.",
+        "Parks are cheaper than schools.",
+        "Parks bring many foreign tourists to the city.",
+        "Parks make houses more expensive."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to persuade readers that parks are important",
-      "options": [
-        "identifying opinion, reason, and persuasion",
-        "to persuade readers that parks are important",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "opinion-column-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa maksud penulis dengan \"more than places to relax\"?",
+      "answer": "Parks have other important uses too.",
+      "options": [
+        "Parks should only be used for sleeping.",
+        "Parks are too busy to relax in.",
+        "Parks have other important uses too.",
+        "Relaxing in parks is not allowed."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "The writer believes every neighborhood should have a clean park.",
-      "options": [
-        "The writer believes every neighborhood should have a clean park.",
-        "Parks give children safe spaces to play.",
-        "easy to reach or use",
-        "Only one small word matters."
-      ],
       "id": "opinion-column-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Argumen mana yang kemungkinan besar digunakan pengkritik untuk menentang pandangan penulis?",
+      "answer": "Building and cleaning parks in every area costs a lot.",
+      "options": [
+        "Building and cleaning parks in every area costs a lot.",
+        "Adults benefit greatly from regular exercise outdoors in green spaces.",
+        "Children need safe places to play.",
+        "Clean parks are pleasant for everyone."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The writer values public spaces that support health and community life.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Parks give children safe spaces to play.",
-        "The writer values public spaces that support health and community life."
-      ],
       "id": "opinion-column-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Kata mana dalam kalimat terakhir yang membuat klaim penulis paling kuat?",
+      "answer": "should",
+      "options": [
+        "view",
+        "should",
+        "clean",
+        "park"
+      ]
     }
   ]
 };

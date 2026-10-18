@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "intensifiers-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (So / Such / Too / Enough): Complete: It was ____ a beautiful day.",
-      "answer": "such",
+      "prompt": "Basic grammar check (So / Such / Too / Enough): Complete: The bag is ____ heavy for me to carry.",
+      "answer": "too",
       "options": [
-        "such",
-        "so",
         "too",
-        "enough"
+        "enough",
+        "such",
+        "so"
       ]
     },
     {
       "id": "intensifiers-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (So / Such / Too / Enough): Complete: The coffee is ____ hot to drink.",
-      "answer": "too",
+      "prompt": "Basic grammar check (So / Such / Too / Enough): Complete: He is ____ tall that he can touch the ceiling.",
+      "answer": "so",
       "options": [
-        "so",
         "such",
         "enough",
-        "too"
+        "too",
+        "so"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "intensifiers-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (So / Such / Too / Enough): Complete: She is old ____ to drive.",
+      "prompt": "Choose the best structure (So / Such / Too / Enough): Complete: We don't have ____ time to finish the project.",
       "answer": "enough",
       "options": [
         "too",
+        "enough",
         "such",
-        "so",
-        "enough"
+        "so"
       ]
     },
     {
       "id": "intensifiers-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (So / Such / Too / Enough): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (So / Such / Too / Enough): Complete: They are ____ nice people that everyone likes them.",
+      "answer": "such",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "such",
+        "so",
+        "too",
+        "enough"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "intensifiers-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (So / Such / Too / Enough): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (So / Such / Too / Enough): Complete: ____ was the noise that nobody could sleep.",
+      "answer": "Such",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "Such",
+        "So",
+        "Too",
+        "Enough"
       ]
     },
     {
       "id": "intensifiers-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (So / Such / Too / Enough): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (So / Such / Too / Enough): Complete: The instructions were not clear ____ for the new staff to follow.",
+      "answer": "enough",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "too",
+        "such",
+        "enough",
+        "so"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "intensifiers-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (So / Such / Too / Enough): Complete: It was ____ a beautiful day.",
-      "answer": "such",
+      "prompt": "Cek grammar dasar (So / Such / Too / Enough): Complete: The bag is ____ heavy for me to carry.",
+      "answer": "too",
       "options": [
-        "such",
-        "so",
         "too",
-        "enough"
+        "enough",
+        "such",
+        "so"
       ]
     },
     {
       "id": "intensifiers-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (So / Such / Too / Enough): Complete: The coffee is ____ hot to drink.",
-      "answer": "too",
+      "prompt": "Cek grammar dasar (So / Such / Too / Enough): Complete: He is ____ tall that he can touch the ceiling.",
+      "answer": "so",
       "options": [
-        "so",
         "such",
         "enough",
-        "too"
+        "too",
+        "so"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "intensifiers-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (So / Such / Too / Enough): Complete: She is old ____ to drive.",
+      "prompt": "Pilih struktur terbaik (So / Such / Too / Enough): Complete: We don't have ____ time to finish the project.",
       "answer": "enough",
       "options": [
         "too",
+        "enough",
         "such",
-        "so",
-        "enough"
+        "so"
       ]
     },
     {
       "id": "intensifiers-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (So / Such / Too / Enough): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (So / Such / Too / Enough): Complete: They are ____ nice people that everyone likes them.",
+      "answer": "such",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "such",
+        "so",
+        "too",
+        "enough"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "intensifiers-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (So / Such / Too / Enough): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (So / Such / Too / Enough): Complete: ____ was the noise that nobody could sleep.",
+      "answer": "Such",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "Such",
+        "So",
+        "Too",
+        "Enough"
       ]
     },
     {
       "id": "intensifiers-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (So / Such / Too / Enough): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (So / Such / Too / Enough): Complete: The instructions were not clear ____ for the new staff to follow.",
+      "answer": "enough",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "too",
+        "such",
+        "enough",
+        "so"
       ]
     }
   ]

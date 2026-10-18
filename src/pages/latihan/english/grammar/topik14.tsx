@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "used-to-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Used to / Be used to): Complete: I ____ play football every weekend.",
+      "prompt": "Basic grammar check (Used to / Be used to): Complete: We ____ live in a small village.",
       "answer": "used to",
       "options": [
+        "are used to",
+        "using to",
         "used to",
-        "am used to",
-        "use to",
-        "used"
+        "use to"
       ]
     },
     {
       "id": "used-to-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Used to / Be used to): Complete: She is used to ____ early.",
-      "answer": "waking up",
+      "prompt": "Basic grammar check (Used to / Be used to): Complete: I didn't ____ like vegetables.",
+      "answer": "use to",
       "options": [
-        "wake up",
-        "woke up",
-        "wakes up",
-        "waking up"
+        "using to",
+        "uses to",
+        "used to",
+        "use to"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "used-to-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Used to / Be used to): Complete: Did you ____ live here?",
-      "answer": "use to",
+      "prompt": "Choose the best structure (Used to / Be used to): Complete: He is not used to ____ on the left.",
+      "answer": "driving",
       "options": [
-        "used to",
-        "are used to",
-        "using to",
-        "use to"
+        "drives",
+        "driving",
+        "drive",
+        "drove"
       ]
     },
     {
       "id": "used-to-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Used to / Be used to): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Used to / Be used to): Complete: After a month, she got used to ____ in the cold.",
+      "answer": "working",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "worked",
+        "work",
+        "working",
+        "works"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "used-to-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Used to / Be used to): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Used to / Be used to): Complete: When I was a child, my grandmother ____ tell us stories every night.",
+      "answer": "would",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "is used to",
+        "was used to",
+        "would",
+        "uses to"
       ]
     },
     {
       "id": "used-to-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Used to / Be used to): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Used to / Be used to): Complete: Having lived abroad for years, he ____ eating spicy food.",
+      "answer": "is used to",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "is using to",
+        "is used to",
+        "used to be",
+        "uses to"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "used-to-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Used to / Be used to): Complete: I ____ play football every weekend.",
+      "prompt": "Cek grammar dasar (Used to / Be used to): Complete: We ____ live in a small village.",
       "answer": "used to",
       "options": [
+        "are used to",
+        "using to",
         "used to",
-        "am used to",
-        "use to",
-        "used"
+        "use to"
       ]
     },
     {
       "id": "used-to-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Used to / Be used to): Complete: She is used to ____ early.",
-      "answer": "waking up",
+      "prompt": "Cek grammar dasar (Used to / Be used to): Complete: I didn't ____ like vegetables.",
+      "answer": "use to",
       "options": [
-        "wake up",
-        "woke up",
-        "wakes up",
-        "waking up"
+        "using to",
+        "uses to",
+        "used to",
+        "use to"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "used-to-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Used to / Be used to): Complete: Did you ____ live here?",
-      "answer": "use to",
+      "prompt": "Pilih struktur terbaik (Used to / Be used to): Complete: He is not used to ____ on the left.",
+      "answer": "driving",
       "options": [
-        "used to",
-        "are used to",
-        "using to",
-        "use to"
+        "drives",
+        "driving",
+        "drive",
+        "drove"
       ]
     },
     {
       "id": "used-to-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Used to / Be used to): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Used to / Be used to): Complete: After a month, she got used to ____ in the cold.",
+      "answer": "working",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "worked",
+        "work",
+        "working",
+        "works"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "used-to-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Used to / Be used to): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Used to / Be used to): Complete: When I was a child, my grandmother ____ tell us stories every night.",
+      "answer": "would",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "is used to",
+        "was used to",
+        "would",
+        "uses to"
       ]
     },
     {
       "id": "used-to-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Used to / Be used to): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Used to / Be used to): Complete: Having lived abroad for years, he ____ eating spicy food.",
+      "answer": "is used to",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "is using to",
+        "is used to",
+        "used to be",
+        "uses to"
       ]
     }
   ]

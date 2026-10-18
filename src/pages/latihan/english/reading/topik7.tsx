@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Nina can help with design support before noon tomorrow.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The email reminds the team to send final slides by Thursday afternoon.",
-        "Nina can help with design support before noon tomorrow."
-      ],
       "id": "work-email-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "When must the team send their final slides?",
+      "answer": "by Thursday afternoon",
+      "options": [
+        "by Monday morning",
+        "by next Thursday night",
+        "by Friday evening",
+        "by Thursday afternoon"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "combine",
-      "options": [
-        "finding deadlines and required actions",
-        "main idea",
-        "combine",
-        "put things together"
-      ],
       "id": "work-email-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Who is the email written to?",
+      "answer": "the team",
+      "options": [
+        "Nina only",
+        "a customer",
+        "the team",
+        "the manager"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Project Reminder",
-      "options": [
-        "No title is possible.",
-        "Project Reminder",
-        "Work Email",
-        "to remind coworkers about a project deadline"
-      ],
       "id": "work-email-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Who can help with design support?",
+      "answer": "Nina",
+      "options": [
+        "the customer",
+        "Nina",
+        "the writer",
+        "a designer from another company"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Work Email.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "The email reminds the team to send final slides by Thursday afternoon.",
-      "options": [
-        "put things together",
-        "finding deadlines and required actions",
-        "The text is only about spelling.",
-        "The email reminds the team to send final slides by Thursday afternoon."
-      ],
       "id": "work-email-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the email means \"last\" or \"completed\"?",
+      "answer": "final",
+      "options": [
+        "support",
+        "noon",
+        "deck",
+        "final"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"combine\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Nina can help with design support before noon tomorrow.",
-      "options": [
-        "The text says the opposite.",
-        "put things together",
-        "to remind coworkers about a project deadline",
-        "Nina can help with design support before noon tomorrow."
-      ],
       "id": "work-email-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What will the writer do before Friday morning?",
+      "answer": "combine the slides into one deck",
+      "options": [
+        "combine the slides into one deck",
+        "present the final slides to the clients",
+        "send a reminder to the team",
+        "contact Nina about design"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to remind coworkers about a project deadline",
-      "options": [
-        "finding deadlines and required actions",
-        "to remind coworkers about a project deadline",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "work-email-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What should a team member do if they need design help?",
+      "answer": "contact Nina before noon tomorrow",
+      "options": [
+        "contact Nina before noon tomorrow",
+        "send the slides to Nina on Thursday",
+        "wait until Friday morning",
+        "ask the writer after the meeting"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "The email reminds the team to send final slides by Thursday afternoon.",
-      "options": [
-        "The email reminds the team to send final slides by Thursday afternoon.",
-        "Nina can help with design support before noon tomorrow.",
-        "put things together",
-        "Only one small word matters."
-      ],
       "id": "work-email-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "What is the main reason the writer sets the Thursday deadline?",
+      "answer": "The writer needs time to combine the slides before Friday.",
+      "options": [
+        "The writer needs time to combine the slides before Friday.",
+        "Nina will be on holiday after Thursday.",
+        "The team has a design class on Friday.",
+        "The clients asked to see every individual slide separately on Thursday."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The presentation deck must be ready before Friday morning.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Nina can help with design support before noon tomorrow.",
-        "The presentation deck must be ready before Friday morning."
-      ],
       "id": "work-email-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which tone best describes the email?",
+      "answer": "polite and direct",
+      "options": [
+        "angry and impatient",
+        "worried and confused",
+        "polite and direct",
+        "casual and joking"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Nina can help with design support before noon tomorrow.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The email reminds the team to send final slides by Thursday afternoon.",
-        "Nina can help with design support before noon tomorrow."
-      ],
       "id": "work-email-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kapan tim harus mengirim slide final mereka?",
+      "answer": "by Thursday afternoon",
+      "options": [
+        "by Monday morning",
+        "by next Thursday night",
+        "by Friday evening",
+        "by Thursday afternoon"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "combine",
-      "options": [
-        "finding deadlines and required actions",
-        "main idea",
-        "combine",
-        "put things together"
-      ],
       "id": "work-email-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kepada siapa email ini ditulis?",
+      "answer": "the team",
+      "options": [
+        "Nina only",
+        "a customer",
+        "the team",
+        "the manager"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Project Reminder",
-      "options": [
-        "No title is possible.",
-        "Project Reminder",
-        "Work Email",
-        "to remind coworkers about a project deadline"
-      ],
       "id": "work-email-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Siapa yang dapat membantu dukungan desain?",
+      "answer": "Nina",
+      "options": [
+        "the customer",
+        "Nina",
+        "the writer",
+        "a designer from another company"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Work Email.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "The email reminds the team to send final slides by Thursday afternoon.",
-      "options": [
-        "put things together",
-        "finding deadlines and required actions",
-        "The text is only about spelling.",
-        "The email reminds the team to send final slides by Thursday afternoon."
-      ],
       "id": "work-email-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam email yang berarti \"last\" atau \"completed\"?",
+      "answer": "final",
+      "options": [
+        "support",
+        "noon",
+        "deck",
+        "final"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"combine\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Nina can help with design support before noon tomorrow.",
-      "options": [
-        "The text says the opposite.",
-        "put things together",
-        "to remind coworkers about a project deadline",
-        "Nina can help with design support before noon tomorrow."
-      ],
       "id": "work-email-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa yang akan dilakukan penulis sebelum Jumat pagi?",
+      "answer": "combine the slides into one deck",
+      "options": [
+        "combine the slides into one deck",
+        "present the final slides to the clients",
+        "send a reminder to the team",
+        "contact Nina about design"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to remind coworkers about a project deadline",
-      "options": [
-        "finding deadlines and required actions",
-        "to remind coworkers about a project deadline",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "work-email-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa yang harus dilakukan anggota tim jika membutuhkan bantuan desain?",
+      "answer": "contact Nina before noon tomorrow",
+      "options": [
+        "contact Nina before noon tomorrow",
+        "send the slides to Nina on Thursday",
+        "wait until Friday morning",
+        "ask the writer after the meeting"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "The email reminds the team to send final slides by Thursday afternoon.",
-      "options": [
-        "The email reminds the team to send final slides by Thursday afternoon.",
-        "Nina can help with design support before noon tomorrow.",
-        "put things together",
-        "Only one small word matters."
-      ],
       "id": "work-email-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Apa alasan utama penulis menetapkan tenggat hari Kamis?",
+      "answer": "The writer needs time to combine the slides before Friday.",
+      "options": [
+        "The writer needs time to combine the slides before Friday.",
+        "Nina will be on holiday after Thursday.",
+        "The team has a design class on Friday.",
+        "The clients asked to see every individual slide separately on Thursday."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The presentation deck must be ready before Friday morning.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Nina can help with design support before noon tomorrow.",
-        "The presentation deck must be ready before Friday morning."
-      ],
       "id": "work-email-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Nada mana yang paling tepat menggambarkan email ini?",
+      "answer": "polite and direct",
+      "options": [
+        "angry and impatient",
+        "worried and confused",
+        "polite and direct",
+        "casual and joking"
+      ]
     }
   ]
 };

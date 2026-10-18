@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "I am afraid there is a problem with ___. Could you please ___?",
-      "options": [
-        "explain the problem, request a solution, and stay polite",
-        "polite tone on could you please",
-        "Describe the problem first, then ask for one clear action.",
-        "I am afraid there is a problem with ___. Could you please ___?"
-      ],
       "id": "complaint-request-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence starts a polite complaint?",
+      "answer": "Excuse me, I have a problem with my room.",
+      "options": [
+        "Excuse me, I has a problem with my room.",
+        "Hey, your room is the worst problem ever.",
+        "Excuse me, I have a problem with my room.",
+        "Excuse me, my room have a problem with it."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "explain the problem, request a solution, and stay polite",
-      "options": [
-        "polite tone on could you please",
-        "answer without listening to the question",
-        "explain the problem, request a solution, and stay polite",
-        "Menyampaikan keluhan dengan tetap sopan."
-      ],
       "id": "complaint-request-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Your shirt is too small. What do you say in the shop?",
+      "answer": "Can I change this for a bigger size?",
+      "options": [
+        "Can I change this for a smaller size?",
+        "Can I change this to more small size?",
+        "Can I buy this for a bigger price?",
+        "Can I change this for a bigger size?"
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "I am afraid there is a problem with my order. Could you please check it?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I am afraid there is a problem with my order. Could you please check it?",
-        "I would appreciate it if you could look into this issue.",
-        "I went there yesterday because blue."
-      ],
       "id": "complaint-request-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The TV in your room does not work. Which sentence explains this clearly?",
+      "answer": "The TV in my room isn't working.",
+      "options": [
+        "The TV in my room isn't working.",
+        "The TV in my room don't working.",
+        "The TV is in my room working.",
+        "The TV in my room isn't watching."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Complaint & Request\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "explain the problem, request a solution, and stay polite",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "explain the problem, request a solution, and stay polite"
-      ],
       "id": "complaint-request-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence asks for help politely?",
+      "answer": "Could you please send someone?",
+      "options": [
+        "Could you please send someone?",
+        "You must send someone right now.",
+        "Could you please sending someone?",
+        "Send somebody, okay, quickly?"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "I would appreciate it if you could look into this issue.",
-      "options": [
-        "I do not mean to complain, but I need some help with this.",
-        "I am afraid there is a problem with my order. Could you please check it?",
-        "I would appreciate it if you could look into this issue.",
-        "Could you help me fix this?"
-      ],
       "id": "complaint-request-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Your parcel arrived damaged. Which request states the problem and one clear action?",
+      "answer": "My parcel arrived damaged. Could you arrange a replacement, please?",
+      "options": [
+        "My parcel arrived damaged. Could you arrange a replacement, please?",
+        "My parcel arrived. Could you arrange something or other, maybe, please?",
+        "My parcel arrived damaged. I'm very angry, and that's all I want to say.",
+        "Your company always damages everything. I want everything fixed now."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "I do not mean to complain, but I need some help with this.",
-      "options": [
-        "Laugh and end the conversation.",
-        "I do not mean to complain, but I need some help with this.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "complaint-request-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "The agent says, \"There's nothing I can do.\" Which reply stays polite but firm?",
+      "answer": "I understand, but could I speak to a supervisor, please?",
+      "options": [
+        "I understand. Then I'll just accept it and go home now.",
+        "I understand, but could I speak to a supervisor, please?",
+        "I understand, but could I speaking to a supervisor, please?",
+        "That's ridiculous. You are useless, and so is this company."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "I am afraid there is a problem with ___. Could you please ___?",
-      "options": [
-        "explain the problem, request a solution, and stay polite",
-        "polite tone on could you please",
-        "Describe the problem first, then ask for one clear action.",
-        "I am afraid there is a problem with ___. Could you please ___?"
-      ],
       "id": "complaint-request-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memulai keluhan dengan sopan?",
+      "answer": "Excuse me, I have a problem with my room.",
+      "options": [
+        "Excuse me, I has a problem with my room.",
+        "Hey, your room is the worst problem ever.",
+        "Excuse me, I have a problem with my room.",
+        "Excuse me, my room have a problem with it."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "explain the problem, request a solution, and stay polite",
-      "options": [
-        "polite tone on could you please",
-        "answer without listening to the question",
-        "explain the problem, request a solution, and stay polite",
-        "Menyampaikan keluhan dengan tetap sopan."
-      ],
       "id": "complaint-request-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Bajumu terlalu kecil. Apa yang kamu katakan di toko?",
+      "answer": "Can I change this for a bigger size?",
+      "options": [
+        "Can I change this for a smaller size?",
+        "Can I change this to more small size?",
+        "Can I buy this for a bigger price?",
+        "Can I change this for a bigger size?"
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "I am afraid there is a problem with my order. Could you please check it?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I am afraid there is a problem with my order. Could you please check it?",
-        "I would appreciate it if you could look into this issue.",
-        "I went there yesterday because blue."
-      ],
       "id": "complaint-request-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "TV di kamarmu tidak berfungsi. Kalimat mana yang menjelaskannya dengan jelas?",
+      "answer": "The TV in my room isn't working.",
+      "options": [
+        "The TV in my room isn't working.",
+        "The TV in my room don't working.",
+        "The TV is in my room working.",
+        "The TV in my room isn't watching."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Complaint & Request\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "explain the problem, request a solution, and stay polite",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "explain the problem, request a solution, and stay polite"
-      ],
       "id": "complaint-request-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang meminta bantuan dengan sopan?",
+      "answer": "Could you please send someone?",
+      "options": [
+        "Could you please send someone?",
+        "You must send someone right now.",
+        "Could you please sending someone?",
+        "Send somebody, okay, quickly?"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "I would appreciate it if you could look into this issue.",
-      "options": [
-        "I do not mean to complain, but I need some help with this.",
-        "I am afraid there is a problem with my order. Could you please check it?",
-        "I would appreciate it if you could look into this issue.",
-        "Could you help me fix this?"
-      ],
       "id": "complaint-request-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Paketmu tiba dalam keadaan rusak. Permintaan mana yang menyebutkan masalah dan satu tindakan yang jelas?",
+      "answer": "My parcel arrived damaged. Could you arrange a replacement, please?",
+      "options": [
+        "My parcel arrived damaged. Could you arrange a replacement, please?",
+        "My parcel arrived. Could you arrange something or other, maybe, please?",
+        "My parcel arrived damaged. I'm very angry, and that's all I want to say.",
+        "Your company always damages everything. I want everything fixed now."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "I do not mean to complain, but I need some help with this.",
-      "options": [
-        "Laugh and end the conversation.",
-        "I do not mean to complain, but I need some help with this.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "complaint-request-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Petugas berkata, \"There's nothing I can do.\" Balasan mana yang tetap sopan tetapi tegas?",
+      "answer": "I understand, but could I speak to a supervisor, please?",
+      "options": [
+        "I understand. Then I'll just accept it and go home now.",
+        "I understand, but could I speak to a supervisor, please?",
+        "I understand, but could I speaking to a supervisor, please?",
+        "That's ridiculous. You are useless, and so is this company."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

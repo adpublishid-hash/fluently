@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "The app gives pronunciation feedback.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "A new app helps busy learners practice languages in short sessions.",
-        "The app gives pronunciation feedback."
-      ],
       "id": "technology-news-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Who launched the language app?",
+      "answer": "a local startup",
+      "options": [
+        "a famous university",
+        "a large bank",
+        "a school teacher",
+        "a local startup"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "launched",
-      "options": [
-        "summarizing news and identifying product features",
-        "main idea",
-        "launched",
-        "started or introduced something new"
-      ],
       "id": "technology-news-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Who is the app designed for?",
+      "answer": "busy learners",
+      "options": [
+        "busy learners",
+        "young children only",
+        "professional athletes",
+        "retired teachers"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "A New Language App",
-      "options": [
-        "No title is possible.",
-        "A New Language App",
-        "Technology News",
-        "to report the launch of a useful learning app"
-      ],
       "id": "technology-news-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "How long might users practise when they are busy?",
+      "answer": "ten minutes",
+      "options": [
+        "one full day",
+        "ten minutes",
+        "two hours",
+        "thirty minutes"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Technology News.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "A new app helps busy learners practice languages in short sessions.",
-      "options": [
-        "started or introduced something new",
-        "summarizing news and identifying product features",
-        "The text is only about spelling.",
-        "A new app helps busy learners practice languages in short sessions."
-      ],
       "id": "technology-news-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which feature is NOT mentioned in the news?",
+      "answer": "video chat with teachers",
+      "options": [
+        "short lessons for busy users",
+        "daily reminders",
+        "pronunciation feedback",
+        "video chat with teachers"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"launched\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "The app gives pronunciation feedback.",
-      "options": [
-        "The text says the opposite.",
-        "started or introduced something new",
-        "to report the launch of a useful learning app",
-        "The app gives pronunciation feedback."
-      ],
       "id": "technology-news-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What is the most likely purpose of the daily reminders?",
+      "answer": "to help users practise regularly",
+      "options": [
+        "to help users practise regularly",
+        "to correct users' pronunciation",
+        "to replace the short lessons",
+        "to sell extra products to users"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to report the launch of a useful learning app",
-      "options": [
-        "summarizing news and identifying product features",
-        "to report the launch of a useful learning app",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "technology-news-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "In the last sentence, what does \"it\" refer to?",
+      "answer": "the app",
+      "options": [
+        "the app",
+        "the team",
+        "the lesson",
+        "the startup"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "A new app helps busy learners practice languages in short sessions.",
-      "options": [
-        "A new app helps busy learners practice languages in short sessions.",
-        "The app gives pronunciation feedback.",
-        "started or introduced something new",
-        "Only one small word matters."
-      ],
       "id": "technology-news-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which statement goes beyond what the news report says?",
+      "answer": "The app is already the most popular one in the country.",
+      "options": [
+        "The team wants the app to fit into busy days.",
+        "The app offers lessons that do not take long.",
+        "The app is already the most popular one in the country.",
+        "The app helps users improve how they pronounce new words."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The app is designed for people with limited time.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The app gives pronunciation feedback.",
-        "The app is designed for people with limited time."
-      ],
       "id": "technology-news-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which phrase shows that the team's goal is not yet proven?",
+      "answer": "The team hopes",
+      "options": [
+        "busy learners",
+        "The team hopes",
+        "A local startup",
+        "daily reminders"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "The app gives pronunciation feedback.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "A new app helps busy learners practice languages in short sessions.",
-        "The app gives pronunciation feedback."
-      ],
       "id": "technology-news-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Siapa yang meluncurkan aplikasi bahasa itu?",
+      "answer": "a local startup",
+      "options": [
+        "a famous university",
+        "a large bank",
+        "a school teacher",
+        "a local startup"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "launched",
-      "options": [
-        "summarizing news and identifying product features",
-        "main idea",
-        "launched",
-        "started or introduced something new"
-      ],
       "id": "technology-news-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Untuk siapa aplikasi ini dirancang?",
+      "answer": "busy learners",
+      "options": [
+        "busy learners",
+        "young children only",
+        "professional athletes",
+        "retired teachers"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "A New Language App",
-      "options": [
-        "No title is possible.",
-        "A New Language App",
-        "Technology News",
-        "to report the launch of a useful learning app"
-      ],
       "id": "technology-news-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Berapa lama pengguna mungkin berlatih saat mereka sibuk?",
+      "answer": "ten minutes",
+      "options": [
+        "one full day",
+        "ten minutes",
+        "two hours",
+        "thirty minutes"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Technology News.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "A new app helps busy learners practice languages in short sessions.",
-      "options": [
-        "started or introduced something new",
-        "summarizing news and identifying product features",
-        "The text is only about spelling.",
-        "A new app helps busy learners practice languages in short sessions."
-      ],
       "id": "technology-news-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Fitur mana yang TIDAK disebutkan dalam berita?",
+      "answer": "video chat with teachers",
+      "options": [
+        "short lessons for busy users",
+        "daily reminders",
+        "pronunciation feedback",
+        "video chat with teachers"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"launched\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "The app gives pronunciation feedback.",
-      "options": [
-        "The text says the opposite.",
-        "started or introduced something new",
-        "to report the launch of a useful learning app",
-        "The app gives pronunciation feedback."
-      ],
       "id": "technology-news-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa tujuan yang paling mungkin dari pengingat harian?",
+      "answer": "to help users practise regularly",
+      "options": [
+        "to help users practise regularly",
+        "to correct users' pronunciation",
+        "to replace the short lessons",
+        "to sell extra products to users"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to report the launch of a useful learning app",
-      "options": [
-        "summarizing news and identifying product features",
-        "to report the launch of a useful learning app",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "technology-news-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Pada kalimat terakhir, kata \"it\" merujuk pada apa?",
+      "answer": "the app",
+      "options": [
+        "the app",
+        "the team",
+        "the lesson",
+        "the startup"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "A new app helps busy learners practice languages in short sessions.",
-      "options": [
-        "A new app helps busy learners practice languages in short sessions.",
-        "The app gives pronunciation feedback.",
-        "started or introduced something new",
-        "Only one small word matters."
-      ],
       "id": "technology-news-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Pernyataan mana yang melampaui isi laporan berita?",
+      "answer": "The app is already the most popular one in the country.",
+      "options": [
+        "The team wants the app to fit into busy days.",
+        "The app offers lessons that do not take long.",
+        "The app is already the most popular one in the country.",
+        "The app helps users improve how they pronounce new words."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The app is designed for people with limited time.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "The app gives pronunciation feedback.",
-        "The app is designed for people with limited time."
-      ],
       "id": "technology-news-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Frasa mana yang menunjukkan bahwa tujuan tim belum terbukti?",
+      "answer": "The team hopes",
+      "options": [
+        "busy learners",
+        "The team hopes",
+        "A local startup",
+        "daily reminders"
+      ]
     }
   ]
 };

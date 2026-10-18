@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Thesis + reason + evidence/example + counterpoint + conclusion.",
-      "options": [
-        "This essay argues that",
-        "on the other hand",
-        "Therefore, this approach is reasonable.",
-        "Thesis + reason + evidence/example + counterpoint + conclusion."
-      ],
       "id": "argument-essay-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence is a clear thesis?",
+      "answer": "Schools should offer free lunches to all students.",
+      "options": [
+        "Schools should offer free lunches to all students.",
+        "Some students eat lunch, and some students do not.",
+        "Lunch is a meal that people eat in the afternoon.",
+        "This essay is about lunch and some other things."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Argument Essay.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Technology can improve education because it gives students access to many resources. However, it should be used with clear guidance.",
-      "options": [
-        "And because but however.",
-        "Technology can improve education because it gives students access to many resources. However, it should be used with clear guidance.",
-        "This essay argues that",
-        "Therefore, this approach is reasonable."
-      ],
       "id": "argument-essay-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the best phrase to introduce evidence: '___, a 2023 survey found that most students prefer shorter classes.'",
+      "answer": "For instance",
+      "options": [
+        "For instance",
+        "Nevertheless",
+        "In conclusion",
+        "Unfortunately"
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Thesis + reason + evidence/example + counterpoint + conclusion.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Thesis + reason + evidence/example + counterpoint + conclusion."
-      ],
       "id": "argument-essay-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word introduces a counterpoint?",
+      "answer": "However",
+      "options": [
+        "However",
+        "Moreover",
+        "Also",
+        "Therefore"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "on the other hand",
-      "options": [
-        "Therefore, this approach is reasonable.",
-        "argument essay paragraph",
-        "on the other hand",
-        "This essay argues that"
-      ],
       "id": "argument-essay-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best supports this thesis? 'Cities should invest more in public transport.'",
+      "answer": "Better buses and trains reduce traffic jams and air pollution.",
+      "options": [
+        "Better buses and trains reduce traffic jams and air pollution.",
+        "Public transport has existed in cities for over a hundred years.",
+        "Many people in cities own a car, a bicycle, or a motorbike.",
+        "I personally enjoy looking out of the window on long train trips."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "Therefore, this approach is reasonable.",
-      "options": [
-        "on the other hand",
-        "Therefore, this approach is reasonable.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "argument-essay-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best responds to this opposing view? 'Banning phones in class removes useful learning tools.'",
+      "answer": "Although phones can help, teachers can provide devices when needed.",
+      "options": [
+        "Phones are bad, and that is really all there is to say about the matter here.",
+        "Although phones can help, teachers can provide devices when needed.",
+        "Phones were invented a long time ago and are now very common.",
+        "Some people disagree with me, but they are simply wrong."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Thesis + reason + evidence/example + counterpoint + conclusion.",
-      "options": [
-        "This essay argues that",
-        "on the other hand",
-        "Therefore, this approach is reasonable.",
-        "Thesis + reason + evidence/example + counterpoint + conclusion."
-      ],
       "id": "argument-essay-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang merupakan thesis yang jelas?",
+      "answer": "Schools should offer free lunches to all students.",
+      "options": [
+        "Schools should offer free lunches to all students.",
+        "Some students eat lunch, and some students do not.",
+        "Lunch is a meal that people eat in the afternoon.",
+        "This essay is about lunch and some other things."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Argument Essay.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Technology can improve education because it gives students access to many resources. However, it should be used with clear guidance.",
-      "options": [
-        "And because but however.",
-        "Technology can improve education because it gives students access to many resources. However, it should be used with clear guidance.",
-        "This essay argues that",
-        "Therefore, this approach is reasonable."
-      ],
       "id": "argument-essay-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih frasa terbaik untuk memperkenalkan bukti: '___, a 2023 survey found that most students prefer shorter classes.'",
+      "answer": "For instance",
+      "options": [
+        "For instance",
+        "Nevertheless",
+        "In conclusion",
+        "Unfortunately"
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Thesis + reason + evidence/example + counterpoint + conclusion.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Thesis + reason + evidence/example + counterpoint + conclusion."
-      ],
       "id": "argument-essay-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana yang memperkenalkan counterpoint?",
+      "answer": "However",
+      "options": [
+        "However",
+        "Moreover",
+        "Also",
+        "Therefore"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "on the other hand",
-      "options": [
-        "Therefore, this approach is reasonable.",
-        "argument essay paragraph",
-        "on the other hand",
-        "This essay argues that"
-      ],
       "id": "argument-essay-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling mendukung thesis ini? 'Cities should invest more in public transport.'",
+      "answer": "Better buses and trains reduce traffic jams and air pollution.",
+      "options": [
+        "Better buses and trains reduce traffic jams and air pollution.",
+        "Public transport has existed in cities for over a hundred years.",
+        "Many people in cities own a car, a bicycle, or a motorbike.",
+        "I personally enjoy looking out of the window on long train trips."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "Therefore, this approach is reasonable.",
-      "options": [
-        "on the other hand",
-        "Therefore, this approach is reasonable.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "argument-essay-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling tepat menanggapi pandangan yang berlawanan ini? 'Banning phones in class removes useful learning tools.'",
+      "answer": "Although phones can help, teachers can provide devices when needed.",
+      "options": [
+        "Phones are bad, and that is really all there is to say about the matter here.",
+        "Although phones can help, teachers can provide devices when needed.",
+        "Phones were invented a long time ago and are now very common.",
+        "Some people disagree with me, but they are simply wrong."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

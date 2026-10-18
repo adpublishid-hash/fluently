@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "comparison-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Degrees of Comparison): Complete: This book is ____ than that one.",
-      "answer": "more interesting",
+      "prompt": "Basic grammar check (Degrees of Comparison): Complete: Today is ____ than yesterday.",
+      "answer": "hotter",
       "options": [
-        "more interesting",
-        "most interesting",
-        "interestingest",
-        "interestinger"
+        "hottest",
+        "hotter",
+        "hoter",
+        "more hot"
       ]
     },
     {
       "id": "comparison-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Degrees of Comparison): Complete: She is the ____ student in class.",
-      "answer": "best",
+      "prompt": "Basic grammar check (Degrees of Comparison): Complete: This is the ____ day of my life.",
+      "answer": "happiest",
       "options": [
-        "better",
-        "gooder",
-        "more good",
-        "best"
+        "happiest",
+        "happier",
+        "happyest",
+        "more happiest"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "comparison-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Degrees of Comparison): Complete: My bag is ____ than yours.",
-      "answer": "heavier",
+      "prompt": "Choose the best structure (Degrees of Comparison): Complete: The new phone is not as ____ as the old one.",
+      "answer": "expensive",
       "options": [
-        "heaviest",
-        "more heavy",
-        "heavyer",
-        "heavier"
+        "expensive",
+        "more expensive",
+        "most expensive",
+        "expensiver"
       ]
     },
     {
       "id": "comparison-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Degrees of Comparison): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Degrees of Comparison): Complete: The ____ you practise, the more confident you become.",
+      "answer": "more",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "most",
+        "many",
+        "more",
+        "much"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "comparison-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Degrees of Comparison): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Degrees of Comparison): Complete: Of all the proposals, this one is by far the ____ persuasive.",
+      "answer": "most",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "very",
+        "most",
+        "more",
+        "much"
       ]
     },
     {
       "id": "comparison-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Degrees of Comparison): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Degrees of Comparison): Complete: The second exam was considerably ____ than the first.",
+      "answer": "less demanding",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "lesser demanding",
+        "least demanding",
+        "less demanding",
+        "more less demanding"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "comparison-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Degrees of Comparison): Complete: This book is ____ than that one.",
-      "answer": "more interesting",
+      "prompt": "Cek grammar dasar (Degrees of Comparison): Complete: Today is ____ than yesterday.",
+      "answer": "hotter",
       "options": [
-        "more interesting",
-        "most interesting",
-        "interestingest",
-        "interestinger"
+        "hottest",
+        "hotter",
+        "hoter",
+        "more hot"
       ]
     },
     {
       "id": "comparison-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Degrees of Comparison): Complete: She is the ____ student in class.",
-      "answer": "best",
+      "prompt": "Cek grammar dasar (Degrees of Comparison): Complete: This is the ____ day of my life.",
+      "answer": "happiest",
       "options": [
-        "better",
-        "gooder",
-        "more good",
-        "best"
+        "happiest",
+        "happier",
+        "happyest",
+        "more happiest"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "comparison-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Degrees of Comparison): Complete: My bag is ____ than yours.",
-      "answer": "heavier",
+      "prompt": "Pilih struktur terbaik (Degrees of Comparison): Complete: The new phone is not as ____ as the old one.",
+      "answer": "expensive",
       "options": [
-        "heaviest",
-        "more heavy",
-        "heavyer",
-        "heavier"
+        "expensive",
+        "more expensive",
+        "most expensive",
+        "expensiver"
       ]
     },
     {
       "id": "comparison-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Degrees of Comparison): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Degrees of Comparison): Complete: The ____ you practise, the more confident you become.",
+      "answer": "more",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "most",
+        "many",
+        "more",
+        "much"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "comparison-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Degrees of Comparison): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Degrees of Comparison): Complete: Of all the proposals, this one is by far the ____ persuasive.",
+      "answer": "most",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "very",
+        "most",
+        "more",
+        "much"
       ]
     },
     {
       "id": "comparison-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Degrees of Comparison): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Degrees of Comparison): Complete: The second exam was considerably ____ than the first.",
+      "answer": "less demanding",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "lesser demanding",
+        "least demanding",
+        "less demanding",
+        "more less demanding"
       ]
     }
   ]

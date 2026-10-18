@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Introduction + interest + relevant skill + closing.",
-      "options": [
-        "I am writing to apply for",
-        "because",
-        "I look forward to your response.",
-        "Introduction + interest + relevant skill + closing."
-      ],
       "id": "application-message-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which opening line is best for an application message?",
+      "answer": "My name is Rina, and I would like to apply for the cashier job.",
+      "options": [
+        "My name is Rina, and I would like to apply for the cashier job.",
+        "I need money, so I want this job.",
+        "Do you have any jobs at all? I can do almost anything you need, really.",
+        "Hi, give me the job, please."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Application Message.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "I am interested in applying for this position because I have experience in customer service and communication.",
-      "options": [
-        "And because but however.",
-        "I am interested in applying for this position because I have experience in customer service and communication.",
-        "I am writing to apply for",
-        "I look forward to your response."
-      ],
       "id": "application-message-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence mentions a relevant skill for a waiter job?",
+      "answer": "I am friendly and good at working with customers.",
+      "options": [
+        "My favourite colours are blue, green and a bright shade of yellow.",
+        "I like watching films at the weekend.",
+        "I am friendly and good at working with customers.",
+        "I have a younger sister and a pet cat at home."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Introduction + interest + relevant skill + closing.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Introduction + interest + relevant skill + closing."
-      ],
       "id": "application-message-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct preposition: 'I have two years of experience ___ customer service.'",
+      "answer": "in",
+      "options": [
+        "in",
+        "by",
+        "to",
+        "on"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "because",
-      "options": [
-        "I look forward to your response.",
-        "application message",
-        "because",
-        "I am writing to apply for"
-      ],
       "id": "application-message-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best shows why you suit a library assistant role?",
+      "answer": "I organised the book collection at my school library for two years.",
+      "options": [
+        "I organised the book collection at my school library for two years.",
+        "I can work any time because I have nothing else to do now.",
+        "I read some books last year and enjoyed most of them a lot.",
+        "I have always liked libraries because they are quiet, calm and very nice places."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "I look forward to your response.",
-      "options": [
-        "because",
-        "I look forward to your response.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "application-message-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which closing line is most professional for an application message?",
+      "answer": "Thank you for considering my application.",
+      "options": [
+        "Please answer me fast because I am waiting.",
+        "Hire me and you will not be sorry, trust me.",
+        "That's all, bye for now and see you!",
+        "Thank you for considering my application."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Introduction + interest + relevant skill + closing.",
-      "options": [
-        "I am writing to apply for",
-        "because",
-        "I look forward to your response.",
-        "Introduction + interest + relevant skill + closing."
-      ],
       "id": "application-message-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat pembuka mana yang paling tepat untuk pesan lamaran?",
+      "answer": "My name is Rina, and I would like to apply for the cashier job.",
+      "options": [
+        "My name is Rina, and I would like to apply for the cashier job.",
+        "I need money, so I want this job.",
+        "Do you have any jobs at all? I can do almost anything you need, really.",
+        "Hi, give me the job, please."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Application Message.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "I am interested in applying for this position because I have experience in customer service and communication.",
-      "options": [
-        "And because but however.",
-        "I am interested in applying for this position because I have experience in customer service and communication.",
-        "I am writing to apply for",
-        "I look forward to your response."
-      ],
       "id": "application-message-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menyebutkan keterampilan yang relevan untuk pekerjaan pelayan?",
+      "answer": "I am friendly and good at working with customers.",
+      "options": [
+        "My favourite colours are blue, green and a bright shade of yellow.",
+        "I like watching films at the weekend.",
+        "I am friendly and good at working with customers.",
+        "I have a younger sister and a pet cat at home."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Introduction + interest + relevant skill + closing.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Introduction + interest + relevant skill + closing."
-      ],
       "id": "application-message-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih preposisi yang benar: 'I have two years of experience ___ customer service.'",
+      "answer": "in",
+      "options": [
+        "in",
+        "by",
+        "to",
+        "on"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "because",
-      "options": [
-        "I look forward to your response.",
-        "application message",
-        "because",
-        "I am writing to apply for"
-      ],
       "id": "application-message-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling baik menunjukkan bahwa Anda cocok untuk posisi asisten perpustakaan?",
+      "answer": "I organised the book collection at my school library for two years.",
+      "options": [
+        "I organised the book collection at my school library for two years.",
+        "I can work any time because I have nothing else to do now.",
+        "I read some books last year and enjoyed most of them a lot.",
+        "I have always liked libraries because they are quiet, calm and very nice places."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "I look forward to your response.",
-      "options": [
-        "because",
-        "I look forward to your response.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "application-message-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat penutup mana yang paling profesional untuk pesan lamaran?",
+      "answer": "Thank you for considering my application.",
+      "options": [
+        "Please answer me fast because I am waiting.",
+        "Hire me and you will not be sorry, trust me.",
+        "That's all, bye for now and see you!",
+        "Thank you for considering my application."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "active-passive-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Active vs. Passive Voice): Choose the passive sentence.",
-      "answer": "The letter was written by Ana.",
+      "prompt": "Basic grammar check (Active vs. Passive Voice): Complete: English ____ in many countries.",
+      "answer": "is spoken",
       "options": [
-        "The letter was written by Ana.",
-        "Ana wrote the letter.",
-        "Ana was writing the letter.",
-        "The letter wrote Ana."
+        "speaks",
+        "spoke",
+        "is speak",
+        "is spoken"
       ]
     },
     {
       "id": "active-passive-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Active vs. Passive Voice): Complete: The room ____ every day.",
-      "answer": "is cleaned",
+      "prompt": "Basic grammar check (Active vs. Passive Voice): Complete: The window ____ by the boy yesterday.",
+      "answer": "was broken",
       "options": [
-        "cleans",
-        "cleaned",
-        "is cleaning",
-        "is cleaned"
+        "was broken",
+        "is broken",
+        "was break",
+        "broke"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "active-passive-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Active vs. Passive Voice): Complete: The cake ____ by my mother yesterday.",
-      "answer": "was made",
+      "prompt": "Choose the best structure (Active vs. Passive Voice): Complete: The new bridge ____ at the moment.",
+      "answer": "is being built",
       "options": [
-        "is made",
-        "made",
-        "makes",
-        "was made"
+        "is being built",
+        "has built",
+        "builds",
+        "is building"
       ]
     },
     {
       "id": "active-passive-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Active vs. Passive Voice): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Active vs. Passive Voice): Choose the passive form: They have cancelled the match.",
+      "answer": "The match has been cancelled.",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "The match has cancelled.",
+        "The match have been cancelled.",
+        "The match was being cancel.",
+        "The match has been cancelled."
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "active-passive-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Active vs. Passive Voice): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Active vs. Passive Voice): Complete: The suspect is believed ____ the country last night.",
+      "answer": "to have left",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "having left",
+        "to be leaving",
+        "to leave",
+        "to have left"
       ]
     },
     {
       "id": "active-passive-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Active vs. Passive Voice): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Active vs. Passive Voice): Complete: All applications must ____ by the end of the week.",
+      "answer": "be submitted",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "be submitting",
+        "have submit",
+        "be submitted",
+        "submitted"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "active-passive-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Active vs. Passive Voice): Choose the passive sentence.",
-      "answer": "The letter was written by Ana.",
+      "prompt": "Cek grammar dasar (Active vs. Passive Voice): Complete: English ____ in many countries.",
+      "answer": "is spoken",
       "options": [
-        "The letter was written by Ana.",
-        "Ana wrote the letter.",
-        "Ana was writing the letter.",
-        "The letter wrote Ana."
+        "speaks",
+        "spoke",
+        "is speak",
+        "is spoken"
       ]
     },
     {
       "id": "active-passive-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Active vs. Passive Voice): Complete: The room ____ every day.",
-      "answer": "is cleaned",
+      "prompt": "Cek grammar dasar (Active vs. Passive Voice): Complete: The window ____ by the boy yesterday.",
+      "answer": "was broken",
       "options": [
-        "cleans",
-        "cleaned",
-        "is cleaning",
-        "is cleaned"
+        "was broken",
+        "is broken",
+        "was break",
+        "broke"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "active-passive-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Active vs. Passive Voice): Complete: The cake ____ by my mother yesterday.",
-      "answer": "was made",
+      "prompt": "Pilih struktur terbaik (Active vs. Passive Voice): Complete: The new bridge ____ at the moment.",
+      "answer": "is being built",
       "options": [
-        "is made",
-        "made",
-        "makes",
-        "was made"
+        "is being built",
+        "has built",
+        "builds",
+        "is building"
       ]
     },
     {
       "id": "active-passive-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Active vs. Passive Voice): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Active vs. Passive Voice): Choose the passive form: They have cancelled the match.",
+      "answer": "The match has been cancelled.",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "The match has cancelled.",
+        "The match have been cancelled.",
+        "The match was being cancel.",
+        "The match has been cancelled."
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "active-passive-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Active vs. Passive Voice): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Active vs. Passive Voice): Complete: The suspect is believed ____ the country last night.",
+      "answer": "to have left",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "having left",
+        "to be leaving",
+        "to leave",
+        "to have left"
       ]
     },
     {
       "id": "active-passive-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Active vs. Passive Voice): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Active vs. Passive Voice): Complete: All applications must ____ by the end of the week.",
+      "answer": "be submitted",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "be submitting",
+        "have submit",
+        "be submitted",
+        "submitted"
       ]
     }
   ]

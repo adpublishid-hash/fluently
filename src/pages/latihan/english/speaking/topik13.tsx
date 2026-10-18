@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "Good morning. Today, I am going to talk about ___. I will cover ___.",
-      "options": [
-        "greet the audience, introduce the topic, and preview points",
-        "clear pauses after greeting and topic",
-        "Use signposting words so listeners know where you are going.",
-        "Good morning. Today, I am going to talk about ___. I will cover ___."
-      ],
       "id": "presentation-opening-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "How do you greet an audience at the start of a presentation?",
+      "answer": "Good afternoon, everyone.",
+      "options": [
+        "Goodbye for now, everyone.",
+        "Good afternoon, everyone.",
+        "Good night, everybody.",
+        "Good afternoon, anyone."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "greet the audience, introduce the topic, and preview points",
-      "options": [
-        "clear pauses after greeting and topic",
-        "answer without listening to the question",
-        "greet the audience, introduce the topic, and preview points",
-        "Membuka presentasi dengan tujuan dan struktur."
-      ],
       "id": "presentation-opening-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence introduces yourself before a presentation?",
+      "answer": "My name is Tara, and I work in marketing.",
+      "options": [
+        "Name is Tara, I am work in the marketing.",
+        "My name was Tara, and I work in marketing.",
+        "My name is Tara, and I work in marketing.",
+        "My name is Tara, and I working in marketing."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.",
-        "Today, I would like to present three key points.",
-        "I went there yesterday because blue."
-      ],
       "id": "presentation-opening-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence tells the audience the topic?",
+      "answer": "Today I'm going to talk about recycling.",
+      "options": [
+        "Today I going to talk about recycling.",
+        "Today I'm going to talk recycling about.",
+        "Yesterday I'm going to talk about recycling.",
+        "Today I'm going to talk about recycling."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Presentation Opening\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "greet the audience, introduce the topic, and preview points",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "greet the audience, introduce the topic, and preview points"
-      ],
       "id": "presentation-opening-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence tells the audience when they can ask questions?",
+      "answer": "Please ask your questions at the end.",
+      "options": [
+        "Please don't ask any questions ever.",
+        "Please ask your questions at the end.",
+        "Questions at the end asking, please.",
+        "Please ask questions in my middle words."
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "Today, I would like to present three key points.",
-      "options": [
-        "Let me outline the main points first.",
-        "Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.",
-        "Today, I would like to present three key points.",
-        "Today, I want to talk about three things."
-      ],
       "id": "presentation-opening-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which opening grabs the audience's attention most effectively?",
+      "answer": "Did you know the average person spends seven hours a day on screens?",
+      "options": [
+        "Um, so, I guess I'll just start reading my slides now, okay?",
+        "Did you know that I have prepared quite a few slides for you today?",
+        "This topic is quite boring, but I have to present it anyway.",
+        "Did you know the average person spends seven hours a day on screens?"
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Let me outline the main points first.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me outline the main points first.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "presentation-opening-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence previews the structure of the talk clearly?",
+      "answer": "First, I'll cover costs, then risks, and finally next steps.",
+      "options": [
+        "First, I'll cover costs, then risks, and finally next steps.",
+        "Finally, I'll cover costs, first risks, and then next steps.",
+        "First, I'll cover costs, then costs, and finally costs again.",
+        "I'll cover costs and things, maybe risks, then we'll see."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "Good morning. Today, I am going to talk about ___. I will cover ___.",
-      "options": [
-        "greet the audience, introduce the topic, and preview points",
-        "clear pauses after greeting and topic",
-        "Use signposting words so listeners know where you are going.",
-        "Good morning. Today, I am going to talk about ___. I will cover ___."
-      ],
       "id": "presentation-opening-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Bagaimana cara menyapa audiens di awal presentasi?",
+      "answer": "Good afternoon, everyone.",
+      "options": [
+        "Goodbye for now, everyone.",
+        "Good afternoon, everyone.",
+        "Good night, everybody.",
+        "Good afternoon, anyone."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "greet the audience, introduce the topic, and preview points",
-      "options": [
-        "clear pauses after greeting and topic",
-        "answer without listening to the question",
-        "greet the audience, introduce the topic, and preview points",
-        "Membuka presentasi dengan tujuan dan struktur."
-      ],
       "id": "presentation-opening-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memperkenalkan dirimu sebelum presentasi?",
+      "answer": "My name is Tara, and I work in marketing.",
+      "options": [
+        "Name is Tara, I am work in the marketing.",
+        "My name was Tara, and I work in marketing.",
+        "My name is Tara, and I work in marketing.",
+        "My name is Tara, and I working in marketing."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.",
-        "Today, I would like to present three key points.",
-        "I went there yesterday because blue."
-      ],
       "id": "presentation-opening-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memberi tahu audiens tentang topiknya?",
+      "answer": "Today I'm going to talk about recycling.",
+      "options": [
+        "Today I going to talk about recycling.",
+        "Today I'm going to talk recycling about.",
+        "Yesterday I'm going to talk about recycling.",
+        "Today I'm going to talk about recycling."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Presentation Opening\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "greet the audience, introduce the topic, and preview points",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "greet the audience, introduce the topic, and preview points"
-      ],
       "id": "presentation-opening-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang memberi tahu audiens kapan mereka boleh bertanya?",
+      "answer": "Please ask your questions at the end.",
+      "options": [
+        "Please don't ask any questions ever.",
+        "Please ask your questions at the end.",
+        "Questions at the end asking, please.",
+        "Please ask questions in my middle words."
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "Today, I would like to present three key points.",
-      "options": [
-        "Let me outline the main points first.",
-        "Good morning. Today, I am going to talk about healthy habits. I will cover sleep, food, and exercise.",
-        "Today, I would like to present three key points.",
-        "Today, I want to talk about three things."
-      ],
       "id": "presentation-opening-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Pembukaan mana yang paling efektif menarik perhatian audiens?",
+      "answer": "Did you know the average person spends seven hours a day on screens?",
+      "options": [
+        "Um, so, I guess I'll just start reading my slides now, okay?",
+        "Did you know that I have prepared quite a few slides for you today?",
+        "This topic is quite boring, but I have to present it anyway.",
+        "Did you know the average person spends seven hours a day on screens?"
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Let me outline the main points first.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Let me outline the main points first.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "presentation-opening-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang memberi gambaran struktur presentasi dengan jelas?",
+      "answer": "First, I'll cover costs, then risks, and finally next steps.",
+      "options": [
+        "First, I'll cover costs, then risks, and finally next steps.",
+        "Finally, I'll cover costs, first risks, and then next steps.",
+        "First, I'll cover costs, then costs, and finally costs again.",
+        "I'll cover costs and things, maybe risks, then we'll see."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

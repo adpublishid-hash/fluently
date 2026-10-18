@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "I see your point, but I think ___ because ___.",
-      "options": [
-        "agree, partly agree, or disagree with a reason",
-        "soft tone before disagreement phrases",
-        "Acknowledge the other view before giving your own.",
-        "I see your point, but I think ___ because ___."
-      ],
       "id": "agree-disagree-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase shows you agree completely?",
+      "answer": "I totally agree with you.",
+      "options": [
+        "I totally agree with you.",
+        "I totally agree to you.",
+        "I totally disagree with you.",
+        "I am totally agreeing you."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "agree, partly agree, or disagree with a reason",
-      "options": [
-        "soft tone before disagreement phrases",
-        "answer without listening to the question",
-        "agree, partly agree, or disagree with a reason",
-        "Setuju dan tidak setuju tanpa terdengar kasar."
-      ],
       "id": "agree-disagree-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase disagrees politely?",
+      "answer": "I'm not sure I agree.",
+      "options": [
+        "You are completely wrong.",
+        "That is a stupid idea.",
+        "I'm not sure I agreeing.",
+        "I'm not sure I agree."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "I see your point, but I think remote work is still useful because it saves commuting time.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I see your point, but I think remote work is still useful because it saves commuting time.",
-        "I partly agree, although I would add one concern.",
-        "I went there yesterday because blue."
-      ],
       "id": "agree-disagree-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Your friend says, \"Summer is the best season.\" Which reply agrees?",
+      "answer": "Yes, I think so too.",
+      "options": [
+        "Yes, I think so too.",
+        "Yes, I don't think too.",
+        "Yes, I think so neither.",
+        "No, I don't think so."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Agreeing & Disagreeing\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "agree, partly agree, or disagree with a reason",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "agree, partly agree, or disagree with a reason"
-      ],
       "id": "agree-disagree-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word completes the sentence? \"I agree ___ you about the price.\"",
+      "answer": "with",
+      "options": [
+        "with",
+        "on",
+        "to",
+        "at"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "I partly agree, although I would add one concern.",
-      "options": [
-        "I may have explained that too strongly. What I mean is...",
-        "I see your point, but I think remote work is still useful because it saves commuting time.",
-        "I partly agree, although I would add one concern.",
-        "I get that, but I see it a bit differently."
-      ],
       "id": "agree-disagree-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "A colleague says, \"We should cancel the event.\" Which reply partly agrees?",
+      "answer": "You may have a point, but could we postpone it instead?",
+      "options": [
+        "You may have a point, but could we postpone it instead?",
+        "You're absolutely right. Let's cancel it immediately, then.",
+        "No way. That's the worst suggestion I've ever heard.",
+        "You may have a point, and I agree with absolutely everything."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "I may have explained that too strongly. What I mean is...",
-      "options": [
-        "Laugh and end the conversation.",
-        "I may have explained that too strongly. What I mean is...",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "agree-disagree-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which reply disagrees respectfully and gives a reason?",
+      "answer": "I see where you're coming from, but the data suggests otherwise.",
+      "options": [
+        "I see where you're coming from, so I agree with you entirely.",
+        "I see where are you coming from, but the data suggests otherwise.",
+        "I see where you're coming from, but the data suggests otherwise.",
+        "I see where you're coming from, but you just don't understand."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "I see your point, but I think ___ because ___.",
-      "options": [
-        "agree, partly agree, or disagree with a reason",
-        "soft tone before disagreement phrases",
-        "Acknowledge the other view before giving your own.",
-        "I see your point, but I think ___ because ___."
-      ],
       "id": "agree-disagree-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang menunjukkan kamu setuju sepenuhnya?",
+      "answer": "I totally agree with you.",
+      "options": [
+        "I totally agree with you.",
+        "I totally agree to you.",
+        "I totally disagree with you.",
+        "I am totally agreeing you."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "agree, partly agree, or disagree with a reason",
-      "options": [
-        "soft tone before disagreement phrases",
-        "answer without listening to the question",
-        "agree, partly agree, or disagree with a reason",
-        "Setuju dan tidak setuju tanpa terdengar kasar."
-      ],
       "id": "agree-disagree-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang menyatakan tidak setuju dengan sopan?",
+      "answer": "I'm not sure I agree.",
+      "options": [
+        "You are completely wrong.",
+        "That is a stupid idea.",
+        "I'm not sure I agreeing.",
+        "I'm not sure I agree."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "I see your point, but I think remote work is still useful because it saves commuting time.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I see your point, but I think remote work is still useful because it saves commuting time.",
-        "I partly agree, although I would add one concern.",
-        "I went there yesterday because blue."
-      ],
       "id": "agree-disagree-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Temanmu berkata, \"Summer is the best season.\" Balasan mana yang menyatakan setuju?",
+      "answer": "Yes, I think so too.",
+      "options": [
+        "Yes, I think so too.",
+        "Yes, I don't think too.",
+        "Yes, I think so neither.",
+        "No, I don't think so."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Agreeing & Disagreeing\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "agree, partly agree, or disagree with a reason",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "agree, partly agree, or disagree with a reason"
-      ],
       "id": "agree-disagree-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana yang melengkapi kalimat ini? \"I agree ___ you about the price.\"",
+      "answer": "with",
+      "options": [
+        "with",
+        "on",
+        "to",
+        "at"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "I partly agree, although I would add one concern.",
-      "options": [
-        "I may have explained that too strongly. What I mean is...",
-        "I see your point, but I think remote work is still useful because it saves commuting time.",
-        "I partly agree, although I would add one concern.",
-        "I get that, but I see it a bit differently."
-      ],
       "id": "agree-disagree-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Rekan kerja berkata, \"We should cancel the event.\" Balasan mana yang setuju sebagian?",
+      "answer": "You may have a point, but could we postpone it instead?",
+      "options": [
+        "You may have a point, but could we postpone it instead?",
+        "You're absolutely right. Let's cancel it immediately, then.",
+        "No way. That's the worst suggestion I've ever heard.",
+        "You may have a point, and I agree with absolutely everything."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "I may have explained that too strongly. What I mean is...",
-      "options": [
-        "Laugh and end the conversation.",
-        "I may have explained that too strongly. What I mean is...",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "agree-disagree-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Balasan mana yang menyatakan tidak setuju dengan hormat dan memberi alasan?",
+      "answer": "I see where you're coming from, but the data suggests otherwise.",
+      "options": [
+        "I see where you're coming from, so I agree with you entirely.",
+        "I see where are you coming from, but the data suggests otherwise.",
+        "I see where you're coming from, but the data suggests otherwise.",
+        "I see where you're coming from, but you just don't understand."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Food and drinks are still not allowed inside the library.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The school library will stay open one hour longer.",
-        "Food and drinks are still not allowed inside the library."
-      ],
       "id": "school-notice-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "According to the notice, what time will the library close from Monday?",
+      "answer": "5 p.m.",
+      "options": [
+        "6 p.m.",
+        "3 p.m.",
+        "4 p.m.",
+        "5 p.m."
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "access",
-      "options": [
-        "identifying specific information in a notice",
-        "main idea",
-        "access",
-        "the ability or permission to use something"
-      ],
       "id": "school-notice-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "When does the new library schedule start?",
+      "answer": "on Monday",
+      "options": [
+        "on Monday",
+        "on Friday",
+        "next month",
+        "on Sunday"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Library Hours Update",
-      "options": [
-        "No title is possible.",
-        "Library Hours Update",
-        "School Notice",
-        "to inform students about a change in library hours"
-      ],
       "id": "school-notice-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the notice means \"permitted\"?",
+      "answer": "allowed",
+      "options": [
+        "close",
+        "instead",
+        "allowed",
+        "extra"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: School Notice.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "The school library will stay open one hour longer.",
-      "options": [
-        "the ability or permission to use something",
-        "identifying specific information in a notice",
-        "The text is only about spelling.",
-        "The school library will stay open one hour longer."
-      ],
       "id": "school-notice-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which activity is NOT mentioned as a use for the extra hour?",
+      "answer": "sports practice",
+      "options": [
+        "reading",
+        "computer access",
+        "group projects",
+        "sports practice"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"access\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Food and drinks are still not allowed inside the library.",
-      "options": [
-        "The text says the opposite.",
-        "the ability or permission to use something",
-        "to inform students about a change in library hours",
-        "Food and drinks are still not allowed inside the library."
-      ],
       "id": "school-notice-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which rule stays the same after the change?",
+      "answer": "Food and drinks are not allowed inside.",
+      "options": [
+        "Food and drinks are not allowed inside.",
+        "Computers can only be used before 4 p.m.",
+        "The library is closed on Mondays.",
+        "Students must work in groups."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to inform students about a change in library hours",
-      "options": [
-        "identifying specific information in a notice",
-        "to inform students about a change in library hours",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "school-notice-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "How much longer will the library be open each day?",
+      "answer": "one hour",
+      "options": [
+        "half an hour",
+        "two hours",
+        "one hour",
+        "three hours"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "The school library will stay open one hour longer.",
-      "options": [
-        "The school library will stay open one hour longer.",
-        "Food and drinks are still not allowed inside the library.",
-        "the ability or permission to use something",
-        "Only one small word matters."
-      ],
       "id": "school-notice-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Why does the notice say that food and drinks are \"still\" not allowed?",
+      "answer": "to show that the longer hours do not change this rule",
+      "options": [
+        "to explain why the library closes later",
+        "to announce that a brand-new food rule starts on Monday",
+        "to show that the longer hours do not change this rule",
+        "to suggest that the rule may end soon"
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "Students will have more time to study after class.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Food and drinks are still not allowed inside the library.",
-        "Students will have more time to study after class."
-      ],
       "id": "school-notice-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which tone best describes the notice?",
+      "answer": "informative and neutral",
+      "options": [
+        "sad and apologetic",
+        "informative and neutral",
+        "angry and threatening",
+        "humorous and very casual"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Food and drinks are still not allowed inside the library.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The school library will stay open one hour longer.",
-        "Food and drinks are still not allowed inside the library."
-      ],
       "id": "school-notice-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Menurut pengumuman, jam berapa perpustakaan akan tutup mulai hari Senin?",
+      "answer": "5 p.m.",
+      "options": [
+        "6 p.m.",
+        "3 p.m.",
+        "4 p.m.",
+        "5 p.m."
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "access",
-      "options": [
-        "identifying specific information in a notice",
-        "main idea",
-        "access",
-        "the ability or permission to use something"
-      ],
       "id": "school-notice-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kapan jadwal baru perpustakaan mulai berlaku?",
+      "answer": "on Monday",
+      "options": [
+        "on Monday",
+        "on Friday",
+        "next month",
+        "on Sunday"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Library Hours Update",
-      "options": [
-        "No title is possible.",
-        "Library Hours Update",
-        "School Notice",
-        "to inform students about a change in library hours"
-      ],
       "id": "school-notice-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam pengumuman yang berarti \"permitted\"?",
+      "answer": "allowed",
+      "options": [
+        "close",
+        "instead",
+        "allowed",
+        "extra"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: School Notice.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "The school library will stay open one hour longer.",
-      "options": [
-        "the ability or permission to use something",
-        "identifying specific information in a notice",
-        "The text is only about spelling.",
-        "The school library will stay open one hour longer."
-      ],
       "id": "school-notice-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kegiatan mana yang TIDAK disebutkan sebagai penggunaan jam tambahan?",
+      "answer": "sports practice",
+      "options": [
+        "reading",
+        "computer access",
+        "group projects",
+        "sports practice"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"access\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Food and drinks are still not allowed inside the library.",
-      "options": [
-        "The text says the opposite.",
-        "the ability or permission to use something",
-        "to inform students about a change in library hours",
-        "Food and drinks are still not allowed inside the library."
-      ],
       "id": "school-notice-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Aturan mana yang tetap sama setelah perubahan?",
+      "answer": "Food and drinks are not allowed inside.",
+      "options": [
+        "Food and drinks are not allowed inside.",
+        "Computers can only be used before 4 p.m.",
+        "The library is closed on Mondays.",
+        "Students must work in groups."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to inform students about a change in library hours",
-      "options": [
-        "identifying specific information in a notice",
-        "to inform students about a change in library hours",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "school-notice-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Berapa lama lagi perpustakaan akan buka setiap hari?",
+      "answer": "one hour",
+      "options": [
+        "half an hour",
+        "two hours",
+        "one hour",
+        "three hours"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "The school library will stay open one hour longer.",
-      "options": [
-        "The school library will stay open one hour longer.",
-        "Food and drinks are still not allowed inside the library.",
-        "the ability or permission to use something",
-        "Only one small word matters."
-      ],
       "id": "school-notice-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Mengapa pengumuman menegaskan bahwa makanan dan minuman \"still\" tidak diizinkan?",
+      "answer": "to show that the longer hours do not change this rule",
+      "options": [
+        "to explain why the library closes later",
+        "to announce that a brand-new food rule starts on Monday",
+        "to show that the longer hours do not change this rule",
+        "to suggest that the rule may end soon"
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "Students will have more time to study after class.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Food and drinks are still not allowed inside the library.",
-        "Students will have more time to study after class."
-      ],
       "id": "school-notice-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Nada mana yang paling tepat menggambarkan pengumuman ini?",
+      "answer": "informative and neutral",
+      "options": [
+        "sad and apologetic",
+        "informative and neutral",
+        "angry and threatening",
+        "humorous and very casual"
+      ]
     }
   ]
 };

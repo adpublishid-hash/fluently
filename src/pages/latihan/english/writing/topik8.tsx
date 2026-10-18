@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Problem + effect + solution + expected result.",
-      "options": [
-        "One common problem is",
-        "as a result",
-        "This solution can make the situation better.",
-        "Problem + effect + solution + expected result."
-      ],
       "id": "problem-solution-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence states a problem?",
+      "answer": "Our classroom is too hot in the afternoon.",
+      "options": [
+        "We could put a fan in the classroom.",
+        "The new fan arrived on Monday morning.",
+        "Our classroom is too hot in the afternoon.",
+        "We should ask the school to buy a new fan for us."
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Problem & Solution.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Many students feel tired because they sleep late. One solution is to set a regular bedtime.",
-      "options": [
-        "And because but however.",
-        "Many students feel tired because they sleep late. One solution is to set a regular bedtime.",
-        "One common problem is",
-        "This solution can make the situation better."
-      ],
       "id": "problem-solution-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence suggests a solution to this problem? 'I often forget my homework.'",
+      "answer": "You could write a list every evening.",
+      "options": [
+        "My teacher gets angry with me.",
+        "I forgot it again yesterday morning.",
+        "Homework is very boring for most students.",
+        "You could write a list every evening."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Problem + effect + solution + expected result.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Problem + effect + solution + expected result."
-      ],
       "id": "problem-solution-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the best word to show a result: 'The road was flooded, ___ the bus was late.'",
+      "answer": "so",
+      "options": [
+        "but",
+        "or",
+        "so",
+        "because"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "as a result",
-      "options": [
-        "This solution can make the situation better.",
-        "problem-solution paragraph",
-        "as a result",
-        "One common problem is"
-      ],
       "id": "problem-solution-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best explains the effect of this problem? 'Many people throw rubbish in the river.'",
+      "answer": "As a result, the water becomes dirty and fish die.",
+      "options": [
+        "The river runs right through the middle of our small town.",
+        "Some people go fishing in the river at weekends.",
+        "One solution is to put more bins near the river.",
+        "As a result, the water becomes dirty and fish die."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "This solution can make the situation better.",
-      "options": [
-        "as a result",
-        "This solution can make the situation better.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "problem-solution-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which solution is most practical for this problem? 'Students waste a lot of time queueing in the canteen.'",
+      "answer": "The canteen could open a second counter at lunchtime.",
+      "options": [
+        "The canteen could open a second counter at lunchtime.",
+        "The school should build a brand-new canteen next week.",
+        "Students should complain loudly until the queue moves.",
+        "Students should stop eating lunch at school completely."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Problem + effect + solution + expected result.",
-      "options": [
-        "One common problem is",
-        "as a result",
-        "This solution can make the situation better.",
-        "Problem + effect + solution + expected result."
-      ],
       "id": "problem-solution-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menyatakan masalah?",
+      "answer": "Our classroom is too hot in the afternoon.",
+      "options": [
+        "We could put a fan in the classroom.",
+        "The new fan arrived on Monday morning.",
+        "Our classroom is too hot in the afternoon.",
+        "We should ask the school to buy a new fan for us."
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Problem & Solution.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Many students feel tired because they sleep late. One solution is to set a regular bedtime.",
-      "options": [
-        "And because but however.",
-        "Many students feel tired because they sleep late. One solution is to set a regular bedtime.",
-        "One common problem is",
-        "This solution can make the situation better."
-      ],
       "id": "problem-solution-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menyarankan solusi untuk masalah ini? 'I often forget my homework.'",
+      "answer": "You could write a list every evening.",
+      "options": [
+        "My teacher gets angry with me.",
+        "I forgot it again yesterday morning.",
+        "Homework is very boring for most students.",
+        "You could write a list every evening."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Problem + effect + solution + expected result.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Problem + effect + solution + expected result."
-      ],
       "id": "problem-solution-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kata terbaik untuk menunjukkan akibat: 'The road was flooded, ___ the bus was late.'",
+      "answer": "so",
+      "options": [
+        "but",
+        "or",
+        "so",
+        "because"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "as a result",
-      "options": [
-        "This solution can make the situation better.",
-        "problem-solution paragraph",
-        "as a result",
-        "One common problem is"
-      ],
       "id": "problem-solution-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling baik menjelaskan dampak dari masalah ini? 'Many people throw rubbish in the river.'",
+      "answer": "As a result, the water becomes dirty and fish die.",
+      "options": [
+        "The river runs right through the middle of our small town.",
+        "Some people go fishing in the river at weekends.",
+        "One solution is to put more bins near the river.",
+        "As a result, the water becomes dirty and fish die."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "This solution can make the situation better.",
-      "options": [
-        "as a result",
-        "This solution can make the situation better.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "problem-solution-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Solusi mana yang paling praktis untuk masalah ini? 'Students waste a lot of time queueing in the canteen.'",
+      "answer": "The canteen could open a second counter at lunchtime.",
+      "options": [
+        "The canteen could open a second counter at lunchtime.",
+        "The school should build a brand-new canteen next week.",
+        "Students should complain loudly until the queue moves.",
+        "Students should stop eating lunch at school completely."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Users should check their inbox for a reset link.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The text explains how to reset a password.",
-        "Users should check their inbox for a reset link."
-      ],
       "id": "instructions-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What should you click on the login page?",
+      "answer": "Forgot Password",
+      "options": [
+        "Delete Account",
+        "Sign Up",
+        "Forgot Password",
+        "Change Language"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "secure",
-      "options": [
-        "following procedural steps",
-        "main idea",
-        "secure",
-        "safe or protected"
-      ],
       "id": "instructions-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What must you enter after clicking Forgot Password?",
+      "answer": "your email address",
+      "options": [
+        "your phone number",
+        "your old password",
+        "your home address",
+        "your email address"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "How to Reset a Password",
-      "options": [
-        "No title is possible.",
-        "How to Reset a Password",
-        "Instructions",
-        "to give step-by-step password reset instructions"
-      ],
       "id": "instructions-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Where will you find the reset link?",
+      "answer": "in your inbox",
+      "options": [
+        "in your inbox",
+        "in a text message",
+        "in the login box",
+        "on the home page"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Instructions.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "The text explains how to reset a password.",
-      "options": [
-        "safe or protected",
-        "following procedural steps",
-        "The text is only about spelling.",
-        "The text explains how to reset a password."
-      ],
       "id": "instructions-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What is the first step in the instructions?",
+      "answer": "Open the login page.",
+      "options": [
+        "Create a new password.",
+        "Check your inbox.",
+        "Open the login page.",
+        "Enter your email address."
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"secure\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Users should check their inbox for a reset link.",
-      "options": [
-        "The text says the opposite.",
-        "safe or protected",
-        "to give step-by-step password reset instructions",
-        "Users should check their inbox for a reset link."
-      ],
       "id": "instructions-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "What should you do right after entering your email address?",
+      "answer": "check your inbox for a reset link",
+      "options": [
+        "create a new password straight away without a link",
+        "close the login page",
+        "click Forgot Password again",
+        "check your inbox for a reset link"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to give step-by-step password reset instructions",
-      "options": [
-        "following procedural steps",
-        "to give step-by-step password reset instructions",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "instructions-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which step is the last one in the instructions?",
+      "answer": "Create a new password and save it safely.",
+      "options": [
+        "Enter your email address.",
+        "Check your inbox for a reset link.",
+        "Create a new password and save it safely.",
+        "Open the login page and click Forgot Password."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "The text explains how to reset a password.",
-      "options": [
-        "The text explains how to reset a password.",
-        "Users should check their inbox for a reset link.",
-        "safe or protected",
-        "Only one small word matters."
-      ],
       "id": "instructions-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Why does the writer advise saving the new password in a secure place?",
+      "answer": "to stop other people from finding and using it",
+      "options": [
+        "to make sure the reset link arrives in your inbox faster",
+        "to stop other people from finding and using it",
+        "to avoid having to enter an email address",
+        "to help the login page load more quickly"
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "The user needs access to their email account.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Users should check their inbox for a reset link.",
-        "The user needs access to their email account."
-      ],
       "id": "instructions-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which situation would stop a user from completing these steps?",
+      "answer": "They cannot open their email account.",
+      "options": [
+        "They cannot open their email account.",
+        "They prefer using a laptop.",
+        "They have a short email address.",
+        "They already know where the login page is located."
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Users should check their inbox for a reset link.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "The text explains how to reset a password.",
-        "Users should check their inbox for a reset link."
-      ],
       "id": "instructions-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang harus kamu klik di halaman login?",
+      "answer": "Forgot Password",
+      "options": [
+        "Delete Account",
+        "Sign Up",
+        "Forgot Password",
+        "Change Language"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "secure",
-      "options": [
-        "following procedural steps",
-        "main idea",
-        "secure",
-        "safe or protected"
-      ],
       "id": "instructions-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang harus kamu masukkan setelah mengklik Forgot Password?",
+      "answer": "your email address",
+      "options": [
+        "your phone number",
+        "your old password",
+        "your home address",
+        "your email address"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "How to Reset a Password",
-      "options": [
-        "No title is possible.",
-        "How to Reset a Password",
-        "Instructions",
-        "to give step-by-step password reset instructions"
-      ],
       "id": "instructions-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Di mana kamu akan menemukan tautan reset?",
+      "answer": "in your inbox",
+      "options": [
+        "in your inbox",
+        "in a text message",
+        "in the login box",
+        "on the home page"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Instructions.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "The text explains how to reset a password.",
-      "options": [
-        "safe or protected",
-        "following procedural steps",
-        "The text is only about spelling.",
-        "The text explains how to reset a password."
-      ],
       "id": "instructions-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa langkah pertama dalam instruksi ini?",
+      "answer": "Open the login page.",
+      "options": [
+        "Create a new password.",
+        "Check your inbox.",
+        "Open the login page.",
+        "Enter your email address."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"secure\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Users should check their inbox for a reset link.",
-      "options": [
-        "The text says the opposite.",
-        "safe or protected",
-        "to give step-by-step password reset instructions",
-        "Users should check their inbox for a reset link."
-      ],
       "id": "instructions-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Apa yang harus kamu lakukan tepat setelah memasukkan alamat email?",
+      "answer": "check your inbox for a reset link",
+      "options": [
+        "create a new password straight away without a link",
+        "close the login page",
+        "click Forgot Password again",
+        "check your inbox for a reset link"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to give step-by-step password reset instructions",
-      "options": [
-        "following procedural steps",
-        "to give step-by-step password reset instructions",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "instructions-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Langkah mana yang terakhir dalam instruksi ini?",
+      "answer": "Create a new password and save it safely.",
+      "options": [
+        "Enter your email address.",
+        "Check your inbox for a reset link.",
+        "Create a new password and save it safely.",
+        "Open the login page and click Forgot Password."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "The text explains how to reset a password.",
-      "options": [
-        "The text explains how to reset a password.",
-        "Users should check their inbox for a reset link.",
-        "safe or protected",
-        "Only one small word matters."
-      ],
       "id": "instructions-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Mengapa penulis menyarankan menyimpan kata sandi baru di tempat yang aman?",
+      "answer": "to stop other people from finding and using it",
+      "options": [
+        "to make sure the reset link arrives in your inbox faster",
+        "to stop other people from finding and using it",
+        "to avoid having to enter an email address",
+        "to help the login page load more quickly"
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "The user needs access to their email account.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Users should check their inbox for a reset link.",
-        "The user needs access to their email account."
-      ],
       "id": "instructions-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Situasi mana yang akan membuat pengguna tidak dapat menyelesaikan langkah-langkah ini?",
+      "answer": "They cannot open their email account.",
+      "options": [
+        "They cannot open their email account.",
+        "They prefer using a laptop.",
+        "They have a short email address.",
+        "They already know where the login page is located."
+      ]
     }
   ]
 };

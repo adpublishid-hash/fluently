@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "Hi, I am calling about ___. Could you help me with that?",
-      "options": [
-        "state your reason, ask for help, and close politely",
-        "clear consonants because the listener cannot see your face",
-        "Speak slightly slower on phone calls and chunk your message.",
-        "Hi, I am calling about ___. Could you help me with that?"
-      ],
       "id": "phone-call-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "How should you answer the phone at work?",
+      "answer": "Good morning, Hana speaking.",
+      "options": [
+        "Good morning, this is speak Hana.",
+        "Good morning, I am phone Hana.",
+        "Good morning, Hana speaking.",
+        "Hello, who are you and what?"
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "state your reason, ask for help, and close politely",
-      "options": [
-        "clear consonants because the listener cannot see your face",
-        "answer without listening to the question",
-        "state your reason, ask for help, and close politely",
-        "Berbicara di telepon untuk membuka, menahan, dan menutup panggilan."
-      ],
       "id": "phone-call-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "A caller asks for your manager, who is out. Which reply is best?",
+      "answer": "I'm sorry, she's not in. Can I take a message?",
+      "options": [
+        "I'm sorry, she's not in. Can I take a message?",
+        "She is out. I don't know anything. Goodbye.",
+        "I'm sorry, she's not in. Can you take a message?",
+        "I'm sorry, she's not in. Please never call again."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "Hi, I am calling about my appointment. Could you help me reschedule it?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Hi, I am calling about my appointment. Could you help me reschedule it?",
-        "May I speak with someone from customer support?",
-        "I went there yesterday because blue."
-      ],
       "id": "phone-call-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase asks the caller to wait?",
+      "answer": "Could you hold on a moment, please?",
+      "options": [
+        "Could you hang up a moment, please?",
+        "Could you speak a moment, please?",
+        "Could you call me yesterday, please?",
+        "Could you hold on a moment, please?"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Phone Call\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "state your reason, ask for help, and close politely",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "state your reason, ask for help, and close politely"
-      ],
       "id": "phone-call-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence ends a phone call politely?",
+      "answer": "Thanks for calling. Have a nice day.",
+      "options": [
+        "Hello, how can I help you today?",
+        "Thanks for calling. Have a nice day.",
+        "Thanks for calling. Don't call back.",
+        "Okay, I'm hanging up on you now."
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "May I speak with someone from customer support?",
-      "options": [
-        "Sorry, the line is not clear. Could you repeat that?",
-        "Hi, I am calling about my appointment. Could you help me reschedule it?",
-        "May I speak with someone from customer support?",
-        "Can I talk to someone about my booking?"
-      ],
       "id": "phone-call-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "You need to spell your surname on the phone. Which is the clearest way?",
+      "answer": "It's Putri, P-U-T-R-I. That's P as in Peter.",
+      "options": [
+        "It's Putri. You can guess the spelling yourself.",
+        "It's Putri, spelt with quite a lot of letters, I think.",
+        "It's Putri, P-U-T-R-I, but please don't write it down.",
+        "It's Putri, P-U-T-R-I. That's P as in Peter."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Sorry, the line is not clear. Could you repeat that?",
-      "options": [
-        "Laugh and end the conversation.",
-        "Sorry, the line is not clear. Could you repeat that?",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "phone-call-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "You are leaving a voicemail. Which message is most complete?",
+      "answer": "Hi, this is Raka from Nusa Design. Please call me back on 0812 3344 5566.",
+      "options": [
+        "Hi, this is Raka from Nusa Design. Please call me back on 0812 3344 5566.",
+        "Hello? Hello? Is anyone there? Okay, never mind, bye.",
+        "Hi, this is Raka. I'll tell you what it's about later, maybe.",
+        "Hi, it's me. You know why I'm calling, so just call me back."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "Hi, I am calling about ___. Could you help me with that?",
-      "options": [
-        "state your reason, ask for help, and close politely",
-        "clear consonants because the listener cannot see your face",
-        "Speak slightly slower on phone calls and chunk your message.",
-        "Hi, I am calling about ___. Could you help me with that?"
-      ],
       "id": "phone-call-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Bagaimana sebaiknya kamu menjawab telepon di kantor?",
+      "answer": "Good morning, Hana speaking.",
+      "options": [
+        "Good morning, this is speak Hana.",
+        "Good morning, I am phone Hana.",
+        "Good morning, Hana speaking.",
+        "Hello, who are you and what?"
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "state your reason, ask for help, and close politely",
-      "options": [
-        "clear consonants because the listener cannot see your face",
-        "answer without listening to the question",
-        "state your reason, ask for help, and close politely",
-        "Berbicara di telepon untuk membuka, menahan, dan menutup panggilan."
-      ],
       "id": "phone-call-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Penelepon mencari manajermu yang sedang keluar. Balasan mana yang paling tepat?",
+      "answer": "I'm sorry, she's not in. Can I take a message?",
+      "options": [
+        "I'm sorry, she's not in. Can I take a message?",
+        "She is out. I don't know anything. Goodbye.",
+        "I'm sorry, she's not in. Can you take a message?",
+        "I'm sorry, she's not in. Please never call again."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "Hi, I am calling about my appointment. Could you help me reschedule it?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Hi, I am calling about my appointment. Could you help me reschedule it?",
-        "May I speak with someone from customer support?",
-        "I went there yesterday because blue."
-      ],
       "id": "phone-call-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang meminta penelepon untuk menunggu?",
+      "answer": "Could you hold on a moment, please?",
+      "options": [
+        "Could you hang up a moment, please?",
+        "Could you speak a moment, please?",
+        "Could you call me yesterday, please?",
+        "Could you hold on a moment, please?"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Phone Call\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "state your reason, ask for help, and close politely",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "state your reason, ask for help, and close politely"
-      ],
       "id": "phone-call-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menutup panggilan telepon dengan sopan?",
+      "answer": "Thanks for calling. Have a nice day.",
+      "options": [
+        "Hello, how can I help you today?",
+        "Thanks for calling. Have a nice day.",
+        "Thanks for calling. Don't call back.",
+        "Okay, I'm hanging up on you now."
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "May I speak with someone from customer support?",
-      "options": [
-        "Sorry, the line is not clear. Could you repeat that?",
-        "Hi, I am calling about my appointment. Could you help me reschedule it?",
-        "May I speak with someone from customer support?",
-        "Can I talk to someone about my booking?"
-      ],
       "id": "phone-call-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kamu perlu mengeja nama belakangmu di telepon. Cara mana yang paling jelas?",
+      "answer": "It's Putri, P-U-T-R-I. That's P as in Peter.",
+      "options": [
+        "It's Putri. You can guess the spelling yourself.",
+        "It's Putri, spelt with quite a lot of letters, I think.",
+        "It's Putri, P-U-T-R-I, but please don't write it down.",
+        "It's Putri, P-U-T-R-I. That's P as in Peter."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Sorry, the line is not clear. Could you repeat that?",
-      "options": [
-        "Laugh and end the conversation.",
-        "Sorry, the line is not clear. Could you repeat that?",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "phone-call-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kamu meninggalkan pesan suara. Pesan mana yang paling lengkap?",
+      "answer": "Hi, this is Raka from Nusa Design. Please call me back on 0812 3344 5566.",
+      "options": [
+        "Hi, this is Raka from Nusa Design. Please call me back on 0812 3344 5566.",
+        "Hello? Hello? Is anyone there? Okay, never mind, bye.",
+        "Hi, this is Raka. I'll tell you what it's about later, maybe.",
+        "Hi, it's me. You know why I'm calling, so just call me back."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

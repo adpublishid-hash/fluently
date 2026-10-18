@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "Could I have ___, please? Also, could you make it ___?",
-      "options": [
-        "order an item, ask for a detail, and confirm politely",
-        "rising intonation in polite requests",
-        "Start with could I or can I to sound natural and polite.",
-        "Could I have ___, please? Also, could you make it ___?"
-      ],
       "id": "ordering-food-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The waiter asks, \"Are you ready to order?\" Which reply is best?",
+      "answer": "Yes, I'd like the chicken soup, please.",
+      "options": [
+        "Yes, I'd like the chicken soup, please.",
+        "Yes, I like chicken soup very much.",
+        "Yes, the chicken soup was delicious.",
+        "Yes, give soup chicken to me now."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "order an item, ask for a detail, and confirm politely",
-      "options": [
-        "rising intonation in polite requests",
-        "answer without listening to the question",
-        "order an item, ask for a detail, and confirm politely",
-        "Berbicara sopan saat memesan makanan atau minuman."
-      ],
       "id": "ordering-food-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question asks about the price politely?",
+      "answer": "Excuse me, how much is the iced tea?",
+      "options": [
+        "Excuse me, how many is the iced tea?",
+        "Tell me the iced tea money now.",
+        "Excuse me, what costs the iced tea?",
+        "Excuse me, how much is the iced tea?"
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "Could I have the chicken sandwich, please? Also, could you make it less spicy?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Could I have the chicken sandwich, please? Also, could you make it less spicy?",
-        "Could I please have the grilled fish with rice?",
-        "I went there yesterday because blue."
-      ],
       "id": "ordering-food-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The waiter asks, \"Anything to drink?\" Which reply fits?",
+      "answer": "Just a glass of water, please.",
+      "options": [
+        "Just a glass of water, please.",
+        "No, I am not hungry for drinks.",
+        "Yes, the bill was very cheap.",
+        "Just a plate of water, please."
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Ordering Food\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "order an item, ask for a detail, and confirm politely",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "order an item, ask for a detail, and confirm politely"
-      ],
       "id": "ordering-food-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence asks for the bill politely?",
+      "answer": "Could we have the bill, please?",
+      "options": [
+        "Could we have the bill, please?",
+        "Could we have the menu now, please?",
+        "Give us the bill, quick, quick.",
+        "Can we pay the bill yesterday?"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "Could I please have the grilled fish with rice?",
-      "options": [
-        "Sorry, I meant the small size, not the large one.",
-        "Could I have the chicken sandwich, please? Also, could you make it less spicy?",
-        "Could I please have the grilled fish with rice?",
-        "Can I get a burger and fries?"
-      ],
       "id": "ordering-food-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Your soup arrives cold. Which response is polite and clear?",
+      "answer": "Excuse me, my soup is a bit cold. Could you warm it up, please?",
+      "options": [
+        "This soup is cold. You are a terrible waiter, to be honest.",
+        "Excuse me, my soup is a bit cold. That's why I never come here.",
+        "Excuse me, my soup is a bit cold. Could you warm it up, please?",
+        "Excuse me, could I have some more of the cold soup, please?"
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Sorry, I meant the small size, not the large one.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Sorry, I meant the small size, not the large one.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "ordering-food-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "You have a nut allergy. Which question checks the dish safely?",
+      "answer": "Does the satay sauce contain any peanuts? I have a nut allergy.",
+      "options": [
+        "Does the satay sauce contain any peanuts? I love extra nuts.",
+        "Is the satay sauce spicy, or is it fairly mild today?",
+        "Does the satay sauce contain any peanuts? I have a nut allergy.",
+        "Could I have extra peanut sauce with the satay, please?"
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "Could I have ___, please? Also, could you make it ___?",
-      "options": [
-        "order an item, ask for a detail, and confirm politely",
-        "rising intonation in polite requests",
-        "Start with could I or can I to sound natural and polite.",
-        "Could I have ___, please? Also, could you make it ___?"
-      ],
       "id": "ordering-food-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pelayan bertanya, \"Are you ready to order?\" Balasan mana yang paling tepat?",
+      "answer": "Yes, I'd like the chicken soup, please.",
+      "options": [
+        "Yes, I'd like the chicken soup, please.",
+        "Yes, I like chicken soup very much.",
+        "Yes, the chicken soup was delicious.",
+        "Yes, give soup chicken to me now."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "order an item, ask for a detail, and confirm politely",
-      "options": [
-        "rising intonation in polite requests",
-        "answer without listening to the question",
-        "order an item, ask for a detail, and confirm politely",
-        "Berbicara sopan saat memesan makanan atau minuman."
-      ],
       "id": "ordering-food-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang menanyakan harga dengan sopan?",
+      "answer": "Excuse me, how much is the iced tea?",
+      "options": [
+        "Excuse me, how many is the iced tea?",
+        "Tell me the iced tea money now.",
+        "Excuse me, what costs the iced tea?",
+        "Excuse me, how much is the iced tea?"
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "Could I have the chicken sandwich, please? Also, could you make it less spicy?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "Could I have the chicken sandwich, please? Also, could you make it less spicy?",
-        "Could I please have the grilled fish with rice?",
-        "I went there yesterday because blue."
-      ],
       "id": "ordering-food-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pelayan bertanya, \"Anything to drink?\" Balasan mana yang cocok?",
+      "answer": "Just a glass of water, please.",
+      "options": [
+        "Just a glass of water, please.",
+        "No, I am not hungry for drinks.",
+        "Yes, the bill was very cheap.",
+        "Just a plate of water, please."
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Ordering Food\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "order an item, ask for a detail, and confirm politely",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "order an item, ask for a detail, and confirm politely"
-      ],
       "id": "ordering-food-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang meminta tagihan dengan sopan?",
+      "answer": "Could we have the bill, please?",
+      "options": [
+        "Could we have the bill, please?",
+        "Could we have the menu now, please?",
+        "Give us the bill, quick, quick.",
+        "Can we pay the bill yesterday?"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "Could I please have the grilled fish with rice?",
-      "options": [
-        "Sorry, I meant the small size, not the large one.",
-        "Could I have the chicken sandwich, please? Also, could you make it less spicy?",
-        "Could I please have the grilled fish with rice?",
-        "Can I get a burger and fries?"
-      ],
       "id": "ordering-food-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Supmu datang dalam keadaan dingin. Respons mana yang sopan dan jelas?",
+      "answer": "Excuse me, my soup is a bit cold. Could you warm it up, please?",
+      "options": [
+        "This soup is cold. You are a terrible waiter, to be honest.",
+        "Excuse me, my soup is a bit cold. That's why I never come here.",
+        "Excuse me, my soup is a bit cold. Could you warm it up, please?",
+        "Excuse me, could I have some more of the cold soup, please?"
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Sorry, I meant the small size, not the large one.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Sorry, I meant the small size, not the large one.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "ordering-food-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kamu alergi kacang. Pertanyaan mana yang memastikan hidangan itu aman?",
+      "answer": "Does the satay sauce contain any peanuts? I have a nut allergy.",
+      "options": [
+        "Does the satay sauce contain any peanuts? I love extra nuts.",
+        "Is the satay sauce spicy, or is it fairly mild today?",
+        "Does the satay sauce contain any peanuts? I have a nut allergy.",
+        "Could I have extra peanut sauce with the satay, please?"
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "I have a reservation under ___. Could I check in now?",
-      "options": [
-        "give your name, confirm a booking, and ask one practical question",
-        "sentence stress on reservation details",
-        "Keep names and numbers slow enough to be understood.",
-        "I have a reservation under ___. Could I check in now?"
-      ],
       "id": "travel-check-in-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "At the airport counter, the agent says, \"Passport, please.\" Which reply fits?",
+      "answer": "Here you are.",
+      "options": [
+        "Here you are.",
+        "You are here.",
+        "Here you were.",
+        "No, thank you."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "give your name, confirm a booking, and ask one practical question",
-      "options": [
-        "sentence stress on reservation details",
-        "answer without listening to the question",
-        "give your name, confirm a booking, and ask one practical question",
-        "Latihan bicara saat check-in hotel atau bandara."
-      ],
       "id": "travel-check-in-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The receptionist asks, \"How many nights?\" Which answer is correct?",
+      "answer": "Three nights, please.",
+      "options": [
+        "Three people, please.",
+        "Room three, please.",
+        "Three o'clock, please.",
+        "Three nights, please."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "I have a reservation under Wahib Rohman. Could I check in now?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I have a reservation under Wahib Rohman. Could I check in now?",
-        "I have a reservation under my name, and I would like to check in.",
-        "I went there yesterday because blue."
-      ],
       "id": "travel-check-in-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question asks about breakfast at a hotel?",
+      "answer": "What time is breakfast served?",
+      "options": [
+        "What time breakfast is served?",
+        "Where time is breakfast served?",
+        "What time is breakfast served?",
+        "What time is breakfast serving?"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Travel Check-in\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "give your name, confirm a booking, and ask one practical question",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "give your name, confirm a booking, and ask one practical question"
-      ],
       "id": "travel-check-in-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "The agent asks, \"Window or aisle?\" Which reply is natural?",
+      "answer": "A window seat, please.",
+      "options": [
+        "A window seat, please.",
+        "The aisle of window.",
+        "A window room, please.",
+        "Yes, both, thank you."
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "I have a reservation under my name, and I would like to check in.",
-      "options": [
-        "The reservation is under my last name, Rohman.",
-        "I have a reservation under Wahib Rohman. Could I check in now?",
-        "I have a reservation under my name, and I would like to check in.",
-        "Hi, I have a booking under Wahib."
-      ],
       "id": "travel-check-in-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Your hotel room is not ready yet. Which request is most practical?",
+      "answer": "Could I leave my luggage here while I wait for the room?",
+      "options": [
+        "Could I leave my luggage here while I wait for the room?",
+        "Could you cancel my booking because the room isn't ready?",
+        "Could you give me another hotel's room instead, right now?",
+        "Could I leave my luggage here and never come back for it?"
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "The reservation is under my last name, Rohman.",
-      "options": [
-        "Laugh and end the conversation.",
-        "The reservation is under my last name, Rohman.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "travel-check-in-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Your bag weighs 25 kg, but the limit is 23 kg. Which response is most appropriate?",
+      "answer": "I see. Could I move a few things into my hand luggage?",
+      "options": [
+        "I see. Could you just ignore the extra two kilos for me?",
+        "I see. Could I take the whole suitcase as hand luggage?",
+        "I see. Could I move a few things into my hand luggage?",
+        "That's impossible. My scale at home said it was fine."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "I have a reservation under ___. Could I check in now?",
-      "options": [
-        "give your name, confirm a booking, and ask one practical question",
-        "sentence stress on reservation details",
-        "Keep names and numbers slow enough to be understood.",
-        "I have a reservation under ___. Could I check in now?"
-      ],
       "id": "travel-check-in-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Di konter bandara, petugas berkata, \"Passport, please.\" Balasan mana yang cocok?",
+      "answer": "Here you are.",
+      "options": [
+        "Here you are.",
+        "You are here.",
+        "Here you were.",
+        "No, thank you."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "give your name, confirm a booking, and ask one practical question",
-      "options": [
-        "sentence stress on reservation details",
-        "answer without listening to the question",
-        "give your name, confirm a booking, and ask one practical question",
-        "Latihan bicara saat check-in hotel atau bandara."
-      ],
       "id": "travel-check-in-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Resepsionis bertanya, \"How many nights?\" Jawaban mana yang benar?",
+      "answer": "Three nights, please.",
+      "options": [
+        "Three people, please.",
+        "Room three, please.",
+        "Three o'clock, please.",
+        "Three nights, please."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "I have a reservation under Wahib Rohman. Could I check in now?",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I have a reservation under Wahib Rohman. Could I check in now?",
-        "I have a reservation under my name, and I would like to check in.",
-        "I went there yesterday because blue."
-      ],
       "id": "travel-check-in-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang menanyakan tentang sarapan di hotel?",
+      "answer": "What time is breakfast served?",
+      "options": [
+        "What time breakfast is served?",
+        "Where time is breakfast served?",
+        "What time is breakfast served?",
+        "What time is breakfast serving?"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Travel Check-in\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "give your name, confirm a booking, and ask one practical question",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "give your name, confirm a booking, and ask one practical question"
-      ],
       "id": "travel-check-in-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Petugas bertanya, \"Window or aisle?\" Balasan mana yang natural?",
+      "answer": "A window seat, please.",
+      "options": [
+        "A window seat, please.",
+        "The aisle of window.",
+        "A window room, please.",
+        "Yes, both, thank you."
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "I have a reservation under my name, and I would like to check in.",
-      "options": [
-        "The reservation is under my last name, Rohman.",
-        "I have a reservation under Wahib Rohman. Could I check in now?",
-        "I have a reservation under my name, and I would like to check in.",
-        "Hi, I have a booking under Wahib."
-      ],
       "id": "travel-check-in-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kamar hotelmu belum siap. Permintaan mana yang paling praktis?",
+      "answer": "Could I leave my luggage here while I wait for the room?",
+      "options": [
+        "Could I leave my luggage here while I wait for the room?",
+        "Could you cancel my booking because the room isn't ready?",
+        "Could you give me another hotel's room instead, right now?",
+        "Could I leave my luggage here and never come back for it?"
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "The reservation is under my last name, Rohman.",
-      "options": [
-        "Laugh and end the conversation.",
-        "The reservation is under my last name, Rohman.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "travel-check-in-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Tasmu beratnya 25 kg, padahal batasnya 23 kg. Respons mana yang paling tepat?",
+      "answer": "I see. Could I move a few things into my hand luggage?",
+      "options": [
+        "I see. Could you just ignore the extra two kilos for me?",
+        "I see. Could I take the whole suitcase as hand luggage?",
+        "I see. Could I move a few things into my hand luggage?",
+        "That's impossible. My scale at home said it was fine."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

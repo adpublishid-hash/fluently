@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "I think ___ because ___. However, I understand that ___.",
-      "options": [
-        "state an opinion, support it, and acknowledge another view",
-        "stress contrast words like however and but",
-        "Use because for your reason and however for balance.",
-        "I think ___ because ___. However, I understand that ___."
-      ],
       "id": "giving-opinion-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which phrase correctly starts an opinion?",
+      "answer": "In my opinion, ...",
+      "options": [
+        "On my opinion, ...",
+        "In my question, ...",
+        "In my opinion, ...",
+        "At my opinion, ..."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "state an opinion, support it, and acknowledge another view",
-      "options": [
-        "stress contrast words like however and but",
-        "answer without listening to the question",
-        "state an opinion, support it, and acknowledge another view",
-        "Mengutarakan pendapat dan alasan secara sopan."
-      ],
       "id": "giving-opinion-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "A friend asks, \"Do you like the new café?\" Which answer gives an opinion and a reason?",
+      "answer": "Yes, I like it because the coffee is good.",
+      "options": [
+        "Yes, I like it but the coffee is good.",
+        "Yes, I like it so the coffee was good.",
+        "Yes. Coffee. Café. Good. Very nice.",
+        "Yes, I like it because the coffee is good."
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.",
-        "From my perspective, the main benefit is flexibility.",
-        "I went there yesterday because blue."
-      ],
       "id": "giving-opinion-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Complete the sentence: \"I think homework is useful ___ it helps us practise.\"",
+      "answer": "because",
+      "options": [
+        "because",
+        "however",
+        "unless",
+        "although"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Giving Opinions\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "state an opinion, support it, and acknowledge another view",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "state an opinion, support it, and acknowledge another view"
-      ],
       "id": "giving-opinion-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence asks for someone else's opinion?",
+      "answer": "What do you think about it?",
+      "options": [
+        "What do you think about it?",
+        "What are you think about it?",
+        "What do you think it about?",
+        "How do you think about it?"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "From my perspective, the main benefit is flexibility.",
-      "options": [
-        "To clarify, I am not saying it is perfect.",
-        "I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.",
-        "From my perspective, the main benefit is flexibility.",
-        "I think it is helpful because it saves time."
-      ],
       "id": "giving-opinion-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "In a meeting, which sentence gives a balanced opinion about working from home?",
+      "answer": "Working from home saves time, although it can feel isolating at times.",
+      "options": [
+        "Working from home saves time, although it can feel isolating at times.",
+        "Working from home saves time, so there are no problems with it at all.",
+        "Working from home is bad. Everyone who likes it is simply wrong.",
+        "Working from home saves time, although it also saves a lot of time."
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "To clarify, I am not saying it is perfect.",
-      "options": [
-        "Laugh and end the conversation.",
-        "To clarify, I am not saying it is perfect.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "giving-opinion-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which phrase softens a strong opinion appropriately?",
+      "answer": "I'm inclined to think the plan needs more time.",
+      "options": [
+        "Obviously the plan is a total failure, everyone knows.",
+        "I'm inclined to thinking the plan needs more time.",
+        "I'm inclined to think the plan needs more time.",
+        "I'm completely certain nobody could ever like this plan."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "I think ___ because ___. However, I understand that ___.",
-      "options": [
-        "state an opinion, support it, and acknowledge another view",
-        "stress contrast words like however and but",
-        "Use because for your reason and however for balance.",
-        "I think ___ because ___. However, I understand that ___."
-      ],
       "id": "giving-opinion-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Frasa mana yang benar untuk memulai sebuah pendapat?",
+      "answer": "In my opinion, ...",
+      "options": [
+        "On my opinion, ...",
+        "In my question, ...",
+        "In my opinion, ...",
+        "At my opinion, ..."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "state an opinion, support it, and acknowledge another view",
-      "options": [
-        "stress contrast words like however and but",
-        "answer without listening to the question",
-        "state an opinion, support it, and acknowledge another view",
-        "Mengutarakan pendapat dan alasan secara sopan."
-      ],
       "id": "giving-opinion-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Seorang teman bertanya, \"Do you like the new café?\" Jawaban mana yang memberi pendapat dan alasan?",
+      "answer": "Yes, I like it because the coffee is good.",
+      "options": [
+        "Yes, I like it but the coffee is good.",
+        "Yes, I like it so the coffee was good.",
+        "Yes. Coffee. Café. Good. Very nice.",
+        "Yes, I like it because the coffee is good."
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.",
-        "From my perspective, the main benefit is flexibility.",
-        "I went there yesterday because blue."
-      ],
       "id": "giving-opinion-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Lengkapi kalimat ini: \"I think homework is useful ___ it helps us practise.\"",
+      "answer": "because",
+      "options": [
+        "because",
+        "however",
+        "unless",
+        "although"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Giving Opinions\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "state an opinion, support it, and acknowledge another view",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "state an opinion, support it, and acknowledge another view"
-      ],
       "id": "giving-opinion-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menanyakan pendapat orang lain?",
+      "answer": "What do you think about it?",
+      "options": [
+        "What do you think about it?",
+        "What are you think about it?",
+        "What do you think it about?",
+        "How do you think about it?"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "From my perspective, the main benefit is flexibility.",
-      "options": [
-        "To clarify, I am not saying it is perfect.",
-        "I think online learning is useful because it is flexible. However, I understand that some students need face-to-face support.",
-        "From my perspective, the main benefit is flexibility.",
-        "I think it is helpful because it saves time."
-      ],
       "id": "giving-opinion-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Dalam rapat, kalimat mana yang memberi pendapat seimbang tentang bekerja dari rumah?",
+      "answer": "Working from home saves time, although it can feel isolating at times.",
+      "options": [
+        "Working from home saves time, although it can feel isolating at times.",
+        "Working from home saves time, so there are no problems with it at all.",
+        "Working from home is bad. Everyone who likes it is simply wrong.",
+        "Working from home saves time, although it also saves a lot of time."
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "To clarify, I am not saying it is perfect.",
-      "options": [
-        "Laugh and end the conversation.",
-        "To clarify, I am not saying it is perfect.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "giving-opinion-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Frasa mana yang melunakkan pendapat yang kuat dengan tepat?",
+      "answer": "I'm inclined to think the plan needs more time.",
+      "options": [
+        "Obviously the plan is a total failure, everyone knows.",
+        "I'm inclined to thinking the plan needs more time.",
+        "I'm inclined to think the plan needs more time.",
+        "I'm completely certain nobody could ever like this plan."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

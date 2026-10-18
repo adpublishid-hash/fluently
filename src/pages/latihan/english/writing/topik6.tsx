@@ -80,16 +80,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Beginning + problem + action + ending.",
-      "options": [
-        "Last night,",
-        "after that",
-        "In the end, everything was fine.",
-        "Beginning + problem + action + ending."
-      ],
       "id": "story-writing-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the best word to show what happened next: 'I opened the door. ___, I saw a small dog.'",
+      "answer": "Then",
+      "options": [
+        "Then",
+        "Although",
+        "Unless",
+        "Because"
+      ]
     },
     {
       "prompt": "Which writing format fits this topic best? Topic: Short Story.",
@@ -104,16 +104,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which writing sample is the best fit?",
-      "answer": "Last night, I lost my keys. After searching for twenty minutes, I found them under my notebook.",
-      "options": [
-        "And because but however.",
-        "Last night, I lost my keys. After searching for twenty minutes, I found them under my notebook.",
-        "Last night,",
-        "In the end, everything was fine."
-      ],
       "id": "story-writing-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence is the best beginning for a short story?",
+      "answer": "One rainy morning, Tom woke up late.",
+      "options": [
+        "So that is why I never went back.",
+        "In the end, everyone was happy again.",
+        "One rainy morning, Tom woke up late.",
+        "Finally, the problem was solved."
+      ]
     },
     {
       "prompt": "What is the main writing task for this topic?",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which structure should be used?",
-      "answer": "Beginning + problem + action + ending.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Beginning + problem + action + ending."
-      ],
       "id": "story-writing-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the correct past tense to complete the story: 'The boy ___ the ball and broke a window.'",
+      "answer": "kicked",
+      "options": [
+        "kicked",
+        "kicks",
+        "kicking",
+        "kick"
+      ]
     },
     {
       "prompt": "Which opening fits this writing task?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which connector fits best?",
-      "answer": "after that",
-      "options": [
-        "In the end, everything was fine.",
-        "short narrative",
-        "after that",
-        "Last night,"
-      ],
       "id": "story-writing-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which sentence best introduces the problem in this story? 'Maya arrived at the airport early, happy to start her holiday.'",
+      "answer": "Then she realised her passport was still at home.",
+      "options": [
+        "Then she realised her passport was still at home.",
+        "Her holiday was going to be in Bali for one week.",
+        "She bought a coffee and sat down near the window.",
+        "The airport was big and had many shops inside."
+      ]
     },
     {
-      "prompt": "Which closing is most suitable?",
-      "answer": "In the end, everything was fine.",
-      "options": [
-        "after that",
-        "In the end, everything was fine.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "story-writing-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which ending best resolves this problem? 'Leo lost his wallet on the train.'",
+      "answer": "Later, a kind passenger handed it in, and Leo got it back.",
+      "options": [
+        "Leo usually takes the train to work every morning.",
+        "The train was very crowded and quite noisy that day.",
+        "Leo's wallet was brown and made of soft, expensive leather.",
+        "Later, a kind passenger handed it in, and Leo got it back."
+      ]
     },
     {
       "prompt": "Which editing tip is most helpful?",
@@ -442,16 +442,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Beginning + problem + action + ending.",
-      "options": [
-        "Last night,",
-        "after that",
-        "In the end, everything was fine.",
-        "Beginning + problem + action + ending."
-      ],
       "id": "story-writing-writing-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih kata terbaik untuk menunjukkan apa yang terjadi selanjutnya: 'I opened the door. ___, I saw a small dog.'",
+      "answer": "Then",
+      "options": [
+        "Then",
+        "Although",
+        "Unless",
+        "Because"
+      ]
     },
     {
       "prompt": "Format tulisan mana yang paling sesuai? Topic: Short Story.",
@@ -466,16 +466,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Contoh tulisan mana yang paling tepat?",
-      "answer": "Last night, I lost my keys. After searching for twenty minutes, I found them under my notebook.",
-      "options": [
-        "And because but however.",
-        "Last night, I lost my keys. After searching for twenty minutes, I found them under my notebook.",
-        "Last night,",
-        "In the end, everything was fine."
-      ],
       "id": "story-writing-writing-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang menjadi awal terbaik untuk cerita pendek?",
+      "answer": "One rainy morning, Tom woke up late.",
+      "options": [
+        "So that is why I never went back.",
+        "In the end, everyone was happy again.",
+        "One rainy morning, Tom woke up late.",
+        "Finally, the problem was solved."
+      ]
     },
     {
       "prompt": "Apa tugas writing utama untuk topik ini?",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Struktur mana yang sebaiknya dipakai?",
-      "answer": "Beginning + problem + action + ending.",
-      "options": [
-        "No structure is needed.",
-        "Only use a closing sentence.",
-        "Repeat the first word five times.",
-        "Beginning + problem + action + ending."
-      ],
       "id": "story-writing-writing-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih bentuk past tense yang benar untuk melengkapi cerita: 'The boy ___ the ball and broke a window.'",
+      "answer": "kicked",
+      "options": [
+        "kicked",
+        "kicks",
+        "kicking",
+        "kick"
+      ]
     },
     {
       "prompt": "Opening mana yang paling tepat untuk tulisan ini?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Connector mana yang paling sesuai?",
-      "answer": "after that",
-      "options": [
-        "In the end, everything was fine.",
-        "short narrative",
-        "after that",
-        "Last night,"
-      ],
       "id": "story-writing-writing-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kalimat mana yang paling tepat memperkenalkan masalah dalam cerita ini? 'Maya arrived at the airport early, happy to start her holiday.'",
+      "answer": "Then she realised her passport was still at home.",
+      "options": [
+        "Then she realised her passport was still at home.",
+        "Her holiday was going to be in Bali for one week.",
+        "She bought a coffee and sat down near the window.",
+        "The airport was big and had many shops inside."
+      ]
     },
     {
-      "prompt": "Closing mana yang paling sesuai?",
-      "answer": "In the end, everything was fine.",
-      "options": [
-        "after that",
-        "In the end, everything was fine.",
-        "Start with no context.",
-        "Add an unrelated question."
-      ],
       "id": "story-writing-writing-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Akhir cerita mana yang paling baik menyelesaikan masalah ini? 'Leo lost his wallet on the train.'",
+      "answer": "Later, a kind passenger handed it in, and Leo got it back.",
+      "options": [
+        "Leo usually takes the train to work every morning.",
+        "The train was very crowded and quite noisy that day.",
+        "Leo's wallet was brown and made of soft, expensive leather.",
+        "Later, a kind passenger handed it in, and Leo got it back."
+      ]
     },
     {
       "prompt": "Editing tip mana yang paling membantu?",

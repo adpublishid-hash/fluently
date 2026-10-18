@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Doctors suggest turning off phones thirty minutes before bed.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Small bedtime habits can improve sleep quality.",
-        "Doctors suggest turning off phones thirty minutes before bed."
-      ],
       "id": "health-article-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "According to the passage, when should people turn off their phones?",
+      "answer": "thirty minutes before bed",
+      "options": [
+        "ten minutes before lunch",
+        "thirty minutes before bed",
+        "right after dinner",
+        "one hour after waking up in the morning"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "quality",
-      "options": [
-        "recognizing advice and cause-effect relationships",
-        "main idea",
-        "quality",
-        "how good or bad something is"
-      ],
       "id": "health-article-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Who gives the advice about phones?",
+      "answer": "doctors",
+      "options": [
+        "doctors",
+        "parents",
+        "shop owners",
+        "teachers"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "Small Habits for Better Sleep",
-      "options": [
-        "No title is possible.",
-        "Small Habits for Better Sleep",
-        "Health Article",
-        "to give simple advice for better sleep"
-      ],
       "id": "health-article-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What kind of room can improve sleep?",
+      "answer": "a dark room",
+      "options": [
+        "a bright room",
+        "a warm room",
+        "a noisy room",
+        "a dark room"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Health Article.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Small bedtime habits can improve sleep quality.",
-      "options": [
-        "how good or bad something is",
-        "recognizing advice and cause-effect relationships",
-        "The text is only about spelling.",
-        "Small bedtime habits can improve sleep quality."
-      ],
       "id": "health-article-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"badly\"?",
+      "answer": "poorly",
+      "options": [
+        "simple",
+        "poorly",
+        "regular",
+        "late"
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"quality\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Doctors suggest turning off phones thirty minutes before bed.",
-      "options": [
-        "The text says the opposite.",
-        "how good or bad something is",
-        "to give simple advice for better sleep",
-        "Doctors suggest turning off phones thirty minutes before bed."
-      ],
       "id": "health-article-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "According to the passage, why do many people sleep poorly?",
+      "answer": "They use screens late at night.",
+      "options": [
+        "They sleep in rooms that are too dark.",
+        "They go to bed too early.",
+        "They use screens late at night.",
+        "They drink too much water."
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to give simple advice for better sleep",
-      "options": [
-        "recognizing advice and cause-effect relationships",
-        "to give simple advice for better sleep",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "health-article-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Which habit is NOT suggested in the passage?",
+      "answer": "drinking coffee before bed",
+      "options": [
+        "drinking coffee before bed",
+        "turning off phones thirty minutes early",
+        "sleeping in a dark room",
+        "keeping a regular bedtime"
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Small bedtime habits can improve sleep quality.",
-      "options": [
-        "Small bedtime habits can improve sleep quality.",
-        "Doctors suggest turning off phones thirty minutes before bed.",
-        "how good or bad something is",
-        "Only one small word matters."
-      ],
       "id": "health-article-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which word best describes how the writer presents the advice?",
+      "answer": "practical",
+      "options": [
+        "doubtful",
+        "dramatic",
+        "practical",
+        "sarcastic"
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "Screen use before bed can make sleep worse.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Doctors suggest turning off phones thirty minutes before bed.",
-        "Screen use before bed can make sleep worse."
-      ],
       "id": "health-article-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "If someone keeps using a phone in bed until midnight, what would the writer most likely predict?",
+      "answer": "Their sleep quality will probably be lower.",
+      "options": [
+        "Their room will become darker at night.",
+        "They will no longer need a regular bedtime.",
+        "They will fall asleep faster than usual.",
+        "Their sleep quality will probably be lower."
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Doctors suggest turning off phones thirty minutes before bed.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Small bedtime habits can improve sleep quality.",
-        "Doctors suggest turning off phones thirty minutes before bed."
-      ],
       "id": "health-article-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Menurut bacaan, kapan orang sebaiknya mematikan ponsel?",
+      "answer": "thirty minutes before bed",
+      "options": [
+        "ten minutes before lunch",
+        "thirty minutes before bed",
+        "right after dinner",
+        "one hour after waking up in the morning"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "quality",
-      "options": [
-        "recognizing advice and cause-effect relationships",
-        "main idea",
-        "quality",
-        "how good or bad something is"
-      ],
       "id": "health-article-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Siapa yang memberikan saran tentang ponsel?",
+      "answer": "doctors",
+      "options": [
+        "doctors",
+        "parents",
+        "shop owners",
+        "teachers"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "Small Habits for Better Sleep",
-      "options": [
-        "No title is possible.",
-        "Small Habits for Better Sleep",
-        "Health Article",
-        "to give simple advice for better sleep"
-      ],
       "id": "health-article-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Ruangan seperti apa yang dapat meningkatkan kualitas tidur?",
+      "answer": "a dark room",
+      "options": [
+        "a bright room",
+        "a warm room",
+        "a noisy room",
+        "a dark room"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Health Article.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Small bedtime habits can improve sleep quality.",
-      "options": [
-        "how good or bad something is",
-        "recognizing advice and cause-effect relationships",
-        "The text is only about spelling.",
-        "Small bedtime habits can improve sleep quality."
-      ],
       "id": "health-article-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"badly\"?",
+      "answer": "poorly",
+      "options": [
+        "simple",
+        "poorly",
+        "regular",
+        "late"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"quality\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Doctors suggest turning off phones thirty minutes before bed.",
-      "options": [
-        "The text says the opposite.",
-        "how good or bad something is",
-        "to give simple advice for better sleep",
-        "Doctors suggest turning off phones thirty minutes before bed."
-      ],
       "id": "health-article-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Menurut bacaan, mengapa banyak orang tidur dengan buruk?",
+      "answer": "They use screens late at night.",
+      "options": [
+        "They sleep in rooms that are too dark.",
+        "They go to bed too early.",
+        "They use screens late at night.",
+        "They drink too much water."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to give simple advice for better sleep",
-      "options": [
-        "recognizing advice and cause-effect relationships",
-        "to give simple advice for better sleep",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "health-article-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Kebiasaan mana yang TIDAK disarankan dalam bacaan?",
+      "answer": "drinking coffee before bed",
+      "options": [
+        "drinking coffee before bed",
+        "turning off phones thirty minutes early",
+        "sleeping in a dark room",
+        "keeping a regular bedtime"
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Small bedtime habits can improve sleep quality.",
-      "options": [
-        "Small bedtime habits can improve sleep quality.",
-        "Doctors suggest turning off phones thirty minutes before bed.",
-        "how good or bad something is",
-        "Only one small word matters."
-      ],
       "id": "health-article-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Kata mana yang paling tepat menggambarkan cara penulis menyampaikan saran?",
+      "answer": "practical",
+      "options": [
+        "doubtful",
+        "dramatic",
+        "practical",
+        "sarcastic"
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "Screen use before bed can make sleep worse.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Doctors suggest turning off phones thirty minutes before bed.",
-        "Screen use before bed can make sleep worse."
-      ],
       "id": "health-article-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Jika seseorang terus memakai ponsel di tempat tidur sampai tengah malam, apa yang kemungkinan besar diprediksi penulis?",
+      "answer": "Their sleep quality will probably be lower.",
+      "options": [
+        "Their room will become darker at night.",
+        "They will no longer need a regular bedtime.",
+        "They will fall asleep faster than usual.",
+        "Their sleep quality will probably be lower."
+      ]
     }
   ]
 };

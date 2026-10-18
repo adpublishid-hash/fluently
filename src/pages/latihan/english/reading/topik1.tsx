@@ -88,40 +88,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which detail is mentioned in the passage?",
-      "answer": "Mira walks to the bus stop before seven.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Mira has a calm morning routine that helps her prepare for the day.",
-        "Mira walks to the bus stop before seven."
-      ],
       "id": "daily-life-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "According to the passage, when does Mira wake up early?",
+      "answer": "every weekday",
+      "options": [
+        "only on Sundays",
+        "once a month",
+        "during the holidays",
+        "every weekday"
+      ]
     },
     {
-      "prompt": "Which key word appears in the passage?",
-      "answer": "schedule",
-      "options": [
-        "finding the main idea and supporting details",
-        "main idea",
-        "schedule",
-        "a plan that shows when things happen"
-      ],
       "id": "daily-life-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "What does Mira drink in the morning?",
+      "answer": "water",
+      "options": [
+        "tea",
+        "coffee",
+        "water",
+        "juice"
+      ]
     },
     {
-      "prompt": "What is the title of this reading passage?",
-      "answer": "A Quiet Morning",
-      "options": [
-        "No title is possible.",
-        "A Quiet Morning",
-        "Daily Life",
-        "to describe a simple daily routine"
-      ],
       "id": "daily-life-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which word in the passage means \"calm and without noise\"?",
+      "answer": "quiet",
+      "options": [
+        "simple",
+        "quiet",
+        "early",
+        "ready"
+      ]
     },
     {
       "prompt": "Which detail is mentioned in the passage? Topic: Daily Life.",
@@ -136,16 +136,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the main idea of this passage?",
-      "answer": "Mira has a calm morning routine that helps her prepare for the day.",
-      "options": [
-        "a plan that shows when things happen",
-        "finding the main idea and supporting details",
-        "The text is only about spelling.",
-        "Mira has a calm morning routine that helps her prepare for the day."
-      ],
       "id": "daily-life-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which sentence is NOT true according to the passage?",
+      "answer": "Mira drives her car to work.",
+      "options": [
+        "Mira checks her schedule.",
+        "Mira drinks water.",
+        "Mira walks to the bus stop before seven.",
+        "Mira drives her car to work."
+      ]
     },
     {
       "prompt": "What does this word mean in context? Word: \"schedule\".",
@@ -232,16 +232,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which specific information is correct?",
-      "answer": "Mira walks to the bus stop before seven.",
-      "options": [
-        "The text says the opposite.",
-        "a plan that shows when things happen",
-        "to describe a simple daily routine",
-        "Mira walks to the bus stop before seven."
-      ],
       "id": "daily-life-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "In the last sentence, what does \"they\" refer to?",
+      "answer": "quiet mornings",
+      "options": [
+        "quiet mornings",
+        "her schedules",
+        "the bus drivers",
+        "Mira's friends"
+      ]
     },
     {
       "prompt": "What does this word mean in context?",
@@ -256,16 +256,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "What is the writer's purpose?",
-      "answer": "to describe a simple daily routine",
-      "options": [
-        "finding the main idea and supporting details",
-        "to describe a simple daily routine",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "daily-life-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Why does Mira like quiet mornings?",
+      "answer": "They help her feel ready for the day.",
+      "options": [
+        "They help her feel ready for the day.",
+        "They give her time to watch TV.",
+        "They let her stay in bed until lunchtime.",
+        "They help her avoid her friends."
+      ]
     },
     {
       "prompt": "Which inference is most reasonable?",
@@ -364,28 +364,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Which summary is most accurate?",
-      "answer": "Mira has a calm morning routine that helps her prepare for the day.",
-      "options": [
-        "Mira has a calm morning routine that helps her prepare for the day.",
-        "Mira walks to the bus stop before seven.",
-        "a plan that shows when things happen",
-        "Only one small word matters."
-      ],
       "id": "daily-life-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which statement can NOT be concluded from the passage?",
+      "answer": "Mira dislikes her job and wants to quit.",
+      "options": [
+        "Mira dislikes her job and wants to quit.",
+        "Mira follows a regular routine on weekdays.",
+        "Mira plans her day before leaving home.",
+        "Mira uses public transport in the morning."
+      ]
     },
     {
-      "prompt": "Which inference is most reasonable?",
-      "answer": "Mira probably values being organized.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Mira walks to the bus stop before seven.",
-        "Mira probably values being organized."
-      ],
       "id": "daily-life-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Which tone best describes the passage?",
+      "answer": "calm and positive",
+      "options": [
+        "angry and critical",
+        "calm and positive",
+        "worried and tense",
+        "sad and regretful"
+      ]
     }
   ],
   "id": [
@@ -450,40 +450,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Detail mana yang disebutkan dalam bacaan?",
-      "answer": "Mira walks to the bus stop before seven.",
-      "options": [
-        "The passage says the event was canceled.",
-        "The text says nothing happened.",
-        "Mira has a calm morning routine that helps her prepare for the day.",
-        "Mira walks to the bus stop before seven."
-      ],
       "id": "daily-life-reading-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Menurut bacaan, kapan Mira bangun pagi?",
+      "answer": "every weekday",
+      "options": [
+        "only on Sundays",
+        "once a month",
+        "during the holidays",
+        "every weekday"
+      ]
     },
     {
-      "prompt": "Kata kunci mana yang muncul dalam bacaan?",
-      "answer": "schedule",
-      "options": [
-        "finding the main idea and supporting details",
-        "main idea",
-        "schedule",
-        "a plan that shows when things happen"
-      ],
       "id": "daily-life-reading-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Apa yang Mira minum di pagi hari?",
+      "answer": "water",
+      "options": [
+        "tea",
+        "coffee",
+        "water",
+        "juice"
+      ]
     },
     {
-      "prompt": "Apa judul bacaan ini?",
-      "answer": "A Quiet Morning",
-      "options": [
-        "No title is possible.",
-        "A Quiet Morning",
-        "Daily Life",
-        "to describe a simple daily routine"
-      ],
       "id": "daily-life-reading-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kata mana dalam bacaan yang berarti \"calm and without noise\"?",
+      "answer": "quiet",
+      "options": [
+        "simple",
+        "quiet",
+        "early",
+        "ready"
+      ]
     },
     {
       "prompt": "Detail mana yang disebutkan dalam bacaan? Topic: Daily Life.",
@@ -498,16 +498,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa ide utama bacaan ini?",
-      "answer": "Mira has a calm morning routine that helps her prepare for the day.",
-      "options": [
-        "a plan that shows when things happen",
-        "finding the main idea and supporting details",
-        "The text is only about spelling.",
-        "Mira has a calm morning routine that helps her prepare for the day."
-      ],
       "id": "daily-life-reading-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Kalimat mana yang TIDAK benar menurut bacaan?",
+      "answer": "Mira drives her car to work.",
+      "options": [
+        "Mira checks her schedule.",
+        "Mira drinks water.",
+        "Mira walks to the bus stop before seven.",
+        "Mira drives her car to work."
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks? Word: \"schedule\".",
@@ -594,16 +594,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Informasi spesifik mana yang benar?",
-      "answer": "Mira walks to the bus stop before seven.",
-      "options": [
-        "The text says the opposite.",
-        "a plan that shows when things happen",
-        "to describe a simple daily routine",
-        "Mira walks to the bus stop before seven."
-      ],
       "id": "daily-life-reading-17",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Pada kalimat terakhir, kata \"they\" merujuk pada apa?",
+      "answer": "quiet mornings",
+      "options": [
+        "quiet mornings",
+        "her schedules",
+        "the bus drivers",
+        "Mira's friends"
+      ]
     },
     {
       "prompt": "Apa arti kata ini berdasarkan konteks?",
@@ -618,16 +618,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Apa tujuan penulis?",
-      "answer": "to describe a simple daily routine",
-      "options": [
-        "finding the main idea and supporting details",
-        "to describe a simple daily routine",
-        "to avoid giving information",
-        "to describe unrelated grammar errors"
-      ],
       "id": "daily-life-reading-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Mengapa Mira menyukai pagi yang tenang?",
+      "answer": "They help her feel ready for the day.",
+      "options": [
+        "They help her feel ready for the day.",
+        "They give her time to watch TV.",
+        "They let her stay in bed until lunchtime.",
+        "They help her avoid her friends."
+      ]
     },
     {
       "prompt": "Kesimpulan mana yang paling masuk akal?",
@@ -726,28 +726,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Advanced"
     },
     {
-      "prompt": "Ringkasan mana yang paling akurat?",
-      "answer": "Mira has a calm morning routine that helps her prepare for the day.",
-      "options": [
-        "Mira has a calm morning routine that helps her prepare for the day.",
-        "Mira walks to the bus stop before seven.",
-        "a plan that shows when things happen",
-        "Only one small word matters."
-      ],
       "id": "daily-life-reading-28",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Pernyataan mana yang TIDAK dapat disimpulkan dari bacaan?",
+      "answer": "Mira dislikes her job and wants to quit.",
+      "options": [
+        "Mira dislikes her job and wants to quit.",
+        "Mira follows a regular routine on weekdays.",
+        "Mira plans her day before leaving home.",
+        "Mira uses public transport in the morning."
+      ]
     },
     {
-      "prompt": "Kesimpulan mana yang paling masuk akal?",
-      "answer": "Mira probably values being organized.",
-      "options": [
-        "The text proves the opposite.",
-        "There is no clue in the passage.",
-        "Mira walks to the bus stop before seven.",
-        "Mira probably values being organized."
-      ],
       "id": "daily-life-reading-29",
-      "level": "Advanced"
+      "level": "Advanced",
+      "prompt": "Nada mana yang paling tepat menggambarkan bacaan?",
+      "answer": "calm and positive",
+      "options": [
+        "angry and critical",
+        "calm and positive",
+        "worried and tense",
+        "sad and regretful"
+      ]
     }
   ]
 };

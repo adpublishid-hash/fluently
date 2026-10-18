@@ -80,40 +80,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Which sentence pattern fits this speaking practice?",
-      "answer": "How has your ___ been? Mine has been ___.",
-      "options": [
-        "open a topic, respond naturally, and ask a follow-up question",
-        "natural linking in how has your",
-        "Answer briefly, then ask one follow-up question.",
-        "How has your ___ been? Mine has been ___."
-      ],
       "id": "small-talk-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Someone says, \"Lovely weather today, isn't it?\" Which reply is natural?",
+      "answer": "Yes, it's really nice and sunny.",
+      "options": [
+        "Yes, it's really nice and sunny yesterday.",
+        "Yes, it's really nice and sunny.",
+        "Weather is a noun, isn't it?",
+        "No, I don't ever talk about weather."
+      ]
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "open a topic, respond naturally, and ask a follow-up question",
-      "options": [
-        "natural linking in how has your",
-        "answer without listening to the question",
-        "open a topic, respond naturally, and ask a follow-up question",
-        "Latihan obrolan ringan agar percakapan mengalir."
-      ],
       "id": "small-talk-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "A neighbour asks, \"How was your weekend?\" Which answer is best?",
+      "answer": "It was relaxing, thanks. How was yours?",
+      "options": [
+        "It was relaxing, thanks. How was yours?",
+        "Weekend was it relaxing, thanks yours?",
+        "It will be relaxing. Thanks for nothing.",
+        "It is relaxing, thanks. How is yours?"
+      ]
     },
     {
-      "prompt": "Which sample answer sounds most natural?",
-      "answer": "How has your week been? Mine has been busy but good.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "How has your week been? Mine has been busy but good.",
-        "How has your week been so far?",
-        "I went there yesterday because blue."
-      ],
       "id": "small-talk-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Which question is a good way to start small talk at a party?",
+      "answer": "So, how do you know the host?",
+      "options": [
+        "So, how much did your shoes cost?",
+        "So, why are you standing here alone?",
+        "So, what is your exact home address?",
+        "So, how do you know the host?"
+      ]
     },
     {
       "prompt": "Choose the best response for this situation: start speaking about \"Small Talk\".",
@@ -128,16 +128,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "What is the speaking goal for this topic?",
-      "answer": "open a topic, respond naturally, and ask a follow-up question",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "open a topic, respond naturally, and ask a follow-up question"
-      ],
       "id": "small-talk-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Choose the best follow-up: \"I've just come back from Bali.\"",
+      "answer": "Oh, nice! How was the trip?",
+      "options": [
+        "Oh, nice! When will you go?",
+        "Oh, nice! How was the trip?",
+        "Okay. I never travel anywhere.",
+        "Oh, nice! How were you go?"
+      ]
     },
     {
       "prompt": "Which response sounds more formal and polite?",
@@ -236,28 +236,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Which response sounds more formal and polite?",
-      "answer": "How has your week been so far?",
-      "options": [
-        "Actually, let me put it another way.",
-        "How has your week been? Mine has been busy but good.",
-        "How has your week been so far?",
-        "How is your week going?"
-      ],
       "id": "small-talk-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "A colleague mentions they've started learning the guitar. Which response keeps the conversation flowing?",
+      "answer": "That's great! What made you want to pick it up?",
+      "options": [
+        "Guitars are expensive. Anyway, did you finish the report?",
+        "That's great! I'm sure you'll give up quite soon.",
+        "That's great! I don't really like music, though.",
+        "That's great! What made you want to pick it up?"
+      ]
     },
     {
-      "prompt": "If you misspeak, which phrase helps you repair your answer?",
-      "answer": "Actually, let me put it another way.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Actually, let me put it another way.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "small-talk-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "There is an awkward silence in a lift with a coworker. Which comment is most suitable?",
+      "answer": "Busy day so far? Mine's been non-stop.",
+      "options": [
+        "I really hate being in lifts with other people.",
+        "Your shoes look quite old. Do you need new ones?",
+        "Busy day so far? Mine's been non-stop.",
+        "Why are you so quiet? Say something interesting."
+      ]
     },
     {
       "prompt": "Which pronunciation focus fits this topic best?",
@@ -442,40 +442,40 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Pola kalimat mana yang cocok untuk latihan speaking ini?",
-      "answer": "How has your ___ been? Mine has been ___.",
-      "options": [
-        "open a topic, respond naturally, and ask a follow-up question",
-        "natural linking in how has your",
-        "Answer briefly, then ask one follow-up question.",
-        "How has your ___ been? Mine has been ___."
-      ],
       "id": "small-talk-speaking-5",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Seseorang berkata, \"Lovely weather today, isn't it?\" Balasan mana yang natural?",
+      "answer": "Yes, it's really nice and sunny.",
+      "options": [
+        "Yes, it's really nice and sunny yesterday.",
+        "Yes, it's really nice and sunny.",
+        "Weather is a noun, isn't it?",
+        "No, I don't ever talk about weather."
+      ]
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "open a topic, respond naturally, and ask a follow-up question",
-      "options": [
-        "natural linking in how has your",
-        "answer without listening to the question",
-        "open a topic, respond naturally, and ask a follow-up question",
-        "Latihan obrolan ringan agar percakapan mengalir."
-      ],
       "id": "small-talk-speaking-6",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Tetangga bertanya, \"How was your weekend?\" Jawaban mana yang paling tepat?",
+      "answer": "It was relaxing, thanks. How was yours?",
+      "options": [
+        "It was relaxing, thanks. How was yours?",
+        "Weekend was it relaxing, thanks yours?",
+        "It will be relaxing. Thanks for nothing.",
+        "It is relaxing, thanks. How is yours?"
+      ]
     },
     {
-      "prompt": "Contoh jawaban mana yang paling natural?",
-      "answer": "How has your week been? Mine has been busy but good.",
-      "options": [
-        "The pronunciation is difficult but no answer.",
-        "How has your week been? Mine has been busy but good.",
-        "How has your week been so far?",
-        "I went there yesterday because blue."
-      ],
       "id": "small-talk-speaking-7",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pertanyaan mana yang baik untuk memulai obrolan ringan di sebuah pesta?",
+      "answer": "So, how do you know the host?",
+      "options": [
+        "So, how much did your shoes cost?",
+        "So, why are you standing here alone?",
+        "So, what is your exact home address?",
+        "So, how do you know the host?"
+      ]
     },
     {
       "prompt": "Pilih respons paling tepat untuk situasi ini: start speaking about \"Small Talk\".",
@@ -490,16 +490,16 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Basic"
     },
     {
-      "prompt": "Apa tujuan speaking dari topik ini?",
-      "answer": "open a topic, respond naturally, and ask a follow-up question",
-      "options": [
-        "speak with no pauses at all",
-        "use random advanced vocabulary",
-        "avoid giving details",
-        "open a topic, respond naturally, and ask a follow-up question"
-      ],
       "id": "small-talk-speaking-9",
-      "level": "Basic"
+      "level": "Basic",
+      "prompt": "Pilih tanggapan lanjutan terbaik: \"I've just come back from Bali.\"",
+      "answer": "Oh, nice! How was the trip?",
+      "options": [
+        "Oh, nice! When will you go?",
+        "Oh, nice! How was the trip?",
+        "Okay. I never travel anywhere.",
+        "Oh, nice! How were you go?"
+      ]
     },
     {
       "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
@@ -598,28 +598,28 @@ const quizQuestionsByLanguage: Record<'en' | 'id', VocabQuestion[]> = {
       "level": "Intermediate"
     },
     {
-      "prompt": "Respons mana yang terdengar lebih formal dan sopan?",
-      "answer": "How has your week been so far?",
-      "options": [
-        "Actually, let me put it another way.",
-        "How has your week been? Mine has been busy but good.",
-        "How has your week been so far?",
-        "How is your week going?"
-      ],
       "id": "small-talk-speaking-18",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Rekan kerja bercerita bahwa ia mulai belajar gitar. Respons mana yang membuat percakapan tetap mengalir?",
+      "answer": "That's great! What made you want to pick it up?",
+      "options": [
+        "Guitars are expensive. Anyway, did you finish the report?",
+        "That's great! I'm sure you'll give up quite soon.",
+        "That's great! I don't really like music, though.",
+        "That's great! What made you want to pick it up?"
+      ]
     },
     {
-      "prompt": "Jika kamu salah ucap, frasa mana yang bisa dipakai untuk memperbaiki?",
-      "answer": "Actually, let me put it another way.",
-      "options": [
-        "Laugh and end the conversation.",
-        "Actually, let me put it another way.",
-        "Say nothing until the listener guesses.",
-        "Change topic immediately."
-      ],
       "id": "small-talk-speaking-19",
-      "level": "Intermediate"
+      "level": "Intermediate",
+      "prompt": "Ada keheningan canggung di lift bersama rekan kerja. Komentar mana yang paling cocok?",
+      "answer": "Busy day so far? Mine's been non-stop.",
+      "options": [
+        "I really hate being in lifts with other people.",
+        "Your shoes look quite old. Do you need new ones?",
+        "Busy day so far? Mine's been non-stop.",
+        "Why are you so quiet? Say something interesting."
+      ]
     },
     {
       "prompt": "Fokus pronunciation mana yang paling sesuai?",

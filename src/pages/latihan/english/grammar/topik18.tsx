@@ -123,25 +123,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conditionals-Basic-8",
       "level": "Basic",
-      "prompt": "Basic grammar check (Conditional Sentences): Complete: If it rains, we ____ at home.",
-      "answer": "will stay",
+      "prompt": "Basic grammar check (Conditional Sentences): Complete: If you heat ice, it ____.",
+      "answer": "melts",
       "options": [
-        "will stay",
-        "stayed",
-        "would stay",
-        "stay"
+        "melts",
+        "would melt",
+        "melted",
+        "melting"
       ]
     },
     {
       "id": "conditionals-Basic-9",
       "level": "Basic",
-      "prompt": "Basic grammar check (Conditional Sentences): Complete: If I had more time, I ____ more books.",
-      "answer": "would read",
+      "prompt": "Basic grammar check (Conditional Sentences): Complete: If she studies hard, she ____ the test.",
+      "answer": "will pass",
       "options": [
-        "will read",
-        "read",
-        "have read",
-        "would read"
+        "passed",
+        "will pass",
+        "passing",
+        "would pass"
       ]
     },
     {
@@ -243,25 +243,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conditionals-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Conditional Sentences): Complete: If water reaches 100°C, it ____.",
-      "answer": "boils",
+      "prompt": "Choose the best structure (Conditional Sentences): Complete: If I ____ a car, I would drive to work.",
+      "answer": "had",
       "options": [
-        "will boil",
-        "would boil",
-        "boiled",
-        "boils"
+        "will have",
+        "would have",
+        "have",
+        "had"
       ]
     },
     {
       "id": "conditionals-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Choose the best structure (Conditional Sentences): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Choose the best structure (Conditional Sentences): Complete: I will call you if I ____ late.",
+      "answer": "am",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "am",
+        "would be",
+        "was",
+        "will be"
       ]
     },
     {
@@ -363,25 +363,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conditionals-Advanced-8",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Conditional Sentences): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Formal grammar accuracy (Conditional Sentences): Complete: If they had left earlier, they ____ the flight.",
+      "answer": "would not have missed",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "would not have missed",
+        "did not miss",
+        "had not missed",
+        "will not miss"
       ]
     },
     {
       "id": "conditionals-Advanced-9",
       "level": "Advanced",
-      "prompt": "Formal grammar accuracy (Conditional Sentences): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Formal grammar accuracy (Conditional Sentences): Complete: ____ you need further assistance, please contact the help desk.",
+      "answer": "Should",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "Would",
+        "Were",
+        "Had",
+        "Should"
       ]
     }
   ],
@@ -485,25 +485,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conditionals-Basic-8",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Conditional Sentences): Complete: If it rains, we ____ at home.",
-      "answer": "will stay",
+      "prompt": "Cek grammar dasar (Conditional Sentences): Complete: If you heat ice, it ____.",
+      "answer": "melts",
       "options": [
-        "will stay",
-        "stayed",
-        "would stay",
-        "stay"
+        "melts",
+        "would melt",
+        "melted",
+        "melting"
       ]
     },
     {
       "id": "conditionals-Basic-9",
       "level": "Basic",
-      "prompt": "Cek grammar dasar (Conditional Sentences): Complete: If I had more time, I ____ more books.",
-      "answer": "would read",
+      "prompt": "Cek grammar dasar (Conditional Sentences): Complete: If she studies hard, she ____ the test.",
+      "answer": "will pass",
       "options": [
-        "will read",
-        "read",
-        "have read",
-        "would read"
+        "passed",
+        "will pass",
+        "passing",
+        "would pass"
       ]
     },
     {
@@ -605,25 +605,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conditionals-Intermediate-8",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Conditional Sentences): Complete: If water reaches 100°C, it ____.",
-      "answer": "boils",
+      "prompt": "Pilih struktur terbaik (Conditional Sentences): Complete: If I ____ a car, I would drive to work.",
+      "answer": "had",
       "options": [
-        "will boil",
-        "would boil",
-        "boiled",
-        "boils"
+        "will have",
+        "would have",
+        "have",
+        "had"
       ]
     },
     {
       "id": "conditionals-Intermediate-9",
       "level": "Intermediate",
-      "prompt": "Pilih struktur terbaik (Conditional Sentences): Choose the correct sentence.",
-      "answer": "She goes to school every day.",
+      "prompt": "Pilih struktur terbaik (Conditional Sentences): Complete: I will call you if I ____ late.",
+      "answer": "am",
       "options": [
-        "She going to school every day.",
-        "She gone to school every day.",
-        "She goes to school every day.",
-        "She go to school every day."
+        "am",
+        "would be",
+        "was",
+        "will be"
       ]
     },
     {
@@ -725,25 +725,25 @@ const quizQuestionsByLanguage: Record<'en' | 'id', QuizQuestion[]> = {
     {
       "id": "conditionals-Advanced-8",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Conditional Sentences): Complete the sentence: They ____ watching a movie now.",
-      "answer": "are",
+      "prompt": "Akurasi grammar formal (Conditional Sentences): Complete: If they had left earlier, they ____ the flight.",
+      "answer": "would not have missed",
       "options": [
-        "do",
-        "does",
-        "are",
-        "is"
+        "would not have missed",
+        "did not miss",
+        "had not missed",
+        "will not miss"
       ]
     },
     {
       "id": "conditionals-Advanced-9",
       "level": "Advanced",
-      "prompt": "Akurasi grammar formal (Conditional Sentences): Choose the correct past form: I ____ my homework yesterday.",
-      "answer": "finished",
+      "prompt": "Akurasi grammar formal (Conditional Sentences): Complete: ____ you need further assistance, please contact the help desk.",
+      "answer": "Should",
       "options": [
-        "am finishing",
-        "finished",
-        "finish",
-        "finishes"
+        "Would",
+        "Were",
+        "Had",
+        "Should"
       ]
     }
   ]
