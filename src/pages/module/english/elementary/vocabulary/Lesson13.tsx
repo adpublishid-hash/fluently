@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const EVENTS_VOCAB = [
   { word: "Party", ipa: "/ˈpɑːrti/", meaning: "Pesta" },
@@ -46,148 +48,7 @@ const MANNERS_VOCAB = [
   { word: "Handshake", ipa: "/ˈhændʃeɪk/", meaning: "Jabat tangan" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "You received a card to go to a party. It is an ___.",
-    options: ['appointment', 'invitation', 'argument'],
-    answer: 'invitation',
-    explanation: "Invitation (undangan) memintamu untuk pergi ke suatu tempat."
-  },
-  {
-    id: 2,
-    question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ['refuse', 'accept', 'celebrate'],
-    answer: 'refuse',
-    explanation: "To refuse berarti menolak atau mengatakan tidak."
-  },
-  {
-    id: 3,
-    question: "The person who organizes the party is the ___.",
-    options: ['Guest', 'Stranger', 'Host'],
-    answer: 'Host',
-    explanation: "Host (tuan rumah) mengundang para tamu."
-  },
-  {
-    id: 4,
-    question: "It is ___ to say 'Thank you'.",
-    options: ['angry', 'polite', 'rude'],
-    answer: 'polite',
-    explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
-  },
-  {
-    id: 5,
-    question: "A romantic meeting between two people is a ___.",
-    options: ['Funeral', 'Reunion', 'Date'],
-    answer: 'Date',
-    explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
-  },
-  {
-    id: 6,
-    question: "You received a card to go to a party. It is an ___.",
-    options: ["appointment","invitation","argument"],
-    answer: "invitation",
-    explanation: "Invitation (undangan) memintamu untuk pergi ke suatu tempat."
-  },
-  {
-    id: 7,
-    question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ["refuse", "accept", "celebrate"],
-    answer: "refuse",
-    explanation: "To refuse berarti menolak atau mengatakan tidak."
-  },
-  {
-    id: 8,
-    question: "The person who organizes the party is the ___.",
-    options: ["Guest", "Stranger", "Host"],
-    answer: "Host",
-    explanation: "Host (tuan rumah) mengundang para tamu."
-  },
-  {
-    id: 9,
-    question: "It is ___ to say 'Thank you'.",
-    options: ["angry", "polite", "rude"],
-    answer: "polite",
-    explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
-  },
-  {
-    id: 10,
-    question: "A romantic meeting between two individuals is a ___.",
-    options: ["Reunion", "Funeral", "Date"],
-    answer: "Date",
-    explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
-  },
-  {
-    id: 11,
-    question: "You received a card to go to a party. It is an ___.",
-    options: ["appointment","invitation","argument"],
-    answer: "invitation",
-    explanation: "Invitation (undangan) memintamu untuk pergi ke suatu tempat."
-  },
-  {
-    id: 12,
-    question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ["refuse", "accept", "celebrate"],
-    answer: "refuse",
-    explanation: "To refuse berarti menolak atau mengatakan tidak."
-  },
-  {
-    id: 13,
-    question: "The person who organizes the party is the ___.",
-    options: ["Guest", "Stranger", "Host"],
-    answer: "Host",
-    explanation: "Host (tuan rumah) mengundang para tamu."
-  },
-  {
-    id: 14,
-    question: "It is ___ to say 'Thank you'.",
-    options: ["angry", "polite", "rude"],
-    answer: "polite",
-    explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
-  },
-  {
-    id: 15,
-    question: "A romantic meeting between two persons is a ___.",
-    options: ["Date","Funeral","Reunion"],
-    answer: "Date",
-    explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
-  },
-  {
-    id: 16,
-    question: "You received a card to go to a party. It is an ___.",
-    options: ["appointment","invitation","argument"],
-    answer: "invitation",
-    explanation: "Invitation (undangan) memintamu untuk pergi ke suatu tempat."
-  },
-  {
-    id: 17,
-    question: "If you cannot go to the party, you must ___ the invitation.",
-    options: ["refuse", "accept", "celebrate"],
-    answer: "refuse",
-    explanation: "To refuse berarti menolak atau mengatakan tidak."
-  },
-  {
-    id: 18,
-    question: "The person who organizes the party is the ___.",
-    options: ["Guest", "Stranger", "Host"],
-    answer: "Host",
-    explanation: "Host (tuan rumah) mengundang para tamu."
-  },
-  {
-    id: 19,
-    question: "It is ___ to say 'Thank you'.",
-    options: ["angry", "polite", "rude"],
-    answer: "polite",
-    explanation: "Mengucapkan terima kasih adalah tata krama yang polite (sopan)."
-  },
-  {
-    id: 20,
-    question: "A romantic meeting between two individuals is a ___.",
-    options: ["Reunion", "Funeral", "Date"],
-    answer: "Date",
-    explanation: "Date (kencan) adalah pertemuan sosial atau romantis."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[13], 'elementary/vocabulary/13'));
 
 const Lesson13: React.FC = () => {
   const navigate = useNavigate();

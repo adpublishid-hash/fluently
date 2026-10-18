@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const APPEARANCE_VOCAB = [
   { word: "Curly hair", ipa: "/ˈkɜːrli hɛr/", meaning: "Rambut keriting" },
@@ -46,148 +48,7 @@ const ROLES_VOCAB = [
   { word: "Relative", ipa: "/ˈrɛlətɪv/", meaning: "Kerabat / Saudara" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "He never lies. He is very ___.",
-    options: ['lazy', 'shy', 'honest'],
-    answer: 'honest',
-    explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
-  },
-  {
-    id: 2,
-    question: "She has no hair. She is ___.",
-    options: ['bald', 'blonde', 'curly'],
-    answer: 'bald',
-    explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
-  },
-  {
-    id: 3,
-    question: "This is my ___. We work in the same office.",
-    options: ['colleague', 'neighbor', 'classmate'],
-    answer: 'colleague',
-    explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
-  },
-  {
-    id: 4,
-    question: "He likes to give money to charity. He is ___.",
-    options: ['generous', 'rude', 'stingy'],
-    answer: 'generous',
-    explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
-  },
-  {
-    id: 5,
-    question: "Which sentence is correct?",
-    options: ['She has tall.', 'She is long hair.', 'She is tall.'],
-    answer: 'She is tall.',
-    explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
-  },
-  {
-    id: 6,
-    question: "He never lies. He is very ___.",
-    options: ["lazy", "shy", "honest"],
-    answer: "honest",
-    explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
-  },
-  {
-    id: 7,
-    question: "my friend has no hair. my friend is ___.",
-    options: ["bald", "blonde", "curly"],
-    answer: "bald",
-    explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
-  },
-  {
-    id: 8,
-    question: "This is my ___. We work in the same office.",
-    options: ["colleague", "neighbor", "classmate"],
-    answer: "colleague",
-    explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
-  },
-  {
-    id: 9,
-    question: "The man likes to give cash to charity. The man is ___.",
-    options: ["stingy","generous","rude"],
-    answer: "generous",
-    explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
-  },
-  {
-    id: 10,
-    question: "Choose the correct sentence.",
-    options: ["She is long hair.", "She is tall.", "She has tall."],
-    answer: "She is tall.",
-    explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
-  },
-  {
-    id: 11,
-    question: "He never lies. He is very ___.",
-    options: ["lazy", "shy", "honest"],
-    answer: "honest",
-    explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
-  },
-  {
-    id: 12,
-    question: "He has no hair. He is ___.",
-    options: ["curly", "blonde", "bald"],
-    answer: "bald",
-    explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
-  },
-  {
-    id: 13,
-    question: "This is my ___. We work in the same office.",
-    options: ["colleague", "neighbor", "classmate"],
-    answer: "colleague",
-    explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
-  },
-  {
-    id: 14,
-    question: "he likes to give funds to charity. he is ___.",
-    options: ["rude", "stingy", "generous"],
-    answer: "generous",
-    explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
-  },
-  {
-    id: 15,
-    question: "Identify the right sentence.",
-    options: ["She is tall.", "She is long hair.", "She has tall."],
-    answer: "She is tall.",
-    explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
-  },
-  {
-    id: 16,
-    question: "My friend never lies. My friend is very ___.",
-    options: ["honest", "shy", "lazy"],
-    answer: "honest",
-    explanation: "Honest (Jujur) berarti seseorang yang mengatakan kebenaran."
-  },
-  {
-    id: 17,
-    question: "She has no hair. She is ___.",
-    options: ["bald", "blonde", "curly"],
-    answer: "bald",
-    explanation: "Bald (Botak) berarti tidak memiliki rambut di kepala."
-  },
-  {
-    id: 18,
-    question: "This is my ___. We work in the same office.",
-    options: ["colleague", "neighbor", "classmate"],
-    answer: "colleague",
-    explanation: "Colleague (Rekan kerja) adalah seseorang yang bekerja denganmu."
-  },
-  {
-    id: 19,
-    question: "He likes to give cash to charity. He is ___.",
-    options: ["rude", "generous", "stingy"],
-    answer: "generous",
-    explanation: "Orang yang Generous (Dermawan) suka memberi atau berbagi."
-  },
-  {
-    id: 20,
-    question: "Which sentence is correct?",
-    options: ["She has tall.", "She is long hair.", "She is tall."],
-    answer: "She is tall.",
-    explanation: "Gunakan 'IS' untuk kata sifat (tall). Gunakan 'HAS' untuk bagian tubuh (long hair)."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[2], 'elementary/vocabulary/2'));
 
 const Lesson2: React.FC = () => {
   const navigate = useNavigate();

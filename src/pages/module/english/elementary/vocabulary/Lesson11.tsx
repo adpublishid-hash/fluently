@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const CREATIVE_VOCAB = [
   { word: "Painting", ipa: "/ˈpeɪntɪŋ/", meaning: "Melukis" },
@@ -46,148 +48,7 @@ const ENTERTAINMENT_VOCAB = [
   { word: "Instrument", ipa: "/ˈɪnstrʊmənt/", meaning: "Alat musik" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "I like making clothes. My hobby is ___.",
-    options: ['Hiking', 'Sewing', 'Gaming'],
-    answer: 'Sewing',
-    explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
-  },
-  {
-    id: 2,
-    question: "He loves nature and sleeping in a tent. He likes ___.",
-    options: ['Shopping', 'Cooking', 'Camping'],
-    answer: 'Camping',
-    explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
-  },
-  {
-    id: 3,
-    question: "To stay fit, she goes ___ every morning.",
-    options: ['painting', 'running', 'reading'],
-    answer: 'running',
-    explanation: "Running (berlari) adalah latihan fisik."
-  },
-  {
-    id: 4,
-    question: "Which one is a board game?",
-    options: ['Chess', 'Yoga', 'Fishing'],
-    answer: 'Chess',
-    explanation: "Chess (catur) adalah permainan papan strategis."
-  },
-  {
-    id: 5,
-    question: "He uses a camera for his hobby. He likes ___.",
-    options: ['Singing', 'Photography', 'Gardening'],
-    answer: 'Photography',
-    explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
-  },
-  {
-    id: 6,
-    question: "I like making clothes. My hobby is ___.",
-    options: ["Hiking", "Sewing", "Gaming"],
-    answer: "Sewing",
-    explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
-  },
-  {
-    id: 7,
-    question: "My friend loves nature and sleeping in a tent. My friend likes ___.",
-    options: ["Cooking", "Camping", "Shopping"],
-    answer: "Camping",
-    explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
-  },
-  {
-    id: 8,
-    question: "To stay fit, he goes ___ every morning.",
-    options: ["running", "painting", "reading"],
-    answer: "running",
-    explanation: "Running (berlari) adalah latihan fisik."
-  },
-  {
-    id: 9,
-    question: "Which one is a board game?",
-    options: ["Chess","Yoga","Fishing"],
-    answer: "Chess",
-    explanation: "Chess (catur) adalah permainan papan strategis."
-  },
-  {
-    id: 10,
-    question: "He uses a camera for her hobby. He likes ___.",
-    options: ["Photography", "Singing", "Gardening"],
-    answer: "Photography",
-    explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
-  },
-  {
-    id: 11,
-    question: "I like making clothes. My hobby is ___.",
-    options: ["Hiking", "Sewing", "Gaming"],
-    answer: "Sewing",
-    explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
-  },
-  {
-    id: 12,
-    question: "The man loves nature and sleeping in a tent. The man likes ___.",
-    options: ["Shopping", "Cooking", "Camping"],
-    answer: "Camping",
-    explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
-  },
-  {
-    id: 13,
-    question: "To stay fit, she goes ___ every morning.",
-    options: ["painting","running","reading"],
-    answer: "running",
-    explanation: "Running (berlari) adalah latihan fisik."
-  },
-  {
-    id: 14,
-    question: "Which one is a board game?",
-    options: ["Chess","Yoga","Fishing"],
-    answer: "Chess",
-    explanation: "Chess (catur) adalah permainan papan strategis."
-  },
-  {
-    id: 15,
-    question: "My brother uses a camera for her hobby. My brother likes ___.",
-    options: ["Photography", "Singing", "Gardening"],
-    answer: "Photography",
-    explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
-  },
-  {
-    id: 16,
-    question: "I like making clothes. My hobby is ___.",
-    options: ["Hiking", "Sewing", "Gaming"],
-    answer: "Sewing",
-    explanation: "Sewing (menjahit) melibatkan pembuatan atau perbaikan pakaian."
-  },
-  {
-    id: 17,
-    question: "My friend loves nature and sleeping in a tent. My friend likes ___.",
-    options: ["Cooking", "Camping", "Shopping"],
-    answer: "Camping",
-    explanation: "Camping (berkemah) melibatkan tinggal di luar ruangan dalam tenda."
-  },
-  {
-    id: 18,
-    question: "To stay fit, he goes ___ every morning.",
-    options: ["running", "painting", "reading"],
-    answer: "running",
-    explanation: "Running (berlari) adalah latihan fisik."
-  },
-  {
-    id: 19,
-    question: "Which one is a board game?",
-    options: ["Chess","Yoga","Fishing"],
-    answer: "Chess",
-    explanation: "Chess (catur) adalah permainan papan strategis."
-  },
-  {
-    id: 20,
-    question: "My friend uses a camera for our hobby. My friend likes ___.",
-    options: ["Singing", "Photography", "Gardening"],
-    answer: "Photography",
-    explanation: "Photography (fotografi) adalah seni mengambil gambar dengan kamera."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[11], 'elementary/vocabulary/11'));
 
 const Lesson11: React.FC = () => {
   const navigate = useNavigate();

@@ -6,6 +6,8 @@ import { playAudio } from '../../../../../services/ttsService';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryVocabularyQuizBank } from './quizBank';
 // 30 Words divided into 3 categories
 const IMMEDIATE_FAMILY_VOCAB = [
   { word: "Parents", ipa: "/ˈpɛrənts/", meaning: "Orang tua" },
@@ -46,148 +48,7 @@ const RELATIONSHIP_VOCAB = [
   { word: "Relative", ipa: "/ˈrɛlətɪv/", meaning: "Kerabat / Saudara" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "The daughter of your brother is your ___.",
-    options: ['Nephew', 'Niece', 'Cousin'],
-    answer: 'Niece',
-    explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
-  },
-  {
-    id: 2,
-    question: "Your husband's mother is your ___.",
-    options: ['Mother-in-law', 'Grandmother', 'Stepmother'],
-    answer: 'Mother-in-law',
-    explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
-  },
-  {
-    id: 3,
-    question: "They are no longer married. They are ___.",
-    options: ['Widowed', 'Engaged', 'Divorced'],
-    answer: 'Divorced',
-    explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
-  },
-  {
-    id: 4,
-    question: "I have no brothers or sisters. I am an ___.",
-    options: ['Only child', 'Orphan', 'Adopted child'],
-    answer: 'Only child',
-    explanation: "Only child (Anak tunggal) berarti kamu adalah satu-satunya anak yang lahir dari orang tuamu."
-  },
-  {
-    id: 5,
-    question: "Two children born at the same time are ___.",
-    options: ['Siblings', 'Cousins', 'Twins'],
-    answer: 'Twins',
-    explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
-  },
-  {
-    id: 6,
-    question: "The daughter of your brother is your ___.",
-    options: ["Nephew", "Niece", "Cousin"],
-    answer: "Niece",
-    explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
-  },
-  {
-    id: 7,
-    question: "Your husband's mother is your ___.",
-    options: ["Mother-in-law", "Grandmother", "Stepmother"],
-    answer: "Mother-in-law",
-    explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
-  },
-  {
-    id: 8,
-    question: "They are no longer married. They are ___.",
-    options: ["Widowed", "Engaged", "Divorced"],
-    answer: "Divorced",
-    explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
-  },
-  {
-    id: 9,
-    question: "I have no brothers or sisters. I am an ___.",
-    options: ["Only child","Orphan","Adopted child"],
-    answer: "Only child",
-    explanation: "Only child (Anak tunggal) berarti kamu adalah satu-satunya anak yang lahir dari orang tuamu."
-  },
-  {
-    id: 10,
-    question: "Two children born at the same time are ___.",
-    options: ["Siblings", "Cousins", "Twins"],
-    answer: "Twins",
-    explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
-  },
-  {
-    id: 11,
-    question: "The daughter of your brother is your ___.",
-    options: ["Nephew", "Niece", "Cousin"],
-    answer: "Niece",
-    explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
-  },
-  {
-    id: 12,
-    question: "Your husband's mother is your ___.",
-    options: ["Mother-in-law", "Grandmother", "Stepmother"],
-    answer: "Mother-in-law",
-    explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
-  },
-  {
-    id: 13,
-    question: "They are no longer married. They are ___.",
-    options: ["Widowed", "Engaged", "Divorced"],
-    answer: "Divorced",
-    explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
-  },
-  {
-    id: 14,
-    question: "I have no brothers or sisters. I am an ___.",
-    options: ["Only child","Orphan","Adopted child"],
-    answer: "Only child",
-    explanation: "Only child (Anak tunggal) berarti kamu adalah satu-satunya anak yang lahir dari orang tuamu."
-  },
-  {
-    id: 15,
-    question: "Two children born at the same time are ___.",
-    options: ["Siblings", "Cousins", "Twins"],
-    answer: "Twins",
-    explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
-  },
-  {
-    id: 16,
-    question: "The daughter of your brother is your ___.",
-    options: ["Nephew", "Niece", "Cousin"],
-    answer: "Niece",
-    explanation: "Anak perempuan dari saudara kandung adalah niece (keponakan perempuan). Laki-laki adalah nephew."
-  },
-  {
-    id: 17,
-    question: "Your husband's mother is your ___.",
-    options: ["Mother-in-law", "Grandmother", "Stepmother"],
-    answer: "Mother-in-law",
-    explanation: "Ibu dari pasanganmu adalah mother-in-law (ibu mertua)."
-  },
-  {
-    id: 18,
-    question: "They are no longer married. They are ___.",
-    options: ["Widowed", "Engaged", "Divorced"],
-    answer: "Divorced",
-    explanation: "Divorced (Cerai) berarti pernikahan telah berakhir secara hukum."
-  },
-  {
-    id: 19,
-    question: "I have no brothers or sisters. I am an ___.",
-    options: ["Only child","Orphan","Adopted child"],
-    answer: "Only child",
-    explanation: "Only child (Anak tunggal) berarti kamu adalah satu-satunya anak yang lahir dari orang tuamu."
-  },
-  {
-    id: 20,
-    question: "Two children born at the same time are ___.",
-    options: ["Siblings", "Cousins", "Twins"],
-    answer: "Twins",
-    explanation: "Twins (Kembar) lahir dari kehamilan yang sama."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryVocabularyQuizBank[3], 'elementary/vocabulary/3'));
 
 const Lesson3: React.FC = () => {
   const navigate = useNavigate();

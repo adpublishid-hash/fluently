@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const GRAMMAR_PILLARS = [
   {
     title: "To Be (Keadaan)",
@@ -69,148 +71,7 @@ const COMMON_MISTAKES = [
   }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Kalimat mana yang benar?",
-    options: ['She lives in London.', 'She is live in London.', 'She live in London.'],
-    answer: 'She lives in London.',
-    explanation: "Present Simple: He/She/It memerlukan 's' pada kata kerja."
-  },
-  {
-    id: 2,
-    question: "___ you tired?",
-    options: ['Have', 'Are', 'Do'],
-    answer: 'Are',
-    explanation: "Tired adalah kata sifat. Gunakan 'To Be' (Are you...?)."
-  },
-  {
-    id: 3,
-    question: "My brother ___ drive a car.",
-    options: ['no can', 'don\'t can', 'cannot'],
-    answer: 'cannot',
-    explanation: "Bentuk negatif dari can adalah 'cannot' atau 'can\'t'."
-  },
-  {
-    id: 4,
-    question: "What time ___ you wake up?",
-    options: ['are', 'is', 'do'],
-    answer: 'do',
-    explanation: "Wake up adalah kata kerja tindakan. Gunakan 'Do' untuk pertanyaan."
-  },
-  {
-    id: 5,
-    question: "They ___ busy yesterday.",
-    options: ['did', 'was', 'were'],
-    answer: 'were',
-    explanation: "Bentuk lampau dari 'Are' adalah 'Were'."
-  },
-  {
-    id: 6,
-    question: "Kalimat mana yang benar?",
-    options: ["She lives in Paris.", "She is live in Paris.", "She live in Paris."],
-    answer: "She lives in Paris.",
-    explanation: "Present Simple: He/She/It memerlukan 's' pada kata kerja."
-  },
-  {
-    id: 7,
-    question: "___ you tired?",
-    options: ["Have", "Are", "Do"],
-    answer: "Are",
-    explanation: "Tired adalah kata sifat. Gunakan 'To Be' (Are you...?)."
-  },
-  {
-    id: 8,
-    question: "My sister ___ drive a car.",
-    options: ["no can", "cannot", "don't can"],
-    answer: "cannot",
-    explanation: "Bentuk negatif dari can adalah 'cannot' atau 'can't'."
-  },
-  {
-    id: 9,
-    question: "What time ___ you wake up?",
-    options: ["are","is","do"],
-    answer: "do",
-    explanation: "Wake up adalah kata kerja tindakan. Gunakan 'Do' untuk pertanyaan."
-  },
-  {
-    id: 10,
-    question: "They ___ early last week.",
-    options: ["were", "was", "did"],
-    answer: "were",
-    explanation: "Bentuk lampau dari 'Are' adalah 'Were'."
-  },
-  {
-    id: 11,
-    question: "Kalimat mana yang benar?",
-    options: ["She lives in Paris.", "She is live in Paris.", "She live in Paris."],
-    answer: "She lives in Paris.",
-    explanation: "Present Simple: Mark/She/It memerlukan 's' pada kata kerja."
-  },
-  {
-    id: 12,
-    question: "___ you angry?",
-    options: ["Have", "Do", "Are"],
-    answer: "Are",
-    explanation: "Tired adalah kata sifat. Gunakan 'To Be' (Are you...?)."
-  },
-  {
-    id: 13,
-    question: "My cousin ___ drive a car.",
-    options: ["cannot","no can","don't can"],
-    answer: "cannot",
-    explanation: "Bentuk negatif dari can adalah 'cannot' atau 'can't'."
-  },
-  {
-    id: 14,
-    question: "What time ___ you wake up?",
-    options: ["are","is","do"],
-    answer: "do",
-    explanation: "Wake up adalah kata kerja tindakan. Gunakan 'Do' untuk pertanyaan."
-  },
-  {
-    id: 15,
-    question: "They ___ busy yesterday.",
-    options: ["did", "was", "were"],
-    answer: "were",
-    explanation: "Bentuk lampau dari 'Are' adalah 'Were'."
-  },
-  {
-    id: 16,
-    question: "Kalimat mana yang benar?",
-    options: ["She lives in Sydney.", "She is live in Sydney.", "She live in Sydney."],
-    answer: "She lives in Sydney.",
-    explanation: "Present Simple: He/She/It memerlukan 's' pada kata kerja."
-  },
-  {
-    id: 17,
-    question: "___ you sad?",
-    options: ["Have", "Are", "Do"],
-    answer: "Are",
-    explanation: "Tired adalah kata sifat. Gunakan 'To Be' (Are you...?)."
-  },
-  {
-    id: 18,
-    question: "My brother ___ drive a car.",
-    options: ["no can", "don't can", "cannot"],
-    answer: "cannot",
-    explanation: "Bentuk negatif dari can adalah 'cannot' atau 'can't'."
-  },
-  {
-    id: 19,
-    question: "What time ___ you wake up?",
-    options: ["are","is","do"],
-    answer: "do",
-    explanation: "Wake up adalah kata kerja tindakan. Gunakan 'Do' untuk pertanyaan."
-  },
-  {
-    id: 20,
-    question: "They ___ busy last week.",
-    options: ["did", "was", "were"],
-    answer: "were",
-    explanation: "Bentuk lampau dari 'Are' adalah 'Were'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[1], 'elementary/grammar/1'));
 
 const ElemGrammarLesson1: React.FC = () => {
   const navigate = useNavigate();

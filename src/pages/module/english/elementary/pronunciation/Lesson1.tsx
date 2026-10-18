@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 const VOWEL_REVIEW = [
   { letter: "A", short: { word: "Hat", ipa: "/æ/" }, long: { word: "Hate", ipa: "/eɪ/" }, rule: "Magic 'E' membuat huruf menyebut namanya." },
   { letter: "E", short: { word: "Met", ipa: "/ɛ/" }, long: { word: "Meet", ipa: "/iː/" }, rule: "Double 'E' biasanya panjang." },
@@ -29,148 +31,7 @@ const MINIMAL_PAIRS = [
   { id: 5, pair: ["Very", "Berry"], target: "Very", hint: "Gigi di bibir /v/" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ['Feet', 'Cat', 'Late'],
-    answer: 'Cat',
-    explanation: "Cat memiliki suara /æ/. Late dan Feet adalah vokal panjang."
-  },
-  {
-    id: 2,
-    question: "Untuk membuat suara 'TH', lidahmu harus...",
-    options: ['Menyentuh langit-langit mulut', 'Tetap datar', 'Berada di antara gigi'],
-    answer: 'Berada di antara gigi',
-    explanation: "Lidah harus sedikit menjulur di antara gigi."
-  },
-  {
-    id: 3,
-    question: "Dengarkan: 'Ship' vs 'Sheep'. Mana yang lebih panjang?",
-    options: ['Sheep', 'Ship'],
-    answer: 'Sheep',
-    explanation: "Sheep /iː/ adalah suara vokal panjang."
-  },
-  {
-    id: 4,
-    question: "Huruf apa yang biasanya mengubah vokal Pendek menjadi vokal Panjang?",
-    options: ['Silent E', 'Hard C', 'Double S'],
-    answer: 'Silent E',
-    explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
-  },
-  {
-    id: 5,
-    question: "V vs W: Mana yang mengharuskan bibir 'membulat'?",
-    options: ['V (Vet)', 'W (Wet)'],
-    answer: 'W (Wet)',
-    explanation: "W dibuat dengan membentuk lingkaran kecil dengan bibirmu."
-  },
-  {
-    id: 6,
-    question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ["Feet", "Hat", "Rate"],
-    answer: "Hat",
-    explanation: "Hat memiliki suara /æ/. Rate dan Feet adalah vokal panjang."
-  },
-  {
-    id: 7,
-    question: "Ketika menghasilkan bunyi 'TH', lidahmu harus...",
-    options: ["Tetap datar", "Berada di antara gigi", "Menyentuh langit-langit mulut"],
-    answer: "Berada di antara gigi",
-    explanation: "Lidah harus sedikit menjulur di antara gigi."
-  },
-  {
-    id: 8,
-    question: "Dengarkan: 'Ship' vs 'Peep'. Mana yang lebih panjang...",
-    options: ["Peep", "Ship"],
-    answer: "Peep",
-    explanation: "Peep /iː/ adalah suara vokal panjang."
-  },
-  {
-    id: 9,
-    question: "Elemen apa yang biasanya mengubah vokal Pendek menjadi vokal Panjang ?",
-    options: ["Hard C", "Double S", "Silent E"],
-    answer: "Silent E",
-    explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
-  },
-  {
-    id: 10,
-    question: "Bandingkan V & W: Mana yang mengharuskan bibir 'membulat'?",
-    options: ["V (Vet)","W (Web)"],
-    answer: "W (Web)",
-    explanation: "W dibuat dengan membentuk lingkaran kecil dengan bibirmu."
-  },
-  {
-    id: 11,
-    question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ["Sweet", "Mat", "Late"],
-    answer: "Mat",
-    explanation: "Mat memiliki suara /æ/. Late dan Sweet adalah vokal panjang."
-  },
-  {
-    id: 12,
-    question: "Untuk membuat suara 'TH', lidahmu harus... ?",
-    options: ["Berada di antara gigi", "Menyentuh langit-langit mulut", "Tetap datar"],
-    answer: "Berada di antara gigi",
-    explanation: "Lidah harus sedikit menjulur di antara gigi."
-  },
-  {
-    id: 13,
-    question: "Dengarkan: 'Dip' vs 'Peep'. Mana yang lebih panjang?",
-    options: ["Peep", "Dip"],
-    answer: "Peep",
-    explanation: "Peep /iː/ adalah suara vokal panjang."
-  },
-  {
-    id: 14,
-    question: "Huruf apa yang biasanya mengubah vokal Pendek menjadi vokal Panjang?",
-    options: ["Silent E", "Hard C", "Double S"],
-    answer: "Silent E",
-    explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
-  },
-  {
-    id: 15,
-    question: "Suara V dan W: Mana yang mengharuskan bibir 'membulat'?",
-    options: ["V (Vet)","W (Web)"],
-    answer: "W (Web)",
-    explanation: "W dibuat dengan membentuk lingkaran kecil dengan bibirmu."
-  },
-  {
-    id: 16,
-    question: "Kata mana yang memiliki suara vokal PENDEK?",
-    options: ["Sheet", "Rat", "Rate"],
-    answer: "Rat",
-    explanation: "Rat memiliki suara /æ/. Rate dan Sheet adalah vokal panjang."
-  },
-  {
-    id: 17,
-    question: "Untuk membuat suara 'TH', lidahmu harus...",
-    options: ["Menyentuh langit-langit mulut", "Tetap datar", "Berada di antara gigi"],
-    answer: "Berada di antara gigi",
-    explanation: "Lidah harus sedikit menjulur di antara gigi."
-  },
-  {
-    id: 18,
-    question: "Dengarkan: 'Sip' vs 'Weep'. Mana yang lebih panjang?",
-    options: ["Weep", "Sip"],
-    answer: "Weep",
-    explanation: "Weep /iː/ adalah suara vokal panjang."
-  },
-  {
-    id: 19,
-    question: "Manakah yang biasanya mengubah vokal Pendek menjadi vokal Panjang?",
-    options: ["Double S", "Hard C", "Silent E"],
-    answer: "Silent E",
-    explanation: "Magic 'E' di akhir kata (contoh: Hop -> Hope)."
-  },
-  {
-    id: 20,
-    question: "Bandingkan V & W: Mana yang mengharuskan bibir 'membulat'...",
-    options: ["W (Will)", "V (Vet)"],
-    answer: "W (Will)",
-    explanation: "W dibuat dengan membentuk lingkaran kecil dengan bibirmu."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[1], 'elementary/pronunciation/1'));
 
 const ElemPronunLesson1: React.FC = () => {
   const navigate = useNavigate();

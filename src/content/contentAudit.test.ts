@@ -8,9 +8,6 @@ const audits = runContentAudit();
 // English pages whose quiz lives inside the component and still repeats
 // templated questions; each floor only stops it from getting worse.
 const knownLowVariety: Record<string, number> = {
-  'english/elementary/grammar': 0.40,
-  'english/elementary/pronunciation': 0.54,
-  'english/elementary/vocabulary': 0.34,
   'english-latihan/grammar': 0.72,
   'english-latihan/reading': 0.67,
   'english-latihan/speaking': 0.74,

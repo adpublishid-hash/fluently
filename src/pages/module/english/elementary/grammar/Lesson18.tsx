@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const QUESTION_RULES = [
   {
     title: "Yes / No Questions",
@@ -70,148 +72,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Wh- Pilihan", en: "Which color do you prefer?", id: "Warna mana yang kamu lebih suka?", icon: "🎨" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "___ you like chocolate?",
-    options: ['Are', 'Do', 'Have'],
-    answer: 'Do',
-    explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
-  },
-  {
-    id: 2,
-    question: "Where ___ she live?",
-    options: ['do', 'does', 'is'],
-    answer: 'does',
-    explanation: "Simple Present dengan 'She' menggunakan 'Does'."
-  },
-  {
-    id: 3,
-    question: "Who ___ the window? (Subject Question)",
-    options: ['broke', 'did break', 'does break'],
-    answer: 'broke',
-    explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
-  },
-  {
-    id: 4,
-    question: "___ car is this?",
-    options: ['Whose', 'Who', 'Who\'s'],
-    answer: 'Whose',
-    explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
-  },
-  {
-    id: 5,
-    question: "___ many apples do you need?",
-    options: ['What', 'Who', 'How'],
-    answer: 'How',
-    explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
-  },
-  {
-    id: 6,
-    question: "___ you like chocolate?",
-    options: ["Are", "Do", "Have"],
-    answer: "Do",
-    explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
-  },
-  {
-    id: 7,
-    question: "Where ___ he live?",
-    options: ["does", "do", "is"],
-    answer: "does",
-    explanation: "Simple Present dengan 'The boy' menggunakan 'Does'."
-  },
-  {
-    id: 8,
-    question: "Who ___ the window? (Subject Question)",
-    options: ["broke", "did break", "does break"],
-    answer: "broke",
-    explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
-  },
-  {
-    id: 9,
-    question: "___ car is this?",
-    options: ["Whose", "Who", "Who's"],
-    answer: "Whose",
-    explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
-  },
-  {
-    id: 10,
-    question: "___ many apples do you need?",
-    options: ["What", "Who", "How"],
-    answer: "How",
-    explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
-  },
-  {
-    id: 11,
-    question: "___ you like chocolate?",
-    options: ["Are", "Do", "Have"],
-    answer: "Do",
-    explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
-  },
-  {
-    id: 12,
-    question: "Where ___ she live?",
-    options: ["do","does","is"],
-    answer: "does",
-    explanation: "Simple Present dengan 'My mother' menggunakan 'Does'."
-  },
-  {
-    id: 13,
-    question: "Who ___ the window? (Subject Question)",
-    options: ["broke", "did break", "does break"],
-    answer: "broke",
-    explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
-  },
-  {
-    id: 14,
-    question: "___ bus is this?",
-    options: ["Who's", "Whose", "Who"],
-    answer: "Whose",
-    explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
-  },
-  {
-    id: 15,
-    question: "___ many apples do you need?",
-    options: ["What", "Who", "How"],
-    answer: "How",
-    explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
-  },
-  {
-    id: 16,
-    question: "___ you like chocolate?",
-    options: ["Are", "Do", "Have"],
-    answer: "Do",
-    explanation: "Pertanyaan Simple Present dengan 'You' menggunakan 'Do'."
-  },
-  {
-    id: 17,
-    question: "Where ___ the girl live?",
-    options: ["does", "is", "do"],
-    answer: "does",
-    explanation: "Simple Present dengan 'Anna' menggunakan 'Does'."
-  },
-  {
-    id: 18,
-    question: "Who ___ the window? (Subject Question)",
-    options: ["broke", "did break", "does break"],
-    answer: "broke",
-    explanation: "Subject questions (Siapa yang melakukan tindakan?) TIDAK menggunakan helper verbs seperti did/do. Gunakan bentuk past tense secara langsung."
-  },
-  {
-    id: 19,
-    question: "___ car is this?",
-    options: ["Whose", "Who", "Who's"],
-    answer: "Whose",
-    explanation: "'Whose' menanyakan tentang kepemilikan (Milik siapa)."
-  },
-  {
-    id: 20,
-    question: "___ many apples do you need?",
-    options: ["What", "Who", "How"],
-    answer: "How",
-    explanation: "'How many' digunakan untuk jumlah yang dapat dihitung."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[18], 'elementary/grammar/18'));
 
 const ElemGrammarLesson18: React.FC = () => {
   const navigate = useNavigate();

@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { MicIcon, TrendUpIcon, TrophyIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 const REVIEW_CARDS = [
   {
     title: "Vokal & Konsonan",
@@ -68,148 +70,7 @@ const FLOW_TEST_ITEMS = [
   { id: 5, text: "I bought apples, bananas, and pears.", focus: "Daftar (Naik, Naik, Turun)", tip: "↗, ↗, ↘" }
 ];
 
-const FINAL_QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Kata mana yang memiliki suara Vokal Panjang?",
-    options: ['Bit', 'Sit', 'Seat'],
-    answer: 'Seat',
-    explanation: "Seat menggunakan /iː/ (E Panjang)."
-  },
-  {
-    id: 2,
-    question: "Bagaimana kamu mengucapkan -ed dalam 'Started'?",
-    options: ['/t/', '/d/', '/ɪd/ (Suku kata tambahan)'],
-    answer: '/ɪd/ (Suku kata tambahan)',
-    explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk -ed."
-  },
-  {
-    id: 3,
-    question: "Dalam kalimat 'She went to the park', kata mana yang DITEKANKAN?",
-    options: ['to', 'the', 'park'],
-    answer: 'park',
-    explanation: "'Park' adalah kata isi (Kata Benda), jadi kuat. 'To' dan 'The' lemah."
-  },
-  {
-    id: 4,
-    question: "Bagaimana kamu menghubungkan 'Wake up'?",
-    options: ['Wake...up', 'Wa-kup'],
-    answer: 'Wa-kup',
-    explanation: "Konsonan K pindah ke vokal U."
-  },
-  {
-    id: 5,
-    question: "Jika kamu mengajukan pertanyaan Ya/Tidak, suaramu biasanya...",
-    options: ['Turun ↘', 'Naik ↗'],
-    answer: 'Naik ↗',
-    explanation: "Intonasi naik menandakan pertanyaan Ya/Tidak."
-  },
-  {
-    id: 6,
-    question: "Bagaimana cara mengucapkan 'Comfortable' secara alami?",
-    options: ['Comf-ta-ble (3 suku kata)', 'Com-for-ta-ble (4 suku kata)'],
-    answer: 'Comf-ta-ble (3 suku kata)',
-    explanation: "Dalam bahasa Inggris alami, 'or' di tengah sering dihilangkan (Elisi Schwa)."
-  },
-  {
-    id: 7,
-    question: "Kata 'Vegetable' ditekan pada...",
-    options: ['Suku kata ke-2 (ve-GET-a-ble)', 'Suku kata ke-1 (VEG-ta-ble)'],
-    answer: 'Suku kata ke-1 (VEG-ta-ble)',
-    explanation: "Penekanan ada pada suku kata pertama."
-  },
-  {
-    id: 8,
-    question: "Pasangan mana yang merupakan 'Minimal Pairs' (Hanya satu suara yang berbeda)?",
-    options: ['Fan - Van', 'Cat - Dog', 'Big - Small'],
-    answer: 'Fan - Van',
-    explanation: "Hanya suara pertama yang berubah (/f/ vs /v/)."
-  },
-  {
-    id: 9,
-    question: "Manakah kata yang memiliki suara Vokal Panjang?",
-    options: ["Greet", "Bit", "Sit"],
-    answer: "Greet",
-    explanation: "Seat menggunakan /iː/ (E Panjang)."
-  },
-  {
-    id: 10,
-    question: "Bagaimana kamu mengucapkan -ed dalam 'Started'?",
-    options: ["/t/","/d/","/ɪd/ (Suku kata tambahan)"],
-    answer: "/ɪd/ (Suku kata tambahan)",
-    explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk -ed."
-  },
-  {
-    id: 11,
-    question: "Dalam kalimat 'She went to the school', kata mana yang DITEKANKAN?",
-    options: ["to","the","school"],
-    answer: "school",
-    explanation: "'Park' adalah kata isi (Kata Benda), jadi kuat. 'To' dan 'The' lemah."
-  },
-  {
-    id: 12,
-    question: "Bagaimana kamu menghubungkan 'Wake up'?",
-    options: ["Wake...up","Wa-kup"],
-    answer: "Wa-kup",
-    explanation: "Konsonan K pindah ke vokal U."
-  },
-  {
-    id: 13,
-    question: "Jika kamu mengajukan pertanyaan Ya/Tidak, suaramu biasanya...",
-    options: ["Turun ↘","Naik ↗"],
-    answer: "Naik ↗",
-    explanation: "Intonasi naik menandakan pertanyaan Ya/Tidak."
-  },
-  {
-    id: 14,
-    question: "Bagaimana cara mengucapkan 'Comfortable' secara alami?",
-    options: ["Comf-ta-ble (3 suku kata)", "Com-for-ta-ble (4 suku kata)"],
-    answer: "Comf-ta-ble (3 suku kata)",
-    explanation: "Dalam bahasa Inggris alami, 'or' di tengah sering dihilangkan (Elisi Schwa)."
-  },
-  {
-    id: 15,
-    question: "Kata 'Vegetable' ditekan pada...",
-    options: ["Suku kata ke-2 (ve-GET-a-ble)", "Suku kata ke-1 (VEG-ta-ble)"],
-    answer: "Suku kata ke-1 (VEG-ta-ble)",
-    explanation: "Penekanan ada pada suku kata pertama."
-  },
-  {
-    id: 16,
-    question: "Pasangan mana yang merupakan 'Minimal Pairs' (Hanya satu suara yang berbeda)?",
-    options: ["Fan - Van", "Cat - Dog", "Big - Small"],
-    answer: "Fan - Van",
-    explanation: "Hanya suara pertama yang berubah (/f/ vs /v/)."
-  },
-  {
-    id: 17,
-    question: "Kata mana yang memiliki suara Vokal Panjang?",
-    options: ["Bit", "Sit", "Greet"],
-    answer: "Greet",
-    explanation: "Seat menggunakan /iː/ (E Panjang)."
-  },
-  {
-    id: 18,
-    question: "Bagaimana kamu mengucapkan -ed dalam 'Started'?",
-    options: ["/t/","/d/","/ɪd/ (Suku kata tambahan)"],
-    answer: "/ɪd/ (Suku kata tambahan)",
-    explanation: "Kata-kata yang berakhiran T atau D mendapatkan suku kata tambahan untuk -ed."
-  },
-  {
-    id: 19,
-    question: "Dalam kalimat 'She ran to the park', kata mana yang DITEKANKAN?",
-    options: ["the", "park", "to"],
-    answer: "park",
-    explanation: "'Park' adalah kata isi (Kata Benda), jadi kuat. 'To' dan 'The' lemah."
-  },
-  {
-    id: 20,
-    question: "Bagaimana kamu menghubungkan 'Wake up'?",
-    options: ["Wake...up","Wa-kup"],
-    answer: "Wa-kup",
-    explanation: "Konsonan K pindah ke vokal U."
-  }
-];
+const FINAL_QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[15], 'elementary/pronunciation/15'));
 
 const ElemPronunLesson15: React.FC = () => {
   const navigate = useNavigate();

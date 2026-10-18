@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, TrendUpIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 const TAG_RULES = [
   {
     type: "Pertanyaan Nyata",
@@ -75,148 +77,7 @@ const PRACTICE_SENTENCES = [
   }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Jika suaramu TURUN (↘) pada question tag, itu berarti...",
-    options: ['Kamu menanyakan pertanyaan nyata', 'Kamu mengharapkan orang tersebut setuju'],
-    answer: 'Kamu mengharapkan orang tersebut setuju',
-    explanation: "Intonasi turun pada tag berarti kamu menyatakan fakta/pendapat, bukan benar-benar bertanya."
-  },
-  {
-    id: 2,
-    question: "Apa pola yang benar untuk: 'I bought shoes, a shirt, and a hat.'",
-    options: ['↗ ↗ ↘', '↘ ↘ ↘'],
-    answer: '↗ ↗ ↘',
-    explanation: "Daftar NAIK sampai item terakhir, yang TURUN untuk menunjukkan daftar selesai."
-  },
-  {
-    id: 3,
-    question: "Intonasi untuk: 'Do you want water ↗ or juice ↘?'",
-    options: ['Pertanyaan Pilihan', 'Pertanyaan Terbuka (Ya/Tidak)'],
-    answer: 'Pertanyaan Pilihan',
-    explanation: "Saat menawarkan pilihan dengan 'or', suara naik pada yang pertama dan turun pada yang terakhir."
-  },
-  {
-    id: 4,
-    question: "Mana yang terdengar lebih sopan/mengundang?",
-    options: ['Come in. ↘ (Datar/Rendah)', 'Come in! ↘ (Dinamis Tinggi-ke-Rendah)'],
-    answer: 'Come in! ↘ (Dinamis Tinggi-ke-Rendah)',
-    explanation: "Rentang nada yang lebih besar biasanya terdengar lebih antusias dan sopan."
-  },
-  {
-    id: 5,
-    question: "Jika suaramu TURUN (↘) pada question tag, itu berarti... ?",
-    options: ["Kamu mengharapkan orang tersebut setuju", "Kamu menanyakan pertanyaan nyata"],
-    answer: "Kamu mengharapkan orang tersebut setuju",
-    explanation: "Intonasi turun pada tag berarti kamu menyatakan fakta/pendapat, bukan benar-benar bertanya."
-  },
-  {
-    id: 6,
-    question: "Apa pola yang benar untuk: 'I bought shoes, a shirt, and a hat.'",
-    options: ["↗ ↗ ↘", "↘ ↘ ↘"],
-    answer: "↗ ↗ ↘",
-    explanation: "Daftar NAIK sampai item terakhir, yang TURUN untuk menunjukkan daftar selesai."
-  },
-  {
-    id: 7,
-    question: "Intonasi untuk: 'Do you want water ↗ or juice ↘?'",
-    options: ["Pertanyaan Pilihan", "Pertanyaan Terbuka (Ya/Tidak)"],
-    answer: "Pertanyaan Pilihan",
-    explanation: "Saat menawarkan pilihan dengan 'or', suara naik pada yang pertama dan turun pada yang terakhir."
-  },
-  {
-    id: 8,
-    question: "Mana yang terdengar lebih sopan/mengundang...",
-    options: ["Come in! ↘ (Dinamis Tinggi-ke-Rendah)", "Come in. ↘ (Datar/Rendah)"],
-    answer: "Come in! ↘ (Dinamis Tinggi-ke-Rendah)",
-    explanation: "Rentang nada yang lebih besar biasanya terdengar lebih antusias dan sopan."
-  },
-  {
-    id: 9,
-    question: "Jika suaramu TURUN (↘) pada question tag, itu berarti:",
-    options: ["Kamu menanyakan pertanyaan nyata","Kamu mengharapkan orang tersebut setuju"],
-    answer: "Kamu mengharapkan orang tersebut setuju",
-    explanation: "Intonasi turun pada tag berarti kamu menyatakan fakta/pendapat, bukan benar-benar bertanya."
-  },
-  {
-    id: 10,
-    question: "Apa pola yang benar untuk: 'I bought shoes, a shirt, and a hat.'",
-    options: ["↗ ↗ ↘", "↘ ↘ ↘"],
-    answer: "↗ ↗ ↘",
-    explanation: "Daftar NAIK sampai item terakhir, yang TURUN untuk menunjukkan daftar selesai."
-  },
-  {
-    id: 11,
-    question: "Intonasi untuk: 'Do you want water ↗ or juice ↘?'",
-    options: ["Pertanyaan Pilihan", "Pertanyaan Terbuka (Ya/Tidak)"],
-    answer: "Pertanyaan Pilihan",
-    explanation: "Saat menawarkan pilihan dengan 'or', suara naik pada yang pertama dan turun pada yang terakhir."
-  },
-  {
-    id: 12,
-    question: "Mana yang terdengar lebih sopan/mengundang?",
-    options: ["Come in. ↘ (Datar/Rendah)","Come in! ↘ (Dinamis Tinggi-ke-Rendah)"],
-    answer: "Come in! ↘ (Dinamis Tinggi-ke-Rendah)",
-    explanation: "Rentang nada yang lebih besar biasanya terdengar lebih antusias dan sopan."
-  },
-  {
-    id: 13,
-    question: "Jika suaramu TURUN (↘) pada question tag, itu berarti... ?",
-    options: ["Kamu mengharapkan orang tersebut setuju", "Kamu menanyakan pertanyaan nyata"],
-    answer: "Kamu mengharapkan orang tersebut setuju",
-    explanation: "Intonasi turun pada tag berarti kamu menyatakan fakta/pendapat, bukan benar-benar bertanya."
-  },
-  {
-    id: 14,
-    question: "Apa pola yang benar untuk: 'I bought shoes, a shirt, and a hat.'",
-    options: ["↗ ↗ ↘", "↘ ↘ ↘"],
-    answer: "↗ ↗ ↘",
-    explanation: "Daftar NAIK sampai item terakhir, yang TURUN untuk menunjukkan daftar selesai."
-  },
-  {
-    id: 15,
-    question: "Intonasi untuk: 'Do you want water ↗ or juice ↘?'",
-    options: ["Pertanyaan Pilihan", "Pertanyaan Terbuka (Ya/Tidak)"],
-    answer: "Pertanyaan Pilihan",
-    explanation: "Saat menawarkan pilihan dengan 'or', suara naik pada yang pertama dan turun pada yang terakhir."
-  },
-  {
-    id: 16,
-    question: "Mana yang terdengar lebih sopan/mengundang?",
-    options: ["Come in. ↘ (Datar/Rendah)","Come in! ↘ (Dinamis Tinggi-ke-Rendah)"],
-    answer: "Come in! ↘ (Dinamis Tinggi-ke-Rendah)",
-    explanation: "Rentang nada yang lebih besar biasanya terdengar lebih antusias dan sopan."
-  },
-  {
-    id: 17,
-    question: "Jika suaramu TURUN (↘) pada question tag, itu berarti... ?",
-    options: ["Kamu mengharapkan orang tersebut setuju", "Kamu menanyakan pertanyaan nyata"],
-    answer: "Kamu mengharapkan orang tersebut setuju",
-    explanation: "Intonasi turun pada tag berarti kamu menyatakan fakta/pendapat, bukan benar-benar bertanya."
-  },
-  {
-    id: 18,
-    question: "Apa pola yang benar untuk: 'I bought shoes, a shirt, and a hat.'",
-    options: ["↗ ↗ ↘", "↘ ↘ ↘"],
-    answer: "↗ ↗ ↘",
-    explanation: "Daftar NAIK sampai item terakhir, yang TURUN untuk menunjukkan daftar selesai."
-  },
-  {
-    id: 19,
-    question: "Intonasi untuk: 'Do you want water ↗ or juice ↘?'",
-    options: ["Pertanyaan Pilihan", "Pertanyaan Terbuka (Ya/Tidak)"],
-    answer: "Pertanyaan Pilihan",
-    explanation: "Saat menawarkan pilihan dengan 'or', suara naik pada yang pertama dan turun pada yang terakhir."
-  },
-  {
-    id: 20,
-    question: "Mana yang terdengar lebih sopan/mengundang?",
-    options: ["Come in. ↘ (Datar/Rendah)","Come in! ↘ (Dinamis Tinggi-ke-Rendah)"],
-    answer: "Come in! ↘ (Dinamis Tinggi-ke-Rendah)",
-    explanation: "Rentang nada yang lebih besar biasanya terdengar lebih antusias dan sopan."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[8], 'elementary/pronunciation/8'));
 
 const ElemPronunLesson8: React.FC = () => {
   const navigate = useNavigate();

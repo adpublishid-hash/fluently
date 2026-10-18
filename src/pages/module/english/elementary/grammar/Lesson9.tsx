@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const PLACE_PREPOSITIONS = [
   {
     prep: "Next to / Beside",
@@ -98,148 +100,7 @@ const EXAMPLE_SENTENCES = [
   { type: "Gerakan", en: "He jumped off the wall.", id: "Dia melompat turun dari tembok.", icon: "🧱" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "The car drove ___ the tunnel.",
-    options: ['on', 'through', 'across'],
-    answer: 'through',
-    explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
-  },
-  {
-    id: 2,
-    question: "The bank is ___ the post office.",
-    options: ['next to', 'near to', 'next'],
-    answer: 'next to',
-    explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
-  },
-  {
-    id: 3,
-    question: "Please put the milk ___ the fridge.",
-    options: ['out of', 'onto', 'into'],
-    answer: 'into',
-    explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
-  },
-  {
-    id: 4,
-    question: "He swam ___ the river to the other side.",
-    options: ['across', 'through', 'along'],
-    answer: 'across',
-    explanation: "'Across' berarti dari satu sisi ke sisi lain."
-  },
-  {
-    id: 5,
-    question: "There is a bridge ___ the river.",
-    options: ['above', 'on', 'over'],
-    answer: 'over',
-    explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
-  },
-  {
-    id: 6,
-    question: "The bike drove ___ the tunnel.",
-    options: ["through", "across", "on"],
-    answer: "through",
-    explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
-  },
-  {
-    id: 7,
-    question: "The bank is ___ the post office.",
-    options: ["next to", "near to", "next"],
-    answer: "next to",
-    explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
-  },
-  {
-    id: 8,
-    question: "Please put the milk ___ the fridge.",
-    options: ["out of", "onto", "into"],
-    answer: "into",
-    explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
-  },
-  {
-    id: 9,
-    question: "He swam ___ the river to the other side.",
-    options: ["across", "through", "along"],
-    answer: "across",
-    explanation: "'Across' berarti dari satu sisi ke sisi lain."
-  },
-  {
-    id: 10,
-    question: "There is a bridge ___ the river.",
-    options: ["above", "on", "over"],
-    answer: "over",
-    explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
-  },
-  {
-    id: 11,
-    question: "The car drove ___ the tunnel.",
-    options: ["on", "through", "across"],
-    answer: "through",
-    explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
-  },
-  {
-    id: 12,
-    question: "The bank is ___ the post office.",
-    options: ["next to", "near to", "next"],
-    answer: "next to",
-    explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
-  },
-  {
-    id: 13,
-    question: "Please put the milk ___ the fridge.",
-    options: ["out of", "onto", "into"],
-    answer: "into",
-    explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
-  },
-  {
-    id: 14,
-    question: "Mark swam ___ the river to the other side.",
-    options: ["across", "along", "through"],
-    answer: "across",
-    explanation: "'Across' berarti dari satu sisi ke sisi lain."
-  },
-  {
-    id: 15,
-    question: "There is a bridge ___ the river.",
-    options: ["above", "on", "over"],
-    answer: "over",
-    explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
-  },
-  {
-    id: 16,
-    question: "The car drove ___ the tunnel.",
-    options: ["on", "through", "across"],
-    answer: "through",
-    explanation: "Gunakan 'Through' untuk ruang 3D seperti terowongan atau hutan."
-  },
-  {
-    id: 17,
-    question: "The bank is ___ the post office.",
-    options: ["next to", "near to", "next"],
-    answer: "next to",
-    explanation: "Kita selalu bilang 'Next TO'. 'Near' tidak pakai 'to'."
-  },
-  {
-    id: 18,
-    question: "Please put the milk ___ the fridge.",
-    options: ["out of", "onto", "into"],
-    answer: "into",
-    explanation: "Gerakan ke dalam sesuatu menggunakan 'Into'."
-  },
-  {
-    id: 19,
-    question: "The boy swam ___ the river to the other side.",
-    options: ["through", "along", "across"],
-    answer: "across",
-    explanation: "'Across' berarti dari satu sisi ke sisi lain."
-  },
-  {
-    id: 20,
-    question: "There is a bridge ___ the river.",
-    options: ["above", "on", "over"],
-    answer: "over",
-    explanation: "Gunakan 'Over' untuk gerakan atau posisi melintasi di atas sesuatu."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[9], 'elementary/grammar/9'));
 
 const ElemGrammarLesson9: React.FC = () => {
   const navigate = useNavigate();

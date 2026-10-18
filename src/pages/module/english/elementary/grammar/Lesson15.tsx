@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const CONDITIONAL_RULES = [
   {
     title: "Zero Conditional",
@@ -54,148 +56,7 @@ const EXAMPLE_SENTENCES = [
   { type: "First (Rencana)", en: "If we leave now, we will arrive on time.", id: "Jika kita berangkat sekarang, kita akan tiba tepat waktu.", icon: "⏰" }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ['will heat', 'heated', 'heat'],
-    answer: 'heat',
-    explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
-  },
-  {
-    id: 2,
-    question: "First: If it rains, I ___ (stay) home.",
-    options: ['stay', 'staying', 'will stay'],
-    answer: 'will stay',
-    explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
-  },
-  {
-    id: 3,
-    question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ['will get', 'get', 'got'],
-    answer: 'get',
-    explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
-  },
-  {
-    id: 4,
-    question: "First: If she ___ (study), she will pass.",
-    options: ['will study', 'study', 'studies'],
-    answer: 'studies',
-    explanation: "Klausa 'If' selalu menggunakan Present Simple. 'She studies'."
-  },
-  {
-    id: 5,
-    question: "Correct sentence:",
-    options: ['If I will go, I see him.', 'If I go, I will see him.'],
-    answer: 'If I go, I will see him.',
-    explanation: "Jangan pernah gunakan 'Will' di bagian 'If' kalimat."
-  },
-  {
-    id: 6,
-    question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ["will heat", "heated", "heat"],
-    answer: "heat",
-    explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
-  },
-  {
-    id: 7,
-    question: "First: If it rains, I ___ (stay) home.",
-    options: ["stay", "staying", "will stay"],
-    answer: "will stay",
-    explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
-  },
-  {
-    id: 8,
-    question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ["will get", "get", "got"],
-    answer: "get",
-    explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
-  },
-  {
-    id: 9,
-    question: "First: If she ___ (study), she will pass.",
-    options: ["will study", "study", "studies"],
-    answer: "studies",
-    explanation: "Klausa 'If' selalu menggunakan Present Simple. 'My sister studies'."
-  },
-  {
-    id: 10,
-    question: "Correct sentence:",
-    options: ["If I will go, I see him.","If I go, I will see him."],
-    answer: "If I go, I will see him.",
-    explanation: "Jangan pernah gunakan 'Will' di bagian 'If' kalimat."
-  },
-  {
-    id: 11,
-    question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ["will heat", "heated", "heat"],
-    answer: "heat",
-    explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
-  },
-  {
-    id: 12,
-    question: "First: If it rains, I ___ (stay) home.",
-    options: ["stay", "staying", "will stay"],
-    answer: "will stay",
-    explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
-  },
-  {
-    id: 13,
-    question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ["will get", "get", "got"],
-    answer: "get",
-    explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
-  },
-  {
-    id: 14,
-    question: "First: If the girl ___ (study), the girl will pass.",
-    options: ["studies", "will study", "study"],
-    answer: "studies",
-    explanation: "Klausa 'If' selalu menggunakan Present Simple. 'She studies'."
-  },
-  {
-    id: 15,
-    question: "Correct sentence:",
-    options: ["If I will go, I see him.","If I go, I will see him."],
-    answer: "If I go, I will see him.",
-    explanation: "Jangan pernah gunakan 'Will' di bagian 'If' kalimat."
-  },
-  {
-    id: 16,
-    question: "Zero: If you ___ (heat) ice, it melts.",
-    options: ["will heat", "heated", "heat"],
-    answer: "heat",
-    explanation: "Zero conditional menggunakan Present Simple di kedua bagian (Fakta Umum)."
-  },
-  {
-    id: 17,
-    question: "First: If it rains, I ___ (stay) home.",
-    options: ["stay", "staying", "will stay"],
-    answer: "will stay",
-    explanation: "First conditional menggunakan 'Will' untuk hasil (Kemungkinan Masa Depan)."
-  },
-  {
-    id: 18,
-    question: "Zero: If you mix yellow and blue, you ___ (get) green.",
-    options: ["will get", "get", "got"],
-    answer: "get",
-    explanation: "Ini adalah fakta ilmiah/kebenaran umum, jadi gunakan Zero Conditional (Present Simple)."
-  },
-  {
-    id: 19,
-    question: "First: If she ___ (study), she will pass.",
-    options: ["will study", "study", "studies"],
-    answer: "studies",
-    explanation: "Klausa 'If' selalu menggunakan Present Simple. 'My sister studies'."
-  },
-  {
-    id: 20,
-    question: "Correct sentence:",
-    options: ["If I will go, I see him.","If I go, I will see him."],
-    answer: "If I go, I will see him.",
-    explanation: "Jangan pernah gunakan 'Will' di bagian 'If' kalimat."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[15], 'elementary/grammar/15'));
 
 const ElemGrammarLesson15: React.FC = () => {
   const navigate = useNavigate();

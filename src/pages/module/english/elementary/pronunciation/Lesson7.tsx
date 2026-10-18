@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star } from 'lucide-react';
 import { StarIcon, FlameIcon, TrendUpIcon, RefreshIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 const REVIEW_DATA = [
   {
     type: "Akhiran -ED",
@@ -64,148 +66,7 @@ const CLUSTER_CHALLENGES = [
   { word: "Scripts", phonetic: "/skrɪpts/", tip: "P-T-S. Semua tak bersuara." }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Bagaimana Anda menghubungkan 'Walked away'?",
-    options: ['Walk-taway', 'Walk-daway', 'Walk-ed away'],
-    answer: 'Walk-taway',
-    explanation: "'Walked' berakhiran /t/ (K tak bersuara). /t/ terhubung ke 'away'."
-  },
-  {
-    id: 2,
-    question: "Dalam ucapan cepat, 'Clothes' sering terdengar persis seperti...",
-    options: ['Cloths (Fabric)', 'Clouds', 'Close (Shut)'],
-    answer: 'Close (Shut)',
-    explanation: "Suara /ð/ (th) sulit di antara vokal/konsonan, jadi penutur asli sering menghilangkannya: /kloʊz/."
-  },
-  {
-    id: 3,
-    question: "Kata mana yang memiliki SATU suku kata?",
-    options: ['Wanted', 'Asked', 'Needed'],
-    answer: 'Asked',
-    explanation: "'Asked' berakhiran K (tak bersuara), jadi ED adalah /t/. Tidak ada suku kata tambahan."
-  },
-  {
-    id: 4,
-    question: "Bagaimana Anda menghubungkan 'She loves it'?",
-    options: ['Loves-it', 'Love-sit', 'Love-zit'],
-    answer: 'Love-zit',
-    explanation: "'Loves' berakhiran /z/ (V bersuara). /z/ pindah ke 'it'."
-  },
-  {
-    id: 5,
-    question: "Ucapkan: 'Desks'.",
-    options: ['Des-kes', 'Desk-iz', 'Desks (S-K-S)'],
-    answer: 'Desks (S-K-S)',
-    explanation: "Tidak ada vokal tambahan. Hanya gugus S-K-S."
-  },
-  {
-    id: 6,
-    question: "Bagaimana Anda menghubungkan 'Walked away'...",
-    options: ["Walk-ed away","Walk-taway","Walk-daway"],
-    answer: "Walk-taway",
-    explanation: "'Walked' berakhiran /t/ (K tak bersuara). /t/ terhubung ke 'away'."
-  },
-  {
-    id: 7,
-    question: "Dalam ucapan cepat, 'Clothes' sering terdengar persis seperti... ?",
-    options: ["Close (Shut)", "Clouds", "Cloths (Fabric)"],
-    answer: "Close (Shut)",
-    explanation: "Suara /ð/ (th) sulit di antara vokal/konsonan, jadi penutur asli sering menghilangkannya: /kloʊz/."
-  },
-  {
-    id: 8,
-    question: "Kata mana yang memiliki SATU suku kata?",
-    options: ["Wanted", "Asked", "Needed"],
-    answer: "Asked",
-    explanation: "'Asked' berakhiran K (tak bersuara), jadi ED adalah /t/. Tidak ada suku kata tambahan."
-  },
-  {
-    id: 9,
-    question: "Bagaimana Anda menghubungkan 'She loves it'...",
-    options: ["Loves-it", "Love-zit", "Love-sit"],
-    answer: "Love-zit",
-    explanation: "'Loves' berakhiran /z/ (V bersuara). /z/ pindah ke 'it'."
-  },
-  {
-    id: 10,
-    question: "Ucapkan: 'Desks'.",
-    options: ["Des-kes", "Desk-iz", "Desks (S-K-S)"],
-    answer: "Desks (S-K-S)",
-    explanation: "Tidak ada vokal tambahan. Hanya gugus S-K-S."
-  },
-  {
-    id: 11,
-    question: "Bagaimana Anda menghubungkan 'Walked away' ?",
-    options: ["Walk-daway", "Walk-ed away", "Walk-taway"],
-    answer: "Walk-taway",
-    explanation: "'Walked' berakhiran /t/ (K tak bersuara). /t/ terhubung ke 'away'."
-  },
-  {
-    id: 12,
-    question: "Dalam ucapan cepat, 'Clothes' sering terdengar persis seperti...",
-    options: ["Cloths (Fabric)", "Clouds", "Close (Shut)"],
-    answer: "Close (Shut)",
-    explanation: "Suara /ð/ (th) sulit di antara vokal/konsonan, jadi penutur asli sering menghilangkannya: /kloʊz/."
-  },
-  {
-    id: 13,
-    question: "Kata mana yang memiliki SATU suku kata?",
-    options: ["Wanted", "Asked", "Needed"],
-    answer: "Asked",
-    explanation: "'Asked' berakhiran K (tak bersuara), jadi ED adalah /t/. Tidak ada suku kata tambahan."
-  },
-  {
-    id: 14,
-    question: "Bagaimana Anda menghubungkan 'She loves it'?",
-    options: ["Loves-it", "Love-sit", "Love-zit"],
-    answer: "Love-zit",
-    explanation: "'Loves' berakhiran /z/ (V bersuara). /z/ pindah ke 'it'."
-  },
-  {
-    id: 15,
-    question: "Ucapkan: 'Desks'.",
-    options: ["Des-kes", "Desk-iz", "Desks (S-K-S)"],
-    answer: "Desks (S-K-S)",
-    explanation: "Tidak ada vokal tambahan. Hanya gugus S-K-S."
-  },
-  {
-    id: 16,
-    question: "Bagaimana Anda menghubungkan 'Walked away'...",
-    options: ["Walk-ed away","Walk-taway","Walk-daway"],
-    answer: "Walk-taway",
-    explanation: "'Walked' berakhiran /t/ (K tak bersuara). /t/ terhubung ke 'away'."
-  },
-  {
-    id: 17,
-    question: "Dalam ucapan cepat, 'Clothes' sering terdengar persis seperti...",
-    options: ["Cloths (Fabric)", "Clouds", "Close (Shut)"],
-    answer: "Close (Shut)",
-    explanation: "Suara /ð/ (th) sulit di antara vokal/konsonan, jadi penutur asli sering menghilangkannya: /kloʊz/."
-  },
-  {
-    id: 18,
-    question: "Kata mana yang memiliki SATU suku kata?",
-    options: ["Wanted", "Asked", "Needed"],
-    answer: "Asked",
-    explanation: "'Asked' berakhiran K (tak bersuara), jadi ED adalah /t/. Tidak ada suku kata tambahan."
-  },
-  {
-    id: 19,
-    question: "Bagaimana Anda menghubungkan 'She loves it'?",
-    options: ["Loves-it", "Love-sit", "Love-zit"],
-    answer: "Love-zit",
-    explanation: "'Loves' berakhiran /z/ (V bersuara). /z/ pindah ke 'it'."
-  },
-  {
-    id: 20,
-    question: "Ucapkan: 'Desks'.",
-    options: ["Des-kes", "Desk-iz", "Desks (S-K-S)"],
-    answer: "Desks (S-K-S)",
-    explanation: "Tidak ada vokal tambahan. Hanya gugus S-K-S."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[7], 'elementary/pronunciation/7'));
 
 const ElemPronunLesson7: React.FC = () => {
   const navigate = useNavigate();

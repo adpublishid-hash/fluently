@@ -8,6 +8,8 @@ import { motion } from 'framer-motion';
 import { Volume2, CheckCircle2, XCircle, BookOpen, PenTool, Star, Lightbulb } from 'lucide-react';
 import { StarIcon, TrendUpIcon } from '../../../../../components/Icons';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryPronunciationQuizBank } from './quizBank';
 type LinkingType = {
   id: string;
   title: string;
@@ -70,148 +72,7 @@ const PRACTICE_ITEMS = [
   { id: 6, phrase: "She is", type: "V+V", correct: "She-y-is", options: ["She-is", "She-y-is"], hint: "Tambah /y/" },
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'Stop it'?",
-    options: ['Stop... it (Jeda)', 'Sto-pit (Terhubung)'],
-    answer: 'Sto-pit (Terhubung)',
-    explanation: "Konsonan P terhubung ke Vokal I, terdengar seperti satu kata."
-  },
-  {
-    id: 2,
-    question: "Apa yang terjadi pada 'Red door'?",
-    options: ['Kita mengucapkan satu suara D panjang', 'Kita mengucapkan dua suara D'],
-    answer: 'Kita mengucapkan satu suara D panjang',
-    explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
-  },
-  {
-    id: 3,
-    question: "Suara penghubung apa yang muncul di 'Go out'?",
-    options: ['/w/', '/r/', '/y/'],
-    answer: '/w/',
-    explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
-  },
-  {
-    id: 4,
-    question: "Mengapa kita menghubungkan kata-kata?",
-    options: ['Untuk membingungkan orang', 'Untuk berbicara lebih cepat dan lancar'],
-    answer: 'Untuk berbicara lebih cepat dan lancar',
-    explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
-  },
-  {
-    id: 5,
-    question: "Dengarkan: 'I agree'. Apa yang menghubungkan I dan A?",
-    options: ['/y/ (j)', 'Tidak ada', '/w/'],
-    answer: '/y/ (j)',
-    explanation: "Vokal senyum (I) + Vokal (Agree) = I-y-agree."
-  },
-  {
-    id: 6,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'Stop it'?",
-    options: ["Stop... ? it (Jeda)","Sto-pit (Terhubung)"],
-    answer: "Sto-pit (Terhubung)",
-    explanation: "Konsonan P terhubung ke Vokal I, terdengar seperti satu kata."
-  },
-  {
-    id: 7,
-    question: "Apa yang terjadi pada 'Red door' ?",
-    options: ["Kita mengucapkan satu suara D panjang", "Kita mengucapkan dua suara D"],
-    answer: "Kita mengucapkan satu suara D panjang",
-    explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
-  },
-  {
-    id: 8,
-    question: "Suara penghubung apa yang muncul di 'Go out' ?",
-    options: ["/w/","/y/","/r/"],
-    answer: "/w/",
-    explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
-  },
-  {
-    id: 9,
-    question: "Mengapa kita menghubungkan kata-kata ?",
-    options: ["Untuk membingungkan orang", "Untuk berbicara lebih cepat dan lancar"],
-    answer: "Untuk berbicara lebih cepat dan lancar",
-    explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
-  },
-  {
-    id: 10,
-    question: "Simak kata: 'I agree'. Apa yang menghubungkan I dan A...",
-    options: ["/y/ (j)", "Tidak ada", "/w/"],
-    answer: "/y/ (j)",
-    explanation: "Vokal senyum (I) + Vokal (Agree) = I-y-agree."
-  },
-  {
-    id: 11,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'Stop it'?",
-    options: ["Stop... it (Jeda)","Sto-pit (Terhubung)"],
-    answer: "Sto-pit (Terhubung)",
-    explanation: "Konsonan P terhubung ke Vokal I, terdengar seperti satu kata."
-  },
-  {
-    id: 12,
-    question: "Apa yang terjadi pada 'Red door'...",
-    options: ["Kita mengucapkan dua suara D","Kita mengucapkan satu suara D panjang"],
-    answer: "Kita mengucapkan satu suara D panjang",
-    explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
-  },
-  {
-    id: 13,
-    question: "Suara penghubung apa yang muncul di 'Go out'...",
-    options: ["/y/", "/w/", "/r/"],
-    answer: "/w/",
-    explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
-  },
-  {
-    id: 14,
-    question: "Mengapa kita menghubungkan kata-kata?",
-    options: ["Untuk membingungkan orang", "Untuk berbicara lebih cepat dan lancar"],
-    answer: "Untuk berbicara lebih cepat dan lancar",
-    explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
-  },
-  {
-    id: 15,
-    question: "Fokus pada: 'I agree'. Apa yang menghubungkan I dan A?",
-    options: ["/w/","/y/ (j)","Tidak ada"],
-    answer: "/y/ (j)",
-    explanation: "Vokal senyum (I) + Vokal (Agree) = I-y-agree."
-  },
-  {
-    id: 16,
-    question: "Bagaimana penutur asli biasanya mengucapkan 'Stop it'...",
-    options: ["Sto-pit (Terhubung)", "Stop: it (Jeda)"],
-    answer: "Sto-pit (Terhubung)",
-    explanation: "Konsonan P terhubung ke Vokal I, terdengar seperti satu kata."
-  },
-  {
-    id: 17,
-    question: "Apa yang terjadi pada 'Red door'?",
-    options: ["Kita mengucapkan satu suara D panjang", "Kita mengucapkan dua suara D"],
-    answer: "Kita mengucapkan satu suara D panjang",
-    explanation: "Karena 'Red' berakhiran D dan 'Door' dimulai dengan D, mereka menyatu."
-  },
-  {
-    id: 18,
-    question: "Suara penghubung apa yang muncul di 'Go out'?",
-    options: ["/w/", "/r/", "/y/"],
-    answer: "/w/",
-    explanation: "Bibir bulat (Go) + Vokal (Out) = Go-w-out."
-  },
-  {
-    id: 19,
-    question: "Mengapa kita menghubungkan kata-kata?",
-    options: ["Untuk membingungkan orang", "Untuk berbicara lebih cepat dan lancar"],
-    answer: "Untuk berbicara lebih cepat dan lancar",
-    explanation: "Menghubungkan membuat ucapan mengalir seperti sungai, bukan robot."
-  },
-  {
-    id: 20,
-    question: "Simak kata: 'I agree'. Apa yang menghubungkan I dan A?",
-    options: ["/w/","/y/ (j)","Tidak ada"],
-    answer: "/y/ (j)",
-    explanation: "Vokal senyum (I) + Vokal (Agree) = I-y-agree."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryPronunciationQuizBank[6], 'elementary/pronunciation/6'));
 
 const ElemPronunLesson6: React.FC = () => {
   const navigate = useNavigate();

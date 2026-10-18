@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { useLessonCompletion } from '../../../../../components/shared/lessonCompletion';
 import LessonCompleteModal from '../../../../../components/shared/LessonCompleteModal';
 
+import { asNumberedQuestions, shuffledAuthored } from '../../advanced/shared/authoredQuiz';
+import { elementaryGrammarQuizBank } from './quizBank';
 const FUTURE_FORMS = [
   {
     title: "Will",
@@ -39,148 +41,7 @@ const EXAMPLES = [
   { type: "Fakta Masa Depan (Will)", en: "I will be 30 next year.", id: "Saya akan berusia 30 tahun depan." }
 ];
 
-const QUIZ_QUESTIONS = [
-{
-    id: 1,
-    question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ['will', 'am going to', 'going to'],
-    answer: 'will',
-    explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
-  },
-  {
-    id: 2,
-    question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ['is going to', 'shall', 'will'],
-    answer: 'is going to',
-    explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
-  },
-  {
-    id: 3,
-    question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ['am going to', 'will', 'will to'],
-    answer: 'am going to',
-    explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
-  },
-  {
-    id: 4,
-    question: "Saya berjanji saya ___ terlambat.",
-    options: ['won\'t', 'not going to', 'don\'t'],
-    answer: 'won\'t',
-    explanation: "Janji menggunakan 'Will' (atau 'Won't' untuk negatif)."
-  },
-  {
-    id: 5,
-    question: "Saya pikir ___ hujan minggu depan.",
-    options: ['will', 'is', 'is going to'],
-    answer: 'will',
-    explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
-  },
-  {
-    id: 6,
-    question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ["will", "am going to", "going to"],
-    answer: "will",
-    explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
-  },
-  {
-    id: 7,
-    question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ["is going to", "shall", "will"],
-    answer: "is going to",
-    explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
-  },
-  {
-    id: 8,
-    question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ["am going to", "will", "will to"],
-    answer: "am going to",
-    explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
-  },
-  {
-    id: 9,
-    question: "Saya berjanji saya ___ terlambat.",
-    options: ["won't","not going to","don't"],
-    answer: "won't",
-    explanation: "Janji menggunakan 'Will' (atau 'Won't' untuk negatif)."
-  },
-  {
-    id: 10,
-    question: "Saya pikir ___ hujan minggu depan.",
-    options: ["will", "is", "is going to"],
-    answer: "will",
-    explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
-  },
-  {
-    id: 11,
-    question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ["will", "am going to", "going to"],
-    answer: "will",
-    explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
-  },
-  {
-    id: 12,
-    question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ["is going to", "shall", "will"],
-    answer: "is going to",
-    explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
-  },
-  {
-    id: 13,
-    question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ["am going to", "will", "will to"],
-    answer: "am going to",
-    explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
-  },
-  {
-    id: 14,
-    question: "Saya berjanji saya ___ terlambat.",
-    options: ["won't","not going to","don't"],
-    answer: "won't",
-    explanation: "Janji menggunakan 'Will' (atau 'Won't' untuk negatif)."
-  },
-  {
-    id: 15,
-    question: "Saya pikir ___ hujan minggu depan.",
-    options: ["will", "is", "is going to"],
-    answer: "will",
-    explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
-  },
-  {
-    id: 16,
-    question: "Oh tidak! Susunya tumpah. Saya ___ (bersihkan).",
-    options: ["will", "am going to", "going to"],
-    answer: "will",
-    explanation: "Ini adalah keputusan spontan yang dibuat saat itu juga. Gunakan 'Will'."
-  },
-  {
-    id: 17,
-    question: "Lihat mobil itu! Itu ___ (tabrakan)!",
-    options: ["is going to", "shall", "will"],
-    answer: "is going to",
-    explanation: "Prediksi berdasarkan bukti saat ini (kamu bisa melihatnya). Gunakan 'Going to'."
-  },
-  {
-    id: 18,
-    question: "Saya membeli cat karena saya ___ (cat) kamar saya besok.",
-    options: ["am going to", "will", "will to"],
-    answer: "am going to",
-    explanation: "Ini adalah rencana/niat. Kamu sudah membeli catnya."
-  },
-  {
-    id: 19,
-    question: "Saya berjanji saya ___ terlambat.",
-    options: ["won't","not going to","don't"],
-    answer: "won't",
-    explanation: "Janji menggunakan 'Will' (atau 'Won't' untuk negatif)."
-  },
-  {
-    id: 20,
-    question: "Saya pikir ___ hujan minggu depan.",
-    options: ["will", "is", "is going to"],
-    answer: "will",
-    explanation: "Prediksi berdasarkan pendapat/keyakinan ('Saya pikir'). Gunakan 'Will'."
-  }
-];
+const QUIZ_QUESTIONS = asNumberedQuestions(shuffledAuthored(elementaryGrammarQuizBank[6], 'elementary/grammar/6'));
 
 const ElemGrammarLesson6: React.FC = () => {
   const navigate = useNavigate();
