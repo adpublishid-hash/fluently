@@ -6,6 +6,7 @@ import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
 import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
 import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[1], 'intermediate/reading/1');
 
@@ -120,12 +121,12 @@ export default function InterReadingLesson1(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Di latihan ini, kamu akan membaca surat dari seorang kerabat. Perhatikan cara ia menceritakan kondisinya di tempat baru:
+                    {lessonTips[1].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Events:</strong> Apa yang terjadi padanya minggu lalu?</li>
-                    <li><strong className="text-slate-800">Feelings:</strong> Bagaimana perasaannya di minggu pertama bekerja?</li>
-                    <li><strong className="text-slate-800">Wishes:</strong> Apa harapannya di masa depan?</li>
+                    {lessonTips[1].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mulai membaca teks!

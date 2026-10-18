@@ -6,6 +6,7 @@ import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
 import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
 import { intermediateReadingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 /* ══ DATA: QUIZ 20 SOAL (CEFR B1) ═══════════════════════════════════════════════ */
 const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[11], 'intermediate/reading/11');
 
@@ -142,12 +143,12 @@ export default function InterReadingLesson11(): React.ReactElement {
 
                 <ReadingCard title="Petunjuk Belajar" icon="💡">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Teks ini melatih kemampuan ekstraksi informasi:
+                    {lessonTips[11].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl">
-                    <li><strong className="text-slate-800">Pemahaman Fakta:</strong> Cari tahu poin penting (waktu, orang, syarat).</li>
-                    <li><strong className="text-slate-800">Makna Kata:</strong> Coba pahami kosakata baru dari konteks kalimat.</li>
-                    <li><strong className="text-slate-800">Tujuan Teks:</strong> Kenapa teks ini ditulis?</li>
+                    {lessonTips[11].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-slate-700 mt-4 font-medium italic">
                     Silakan lanjut ke tab <b>Pemahaman</b> untuk mengevaluasi bacaanmu!

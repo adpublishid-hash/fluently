@@ -6,6 +6,7 @@ import { BookOpen, PenTool, CheckCircle2, ChevronLeft } from 'lucide-react';
 
 import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
 import { intermediateWritingQuizBank } from './quizBank';
+import { lessonTips } from './lessonTips';
 const QUIZ: QuizItem[] = shuffledAuthored(intermediateWritingQuizBank[20], 'intermediate/writing/20');
 
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
@@ -143,12 +144,12 @@ export default function InterWritingLesson20(): React.ReactElement {
 
                 <WritingCard title="Target Mekanikal" icon="🎯">
                   <p className="text-sm text-slate-700 mb-3 leading-relaxed">
-                    Untuk menaklukkan level B1-B2 dalam tulisan <strong>review & writing test</strong>, perhatikan elemen berikut:
+                    {lessonTips[20].intro}
                   </p>
                   <ul className="text-sm text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-4 rounded-xl shadow-inner border border-slate-100">
-                    <li><strong className="text-slate-800">Advanced Lexical Resource:</strong> Hindari kosakata berulang. Gunakan sinonim yang lebih kaya (e.g. <i>crucial, significantly, furthermore</i>).</li>
-                    <li><strong className="text-slate-800">Cohesive Devices:</strong> Jangan hanya bertumpu pada 'and', 'but', 'so'. Gunakan <i>Despite, Nevertheless, Consequently, Moreover</i>.</li>
-                    <li><strong className="text-slate-800">Sentence Variety:</strong> Padukan kalimat pendek dengan <i>Complex Sentences</i> (Relative clauses, if-clauses).</li>
+                    {lessonTips[20].tips.map(([label, text]) => (
+                      <li key={label}><strong className="text-slate-800">{label}:</strong> {text}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-indigo-700 mt-4 font-bold bg-indigo-50 p-3 rounded-lg border border-indigo-100 inline-block w-full">
                     👉 Buka tab "Pemahaman" untuk membaca esai contoh lengkap dan uji akurasi bacaanmu!
