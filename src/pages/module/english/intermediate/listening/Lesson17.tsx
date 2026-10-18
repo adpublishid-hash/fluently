@@ -18,9 +18,9 @@ export default function InterListeningLesson17(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(17); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Getaway","id":"Liburan singkat"},{"en":"Hidden gem","id":"Permata tersembunyi / Tempat rahasia yang bagus"},{"en":"Cabin","id":"Pondok kayu"},{"en":"Chilly","id":"Terasa dingin"}];
-  const DIALOGUE = [{"speaker":"DJ Kevin","text":"It’s Friday evening! If you're looking for a weekend getaway, travel blogger Elena is here. So Elena, what is a great hidden gem for a two-day trip?","translation":"Ini Jumat malam! Jika Anda mencari liburan akhir pekan, blogger perjalanan Elena ada di sini. Jadi Elena, apa permata tersembunyi yang bagus untuk perjalanan dua hari?","avatar":"🎧"},{"speaker":"Elena","text":"Forget the crowded beaches! Head to the Pine Valley mountains. You can rent a small cabin. It is incredibly peaceful and only a two-hour drive from the city. Make sure to pack warm clothes because it gets quite chilly at night.","translation":"Lupakan pantai yang ramai! Pergilah ke pegunungan Lembah Pinus. Anda bisa menyewa kabin kecil. Ini sangat damai dan hanya dua jam berkendara dari kota. Pastikan untuk membawa pakaian hangat karena cukup dingin di malam hari.","avatar":"🎒"}];
-  const BLANKS = [{"sentence":"If you're looking for a weekend ___.","blank":"getaway","opts":["getaway","job","house","car"],"hint":"Liburan / Jalan-jalan"},{"sentence":"Forget the crowded ___! Head to the mountains.","blank":"beaches","opts":["beaches","bars","offices","malls"],"hint":"Pantai"},{"sentence":"Pack warm clothes because it gets ___ at night.","blank":"chilly","opts":["chilly","hot","dark","bright"],"hint":"Agak dingin"}];
+  const vocab = [{"en":"Coastal path","id":"Jalur pantai"},{"en":"Hire shop","id":"Toko penyewaan"},{"en":"Helmet","id":"Helm"},{"en":"Workout","id":"Latihan fisik"}];
+  const DIALOGUE = [{"speaker":"DJ Maria","text":"Good morning! It's Saturday on 'Out and About', and if you're feeling active, this one's for you. Cycling guide Leo is on the line. Leo, what's your favourite weekend bike ride?","translation":"Selamat pagi! Ini hari Sabtu di 'Out and About', dan jika Anda sedang ingin aktif, ini untuk Anda. Pemandu bersepeda Leo tersambung di telepon. Leo, rute bersepeda akhir pekan apa yang paling Anda sukai?","avatar":"🎧"},{"speaker":"Leo","text":"Morning, Maria! It's the coastal path from Seaton to Westcliff. It's about thirty kilometres, mostly flat, and you ride right next to the sea. You can even stop for fish and chips halfway.","translation":"Pagi, Maria! Jalur pantai dari Seaton ke Westcliff. Panjangnya sekitar tiga puluh kilometer, sebagian besar datar, dan Anda bersepeda tepat di sebelah laut. Anda bahkan bisa berhenti untuk makan fish and chips di tengah jalan.","avatar":"🚴"},{"speaker":"DJ Maria","text":"Sounds wonderful, but I don't own a bike.","translation":"Kedengarannya luar biasa, tapi saya tidak punya sepeda.","avatar":"🎧"},{"speaker":"Leo","text":"No problem! There's a hire shop at Seaton station that rents bikes for twenty pounds a day, including a helmet. If you get tired, you can put the bike on the train back.","translation":"Tidak masalah! Ada toko penyewaan di stasiun Seaton yang menyewakan sepeda dua puluh pound sehari, sudah termasuk helm. Jika Anda lelah, Anda bisa membawa sepeda naik kereta untuk pulang.","avatar":"🚴"},{"speaker":"DJ Maria","text":"Brilliant. Is there anything to watch out for?","translation":"Hebat. Apakah ada yang perlu diwaspadai?","avatar":"🎧"},{"speaker":"Leo","text":"Check the wind direction before you set off. Riding into a strong wind can turn an easy trip into a real workout!","translation":"Periksa arah angin sebelum berangkat. Bersepeda melawan angin kencang bisa mengubah perjalanan santai menjadi latihan berat!","avatar":"🚴"}];
+  const BLANKS = [{"sentence":"The coastal path is mostly ___.","blank":"flat","opts":["flat","steep","wet","dark"],"hint":"Datar"},{"sentence":"The hire shop rents bikes, including a ___.","blank":"helmet","opts":["helmet","tent","map","phone"],"hint":"Helm"},{"sentence":"Check the wind ___ before you set off.","blank":"direction","opts":["direction","colour","price","sound"],"hint":"Arah"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson17(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Weekend Getaway Tips</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Coastal Cycling Weekend</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L17</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson17(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Talk Show: Travel Guide</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Talk Show: Coastal Bike Ride</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson17(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Talk Show: Travel Guide" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Talk Show: Coastal Bike Ride" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

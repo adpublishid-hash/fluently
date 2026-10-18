@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[12], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Personal Letter: Moving to London",
+  passageTitle: "Personal Letter: My New Routine",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Mia,<br/><br/>I'm writing this while sitting in my new apartment in London! The move was absolutely exhausting. Half of my boxes ended up at the wrong address, and I spent two days trying to track them down. Honestly, I felt so overwhelmed and almost cried multiple times.<br/><br/>But things are finally settling down. The city is amazing, and I've already found a cozy little café near my place where I can work on my laptop. I'm hoping to start my new job next Monday. I miss you so much and I am really looking forward to your visit in the summer.<br/><br/>Love,<br/>Chloe" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Grandad,<br/><br/>Thanks for your card – it arrived just before my first exam! Life at university is busier than I imagined. On weekdays I get up at seven, catch the 7:45 bus and have lectures from nine until one. After lunch, I go to the library, and then I work at a bookshop from four until seven on Mondays and Wednesdays.<br/><br/>At first I found it hard to organise my time, and I missed a seminar because I read the timetable wrongly. Now I write everything in a diary, and it really helps. Next month I'm moving into a flat with two friends from my course. I'll send you the new address once I have the keys.<br/><br/>Lots of love,<br/>Emma" }} />
   ),
   questions: [
   {
-    "q": "How did Chloe feel during the move?",
+    "q": "What time does Emma catch the bus?",
     "opts": [
-      "Excited",
-      "Angry",
-      "Overwhelmed and exhausted",
-      "Bored"
+      "7:00",
+      "7:45",
+      "9:00",
+      "8:15"
     ],
-    "ans": "Overwhelmed and exhausted"
+    "ans": "7:45"
   },
   {
-    "q": "What specific problem happened?",
+    "q": "On which days does Emma work at the bookshop?",
     "opts": [
-      "She lost her job",
-      "She lost her passport",
-      "Boxes went to the wrong address",
-      "Her laptop broke"
+      "Every weekday",
+      "Tuesdays and Thursdays",
+      "Mondays and Wednesdays",
+      "At weekends"
     ],
-    "ans": "Boxes went to the wrong address"
+    "ans": "Mondays and Wednesdays"
   },
   {
-    "q": "What did Chloe find near her apartment?",
+    "q": "Why did Emma miss a seminar?",
     "opts": [
-      "A cozy café",
-      "A shopping mall",
-      "A gym",
-      "A library"
+      "She overslept.",
+      "She was working at the bookshop.",
+      "The bus was late.",
+      "She read the timetable wrongly."
     ],
-    "ans": "A cozy café"
+    "ans": "She read the timetable wrongly."
   },
   {
-    "q": "What is Chloe's hope for Mia?",
+    "q": "What helps Emma organise her time now?",
     "opts": [
-      "She hopes Mia gets a job in London.",
-      "She hopes Mia moves in.",
-      "She hopes Mia buys her boxes.",
-      "She hopes Mia visits in the summer."
+      "Writing everything in a diary",
+      "Asking her friends for help",
+      "Phoning her grandad",
+      "Working fewer hours"
     ],
-    "ans": "She hopes Mia visits in the summer."
+    "ans": "Writing everything in a diary"
   },
   {
-    "q": "When does Chloe start working?",
+    "q": "What will Emma do when she gets the keys to the flat?",
     "opts": [
-      "Next Monday",
-      "In a month",
-      "She is unemployed",
-      "Tomorrow"
+      "Visit her grandad",
+      "Start a new job",
+      "Send her grandad the new address",
+      "Buy a new diary"
     ],
-    "ans": "Next Monday"
+    "ans": "Send her grandad the new address"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson12(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Personal Letter: Moving to London</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Changes and Feelings</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson12(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Personal Letter: Moving to London</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

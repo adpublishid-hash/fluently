@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[17], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Everyday Advert: Dog Walker",
+  passageTitle: "Everyday Advert: Short Story Competition",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Dog Walker Wanted!</strong><br/><br/>Busy professional seeking a reliable and energetic dog walker for an active Golden Retriever, Max. Needed Monday to Friday for a 45-minute walk around 12:00 PM. Pay is $15 per walk. Must have experience with large dogs and provide at least one reference. If interested, email John at john.doe@email.com." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Short Story Competition!</strong><br/><br/>Do you love writing? Hillside Library invites writers aged 16 and over to enter its annual short story competition. Stories must be no longer than 1,500 words and must include the line 'The door was already open.' Entry is free, and the winner will receive £100 in book tokens and see their story published in the local newspaper. Send your story by email to stories@hillsidelibrary.org by 30 November." }} />
   ),
   questions: [
   {
-    "q": "How many days a week does John need the walker?",
+    "q": "Who can enter the competition?",
     "opts": [
-      "5 days",
-      "3 days",
-      "2 days",
-      "7 days"
+      "Children under 16",
+      "Writers aged 16 and over",
+      "Only library staff",
+      "Only professional writers"
     ],
-    "ans": "5 days"
+    "ans": "Writers aged 16 and over"
   },
   {
-    "q": "What is a strict requirement?",
+    "q": "What must every story include?",
     "opts": [
-      "Must be available mornings.",
-      "Must be a vet.",
-      "Must have experience with large dogs.",
-      "Must own a dog."
+      "A library",
+      "A happy ending",
+      "The line 'The door was already open.'",
+      "A picture"
     ],
-    "ans": "Must have experience with large dogs."
+    "ans": "The line 'The door was already open.'"
   },
   {
-    "q": "How much will the walker earn in a week?",
+    "q": "What is the maximum length of a story?",
     "opts": [
-      "$15",
-      "$45",
-      "$60",
-      "$75"
+      "1,500 words",
+      "500 words",
+      "1,000 words",
+      "2,000 words"
     ],
-    "ans": "$75"
+    "ans": "1,500 words"
   },
   {
-    "q": "How long is the walk?",
+    "q": "How much does it cost to enter?",
     "opts": [
-      "1 hour",
-      "45 mins",
-      "15 mins",
-      "2 hours"
+      "£5",
+      "£15",
+      "£100",
+      "Nothing"
     ],
-    "ans": "45 mins"
+    "ans": "Nothing"
   },
   {
-    "q": "How should candidates apply?",
+    "q": "What will the winner receive?",
     "opts": [
-      "Email John",
-      "Visit John's house",
-      "Send a letter",
-      "Call John"
+      "A cash prize of £1,500",
+      "Book tokens and a published story",
+      "Free library membership",
+      "A job at the newspaper"
     ],
-    "ans": "Email John"
+    "ans": "Book tokens and a published story"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson17(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Everyday Advert: Dog Walker</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Advertisements and Details</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson17(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Everyday Advert: Dog Walker</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

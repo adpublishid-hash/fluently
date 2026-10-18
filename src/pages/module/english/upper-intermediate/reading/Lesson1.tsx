@@ -6,7 +6,7 @@ import { shuffledAuthored } from '../../advanced/shared/authoredQuiz';
 import { upperInterReadingQuizBank } from './quizBank';
 const VOCAB = [
   { en: "Mitigation", id: "Mitigasi – upaya mengurangi dampak perubahan iklim" },
-  { en: "Carbon neutrality", id: "Netralitas karbon – keseimbangan emisi karbon" },
+  { en: "Carbon sinks", id: "Penyerap karbon – hutan, laut, dsb. yang menyerap CO2" },
   { en: "Anthropogenic", id: "Antropogenik – disebabkan oleh aktivitas manusia" },
   { en: "Paris Agreement", id: "Perjanjian Paris – kesepakatan iklim internasional" }
 ];

@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[6], 'inter
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Work Email: Project Kick-off",
+  passageTitle: "Work Email: Team Dinner",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Project Kick-off Meeting Rescheduled<br/><br/>Hi team,<br/>I want to inform you that our project kick-off meeting, originally scheduled for Wednesday, has been pushed back to Friday at 10:00 AM in the main conference room. Some of our key stakeholders are traveling and won't be back until Thursday. Please review the attached agenda beforehand and come prepared with your initial ideas. Let me know if this new time conflicts with any pressing deadlines.<br/><br/>Best,<br/>Sarah" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> End-of-Quarter Team Dinner<br/><br/>Hi everyone,<br/>To celebrate hitting our sales targets, we're having a team dinner next Thursday at 7:00 PM at Bella Cucina on King Street. The restaurant has excellent reviews, especially for its fresh pasta, and it caters for vegetarian and gluten-free diets. The company will cover the cost of the meal, but drinks will be at your own expense. Please confirm your attendance and any dietary requirements by Monday so I can book a table for the right number of people.<br/><br/>Cheers,<br/>Tom" }} />
   ),
   questions: [
   {
-    "q": "Why was the meeting rescheduled?",
+    "q": "Why is the team having a dinner?",
     "opts": [
-      "Sarah is currently out of town.",
-      "The conference room was booked by another team.",
-      "The team needs more time to prepare.",
-      "Important stakeholders are traveling."
+      "To welcome a new manager.",
+      "To celebrate reaching their sales targets.",
+      "To say goodbye to Tom.",
+      "To try a new Italian restaurant."
     ],
-    "ans": "Important stakeholders are traveling."
+    "ans": "To celebrate reaching their sales targets."
   },
   {
-    "q": "What should the team do before the meeting?",
+    "q": "Who pays for the drinks?",
     "opts": [
-      "Meet the stakeholders.",
-      "Reschedule deadlines.",
-      "Read the attached agenda.",
-      "Send their ideas via email."
+      "The company",
+      "Tom",
+      "Each team member",
+      "The restaurant"
     ],
-    "ans": "Read the attached agenda."
+    "ans": "Each team member"
   },
   {
-    "q": "What does 'pushed back' mean?",
+    "q": "What does 'caters for' mean in 'it caters for vegetarian and gluten-free diets'?",
     "opts": [
-      "Canceled",
-      "Relocated",
-      "Moved earlier",
-      "Delayed to a later time"
+      "Provides suitable food for",
+      "Refuses to serve",
+      "Charges extra for",
+      "Delivers meals to"
     ],
-    "ans": "Delayed to a later time"
+    "ans": "Provides suitable food for"
   },
   {
-    "q": "What should a member do if they cannot attend?",
+    "q": "What must staff do by Monday?",
     "opts": [
-      "Ignore the email.",
-      "Write a new agenda.",
-      "Call the stakeholders.",
-      "Inform Sarah about conflicting deadlines."
+      "Pay for their meal.",
+      "Choose a dish from the menu.",
+      "Book their own table.",
+      "Confirm attendance and dietary needs."
     ],
-    "ans": "Inform Sarah about conflicting deadlines."
+    "ans": "Confirm attendance and dietary needs."
   },
   {
-    "q": "What time is the new meeting?",
+    "q": "When is the dinner?",
     "opts": [
-      "Thursday 10:00 AM",
-      "Friday 10:00 AM",
-      "Friday 2:00 PM",
-      "Wednesday 10:00 AM"
+      "Next Monday at 7:00 PM",
+      "Next Thursday at 7:00 PM",
+      "This Thursday at 6:00 PM",
+      "Next Friday at 7:00 PM"
     ],
-    "ans": "Friday 10:00 AM"
+    "ans": "Next Thursday at 7:00 PM"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson6(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Work Email: Project Kick-off</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Work Email and Announcements</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson6(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Work Email: Project Kick-off</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

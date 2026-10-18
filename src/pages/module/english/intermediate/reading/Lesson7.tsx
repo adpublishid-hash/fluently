@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[7], 'inter
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Workplace Notice: Maintenance",
+  passageTitle: "Workplace Notice: New Coffee Machine",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Maintenance Work</strong><br/><br/>Please be advised that the building's water supply will be shut off this Saturday from 8:00 AM to 2:00 PM due to scheduled maintenance on the main pipes. We apologize for the inconvenience this may cause to those coming in for weekend shifts. Bottled water will be provided in the staff lounge. Restrooms on the ground floor will remain operational using a backup water tank." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: New Coffee Machine</strong><br/><br/>Please be advised that a new coffee machine has been installed in the second-floor kitchen. To use it, place a cup under the nozzle, select your drink on the touch screen and tap your staff ID card on the reader. Drinks are free for all employees, but visitors must be accompanied by a member of staff. Please do not attempt to clean or repair the machine yourself. Any faults should be reported to the facilities team on extension 310. The old kettle will be removed on Friday." }} />
   ),
   questions: [
   {
-    "q": "How long will the water supply be shut off?",
+    "q": "Where is the new coffee machine?",
     "opts": [
-      "8 hours",
-      "6 hours",
-      "4 hours",
-      "The whole day"
+      "In the staff lounge",
+      "On the ground floor",
+      "In the second-floor kitchen",
+      "Next to reception"
     ],
-    "ans": "6 hours"
+    "ans": "In the second-floor kitchen"
   },
   {
-    "q": "Which facility will work normally?",
+    "q": "What must you do after choosing your drink?",
     "opts": [
-      "Restrooms on the ground floor",
-      "The coffee machine",
-      "Pipes on the second floor",
-      "All restrooms"
+      "Pay at reception.",
+      "Tap your staff ID card on the reader.",
+      "Clean the nozzle.",
+      "Call extension 310."
     ],
-    "ans": "Restrooms on the ground floor"
+    "ans": "Tap your staff ID card on the reader."
   },
   {
-    "q": "How is the company helping weekend staff?",
+    "q": "What does 'accompanied by' mean in 'visitors must be accompanied by a member of staff'?",
     "opts": [
-      "Providing bottled water",
-      "Giving them extra pay",
-      "Moving them to a different building",
-      "Giving them the day off"
+      "Paid for by",
+      "Replaced by",
+      "Together with",
+      "Reported by"
     ],
-    "ans": "Providing bottled water"
+    "ans": "Together with"
   },
   {
-    "q": "Why is the water off?",
+    "q": "What should you do if the machine stops working?",
     "opts": [
-      "Unpaid bills",
-      "Pipe maintenance",
-      "Cleaning operations",
-      "Emergency leak"
+      "Repair it carefully yourself.",
+      "Use the old kettle instead.",
+      "Ask a visitor for help.",
+      "Report it to the facilities team."
     ],
-    "ans": "Pipe maintenance"
+    "ans": "Report it to the facilities team."
   },
   {
-    "q": "When does the shut off end?",
+    "q": "What will happen on Friday?",
     "opts": [
-      "12:00 PM",
-      "2:00 PM",
-      "Midnight",
-      "8:00 AM"
+      "The old kettle will be taken away.",
+      "The coffee machine will be cleaned.",
+      "Drinks will stop being free.",
+      "Visitors will get new ID cards."
     ],
-    "ans": "2:00 PM"
+    "ans": "The old kettle will be taken away."
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson7(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Workplace Notice: Maintenance</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Notice and Workplace Facilities</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson7(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Workplace Notice: Maintenance</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

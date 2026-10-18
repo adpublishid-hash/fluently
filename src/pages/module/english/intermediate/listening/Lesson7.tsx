@@ -18,9 +18,9 @@ export default function InterListeningLesson7(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(7); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Startup","id":"Perusahaan rintisan"},{"en":"Usage","id":"Penggunaan"},{"en":"Alert","id":"Peringatan / Notifikasi"},{"en":"Carbon footprint","id":"Jejak karbon"}];
-  const DIALOGUE = [{"speaker":"News Anchor","text":"You're listening to City Radio 101. In tech news today, local startup 'GreenTech Solutions' announced a new mobile application that helps households track and reduce their electricity usage in real-time. Lead developer Maya explains.","translation":"Anda mendengarkan City Radio 101. Dalam berita teknologi hari ini, startup lokal 'GreenTech Solutions' mengumumkan aplikasi seluler baru yang membantu rumah tangga melacak dan mengurangi penggunaan listrik mereka secara real-time. Pengembang utama Maya menjelaskan.","avatar":"📻"},{"speaker":"Maya","text":"Our app connects directly to your smart meter. It sends an alert to your phone when you leave appliances turned on for too long. We hope this empowers citizens to lower their carbon footprint.","translation":"Aplikasi kami terhubung secara langsung ke meteran pintar Anda. Ia mengirimkan peringatan ke ponsel Anda saat Anda membiarkan peralatan menyala terlalu lama. Kami harap ini memberdayakan warga untuk menurunkan jejak karbon mereka.","avatar":"👩‍💻"}];
-  const BLANKS = [{"sentence":"The app helps households track their electricity ___.","blank":"usage","opts":["usage","bills","color","sound"],"hint":"Penggunaan"},{"sentence":"It connects directly to your ___ meter.","blank":"smart","opts":["smart","digital","old","heavy"],"hint":"Pintar"},{"sentence":"It sends an ___ to your phone.","blank":"alert","opts":["alert","email","image","video"],"hint":"Peringatan"}];
+  const vocab = [{"en":"Drone","id":"Pesawat nirawak"},{"en":"Sample","id":"Sampel"},{"en":"Resident","id":"Penduduk / Warga"},{"en":"Trial","id":"Uji coba"}];
+  const DIALOGUE = [{"speaker":"News Anchor","text":"Good evening, this is the six o'clock tech report on Coast FM. A hospital in Northfield has started using drones to carry blood samples between its two sites. Our reporter Liam is there now.","translation":"Selamat malam, ini laporan teknologi pukul enam di Coast FM. Sebuah rumah sakit di Northfield mulai menggunakan drone untuk membawa sampel darah di antara kedua lokasinya. Reporter kami, Liam, sedang berada di sana.","avatar":"📻"},{"speaker":"Liam","text":"Thanks, Anna. Until now, samples travelled by van, and the journey often took forty-five minutes in heavy traffic. The drone flies the same route in just twelve minutes.","translation":"Terima kasih, Anna. Selama ini sampel dibawa dengan mobil van, dan perjalanannya sering memakan waktu empat puluh lima menit di tengah kemacetan. Drone menempuh rute yang sama hanya dalam dua belas menit.","avatar":"🎙️"},{"speaker":"News Anchor","text":"Liam, are people worried about drones flying over their homes?","translation":"Liam, apakah warga khawatir tentang drone yang terbang di atas rumah mereka?","avatar":"📻"},{"speaker":"Liam","text":"Some residents were concerned at first, but the hospital says the drones follow a fixed route over fields and the river. Project manager Dr Fiona Grant told me that faster results mean patients can start treatment sooner.","translation":"Beberapa warga awalnya khawatir, tetapi pihak rumah sakit mengatakan drone mengikuti rute tetap di atas ladang dan sungai. Manajer proyek Dr Fiona Grant mengatakan kepada saya bahwa hasil yang lebih cepat berarti pasien bisa memulai pengobatan lebih awal.","avatar":"🎙️"},{"speaker":"News Anchor","text":"Fascinating. The trial will run for six months before a final decision is made.","translation":"Sangat menarik. Uji coba ini akan berlangsung selama enam bulan sebelum keputusan akhir diambil.","avatar":"📻"}];
+  const BLANKS = [{"sentence":"The hospital uses drones to carry blood ___.","blank":"samples","opts":["samples","bags","letters","meals"],"hint":"Sampel"},{"sentence":"Some ___ were concerned at first.","blank":"residents","opts":["residents","doctors","drivers","pilots"],"hint":"Warga / Penduduk"},{"sentence":"The ___ will run for six months.","blank":"trial","opts":["trial","race","film","river"],"hint":"Uji coba"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson7(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Tech Innovations Today</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Drones in Healthcare</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L7</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson7(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio News: Local Tech</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio News: Hospital Drones</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson7(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Radio News: Local Tech" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Radio News: Hospital Drones" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

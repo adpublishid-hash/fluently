@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[14], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Work Email: Project Kick-off",
+  passageTitle: "Work Email: Complaint to a Supplier",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Project Kick-off Meeting Rescheduled<br/><br/>Hi team,<br/>I want to inform you that our project kick-off meeting, originally scheduled for Wednesday, has been pushed back to Friday at 10:00 AM in the main conference room. Some of our key stakeholders are traveling and won't be back until Thursday. Please review the attached agenda beforehand and come prepared with your initial ideas. Let me know if this new time conflicts with any pressing deadlines.<br/><br/>Best,<br/>Sarah" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Late and Incomplete Delivery – Order 5817<br/><br/>Dear Mr Hughes,<br/>I am writing to complain about our recent order of office chairs. The delivery was promised for 3 May but did not arrive until 10 May, and only 18 of the 25 chairs were included. As a result, several new employees have had to share desks this week. This is the second time this year that an order has been late. I would be grateful if you could deliver the missing chairs by Friday and explain what steps you will take to prevent this from happening again.<br/><br/>Yours sincerely,<br/>Laura Bennett<br/>Office Manager" }} />
   ),
   questions: [
   {
-    "q": "Why was the meeting rescheduled?",
+    "q": "What is the main purpose of the email?",
     "opts": [
-      "The conference room was booked by another team.",
-      "Important stakeholders are traveling.",
-      "The team needs more time to prepare.",
-      "Sarah is currently out of town."
+      "To order more desks",
+      "To complain about a delivery",
+      "To thank Mr Hughes",
+      "To cancel the order"
     ],
-    "ans": "Important stakeholders are traveling."
+    "ans": "To complain about a delivery"
   },
   {
-    "q": "What should the team do before the meeting?",
+    "q": "How many chairs are missing?",
     "opts": [
-      "Send their ideas via email.",
-      "Read the attached agenda.",
-      "Reschedule deadlines.",
-      "Meet the stakeholders."
+      "Seven",
+      "Eighteen",
+      "Twenty-five",
+      "Ten"
     ],
-    "ans": "Read the attached agenda."
+    "ans": "Seven"
   },
   {
-    "q": "What does 'pushed back' mean?",
+    "q": "How late was the delivery?",
     "opts": [
-      "Delayed to a later time",
-      "Relocated",
-      "Moved earlier",
-      "Canceled"
+      "Three days",
+      "Two weeks",
+      "One week",
+      "One month"
     ],
-    "ans": "Delayed to a later time"
+    "ans": "One week"
   },
   {
-    "q": "What should a member do if they cannot attend?",
+    "q": "What does Laura ask Mr Hughes to do by Friday?",
     "opts": [
-      "Inform Sarah about conflicting deadlines.",
-      "Ignore the email.",
-      "Call the stakeholders.",
-      "Write a new agenda."
+      "Give her a full refund",
+      "Collect the chairs that arrived",
+      "Offer a discount on future orders",
+      "Deliver the missing chairs"
     ],
-    "ans": "Inform Sarah about conflicting deadlines."
+    "ans": "Deliver the missing chairs"
   },
   {
-    "q": "What time is the new meeting?",
+    "q": "What does 'prevent' mean in 'prevent this from happening again'?",
     "opts": [
-      "Wednesday 10:00 AM",
-      "Friday 2:00 PM",
-      "Friday 10:00 AM",
-      "Thursday 10:00 AM"
+      "Explain something",
+      "Stop something from happening",
+      "Report something",
+      "Repeat something"
     ],
-    "ans": "Friday 10:00 AM"
+    "ans": "Stop something from happening"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson14(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Work Email: Project Kick-off</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Work Email and Announcements</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson14(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Work Email: Project Kick-off</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[8], 'inter
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Personal Letter: Moving to London",
+  passageTitle: "Personal Letter: Big News from Leeds",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Mia,<br/><br/>I'm writing this while sitting in my new apartment in London! The move was absolutely exhausting. Half of my boxes ended up at the wrong address, and I spent two days trying to track them down. Honestly, I felt so overwhelmed and almost cried multiple times.<br/><br/>But things are finally settling down. The city is amazing, and I've already found a cozy little café near my place where I can work on my laptop. I'm hoping to start my new job next Monday. I miss you so much and I am really looking forward to your visit in the summer.<br/><br/>Love,<br/>Chloe" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Aunt Helen,<br/><br/>I've got some exciting news! Last week our local newspaper printed a story about the community garden I started with my neighbours. A journalist came to interview us, and the next day our photo was on the front page. Since then, dozens of people have offered to help, and the council has given us a small grant to buy tools and seeds.<br/><br/>Of course, it hasn't all been easy. Someone damaged the fence in March, and I was so upset that I nearly gave up. I'm glad I didn't. I've cut out the article for you and put it in this envelope. Do come and see the garden when you're next in Leeds.<br/><br/>With love,<br/>Ben" }} />
   ),
   questions: [
   {
-    "q": "How did Chloe feel during the move?",
+    "q": "Why was Ben's photo in the newspaper?",
     "opts": [
-      "Overwhelmed and exhausted",
-      "Excited",
-      "Bored",
-      "Angry"
+      "He won a gardening competition.",
+      "The paper wrote about his community garden.",
+      "He started working as a journalist.",
+      "He caught the person who damaged the fence."
     ],
-    "ans": "Overwhelmed and exhausted"
+    "ans": "The paper wrote about his community garden."
   },
   {
-    "q": "What specific problem happened?",
+    "q": "What has the council given the garden?",
     "opts": [
-      "Her laptop broke",
-      "She lost her passport",
-      "She lost her job",
-      "Boxes went to the wrong address"
+      "A new fence",
+      "A plot of land",
+      "A small grant",
+      "A team of gardeners"
     ],
-    "ans": "Boxes went to the wrong address"
+    "ans": "A small grant"
   },
   {
-    "q": "What did Chloe find near her apartment?",
+    "q": "How did Ben feel when the fence was damaged?",
     "opts": [
-      "A shopping mall",
-      "A cozy café",
-      "A library",
-      "A gym"
+      "Slightly amused",
+      "Very upset",
+      "Not worried at all",
+      "Proud of himself"
     ],
-    "ans": "A cozy café"
+    "ans": "Very upset"
   },
   {
-    "q": "What is Chloe's hope for Mia?",
+    "q": "What has Ben sent with the letter?",
     "opts": [
-      "She hopes Mia visits in the summer.",
-      "She hopes Mia buys her boxes.",
-      "She hopes Mia moves in.",
-      "She hopes Mia gets a job in London."
+      "A photo of his neighbours",
+      "Some seeds",
+      "A plan of the garden",
+      "The newspaper article"
     ],
-    "ans": "She hopes Mia visits in the summer."
+    "ans": "The newspaper article"
   },
   {
-    "q": "When does Chloe start working?",
+    "q": "What does 'gave up' mean in 'I nearly gave up'?",
     "opts": [
-      "Tomorrow",
-      "She is unemployed",
-      "Next Monday",
-      "In a month"
+      "Stopped trying",
+      "Gave something away",
+      "Got angry",
+      "Asked for help"
     ],
-    "ans": "Next Monday"
+    "ans": "Stopped trying"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson8(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Personal Letter: Moving to London</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Changes and Feelings</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson8(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Personal Letter: Moving to London</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

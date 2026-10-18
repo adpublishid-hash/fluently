@@ -18,9 +18,9 @@ export default function InterListeningLesson12(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(12); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Admission","id":"Penerimaan masuk"},{"en":"Application","id":"Berkas pendaftaran"},{"en":"Authentic","id":"Asli / Jujur"},{"en":"Overcome","id":"Mengatasi"}];
-  const DIALOGUE = [{"speaker":"Interviewer","text":"Hello and welcome to our student advice segment. I am sitting with Mr. Roberts from the University Admission board. What is the most important part of an application, Mr. Roberts?","translation":"Halo dan selamat datang di segmen saran mahasiswa kami. Saya duduk dengan Tuan Roberts dari Dewan Penerimaan Universitas. Apa bagian terpenting dari sebuah lamaran, Tuan Roberts?","avatar":"🎤"},{"speaker":"Mr. Roberts","text":"Besides good grades, we really look at the personal essay. Your personal essay shows us your true motivation and character. My best advice is to be authentic and write about a real challenge you overcame, not just what you think we want to hear.","translation":"Selain nilai yang bagus, kami sangat melihat esai pribadi. Esai pribadi Anda menunjukkan motivasi dan karakter Anda yang sebenarnya. Saran terbaik saya adalah jujur dan tulis tentang tantangan nyata yang pernah Anda atasi, bukan sekadar apa yang Anda pikir ingin kami dengar.","avatar":"👨‍🏫"}];
-  const BLANKS = [{"sentence":"I am sitting with Mr. Roberts from the University Admission ___.","blank":"board","opts":["board","room","bus","team"],"hint":"Dewan / Panitia"},{"sentence":"Your personal essay shows us your true ___ and character.","blank":"motivation","opts":["motivation","face","friends","grades"],"hint":"Motivasi / Dorongan"},{"sentence":"Write about a real ___ you overcame.","blank":"challenge","opts":["challenge","book","game","party"],"hint":"Tantangan"}];
+  const vocab = [{"en":"Open day","id":"Hari terbuka kampus"},{"en":"Accommodation","id":"Tempat tinggal / Asrama"},{"en":"Timetable","id":"Jadwal"},{"en":"Lecture","id":"Kuliah"}];
+  const DIALOGUE = [{"speaker":"Interviewer","text":"This is 'Student Voice'. With open day season starting next month, I'm talking to Dr Patel, who leads campus tours at Kingsford University. Dr Patel, why should students attend an open day?","translation":"Ini 'Student Voice'. Karena musim hari terbuka kampus dimulai bulan depan, saya berbincang dengan Dr Patel, yang memimpin tur kampus di Kingsford University. Dr Patel, mengapa siswa sebaiknya menghadiri hari terbuka?","avatar":"🎤"},{"speaker":"Dr Patel","text":"Because a website can only tell you so much. On an open day, you can visit the library, see the accommodation and chat to current students about what life on campus is really like.","translation":"Karena situs web hanya bisa memberi informasi yang terbatas. Pada hari terbuka, Anda bisa mengunjungi perpustakaan, melihat asrama, dan mengobrol dengan mahasiswa tentang seperti apa sebenarnya kehidupan di kampus.","avatar":"👨‍🏫"},{"speaker":"Interviewer","text":"How should students prepare?","translation":"Bagaimana siswa sebaiknya bersiap?","avatar":"🎤"},{"speaker":"Dr Patel","text":"Check the timetable online and book the talks you want in advance, because popular sessions fill up quickly. I'd also bring a list of questions – for example, how many hours of lectures there are each week.","translation":"Periksa jadwalnya secara daring dan pesan sesi presentasi yang Anda inginkan lebih awal, karena sesi yang populer cepat penuh. Saya juga akan membawa daftar pertanyaan – misalnya, berapa jam kuliah setiap minggu.","avatar":"👨‍🏫"},{"speaker":"Interviewer","text":"And is it worth bringing parents along?","translation":"Lalu, apakah ada gunanya mengajak orang tua?","avatar":"🎤"},{"speaker":"Dr Patel","text":"Absolutely. Parents often think of practical questions, like the cost of rent or transport. Just make sure you ask your own questions too!","translation":"Tentu saja. Orang tua sering memikirkan pertanyaan praktis, seperti biaya sewa tempat tinggal atau transportasi. Pastikan saja Anda juga mengajukan pertanyaan Anda sendiri!","avatar":"👨‍🏫"}];
+  const BLANKS = [{"sentence":"On an open day, you can see the ___.","blank":"accommodation","opts":["accommodation","airport","factory","hospital"],"hint":"Tempat tinggal / Asrama"},{"sentence":"Book the talks you want in ___.","blank":"advance","opts":["advance","silence","secret","danger"],"hint":"Lebih awal"},{"sentence":"Popular sessions fill ___ quickly.","blank":"up","opts":["up","in","off","down"],"hint":"Penuh (fill up)"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson12(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">College Admission Guide</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">University Open Days</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L12</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson12(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: University Admissions</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: University Open Days</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson12(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Interview: University Admissions" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Interview: University Open Days" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

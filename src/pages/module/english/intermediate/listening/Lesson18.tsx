@@ -18,9 +18,9 @@ export default function InterListeningLesson18(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(18); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Nutritionist","id":"Ahli Gizi"},{"en":"Habits","id":"Kebiasaan"},{"en":"Routine","id":"Rutinitas"},{"en":"Digestion","id":"Pencernaan"}];
-  const DIALOGUE = [{"speaker":"Host","text":"Welcome to the 'Daily Health' podcast. I'm Jenna. Today my guest is nutritionist David. We are checking out simple healthy habits you can easily add to your busy routine. Thanks for coming, David.","translation":"Selamat datang di podcast 'Kesehatan Harian'. Saya Jenna. Hari ini tamu saya adalah ahli gizi David. Kita akan melihat kebiasaan sehat sederhana yang dapat dengan mudah ditambahkan ke rutinitas sibuk Anda. Terima kasih telah datang, David.","avatar":"🎙️"},{"speaker":"David","text":"Thanks for having me, Jenna. A great start is drinking water right after you wake up. Also, taking a short ten-minute walk after lunch dramatically improves digestion and reduces evening fatigue.","translation":"Terima kasih telah mengundang saya, Jenna. Awal yang baik adalah meminum air putih segera setelah bangun. Selain itu, berjalan kaki singkat sepuluh menit setelah makan siang secara dramatis memperbaiki pencernaan dan mengurangi kelelahan di sore hari.","avatar":"👨‍⚕️"}];
-  const BLANKS = [{"sentence":"We are checking out simple healthy ___ you can add to your routine.","blank":"habits","opts":["habits","books","clothes","foods"],"hint":"Kebiasaan"},{"sentence":"Drinking water right after you ___ up.","blank":"wake","opts":["wake","stand","look","give"],"hint":"Bangun tidur"},{"sentence":"Taking a 10-minute walk improves ___.","blank":"digestion","opts":["digestion","sleep","hair","vision"],"hint":"Pencernaan"}];
+  const vocab = [{"en":"Psychologist","id":"Psikolog"},{"en":"Outdoors","id":"Di luar ruangan"},{"en":"Breathing exercise","id":"Latihan pernapasan"},{"en":"Calmer","id":"Lebih tenang"}];
+  const DIALOGUE = [{"speaker":"Host","text":"Hello and welcome to 'Mind Matters'. I'm Daniel. Looking after your mind is just as important as looking after your body, so today I'm talking to psychologist Dr Amira Saleh about everyday stress. Amira, what's your first piece of advice?","translation":"Halo dan selamat datang di 'Mind Matters'. Saya Daniel. Menjaga pikiran sama pentingnya dengan menjaga tubuh, jadi hari ini saya berbincang dengan psikolog Dr Amira Saleh tentang stres sehari-hari. Amira, apa saran pertama Anda?","avatar":"🎙️"},{"speaker":"Dr Saleh","text":"Hi, Daniel. My first tip is to spend time outdoors. Research shows that just twenty minutes in a park can lower stress levels. You don't need to go hiking – a walk around the block will do.","translation":"Hai, Daniel. Tips pertama saya adalah menghabiskan waktu di luar ruangan. Penelitian menunjukkan bahwa hanya dua puluh menit di taman dapat menurunkan tingkat stres. Anda tidak perlu mendaki gunung – berjalan-jalan di sekitar rumah pun sudah cukup.","avatar":"👩‍⚕️"},{"speaker":"Host","text":"What about when stress hits you in the middle of a busy day?","translation":"Bagaimana jika stres datang di tengah hari yang sibuk?","avatar":"🎙️"},{"speaker":"Dr Saleh","text":"Try a simple breathing exercise. Breathe in for four seconds, hold for four, then breathe out for four. Repeat it a few times and you'll feel calmer.","translation":"Cobalah latihan pernapasan sederhana. Tarik napas selama empat detik, tahan selama empat detik, lalu embuskan selama empat detik. Ulangi beberapa kali dan Anda akan merasa lebih tenang.","avatar":"👩‍⚕️"},{"speaker":"Host","text":"And should people keep their worries to themselves?","translation":"Lalu, apakah orang sebaiknya memendam kekhawatiran mereka sendiri?","avatar":"🎙️"},{"speaker":"Dr Saleh","text":"Definitely not. Talking to a friend or a family member can make a problem feel much smaller. And if the stress doesn't go away, speak to your doctor.","translation":"Tentu tidak. Berbicara dengan teman atau anggota keluarga dapat membuat masalah terasa jauh lebih kecil. Dan jika stresnya tidak hilang, bicarakan dengan dokter Anda.","avatar":"👩‍⚕️"}];
+  const BLANKS = [{"sentence":"My first tip is to spend time ___.","blank":"outdoors","opts":["outdoors","shopping","online","asleep"],"hint":"Di luar ruangan"},{"sentence":"Just twenty minutes in a park can lower stress ___.","blank":"levels","opts":["levels","prices","doors","clouds"],"hint":"Tingkat"},{"sentence":"Repeat it a few times and you'll feel ___.","blank":"calmer","opts":["calmer","hungrier","louder","older"],"hint":"Lebih tenang"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson18(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Healthy Lifestyle Habits</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Managing Everyday Stress</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L18</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson18(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Healthy Habits</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Mind Matters</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson18(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Podcast: Healthy Habits" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Podcast: Mind Matters" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

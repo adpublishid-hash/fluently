@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[18], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Work Email: Project Kick-off",
+  passageTitle: "Work Email: Visiting the Jakarta Office",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Project Kick-off Meeting Rescheduled<br/><br/>Hi team,<br/>I want to inform you that our project kick-off meeting, originally scheduled for Wednesday, has been pushed back to Friday at 10:00 AM in the main conference room. Some of our key stakeholders are traveling and won't be back until Thursday. Please review the attached agenda beforehand and come prepared with your initial ideas. Let me know if this new time conflicts with any pressing deadlines.<br/><br/>Best,<br/>Sarah" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Tips for Next Week's Visit to Jakarta<br/><br/>Hi all,<br/>As you know, five of us will be visiting our Jakarta office from Monday to Thursday next week. Our colleagues there have kindly organised a welcome lunch on Monday, where we'll try some traditional Indonesian dishes. A few cultural tips: it is polite to pass and receive things with your right hand, and people often use first names with a title, such as 'Pak' for men and 'Ibu' for women. Please also allow extra time for travel, as the traffic can be very heavy. Reply to this email if you have any dietary needs.<br/><br/>Thanks,<br/>Mark" }} />
   ),
   questions: [
   {
-    "q": "Why was the meeting rescheduled?",
+    "q": "How long will the visit last?",
     "opts": [
-      "The conference room was booked by another team.",
-      "Important stakeholders are traveling.",
-      "The team needs more time to prepare.",
-      "Sarah is currently out of town."
+      "Two days",
+      "A whole week",
+      "Four days",
+      "Five days"
     ],
-    "ans": "Important stakeholders are traveling."
+    "ans": "Four days"
   },
   {
-    "q": "What should the team do before the meeting?",
+    "q": "What has been organised for Monday?",
     "opts": [
-      "Send their ideas via email.",
-      "Reschedule deadlines.",
-      "Read the attached agenda.",
-      "Meet the stakeholders."
+      "A tour of the city",
+      "A welcome lunch",
+      "A training session",
+      "A football match"
     ],
-    "ans": "Read the attached agenda."
+    "ans": "A welcome lunch"
   },
   {
-    "q": "What does 'pushed back' mean?",
+    "q": "Which hand is it polite to use when passing things?",
     "opts": [
-      "Delayed to a later time",
-      "Moved earlier",
-      "Relocated",
-      "Canceled"
+      "The left hand",
+      "Either hand",
+      "Both hands only",
+      "The right hand"
     ],
-    "ans": "Delayed to a later time"
+    "ans": "The right hand"
   },
   {
-    "q": "What should a member do if they cannot attend?",
+    "q": "Why should visitors allow extra travel time?",
     "opts": [
-      "Ignore the email.",
-      "Call the stakeholders.",
-      "Inform Sarah about conflicting deadlines.",
-      "Write a new agenda."
+      "The office is far from the airport.",
+      "The traffic can be very heavy.",
+      "Taxis are hard to find.",
+      "Meetings start very early."
     ],
-    "ans": "Inform Sarah about conflicting deadlines."
+    "ans": "The traffic can be very heavy."
   },
   {
-    "q": "What time is the new meeting?",
+    "q": "How would you politely address a female colleague called Rina?",
     "opts": [
-      "Friday 10:00 AM",
-      "Friday 2:00 PM",
-      "Wednesday 10:00 AM",
-      "Thursday 10:00 AM"
+      "Ibu Rina",
+      "Pak Rina",
+      "Rina Ibu",
+      "Mrs Jakarta"
     ],
-    "ans": "Friday 10:00 AM"
+    "ans": "Ibu Rina"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson18(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Work Email: Project Kick-off</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Work Email and Announcements</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson18(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Work Email: Project Kick-off</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

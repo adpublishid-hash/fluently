@@ -18,9 +18,9 @@ export default function InterListeningLesson14(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(14); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Nutritionist","id":"Ahli Gizi"},{"en":"Habits","id":"Kebiasaan"},{"en":"Routine","id":"Rutinitas"},{"en":"Digestion","id":"Pencernaan"}];
-  const DIALOGUE = [{"speaker":"Host","text":"Welcome to the 'Daily Health' podcast. I'm Jenna. Today my guest is nutritionist David. We are checking out simple healthy habits you can easily add to your busy routine. Thanks for coming, David.","translation":"Selamat datang di podcast 'Kesehatan Harian'. Saya Jenna. Hari ini tamu saya adalah ahli gizi David. Kita akan melihat kebiasaan sehat sederhana yang dapat dengan mudah ditambahkan ke rutinitas sibuk Anda. Terima kasih telah datang, David.","avatar":"🎙️"},{"speaker":"David","text":"Thanks for having me, Jenna. A great start is drinking water right after you wake up. Also, taking a short ten-minute walk after lunch dramatically improves digestion and reduces evening fatigue.","translation":"Terima kasih telah mengundang saya, Jenna. Awal yang baik adalah meminum air putih segera setelah bangun. Selain itu, berjalan kaki singkat sepuluh menit setelah makan siang secara dramatis memperbaiki pencernaan dan mengurangi kelelahan di sore hari.","avatar":"👨‍⚕️"}];
-  const BLANKS = [{"sentence":"We are checking out simple healthy ___ you can add to your routine.","blank":"habits","opts":["habits","books","clothes","foods"],"hint":"Kebiasaan"},{"sentence":"Drinking water right after you ___ up.","blank":"wake","opts":["wake","stand","look","give"],"hint":"Bangun tidur"},{"sentence":"Taking a 10-minute walk improves ___.","blank":"digestion","opts":["digestion","sleep","hair","vision"],"hint":"Pencernaan"}];
+  const vocab = [{"en":"Physiotherapist","id":"Fisioterapis"},{"en":"Stiff","id":"Kaku"},{"en":"Posture","id":"Postur / Sikap tubuh"},{"en":"Reminder","id":"Pengingat"}];
+  const DIALOGUE = [{"speaker":"Host","text":"This is 'Healthy at Work'. I'm Rachel. Millions of us sit at a desk for eight hours a day, and many listeners have written in about back and neck pain. My guest is physiotherapist Omar Khan. Omar, where should we start?","translation":"Ini 'Healthy at Work'. Saya Rachel. Jutaan orang duduk di meja kerja selama delapan jam sehari, dan banyak pendengar menulis surat tentang sakit punggung dan leher. Tamu saya adalah fisioterapis Omar Khan. Omar, dari mana kita harus mulai?","avatar":"🎙️"},{"speaker":"Omar","text":"Start with your screen, Rachel. The top of it should be at eye level, so you aren't looking down all day. Keep your feet flat on the floor and your back against the chair.","translation":"Mulailah dari layar Anda, Rachel. Bagian atasnya harus sejajar dengan mata, supaya Anda tidak menunduk sepanjang hari. Letakkan kaki rata di lantai dan sandarkan punggung ke kursi.","avatar":"👨‍⚕️"},{"speaker":"Host","text":"But even with a good chair, I feel stiff by the afternoon.","translation":"Tapi meskipun kursinya bagus, saya merasa kaku menjelang sore.","avatar":"🎙️"},{"speaker":"Omar","text":"That's because the body isn't designed to stay still. Set a reminder to stand up every thirty minutes. Walk over to a colleague instead of sending an email, or take phone calls standing up.","translation":"Itu karena tubuh tidak dirancang untuk diam. Pasang pengingat untuk berdiri setiap tiga puluh menit. Berjalanlah ke meja rekan kerja daripada mengirim email, atau terima telepon sambil berdiri.","avatar":"👨‍⚕️"},{"speaker":"Host","text":"Small changes, then, rather than an expensive new office chair.","translation":"Jadi, perubahan kecil, bukan kursi kantor baru yang mahal.","avatar":"🎙️"},{"speaker":"Omar","text":"Exactly. The best posture is your next posture – just keep moving.","translation":"Tepat sekali. Postur terbaik adalah postur Anda berikutnya – teruslah bergerak.","avatar":"👨‍⚕️"}];
+  const BLANKS = [{"sentence":"The top of the screen should be at eye ___.","blank":"level","opts":["level","line","colour","size"],"hint":"Ketinggian / Sejajar"},{"sentence":"Even with a good chair, I feel ___ by the afternoon.","blank":"stiff","opts":["stiff","rich","hungry","famous"],"hint":"Kaku"},{"sentence":"Set a ___ to stand up every thirty minutes.","blank":"reminder","opts":["reminder","record","table","price"],"hint":"Pengingat"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson14(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Healthy Lifestyle Habits</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Healthy at Work</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L14</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson14(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Healthy Habits</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio: Healthy at Work</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson14(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Podcast: Healthy Habits" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Radio: Healthy at Work" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

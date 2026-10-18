@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[13], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Everyday Advert: Dog Walker",
+  passageTitle: "Everyday Advert: Beginners' Yoga",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Dog Walker Wanted!</strong><br/><br/>Busy professional seeking a reliable and energetic dog walker for an active Golden Retriever, Max. Needed Monday to Friday for a 45-minute walk around 12:00 PM. Pay is $15 per walk. Must have experience with large dogs and provide at least one reference. If interested, email John at john.doe@email.com." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Beginners' Yoga – First Class Free!</strong><br/><br/>Feeling stiff after a long day at your desk? Join our friendly beginners' yoga class every Wednesday from 7:00 to 8:00 PM at Riverside Community Hall. Classes are suitable for all ages and fitness levels. Each session costs £8, or £35 for a block of five. Mats are provided, but please wear comfortable clothing. Places are limited, so booking is essential. To reserve a place, text Kate on 07700 900789." }} />
   ),
   questions: [
   {
-    "q": "How many days a week does John need the walker?",
+    "q": "Who is this class mainly for?",
     "opts": [
-      "5 days",
-      "3 days",
-      "2 days",
-      "7 days"
+      "Experienced yoga teachers",
+      "People who are new to yoga",
+      "Only young people",
+      "Professional athletes"
     ],
-    "ans": "5 days"
+    "ans": "People who are new to yoga"
   },
   {
-    "q": "What is a strict requirement?",
+    "q": "How much does one session cost on its own?",
     "opts": [
-      "Must have experience with large dogs.",
-      "Must be a vet.",
-      "Must be available mornings.",
-      "Must own a dog."
+      "£5",
+      "£7",
+      "£35",
+      "£8"
     ],
-    "ans": "Must have experience with large dogs."
+    "ans": "£8"
   },
   {
-    "q": "How much will the walker earn in a week?",
+    "q": "What does 'stiff' mean in 'Feeling stiff after a long day at your desk?'",
     "opts": [
-      "$60",
-      "$45",
-      "$15",
-      "$75"
+      "Very hungry",
+      "Not able to bend easily",
+      "Sleepy",
+      "Bored with work"
     ],
-    "ans": "$75"
+    "ans": "Not able to bend easily"
   },
   {
-    "q": "How long is the walk?",
+    "q": "What should people wear to the class?",
     "opts": [
-      "15 mins",
-      "1 hour",
-      "45 mins",
-      "2 hours"
+      "Comfortable clothing",
+      "A sports uniform",
+      "Running shoes",
+      "Warm winter clothes"
     ],
-    "ans": "45 mins"
+    "ans": "Comfortable clothing"
   },
   {
-    "q": "How should candidates apply?",
+    "q": "Why is booking essential?",
     "opts": [
-      "Email John",
-      "Send a letter",
-      "Visit John's house",
-      "Call John"
+      "The first class is free.",
+      "The hall is closing soon.",
+      "Places are limited.",
+      "Kate is away on Wednesdays."
     ],
-    "ans": "Email John"
+    "ans": "Places are limited."
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson13(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Everyday Advert: Dog Walker</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Advertisements and Details</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson13(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Everyday Advert: Dog Walker</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

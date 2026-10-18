@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[16], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Personal Letter: Moving to London",
+  passageTitle: "Personal Letter: The Job Interview",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Mia,<br/><br/>I'm writing this while sitting in my new apartment in London! The move was absolutely exhausting. Half of my boxes ended up at the wrong address, and I spent two days trying to track them down. Honestly, I felt so overwhelmed and almost cried multiple times.<br/><br/>But things are finally settling down. The city is amazing, and I've already found a cozy little café near my place where I can work on my laptop. I'm hoping to start my new job next Monday. I miss you so much and I am really looking forward to your visit in the summer.<br/><br/>Love,<br/>Chloe" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Sophie,<br/><br/>You'll never guess what happened! Last Tuesday I had an interview for the assistant chef job at the hotel by the harbour. I was so nervous that I could hardly sleep the night before. When I arrived, the head chef asked me to cook an omelette in front of him, which I hadn't expected at all.<br/><br/>Luckily, my hands stopped shaking once I started cooking. He asked me lots of questions about my experience, and I think I answered them quite well. Yesterday he rang to offer me the job! I'm thrilled, although I'm a bit anxious about the early starts. Let's celebrate when you come home in August.<br/><br/>Love,<br/>Ollie" }} />
   ),
   questions: [
   {
-    "q": "How did Chloe feel during the move?",
+    "q": "What job did Ollie apply for?",
     "opts": [
-      "Excited",
-      "Angry",
-      "Overwhelmed and exhausted",
-      "Bored"
+      "Head chef",
+      "Hotel receptionist",
+      "Assistant chef",
+      "Waiter"
     ],
-    "ans": "Overwhelmed and exhausted"
+    "ans": "Assistant chef"
   },
   {
-    "q": "What specific problem happened?",
+    "q": "What surprised Ollie at the interview?",
     "opts": [
-      "Boxes went to the wrong address",
-      "She lost her job",
-      "She lost her passport",
-      "Her laptop broke"
+      "He had to cook an omelette.",
+      "The chef was late.",
+      "There were no questions.",
+      "The hotel was closed."
     ],
-    "ans": "Boxes went to the wrong address"
+    "ans": "He had to cook an omelette."
   },
   {
-    "q": "What did Chloe find near her apartment?",
+    "q": "How did Ollie feel the night before the interview?",
     "opts": [
-      "A gym",
-      "A shopping mall",
-      "A cozy café",
-      "A library"
+      "Bored",
+      "Confident",
+      "Very nervous",
+      "Angry"
     ],
-    "ans": "A cozy café"
+    "ans": "Very nervous"
   },
   {
-    "q": "What is Chloe's hope for Mia?",
+    "q": "What does 'thrilled' mean in 'I'm thrilled'?",
     "opts": [
-      "She hopes Mia gets a job in London.",
-      "She hopes Mia moves in.",
-      "She hopes Mia buys her boxes.",
-      "She hopes Mia visits in the summer."
+      "Slightly worried",
+      "Very pleased",
+      "Very tired",
+      "Rather surprised"
     ],
-    "ans": "She hopes Mia visits in the summer."
+    "ans": "Very pleased"
   },
   {
-    "q": "When does Chloe start working?",
+    "q": "What is Ollie a bit worried about?",
     "opts": [
-      "Next Monday",
-      "She is unemployed",
-      "In a month",
-      "Tomorrow"
+      "The salary",
+      "The head chef",
+      "Cooking omelettes",
+      "The early starts"
     ],
-    "ans": "Next Monday"
+    "ans": "The early starts"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson16(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Personal Letter: Moving to London</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Changes and Feelings</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson16(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Personal Letter: Moving to London</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

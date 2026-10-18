@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[11], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Workplace Notice: Maintenance",
+  passageTitle: "Workplace Notice: Summer Staff Party",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Maintenance Work</strong><br/><br/>Please be advised that the building's water supply will be shut off this Saturday from 8:00 AM to 2:00 PM due to scheduled maintenance on the main pipes. We apologize for the inconvenience this may cause to those coming in for weekend shifts. Bottled water will be provided in the staff lounge. Restrooms on the ground floor will remain operational using a backup water tank." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Summer Staff Party</strong><br/><br/>All employees are invited to the annual summer party on Friday 14 July from 4:00 PM to 8:00 PM in the rooftop garden. Food and soft drinks will be provided free of charge. Staff may bring one guest each, but guests must be registered with reception by Wednesday 12 July. In case of rain, the party will move to the ground-floor canteen. The office will close at 3:30 PM that day so that everyone can attend." }} />
   ),
   questions: [
   {
-    "q": "How long will the water supply be shut off?",
+    "q": "Where will the party be held if the weather is good?",
     "opts": [
-      "The whole day",
-      "4 hours",
-      "6 hours",
-      "8 hours"
+      "In the ground-floor canteen",
+      "In the rooftop garden",
+      "At reception",
+      "In a local restaurant"
     ],
-    "ans": "6 hours"
+    "ans": "In the rooftop garden"
   },
   {
-    "q": "Which facility will work normally?",
+    "q": "How many guests can each employee bring?",
     "opts": [
-      "All restrooms",
-      "The coffee machine",
-      "Pipes on the second floor",
-      "Restrooms on the ground floor"
+      "None",
+      "Two",
+      "As many as they like",
+      "One"
     ],
-    "ans": "Restrooms on the ground floor"
+    "ans": "One"
   },
   {
-    "q": "How is the company helping weekend staff?",
+    "q": "What is the deadline for registering guests?",
     "opts": [
-      "Giving them the day off",
-      "Giving them extra pay",
-      "Moving them to a different building",
-      "Providing bottled water"
+      "Wednesday 12 July",
+      "Friday 14 July",
+      "Tuesday 11 July",
+      "Monday 10 July"
     ],
-    "ans": "Providing bottled water"
+    "ans": "Wednesday 12 July"
   },
   {
-    "q": "Why is the water off?",
+    "q": "What will happen if it rains?",
     "opts": [
-      "Emergency leak",
-      "Unpaid bills",
-      "Pipe maintenance",
-      "Cleaning operations"
+      "The party will be cancelled.",
+      "The party will start later.",
+      "The party will move to the canteen.",
+      "Guests will not be allowed."
     ],
-    "ans": "Pipe maintenance"
+    "ans": "The party will move to the canteen."
   },
   {
-    "q": "When does the shut off end?",
+    "q": "Why will the office close at 3:30 PM on the day of the party?",
     "opts": [
-      "8:00 AM",
-      "2:00 PM",
-      "Midnight",
-      "12:00 PM"
+      "Because of maintenance work",
+      "So that everyone can attend",
+      "Because it is a bank holiday",
+      "So that the rooftop can be cleaned"
     ],
-    "ans": "2:00 PM"
+    "ans": "So that everyone can attend"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson11(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Workplace Notice: Maintenance</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Notice and Workplace Facilities</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson11(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Workplace Notice: Maintenance</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

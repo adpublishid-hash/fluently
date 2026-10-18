@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[15], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Workplace Notice: Maintenance",
+  passageTitle: "Workplace Notice: System Update",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Maintenance Work</strong><br/><br/>Please be advised that the building's water supply will be shut off this Saturday from 8:00 AM to 2:00 PM due to scheduled maintenance on the main pipes. We apologize for the inconvenience this may cause to those coming in for weekend shifts. Bottled water will be provided in the staff lounge. Restrooms on the ground floor will remain operational using a backup water tank." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Computer System Update</strong><br/><br/>Please be advised that the IT team will install an important security update on all office computers this Thursday evening. Before you leave work on Thursday, save all your files to the shared drive and log out, but do not switch your computer off. The update will take place between 8:00 PM and midnight. On Friday morning, you will be asked to create a new password of at least ten characters. If you have any problems logging in, contact the IT helpdesk on extension 222." }} />
   ),
   questions: [
   {
-    "q": "How long will the water supply be shut off?",
+    "q": "When will the update take place?",
     "opts": [
-      "6 hours",
-      "The whole day",
-      "4 hours",
-      "8 hours"
+      "Thursday, 8:00 PM to midnight",
+      "Friday morning",
+      "Thursday, 6:00 PM to 8:00 PM",
+      "Friday, 8:00 PM to midnight"
     ],
-    "ans": "6 hours"
+    "ans": "Thursday, 8:00 PM to midnight"
   },
   {
-    "q": "Which facility will work normally?",
+    "q": "What should staff do with their files on Thursday?",
     "opts": [
-      "All restrooms",
-      "Pipes on the second floor",
-      "The coffee machine",
-      "Restrooms on the ground floor"
+      "Delete them",
+      "Email them to the IT team",
+      "Save them to the shared drive",
+      "Print them"
     ],
-    "ans": "Restrooms on the ground floor"
+    "ans": "Save them to the shared drive"
   },
   {
-    "q": "How is the company helping weekend staff?",
+    "q": "What should staff NOT do before leaving on Thursday?",
     "opts": [
-      "Moving them to a different building",
-      "Giving them extra pay",
-      "Giving them the day off",
-      "Providing bottled water"
+      "Log out",
+      "Save their files",
+      "Leave their computer on",
+      "Switch their computer off"
     ],
-    "ans": "Providing bottled water"
+    "ans": "Switch their computer off"
   },
   {
-    "q": "Why is the water off?",
+    "q": "What will staff need to do on Friday morning?",
     "opts": [
-      "Emergency leak",
-      "Unpaid bills",
-      "Pipe maintenance",
-      "Cleaning operations"
+      "Create a new password",
+      "Install the update themselves",
+      "Call the IT helpdesk",
+      "Restart the shared drive"
     ],
-    "ans": "Pipe maintenance"
+    "ans": "Create a new password"
   },
   {
-    "q": "When does the shut off end?",
+    "q": "How long must the new password be?",
     "opts": [
-      "2:00 PM",
-      "Midnight",
-      "8:00 AM",
-      "12:00 PM"
+      "At least eight characters",
+      "Exactly ten characters",
+      "At least ten characters",
+      "No more than ten characters"
     ],
-    "ans": "2:00 PM"
+    "ans": "At least ten characters"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson15(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Workplace Notice: Maintenance</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Notice and Workplace Facilities</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson15(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Workplace Notice: Maintenance</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

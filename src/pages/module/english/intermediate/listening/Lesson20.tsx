@@ -18,9 +18,9 @@ export default function InterListeningLesson20(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(20); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Admission","id":"Penerimaan masuk"},{"en":"Application","id":"Berkas pendaftaran"},{"en":"Authentic","id":"Asli / Jujur"},{"en":"Overcome","id":"Mengatasi"}];
-  const DIALOGUE = [{"speaker":"Interviewer","text":"Hello and welcome to our student advice segment. I am sitting with Mr. Roberts from the University Admission board. What is the most important part of an application, Mr. Roberts?","translation":"Halo dan selamat datang di segmen saran mahasiswa kami. Saya duduk dengan Tuan Roberts dari Dewan Penerimaan Universitas. Apa bagian terpenting dari sebuah lamaran, Tuan Roberts?","avatar":"🎤"},{"speaker":"Mr. Roberts","text":"Besides good grades, we really look at the personal essay. Your personal essay shows us your true motivation and character. My best advice is to be authentic and write about a real challenge you overcame, not just what you think we want to hear.","translation":"Selain nilai yang bagus, kami sangat melihat esai pribadi. Esai pribadi Anda menunjukkan motivasi dan karakter Anda yang sebenarnya. Saran terbaik saya adalah jujur dan tulis tentang tantangan nyata yang pernah Anda atasi, bukan sekadar apa yang Anda pikir ingin kami dengar.","avatar":"👨‍🏫"}];
-  const BLANKS = [{"sentence":"I am sitting with Mr. Roberts from the University Admission ___.","blank":"board","opts":["board","room","bus","team"],"hint":"Dewan / Panitia"},{"sentence":"Your personal essay shows us your true ___ and character.","blank":"motivation","opts":["motivation","face","friends","grades"],"hint":"Motivasi / Dorongan"},{"sentence":"Write about a real ___ you overcame.","blank":"challenge","opts":["challenge","book","game","party"],"hint":"Tantangan"}];
+  const vocab = [{"en":"Requirement","id":"Persyaratan"},{"en":"Consultant","id":"Konsultan"},{"en":"Offer","id":"Tawaran"},{"en":"Visa","id":"Visa"}];
+  const DIALOGUE = [{"speaker":"Host","text":"You're listening to 'Study Abroad Today'. Every year, thousands of Indonesian students apply to universities in the UK. Mr Hartono, an education consultant in Jakarta, joins us to explain the process. Mr Hartono, where should students begin?","translation":"Anda mendengarkan 'Study Abroad Today'. Setiap tahun, ribuan pelajar Indonesia mendaftar ke universitas di Inggris. Bapak Hartono, seorang konsultan pendidikan di Jakarta, bergabung untuk menjelaskan prosesnya. Pak Hartono, dari mana siswa sebaiknya memulai?","avatar":"🎤"},{"speaker":"Mr Hartono","text":"First, check the English requirement for your course. Most universities ask for an IELTS score of at least 6.0 or 6.5, so book your test early – you might need to take it more than once.","translation":"Pertama, periksa persyaratan bahasa Inggris untuk jurusan Anda. Sebagian besar universitas meminta skor IELTS minimal 6.0 atau 6.5, jadi pesanlah tes Anda lebih awal – Anda mungkin perlu mengikutinya lebih dari sekali.","avatar":"👨‍💼"},{"speaker":"Host","text":"And after that?","translation":"Lalu setelah itu?","avatar":"🎤"},{"speaker":"Mr Hartono","text":"Apply through UCAS, the UK's central application system. You can choose up to five courses on one form. Once you accept an offer, the university sends you a document you need for your student visa.","translation":"Daftarlah melalui UCAS, sistem pendaftaran terpusat di Inggris. Anda bisa memilih hingga lima jurusan dalam satu formulir. Setelah Anda menerima tawaran, universitas akan mengirimkan dokumen yang Anda perlukan untuk visa pelajar.","avatar":"👨‍💼"},{"speaker":"Host","text":"That's very clear. Any last piece of advice?","translation":"Sangat jelas. Ada saran terakhir?","avatar":"🎤"},{"speaker":"Mr Hartono","text":"Start at least a year in advance. The process isn't difficult, but it does take time.","translation":"Mulailah setidaknya setahun sebelumnya. Prosesnya tidak sulit, tetapi memang memakan waktu.","avatar":"👨‍💼"}];
+  const BLANKS = [{"sentence":"First, check the English ___ for your course.","blank":"requirement","opts":["requirement","weather","menu","traffic"],"hint":"Persyaratan"},{"sentence":"You can choose up to five courses on one ___.","blank":"form","opts":["form","bus","plate","coin"],"hint":"Formulir"},{"sentence":"The university sends a document for your student ___.","blank":"visa","opts":["visa","card","bike","room"],"hint":"Visa"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson20(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">College Admission Guide</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Studying in the UK</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L20</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson20(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: University Admissions</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: Studying in the UK</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson20(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Interview: University Admissions" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Interview: Studying in the UK" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[19], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Workplace Notice: Maintenance",
+  passageTitle: "Notice: Old Town Hall Tours",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Maintenance Work</strong><br/><br/>Please be advised that the building's water supply will be shut off this Saturday from 8:00 AM to 2:00 PM due to scheduled maintenance on the main pipes. We apologize for the inconvenience this may cause to those coming in for weekend shifts. Bottled water will be provided in the staff lounge. Restrooms on the ground floor will remain operational using a backup water tank." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Notice: Free Tours of the Old Town Hall</strong><br/><br/>Please be advised that free guided tours of our building, which was built in 1852, will run every Sunday in May at 11:00 AM and 2:00 PM. Each tour lasts about 45 minutes and visits the clock tower and the original council chamber. Due to the narrow staircases, the clock tower is not suitable for wheelchair users, but an online virtual tour is available. Photography is permitted, although flash must not be used. Groups are limited to 15 people, so please book at the front desk." }} />
   ),
   questions: [
   {
-    "q": "How long will the water supply be shut off?",
+    "q": "When was the building built?",
     "opts": [
-      "6 hours",
-      "The whole day",
-      "4 hours",
-      "8 hours"
+      "1825",
+      "1852",
+      "1952",
+      "1582"
     ],
-    "ans": "6 hours"
+    "ans": "1852"
   },
   {
-    "q": "Which facility will work normally?",
+    "q": "How often do the tours run?",
     "opts": [
-      "All restrooms",
-      "Pipes on the second floor",
-      "The coffee machine",
-      "Restrooms on the ground floor"
+      "Every day in May",
+      "Every Saturday",
+      "Once a month",
+      "Twice every Sunday in May"
     ],
-    "ans": "Restrooms on the ground floor"
+    "ans": "Twice every Sunday in May"
   },
   {
-    "q": "How is the company helping weekend staff?",
+    "q": "Why is the clock tower not suitable for wheelchair users?",
     "opts": [
-      "Moving them to a different building",
-      "Giving them extra pay",
-      "Giving them the day off",
-      "Providing bottled water"
+      "It is closed on Sundays.",
+      "The staircases are narrow.",
+      "It is being repaired.",
+      "It is too dark."
     ],
-    "ans": "Providing bottled water"
+    "ans": "The staircases are narrow."
   },
   {
-    "q": "Why is the water off?",
+    "q": "What does 'permitted' mean in 'Photography is permitted'?",
     "opts": [
-      "Emergency leak",
-      "Unpaid bills",
-      "Pipe maintenance",
-      "Cleaning operations"
+      "Forbidden",
+      "Expensive",
+      "Allowed",
+      "Required"
     ],
-    "ans": "Pipe maintenance"
+    "ans": "Allowed"
   },
   {
-    "q": "When does the shut off end?",
+    "q": "How many people can join one tour?",
     "opts": [
-      "8:00 AM",
-      "Midnight",
-      "2:00 PM",
-      "12:00 PM"
+      "Up to 45",
+      "Exactly 11",
+      "Up to 25",
+      "Up to 15"
     ],
-    "ans": "2:00 PM"
+    "ans": "Up to 15"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson19(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Workplace Notice: Maintenance</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Notice and Workplace Facilities</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson19(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Workplace Notice: Maintenance</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

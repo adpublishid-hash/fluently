@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[20], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Personal Letter: Moving to London",
+  passageTitle: "Personal Letter: A Year in Manchester",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Mia,<br/><br/>I'm writing this while sitting in my new apartment in London! The move was absolutely exhausting. Half of my boxes ended up at the wrong address, and I spent two days trying to track them down. Honestly, I felt so overwhelmed and almost cried multiple times.<br/><br/>But things are finally settling down. The city is amazing, and I've already found a cozy little café near my place where I can work on my laptop. I'm hoping to start my new job next Monday. I miss you so much and I am really looking forward to your visit in the summer.<br/><br/>Love,<br/>Chloe" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "Dear Dimas,<br/><br/>I can't believe my year in Manchester is nearly over! When I first arrived, I could barely understand the local accent, and I spent most evenings alone in my room. Everything felt strange, from the food to the weather.<br/><br/>Things changed when I joined the university's hiking club. I made friends quickly, and my English improved because I had to speak it every weekend. Last month I passed my final English exam with a high score, which made me really proud. I'll miss the people here, but I'm excited to come home in July and tell you everything in person.<br/><br/>Take care,<br/>Sinta" }} />
   ),
   questions: [
   {
-    "q": "How did Chloe feel during the move?",
+    "q": "How did Sinta feel when she first arrived?",
     "opts": [
-      "Overwhelmed and exhausted",
-      "Angry",
-      "Bored",
-      "Excited"
+      "Happy and relaxed",
+      "Lonely and unsure",
+      "Bored but healthy",
+      "Angry with her friends"
     ],
-    "ans": "Overwhelmed and exhausted"
+    "ans": "Lonely and unsure"
   },
   {
-    "q": "What specific problem happened?",
+    "q": "What helped Sinta make friends?",
     "opts": [
-      "Her laptop broke",
-      "She lost her job",
-      "Boxes went to the wrong address",
-      "She lost her passport"
+      "Living with a local family",
+      "Working in a café",
+      "Joining the hiking club",
+      "Taking an English exam"
     ],
-    "ans": "Boxes went to the wrong address"
+    "ans": "Joining the hiking club"
   },
   {
-    "q": "What did Chloe find near her apartment?",
+    "q": "Why did Sinta's English improve?",
     "opts": [
-      "A shopping mall",
-      "A library",
-      "A gym",
-      "A cozy café"
+      "She watched a lot of TV.",
+      "She had to speak it every weekend.",
+      "She took extra classes.",
+      "She lived alone."
     ],
-    "ans": "A cozy café"
+    "ans": "She had to speak it every weekend."
   },
   {
-    "q": "What is Chloe's hope for Mia?",
+    "q": "What does 'barely' mean in 'I could barely understand the local accent'?",
     "opts": [
-      "She hopes Mia visits in the summer.",
-      "She hopes Mia moves in.",
-      "She hopes Mia gets a job in London.",
-      "She hopes Mia buys her boxes."
+      "Almost not",
+      "Easily",
+      "Often",
+      "Completely"
     ],
-    "ans": "She hopes Mia visits in the summer."
+    "ans": "Almost not"
   },
   {
-    "q": "When does Chloe start working?",
+    "q": "When will Sinta return home?",
     "opts": [
-      "Tomorrow",
-      "She is unemployed",
-      "In a month",
-      "Next Monday"
+      "In June",
+      "In August",
+      "Next month",
+      "In July"
     ],
-    "ans": "Next Monday"
+    "ans": "In July"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson20(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Personal Letter: Moving to London</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Changes and Feelings</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson20(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Personal Letter: Moving to London</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

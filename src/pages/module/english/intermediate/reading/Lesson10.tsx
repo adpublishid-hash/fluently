@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[10], 'inte
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Work Email: Project Kick-off",
+  passageTitle: "Work Email: Welcome and First-Week Tips",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Project Kick-off Meeting Rescheduled<br/><br/>Hi team,<br/>I want to inform you that our project kick-off meeting, originally scheduled for Wednesday, has been pushed back to Friday at 10:00 AM in the main conference room. Some of our key stakeholders are traveling and won't be back until Thursday. Please review the attached agenda beforehand and come prepared with your initial ideas. Let me know if this new time conflicts with any pressing deadlines.<br/><br/>Best,<br/>Sarah" }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Subject:</strong> Welcome to the Team – A Few Tips for Your First Week<br/><br/>Dear Priya,<br/>Welcome to the design department! I thought I'd share some advice to help you settle in. First, don't worry about learning every system straight away; most people need a few weeks. Second, I'd recommend joining our Monday team meeting, as it's the best way to find out what everyone is working on. Finally, please feel free to ask questions. Your mentor, James, sits next to you and is always happy to help. Could you send me your bank details by Wednesday so that HR can set up your salary?<br/><br/>Kind regards,<br/>Helen" }} />
   ),
   questions: [
   {
-    "q": "Why was the meeting rescheduled?",
+    "q": "Who is Priya?",
     "opts": [
-      "The conference room was booked by another team.",
-      "Important stakeholders are traveling.",
-      "The team needs more time to prepare.",
-      "Sarah is currently out of town."
+      "Helen's manager",
+      "A new member of the design team",
+      "James's mentor",
+      "An HR assistant"
     ],
-    "ans": "Important stakeholders are traveling."
+    "ans": "A new member of the design team"
   },
   {
-    "q": "What should the team do before the meeting?",
+    "q": "Why does Helen recommend the Monday meeting?",
     "opts": [
-      "Send their ideas via email.",
-      "Read the attached agenda.",
-      "Reschedule deadlines.",
-      "Meet the stakeholders."
+      "It is compulsory for all new staff.",
+      "Lunch is provided at the meeting.",
+      "It shows what colleagues are working on.",
+      "James always leads it."
     ],
-    "ans": "Read the attached agenda."
+    "ans": "It shows what colleagues are working on."
   },
   {
-    "q": "What does 'pushed back' mean?",
+    "q": "What does 'settle in' mean?",
     "opts": [
-      "Delayed to a later time",
-      "Moved earlier",
-      "Relocated",
-      "Canceled"
+      "Sit down at your desk",
+      "Become comfortable in a new place",
+      "Pay your bills",
+      "Leave work early"
     ],
-    "ans": "Delayed to a later time"
+    "ans": "Become comfortable in a new place"
   },
   {
-    "q": "What should a member do if they cannot attend?",
+    "q": "What should Priya send by Wednesday?",
     "opts": [
-      "Ignore the email.",
-      "Call the stakeholders.",
-      "Inform Sarah about conflicting deadlines.",
-      "Write a new agenda."
+      "Her bank details",
+      "A list of questions",
+      "Her design portfolio",
+      "Her weekly timetable"
     ],
-    "ans": "Inform Sarah about conflicting deadlines."
+    "ans": "Her bank details"
   },
   {
-    "q": "What time is the new meeting?",
+    "q": "Who should Priya ask when she needs help?",
     "opts": [
-      "Wednesday 10:00 AM",
-      "Friday 2:00 PM",
-      "Friday 10:00 AM",
-      "Thursday 10:00 AM"
+      "The HR department",
+      "The Monday team",
+      "Another new starter",
+      "Her mentor, James"
     ],
-    "ans": "Friday 10:00 AM"
+    "ans": "Her mentor, James"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson10(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Work Email: Project Kick-off</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Work Email and Announcements</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson10(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Work Email: Project Kick-off</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>

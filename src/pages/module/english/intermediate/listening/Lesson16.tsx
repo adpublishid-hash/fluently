@@ -18,9 +18,9 @@ export default function InterListeningLesson16(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(16); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Admission","id":"Penerimaan masuk"},{"en":"Application","id":"Berkas pendaftaran"},{"en":"Authentic","id":"Asli / Jujur"},{"en":"Overcome","id":"Mengatasi"}];
-  const DIALOGUE = [{"speaker":"Interviewer","text":"Hello and welcome to our student advice segment. I am sitting with Mr. Roberts from the University Admission board. What is the most important part of an application, Mr. Roberts?","translation":"Halo dan selamat datang di segmen saran mahasiswa kami. Saya duduk dengan Tuan Roberts dari Dewan Penerimaan Universitas. Apa bagian terpenting dari sebuah lamaran, Tuan Roberts?","avatar":"🎤"},{"speaker":"Mr. Roberts","text":"Besides good grades, we really look at the personal essay. Your personal essay shows us your true motivation and character. My best advice is to be authentic and write about a real challenge you overcame, not just what you think we want to hear.","translation":"Selain nilai yang bagus, kami sangat melihat esai pribadi. Esai pribadi Anda menunjukkan motivasi dan karakter Anda yang sebenarnya. Saran terbaik saya adalah jujur dan tulis tentang tantangan nyata yang pernah Anda atasi, bukan sekadar apa yang Anda pikir ingin kami dengar.","avatar":"👨‍🏫"}];
-  const BLANKS = [{"sentence":"I am sitting with Mr. Roberts from the University Admission ___.","blank":"board","opts":["board","room","bus","team"],"hint":"Dewan / Panitia"},{"sentence":"Your personal essay shows us your true ___ and character.","blank":"motivation","opts":["motivation","face","friends","grades"],"hint":"Motivasi / Dorongan"},{"sentence":"Write about a real ___ you overcame.","blank":"challenge","opts":["challenge","book","game","party"],"hint":"Tantangan"}];
+  const vocab = [{"en":"Applicant","id":"Pendaftar"},{"en":"Nerve-racking","id":"Membuat gugup"},{"en":"Personal statement","id":"Esai pribadi"},{"en":"Work it out","id":"Memecahkan / Mencari jawaban"}];
+  const DIALOGUE = [{"speaker":"Presenter","text":"Welcome to 'Next Steps'. Some universities interview applicants before offering a place, and that can be nerve-racking. Former admissions tutor Mrs Clarke is here to help. Mrs Clarke, what are interviewers really looking for?","translation":"Selamat datang di 'Next Steps'. Beberapa universitas mewawancarai pendaftar sebelum menawarkan tempat, dan itu bisa membuat gugup. Mantan tutor penerimaan, Ibu Clarke, hadir untuk membantu. Ibu Clarke, apa yang sebenarnya dicari pewawancara?","avatar":"🎤"},{"speaker":"Mrs Clarke","text":"Honestly, we're not looking for perfect answers. We want to see how you think. If you don't know something, it's fine to say so and then try to work it out aloud.","translation":"Jujur saja, kami tidak mencari jawaban yang sempurna. Kami ingin melihat cara Anda berpikir. Jika Anda tidak tahu sesuatu, tidak apa-apa mengatakannya lalu mencoba memecahkannya sambil berpikir dengan suara keras.","avatar":"👩‍🏫"},{"speaker":"Presenter","text":"So it's more like a conversation than a test?","translation":"Jadi lebih seperti percakapan daripada ujian?","avatar":"🎤"},{"speaker":"Mrs Clarke","text":"Exactly. Before the interview, reread your personal statement, because we'll often ask about the books or projects you mentioned. And practise with a friend or teacher, so you get used to talking about your subject.","translation":"Tepat sekali. Sebelum wawancara, baca kembali esai pribadi Anda, karena kami sering bertanya tentang buku atau proyek yang Anda sebutkan. Dan berlatihlah dengan teman atau guru, supaya Anda terbiasa membicarakan bidang studi Anda.","avatar":"👩‍🏫"},{"speaker":"Presenter","text":"What about online interviews?","translation":"Bagaimana dengan wawancara daring?","avatar":"🎤"},{"speaker":"Mrs Clarke","text":"Test your camera and microphone the day before, choose a quiet room, and look at the camera – not at your own face on the screen!","translation":"Uji kamera dan mikrofon Anda sehari sebelumnya, pilih ruangan yang tenang, dan lihatlah ke kamera – bukan ke wajah Anda sendiri di layar!","avatar":"👩‍🏫"}];
+  const BLANKS = [{"sentence":"Some universities interview ___ before offering a place.","blank":"applicants","opts":["applicants","teachers","parents","tourists"],"hint":"Pendaftar"},{"sentence":"Reread your personal ___ before the interview.","blank":"statement","opts":["statement","diary","letterbox","passport"],"hint":"Pernyataan / Esai"},{"sentence":"Test your camera and ___ the day before.","blank":"microphone","opts":["microphone","umbrella","bicycle","kettle"],"hint":"Mikrofon"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson16(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">College Admission Guide</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Admissions Interview Tips</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L16</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson16(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: University Admissions</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Interview: Admissions Interview Tips</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson16(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Interview: University Admissions" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Interview: Admissions Interview Tips" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

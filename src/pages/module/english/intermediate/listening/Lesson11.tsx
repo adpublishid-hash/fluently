@@ -18,9 +18,9 @@ export default function InterListeningLesson11(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(11); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Startup","id":"Perusahaan rintisan"},{"en":"Usage","id":"Penggunaan"},{"en":"Alert","id":"Peringatan / Notifikasi"},{"en":"Carbon footprint","id":"Jejak karbon"}];
-  const DIALOGUE = [{"speaker":"News Anchor","text":"You're listening to City Radio 101. In tech news today, local startup 'GreenTech Solutions' announced a new mobile application that helps households track and reduce their electricity usage in real-time. Lead developer Maya explains.","translation":"Anda mendengarkan City Radio 101. Dalam berita teknologi hari ini, startup lokal 'GreenTech Solutions' mengumumkan aplikasi seluler baru yang membantu rumah tangga melacak dan mengurangi penggunaan listrik mereka secara real-time. Pengembang utama Maya menjelaskan.","avatar":"📻"},{"speaker":"Maya","text":"Our app connects directly to your smart meter. It sends an alert to your phone when you leave appliances turned on for too long. We hope this empowers citizens to lower their carbon footprint.","translation":"Aplikasi kami terhubung secara langsung ke meteran pintar Anda. Ia mengirimkan peringatan ke ponsel Anda saat Anda membiarkan peralatan menyala terlalu lama. Kami harap ini memberdayakan warga untuk menurunkan jejak karbon mereka.","avatar":"👩‍💻"}];
-  const BLANKS = [{"sentence":"The app helps households track their electricity ___.","blank":"usage","opts":["usage","bills","color","sound"],"hint":"Penggunaan"},{"sentence":"It connects directly to your ___ meter.","blank":"smart","opts":["smart","digital","old","heavy"],"hint":"Pintar"},{"sentence":"It sends an ___ to your phone.","blank":"alert","opts":["alert","email","image","video"],"hint":"Peringatan"}];
+  const vocab = [{"en":"Earbuds","id":"Earbud / Penyuara telinga"},{"en":"Instantly","id":"Seketika"},{"en":"Delay","id":"Jeda / Penundaan"},{"en":"Offline","id":"Luring / Tanpa internet"}];
+  const DIALOGUE = [{"speaker":"News Anchor","text":"This is Metro Radio with the latest tech news. A team of university students has designed earbuds that translate conversations almost instantly. Our reporter Chloe has been testing them.","translation":"Ini Metro Radio dengan berita teknologi terbaru. Sekelompok mahasiswa telah merancang earbud yang menerjemahkan percakapan hampir seketika. Reporter kami, Chloe, telah mencobanya.","avatar":"📻"},{"speaker":"Chloe","text":"That's right, Jack. I wore the earbuds while chatting to a visitor from Spain. She spoke Spanish, and a second later I heard her words in English. There was a slight delay, but the conversation felt surprisingly natural.","translation":"Betul, Jack. Saya memakai earbud itu sambil mengobrol dengan seorang pengunjung dari Spanyol. Dia berbicara bahasa Spanyol, dan sedetik kemudian saya mendengar kata-katanya dalam bahasa Inggris. Ada sedikit jeda, tetapi percakapannya terasa sangat alami.","avatar":"👩‍💻"},{"speaker":"News Anchor","text":"Impressive! How many languages do they support?","translation":"Mengesankan! Berapa banyak bahasa yang didukung?","avatar":"📻"},{"speaker":"Chloe","text":"Twelve at the moment, including Indonesian and Japanese. The device works offline, so you don't need an internet connection, which is ideal for travellers. However, the battery only lasts about four hours.","translation":"Saat ini dua belas, termasuk bahasa Indonesia dan Jepang. Perangkat ini bekerja secara luring, jadi Anda tidak memerlukan koneksi internet, sangat cocok untuk wisatawan. Namun, baterainya hanya bertahan sekitar empat jam.","avatar":"👩‍💻"},{"speaker":"News Anchor","text":"Thanks, Chloe. The students hope to have the earbuds in shops by next summer.","translation":"Terima kasih, Chloe. Para mahasiswa berharap earbud ini sudah dijual di toko pada musim panas tahun depan.","avatar":"📻"}];
+  const BLANKS = [{"sentence":"The earbuds translate conversations almost ___.","blank":"instantly","opts":["instantly","never","rarely","loudly"],"hint":"Seketika"},{"sentence":"There was a slight ___, but it felt natural.","blank":"delay","opts":["delay","smell","party","colour"],"hint":"Jeda"},{"sentence":"The device works ___, so you don't need the internet.","blank":"offline","opts":["offline","upstairs","outside","overnight"],"hint":"Tanpa internet"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson11(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Tech Innovations Today</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Translation Technology</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L11</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson11(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio News: Local Tech</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio News: Translating Earbuds</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson11(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Radio News: Local Tech" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Radio News: Translating Earbuds" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

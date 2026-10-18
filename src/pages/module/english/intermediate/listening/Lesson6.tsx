@@ -18,9 +18,9 @@ export default function InterListeningLesson6(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(6); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Nutritionist","id":"Ahli Gizi"},{"en":"Habits","id":"Kebiasaan"},{"en":"Routine","id":"Rutinitas"},{"en":"Digestion","id":"Pencernaan"}];
-  const DIALOGUE = [{"speaker":"Host","text":"Welcome to the 'Daily Health' podcast. I'm Jenna. Today my guest is nutritionist David. We are checking out simple healthy habits you can easily add to your busy routine. Thanks for coming, David.","translation":"Selamat datang di podcast 'Kesehatan Harian'. Saya Jenna. Hari ini tamu saya adalah ahli gizi David. Kita akan melihat kebiasaan sehat sederhana yang dapat dengan mudah ditambahkan ke rutinitas sibuk Anda. Terima kasih telah datang, David.","avatar":"🎙️"},{"speaker":"David","text":"Thanks for having me, Jenna. A great start is drinking water right after you wake up. Also, taking a short ten-minute walk after lunch dramatically improves digestion and reduces evening fatigue.","translation":"Terima kasih telah mengundang saya, Jenna. Awal yang baik adalah meminum air putih segera setelah bangun. Selain itu, berjalan kaki singkat sepuluh menit setelah makan siang secara dramatis memperbaiki pencernaan dan mengurangi kelelahan di sore hari.","avatar":"👨‍⚕️"}];
-  const BLANKS = [{"sentence":"We are checking out simple healthy ___ you can add to your routine.","blank":"habits","opts":["habits","books","clothes","foods"],"hint":"Kebiasaan"},{"sentence":"Drinking water right after you ___ up.","blank":"wake","opts":["wake","stand","look","give"],"hint":"Bangun tidur"},{"sentence":"Taking a 10-minute walk improves ___.","blank":"digestion","opts":["digestion","sleep","hair","vision"],"hint":"Pencernaan"}];
+  const vocab = [{"en":"Specialist","id":"Spesialis / Ahli"},{"en":"Scroll","id":"Menggulir (layar)"},{"en":"Rhythm","id":"Ritme / Irama"},{"en":"Caffeine","id":"Kafein"}];
+  const DIALOGUE = [{"speaker":"Host","text":"Good morning and welcome to 'The Wellbeing Hour'. I'm Priya. One in three adults say they don't get enough sleep, so today I'm joined by sleep specialist Dr Tom Hughes. Tom, why is sleep such a problem nowadays?","translation":"Selamat pagi dan selamat datang di 'The Wellbeing Hour'. Saya Priya. Satu dari tiga orang dewasa mengatakan bahwa mereka kurang tidur, jadi hari ini saya ditemani spesialis tidur Dr Tom Hughes. Tom, mengapa tidur menjadi masalah seperti itu saat ini?","avatar":"🎙️"},{"speaker":"Dr Hughes","text":"Thanks, Priya. The main reason is screens. Many of us scroll through our phones in bed, and the bright light tells the brain it's still daytime. That makes it much harder to fall asleep.","translation":"Terima kasih, Priya. Alasan utamanya adalah layar. Banyak dari kita menggulir ponsel di tempat tidur, dan cahaya terang itu memberi tahu otak bahwa hari masih siang. Itu membuat kita jauh lebih sulit tertidur.","avatar":"👨‍⚕️"},{"speaker":"Host","text":"So what would you recommend instead?","translation":"Jadi, apa yang Anda sarankan sebagai gantinya?","avatar":"🎙️"},{"speaker":"Dr Hughes","text":"Put your phone away at least an hour before bed and read a paper book. Also, try to go to bed and get up at the same time every day, even at weekends. Your body loves a regular rhythm.","translation":"Simpan ponsel Anda setidaknya satu jam sebelum tidur dan bacalah buku cetak. Selain itu, usahakan tidur dan bangun pada jam yang sama setiap hari, bahkan di akhir pekan. Tubuh Anda menyukai ritme yang teratur.","avatar":"👨‍⚕️"},{"speaker":"Host","text":"And what about that afternoon cup of coffee?","translation":"Lalu bagaimana dengan secangkir kopi di siang hari itu?","avatar":"🎙️"},{"speaker":"Dr Hughes","text":"I'm afraid caffeine can stay in your system for up to six hours, so I'd avoid coffee after about two o'clock.","translation":"Sayangnya kafein bisa bertahan di dalam tubuh Anda hingga enam jam, jadi saya akan menghindari kopi setelah sekitar pukul dua siang.","avatar":"👨‍⚕️"}];
+  const BLANKS = [{"sentence":"Many of us ___ through our phones in bed.","blank":"scroll","opts":["scroll","run","jump","cook"],"hint":"Menggulir layar"},{"sentence":"Put your phone away at least an ___ before bed.","blank":"hour","opts":["hour","week","inch","apple"],"hint":"Satu jam"},{"sentence":"Your body loves a regular ___.","blank":"rhythm","opts":["rhythm","holiday","colour","song"],"hint":"Ritme / Irama"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson6(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Healthy Lifestyle Habits</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Sleep Better Tonight</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L6</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson6(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Healthy Habits</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Sleep Better Tonight</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson6(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Podcast: Healthy Habits" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Podcast: Sleep Better Tonight" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

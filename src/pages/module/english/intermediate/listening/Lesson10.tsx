@@ -18,9 +18,9 @@ export default function InterListeningLesson10(): React.ReactElement {
 
   const handleComplete = () => { markListeningComplete(10); setIsCompleted(true); setShowModal(true); };
 
-  const vocab = [{"en":"Nutritionist","id":"Ahli Gizi"},{"en":"Habits","id":"Kebiasaan"},{"en":"Routine","id":"Rutinitas"},{"en":"Digestion","id":"Pencernaan"}];
-  const DIALOGUE = [{"speaker":"Host","text":"Welcome to the 'Daily Health' podcast. I'm Jenna. Today my guest is nutritionist David. We are checking out simple healthy habits you can easily add to your busy routine. Thanks for coming, David.","translation":"Selamat datang di podcast 'Kesehatan Harian'. Saya Jenna. Hari ini tamu saya adalah ahli gizi David. Kita akan melihat kebiasaan sehat sederhana yang dapat dengan mudah ditambahkan ke rutinitas sibuk Anda. Terima kasih telah datang, David.","avatar":"🎙️"},{"speaker":"David","text":"Thanks for having me, Jenna. A great start is drinking water right after you wake up. Also, taking a short ten-minute walk after lunch dramatically improves digestion and reduces evening fatigue.","translation":"Terima kasih telah mengundang saya, Jenna. Awal yang baik adalah meminum air putih segera setelah bangun. Selain itu, berjalan kaki singkat sepuluh menit setelah makan siang secara dramatis memperbaiki pencernaan dan mengurangi kelelahan di sore hari.","avatar":"👨‍⚕️"}];
-  const BLANKS = [{"sentence":"We are checking out simple healthy ___ you can add to your routine.","blank":"habits","opts":["habits","books","clothes","foods"],"hint":"Kebiasaan"},{"sentence":"Drinking water right after you ___ up.","blank":"wake","opts":["wake","stand","look","give"],"hint":"Bangun tidur"},{"sentence":"Taking a 10-minute walk improves ___.","blank":"digestion","opts":["digestion","sleep","hair","vision"],"hint":"Pencernaan"}];
+  const vocab = [{"en":"Costly","id":"Mahal"},{"en":"Shopping list","id":"Daftar belanja"},{"en":"Batch cook","id":"Memasak banyak sekaligus"},{"en":"Nutritious","id":"Bergizi"}];
+  const DIALOGUE = [{"speaker":"Host","text":"Welcome to 'Eat Well, Spend Less'. I'm Olivia. Lots of listeners tell us that healthy food is too expensive, so I've invited Ben, who runs cookery classes at our community centre. Ben, is eating well really that costly?","translation":"Selamat datang di 'Eat Well, Spend Less'. Saya Olivia. Banyak pendengar mengatakan kepada kami bahwa makanan sehat terlalu mahal, jadi saya mengundang Ben, yang mengadakan kelas memasak di balai warga kami. Ben, apakah makan sehat memang semahal itu?","avatar":"🎙️"},{"speaker":"Ben","text":"Not at all, Olivia. The secret is planning. On Sunday, I write a menu for the week and only buy what's on my shopping list. That way, I waste less food and I'm not tempted by snacks.","translation":"Sama sekali tidak, Olivia. Rahasianya adalah perencanaan. Pada hari Minggu, saya menulis menu untuk seminggu dan hanya membeli apa yang ada di daftar belanja saya. Dengan begitu, saya membuang lebih sedikit makanan dan tidak tergoda membeli camilan.","avatar":"👨‍🍳"},{"speaker":"Host","text":"Do you cook every single evening?","translation":"Apakah Anda memasak setiap malam?","avatar":"🎙️"},{"speaker":"Ben","text":"No, I batch cook. I make a big pot of vegetable soup or lentil curry, divide it into portions and freeze them. Frozen vegetables are a great choice too – they're cheap and just as nutritious as fresh ones.","translation":"Tidak, saya memasak dalam jumlah besar sekaligus. Saya membuat sepanci besar sup sayur atau kari kacang lentil, membaginya menjadi beberapa porsi, lalu membekukannya. Sayuran beku juga pilihan yang bagus – harganya murah dan sama bergizinya dengan sayuran segar.","avatar":"👨‍🍳"},{"speaker":"Host","text":"Brilliant. So a little preparation at the weekend saves both time and money.","translation":"Luar biasa. Jadi sedikit persiapan di akhir pekan menghemat waktu sekaligus uang.","avatar":"🎙️"}];
+  const BLANKS = [{"sentence":"I only buy what's on my shopping ___.","blank":"list","opts":["list","bag","trolley","card"],"hint":"Daftar"},{"sentence":"I make a big pot of soup, divide it into portions and ___ them.","blank":"freeze","opts":["freeze","sell","paint","wash"],"hint":"Membekukan"},{"sentence":"Frozen vegetables are cheap and just as ___ as fresh ones.","blank":"nutritious","opts":["nutritious","expensive","heavy","noisy"],"hint":"Bergizi"}];
 
   return (
     <>
@@ -48,7 +48,7 @@ export default function InterListeningLesson10(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Healthy Lifestyle Habits</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Eat Well, Spend Less</h1>
               <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Intermediate Listening • L10</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -76,7 +76,7 @@ export default function InterListeningLesson10(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-20">
                      <Headphones className="w-24 h-24" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Podcast: Healthy Habits</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Radio: Eat Well, Spend Less</h2>
                   <p className="text-sm md:text-base text-indigo-50 leading-relaxed max-w-lg relative z-10">
                     Siswa level B1 mampu mengerti esensi utama dari program radio atau wawancara profesional bertema keseharian.
                   </p>
@@ -96,7 +96,7 @@ export default function InterListeningLesson10(): React.ReactElement {
                 </div>
 
                 <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                   <DialoguePlayer title="Podcast: Healthy Habits" lines={DIALOGUE as any} />
+                   <DialoguePlayer title="Radio: Eat Well, Spend Less" lines={DIALOGUE as any} />
                 </div>
               </div>
             )}

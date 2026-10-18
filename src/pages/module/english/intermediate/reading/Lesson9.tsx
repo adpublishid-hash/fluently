@@ -11,60 +11,60 @@ const QUIZ: QuizItem[] = shuffledAuthored(intermediateReadingQuizBank[9], 'inter
 
 /* ══ DATA: KONTEN BACAAN (B1) ═══════════════════════════════════════════════ */
 const COMPREHENSION: { passageTitle: string; passage: React.ReactNode; questions: ComprehensionQ[] } = {
-  passageTitle: "Everyday Advert: Dog Walker",
+  passageTitle: "Everyday Advert: Babysitter Wanted",
   passage: (
-    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Dog Walker Wanted!</strong><br/><br/>Busy professional seeking a reliable and energetic dog walker for an active Golden Retriever, Max. Needed Monday to Friday for a 45-minute walk around 12:00 PM. Pay is $15 per walk. Must have experience with large dogs and provide at least one reference. If interested, email John at john.doe@email.com." }} />
+    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner text-slate-800" dangerouslySetInnerHTML={{ __html: "<strong>Babysitter Needed!</strong><br/><br/>Working parents looking for a kind and patient babysitter for two children, Lily (6) and Sam (4). Needed every Tuesday and Thursday evening from 6:00 PM to 9:00 PM while we attend evening classes. Pay is £11 per hour. Duties include giving the children dinner, helping with bath time and reading bedtime stories. Must be a non-smoker and have first-aid training. Please call Anna on 07700 900456 after 5 PM." }} />
   ),
   questions: [
   {
-    "q": "How many days a week does John need the walker?",
+    "q": "Why do the parents need a babysitter?",
     "opts": [
-      "3 days",
-      "7 days",
-      "2 days",
-      "5 days"
+      "They work night shifts.",
+      "They are going on holiday.",
+      "They attend evening classes.",
+      "They have just moved house."
     ],
-    "ans": "5 days"
+    "ans": "They attend evening classes."
   },
   {
-    "q": "What is a strict requirement?",
+    "q": "How many hours a week will the babysitter work?",
     "opts": [
-      "Must own a dog.",
-      "Must have experience with large dogs.",
-      "Must be a vet.",
-      "Must be available mornings."
+      "3",
+      "6",
+      "4",
+      "9"
     ],
-    "ans": "Must have experience with large dogs."
+    "ans": "6"
   },
   {
-    "q": "How much will the walker earn in a week?",
+    "q": "Which of these is NOT one of the babysitter's duties?",
     "opts": [
-      "$45",
-      "$60",
-      "$75",
-      "$15"
+      "Reading bedtime stories",
+      "Taking the children to school",
+      "Helping with bath time",
+      "Giving the children dinner"
     ],
-    "ans": "$75"
+    "ans": "Taking the children to school"
   },
   {
-    "q": "How long is the walk?",
+    "q": "Which is a requirement for the job?",
     "opts": [
-      "2 hours",
-      "15 mins",
-      "45 mins",
-      "1 hour"
+      "Having first-aid training",
+      "Having a driving licence",
+      "Being able to cook",
+      "Living nearby"
     ],
-    "ans": "45 mins"
+    "ans": "Having first-aid training"
   },
   {
-    "q": "How should candidates apply?",
+    "q": "When should people phone Anna?",
     "opts": [
-      "Call John",
-      "Visit John's house",
-      "Email John",
-      "Send a letter"
+      "Before 9 AM",
+      "Only on Tuesdays",
+      "At lunchtime",
+      "After 5 PM"
     ],
-    "ans": "Email John"
+    "ans": "After 5 PM"
   }
 ]
 };
@@ -105,7 +105,7 @@ export default function InterReadingLesson9(): React.ReactElement {
               <ChevronLeft className="w-6 h-6" />
             </button>
             <div className="text-center">
-              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">Everyday Advert: Dog Walker</h1>
+              <h1 className="text-base font-extrabold text-slate-800 tracking-tight">{COMPREHENSION.passageTitle}</h1>
               <p className="text-[10px] text-indigo-600 font-bold uppercase tracking-widest bg-indigo-50 inline-block px-2 py-0.5 rounded-full mt-0.5">Reading B1: Advertisements and Details</p>
             </div>
             <button onClick={() => navigate(nextPath)} className="px-4 py-2 rounded-full text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-colors">Next ›</button>
@@ -134,7 +134,7 @@ export default function InterReadingLesson9(): React.ReactElement {
                   <div className="absolute top-0 right-0 p-6 opacity-10">
                      <BookOpen className="w-32 h-32" />
                   </div>
-                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">Everyday Advert: Dog Walker</h2>
+                  <h2 className="text-xl md:text-2xl font-extrabold mb-2 relative z-10">{COMPREHENSION.passageTitle}</h2>
                   <p className="text-sm md:text-base text-indigo-100 leading-relaxed max-w-lg relative z-10">
                     Siswa pada level B1 diharapkan mampu memahami teks berisi info esensial dari ranah keseharian dan dunia kerja.
                   </p>
