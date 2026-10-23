@@ -36,11 +36,18 @@ export function useAiReplyQueue(setMessages: Dispatch<SetStateAction<ChatMessage
     setIsTyping(false);
   }, []);
 
+  // Shows the typing indicator while an AI request is in flight.
+  const showTyping = useCallback(() => {
+    clearPendingReply();
+    setIsTyping(true);
+  }, [clearPendingReply]);
+
   return {
     isTyping,
     sendAiReply,
     sendAiReplyFromMessages,
     clearPendingReply,
     stopTyping,
+    showTyping,
   };
 }

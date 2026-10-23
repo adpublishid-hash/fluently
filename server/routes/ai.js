@@ -6,6 +6,15 @@ const { aiLimiter } = require('../middleware/rateLimits');
 const { buildAssessmentPrompt, findRubric, normalizeAssessment } = require('../lib/rubricAssessment');
 const { callGoogle, callKie, isStudioKey, verifyStudioKey } = require('../lib/aiProvider');
 const { consumeQuota, getQuota, refundQuota } = require('../lib/aiQuota');
+const {
+  buildFeedbackPrompt,
+  buildLessonPrompt,
+  normalizeCefr,
+  normalizeFeedback,
+  normalizeFocus,
+  normalizeLanguage,
+  normalizeLesson,
+} = require('../lib/localizedChat');
 
 
 module.exports = function register(app) {
@@ -521,6 +530,75 @@ module.exports = function register(app) {
     } catch (err) {
       console.error('[gemini] vocabulary correction error:', err.message);
       return res.status(502).json({ error: 'AI correction failed.' });
+    }
+  });
+
+  // ── Japanese / Mandarin / Arabic chat coach ──────────────
+  app.post('/api/ai/localized-lesson', aiLimiter, requireAuth, async (req, res) => {
+    const language = normalizeLanguage(req.body?.language);
+    const focus = normalizeFocus(req.body?.focus);
+    if (!language || !focus) return res.status(400).json({ error: 'language atau focus tidak dikenal.' });
+    const name = String(req.body?.name || 'teman').trim().slice(0, 40);
+    const topic = String(req.body?.topic || 'daily life').trim().slice(0, 140);
+    const levelId = normalizeCefr(req.body?.levelId);
+    const allowed = await enforceFreeAiChatTopicLimit(req, res, { topic, levelId, mode: focus });
+    if (!allowed) return;
+
+    const access = await resolveAiAccess(req, res);
+    if (!access) return;
+    const prompt = buildLessonPrompt({ language, focus, name, topic, levelId });
+
+    try {
+      const result = await callAiJson(access, { prompt, temperature: 0.4, maxOutputTokens: 7000 });
+      if (!result.ok) {
+        console.error('[gemini] localized lesson failed:', language, focus, result.status, result.data);
+        return sendAiFailure(res, access, result, 'AI lesson generation failed.');
+      }
+      const lesson = normalizeLesson(language, focus, extractJsonObject(result.text));
+      if (!lesson) {
+        await access.refund?.();
+        return res.status(502).json({ error: 'AI lesson generation returned invalid content.' });
+      }
+      return res.json({ model: access.model, language, focus, levelId, lesson });
+    } catch (err) {
+      console.error('[gemini] localized lesson error:', err.message);
+      return res.status(502).json({ error: 'AI lesson generation failed.' });
+    }
+  });
+
+  app.post('/api/ai/localized-feedback', aiLimiter, requireAuth, async (req, res) => {
+    const language = normalizeLanguage(req.body?.language);
+    const focus = normalizeFocus(req.body?.focus);
+    if (!language || !focus) return res.status(400).json({ error: 'language atau focus tidak dikenal.' });
+    const answer = String(req.body?.answer || '').trim().slice(0, 3000);
+    if (!answer) return res.status(400).json({ error: 'answer is required.' });
+    const name = String(req.body?.name || 'teman').trim().slice(0, 40);
+    const topic = String(req.body?.topic || 'daily life').trim().slice(0, 140);
+    const levelId = normalizeCefr(req.body?.levelId);
+    const context = String(req.body?.context || '').trim().slice(0, 6000);
+    const targetItems = Array.isArray(req.body?.targetItems)
+      ? req.body.targetItems.map((item) => String(item || '').trim().slice(0, 60)).filter(Boolean).slice(0, 6)
+      : [];
+
+    const access = await resolveAiAccess(req, res);
+    if (!access) return;
+    const prompt = buildFeedbackPrompt({ language, focus, name, topic, levelId, answer, context, targetItems });
+
+    try {
+      const result = await callAiJson(access, { prompt, temperature: 0.25, maxOutputTokens: 1800 });
+      if (!result.ok) {
+        console.error('[gemini] localized feedback failed:', language, focus, result.status, result.data);
+        return sendAiFailure(res, access, result, 'AI feedback failed.');
+      }
+      const feedback = normalizeFeedback(extractJsonObject(result.text), targetItems);
+      if (!feedback) {
+        await access.refund?.();
+        return res.status(502).json({ error: 'AI feedback returned invalid format.' });
+      }
+      return res.json({ model: access.model, ...feedback });
+    } catch (err) {
+      console.error('[gemini] localized feedback error:', err.message);
+      return res.status(502).json({ error: 'AI feedback failed.' });
     }
   });
 };

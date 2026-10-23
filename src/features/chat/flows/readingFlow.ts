@@ -1,8 +1,5 @@
 import {
   buildLocalizedCustomTopicPrompt,
-  buildLocalizedFeedback,
-  buildLocalizedLesson,
-  buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
   getLocalizedTopicLabel,
   isCustomLocalizedTopicValue,
@@ -19,6 +16,7 @@ import {
 } from '../english';
 import type { VocabularyStage } from '../english';
 import { createUserMessage } from '../session';
+import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -55,7 +53,7 @@ Contoh:
   setSelectedTopic(topic);
   setVocabStage('practice');
   if (localized) {
-    sendAiReply(buildLocalizedLesson(studentName || 'teman', 'reading', topic, targetLanguage, levelId), 1500);
+    sendLocalizedLesson('reading', topic, runtime);
     return;
   }
   sendAiReply(buildReadingLesson(studentName || 'teman', topic, levelId), 1800);
@@ -99,7 +97,7 @@ export function handleReadingAnswer(userText: string, vocabStage: VocabularyStag
     setSelectedTopic(topic);
     setVocabStage('practice');
     if (localized) {
-      sendAiReply(buildLocalizedLesson(studentName || 'teman', 'reading', topic, targetLanguage, levelId), 1500);
+      sendLocalizedLesson('reading', topic, runtime);
       return;
     }
     sendAiReply(buildReadingLesson(studentName || 'teman', topic, levelId), 1800);
@@ -114,9 +112,7 @@ export function handleReadingAnswer(userText: string, vocabStage: VocabularyStag
     }
 
     setVocabStage('practice');
-    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'reading', targetLanguage)}
-
-${buildLocalizedPracticeLoopReply(studentName || 'teman', 'reading', targetLanguage)}`, 1400);
+    sendLocalizedFeedback('reading', userText, runtime);
     return;
   }
 

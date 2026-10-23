@@ -14,6 +14,7 @@ export type FlowRuntime = {
   generatedPronunciationRows: PronunciationSentenceRow[];
   vocabularyPracticeOffset: number;
   pronunciationTurn: number;
+  localizedLessonContext: string;
   levelId?: string;
   targetLanguage: TargetLanguage;
   setMessages: Dispatch<SetStateAction<ChatMessage[]>>;
@@ -25,7 +26,9 @@ export type FlowRuntime = {
   setVocabularyPracticeOffset: (offset: number) => void;
   setPronunciationTurn: (turn: number) => void;
   setVocabStage: (stage: VocabularyStage) => void;
+  setLocalizedLessonContext: (context: string) => void;
   sendAiReply: SendAiReply;
+  showTyping: () => void;
 };
 
 export type TopicRuntime = Pick<
@@ -41,5 +44,7 @@ export type TopicRuntime = Pick<
   | 'setVocabularyPracticeOffset'
   | 'setPronunciationTurn'
   | 'setVocabStage'
+  | 'setLocalizedLessonContext'
   | 'sendAiReply'
+  | 'showTyping'
 >;

@@ -112,7 +112,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const [initialStoredSession] = useState(() => getMatchingStoredSession(sessionId, modeId, levelId));
   const [messages, setMessages] = useState<ChatMessage[]>(() => initialStoredSession?.messages ?? createInitialMessages(modeId, mockChatMessages, targetLanguage));
   const [input, setInput] = useState('');
-  const { isTyping, sendAiReply, sendAiReplyFromMessages, clearPendingReply, stopTyping } = useAiReplyQueue(setMessages);
+  const { isTyping, sendAiReply, sendAiReplyFromMessages, clearPendingReply, stopTyping, showTyping } = useAiReplyQueue(setMessages);
   const [isRecording, setIsRecording] = useState(false);
   const [activeSessionId, setActiveSessionId] = useState(() => initialStoredSession?.id || '');
   const [vocabStage, setVocabStage] = useState<VocabularyStage>(() => initialStoredSession?.vocabStage ?? 'ask-name');
@@ -123,6 +123,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const [generatedPronunciationRows, setGeneratedPronunciationRows] = useState<PronunciationSentenceRow[]>(() => initialStoredSession?.generatedPronunciationRows ?? []);
   const [vocabularyPracticeOffset, setVocabularyPracticeOffset] = useState(() => initialStoredSession?.vocabularyPracticeOffset ?? 0);
   const [pronunciationTurn, setPronunciationTurn] = useState(() => initialStoredSession?.pronunciationTurn ?? 0);
+  const [localizedLessonContext, setLocalizedLessonContext] = useState(() => initialStoredSession?.localizedLessonContext ?? '');
   const [sessionEnded, setSessionEnded] = useState(() => initialStoredSession?.sessionEnded ?? false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -137,6 +138,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     generatedPronunciationRows,
     vocabularyPracticeOffset,
     pronunciationTurn,
+    localizedLessonContext,
     levelId,
     targetLanguage,
     setMessages,
@@ -148,7 +150,9 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     setVocabularyPracticeOffset,
     setPronunciationTurn,
     setVocabStage,
+    setLocalizedLessonContext,
     sendAiReply,
+    showTyping,
   };
 
   const guardFreeTopicLimit = (topic: string) => {
@@ -190,6 +194,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       setGeneratedPronunciationRows(storedSession.generatedPronunciationRows);
       setVocabularyPracticeOffset(storedSession.vocabularyPracticeOffset);
       setPronunciationTurn(storedSession.pronunciationTurn);
+      setLocalizedLessonContext(storedSession.localizedLessonContext ?? '');
       setSessionEnded(storedSession.sessionEnded);
       resetTextarea();
       return;
@@ -205,6 +210,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     setGeneratedPronunciationRows([]);
     setVocabularyPracticeOffset(0);
     setPronunciationTurn(0);
+    setLocalizedLessonContext('');
     setSessionEnded(false);
     resetTextarea();
   }, [clearPendingReply, levelId, modeId, sessionId, stopTyping, targetLanguage]);
@@ -234,6 +240,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       generatedPronunciationRows,
       vocabularyPracticeOffset,
       pronunciationTurn,
+      localizedLessonContext,
       sessionEnded,
       updatedAt: Date.now(),
     };
@@ -246,6 +253,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     generatedVocabularyWords,
     isGuidedMode,
     levelId,
+    localizedLessonContext,
     messages,
     modeId,
     pronunciationTurn,
@@ -383,6 +391,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     setGeneratedPronunciationRows([]);
     setVocabularyPracticeOffset(0);
     setPronunciationTurn(0);
+    setLocalizedLessonContext('');
     setSessionEnded(false);
     setMessages(createInitialMessages(modeId, mockChatMessages, targetLanguage));
     navigate(modeId ? `/chat/${modeId}${levelId ? `/${levelId}` : ''}` : '/chat', { replace: true });

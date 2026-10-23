@@ -33,6 +33,7 @@ export type StoredChatSessionState = {
   generatedPronunciationRows: PronunciationSentenceRow[];
   vocabularyPracticeOffset: number;
   pronunciationTurn: number;
+  localizedLessonContext?: string;
   sessionEnded: boolean;
   updatedAt: number;
 };
@@ -143,6 +144,7 @@ const parseStoredSession = (value: unknown): StoredChatSessionState | null => {
     generatedPronunciationRows: toPronunciationRows(session.generatedPronunciationRows),
     vocabularyPracticeOffset: typeof session.vocabularyPracticeOffset === 'number' ? session.vocabularyPracticeOffset : 0,
     pronunciationTurn: typeof session.pronunciationTurn === 'number' ? session.pronunciationTurn : 0,
+    localizedLessonContext: typeof session.localizedLessonContext === 'string' ? session.localizedLessonContext : '',
     sessionEnded: Boolean(session.sessionEnded),
     updatedAt,
   };

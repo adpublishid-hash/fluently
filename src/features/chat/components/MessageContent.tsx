@@ -68,7 +68,7 @@ function parseVocabularyTable(text: string) {
     .split('\n')
     .map((line) => line.split('|'))
     .filter((parts) => parts.length >= 5)
-    .map(([word, phonetic, meaning, pos, example]) => ({ word, phonetic, meaning, pos, example }));
+    .map(([word, phonetic, meaning, pos, example, exampleReading, exampleMeaning, note]) => ({ word, phonetic, meaning, pos, example, exampleReading, exampleMeaning, note }));
 
   return { before, after, rows };
 }
@@ -88,7 +88,7 @@ function parsePronunciationTable(text: string) {
     .split('\n')
     .map((line) => line.split('|'))
     .filter((parts) => parts.length >= 4)
-    .map(([sentence, phonetic, focus, tip]) => ({ sentence, phonetic, focus, tip }));
+    .map(([sentence, phonetic, focus, tip, meaning]) => ({ sentence, phonetic, focus, tip, meaning }));
 
   return { before, after, rows };
 }
@@ -108,7 +108,7 @@ function parseSpeakingTable(text: string) {
     .split('\n')
     .map((line) => line.split('|'))
     .filter((parts) => parts.length >= 4)
-    .map(([prompt, grammarFocus, usefulPattern, example]) => ({ prompt, grammarFocus, usefulPattern, example }));
+    .map(([prompt, grammarFocus, usefulPattern, example, exampleReading, exampleMeaning]) => ({ prompt, grammarFocus, usefulPattern, example, exampleReading, exampleMeaning }));
 
   return { before, after, rows };
 }
@@ -139,6 +139,24 @@ function parseWritingPrompt(text: string) {
   const after = text.slice(end + 'WRITING_PROMPT_END'.length).trim();
 
   return { before, prompt, after };
+}
+
+// Column header for the reading/transcription column of each target language.
+const readingHeaders: Record<TargetLanguage, string> = {
+  English: 'IPA',
+  Japanese: 'Kana / Romaji',
+  Mandarin: 'Pinyin',
+  Arabic: 'Transliterasi',
+};
+
+function ExampleExtras({ reading, meaning }: { reading?: string; meaning?: string }) {
+  if (!reading && !meaning) return null;
+  return (
+    <span className="mt-1 block space-y-0.5 text-[11px] leading-snug">
+      {reading && <span className="block text-text-secondary/90">{reading}</span>}
+      {meaning && <span className="block italic text-text-secondary/80">{meaning}</span>}
+    </span>
+  );
 }
 
 function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targetLanguage: TargetLanguage }) {
@@ -176,9 +194,13 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
               <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-bold text-primary">
                 {row.pos}
               </span>
+              {row.note && <span className="w-full text-[11px] font-medium text-text-secondary">{row.note}</span>}
             </div>
             <div className="flex items-start gap-2 rounded-xl bg-blue-50/70 p-2.5 text-[12.5px] leading-relaxed text-text-secondary">
-              <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words">{row.example}</span>
+              <span className="min-w-0 flex-1 break-words">
+                <span dir={isRtl ? 'rtl' : 'auto'} className="block">{row.example}</span>
+                <ExampleExtras reading={row.exampleReading} meaning={row.exampleMeaning} />
+              </span>
               <button
                 type="button"
                 onClick={() => playAudio(row.example)}
@@ -198,7 +220,7 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
           <thead className="bg-slate-50 text-text-secondary">
             <tr>
               <th className="w-[22%] px-2 py-2.5 font-black">{wordHeader}</th>
-              <th className="w-[16%] px-2 py-2.5 font-black">IPA</th>
+              <th className="w-[16%] px-2 py-2.5 font-black">{readingHeaders[targetLanguage]}</th>
               <th className="w-[18%] px-2 py-2.5 font-black">{t('chat.table.indonesian')}</th>
               <th className="w-[12%] px-2 py-2.5 font-black">{t('chat.table.part')}</th>
               <th className="w-[32%] px-2 py-2.5 font-black">{t('chat.table.example')}</th>
@@ -229,10 +251,14 @@ function VocabularyTable({ rows, targetLanguage }: { rows: VocabularyRow[]; targ
                   <span className="rounded-full bg-primary/10 px-1.5 py-0.5 text-[10px] font-bold text-primary">
                     {row.pos}
                   </span>
+                  {row.note && <span className="mt-1 block break-words text-[10px] leading-snug text-text-secondary">{row.note}</span>}
                 </td>
                 <td className="bg-blue-50/70 px-2 py-2.5 text-text-secondary">
                   <div className="flex items-center gap-2">
-                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">{row.example}</span>
+                    <span className="min-w-0 flex-1 break-words leading-snug">
+                      <span dir={isRtl ? 'rtl' : 'auto'} className="block">{row.example}</span>
+                      <ExampleExtras reading={row.exampleReading} meaning={row.exampleMeaning} />
+                    </span>
                     <button
                       type="button"
                       onClick={() => playAudio(row.example)}
@@ -265,7 +291,7 @@ function PronunciationTable({ rows, targetLanguage }: { rows: PronunciationSente
           <thead className="sticky top-0 z-10 bg-indigo-50 text-slate-700">
             <tr>
               <th className="w-[36%] px-2 py-2.5 font-black">{t('chat.table.sentence')}</th>
-              <th className="w-[26%] px-2 py-2.5 font-black">IPA</th>
+              <th className="w-[26%] px-2 py-2.5 font-black">{readingHeaders[targetLanguage]}</th>
               <th className="w-[16%] px-2 py-2.5 font-black">{t('chat.table.focus')}</th>
               <th className="w-[22%] px-2 py-2.5 font-black">{t('chat.table.coachTip')}</th>
             </tr>
@@ -275,8 +301,11 @@ function PronunciationTable({ rows, targetLanguage }: { rows: PronunciationSente
               <tr key={`${row.sentence}-${index}`} className="border-t border-indigo-100 align-top">
                 <td className="px-2 py-2.5 font-semibold text-text-primary">
                   <div className="flex items-start gap-1.5">
-                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">
-                      <span className="text-text-secondary">{index + 1}.</span> {row.sentence}
+                    <span className="min-w-0 flex-1 break-words leading-snug">
+                      <span dir={isRtl ? 'rtl' : 'auto'} className="block">
+                        <span className="text-text-secondary">{index + 1}.</span> {row.sentence}
+                      </span>
+                      <ExampleExtras meaning={row.meaning} />
                     </span>
                     <button
                       type="button"
@@ -338,7 +367,10 @@ function SpeakingTable({ rows, targetLanguage }: { rows: SpeakingPromptRow[]; ta
                 <td className="break-words px-2 py-2.5 font-medium text-text-secondary">{row.usefulPattern}</td>
                 <td className="bg-emerald-50/50 px-2 py-2.5 text-text-secondary">
                   <div className="flex items-start gap-1.5">
-                    <span dir={isRtl ? 'rtl' : 'auto'} className="min-w-0 flex-1 break-words leading-snug">{row.example}</span>
+                    <span className="min-w-0 flex-1 break-words leading-snug">
+                      <span dir={isRtl ? 'rtl' : 'auto'} className="block">{row.example}</span>
+                      <ExampleExtras reading={row.exampleReading} meaning={row.exampleMeaning} />
+                    </span>
                     <button
                       type="button"
                       onClick={() => playAudio(row.example)}

@@ -10,9 +10,6 @@ import {
 import type { VocabularyStage } from '../english';
 import {
   buildLocalizedCustomTopicPrompt,
-  buildLocalizedFeedback,
-  buildLocalizedLesson,
-  buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
   getLocalizedTopicLabel,
   isCustomLocalizedTopicValue,
@@ -20,6 +17,7 @@ import {
   normalizeLocalizedTopicValue,
 } from '../languageAdapters';
 import { createUserMessage } from '../session';
+import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -56,7 +54,7 @@ Contoh:
   setSelectedTopic(topic);
   setVocabStage('practice');
   if (localized) {
-    sendAiReply(buildLocalizedLesson(studentName || 'teman', 'grammar', topic, targetLanguage, levelId), 1500);
+    sendLocalizedLesson('grammar', topic, runtime);
     return;
   }
   sendAiReply(buildGrammarLesson(studentName || 'teman', topic, levelId), 1800);
@@ -100,7 +98,7 @@ export function handleGrammarAnswer(userText: string, vocabStage: VocabularyStag
     setSelectedTopic(topic);
     setVocabStage('practice');
     if (localized) {
-      sendAiReply(buildLocalizedLesson(studentName || 'teman', 'grammar', topic, targetLanguage, levelId), 1500);
+      sendLocalizedLesson('grammar', topic, runtime);
       return;
     }
     sendAiReply(buildGrammarLesson(studentName || 'teman', topic, levelId), 1800);
@@ -115,9 +113,7 @@ export function handleGrammarAnswer(userText: string, vocabStage: VocabularyStag
     }
 
     setVocabStage('practice');
-    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'grammar', targetLanguage)}
-
-${buildLocalizedPracticeLoopReply(studentName || 'teman', 'grammar', targetLanguage)}`, 1400);
+    sendLocalizedFeedback('grammar', userText, runtime);
     return;
   }
 

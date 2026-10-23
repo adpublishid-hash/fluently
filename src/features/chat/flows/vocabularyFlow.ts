@@ -10,9 +10,6 @@ import {
 import type { VocabularyStage } from '../english';
 import {
   buildLocalizedCustomTopicPrompt,
-  buildLocalizedFeedback,
-  buildLocalizedLesson,
-  buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
   getLocalizedTopicLabel,
   isCustomLocalizedTopicValue,
@@ -21,6 +18,7 @@ import {
 } from '../languageAdapters';
 import { createUserMessage } from '../session';
 import { requestVocabularyCorrection, requestVocabularyLesson } from '../services/vocabularyCorrection';
+import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -175,7 +173,7 @@ Contoh:
   setVocabularyPracticeOffset(0);
   setVocabStage('practice');
   if (localized) {
-    sendAiReply(buildLocalizedLesson(studentName || 'teman', 'vocabulary', topic, targetLanguage, levelId), 1800);
+    sendLocalizedLesson('vocabulary', topic, runtime);
     return;
   }
   const aiLesson = await requestVocabularyLesson({ name: studentName || 'teman', topic, levelId });
@@ -234,7 +232,7 @@ export async function handleVocabularyAnswer(userText: string, vocabStage: Vocab
     setVocabularyPracticeOffset(0);
     setVocabStage('practice');
     if (localized) {
-      sendAiReply(buildLocalizedLesson(studentName || 'teman', 'vocabulary', topic, targetLanguage, levelId), 1800);
+      sendLocalizedLesson('vocabulary', topic, runtime);
       return;
     }
     const aiLesson = await requestVocabularyLesson({ name: studentName || 'teman', topic, levelId });
@@ -255,9 +253,7 @@ export async function handleVocabularyAnswer(userText: string, vocabStage: Vocab
     }
 
     setVocabStage('practice');
-    sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'vocabulary', targetLanguage)}
-
-${buildLocalizedPracticeLoopReply(studentName || 'teman', 'vocabulary', targetLanguage)}`, 1400);
+    sendLocalizedFeedback('vocabulary', userText, runtime);
     return;
   }
 
