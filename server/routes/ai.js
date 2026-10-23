@@ -1,10 +1,10 @@
-const { BYOK_GEMINI_MODEL, FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_API_KEY, KIE_GEMINI_BASE_URL, KIE_MODEL } = require('../config');
+const { BYOK_GEMINI_MODEL, FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_API_KEY, KIE_GEMINI_BASE_URL, KIE_MODEL, KIE_REASONING_EFFORT } = require('../config');
 const { pool } = require('../db');
 const { getServerEffectivePlan } = require('../lib/domain');
 const { requireAuth } = require('../middleware/auth');
 const { aiLimiter } = require('../middleware/rateLimits');
 const { buildAssessmentPrompt, findRubric, normalizeAssessment } = require('../lib/rubricAssessment');
-const { callGoogle, callKie, isStudioKey, verifyStudioKey } = require('../lib/aiProvider');
+const { callGoogle, callKie, isStudioKey, parseJsonObject, verifyStudioKey } = require('../lib/aiProvider');
 const { consumeQuota, getQuota, refundQuota } = require('../lib/aiQuota');
 const {
   buildAssistPrompt,
@@ -98,20 +98,7 @@ module.exports = function register(app) {
     return true;
   }
 
-  function extractJsonObject(text) {
-    const raw = String(text || '').trim();
-    try {
-      return JSON.parse(raw);
-    } catch {
-      const match = raw.match(/\{[\s\S]*\}/);
-      if (!match) return null;
-      try {
-        return JSON.parse(match[0]);
-      } catch {
-        return null;
-      }
-    }
-  }
+  const extractJsonObject = parseJsonObject;
 
   // Server key: Kie AI unless a plain Google key is configured instead.
   function serverProvider() {
@@ -157,13 +144,19 @@ module.exports = function register(app) {
     return null;
   }
 
-  /** Calls the chosen provider; failed server-quota calls are refunded. */
+  /**
+   * Calls the chosen provider; failed server-quota calls are refunded. A quick
+   * upstream 5xx (Kie answers "524 retry fail" within seconds when its
+   * backend is busy) is retried once.
+   */
   async function callAiJson(access, { prompt, temperature, maxOutputTokens }) {
     const call = access.provider === 'kie'
-      ? () => callKie({ apiKey: access.apiKey, baseUrl: KIE_GEMINI_BASE_URL, model: access.model, prompt, temperature, maxOutputTokens })
+      ? () => callKie({ apiKey: access.apiKey, baseUrl: KIE_GEMINI_BASE_URL, model: access.model, prompt, temperature, maxOutputTokens, reasoningEffort: KIE_REASONING_EFFORT })
       : () => callGoogle({ apiKey: access.apiKey, model: access.model, prompt, temperature, maxOutputTokens });
     try {
-      const result = await call();
+      const started = Date.now();
+      let result = await call();
+      if (!result.ok && result.status >= 500 && Date.now() - started < 60000) result = await call();
       if (!result.ok && access.refund) await access.refund().catch(() => undefined);
       return result;
     } catch (err) {
