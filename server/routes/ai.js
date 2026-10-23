@@ -1,6 +1,7 @@
 const { BYOK_GEMINI_MODEL, FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_API_KEY, KIE_GEMINI_BASE_URL, KIE_MODEL } = require('../config');
 const { pool } = require('../db');
 const { getServerEffectivePlan } = require('../lib/domain');
+const exam = require('../lib/examGenerator');
 const { requireAuth } = require('../middleware/auth');
 const { aiLimiter } = require('../middleware/rateLimits');
 const { buildAssessmentPrompt, findRubric, normalizeAssessment } = require('../lib/rubricAssessment');
@@ -465,6 +466,62 @@ module.exports = function register(app) {
     } catch (err) {
       console.error('[gemini] assessment error:', err.message);
       return res.status(502).json({ error: 'Penilaian AI gagal.' });
+    }
+  });
+
+  // AI mock exam: one section per request so parts load in parallel and one
+  // failed part does not sink the whole paper. Each section is generated, then
+  // answered again independently; items whose key does not match are dropped.
+  app.post('/api/ai/exam-section', aiLimiter, requireAuth, async (req, res) => {
+    const language = exam.normalizeExamLanguage(req.body?.language);
+    const levelId = language ? exam.normalizeExamLevel(language, req.body?.levelId) : null;
+    const part = levelId ? exam.findExamPart(language, levelId, String(req.body?.partId || '')) : null;
+    if (!part) return res.status(400).json({ error: 'language, levelId atau partId tidak dikenal.' });
+    const seed = String(req.body?.seed || Date.now()).replace(/[^\w-]/g, '').slice(0, 40);
+
+    const access = await resolveAiAccess(req, res);
+    if (!access) return;
+    const prompt = exam.buildSectionPrompt({ language, levelId, part, seed });
+
+    try {
+      const result = await callAiJson(access, { prompt, temperature: 0.7, maxOutputTokens: part.kind === 'writing' ? 1200 : 7000 });
+      if (!result.ok) {
+        console.error('[gemini] exam section failed:', language, levelId, part.id, result.status, result.data);
+        return sendAiFailure(res, access, result, 'AI exam generation failed.');
+      }
+
+      if (part.kind === 'writing') {
+        const task = exam.normalizeWritingTask(extractJsonObject(result.text));
+        if (!task) {
+          await access.refund?.();
+          return res.status(502).json({ error: 'AI exam generation returned invalid content.' });
+        }
+        return res.json({ model: access.model, partId: part.id, kind: part.kind, task });
+      }
+
+      let groups = exam.normalizeSection(language, part, extractJsonObject(result.text));
+      if (!exam.countQuestions(groups)) {
+        await access.refund?.();
+        return res.status(502).json({ error: 'AI exam generation returned invalid content.' });
+      }
+
+      let verified = false;
+      let dropped = 0;
+      const check = await callAiJson({ ...access, refund: undefined }, {
+        prompt: exam.buildVerifyPrompt({ language, levelId, groups }),
+        temperature: 0,
+        maxOutputTokens: 1500,
+      }).catch(() => null);
+      const parsedCheck = check?.ok ? extractJsonObject(check.text) : null;
+      if (parsedCheck && Array.isArray(parsedCheck.answers)) {
+        ({ groups, dropped } = exam.applyVerification(groups, parsedCheck));
+        verified = true;
+      }
+
+      return res.json({ model: access.model, partId: part.id, kind: part.kind, groups, verified, dropped });
+    } catch (err) {
+      console.error('[gemini] exam section error:', err.message);
+      return res.status(502).json({ error: 'AI exam generation failed.' });
     }
   });
 
