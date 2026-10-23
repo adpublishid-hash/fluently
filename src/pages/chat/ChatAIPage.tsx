@@ -12,6 +12,7 @@ import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
 import { hasUsableChatAiAccess } from '../../services/aiKeyService';
 import AiQuotaBadge from '../../components/shared/AiQuotaBadge';
+import { MistakeNotebook } from '../../features/chat/components/MistakeNotebook';
 
 const fallbackRecentChats: { id: number; title: string; mode: string; modeId: string; time: string; color: string }[] = [];
 
@@ -308,6 +309,8 @@ export default function ChatAIPage() {
             </div>
           )}
         </div>
+
+        {!search && hasAiAccess && <MistakeNotebook targetLanguage={targetLanguage} />}
 
         {/* ── Recent chats ── */}
         {!search && (

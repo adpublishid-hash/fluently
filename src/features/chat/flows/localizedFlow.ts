@@ -9,6 +9,9 @@ import {
   type LocalizedLessonVariation,
 } from '../localizedLesson';
 import { requestLocalizedAssist, requestLocalizedFeedback, requestLocalizedLesson } from '../services/localizedAi';
+import { buildReviewNote, fetchMistakes, saveMistakes, summarizeFeedback } from '../services/mistakes';
+
+const REVIEW_MISTAKES = 3;
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const PRONUNCIATION_BATCH_SIZE = 2;
@@ -46,7 +49,12 @@ export async function sendLocalizedLesson(
   // A new topic starts clean; a regenerated set keeps the current lesson until the new one arrives.
   if (!options.variation) resetLesson();
   showTyping();
-  const lesson = await requestLocalizedLesson({ language: targetLanguage, focus, name, topic, levelId }, { variation: options.variation, avoid: options.avoid });
+  // Past mistakes from the notebook are woven into the new lesson for review.
+  const review = (await fetchMistakes(targetLanguage, REVIEW_MISTAKES)).map(({ original, corrected }) => ({ original, corrected }));
+  const lesson = await requestLocalizedLesson(
+    { language: targetLanguage, focus, name, topic, levelId },
+    { variation: options.variation, avoid: options.avoid, review },
+  );
   if (!lesson) {
     sendAiReply(options.variation
       ? 'Maaf, materi baru belum bisa dibuat karena AI sedang tidak tersedia. Coba lagi sebentar, atau lanjutkan dengan materi yang ada.'
@@ -58,7 +66,8 @@ export async function sendLocalizedLesson(
   setLocalizedLessonContext(lesson.context);
   setGeneratedVocabularyWords(lesson.vocabularyWords);
   setGeneratedPronunciationRows(lesson.pronunciationRows);
-  sendAiReply(lesson.message, 500);
+  const reviewNote = buildReviewNote(review);
+  sendAiReply(reviewNote ? `${lesson.message}\n\n${reviewNote}` : lesson.message, 500);
 }
 
 const buildFallbackFeedback = (focus: LocalizedFocus, userText: string, runtime: FlowRuntime) => {
@@ -177,6 +186,13 @@ async function sendLocalizedFeedback(focus: LocalizedFocus, userText: string, ru
     if (focus === 'pronunciation') setPronunciationTurn(pronunciationTurn + 1);
     sendAiReply(buildFallbackFeedback(focus, userText, runtime), 600);
     return;
+  }
+
+  // Pronunciation transcripts are speech-recognition output, not the learner's own writing.
+  if (result.status !== 'correct' && result.corrected && focus !== 'pronunciation') {
+    void saveMistakes(targetLanguage, focus, selectedTopic, [
+      { original: userText.slice(0, 300), corrected: result.corrected, explanation: summarizeFeedback(result.feedback) },
+    ]);
   }
 
   if (focus === 'vocabulary' && targetItems.length) {

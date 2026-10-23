@@ -22,6 +22,7 @@ type LessonRequest = {
 type LessonOptions = {
   variation?: LocalizedLessonVariation | null;
   avoid?: string[];
+  review?: Array<{ original: string; corrected: string }>;
 };
 
 type AssistRequest = LessonRequest & {
@@ -43,7 +44,7 @@ type FeedbackRequest = LessonRequest & {
 
 export async function requestLocalizedLesson(
   { language, focus, name, topic, levelId }: LessonRequest,
-  { variation = null, avoid = [] }: LessonOptions = {},
+  { variation = null, avoid = [], review = [] }: LessonOptions = {},
 ): Promise<FormattedLocalizedLesson | null> {
   try {
     const response = await aiFetch('/api/ai/localized-lesson', {
@@ -54,6 +55,7 @@ export async function requestLocalizedLesson(
       levelId,
       variation,
       avoid,
+      review,
     });
     if (!response.ok) return null;
     const data = await response.json();

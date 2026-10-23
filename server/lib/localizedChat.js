@@ -175,10 +175,13 @@ function normalizeVariation(value) {
   return VARIATIONS[variation] ? variation : null;
 }
 
-function buildLessonPrompt({ language, focus, name, topic, levelId, variation = null, avoid = [] }) {
+function buildLessonPrompt({ language, focus, name, topic, levelId, variation = null, avoid = [], review = [] }) {
   const lines = [];
   if (variation) lines.push(VARIATIONS[variation]);
   if (avoid.length) lines.push(`Do not reuse these items from the previous set: ${avoid.join(', ')}`);
+  if (review.length) {
+    lines.push(`Review: in earlier sessions the student made these mistakes (student version → correct version):\n${review.map((item) => `- ${item}`).join('\n')}\nWhere they fit this lesson, include one or two items (an example, drill, prompt or question) that make the student practise the correct form again. Do not mention the student's name with the mistakes.`);
+  }
   const base = buildBaseLessonPrompt({ language, focus, name, topic, levelId });
   return lines.length ? `${base}\n\n${lines.join('\n')}` : base;
 }
