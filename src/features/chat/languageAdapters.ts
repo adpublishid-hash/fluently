@@ -151,7 +151,125 @@ const arabicTopicLabels: Record<'vocabulary' | 'grammar' | 'pronunciation' | 'sp
   ],
 };
 
+const japaneseTopicLabels: Record<'vocabulary' | 'grammar' | 'pronunciation' | 'speaking' | 'reading' | 'writing', string[]> = {
+  vocabulary: [
+    'Salam dan aisatsu', 'Perkenalan diri (jikoshoukai)', 'Keluarga (kazoku)', 'Angka dan counter (～つ, ～人, ～枚)', 'Waktu, jam, dan tanggal',
+    'Hari dan jadwal', 'Makanan dan minuman', 'Di konbini dan supermarket', 'Di restoran Jepang', 'Belanja dan harga',
+    'Kereta dan stasiun', 'Arah dan lokasi', 'Rumah dan kamar', 'Sekolah dan kampus', 'Kantor dan pekerjaan',
+    'Kesehatan dan tubuh', 'Cuaca dan musim', 'Hobi dan waktu luang', 'Perasaan dan opini', 'Kata kerja harian',
+    'Kata sifat い dan な', 'Kata keterangan umum', 'Ungkapan sopan (keigo dasar)', 'Katakana loanword', 'Onomatope (giongo/gitaigo)',
+    'Budaya dan festival Jepang', 'Teknologi dan media sosial', 'Wawancara kerja di Jepang', 'Berita dan isu sosial', 'Review goi',
+  ],
+  grammar: [
+    'Pola です / ではありません', 'Partikel は vs が', 'Partikel を, に, で, へ', 'Kata tunjuk こそあど', 'Kata tanya なに, どこ, いつ',
+    'Kata sifat い dan な', 'Bentuk ます: lampau dan negatif', 'Bentuk て (te-form)', '～ています: sedang dan keadaan', '～てもいいです / ～てはいけません',
+    'Bentuk ない', 'Bentuk kamus dan bentuk た', '～たい (ingin)', '～たことがある (pengalaman)', 'Perbandingan より / いちばん',
+    'Bentuk potensial', '～つもり / ～予定', 'Alasan ～から / ～ので', '～のに / ～けど', 'Kondisional と / ば / たら / なら',
+    'Memberi-menerima あげる / くれる / もらう', '～そう / ～よう / ～らしい', 'Kalimat pasif (受身形)', 'Kausatif (使役形)', 'Transitif vs intransitif',
+    '～てしまう / ～ておく', 'Keigo: 尊敬語 dan 謙譲語', '～ながら / ～し', 'Modifikasi kata benda (kalimat relatif)', 'Review bunpou',
+  ],
+  pronunciation: [
+    'Lima vokal あいうえお', 'Vokal panjang (chouon)', 'Konsonan ganda っ (sokuon)', 'Bunyi ん (hatsuon)', 'Ritme mora',
+    'Pitch accent dasar', 'Pasangan pitch 箸 / 橋 / 端', 'Devoicing vokal (です, した)', 'Bunyi ら-gyou (r Jepang)', 'つ vs す',
+    'ふ dan bunyi h/f', 'Youon しゃ しゅ しょ', 'じ/ぢ dan ず/づ', 'Bacaan partikel は, へ, を', 'Katakana loanword',
+    'Angka dan counter', 'Salam sehari-hari', 'Intonasi pertanyaan か', 'Ungkapan sopan', 'Shadowing dialog pendek',
+    'Kecepatan bicara natural', 'Partikel akhir よ dan ね', 'Nama tempat di Jepang', 'Kata dengan bunyi mirip', 'Telepon dan pengumuman',
+    'Kalimat panjang dengan jeda', 'Keigo dan intonasi formal', 'Presentasi singkat', 'Rekaman evaluasi', 'Review hatsuon',
+  ],
+  speaking: [
+    'Jikoshoukai (perkenalan diri)', 'Menanyakan kabar', 'Asal dan tempat tinggal', 'Keluarga saya', 'Rutinitas harian',
+    'Di konbini', 'Memesan di restoran', 'Belanja dan bertanya harga', 'Menanyakan arah', 'Di stasiun kereta',
+    'Membuat janji', 'Mengajak teman', 'Menolak dengan sopan', 'Hobi dan akhir pekan', 'Cuaca dan musim',
+    'Di hotel / ryokan', 'Ke dokter', 'Telepon singkat', 'Minta izin', 'Minta tolong',
+    'Memberi saran', 'Setuju dan tidak setuju', 'Cerita pengalaman', 'Rencana liburan', 'Wawancara kerja (mensetsu)',
+    'Rapat di kantor', 'Presentasi 1 menit', 'Diskusi isu sosial', 'Keigo dengan atasan', 'Review kaiwa',
+  ],
+  reading: [
+    'Papan tanda dan petunjuk', 'Profil perkenalan', 'Jadwal kereta', 'Menu restoran', 'Pesan LINE dari teman',
+    'Catatan harian (nikki)', 'Undangan acara', 'Pengumuman sekolah', 'Iklan apartemen', 'Brosur wisata',
+    'Resep masakan', 'Email kantor', 'Cerita rakyat pendek', 'Artikel budaya Jepang', 'Berita ringan',
+    'Blog perjalanan', 'Instruksi penggunaan', 'Surat terima kasih', 'Teks opini pendek', 'Wawancara di majalah',
+    'Peraturan asrama', 'Teks sebab-akibat', 'Esai pendek', 'Ringkasan cerita', 'Inferensi bacaan',
+    'Mencari detail', 'Main idea', 'Kosakata dari konteks', 'Bacaan kanji N3+', 'Review dokkai',
+  ],
+  writing: [
+    'Menulis hiragana dan katakana', 'Menulis nama dan asal', 'Kalimat ～は～です', 'Deskripsi keluarga', 'Rutinitas harian',
+    'Catatan harian (nikki)', 'Pesan LINE singkat', 'Daftar belanja', 'Kartu ucapan', 'Menulis jadwal',
+    'Paragraf tentang diri', 'Deskripsi kota', 'Hobi saya', 'Email sopan sederhana', 'Undangan acara',
+    'Balasan pesan', 'Pengalaman liburan', 'Rencana masa depan', 'Menggabungkan kalimat dengan て', 'Deskripsi gambar',
+    'Surat terima kasih', 'Ringkasan teks', 'Opini pendek', 'Email kantor (keigo)', 'Laporan singkat',
+    'Esai sebab-akibat', 'Koreksi tulisan', 'Variasi ungkapan', 'Sakubun (karangan)', 'Review sakubun',
+  ],
+};
+
+const mandarinTopicLabels: Record<'vocabulary' | 'grammar' | 'pronunciation' | 'speaking' | 'reading' | 'writing', string[]> = {
+  vocabulary: [
+    'Salam dan sapaan (你好)', 'Perkenalan diri', 'Keluarga (家人)', 'Angka dan uang', 'Waktu, jam, dan tanggal',
+    'Hari dan jadwal', 'Makanan dan minuman', 'Di restoran Cina', 'Belanja dan tawar harga', 'Measure word umum (量词)',
+    'Transportasi', 'Arah dan lokasi', 'Rumah dan kamar', 'Sekolah dan kelas', 'Pekerjaan dan kantor',
+    'Kesehatan dan tubuh', 'Cuaca dan musim', 'Hobi dan olahraga', 'Perasaan dan opini', 'Kata kerja harian',
+    'Kata sifat umum', 'Kata keterangan 很, 太, 都, 也', 'Ungkapan sopan', 'Teknologi dan aplikasi (微信, 支付宝)', 'Budaya dan festival (春节)',
+    'Bisnis dan perdagangan', 'Wawancara kerja', 'Berita dan isu sosial', 'Chengyu populer (成语)', 'Review cihui',
+  ],
+  grammar: [
+    'Kalimat 是 (A 是 B)', 'Pertanyaan dengan 吗', 'Kata tanya 什么, 哪儿, 谁', 'Negasi 不 vs 没', 'Kalimat 有',
+    'Measure word (量词)', 'Partikel 的 (kepemilikan)', 'Urutan waktu dan tempat', 'Kata sifat dengan 很', '在 + kata kerja (sedang)',
+    'Aspek 了', 'Pengalaman 过', 'Keadaan 着', '要 / 想 / 会 / 能 / 可以', 'Perbandingan 比',
+    'Pertanyaan A不A', '因为…所以…', '虽然…但是…', 'Komplemen hasil (完, 到, 懂)', 'Komplemen arah (来 / 去)',
+    'Komplemen derajat 得', 'Komplemen potensial', 'Kalimat 把', 'Kalimat pasif 被', '是…的 (penekanan)',
+    '一…就…', '越来越 / 越…越…', '如果…就…', '连…都… / 除了…以外', 'Review yufa',
+  ],
+  pronunciation: [
+    'Nada 1 (datar tinggi)', 'Nada 2 (naik)', 'Nada 3 (turun-naik)', 'Nada 4 (turun)', 'Nada netral (轻声)',
+    'Sandhi nada 3 (你好)', 'Perubahan nada 不', 'Perubahan nada 一', 'zh ch sh r (retrofleks)', 'z c s',
+    'j q x', 'Vokal ü (lǜ, qù)', 'Final -n vs -ng', 'Aspirasi b/p, d/t, g/k', 'Erhua (儿化)',
+    'Pasangan nada dua suku kata', 'Angka dan harga', 'Salam sehari-hari', 'Intonasi pertanyaan', 'Kalimat pendek dengan 了',
+    'Nama kota dan negara', 'Shadowing dialog', 'Tempo bicara natural', 'Kata dengan bunyi mirip', 'Telepon dan pengumuman',
+    'Kalimat panjang dengan jeda', 'Presentasi singkat', 'Chengyu dan ritme', 'Rekaman evaluasi', 'Review pinyin dan nada',
+  ],
+  speaking: [
+    'Perkenalan diri (自我介绍)', 'Menanyakan kabar', 'Asal negara dan kota', 'Keluarga saya', 'Rutinitas harian',
+    'Memesan makanan', 'Belanja dan tawar harga', 'Menanyakan arah', 'Naik taksi / kereta', 'Di hotel',
+    'Membuat janji', 'Mengajak teman', 'Menolak dengan sopan', 'Hobi dan akhir pekan', 'Cuaca',
+    'Ke dokter', 'Telepon singkat', 'Minta tolong', 'Memberi saran', 'Setuju dan tidak setuju',
+    'Cerita pengalaman (过)', 'Rencana liburan', 'Belanja online', 'Wawancara kerja', 'Negosiasi bisnis',
+    'Rapat di kantor', 'Presentasi 1 menit', 'Diskusi isu sosial', 'Debat ringan', 'Review kouyu',
+  ],
+  reading: [
+    'Papan tanda dan petunjuk', 'Kartu nama dan profil', 'Jadwal kelas', 'Menu restoran', 'Pesan WeChat',
+    'Catatan harian (日记)', 'Undangan acara', 'Pengumuman sekolah', 'Iklan sewa rumah', 'Brosur wisata',
+    'Resep masakan', 'Email kantor', 'Cerita fabel (寓言)', 'Artikel budaya Cina', 'Berita ringan',
+    'Blog perjalanan', 'Instruksi penggunaan', 'Surat terima kasih', 'Teks opini pendek', 'Wawancara singkat',
+    'Ulasan produk', 'Teks sebab-akibat', 'Esai pendek', 'Ringkasan cerita', 'Inferensi bacaan',
+    'Mencari detail', 'Main idea', 'Kosakata dari konteks', 'Bacaan tanpa pinyin', 'Review yuedu',
+  ],
+  writing: [
+    'Hanzi dasar dan urutan goresan', 'Menulis nama dan asal', 'Kalimat 我是… / 我叫…', 'Deskripsi keluarga', 'Rutinitas harian',
+    'Catatan harian (日记)', 'Pesan WeChat singkat', 'Daftar belanja', 'Kartu ucapan (春节)', 'Menulis jadwal',
+    'Paragraf tentang diri', 'Deskripsi kota', 'Hobi saya', 'Email sederhana', 'Undangan acara',
+    'Balasan pesan', 'Pengalaman liburan (了 / 过)', 'Rencana masa depan', 'Menggabungkan kalimat dengan konjungsi', 'Deskripsi gambar',
+    'Surat terima kasih', 'Ringkasan teks', 'Opini pendek', 'Email bisnis', 'Laporan singkat',
+    'Esai sebab-akibat', 'Koreksi tulisan', 'Variasi kosakata dan chengyu', 'Esai HSK (作文)', 'Review xiezuo',
+  ],
+};
+
 const localizedFocusLabels: Partial<Record<TargetLanguage, Record<string, string>>> = {
+  Japanese: {
+    vocabulary: 'Kosakata (語彙)',
+    grammar: 'Tata Bahasa (文法)',
+    pronunciation: 'Pelafalan (発音)',
+    speaking: 'Percakapan (会話)',
+    reading: 'Membaca (読解)',
+    writing: 'Menulis (作文)',
+  },
+  Mandarin: {
+    vocabulary: 'Kosakata (词汇)',
+    grammar: 'Tata Bahasa (语法)',
+    pronunciation: 'Pelafalan & Nada (发音)',
+    speaking: 'Percakapan (口语)',
+    reading: 'Membaca (阅读)',
+    writing: 'Menulis (写作)',
+  },
   Arabic: {
     vocabulary: 'Mufradat',
     grammar: 'Nahwu & Sharaf',
@@ -250,9 +368,15 @@ Sebelum mulai, siapa namamu?`,
   },
   Mandarin: {
     languageName: 'Mandarin',
-    greeting: 'Nǐ hǎo! Sebelum mulai, siapa namamu?',
-    topicHint: 'Pilih topik Mandarin yang mau kamu latih.',
+    nativeName: '中文',
+    greeting: `你好！(Nǐ hǎo!)
+
+Aku akan jadi coach Mandarin kamu: hanzi + pinyin bernada, measure word, pola kalimat, nada, sampai percakapan natural.
+
+Sebelum mulai, siapa namamu?`,
+    topicHint: 'Pilih topik Mandarin yang mau kamu latih. Kamu boleh jawab pakai hanzi, pinyin, atau campuran dulu.',
     sample: '你好，我叫安娜。',
+    topicLabels: mandarinTopicLabels,
     vocabularyRows: [
       { word: '你好', phonetic: '/ni3 hao3/', meaning: 'halo', pos: 'phrase', example: '你好，我叫安娜。' },
       { word: '我', phonetic: '/wo3/', meaning: 'saya', pos: 'pronoun', example: '我是学生。' },
@@ -291,15 +415,24 @@ Sebelum mulai, siapa namamu?`,
       { prompt: 'Perkenalkan diri dengan nama dan kota.', grammarFocus: 'SVO', usefulPattern: '我叫... / 我在...', example: '我叫安娜。我在雅加达。' },
       { prompt: 'Pesan minuman.', grammarFocus: 'request', usefulPattern: '我要...', example: '我要一杯水。' },
       { prompt: 'Tanya lokasi.', grammarFocus: 'question', usefulPattern: '...在哪里？', example: '车站在哪里？' },
+      { prompt: 'Tanya harga barang.', grammarFocus: 'measure word', usefulPattern: '这个多少钱？', example: '这个多少钱？太贵了。' },
+      { prompt: 'Ceritakan hobimu.', grammarFocus: '喜欢 + verb', usefulPattern: '我喜欢...', example: '我喜欢看书，也喜欢游泳。' },
+      { prompt: 'Minta lawan bicara bicara pelan.', grammarFocus: 'request', usefulPattern: '请说慢一点', example: '对不起，请说慢一点。' },
     ],
     readingPassage: '你好。我叫安娜。我住在雅加达。我每天早上学习中文。我喜欢中文，因为中文很有意思。',
     writingPrompt: 'Tulis 4-6 kalimat Mandarin tentang diri kamu. Pakai 我叫..., 我住在..., 我喜欢...',
   },
   Japanese: {
     languageName: 'Japanese',
-    greeting: 'Konnichiwa! Sebelum mulai, siapa namamu?',
-    topicHint: 'Pilih topik bahasa Jepang yang mau kamu latih.',
+    nativeName: '日本語',
+    greeting: `こんにちは！(Konnichiwa!)
+
+Aku akan jadi coach bahasa Jepang kamu: kosakata dengan kana/romaji, partikel dan konjugasi, pitch accent, sampai percakapan sopan.
+
+Sebelum mulai, siapa namamu?`,
+    topicHint: 'Pilih topik bahasa Jepang yang mau kamu latih. Kamu boleh jawab pakai kana/kanji, romaji, atau campuran dulu.',
     sample: 'こんにちは、私の名前はアナです。',
+    topicLabels: japaneseTopicLabels,
     vocabularyRows: [
       { word: 'こんにちは', phonetic: '/konnichiwa/', meaning: 'halo/selamat siang', pos: 'phrase', example: 'こんにちは、アナです。' },
       { word: '私', phonetic: '/watashi/', meaning: 'saya', pos: 'pronoun', example: '私は学生です。' },
@@ -338,6 +471,9 @@ Sebelum mulai, siapa namamu?`,
       { prompt: 'Perkenalkan diri dengan nama.', grammarFocus: 'desu', usefulPattern: '私は...です', example: '私はアナです。' },
       { prompt: 'Tanyakan lokasi.', grammarFocus: 'question', usefulPattern: '...はどこですか', example: '駅はどこですか。' },
       { prompt: 'Minta sesuatu dengan sopan.', grammarFocus: 'request', usefulPattern: '...をください', example: '水をください。' },
+      { prompt: 'Ceritakan hobimu.', grammarFocus: 'が好きです', usefulPattern: '...が好きです', example: '私は音楽が好きです。' },
+      { prompt: 'Ceritakan kegiatan kemarin.', grammarFocus: 'ました', usefulPattern: '昨日...ました', example: '昨日、友だちと映画を見ました。' },
+      { prompt: 'Minta lawan bicara mengulang.', grammarFocus: 'てください', usefulPattern: 'もう一度...てください', example: 'すみません、もう一度言ってください。' },
     ],
     readingPassage: 'こんにちは。私はアナです。ジャカルタに住んでいます。毎朝、日本語を勉強します。日本語はおもしろいです。',
     writingPrompt: 'Tulis 4-6 kalimat Jepang tentang diri kamu. Pakai 私は..., ...です, ...が好きです.',
@@ -396,6 +532,26 @@ export const getLocalizedModeCopy = (targetLanguage: TargetLanguage, modeId: str
     if (copy[modeId]) return copy[modeId];
   }
 
+  const modeCopy: Partial<Record<TargetLanguage, Record<string, { label: string; sublabel: string }>>> = {
+    Japanese: {
+      vocabulary: { label: 'Goi Coach', sublabel: 'Kosakata Jepang + kana/romaji, jenis kata kerja, counter, dan contoh kalimat.' },
+      pronunciation: { label: 'Hatsuon Coach', sublabel: 'Vokal panjang, っ, ん, pitch accent, dan ritme mora.' },
+      grammar: { label: 'Bunpou Coach', sublabel: 'Partikel, konjugasi ます/て/ない, dan pola JLPT per level.' },
+      speaking: { label: 'Kaiwa Coach', sublabel: 'Roleplay percakapan Jepang dengan tingkat kesopanan yang tepat.' },
+      reading: { label: 'Dokkai Coach', sublabel: 'Teks Jepang sesuai level JLPT dengan furigana, glosarium, dan soal.' },
+      writing: { label: 'Sakubun Coach', sublabel: 'Tulis kalimat/paragraf Jepang lalu dapat koreksi partikel dan kanji.' },
+    },
+    Mandarin: {
+      vocabulary: { label: 'Cihui Coach', sublabel: 'Hanzi + pinyin bernada, measure word, dan contoh kalimat HSK.' },
+      pronunciation: { label: 'Fayin Coach', sublabel: 'Empat nada, sandhi, zh/ch/sh, j/q/x, dan vokal ü.' },
+      grammar: { label: 'Yufa Coach', sublabel: 'Urutan kata, 了/过/着, komplemen, 把 dan 被 per level HSK.' },
+      speaking: { label: 'Kouyu Coach', sublabel: 'Roleplay percakapan Mandarin dengan pola pendek yang natural.' },
+      reading: { label: 'Yuedu Coach', sublabel: 'Teks Mandarin sesuai HSK dengan pinyin, glosarium, dan soal.' },
+      writing: { label: 'Xiezuo Coach', sublabel: 'Tulis hanzi/paragraf Mandarin lalu dapat koreksi struktur dan karakter.' },
+    },
+  };
+  if (modeCopy[targetLanguage]?.[modeId]) return modeCopy[targetLanguage]![modeId];
+
   return {
     label: focusLabels[modeId] || 'AI Chat',
     sublabel: `Practice ${languageProfiles[targetLanguage].languageName} with AI`,
@@ -424,14 +580,66 @@ ${focusExamples.map((item) => `- ${item}`).join('\n')}
 Kamu boleh menulis pakai bahasa Indonesia, transliterasi, atau tulisan Arab.`;
   }
 
+  const customExamples: Partial<Record<TargetLanguage, Record<string, string[]>>> = {
+    Japanese: {
+      vocabulary: ['Kosakata anime dan manga', 'Kerja part-time (baito)', 'Kosakata kaigo / perawat', 'Belanja di Donki'],
+      grammar: ['Partikel に vs で', 'Bentuk て', 'Keigo untuk kerja', '～ばかり / ～ところ'],
+      pronunciation: ['Vokal panjang', 'Pitch accent nama kota', 'Bunyi っ', 'Intonasi keigo'],
+      speaking: ['Wawancara kerja di Jepang', 'Pesan ramen', 'Tanya jalan di Tokyo', 'Ngobrol dengan teman sekelas'],
+      reading: ['Pengumuman di stasiun', 'Pesan LINE', 'Artikel NHK Easy', 'Menu izakaya'],
+      writing: ['Nikki hari ini', 'Email ke sensei', 'Perkenalan diri formal', 'Pengalaman liburan'],
+    },
+    Mandarin: {
+      vocabulary: ['Kosakata bisnis impor', 'Belanja di Taobao', 'Kosakata drama Cina', 'Kuliner jalanan'],
+      grammar: ['了 vs 过', 'Kalimat 把', 'Komplemen hasil', 'Measure word'],
+      pronunciation: ['Nada 3 berurutan', 'zh ch sh', 'Vokal ü', 'Nada netral'],
+      speaking: ['Tawar harga di pasar', 'Negosiasi dengan supplier', 'Pesan makanan', 'Kenalan dengan teman baru'],
+      reading: ['Pesan WeChat', 'Berita singkat', 'Ulasan produk', 'Iklan lowongan kerja'],
+      writing: ['日记 hari ini', 'Email ke supplier', 'Perkenalan diri', 'Rencana liburan'],
+    },
+  };
   const language = languageProfiles[targetLanguage].languageName;
-  return `Boleh, ${name || 'teman'}! Tulis topik ${language} ${label} yang kamu mau.`;
+  const examples = customExamples[targetLanguage]?.[focus || 'vocabulary'];
+  if (!examples) return `Boleh, ${name || 'teman'}! Tulis topik ${language} ${label} yang kamu mau.`;
+  return `Boleh, ${name || 'teman'}! Tulis topik ${language} ${label} yang kamu mau.
+
+Contoh:
+${examples.map((item) => `- ${item}`).join('\n')}
+
+Kamu boleh menulis topiknya pakai bahasa Indonesia.`;
+};
+
+const practiceLoopTasks: Partial<Record<TargetLanguage, Record<string, string>>> = {
+  Japanese: {
+    vocabulary: 'kirim 3 kalimat baru memakai kosakata dari tabel (pakai です/ます).',
+    grammar: 'kirim 2 kalimat baru dan garis bawahi partikel atau bentuk kata kerjanya.',
+    pronunciation: 'tekan mic lagi dan baca 2 kalimat berikutnya; jaga vokal panjang dan っ.',
+    speaking: 'jawab prompt berikutnya dengan 1-2 kalimat Jepang.',
+    reading: 'jawab main idea, 3 kosakata baru, dan satu detail dari teks.',
+    writing: 'kirim versi revisi 4 kalimat Jepang dengan partikel yang lebih rapi.',
+  },
+  Mandarin: {
+    vocabulary: 'kirim 3 kalimat baru memakai kosakata dari tabel (jangan lupa measure word).',
+    grammar: 'kirim 2 kalimat baru dengan urutan Subjek + Waktu + Tempat + Kata kerja.',
+    pronunciation: 'tekan mic lagi dan baca 2 kalimat berikutnya; perhatikan nada 3 dan zh/ch/sh.',
+    speaking: 'jawab prompt berikutnya dengan 1-2 kalimat Mandarin.',
+    reading: 'jawab main idea, 3 kosakata baru, dan satu detail dari teks.',
+    writing: 'kirim versi revisi 4 kalimat Mandarin dengan hanzi yang benar.',
+  },
 };
 
 export const buildLocalizedPracticeLoopReply = (name: string, focus: ChatFocus, targetLanguage: TargetLanguage) => {
+  const label = getLocalizedFocusLabel(targetLanguage, focus);
+  const languageTasks = practiceLoopTasks[targetLanguage];
+  if (languageTasks) {
+    return `Lanjut ${label}, ${name || 'teman'}.
+
+Tantangan berikutnya: ${languageTasks[focus || 'vocabulary'] || languageTasks.vocabulary}
+
+Kalau ingin ganti topik, ketik "topik baru".`;
+  }
   if (targetLanguage !== 'Arabic') return buildLocalizedTopicQuestion(name, focus, targetLanguage);
 
-  const label = getLocalizedFocusLabel(targetLanguage, focus);
   const nextTask: Record<string, string> = {
     vocabulary: 'kirim 3 kalimat baru memakai mufradat dari tabel.',
     grammar: "kirim 2 kalimat baru lalu tandai mubtada-khabar atau fi'il-fa'il.",
@@ -450,7 +658,7 @@ Kalau ingin ganti topik, ketik "topik baru".`;
 
 export const buildLocalizedGreeting = (targetLanguage: TargetLanguage, focus?: ChatFocus) => {
   const profile = languageProfiles[targetLanguage];
-  if (targetLanguage === 'Arabic') {
+  if (targetLanguage !== 'English') {
     const label = getLocalizedFocusLabel(targetLanguage, focus);
     return `${profile.greeting}
 
@@ -710,7 +918,7 @@ export const buildLocalizedFeedback = (name: string, answer: string, focus: Chat
               ? 'Untuk kitabah, susun kalimat kanan-ke-kiri dan cek kesesuaian mudzakkar/muannats.'
               : 'Untuk mufradat, pakai kata baru dalam contoh pendek supaya lebih melekat.';
 
-    return `Bagus, ${name}. Ini feedback Arabic kamu:
+    return `Bagus, ${name}. Ini feedback Arabic kamu (koreksi otomatis offline, AI sedang tidak tersedia):
 
 Status: ${hasEnoughText ? 'Good progress' : 'Perlu dibuat sedikit lebih lengkap'}
 
@@ -733,20 +941,33 @@ Skor sementara: ${score}/100
 Lanjut: kirim 2 kalimat baru dengan pola yang sama.`;
   }
 
-  const score = hasEnoughText ? 84 : 68;
+  const hasNativeScript = targetLanguage === 'Japanese'
+    ? /[\u3040-\u30ff\u3400-\u9fff]/.test(answer)
+    : /[\u3400-\u9fff]/.test(answer);
+  // CJK text has no spaces, so count characters instead of words.
+  const hasEnoughNativeText = hasEnoughText || answer.replace(/\s+/g, '').length >= 6;
+  const score = hasEnoughNativeText && hasNativeScript ? 84 : hasEnoughNativeText ? 76 : 68;
+  const scriptNote = targetLanguage === 'Japanese'
+    ? hasNativeScript ? 'Sudah memakai kana/kanji.' : 'Romaji boleh untuk awal, lalu coba tulis ulang dengan hiragana.'
+    : hasNativeScript ? 'Sudah memakai hanzi.' : 'Pinyin boleh untuk awal, lalu coba ketik hanzi dengan keyboard pinyin.';
+  const languageHint = targetLanguage === 'Japanese'
+    ? 'Cek partikel (は/が/を/に/で) dan pastikan kata kerja di akhir kalimat dengan bentuk ます yang konsisten.'
+    : 'Cek urutan Subjek + Waktu + Tempat + Kata kerja, measure word sebelum kata benda, dan jangan pakai 是 sebelum kata sifat (pakai 很).';
   const focusHint = focus === 'pronunciation'
-    ? 'Untuk pronunciation, coba ulangi dengan tempo lebih pelan dan artikulasi lebih jelas.'
+    ? targetLanguage === 'Japanese'
+      ? 'Untuk pelafalan, jaga panjang vokal, jeda っ, dan ritme mora yang rata.'
+      : 'Untuk pelafalan, ucapkan nadanya dengan jelas (terutama nada 3) dan bedakan zh/ch/sh dengan z/c/s.'
     : focus === 'speaking'
-      ? 'Untuk speaking, tambahkan subject dan verb supaya grammar lebih kuat.'
-      : 'Buat kalimat lebih lengkap dengan subject, detail, dan konteks kecil.';
+      ? 'Untuk speaking, jawab dengan pola dari tabel lalu tambah satu detail.'
+      : languageHint;
 
-  return `Nice try, ${name}! Ini feedback ${language} kamu:
+  return `Nice try, ${name}! Ini feedback ${language} kamu (koreksi otomatis offline, AI sedang tidak tersedia):
 
-Status: ${hasEnoughText ? '✅ Good progress' : '⚠️ Perlu dibuat sedikit lebih lengkap'}
+Status: ${hasEnoughNativeText ? '✅ Good progress' : '⚠️ Perlu dibuat sedikit lebih lengkap'}
 
 Yang sudah bagus:
 - Kamu sudah mencoba memakai ${language} secara aktif.
-- Jawabanmu cukup jelas untuk latihan tahap ini.
+- ${scriptNote}
 
 Yang perlu ditingkatkan:
 - ${focusHint}

@@ -33,7 +33,30 @@ function messageText(content) {
   return '';
 }
 
-async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputTokens, fetchImpl = fetch }) {
+/**
+ * Parses the JSON object in a model reply (bare or inside a ```json fence).
+ * Models sometimes leave an IPA value unquoted ("reading": /ˈbrʌðər/), so a
+ * failed parse is retried once with such values quoted.
+ */
+function parseJsonObject(text) {
+  const raw = String(text || '').trim();
+  const match = raw.match(/\{[\s\S]*\}/);
+  for (const candidate of [raw, match?.[0]]) {
+    if (!candidate) continue;
+    try {
+      return JSON.parse(candidate);
+    } catch {
+      try {
+        return JSON.parse(candidate.replace(/([:[,]\s*)(\/[^"\n/]*\/)(?=\s*[,}\]])/g, '$1"$2"'));
+      } catch {
+        // try the next candidate
+      }
+    }
+  }
+  return null;
+}
+
+async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputTokens, reasoningEffort, fetchImpl = fetch }) {
   const res = await fetchImpl(`${String(baseUrl).replace(/\/$/, '')}/${encodeURIComponent(model)}/v1/chat/completions`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
@@ -43,6 +66,7 @@ async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputT
       stream: false,
       temperature,
       max_tokens: maxOutputTokens,
+      ...(reasoningEffort ? { reasoning_effort: reasoningEffort } : {}),
     }),
   });
   const raw = await res.text();
@@ -84,4 +108,4 @@ async function verifyStudioKey(apiKey, fetchImpl = fetch) {
   return { ok: false, reason: res.status === 429 ? 'rate_limited' : 'rejected', status: res.status };
 }
 
-module.exports = { isStudioKey, parseSseText, callKie, callGoogle, verifyStudioKey };
+module.exports = { isStudioKey, parseJsonObject, parseSseText, callKie, callGoogle, verifyStudioKey };

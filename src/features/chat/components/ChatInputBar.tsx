@@ -14,6 +14,8 @@ type ChatInputBarProps = {
   onInputChange: (value: string) => void;
   onSend: () => void;
   onToggleRecording: () => void;
+  quickReplies?: Array<{ label: string; text: string }>;
+  onQuickReply?: (text: string) => void;
 };
 
 export function ChatInputBar({
@@ -27,6 +29,8 @@ export function ChatInputBar({
   onInputChange,
   onSend,
   onToggleRecording,
+  quickReplies = [],
+  onQuickReply,
 }: ChatInputBarProps) {
   const { t } = useLanguage();
   const canSend = chatStarted && !sessionEnded && !inputDisabled && input.trim();
@@ -34,6 +38,21 @@ export function ChatInputBar({
 
   return (
     <div className="bg-white border-t border-gray-100 px-3 sm:px-4 pt-3 pb-[max(0.75rem,calc(env(safe-area-inset-bottom)+0.75rem))] md:pb-4 shrink-0 z-10">
+      {quickReplies.length > 0 && onQuickReply && (
+        <div className="w-full max-w-5xl mx-auto -mt-0.5 mb-2.5 flex gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none]">
+          {quickReplies.map((reply) => (
+            <button
+              key={reply.text}
+              type="button"
+              onClick={() => onQuickReply(reply.text)}
+              className="shrink-0 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-[12px] font-bold text-text-secondary transition hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
+            >
+              {reply.label}
+            </button>
+          ))}
+        </div>
+      )}
+
       <div className="w-full max-w-5xl mx-auto flex items-end gap-2.5">
         <motion.button
           whileTap={{ scale: 0.92 }}
