@@ -51,6 +51,7 @@ test('feedback prompt includes the error checklist, context and answer', () => {
   assert.match(prompt, /measure words/);
   assert.match(prompt, /我是很高兴。/);
   assert.match(prompt, /Target words for this batch: 学生/);
+  assert.match(prompt, /"status" and "score" \(0-100\) must agree/);
 });
 
 test('vocabulary lessons need native script and enough rows', () => {
@@ -113,6 +114,8 @@ test('report prompt only grades student turns and output is validated', () => {
   });
   assert.match(prompt, /COACH: مَا اسْمُكَ؟\nSTUDENT: اسمي آنا/);
   assert.match(prompt, /Assess ONLY the STUDENT turns/);
+  assert.match(prompt, /category: exactly one of "Sangat baik"/);
+  assert.match(prompt, /ظ zh/);
   const report = normalizeReport({
     score: 130, category: 'Good', summary: 'Bagus', strengths: ['a'],
     errors: [{ original: 'اسمي آنا', corrected: 'اِسْمِي آنَا', explanation: 'harakat' }, { original: 'x' }],

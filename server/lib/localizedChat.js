@@ -51,14 +51,14 @@ const SPECS = {
     name: 'Japanese',
     grammarStyle: 'name the forms used in Japanese textbooks: ます形, て形, ない形, 辞書形, particles',
     passageScript: 'Only use kanji appropriate for the JLPT level; write the rest in kana.',
-    passageReading: 'full hiragana reading of the passage for A1-B1; empty string for B2 and above.',
+    passageReading: 'full hiragana reading of the passage (convert every kanji) for A1-B1; empty string for B2 and above.',
     script: /[぀-ヿ㐀-鿿]/,
     word: 'Write the word as a Japanese adult normally writes it (kanji + okurigana). At N5/N4 only use kanji from that JLPT list; otherwise write it in kana.',
-    reading: 'Hiragana reading, then " · ", then Hepburn romaji with long vowels written as ou/ei/aa (e.g. "たべる · taberu", "がっこう · gakkou").',
+    reading: 'Hiragana reading of exactly the same text (every kanji converted, nothing added or left out), then " · ", then Hepburn romaji with long vowels written as ou/ei/aa, づ as zu and the particles は/へ/を as wa/e/o (e.g. "たべる · taberu", "がっこう · gakkou").',
     pos: 'noun, verb, i-adjective, na-adjective, adverb, particle, counter, expression',
     note: 'Verbs: group (godan/ichidan/irregular) + masu-form, e.g. "ichidan · 食べます". Nouns: counter or politeness note when useful. Kanji words: the key kanji with its on/kun reading.',
     example: 'Natural Japanese sentence. A1-A2 use polite です/ます form; B2+ may use plain form when natural.',
-    exampleReading: 'The whole example in hiragana (furigana substitute) so a beginner can read every kanji.',
+    exampleReading: 'The whole example in hiragana (furigana substitute, every kanji converted, same words as the example) so a beginner can read every kanji.',
     levelRules: {
       A1: 'N5: hiragana/katakana, basic kanji, です/ます, は/が/を/に/で/へ/と/も, numbers, daily survival words.',
       A2: 'N4: て-form, ない-form, た-form, ～たい, ～ている, ～てもいい, common kanji, everyday situations.',
@@ -104,7 +104,7 @@ const SPECS = {
     passageReading: 'Latin transliteration of the passage for A1-B1; empty string for B2 and above.',
     script: /[؀-ۿ]/,
     word: 'Modern Standard Arabic with full harakat (tasykil), e.g. "كِتَابٌ".',
-    reading: 'Indonesian-friendly Latin transliteration: long vowels doubled (aa, ii, uu), ʿ for ʿain, \' for hamzah, sy for ش, kh for خ, dz for ذ, e.g. "kitaabun", "ʿilmun".',
+    reading: 'Indonesian-friendly Latin transliteration, always the same letters: ث ts, ح h, خ kh, ذ dz, ش sy, ص sh, ض dh, ط th, ظ zh, ع ʿ, غ gh, ق q, hamzah \'; vowels only a/i/u (never o or e, also after heavy letters), long vowels doubled (aa, ii, uu), e.g. "kitaabun", "ʿilmun", "qithaarun".',
     pos: 'isim, fi\'il, harf, shifat, dhamir, zharaf, ungkapan',
     note: 'Isim: gender (mudzakkar/muannats) + plural with harakat, e.g. "mudzakkar · jamak: كُتُبٌ". Fi\'il: madhi–mudhari pair + root, e.g. "كَتَبَ – يَكْتُبُ (k-t-b)".',
     example: 'Fully vocalised MSA sentence (harakat on every word for A1-B1).',
@@ -175,10 +175,13 @@ function normalizeVariation(value) {
   return VARIATIONS[variation] ? variation : null;
 }
 
-function buildLessonPrompt({ language, focus, name, topic, levelId, variation = null, avoid = [] }) {
+function buildLessonPrompt({ language, focus, name, topic, levelId, variation = null, avoid = [], review = [] }) {
   const lines = [];
   if (variation) lines.push(VARIATIONS[variation]);
   if (avoid.length) lines.push(`Do not reuse these items from the previous set: ${avoid.join(', ')}`);
+  if (review.length) {
+    lines.push(`Review: in earlier sessions the student made these mistakes (student version → correct version):\n${review.map((item) => `- ${item}`).join('\n')}\nWhere they fit this lesson, include one or two items (an example, drill, prompt or question) that make the student practise the correct form again. Do not mention the student's name with the mistakes.`);
+  }
   const base = buildBaseLessonPrompt({ language, focus, name, topic, levelId });
   return lines.length ? `${base}\n\n${lines.join('\n')}` : base;
 }
@@ -326,6 +329,7 @@ Rules:
 - Be strict: do not call a sentence correct when it has an error; do not overpraise.
 - Quote the student's exact words for each error and explain the fix in simple Indonesian (max 6 bullet points).
 - Judge against this level, not native perfection.
+- "status" and "score" (0-100) must agree: correct = no errors (85-100), almost = small errors but the meaning and task are clear (50-84), incorrect = wrong grammar point, off-task or not understandable (0-49).
 - If the answer is in transliteration/romaji/pinyin only, still correct it and show the native-script version.
 - "corrected" is the student's answer rewritten correctly in ${spec.name} (keep their ideas); "correctedReading" is its reading (${spec.reading}).
 - "nextTask" is one concrete next exercise in Indonesian that continues this lesson.
@@ -399,8 +403,9 @@ ${spec.name} error checklist: ${spec.grammarChecklist}
 Rules:
 - Assess ONLY the STUDENT turns; ignore names, topic choices and commands such as "hint".
 - Judge against this level. A session with very little target-language production cannot score above 60.
+- category: exactly one of "Sangat baik" (score 85-100), "Baik" (70-84), "Cukup" (50-69), "Perlu latihan" (0-49).
 - errors: up to 5 real mistakes the student made, quoting the exact original, the corrected ${spec.name}, and a short Indonesian explanation. Empty when there were none.
-- vocabulary: up to 8 target-language words/phrases from this session worth reviewing, with reading and Indonesian meaning.
+- vocabulary: up to 8 target-language words/phrases from this session worth reviewing, with reading (${spec.reading}) and Indonesian meaning.
 - All explanations in Indonesian.
 
 Return valid JSON only:
