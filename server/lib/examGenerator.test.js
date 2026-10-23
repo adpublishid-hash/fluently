@@ -85,3 +85,19 @@ test('writing tasks need a prompt and Indonesian instruction', () => {
   });
   assert.equal(exam.normalizeWritingTask({ task: { prompt: 'x' } }), null);
 });
+
+test('true/false pairs and find-the-error options keep the order of the stem', () => {
+  const tingli = exam.findExamPart('mandarin', 'beginner', 'tingli');
+  const [listening] = exam.normalizeSection('mandarin', tingli, {
+    groups: [{ audio: '我今天不去学校。', questions: [mcq('他今天去学校。', ['对', '错'], 1)] }],
+  }, () => 0);
+  assert.deepEqual(listening.questions[0].options, ['对', '错']);
+  assert.equal(listening.questions[0].answer, 1);
+
+  const tarakib = exam.findExamPart('arabic', 'beginner', 'tarakib');
+  const [group] = exam.normalizeSection('arabic', tarakib, {
+    groups: [{ questions: [mcq('هَذِهِ (أ) حَدِيقَةٌ (ب) جَمِيلٌ (ج) فِي الْمَدِينَةِ (د)', ['جَمِيلٌ', 'هَذِهِ', 'فِي الْمَدِينَةِ', 'حَدِيقَةٌ'], 0)] }],
+  }, () => 0);
+  assert.deepEqual(group.questions[0].options, ['هَذِهِ', 'حَدِيقَةٌ', 'جَمِيلٌ', 'فِي الْمَدِينَةِ']);
+  assert.equal(group.questions[0].options[group.questions[0].answer], 'جَمِيلٌ');
+});

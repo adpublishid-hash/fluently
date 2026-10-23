@@ -53,7 +53,7 @@ const PARTS = {
     { id: 'listening', kind: 'listening', count: 8, native: 'Listening', types: 'short dialogues and announcements; questions on gist, detail, speaker attitude' },
     { id: 'reading', kind: 'reading', count: 8, native: 'Reading', types: '2-3 texts (notice, email, article) with gist, detail, inference and reference questions' },
     { id: 'vocabulary', kind: 'vocabulary', count: 8, native: 'Vocabulary', types: 'word in context, collocation, synonym, word formation' },
-    { id: 'grammar', kind: 'grammar', count: 8, native: 'Grammar', types: 'sentence completion and error recognition' },
+    { id: 'grammar', kind: 'grammar', count: 8, native: 'Grammar', types: 'sentence completion and error recognition (a sentence with four parts each followed by its mark [A] [B] [C] [D]; the options are those four parts in that order and the answer is the wrong one)' },
   ],
   japanese: [
     { id: 'moji-goi', kind: 'vocabulary', count: 8, native: '言語知識（文字・語彙）', types: '漢字読み (choose the kana reading of the word in 【】), 表記 (choose the kanji for the kana word in 【】), 文脈規定 (choose the word for （　）), 言い換え類義 (choose the closest meaning)' },
@@ -175,15 +175,29 @@ Return valid JSON only:
 
 const clean = (value, max) => String(value ?? '').trim().slice(0, max);
 const LABELLED_OPTION = /^\(?[A-Da-dأ-د]\)|^[A-D][.)]/;
+const PART_MARKS = /\((?:أ|ب|ج|د)\)|[[(][A-D][\])]/;
 
+function reorder(question, order) {
+  return { ...question, options: order.map((index) => question.options[index]), answer: order.indexOf(question.answer) };
+}
+
+/**
+ * Shuffles options so the key position is not biased. Labelled options and
+ * 对/错 pairs keep their order; find-the-error options (parts of a stem
+ * marked (أ)(ب)(ج)(د) or [A]-[D]) follow the order of the marks.
+ */
 function shuffleOptions(question, random) {
-  if (question.options.some((option) => LABELLED_OPTION.test(option))) return question;
+  if (question.options.length < 3 || question.options.some((option) => LABELLED_OPTION.test(option))) return question;
+  const positions = question.options.map((option) => question.stem.indexOf(option));
+  if (PART_MARKS.test(question.stem) && positions.every((position) => position >= 0) && new Set(positions).size === positions.length) {
+    return reorder(question, positions.map((_, index) => index).sort((a, b) => positions[a] - positions[b]));
+  }
   const order = question.options.map((_, index) => index);
   for (let index = order.length - 1; index > 0; index -= 1) {
     const swap = Math.floor(random() * (index + 1));
     [order[index], order[swap]] = [order[swap], order[index]];
   }
-  return { ...question, options: order.map((index) => question.options[index]), answer: order.indexOf(question.answer) };
+  return reorder(question, order);
 }
 
 /**
