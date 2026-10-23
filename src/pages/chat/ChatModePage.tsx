@@ -9,6 +9,7 @@ import { useAuth } from '../../auth/AuthContext';
 import { getFreeChatLevelBlockMessage, isFreeAiChatUser, isFreeChatLevelAllowed } from '../../features/chat/freeChatLimits';
 import { getLocalizedModeCopy } from '../../features/chat/languageAdapters';
 import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
+import { getNativeLevelName } from '../../features/chat/localizedLesson';
 
 const cefrChatLevels = [
   { id: 'a1', label: 'A1', sublabel: 'Beginner', color: '#7EC3E6', bgColor: '#EAF7FC', icon: 'A1' },
@@ -28,10 +29,11 @@ export default function ChatModePage() {
   const isFreeUser = isFreeAiChatUser(user);
   const targetLanguage = normalizeTargetLanguage(user?.persona?.targetLanguage);
   const isArabicChat = targetLanguage === 'Arabic';
+  const nativeScale = targetLanguage === 'Japanese' ? 'JLPT' : targetLanguage === 'Mandarin' ? 'HSK' : null;
 
   if (!mode) return null;
 
-  const modeCopy = isArabicChat
+  const modeCopy = targetLanguage !== 'English'
     ? getLocalizedModeCopy(targetLanguage, mode.id)
     : {
       label: t(mode.labelKey as TranslationKey),
@@ -53,7 +55,7 @@ export default function ChatModePage() {
       <div className="pb-28 md:pb-8">
         <PageHeader
           title={modeCopy.label}
-          subtitle={isArabicChat ? modeCopy.sublabel : t('chatAi.levelSub')}
+          subtitle={targetLanguage !== 'English' ? modeCopy.sublabel : t('chatAi.levelSub')}
         />
 
         <div className="px-5 md:px-0 mb-6">
@@ -69,21 +71,24 @@ export default function ChatModePage() {
 
         <div className="px-5 md:px-0">
           <h2 className="text-lg font-extrabold text-[#1A1A2E] mb-1">
-            {isArabicChat ? 'Pilih Level Arabic' : t('chatAi.levelTitle')}
+            {isArabicChat ? 'Pilih Level Arabic' : nativeScale ? `Pilih Level ${nativeScale}` : t('chatAi.levelTitle')}
           </h2>
           <p className="text-[13px] text-[#6B7280] mb-5">
-            {isArabicChat ? 'Mulai dari A1 untuk pondasi, atau pilih level sesuai kemampuan Arabic kamu.' : t('chatAi.levelSub')}
+            {isArabicChat
+              ? 'Mulai dari A1 untuk pondasi, atau pilih level sesuai kemampuan Arabic kamu.'
+              : nativeScale ? `Tiap level ${nativeScale} ditampilkan dengan padanan CEFR-nya.` : t('chatAi.levelSub')}
           </p>
 
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {cefrChatLevels.map((level, i) => {
               const locked = isFreeUser && !isFreeChatLevelAllowed(level.id);
+              const nativeLevel = getNativeLevelName(targetLanguage, level.id);
               return (
                 <div key={level.id} className="relative">
                   <NavCard
                     icon={level.icon}
-                    label={level.label}
-                    sublabel={locked ? 'Pro level' : isArabicChat ? arabicLevelCopy[level.id] : level.sublabel}
+                    label={nativeLevel ?? level.label}
+                    sublabel={locked ? 'Pro level' : isArabicChat ? arabicLevelCopy[level.id] : nativeLevel ? `Setara ${level.label} · ${level.sublabel}` : level.sublabel}
                     color={locked ? '#CBD5E1' : isArabicChat ? modeColor : level.color}
                     bgColor={locked ? '#F8FAFC' : isArabicChat ? modeBgColor : level.bgColor}
                     onClick={() => locked ? navigate('/upgrade') : navigate(`/chat/${modeId}/${level.id}`)}

@@ -20,7 +20,8 @@ const FOCUSES = ['vocabulary', 'grammar', 'pronunciation', 'speaking', 'reading'
 
 test('only the three coached languages and six focuses are accepted', () => {
   assert.equal(normalizeLanguage('Japanese'), 'japanese');
-  assert.equal(normalizeLanguage('english'), null);
+  assert.equal(normalizeLanguage('english'), 'english');
+  assert.equal(normalizeLanguage('klingon'), null);
   assert.equal(normalizeFocus('reading'), 'reading');
   assert.equal(normalizeFocus('chat'), null);
   assert.equal(normalizeCefr('b2'), 'B2');
@@ -121,4 +122,15 @@ test('report prompt only grades student turns and output is validated', () => {
   assert.equal(report.errors.length, 1);
   assert.equal(normalizeReport({ summary: 'ok', score: 'x' }), null);
   assert.equal(normalizeReport({ score: 50 }), null);
+});
+
+test('English uses CEFR names, IPA and an Indonesian-learner error checklist', () => {
+  const prompt = buildLessonPrompt({ language: 'english', focus: 'grammar', name: 'Ana', topic: 'Past simple', levelId: 'A2' });
+  assert.match(prompt, /CEFR A2 Elementary/);
+  assert.match(prompt, /IPA/);
+  const feedback = buildFeedbackPrompt({ language: 'english', focus: 'writing', name: 'Ana', topic: 'x', levelId: 'B1', answer: 'I very like it.', context: '', targetItems: [] });
+  assert.match(feedback, /I very like/);
+  assert.match(feedback, /articles a\/an\/the/);
+  const lesson = normalizeLesson('english', 'reading', { passage: 'Tom lives in Jakarta.', questions: ['a?', 'b?', 'c?'] });
+  assert.equal(lesson.passage, 'Tom lives in Jakarta.');
 });
