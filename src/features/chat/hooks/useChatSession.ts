@@ -9,7 +9,7 @@ import { buildSessionReport, getLevelLabel } from '../english';
 import type { ReportContext, VocabularyStage } from '../english';
 import type { PronunciationSentenceRow } from '../types';
 import type { FlowRuntime } from '../flows';
-import { formatLocalizedReport, isLocalizedLanguage, localizedQuickReplies, type LocalizedFocus } from '../localizedLesson';
+import { formatLocalizedReport, getLocalizedLevelLabel, isLocalizedLanguage, localizedQuickReplies, usesAiCoach, type LocalizedFocus } from '../localizedLesson';
 import { requestLocalizedReport } from '../services/localizedAi';
 import {
   handleGrammarAnswer,
@@ -505,7 +505,10 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       // Coach turns are long lesson tables; their opening is enough context.
       text: message.isAi ? message.text.slice(0, 400) : message.text,
     }));
-    if (isLocalizedLanguage(targetLanguage) && focus && userMessageCount >= 2) {
+    const fallbackReport = (prev: ChatMessage[]) => targetLanguage === 'English'
+      ? buildSessionReport({ ...reportContext, messages: prev })
+      : buildLocalizedReport(targetLanguage, modeId);
+    if (focus && userMessageCount >= 2) {
       showTyping();
       requestLocalizedReport({
         language: targetLanguage,
@@ -517,9 +520,9 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       }).then((report) => {
         if (sessionEpochRef.current !== reportEpoch) return;
         sendAiReplyFromMessages(
-          () => report
+          (prev) => report
             ? formatLocalizedReport(targetLanguage, getLocalizedFocusLabel(targetLanguage, modeId), report, { topic: selectedTopic, levelId })
-            : buildLocalizedReport(targetLanguage, modeId),
+            : fallbackReport(prev),
           300,
           `session-report-${Date.now()}`,
         );
@@ -528,15 +531,14 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     }
 
     sendAiReplyFromMessages(
-      (prev) => targetLanguage === 'English'
-        ? buildSessionReport({ ...reportContext, messages: prev })
-        : buildLocalizedReport(targetLanguage, modeId),
+      fallbackReport,
       2200,
       `session-report-${Date.now()}`,
     );
   };
 
-  const quickReplies = isGuidedMode && isLocalizedLanguage(targetLanguage) && !sessionEnded && !isTyping && vocabStage === 'practice'
+  const hasAiCoachLesson = isLocalizedLanguage(targetLanguage) || (usesAiCoach(targetLanguage, modeId) && Boolean(localizedLessonContext));
+  const quickReplies = isGuidedMode && hasAiCoachLesson && !sessionEnded && !isTyping && vocabStage === 'practice'
     ? localizedQuickReplies
     : [];
   const handleQuickReply = (text: string) => submitUserText(text);
@@ -558,10 +560,10 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const inputDisabled = targetLanguage !== 'Arabic' && (isPronunciationMode || isSpeakingMode) && !sessionEnded && (vocabStage === 'practice' || vocabStage === 'game');
   const headerSubtitle = (() => {
     if (targetLanguage === 'Arabic' && isGuidedMode) {
-      return `Arabic · ${getLocalizedFocusLabel(targetLanguage, modeId)} · ${getLevelLabel(levelId)}`;
+      return `Arabic · ${getLocalizedFocusLabel(targetLanguage, modeId)} · ${getLocalizedLevelLabel(targetLanguage, levelId)}`;
     }
     const languagePrefix = targetLanguage === 'English' ? '' : `${targetLanguage} · `;
-    const levelLabel = getLevelLabel(levelId);
+    const levelLabel = targetLanguage === 'English' ? getLevelLabel(levelId) : getLocalizedLevelLabel(targetLanguage, levelId);
     if (modeId === 'vocabulary') return `${languagePrefix}${t('chat.mode.vocabulary')} · ${levelLabel}`;
     if (modeId === 'grammar') return `${languagePrefix}${t('chat.mode.grammar')} · ${levelLabel}`;
     if (modeId === 'pronunciation') return `${languagePrefix}${t('chat.mode.pronunciation')} · ${levelLabel}`;

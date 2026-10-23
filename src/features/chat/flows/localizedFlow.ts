@@ -1,10 +1,10 @@
+import { buildGrammarFeedback, buildReadingFeedback, buildSpeakingFeedback, buildWritingFeedback } from '../english';
 import { buildLocalizedFeedback, buildLocalizedLesson, buildLocalizedPracticeLoopReply } from '../languageAdapters';
 import {
   VOCABULARY_BATCH_SIZE,
   buildVocabularyBatchTask,
   detectLocalizedCommand,
   formatLocalizedFeedback,
-  isLocalizedLanguage,
   type LocalizedFocus,
   type LocalizedLessonVariation,
 } from '../localizedLesson';
@@ -13,12 +13,12 @@ import type { FlowRuntime, TopicRuntime } from './types';
 
 const PRONUNCIATION_BATCH_SIZE = 2;
 
-/** Generates a Japanese/Mandarin/Arabic lesson with AI, falling back to the built-in sample lesson. */
+/** Generates a lesson with AI, falling back to `fallback` or the built-in sample lesson. */
 export async function sendLocalizedLesson(
   focus: LocalizedFocus,
   topic: string,
   runtime: TopicRuntime,
-  options: { variation?: LocalizedLessonVariation; avoid?: string[] } = {},
+  options: { variation?: LocalizedLessonVariation; avoid?: string[]; fallback?: string } = {},
 ) {
   const {
     studentName,
@@ -34,24 +34,27 @@ export async function sendLocalizedLesson(
     setPronunciationTurn,
   } = runtime;
   const name = studentName || 'teman';
+  const resetLesson = () => {
+    setLocalizedLessonContext('');
+    setGeneratedVocabularyWords([]);
+    setGeneratedPronunciationRows([]);
+    setCompletedPracticeWords([]);
+    setVocabularyPracticeOffset(0);
+    setPronunciationTurn(0);
+  };
 
-  setLocalizedLessonContext('');
-  setGeneratedVocabularyWords([]);
-  setGeneratedPronunciationRows([]);
-  setCompletedPracticeWords([]);
-  setVocabularyPracticeOffset(0);
-  setPronunciationTurn(0);
-  if (!isLocalizedLanguage(targetLanguage)) return;
-
+  // A new topic starts clean; a regenerated set keeps the current lesson until the new one arrives.
+  if (!options.variation) resetLesson();
   showTyping();
-  const lesson = await requestLocalizedLesson({ language: targetLanguage, focus, name, topic, levelId }, options);
+  const lesson = await requestLocalizedLesson({ language: targetLanguage, focus, name, topic, levelId }, { variation: options.variation, avoid: options.avoid });
   if (!lesson) {
     sendAiReply(options.variation
       ? 'Maaf, materi baru belum bisa dibuat karena AI sedang tidak tersedia. Coba lagi sebentar, atau lanjutkan dengan materi yang ada.'
-      : buildLocalizedLesson(name, focus, topic, targetLanguage, levelId), 600);
+      : options.fallback ?? buildLocalizedLesson(name, focus, topic, targetLanguage, levelId), 600);
     return;
   }
 
+  if (options.variation) resetLesson();
   setLocalizedLessonContext(lesson.context);
   setGeneratedVocabularyWords(lesson.vocabularyWords);
   setGeneratedPronunciationRows(lesson.pronunciationRows);
@@ -60,6 +63,13 @@ export async function sendLocalizedLesson(
 
 const buildFallbackFeedback = (focus: LocalizedFocus, userText: string, runtime: FlowRuntime) => {
   const name = runtime.studentName || 'teman';
+  if (runtime.targetLanguage === 'English') {
+    const topic = runtime.selectedTopic || 'daily life';
+    if (focus === 'grammar') return buildGrammarFeedback(name, userText, topic);
+    if (focus === 'reading') return buildReadingFeedback(name, userText, topic, runtime.levelId);
+    if (focus === 'speaking') return buildSpeakingFeedback(name, userText, topic, runtime.pronunciationTurn);
+    return buildWritingFeedback(name, userText, topic, runtime.levelId);
+  }
   return `${buildLocalizedFeedback(name, userText, focus, runtime.targetLanguage)}
 
 ${buildLocalizedPracticeLoopReply(name, focus, runtime.targetLanguage)}`;
@@ -84,7 +94,7 @@ const currentBatch = (focus: LocalizedFocus, runtime: FlowRuntime) => {
  */
 export async function handleLocalizedPracticeInput(focus: LocalizedFocus, userText: string, runtime: FlowRuntime) {
   const command = detectLocalizedCommand(userText);
-  if (!command || !isLocalizedLanguage(runtime.targetLanguage)) {
+  if (!command) {
     await sendLocalizedFeedback(focus, userText, runtime);
     return;
   }
@@ -135,7 +145,7 @@ async function sendLocalizedFeedback(focus: LocalizedFocus, userText: string, ru
   } = runtime;
   const name = studentName || 'teman';
 
-  if (!isLocalizedLanguage(targetLanguage) || !localizedLessonContext) {
+  if (!localizedLessonContext) {
     if (focus === 'pronunciation') setPronunciationTurn(pronunciationTurn + 1);
     sendAiReply(buildFallbackFeedback(focus, userText, runtime), 1400);
     return;
