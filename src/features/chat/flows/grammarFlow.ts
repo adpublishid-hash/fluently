@@ -17,7 +17,7 @@ import {
   normalizeLocalizedTopicValue,
 } from '../languageAdapters';
 import { createUserMessage } from '../session';
-import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -113,7 +113,7 @@ export function handleGrammarAnswer(userText: string, vocabStage: VocabularyStag
     }
 
     setVocabStage('practice');
-    sendLocalizedFeedback('grammar', userText, runtime);
+    handleLocalizedPracticeInput('grammar', userText, runtime);
     return;
   }
 

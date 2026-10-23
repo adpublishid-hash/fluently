@@ -23,7 +23,7 @@ import {
 } from '../services/pronunciationAi';
 import { createUserMessage } from '../session';
 import type { PronunciationSentenceRow } from '../types';
-import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -173,7 +173,7 @@ export function handlePronunciationAnswer(userText: string, vocabStage: Vocabula
 
     if (vocabStage === 'practice' || vocabStage === 'game') {
       setVocabStage('practice');
-      sendLocalizedFeedback('pronunciation', userText, runtime);
+      handleLocalizedPracticeInput('pronunciation', userText, runtime);
       return;
     }
 

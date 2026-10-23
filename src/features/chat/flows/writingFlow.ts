@@ -16,7 +16,7 @@ import {
 } from '../english';
 import type { VocabularyStage } from '../english';
 import { createUserMessage } from '../session';
-import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -112,7 +112,7 @@ export function handleWritingAnswer(userText: string, vocabStage: VocabularyStag
     }
 
     setVocabStage('practice');
-    sendLocalizedFeedback('writing', userText, runtime);
+    handleLocalizedPracticeInput('writing', userText, runtime);
     return;
   }
 

@@ -18,7 +18,7 @@ import {
 } from '../languageAdapters';
 import { createUserMessage } from '../session';
 import { requestVocabularyCorrection, requestVocabularyLesson } from '../services/vocabularyCorrection';
-import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -253,7 +253,7 @@ export async function handleVocabularyAnswer(userText: string, vocabStage: Vocab
     }
 
     setVocabStage('practice');
-    sendLocalizedFeedback('vocabulary', userText, runtime);
+    handleLocalizedPracticeInput('vocabulary', userText, runtime);
     return;
   }
 

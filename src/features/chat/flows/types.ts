@@ -15,6 +15,7 @@ export type FlowRuntime = {
   vocabularyPracticeOffset: number;
   pronunciationTurn: number;
   localizedLessonContext: string;
+  lastCoachMessage: string;
   levelId?: string;
   targetLanguage: TargetLanguage;
   setMessages: Dispatch<SetStateAction<ChatMessage[]>>;

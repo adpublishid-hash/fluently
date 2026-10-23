@@ -124,6 +124,8 @@ export default function ChatPage() {
             onInputChange={chat.setInput}
             onSend={chat.handleSend}
             onToggleRecording={chat.toggleRecording}
+            quickReplies={chat.quickReplies}
+            onQuickReply={chat.handleQuickReply}
           />
         </div>
 

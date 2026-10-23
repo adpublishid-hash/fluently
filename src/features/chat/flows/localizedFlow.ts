@@ -2,17 +2,24 @@ import { buildLocalizedFeedback, buildLocalizedLesson, buildLocalizedPracticeLoo
 import {
   VOCABULARY_BATCH_SIZE,
   buildVocabularyBatchTask,
+  detectLocalizedCommand,
   formatLocalizedFeedback,
   isLocalizedLanguage,
   type LocalizedFocus,
+  type LocalizedLessonVariation,
 } from '../localizedLesson';
-import { requestLocalizedFeedback, requestLocalizedLesson } from '../services/localizedAi';
+import { requestLocalizedAssist, requestLocalizedFeedback, requestLocalizedLesson } from '../services/localizedAi';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const PRONUNCIATION_BATCH_SIZE = 2;
 
 /** Generates a Japanese/Mandarin/Arabic lesson with AI, falling back to the built-in sample lesson. */
-export async function sendLocalizedLesson(focus: LocalizedFocus, topic: string, runtime: TopicRuntime) {
+export async function sendLocalizedLesson(
+  focus: LocalizedFocus,
+  topic: string,
+  runtime: TopicRuntime,
+  options: { variation?: LocalizedLessonVariation; avoid?: string[] } = {},
+) {
   const {
     studentName,
     levelId,
@@ -37,9 +44,11 @@ export async function sendLocalizedLesson(focus: LocalizedFocus, topic: string, 
   if (!isLocalizedLanguage(targetLanguage)) return;
 
   showTyping();
-  const lesson = await requestLocalizedLesson({ language: targetLanguage, focus, name, topic, levelId });
+  const lesson = await requestLocalizedLesson({ language: targetLanguage, focus, name, topic, levelId }, options);
   if (!lesson) {
-    sendAiReply(buildLocalizedLesson(name, focus, topic, targetLanguage, levelId), 600);
+    sendAiReply(options.variation
+      ? 'Maaf, materi baru belum bisa dibuat karena AI sedang tidak tersedia. Coba lagi sebentar, atau lanjutkan dengan materi yang ada.'
+      : buildLocalizedLesson(name, focus, topic, targetLanguage, levelId), 600);
     return;
   }
 
@@ -56,8 +65,57 @@ const buildFallbackFeedback = (focus: LocalizedFocus, userText: string, runtime:
 ${buildLocalizedPracticeLoopReply(name, focus, runtime.targetLanguage)}`;
 };
 
+const currentBatch = (focus: LocalizedFocus, runtime: FlowRuntime) => {
+  if (focus === 'vocabulary') {
+    return runtime.generatedVocabularyWords.slice(runtime.vocabularyPracticeOffset, runtime.vocabularyPracticeOffset + VOCABULARY_BATCH_SIZE);
+  }
+  if (focus === 'pronunciation') {
+    return runtime.generatedPronunciationRows
+      .slice(runtime.pronunciationTurn * PRONUNCIATION_BATCH_SIZE, (runtime.pronunciationTurn + 1) * PRONUNCIATION_BATCH_SIZE)
+      .map((row) => `${row.sentence} | ${row.phonetic} | focus: ${row.focus}`);
+  }
+  return [];
+};
+
+/**
+ * Handles a learner message during a Japanese/Mandarin/Arabic lesson: help
+ * requests ("hint", "contoh jawaban", questions), lesson regeneration
+ * ("materi baru", "lebih mudah", "lebih sulit"), otherwise an answer to correct.
+ */
+export async function handleLocalizedPracticeInput(focus: LocalizedFocus, userText: string, runtime: FlowRuntime) {
+  const command = detectLocalizedCommand(userText);
+  if (!command || !isLocalizedLanguage(runtime.targetLanguage)) {
+    await sendLocalizedFeedback(focus, userText, runtime);
+    return;
+  }
+
+  if (command.type === 'regenerate') {
+    await sendLocalizedLesson(focus, runtime.selectedTopic || 'daily life', runtime, {
+      variation: command.variation,
+      avoid: focus === 'vocabulary' ? runtime.generatedVocabularyWords : [],
+    });
+    return;
+  }
+
+  const batch = currentBatch(focus, runtime);
+  const context = [batch.length ? `Current batch:\n${batch.join('\n')}` : '', runtime.localizedLessonContext].filter(Boolean).join('\n\n');
+  runtime.showTyping();
+  const reply = await requestLocalizedAssist({
+    language: runtime.targetLanguage,
+    focus,
+    name: runtime.studentName || 'teman',
+    topic: runtime.selectedTopic || 'daily life',
+    levelId: runtime.levelId,
+    action: command.type,
+    question: command.type === 'ask' ? command.question : '',
+    context,
+    lastCoachMessage: runtime.lastCoachMessage,
+  });
+  runtime.sendAiReply(reply || 'Maaf, bantuan AI sedang tidak tersedia. Coba lagi sebentar, atau kirim jawabanmu dulu dan aku koreksi.', 400);
+}
+
 /** Corrects a learner answer against the generated lesson and moves vocabulary/pronunciation batches forward. */
-export async function sendLocalizedFeedback(focus: LocalizedFocus, userText: string, runtime: FlowRuntime) {
+async function sendLocalizedFeedback(focus: LocalizedFocus, userText: string, runtime: FlowRuntime) {
   const {
     studentName,
     selectedTopic,

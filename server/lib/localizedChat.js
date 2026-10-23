@@ -129,7 +129,26 @@ ${spec.name} rules:
 - No placeholders, no duplicate items, no fake words, no English-only content.`;
 }
 
-function buildLessonPrompt({ language, focus, name, topic, levelId }) {
+const VARIATIONS = {
+  new: 'This is a request for a NEW set: choose different items, situations and examples than the most obvious first choices.',
+  easier: 'The student found the previous material too hard: make it clearly easier while staying at this level (shorter sentences, more frequent words, more reading support).',
+  harder: 'The student found the previous material too easy: make it clearly more challenging while staying at this level (longer sentences, less frequent words, more nuance).',
+};
+
+function normalizeVariation(value) {
+  const variation = String(value || '').trim().toLowerCase();
+  return VARIATIONS[variation] ? variation : null;
+}
+
+function buildLessonPrompt({ language, focus, name, topic, levelId, variation = null, avoid = [] }) {
+  const lines = [];
+  if (variation) lines.push(VARIATIONS[variation]);
+  if (avoid.length) lines.push(`Do not reuse these items from the previous set: ${avoid.join(', ')}`);
+  const base = buildBaseLessonPrompt({ language, focus, name, topic, levelId });
+  return lines.length ? `${base}\n\n${lines.join('\n')}` : base;
+}
+
+function buildBaseLessonPrompt({ language, focus, name, topic, levelId }) {
   const spec = SPECS[language];
   const context = { name, topic, levelId };
 
@@ -280,6 +299,94 @@ Return valid JSON only:
 {"status":"correct|almost|incorrect","score":0,"feedback":"","corrected":"","correctedReading":"","completedItems":[],"nextTask":""}`;
 }
 
+const ASSIST_TASKS = {
+  hint: 'Give a hint for the current exercise WITHOUT giving the full answer: point to the pattern, key word or first step, plus one partial example.',
+  example: 'Show one complete model answer for the current exercise at this level (target language + reading + Indonesian meaning), then explain briefly why it is correct.',
+  ask: 'The student asked a question about the lesson. Answer it directly and accurately in Indonesian, with 1-3 short target-language examples (each with reading and meaning). If the question is unrelated to learning the language, politely steer back to the lesson.',
+};
+
+function normalizeAssistAction(value) {
+  const action = String(value || '').trim().toLowerCase();
+  return ASSIST_TASKS[action] ? action : null;
+}
+
+function buildAssistPrompt({ language, focus, name, topic, levelId, action, question, context, lastCoachMessage }) {
+  const spec = SPECS[language];
+  const questionBlock = action === 'ask' ? `\nStudent question:\n"""${question}"""\n` : '';
+  return `You are Fluently AI, a patient ${spec.name} coach for Indonesian learners.
+
+Student: ${name}
+Topic: ${topic}
+Level: ${levelLine(language, levelId)}
+Exercise type: ${focus}
+Task: ${ASSIST_TASKS[action]}
+Target-language text: ${spec.word}
+Readings: ${spec.reading}
+
+Lesson context:
+"""${context || '(none)'}"""
+
+Coach's last message:
+"""${lastCoachMessage || '(none)'}"""
+${questionBlock}
+Rules:
+- Write in friendly, concise Indonesian (max 8 short lines or bullets) and stay at this level.
+- Every target-language example must show its reading and Indonesian meaning.
+- End with one short line telling the student what to send next.
+
+Return valid JSON only:
+{"reply":""}`;
+}
+
+function normalizeAssist(parsed) {
+  if (!parsed || typeof parsed !== 'object' || typeof parsed.reply !== 'string' || !parsed.reply.trim()) return null;
+  return { reply: parsed.reply.trim().slice(0, 3000) };
+}
+
+function buildReportPrompt({ language, focus, name, topic, levelId, transcript }) {
+  const spec = SPECS[language];
+  const lines = transcript.map((turn) => `${turn.role === 'coach' ? 'COACH' : 'STUDENT'}: ${turn.text}`).join('\n');
+  return `You are Fluently AI, a fair ${spec.name} examiner for Indonesian learners.
+
+Write the end-of-session report for this AI Chat practice.
+Student: ${name}
+Topic: ${topic}
+Level: ${levelLine(language, levelId)}
+Exercise type: ${focus}
+
+Transcript (COACH = AI tutor, STUDENT = learner):
+"""
+${lines}
+"""
+
+${spec.name} error checklist: ${spec.grammarChecklist}
+
+Rules:
+- Assess ONLY the STUDENT turns; ignore names, topic choices and commands such as "hint".
+- Judge against this level. A session with very little target-language production cannot score above 60.
+- errors: up to 5 real mistakes the student made, quoting the exact original, the corrected ${spec.name}, and a short Indonesian explanation. Empty when there were none.
+- vocabulary: up to 8 target-language words/phrases from this session worth reviewing, with reading and Indonesian meaning.
+- All explanations in Indonesian.
+
+Return valid JSON only:
+{"score":0,"category":"","summary":"","strengths":[""],"errors":[{"original":"","corrected":"","explanation":""}],"vocabulary":[{"word":"","reading":"","meaning":""}],"nextSteps":[""]}`;
+}
+
+function normalizeReport(parsed) {
+  if (!parsed || typeof parsed !== 'object' || typeof parsed.summary !== 'string' || !parsed.summary.trim()) return null;
+  const score = Math.round(Number(parsed.score));
+  if (!Number.isFinite(score)) return null;
+  return {
+    score: Math.min(100, Math.max(0, score)),
+    category: text(parsed.category, 60),
+    summary: text(parsed.summary, 700),
+    strengths: list(parsed.strengths, 240, 4),
+    errors: objects(parsed.errors, 5, (row) => ({ original: text(row.original, 240), corrected: text(row.corrected, 240), explanation: text(row.explanation, 300) }), (row) => row.original && row.corrected),
+    vocabulary: objects(parsed.vocabulary, 8, (row) => ({ word: text(row.word, 60), reading: text(row.reading, 120), meaning: text(row.meaning, 120) }), (row) => row.word && row.meaning),
+    nextSteps: list(parsed.nextSteps, 240, 4),
+  };
+}
+
 const text = (value, max) => String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
 const list = (value, max, limit) => (Array.isArray(value) ? value.map((item) => text(item, max)).filter(Boolean).slice(0, limit) : []);
 const objects = (value, limit, map, keep) => (Array.isArray(value) ? value.map((item) => map(item || {})).filter(keep).slice(0, limit) : []);
@@ -400,8 +507,14 @@ function normalizeFeedback(parsed, targetItems = []) {
 
 module.exports = {
   LEVEL_NAMES,
+  buildAssistPrompt,
   buildFeedbackPrompt,
   buildLessonPrompt,
+  buildReportPrompt,
+  normalizeAssist,
+  normalizeAssistAction,
+  normalizeReport,
+  normalizeVariation,
   normalizeCefr,
   normalizeFeedback,
   normalizeFocus,

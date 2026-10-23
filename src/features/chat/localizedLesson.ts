@@ -301,6 +301,40 @@ Tulis pakai ${copy.script}. Aku koreksi ${copy.checks}, lalu kasih versi yang le
   };
 }
 
+export type LocalizedLessonVariation = 'new' | 'easier' | 'harder';
+export type LocalizedCommand = { type: 'hint' | 'example' } | { type: 'ask'; question: string } | { type: 'regenerate'; variation: LocalizedLessonVariation };
+
+// Shortcuts shown above the input during a lesson; each sends its text as a message.
+export const localizedQuickReplies = [
+  { label: '💡 Hint', text: 'hint' },
+  { label: '📝 Contoh jawaban', text: 'contoh jawaban' },
+  { label: '🔄 Materi baru', text: 'materi baru' },
+  { label: '⬇️ Lebih mudah', text: 'lebih mudah' },
+  { label: '⬆️ Lebih sulit', text: 'lebih sulit' },
+];
+
+const questionStart = /^(kenapa|mengapa|bagaimana|gimana|apa|apakah|kapan|boleh|bisa|bedanya|perbedaan|maksud|maksudnya|arti|artinya|kok|why|what|how)\b/i;
+
+/** Recognises help requests typed during a lesson; anything else is treated as an answer. */
+export function detectLocalizedCommand(text: string): LocalizedCommand | null {
+  const normalized = text.toLowerCase().replace(/[.!]+$/g, '').replace(/\s+/g, ' ').trim();
+  if (/^(hint|petunjuk|clue|bantu|bantuan|tolong bantu)$/.test(normalized)) return { type: 'hint' };
+  if (/^(contoh|contoh jawaban|jawaban|kunci jawaban|example|model answer)$/.test(normalized)) return { type: 'example' };
+  if (/^(materi baru|soal baru|set baru|generate ulang|ganti materi|new set)$/.test(normalized)) return { type: 'regenerate', variation: 'new' };
+  if (/^(lebih mudah|terlalu sulit|terlalu susah|kesulitan|easier)$/.test(normalized)) return { type: 'regenerate', variation: 'easier' };
+  if (/^(lebih sulit|lebih susah|lebih menantang|terlalu mudah|terlalu gampang|harder)$/.test(normalized)) return { type: 'regenerate', variation: 'harder' };
+  if (text.trim().endsWith('?') && questionStart.test(normalized)) return { type: 'ask', question: text.trim() };
+  return null;
+}
+
+const variationIntro: Record<LocalizedLessonVariation, string> = {
+  new: 'Ini set materi baru',
+  easier: 'Oke, ini versi yang lebih mudah',
+  harder: 'Siap, ini versi yang lebih menantang',
+};
+
+const helpFooter = '💡 Butuh bantuan? Ketik "hint", "contoh jawaban", atau tanya langsung (misal: "kenapa pakai ini?"). Ketik "materi baru", "lebih mudah", atau "lebih sulit" untuk ganti set.';
+
 const focusIntro: Record<LocalizedFocus, string> = {
   vocabulary: 'kosakata',
   grammar: 'grammar',
@@ -314,16 +348,18 @@ export function formatLocalizedLesson<F extends LocalizedFocus>(
   language: LocalizedLanguage,
   focus: F,
   lesson: LocalizedLessonPayload[F],
-  { name, topic, levelId }: { name: string; topic: string; levelId?: string },
+  { name, topic, levelId, variation }: { name: string; topic: string; levelId?: string; variation?: LocalizedLessonVariation | null },
 ): FormattedLocalizedLesson {
   const displayTopic = topic.replace(/^Day \d+\s*-\s*/i, '');
-  const intro = `Siap, ${name}! Ini materi ${focusIntro[focus]} bahasa ${localizedLanguageCopy[language].name} yang aku generate untuk topik "${displayTopic}" — level ${getLocalizedLevelLabel(language, levelId)}.`;
-  if (focus === 'vocabulary') return formatVocabulary(language, lesson as LocalizedVocabularyLesson, intro);
-  if (focus === 'pronunciation') return formatPronunciation(language, lesson as LocalizedPronunciationLesson, intro);
-  if (focus === 'grammar') return formatGrammar(language, lesson as LocalizedGrammarLesson, intro);
-  if (focus === 'speaking') return formatSpeaking(language, lesson as LocalizedSpeakingLesson, intro);
-  if (focus === 'reading') return formatReading(language, lesson as LocalizedReadingLesson, intro);
-  return formatWriting(language, lesson as LocalizedWritingLesson, intro);
+  const opening = variation ? `${variationIntro[variation]}, ${name}!` : `Siap, ${name}!`;
+  const intro = `${opening} Ini materi ${focusIntro[focus]} bahasa ${localizedLanguageCopy[language].name} yang aku generate untuk topik "${displayTopic}" — level ${getLocalizedLevelLabel(language, levelId)}.`;
+  const formatted = focus === 'vocabulary' ? formatVocabulary(language, lesson as LocalizedVocabularyLesson, intro)
+    : focus === 'pronunciation' ? formatPronunciation(language, lesson as LocalizedPronunciationLesson, intro)
+      : focus === 'grammar' ? formatGrammar(language, lesson as LocalizedGrammarLesson, intro)
+        : focus === 'speaking' ? formatSpeaking(language, lesson as LocalizedSpeakingLesson, intro)
+          : focus === 'reading' ? formatReading(language, lesson as LocalizedReadingLesson, intro)
+            : formatWriting(language, lesson as LocalizedWritingLesson, intro);
+  return { ...formatted, message: `${formatted.message}\n\n${helpFooter}` };
 }
 
 const statusLabel: Record<LocalizedFeedbackResult['status'], string> = {
@@ -341,4 +377,37 @@ export function formatLocalizedFeedback(result: LocalizedFeedbackResult, { inclu
   return `${statusLabel[result.status]}
 
 ${result.feedback}${corrected}${score}${next}`;
+}
+
+export type LocalizedReportResult = {
+  score: number;
+  category: string;
+  summary: string;
+  strengths: string[];
+  errors: Array<{ original: string; corrected: string; explanation: string }>;
+  vocabulary: Reading[];
+  nextSteps: string[];
+};
+
+export function formatLocalizedReport(
+  language: LocalizedLanguage,
+  focusLabel: string,
+  report: LocalizedReportResult,
+  { topic, levelId }: { topic: string; levelId?: string },
+) {
+  const copy = localizedLanguageCopy[language];
+  const displayTopic = topic.replace(/^Day \d+\s*-\s*/i, '');
+  const sections = [
+    `Session Report - Bahasa ${copy.name} · ${focusLabel}`,
+    `${displayTopic ? `Topik: ${displayTopic}\n` : ''}Level: ${getLocalizedLevelLabel(language, levelId)}`,
+    `Skor: ${report.score}/100${report.category ? `\nKategori: ${report.category}` : ''}`,
+    `Ringkasan:\n${report.summary}`,
+  ];
+  if (report.strengths.length) sections.push(`Yang sudah bagus:\n${report.strengths.map((item) => `✅ ${item}`).join('\n')}`);
+  if (report.errors.length) {
+    sections.push(`Kesalahan yang perlu diingat:\n${report.errors.map((item) => `❌ ${item.original}\n✅ ${item.corrected}\n   ${item.explanation}`).join('\n')}`);
+  }
+  if (report.vocabulary.length) sections.push(`Kosakata untuk diulang:\n${report.vocabulary.map((item) => `• ${withReading(item.word, item.reading)} = ${item.meaning}`).join('\n')}`);
+  if (report.nextSteps.length) sections.push(`Rekomendasi:\n${numbered(report.nextSteps)}`);
+  return sections.join('\n\n');
 }

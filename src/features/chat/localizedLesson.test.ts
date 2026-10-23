@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { getLocalizedModeCopy, getLocalizedTopicOptions } from './languageAdapters';
-import { formatLocalizedFeedback, formatLocalizedLesson, getLocalizedLevelLabel } from './localizedLesson';
+import { detectLocalizedCommand, formatLocalizedFeedback, formatLocalizedLesson, formatLocalizedReport, getLocalizedLevelLabel } from './localizedLesson';
 
 const vocabRow = {
   word: '学生',
@@ -63,5 +63,38 @@ describe('localized chat lessons', () => {
     expect(getLocalizedTopicOptions('Mandarin', 'pronunciation')[5].label).toContain('Sandhi nada 3');
     expect(getLocalizedModeCopy('Japanese', 'reading').label).toBe('Dokkai Coach');
     expect(getLocalizedModeCopy('Mandarin', 'vocabulary').sublabel).toContain('pinyin');
+  });
+
+  it('recognises help commands and questions but not answers', () => {
+    expect(detectLocalizedCommand('Hint')).toEqual({ type: 'hint' });
+    expect(detectLocalizedCommand('contoh jawaban.')).toEqual({ type: 'example' });
+    expect(detectLocalizedCommand('Lebih mudah')).toEqual({ type: 'regenerate', variation: 'easier' });
+    expect(detectLocalizedCommand('terlalu gampang')).toEqual({ type: 'regenerate', variation: 'harder' });
+    expect(detectLocalizedCommand('materi baru')).toEqual({ type: 'regenerate', variation: 'new' });
+    expect(detectLocalizedCommand('Kenapa pakai が bukan は?')).toEqual({ type: 'ask', question: 'Kenapa pakai が bukan は?' });
+    expect(detectLocalizedCommand('駅はどこですか?')).toBeNull();
+    expect(detectLocalizedCommand('هل تتكلم العربية؟')).toBeNull();
+    expect(detectLocalizedCommand('1. Ide utamanya tentang keluarga.')).toBeNull();
+  });
+
+  it('adds the help footer and variation intro to generated lessons', () => {
+    const result = formatLocalizedLesson('Arabic', 'writing', {
+      prompt: 'Tulis 4 kalimat tentang keluargamu.', requirements: [], patterns: [], wordBank: [], starter: { text: '', reading: '' }, modelAnswer: '',
+    }, { name: 'Ana', topic: 'Keluarga', levelId: 'a1', variation: 'easier' });
+    expect(result.message.startsWith('Oke, ini versi yang lebih mudah, Ana!')).toBe(true);
+    expect(result.message).toContain('"hint"');
+  });
+
+  it('formats the AI session report', () => {
+    const text = formatLocalizedReport('Japanese', 'Kosakata (語彙)', {
+      score: 72, category: 'Good Progress', summary: 'Partikel masih tertukar.', strengths: ['Berani menulis kana'],
+      errors: [{ original: '私が学生です', corrected: '私は学生です', explanation: 'Topik kalimat pakai は.' }],
+      vocabulary: [{ word: '学生', reading: 'がくせい', meaning: 'siswa' }], nextSteps: ['Ulangi は vs が'],
+    }, { topic: 'Day 2 - Sekolah', levelId: 'a1' });
+    expect(text).toContain('Session Report - Bahasa Jepang · Kosakata (語彙)');
+    expect(text).toContain('Topik: Sekolah');
+    expect(text).toContain('Skor: 72/100');
+    expect(text).toContain('❌ 私が学生です\n✅ 私は学生です');
+    expect(text).toContain('学生 (がくせい) = siswa');
   });
 });

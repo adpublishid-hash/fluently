@@ -1,13 +1,19 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const {
+  buildAssistPrompt,
   buildFeedbackPrompt,
   buildLessonPrompt,
+  buildReportPrompt,
+  normalizeAssist,
+  normalizeAssistAction,
   normalizeCefr,
   normalizeFeedback,
   normalizeFocus,
   normalizeLanguage,
   normalizeLesson,
+  normalizeReport,
+  normalizeVariation,
 } = require('./localizedChat');
 
 const FOCUSES = ['vocabulary', 'grammar', 'pronunciation', 'speaking', 'reading', 'writing'];
@@ -72,4 +78,47 @@ test('feedback is clamped and completed items are limited to the batch', () => {
   assert.deepEqual(result.completedItems, ['学生']);
   assert.equal(normalizeFeedback({ feedback: '' }), null);
   assert.equal(normalizeFeedback({ feedback: 'ok', score: 'x' }).score, null);
+});
+
+test('lesson variations ask for a different, easier or harder set', () => {
+  assert.equal(normalizeVariation('Easier'), 'easier');
+  assert.equal(normalizeVariation('sideways'), null);
+  const base = { language: 'japanese', focus: 'vocabulary', name: 'Ana', topic: 'Kereta', levelId: 'A1' };
+  assert.doesNotMatch(buildLessonPrompt(base), /previous set/);
+  const prompt = buildLessonPrompt({ ...base, variation: 'harder', avoid: ['駅', '電車'] });
+  assert.match(prompt, /more challenging/);
+  assert.match(prompt, /Do not reuse these items from the previous set: 駅, 電車/);
+});
+
+test('assist prompt carries the question, lesson context and last coach message', () => {
+  assert.equal(normalizeAssistAction('HINT'), 'hint');
+  assert.equal(normalizeAssistAction('solve'), null);
+  const prompt = buildAssistPrompt({
+    language: 'japanese', focus: 'grammar', name: 'Ana', topic: 'は vs が', levelId: 'A1', action: 'ask',
+    question: 'Bedanya は dan が apa?', context: 'Grammar point: は vs が', lastCoachMessage: '❌ 私が学生です',
+  });
+  assert.match(prompt, /Bedanya は dan が apa\?/);
+  assert.match(prompt, /❌ 私が学生です/);
+  assert.match(prompt, /JLPT N5/);
+  assert.doesNotMatch(buildAssistPrompt({ language: 'arabic', focus: 'writing', name: 'Ana', topic: 'x', levelId: 'A1', action: 'hint' }), /Student question/);
+  assert.equal(normalizeAssist({ reply: '  Coba pakai です.  ' }).reply, 'Coba pakai です.');
+  assert.equal(normalizeAssist({ reply: '' }), null);
+});
+
+test('report prompt only grades student turns and output is validated', () => {
+  const prompt = buildReportPrompt({
+    language: 'arabic', focus: 'speaking', name: 'Ana', topic: 'Keluarga', levelId: 'A2',
+    transcript: [{ role: 'coach', text: 'مَا اسْمُكَ؟' }, { role: 'student', text: 'اسمي آنا' }],
+  });
+  assert.match(prompt, /COACH: مَا اسْمُكَ؟\nSTUDENT: اسمي آنا/);
+  assert.match(prompt, /Assess ONLY the STUDENT turns/);
+  const report = normalizeReport({
+    score: 130, category: 'Good', summary: 'Bagus', strengths: ['a'],
+    errors: [{ original: 'اسمي آنا', corrected: 'اِسْمِي آنَا', explanation: 'harakat' }, { original: 'x' }],
+    vocabulary: [{ word: 'اِسْم', reading: 'ism', meaning: 'nama' }], nextSteps: ['b'],
+  });
+  assert.equal(report.score, 100);
+  assert.equal(report.errors.length, 1);
+  assert.equal(normalizeReport({ summary: 'ok', score: 'x' }), null);
+  assert.equal(normalizeReport({ score: 50 }), null);
 });

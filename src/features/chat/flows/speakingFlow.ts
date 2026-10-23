@@ -17,7 +17,7 @@ import {
   normalizeLocalizedTopicValue,
 } from '../languageAdapters';
 import { createUserMessage } from '../session';
-import { sendLocalizedFeedback, sendLocalizedLesson } from './localizedFlow';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -129,7 +129,7 @@ export function handleSpeakingAnswer(userText: string, vocabStage: VocabularySta
     if (vocabStage === 'practice' || vocabStage === 'game') {
       setPronunciationTurn(pronunciationTurn + 1);
       setVocabStage('practice');
-      sendLocalizedFeedback('speaking', userText, runtime);
+      handleLocalizedPracticeInput('speaking', userText, runtime);
       return;
     }
     setVocabStage('practice');

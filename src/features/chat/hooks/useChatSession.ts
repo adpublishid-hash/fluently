@@ -8,6 +8,9 @@ import { useAuth } from '../../../auth/AuthContext';
 import { buildSessionReport, getLevelLabel } from '../english';
 import type { ReportContext, VocabularyStage } from '../english';
 import type { PronunciationSentenceRow } from '../types';
+import type { FlowRuntime } from '../flows';
+import { formatLocalizedReport, isLocalizedLanguage, localizedQuickReplies, type LocalizedFocus } from '../localizedLesson';
+import { requestLocalizedReport } from '../services/localizedAi';
 import {
   handleGrammarAnswer,
   handlePronunciationAnswer,
@@ -96,6 +99,9 @@ const wantsTopicPicker = (text: string) => {
 
 const normalizeOptionalId = (value?: string) => value || undefined;
 
+const localizedFocuses: LocalizedFocus[] = ['vocabulary', 'grammar', 'pronunciation', 'speaking', 'reading', 'writing'];
+const getLocalizedFocus = (modeId?: string) => localizedFocuses.find((focus) => focus === modeId);
+
 const getMatchingStoredSession = (sessionId: string | undefined, modeId: string | undefined, levelId: string | undefined) => {
   const storedSession = readStoredChatSession(sessionId);
   if (!storedSession) return null;
@@ -130,29 +136,41 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const finalTranscriptRef = useRef('');
 
-  const flowRuntime = {
-    studentName,
-    selectedTopic,
-    completedPracticeWords,
-    generatedVocabularyWords,
-    generatedPronunciationRows,
-    vocabularyPracticeOffset,
-    pronunciationTurn,
-    localizedLessonContext,
-    levelId,
-    targetLanguage,
-    setMessages,
-    setStudentName,
-    setSelectedTopic,
-    setCompletedPracticeWords,
-    setGeneratedVocabularyWords,
-    setGeneratedPronunciationRows,
-    setVocabularyPracticeOffset,
-    setPronunciationTurn,
-    setVocabStage,
-    setLocalizedLessonContext,
-    sendAiReply,
-    showTyping,
+  // Bumped whenever the conversation is replaced (new/restored/ended session) so
+  // AI replies that arrive late are dropped instead of landing in the next one.
+  const sessionEpochRef = useRef(0);
+
+  // Built per user action: everything it writes is ignored once the session changes.
+  const createFlowRuntime = (): FlowRuntime => {
+    const epoch = sessionEpochRef.current;
+    const live = <Args extends unknown[]>(fn: (...args: Args) => void) => (...args: Args) => {
+      if (sessionEpochRef.current === epoch) fn(...args);
+    };
+    return {
+      studentName,
+      selectedTopic,
+      completedPracticeWords,
+      generatedVocabularyWords,
+      generatedPronunciationRows,
+      vocabularyPracticeOffset,
+      pronunciationTurn,
+      localizedLessonContext,
+      lastCoachMessage: [...messages].reverse().find((message) => message.isAi)?.text ?? '',
+      levelId,
+      targetLanguage,
+      setMessages: live(setMessages),
+      setStudentName: live(setStudentName),
+      setSelectedTopic: live(setSelectedTopic),
+      setCompletedPracticeWords: live(setCompletedPracticeWords),
+      setGeneratedVocabularyWords: live(setGeneratedVocabularyWords),
+      setGeneratedPronunciationRows: live(setGeneratedPronunciationRows),
+      setVocabularyPracticeOffset: live(setVocabularyPracticeOffset),
+      setPronunciationTurn: live(setPronunciationTurn),
+      setVocabStage: live(setVocabStage),
+      setLocalizedLessonContext: live(setLocalizedLessonContext),
+      sendAiReply: live(sendAiReply),
+      showTyping: live(showTyping),
+    };
   };
 
   const guardFreeTopicLimit = (topic: string) => {
@@ -175,6 +193,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   }, [messages, isTyping]);
 
   useEffect(() => {
+    sessionEpochRef.current += 1;
     clearPendingReply();
     recognitionRef.current?.abort();
     finalTranscriptRef.current = '';
@@ -276,32 +295,32 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     }
 
     if (isVocabularyMode) {
-      handleVocabularyAnswer(trimmedText, vocabStage, flowRuntime);
+      handleVocabularyAnswer(trimmedText, vocabStage, createFlowRuntime());
       return;
     }
 
     if (isGrammarMode) {
-      handleGrammarAnswer(trimmedText, vocabStage, flowRuntime);
+      handleGrammarAnswer(trimmedText, vocabStage, createFlowRuntime());
       return;
     }
 
     if (isPronunciationMode) {
-      handlePronunciationAnswer(trimmedText, vocabStage, flowRuntime);
+      handlePronunciationAnswer(trimmedText, vocabStage, createFlowRuntime());
       return;
     }
 
     if (isReadingMode) {
-      handleReadingAnswer(trimmedText, vocabStage, flowRuntime);
+      handleReadingAnswer(trimmedText, vocabStage, createFlowRuntime());
       return;
     }
 
     if (isSpeakingMode) {
-      handleSpeakingAnswer(trimmedText, vocabStage, flowRuntime);
+      handleSpeakingAnswer(trimmedText, vocabStage, createFlowRuntime());
       return;
     }
 
     if (isWritingMode) {
-      handleWritingAnswer(trimmedText, vocabStage, flowRuntime);
+      handleWritingAnswer(trimmedText, vocabStage, createFlowRuntime());
       return;
     }
 
@@ -376,6 +395,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   };
 
   const handleNewSession = () => {
+    sessionEpochRef.current += 1;
     clearPendingReply();
     recognitionRef.current?.abort();
     finalTranscriptRef.current = '';
@@ -401,37 +421,37 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const handleTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
     if (!isCustomLocalizedTopicValue(topicValue) && !guardFreeTopicLimit(topicValue)) return;
-    selectVocabularyTopic(topicValue, flowRuntime);
+    selectVocabularyTopic(topicValue, createFlowRuntime());
   };
 
   const handleGrammarTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
     if (!isCustomLocalizedTopicValue(topicValue) && !guardFreeTopicLimit(topicValue)) return;
-    selectGrammarTopic(topicValue, flowRuntime);
+    selectGrammarTopic(topicValue, createFlowRuntime());
   };
 
   const handlePronunciationTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
     if (!isCustomLocalizedTopicValue(topicValue) && !guardFreeTopicLimit(topicValue)) return;
-    selectPronunciationTopic(topicValue, flowRuntime);
+    selectPronunciationTopic(topicValue, createFlowRuntime());
   };
 
   const handleSpeakingTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
     if (!isCustomLocalizedTopicValue(topicValue) && !guardFreeTopicLimit(topicValue)) return;
-    selectSpeakingTopic(topicValue, flowRuntime);
+    selectSpeakingTopic(topicValue, createFlowRuntime());
   };
 
   const handleReadingTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
     if (!isCustomLocalizedTopicValue(topicValue) && !guardFreeTopicLimit(topicValue)) return;
-    selectReadingTopic(topicValue, flowRuntime);
+    selectReadingTopic(topicValue, createFlowRuntime());
   };
 
   const handleWritingTopicSelected = (topicValue: string) => {
     if (sessionEnded) return;
     if (!isCustomLocalizedTopicValue(topicValue) && !guardFreeTopicLimit(topicValue)) return;
-    selectWritingTopic(topicValue, flowRuntime);
+    selectWritingTopic(topicValue, createFlowRuntime());
   };
 
   const handleSend = () => {
@@ -455,6 +475,8 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
 
   const handleEndSession = () => {
     if (sessionEnded) return;
+    sessionEpochRef.current += 1;
+    const reportEpoch = sessionEpochRef.current;
     clearPendingReply();
     recognitionRef.current?.abort();
     setInput('');
@@ -477,6 +499,34 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       stage: vocabStage,
     };
 
+    const focus = getLocalizedFocus(modeId);
+    const transcript = messages.map((message) => ({
+      role: message.isAi ? 'coach' as const : 'student' as const,
+      // Coach turns are long lesson tables; their opening is enough context.
+      text: message.isAi ? message.text.slice(0, 400) : message.text,
+    }));
+    if (isLocalizedLanguage(targetLanguage) && focus && userMessageCount >= 2) {
+      showTyping();
+      requestLocalizedReport({
+        language: targetLanguage,
+        focus,
+        name: studentName || 'teman',
+        topic: selectedTopic,
+        levelId,
+        transcript,
+      }).then((report) => {
+        if (sessionEpochRef.current !== reportEpoch) return;
+        sendAiReplyFromMessages(
+          () => report
+            ? formatLocalizedReport(targetLanguage, getLocalizedFocusLabel(targetLanguage, modeId), report, { topic: selectedTopic, levelId })
+            : buildLocalizedReport(targetLanguage, modeId),
+          300,
+          `session-report-${Date.now()}`,
+        );
+      });
+      return;
+    }
+
     sendAiReplyFromMessages(
       (prev) => targetLanguage === 'English'
         ? buildSessionReport({ ...reportContext, messages: prev })
@@ -485,6 +535,11 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       `session-report-${Date.now()}`,
     );
   };
+
+  const quickReplies = isGuidedMode && isLocalizedLanguage(targetLanguage) && !sessionEnded && !isTyping && vocabStage === 'practice'
+    ? localizedQuickReplies
+    : [];
+  const handleQuickReply = (text: string) => submitUserText(text);
 
   useEffect(() => {
     return () => {
@@ -548,6 +603,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     isWritingMode,
     messages,
     messagesEndRef,
+    quickReplies,
     sessionEnded,
     targetLanguage,
     textareaRef,
@@ -562,6 +618,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     handleSpeakingTopicSelected,
     handleWritingTopicSelected,
     handleQuickAction,
+    handleQuickReply,
     handleSend,
     handleTopicSelected,
     toggleRecording: () => {
