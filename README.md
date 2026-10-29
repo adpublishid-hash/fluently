@@ -57,7 +57,7 @@ Copy `server/.env.example` to your hosting provider's environment variables and 
 - `SMTP_*`: email sending credentials.
 - `ONESENDER_*`: WhatsApp notification credentials.
 - `JWT_SECRET`: long random secret for session tokens.
-- `KIE_API_KEY`, `KIE_MODEL` (default `gemini-3-8-flash-openai`, the OpenAI-compatible Kie slug), `KIE_REASONING_EFFORT` (optional `low`/`high`), `KIE_BASE_URL`: server-paid AI via Kie AI.
+- `KIE_API_KEY`, `KIE_MODEL` (default `gemini-3-8-flash-openai`, the OpenAI-compatible Kie slug), `KIE_REASONING_EFFORT` (optional `low`/`high`), `KIE_BASE_URL`: server-paid AI via Kie AI. `AI_TIMEOUT_MS` (default `130000`) cuts off a hung provider call and refunds the quota.
 - `AI_DAILY_QUOTA_FREE` / `_PRO` / `_LIFETIME`: AI requests per user per day on the server key (reset 00:00 WIB).
   When the quota is used up, learners can add their own free Google AI Studio key in the app; it is sent per
   request (`X-Gemini-Key`), used with `BYOK_GEMINI_MODEL`, and never stored on the server.

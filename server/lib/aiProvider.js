@@ -56,7 +56,7 @@ function parseJsonObject(text) {
   return null;
 }
 
-async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputTokens, reasoningEffort, fetchImpl = fetch }) {
+async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputTokens, reasoningEffort, signal, fetchImpl = fetch }) {
   const res = await fetchImpl(`${String(baseUrl).replace(/\/$/, '')}/${encodeURIComponent(model)}/v1/chat/completions`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
@@ -68,6 +68,7 @@ async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputT
       max_tokens: maxOutputTokens,
       ...(reasoningEffort ? { reasoning_effort: reasoningEffort } : {}),
     }),
+    signal,
   });
   const raw = await res.text();
   const contentType = res.headers?.get?.('content-type') || '';
@@ -86,7 +87,7 @@ async function callKie({ apiKey, baseUrl, model, prompt, temperature, maxOutputT
   };
 }
 
-async function callGoogle({ apiKey, model, prompt, temperature, maxOutputTokens, fetchImpl = fetch }) {
+async function callGoogle({ apiKey, model, prompt, temperature, maxOutputTokens, signal, fetchImpl = fetch }) {
   const res = await fetchImpl(`${GOOGLE_BASE_URL}/models/${encodeURIComponent(model)}:generateContent`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
@@ -94,6 +95,7 @@ async function callGoogle({ apiKey, model, prompt, temperature, maxOutputTokens,
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
       generationConfig: { temperature, maxOutputTokens, responseMimeType: 'application/json' },
     }),
+    signal,
   });
   const data = await res.json().catch(() => null);
   const text = data?.candidates?.[0]?.content?.parts?.map((part) => part.text || '').join('\n') || '';
