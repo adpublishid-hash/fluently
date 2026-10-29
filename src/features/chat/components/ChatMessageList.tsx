@@ -11,6 +11,8 @@ import { TypingIndicator } from './TypingIndicator';
 type ChatMessageListProps = {
   messages: ChatMessage[];
   isTyping: boolean;
+  aiWaitStartedAt?: number | null;
+  onCancelAi?: () => void;
   isGuidedMode: boolean;
   isVocabularyMode: boolean;
   isGrammarMode: boolean;
@@ -44,6 +46,8 @@ const quickActionLabelKeys: Record<string, 'chat.practiceConversation' | 'chat.g
 export function ChatMessageList({
   messages,
   isTyping,
+  aiWaitStartedAt = null,
+  onCancelAi,
   isGuidedMode,
   isVocabularyMode,
   isGrammarMode,
@@ -157,7 +161,7 @@ export function ChatMessageList({
                 ))}
               </AnimatePresence>
 
-              {isTyping && <TypingIndicator />}
+              {isTyping && <TypingIndicator waitingSince={aiWaitStartedAt} onCancel={onCancelAi} />}
             </div>
           </>
         )}

@@ -119,7 +119,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const [initialStoredSession] = useState(() => getMatchingStoredSession(sessionId, modeId, levelId));
   const [messages, setMessages] = useState<ChatMessage[]>(() => initialStoredSession?.messages ?? createInitialMessages(modeId, mockChatMessages, targetLanguage));
   const [input, setInput] = useState('');
-  const { isTyping, sendAiReply, sendAiReplyFromMessages, clearPendingReply, stopTyping, showTyping } = useAiReplyQueue(setMessages);
+  const { isTyping, aiWaitStartedAt, sendAiReply, sendAiReplyFromMessages, clearPendingReply, stopTyping, showTyping } = useAiReplyQueue(setMessages);
   const [isRecording, setIsRecording] = useState(false);
   const [activeSessionId, setActiveSessionId] = useState(() => initialStoredSession?.id || '');
   const [vocabStage, setVocabStage] = useState<VocabularyStage>(() => initialStoredSession?.vocabStage ?? 'ask-name');
@@ -140,6 +140,12 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   // Bumped whenever the conversation is replaced (new/restored/ended session) so
   // AI replies that arrive late are dropped instead of landing in the next one.
   const sessionEpochRef = useRef(0);
+  // Signal for in-flight AI requests; aborted on cancel and whenever the session changes.
+  const aiControllerRef = useRef(new AbortController());
+  const abortAiRequests = () => {
+    aiControllerRef.current.abort();
+    aiControllerRef.current = new AbortController();
+  };
 
   // Built per user action: everything it writes is ignored once the session changes.
   const createFlowRuntime = (): FlowRuntime => {
@@ -171,6 +177,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
       setLocalizedLessonContext: live(setLocalizedLessonContext),
       sendAiReply: live(sendAiReply),
       showTyping: live(showTyping),
+      signal: aiControllerRef.current.signal,
     };
   };
 
@@ -194,7 +201,17 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   }, [messages, isTyping]);
 
   useEffect(() => {
+    const controllers = aiControllerRef;
+    return () => {
+      controllers.current.abort();
+      controllers.current = new AbortController();
+    };
+  }, []);
+
+  useEffect(() => {
     sessionEpochRef.current += 1;
+    aiControllerRef.current.abort();
+    aiControllerRef.current = new AbortController();
     clearPendingReply();
     recognitionRef.current?.abort();
     finalTranscriptRef.current = '';
@@ -397,6 +414,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
 
   const handleNewSession = () => {
     sessionEpochRef.current += 1;
+    abortAiRequests();
     clearPendingReply();
     recognitionRef.current?.abort();
     finalTranscriptRef.current = '';
@@ -478,6 +496,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     if (sessionEnded) return;
     sessionEpochRef.current += 1;
     const reportEpoch = sessionEpochRef.current;
+    abortAiRequests();
     clearPendingReply();
     recognitionRef.current?.abort();
     setInput('');
@@ -518,6 +537,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
         topic: selectedTopic,
         levelId,
         transcript,
+        signal: aiControllerRef.current.signal,
       }).then((report) => {
         if (sessionEpochRef.current !== reportEpoch) return;
         if (report?.errors.length) void saveMistakes(targetLanguage, focus, selectedTopic, report.errors);
@@ -544,6 +564,8 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     ? localizedQuickReplies
     : [];
   const handleQuickReply = (text: string) => submitUserText(text);
+  // The pending flow sees the aborted signal and posts its own "cancelled" reply.
+  const handleCancelAi = () => abortAiRequests();
 
   useEffect(() => {
     return () => {
@@ -603,6 +625,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     isRecording,
     isSpeakingMode,
     isTyping,
+    aiWaitStartedAt,
     isVocabularyMode,
     isWritingMode,
     messages,
@@ -615,6 +638,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     setInput,
     handleBack,
     handleEndSession,
+    handleCancelAi,
     handleGrammarTopicSelected,
     handleNewSession,
     handlePronunciationTopicSelected,

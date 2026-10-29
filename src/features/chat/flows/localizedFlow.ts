@@ -5,16 +5,22 @@ import {
   buildVocabularyBatchTask,
   detectLocalizedCommand,
   formatLocalizedFeedback,
+  isLocalizedLanguage,
   type LocalizedFocus,
   type LocalizedLessonVariation,
 } from '../localizedLesson';
 import { requestLocalizedAssist, requestLocalizedFeedback, requestLocalizedLesson } from '../services/localizedAi';
 import { buildReviewNote, fetchMistakes, saveMistakes, summarizeFeedback } from '../services/mistakes';
-
-const REVIEW_MISTAKES = 3;
 import type { FlowRuntime, TopicRuntime } from './types';
 
+const REVIEW_MISTAKES = 3;
 const PRONUNCIATION_BATCH_SIZE = 2;
+
+export const CANCELLED_LESSON_NOTE = '⏹️ Pembuatan materi AI dibatalkan, jadi aku pakai materi bawaan dulu.';
+// Only Japanese/Mandarin/Arabic stay in the AI flow on the built-in lesson.
+const CANCELLED_LESSON_RETRY_HINT = ' Ketik "materi baru" kapan saja untuk mencoba AI lagi.';
+export const CANCELLED_VARIATION_REPLY = '⏹️ Dibatalkan. Kita lanjut dengan materi yang ada.';
+export const CANCELLED_REPLY = '⏹️ Dibatalkan. Kirim pesanmu lagi kapan saja.';
 
 /** Generates a lesson with AI, falling back to `fallback` or the built-in sample lesson. */
 export async function sendLocalizedLesson(
@@ -29,6 +35,7 @@ export async function sendLocalizedLesson(
     targetLanguage,
     sendAiReply,
     showTyping,
+    signal,
     setLocalizedLessonContext,
     setGeneratedVocabularyWords,
     setGeneratedPronunciationRows,
@@ -52,9 +59,15 @@ export async function sendLocalizedLesson(
   // Past mistakes from the notebook are woven into the new lesson for review.
   const review = (await fetchMistakes(targetLanguage, REVIEW_MISTAKES)).map(({ original, corrected }) => ({ original, corrected }));
   const lesson = await requestLocalizedLesson(
-    { language: targetLanguage, focus, name, topic, levelId },
+    { language: targetLanguage, focus, name, topic, levelId, signal },
     { variation: options.variation, avoid: options.avoid, review },
   );
+  if (!lesson && signal.aborted) {
+    sendAiReply(options.variation
+      ? CANCELLED_VARIATION_REPLY
+      : `${CANCELLED_LESSON_NOTE}${isLocalizedLanguage(targetLanguage) ? CANCELLED_LESSON_RETRY_HINT : ''}\n\n${options.fallback ?? buildLocalizedLesson(name, focus, topic, targetLanguage, levelId)}`, 200);
+    return;
+  }
   if (!lesson) {
     sendAiReply(options.variation
       ? 'Maaf, materi baru belum bisa dibuat karena AI sedang tidak tersedia. Coba lagi sebentar, atau lanjutkan dengan materi yang ada.'
@@ -129,7 +142,12 @@ export async function handleLocalizedPracticeInput(focus: LocalizedFocus, userTe
     question: command.type === 'ask' ? command.question : '',
     context,
     lastCoachMessage: runtime.lastCoachMessage,
+    signal: runtime.signal,
   });
+  if (!reply && runtime.signal.aborted) {
+    runtime.sendAiReply(CANCELLED_REPLY, 200);
+    return;
+  }
   runtime.sendAiReply(reply || 'Maaf, bantuan AI sedang tidak tersedia. Coba lagi sebentar, atau kirim jawabanmu dulu dan aku koreksi.', 400);
 }
 
@@ -180,8 +198,13 @@ async function sendLocalizedFeedback(focus: LocalizedFocus, userText: string, ru
     answer: userText,
     context,
     targetItems,
+    signal: runtime.signal,
   });
 
+  if (!result && runtime.signal.aborted) {
+    sendAiReply(CANCELLED_REPLY, 200);
+    return;
+  }
   if (!result) {
     if (focus === 'pronunciation') setPronunciationTurn(pronunciationTurn + 1);
     sendAiReply(buildFallbackFeedback(focus, userText, runtime), 600);

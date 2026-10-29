@@ -1,4 +1,4 @@
-const { BYOK_GEMINI_MODEL, FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_API_KEY, KIE_GEMINI_BASE_URL, KIE_MODEL, KIE_REASONING_EFFORT } = require('../config');
+const { AI_TIMEOUT_MS, BYOK_GEMINI_MODEL, FREE_AI_CHAT_LEVELS, FREE_GEMINI_API_KEY, GEMINI_API_KEY, GEMINI_MODEL, KIE_API_KEY, KIE_GEMINI_BASE_URL, KIE_MODEL, KIE_REASONING_EFFORT } = require('../config');
 const { pool } = require('../db');
 const { getServerEffectivePlan } = require('../lib/domain');
 const { requireAuth } = require('../middleware/auth');
@@ -115,6 +115,15 @@ module.exports = function register(app) {
     return isStudioKey(key) ? key : null;
   }
 
+  /** Aborts when the learner leaves (cancel, closed tab) before the reply is sent. */
+  function clientGoneSignal(res) {
+    const controller = new AbortController();
+    res.on('close', () => {
+      if (!res.writableFinished) controller.abort();
+    });
+    return controller.signal;
+  }
+
   /**
    * Picks who pays for this request: the server key while the learner's daily
    * quota lasts, then the learner's own AI Studio key (X-Gemini-Key header).
@@ -123,14 +132,15 @@ module.exports = function register(app) {
   async function resolveAiAccess(req, res) {
     const server = serverProvider();
     const plan = getServerEffectivePlan(req.user);
+    const signal = clientGoneSignal(res);
     if (server && req.user?.id) {
       const used = await consumeQuota(pool, req.user.id, plan);
       if (used !== null) {
-        return { ...server, source: 'quota', refund: () => refundQuota(pool, req.user.id) };
+        return { ...server, source: 'quota', signal, refund: () => refundQuota(pool, req.user.id) };
       }
     }
     const ownKey = userStudioKey(req);
-    if (ownKey) return { provider: 'google', apiKey: ownKey, model: BYOK_GEMINI_MODEL, source: 'byok' };
+    if (ownKey) return { provider: 'google', apiKey: ownKey, model: BYOK_GEMINI_MODEL, source: 'byok', signal };
 
     if (!server) {
       res.status(503).json({ error: 'AI server belum dikonfigurasi. Masukkan API key Google AI Studio kamu.', code: 'AI_KEY_REQUIRED' });
@@ -148,12 +158,14 @@ module.exports = function register(app) {
   /**
    * Calls the chosen provider; failed server-quota calls are refunded. A quick
    * upstream 5xx (Kie answers "524 retry fail" within seconds when its
-   * backend is busy) is retried once.
+   * backend is busy) is retried once. Each attempt is cut off after
+   * AI_TIMEOUT_MS, and stops early when the learner has left.
    */
   async function callAiJson(access, { prompt, temperature, maxOutputTokens }) {
+    const attemptSignal = () => AbortSignal.any([AbortSignal.timeout(AI_TIMEOUT_MS), ...(access.signal ? [access.signal] : [])]);
     const call = access.provider === 'kie'
-      ? () => callKie({ apiKey: access.apiKey, baseUrl: KIE_GEMINI_BASE_URL, model: access.model, prompt, temperature, maxOutputTokens, reasoningEffort: KIE_REASONING_EFFORT })
-      : () => callGoogle({ apiKey: access.apiKey, model: access.model, prompt, temperature, maxOutputTokens });
+      ? () => callKie({ apiKey: access.apiKey, baseUrl: KIE_GEMINI_BASE_URL, model: access.model, prompt, temperature, maxOutputTokens, reasoningEffort: KIE_REASONING_EFFORT, signal: attemptSignal() })
+      : () => callGoogle({ apiKey: access.apiKey, model: access.model, prompt, temperature, maxOutputTokens, signal: attemptSignal() });
     try {
       const started = Date.now();
       let result = await call();

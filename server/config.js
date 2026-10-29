@@ -62,6 +62,9 @@ const KIE_MODEL = process.env.KIE_MODEL || 'gemini-3-8-flash-openai';
 // Optional Kie thinking level ("low" or "high"); unset uses the model default.
 // "low" answers about 5x faster with slightly less careful content.
 const KIE_REASONING_EFFORT = ['low', 'high'].includes(process.env.KIE_REASONING_EFFORT) ? process.env.KIE_REASONING_EFFORT : '';
+// Upper bound for one AI provider call. A hung upstream request otherwise keeps
+// the learner waiting (and the quota spent) until the proxy gives up.
+const AI_TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS) > 0 ? Number(process.env.AI_TIMEOUT_MS) : 130000;
 // Model used with a learner's own Google AI Studio key (free tier friendly).
 const BYOK_GEMINI_MODEL = process.env.BYOK_GEMINI_MODEL || 'gemini-2.5-flash';
 const FREE_AI_CHAT_LEVELS = new Set(['A1', 'A2']);
@@ -108,6 +111,7 @@ module.exports = {
   KIE_API_KEY,
   KIE_MODEL,
   KIE_REASONING_EFFORT,
+  AI_TIMEOUT_MS,
   BYOK_GEMINI_MODEL,
   FREE_AI_CHAT_LEVELS,
   ONESENDER_URL,
