@@ -6,6 +6,7 @@ import type { TranslationKey } from '../../i18n/translations';
 import type { TabType } from '../../types';
 import { useCart } from '../../shop/CartContext';
 import { useAuth } from '../../auth/AuthContext';
+import { studyLanguageFor } from '../../features/learning/studyLanguages';
 
 const XP_PER_LEVEL = 3000;
 const fallbackAvatar = (name: string) =>
@@ -47,6 +48,8 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
   const location = useLocation();
   const { itemCount } = useCart();
   const { user } = useAuth();
+  const studyLanguage = studyLanguageFor(user?.persona?.targetLanguage);
+  const examPath = studyLanguage === 'english' ? '/ujian/english' : `/simulasi/${studyLanguage}`;
   const isAdmin = user?.role === 'admin';
   const displayName = user?.displayName || user?.name || 'Learner';
   const avatarUrl = user?.avatarUrl || fallbackAvatar(displayName);
@@ -65,7 +68,7 @@ export default function SidebarNav({ onLogout }: { onLogout?: () => void }) {
 
   type ExtraItem = { labelKey: TranslationKey; icon: React.ElementType; path: string; accent: string; bg: string };
   const prepItems: ExtraItem[] = [
-    { labelKey: 'nav.exam',  icon: GraduationCap, path: '/ujian/english', accent: '#9B59B6', bg: 'rgba(155,89,182,0.10)' },
+    { labelKey: 'nav.exam',  icon: GraduationCap, path: examPath, accent: '#9B59B6', bg: 'rgba(155,89,182,0.10)' },
   ];
   const toolItems: ExtraItem[] = [
     { labelKey: 'nav.analytics', icon: BarChart3,   path: '/analytics', accent: '#2980B9', bg: 'rgba(41,128,185,0.10)'  },

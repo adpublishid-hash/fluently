@@ -25,6 +25,10 @@ export type FormattedQuestion = ChoiceQuestion & {
   audio?: string;
   /** Reading passage shown above the question. */
   context?: { title: string; text: string };
+  /** Exam item type, e.g. 漢字読み (AI-generated items). */
+  type?: string;
+  /** Why the answer is right (AI-generated items). */
+  explanation?: string;
 };
 
 const kindSection: Record<PartKind, ExamSection> = {
