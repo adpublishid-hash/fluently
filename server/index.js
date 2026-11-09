@@ -39,6 +39,7 @@ require('./routes/ai')(app);
 require('./routes/support')(app);
 require('./routes/auth')(app);
 require('./routes/users')(app);
+require('./routes/mistakes')(app);
 require('./routes/shop')(app);
 require('./routes/admin')(app);
 

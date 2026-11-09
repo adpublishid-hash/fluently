@@ -93,6 +93,8 @@ export default function ChatPage() {
           <ChatMessageList
             messages={chat.messages}
             isTyping={chat.isTyping}
+            aiWaitStartedAt={chat.aiWaitStartedAt}
+            onCancelAi={chat.handleCancelAi}
             isGuidedMode={chat.isGuidedMode}
             isVocabularyMode={chat.isVocabularyMode}
             isGrammarMode={chat.isGrammarMode}
@@ -124,6 +126,8 @@ export default function ChatPage() {
             onInputChange={chat.setInput}
             onSend={chat.handleSend}
             onToggleRecording={chat.toggleRecording}
+            quickReplies={chat.quickReplies}
+            onQuickReply={chat.handleQuickReply}
           />
         </div>
 

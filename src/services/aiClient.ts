@@ -40,9 +40,41 @@ export function openAiKeyPrompt(detail: AiKeyNeededDetail = { code: 'MANAGE' }) 
   window.dispatchEvent(new CustomEvent<AiKeyNeededDetail>(AI_KEY_NEEDED_EVENT, { detail }));
 }
 
-/** POSTs to an AI endpoint; opens the key prompt when the quota is used up or the own key fails. */
-export async function aiFetch(path: string, body: unknown): Promise<Response> {
-  const response = await fetch(path, { method: 'POST', headers: aiHeaders(), body: JSON.stringify(body) });
+// Slightly above the server's own provider timeout so its error reply still arrives.
+export const AI_REQUEST_TIMEOUT_MS = 200_000;
+
+/** Aborts when `signal` aborts or after `timeoutMs`; `done` clears the timer. */
+function withTimeout(signal: AbortSignal | undefined, timeoutMs: number) {
+  const controller = new AbortController();
+  const abort = () => controller.abort();
+  const timer = setTimeout(abort, timeoutMs);
+  if (signal?.aborted) abort();
+  signal?.addEventListener('abort', abort, { once: true });
+  return {
+    signal: controller.signal,
+    done: () => {
+      clearTimeout(timer);
+      signal?.removeEventListener('abort', abort);
+    },
+  };
+}
+
+/**
+ * POSTs to an AI endpoint; opens the key prompt when the quota is used up or
+ * the own key fails. Rejects when `signal` aborts or the request times out.
+ */
+export async function aiFetch(
+  path: string,
+  body: unknown,
+  { signal, timeoutMs = AI_REQUEST_TIMEOUT_MS }: { signal?: AbortSignal; timeoutMs?: number } = {},
+): Promise<Response> {
+  const request = withTimeout(signal, timeoutMs);
+  let response: Response;
+  try {
+    response = await fetch(path, { method: 'POST', headers: aiHeaders(), body: JSON.stringify(body), signal: request.signal });
+  } finally {
+    request.done();
+  }
   window.dispatchEvent(new Event(AI_QUOTA_CHANGED_EVENT));
   if (response.status === 429 || response.status === 503 || response.status === 400) {
     const data = await response.clone().json().catch(() => null) as { code?: string; error?: string; quota?: AiQuota } | null;

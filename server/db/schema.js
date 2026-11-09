@@ -143,6 +143,26 @@ async function ensureSchema() {
     )
   `);
 
+  // Mistakes the AI chat coach found, reused in later lessons until mastered.
+  await pool.query(`
+    create table if not exists chat_mistakes (
+      id serial primary key,
+      user_id integer not null references users(id) on delete cascade,
+      language text not null,
+      focus text not null default 'chat',
+      topic text not null default '',
+      mistake_key text not null,
+      original text not null,
+      corrected text not null,
+      explanation text not null default '',
+      times_seen integer not null default 1,
+      mastered boolean not null default false,
+      created_at timestamptz not null default now(),
+      updated_at timestamptz not null default now()
+    )
+  `);
+  await pool.query('create unique index if not exists chat_mistakes_user_key_uidx on chat_mistakes (user_id, language, mistake_key)');
+
   await seedAdminUser();
   await seedShopProducts();
   await seedShopSettings();

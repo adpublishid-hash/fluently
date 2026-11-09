@@ -8,6 +8,9 @@ export type VocabularyRow = {
   meaning: string;
   pos: string;
   example: string;
+  exampleReading?: string;
+  exampleMeaning?: string;
+  note?: string;
 };
 
 export type PronunciationSentenceRow = {
@@ -15,6 +18,7 @@ export type PronunciationSentenceRow = {
   phonetic: string;
   focus: string;
   tip: string;
+  meaning?: string;
 };
 
 export type SpeakingPromptRow = {
@@ -22,6 +26,8 @@ export type SpeakingPromptRow = {
   grammarFocus: string;
   usefulPattern: string;
   example: string;
+  exampleReading?: string;
+  exampleMeaning?: string;
 };
 
 export type ReportContext = {
