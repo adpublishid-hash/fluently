@@ -58,7 +58,10 @@ const FREE_GEMINI_API_KEY = process.env.FREE_GEMINI_API_KEY || '';
 const KIE_GEMINI_BASE_URL = process.env.KIE_BASE_URL || process.env.KIE_GEMINI_BASE_URL || 'https://api.kie.ai';
 // Server-paid AI goes to Kie AI; the model slug is part of the endpoint path.
 const KIE_API_KEY = process.env.KIE_API_KEY || '';
-const KIE_MODEL = process.env.KIE_MODEL || 'gemini-3-8-flash';
+const KIE_MODEL = process.env.KIE_MODEL || 'gemini-3-8-flash-openai';
+// Optional Kie thinking level ("low" or "high"); unset uses the model default.
+// "low" answers about 5x faster with slightly less careful content.
+const KIE_REASONING_EFFORT = ['low', 'high'].includes(process.env.KIE_REASONING_EFFORT) ? process.env.KIE_REASONING_EFFORT : '';
 // Model used with a learner's own Google AI Studio key (free tier friendly).
 const BYOK_GEMINI_MODEL = process.env.BYOK_GEMINI_MODEL || 'gemini-2.5-flash';
 const FREE_AI_CHAT_LEVELS = new Set(['A1', 'A2']);
@@ -104,6 +107,7 @@ module.exports = {
   KIE_GEMINI_BASE_URL,
   KIE_API_KEY,
   KIE_MODEL,
+  KIE_REASONING_EFFORT,
   BYOK_GEMINI_MODEL,
   FREE_AI_CHAT_LEVELS,
   ONESENDER_URL,

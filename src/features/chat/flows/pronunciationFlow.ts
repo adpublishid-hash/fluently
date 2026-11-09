@@ -9,8 +9,6 @@ import {
 import type { VocabularyStage } from '../english';
 import {
   buildLocalizedCustomTopicPrompt,
-  buildLocalizedFeedback,
-  buildLocalizedLesson,
   buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
   getLocalizedTopicLabel,
@@ -25,6 +23,7 @@ import {
 } from '../services/pronunciationAi';
 import { createUserMessage } from '../session';
 import type { PronunciationSentenceRow } from '../types';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -95,7 +94,7 @@ Contoh:
   setPronunciationTurn(0);
   setVocabStage('practice');
   if (localized) {
-    sendAiReply(buildLocalizedLesson(studentName || 'teman', 'pronunciation', topic, targetLanguage, levelId), 1500);
+    sendLocalizedLesson('pronunciation', topic, runtime);
     return;
   }
   const aiLesson = await requestPronunciationLesson({ name: studentName || 'teman', topic, levelId });
@@ -151,7 +150,7 @@ export function handlePronunciationAnswer(userText: string, vocabStage: Vocabula
     setPronunciationTurn(0);
     setVocabStage('practice');
     if (localized) {
-      sendAiReply(buildLocalizedLesson(studentName || 'teman', 'pronunciation', topic, targetLanguage, levelId), 1500);
+      sendLocalizedLesson('pronunciation', topic, runtime);
       return;
     }
     requestPronunciationLesson({ name: studentName || 'teman', topic, levelId }).then((aiLesson) => {
@@ -173,11 +172,8 @@ export function handlePronunciationAnswer(userText: string, vocabStage: Vocabula
     }
 
     if (vocabStage === 'practice' || vocabStage === 'game') {
-      setPronunciationTurn(pronunciationTurn + 1);
       setVocabStage('practice');
-      sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'pronunciation', targetLanguage)}
-
-${buildLocalizedPracticeLoopReply(studentName || 'teman', 'pronunciation', targetLanguage)}`, 1400);
+      handleLocalizedPracticeInput('pronunciation', userText, runtime);
       return;
     }
 

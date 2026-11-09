@@ -9,8 +9,6 @@ import {
 import type { VocabularyStage } from '../english';
 import {
   buildLocalizedCustomTopicPrompt,
-  buildLocalizedFeedback,
-  buildLocalizedLesson,
   buildLocalizedPracticeLoopReply,
   buildLocalizedTopicQuestion,
   getLocalizedTopicLabel,
@@ -19,6 +17,7 @@ import {
   normalizeLocalizedTopicValue,
 } from '../languageAdapters';
 import { createUserMessage } from '../session';
+import { handleLocalizedPracticeInput, sendLocalizedLesson } from './localizedFlow';
 import type { FlowRuntime, TopicRuntime } from './types';
 
 const wantsTopicSelect = (text: string) => {
@@ -66,7 +65,7 @@ Contoh:
   setPronunciationTurn(0);
   setVocabStage('practice');
   if (localized) {
-    sendAiReply(buildLocalizedLesson(studentName || 'teman', 'speaking', topic, targetLanguage, levelId), 1500);
+    sendLocalizedLesson('speaking', topic, runtime);
     return;
   }
   sendAiReply(buildSpeakingLesson(studentName || 'teman', topic, levelId), 1800);
@@ -113,7 +112,7 @@ export function handleSpeakingAnswer(userText: string, vocabStage: VocabularySta
     setPronunciationTurn(0);
     setVocabStage('practice');
     if (localized) {
-      sendAiReply(buildLocalizedLesson(studentName || 'teman', 'speaking', topic, targetLanguage, levelId), 1500);
+      sendLocalizedLesson('speaking', topic, runtime);
       return;
     }
     sendAiReply(buildSpeakingLesson(studentName || 'teman', topic, levelId), 1800);
@@ -130,9 +129,7 @@ export function handleSpeakingAnswer(userText: string, vocabStage: VocabularySta
     if (vocabStage === 'practice' || vocabStage === 'game') {
       setPronunciationTurn(pronunciationTurn + 1);
       setVocabStage('practice');
-      sendAiReply(`${buildLocalizedFeedback(studentName || 'teman', userText, 'speaking', targetLanguage)}
-
-${buildLocalizedPracticeLoopReply(studentName || 'teman', 'speaking', targetLanguage)}`, 1400);
+      handleLocalizedPracticeInput('speaking', userText, runtime);
       return;
     }
     setVocabStage('practice');

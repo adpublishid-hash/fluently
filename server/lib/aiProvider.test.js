@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { callGoogle, callKie, isStudioKey, parseSseText, verifyStudioKey } = require('./aiProvider');
+const { callGoogle, callKie, isStudioKey, parseJsonObject, parseSseText, verifyStudioKey } = require('./aiProvider');
 
 const fakeFetch = (status, body, contentType = 'application/json') => {
   const calls = [];
@@ -31,6 +31,7 @@ test('callKie posts OpenAI-style chat completions with the model in the path', a
   const body = JSON.parse(calls[0].init.body);
   assert.equal(body.stream, false);
   assert.equal(body.messages[0].content, 'hi');
+  assert.equal('reasoning_effort' in body, false);
   assert.deepEqual(result, { ok: true, status: 200, data: { choices: [{ message: { content: '{"ok":1}' } }] }, text: '{"ok":1}' });
 });
 
@@ -64,4 +65,17 @@ test('verifyStudioKey rejects bad formats without a network call', async () => {
   assert.equal(calls.length, 0);
   const denied = fakeFetch(400, {});
   assert.equal((await verifyStudioKey(`AIza${'c'.repeat(35)}`, denied.impl)).reason, 'rejected');
+});
+
+test('callKie sends the reasoning effort only when configured', async () => {
+  const { impl, calls } = fakeFetch(200, { choices: [{ message: { content: '{}' } }] });
+  await callKie({ apiKey: 'k', baseUrl: 'x', model: 'm', prompt: 'p', reasoningEffort: 'low', fetchImpl: impl });
+  assert.equal(JSON.parse(calls[0].init.body).reasoning_effort, 'low');
+});
+
+test('parseJsonObject reads fenced JSON and quotes bare IPA values', () => {
+  assert.deepEqual(parseJsonObject('```json\n{"a":1}\n```'), { a: 1 });
+  assert.deepEqual(parseJsonObject('{"rows":[{"exampleReading": /ˈbrʌðər/,\n"x":"/ok/"}]}'), { rows: [{ exampleReading: '/ˈbrʌðər/', x: '/ok/' }] });
+  assert.equal(parseJsonObject('not json'), null);
+  assert.equal(parseJsonObject(''), null);
 });
