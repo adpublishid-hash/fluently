@@ -95,6 +95,7 @@ export default function ChatPage() {
             isTyping={chat.isTyping}
             aiWaitStartedAt={chat.aiWaitStartedAt}
             onCancelAi={chat.handleCancelAi}
+            reportContext={chat.reportContext}
             isGuidedMode={chat.isGuidedMode}
             isVocabularyMode={chat.isVocabularyMode}
             isGrammarMode={chat.isGrammarMode}

@@ -63,6 +63,30 @@ async function main() {
   const afterMastered = await call('/api/chat/mistakes?language=english', { token });
   assert.equal(afterMastered.data.items.length, 0, 'mastered mistakes leave the notebook');
 
+  const excerpt = 'Tip: bunyi ز dibentuk dengan bibir merapat.';
+  const report = await call('/api/chat/content-reports', {
+    method: 'POST', token, body: { language: 'arabic', focus: 'pronunciation', topic: 'Day 3 - Huruf ز', levelId: 'a1', reason: 'wrong', note: 'ز pakai ujung lidah', excerpt },
+  });
+  assert.equal(report.status, 200, `content report failed: ${JSON.stringify(report.data)}`);
+  const forbidden = await call('/api/admin/content-reports', { token });
+  assert.equal(forbidden.status, 403, 'only admins read content reports');
+
+  const adminLogin = await call('/api/auth/login', {
+    method: 'POST',
+    body: { email: process.env.ADMIN_EMAIL || 'wahib.chelsea@gmail.com', password: process.env.ADMIN_PASSWORD || 'ChangeMeDev123!' },
+  });
+  assert.equal(adminLogin.status, 200, `admin login failed: ${JSON.stringify(adminLogin.data)}`);
+  const adminToken = adminLogin.data.token;
+  const openReports = await call('/api/admin/content-reports?status=open', { token: adminToken });
+  const reported = openReports.data.items.find((item) => item.id === report.data.id);
+  assert.ok(reported, 'the new report is listed for admins');
+  assert.equal(reported.topic, 'Huruf ز');
+  assert.equal(reported.excerpt, excerpt);
+  const resolved = await call(`/api/admin/content-reports/${report.data.id}`, { method: 'PATCH', token: adminToken, body: { status: 'resolved' } });
+  assert.equal(resolved.data.item.status, 'resolved');
+  const stillOpen = await call('/api/admin/content-reports?status=open', { token: adminToken });
+  assert.ok(!stillOpen.data.items.some((item) => item.id === report.data.id), 'resolved reports leave the open list');
+
   console.log('Smoke test passed');
 }
 

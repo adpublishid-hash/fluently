@@ -115,7 +115,7 @@ Latensi didominasi token "thinking" yang tersembunyi. Contohnya, vocabulary JA m
    - coba `KIE_REASONING_EFFORT=low` di staging dengan beberapa topik lalu bandingkan kualitasnya;
    - ~~tambahkan indikator "AI sedang menyusun…" yang jelas, plus timeout atau tombol batal di klien~~ **Sudah:** indikator berstatus + tombol "Batal" di chat, timeout klien 200 dtk, dan timeout server `AI_TIMEOUT_MS` (default 130 dtk) yang mengembalikan kuota;
    - pertimbangkan `stream: true` untuk materi panjang.
-2. **Kesalahan faktual sesekali dalam tips.** Contoh: tip pelafalan ز menyebut "bibir merapat", padahal ز dibentuk dengan ujung lidah di belakang gigi. Ini tidak bisa ditangkap validasi. Pertimbangkan tombol "laporkan materi salah" di chat.
+2. **Kesalahan faktual sesekali dalam tips.** Contoh: tip pelafalan ز menyebut "bibir merapat", padahal ز dibentuk dengan ujung lidah di belakang gigi. Ini tidak bisa ditangkap validasi. **Sudah:** pesan AI coach punya tautan "⚠️ Laporkan materi salah". Laporan masuk ke tab **Laporan AI** di halaman Admin untuk ditinjau dan ditandai selesai.
 3. **Level kadang sedikit naik.** Contohnya ～てほしい di bacaan N5 dan kata 存在/親孝行 di bacaan N3. Masih wajar tetapi perlu dipantau.
 4. **Verifikasi ujian memakai model yang sama.** Untuk kunci yang lebih aman, verifikasi bisa memakai model lain (mis. `gemini-3-pro`, yang juga merespons di Kie) atau `reasoning_effort: high` khusus untuk tahap verify.
 5. **Retry 524 belum teramati langsung.** Saat uji ulang, Kie tidak sedang memberi 5xx. Logika retry ditutup dengan review kode, tapi sebaiknya dipantau di log produksi (`[gemini] … failed: … 524`).

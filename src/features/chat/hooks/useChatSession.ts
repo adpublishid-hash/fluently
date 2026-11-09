@@ -9,9 +9,10 @@ import { buildSessionReport, getLevelLabel } from '../english';
 import type { ReportContext, VocabularyStage } from '../english';
 import type { PronunciationSentenceRow } from '../types';
 import type { FlowRuntime } from '../flows';
-import { formatLocalizedReport, getLocalizedLevelLabel, isLocalizedLanguage, localizedQuickReplies, usesAiCoach, type LocalizedFocus } from '../localizedLesson';
+import { formatLocalizedReport, getLocalizedLevelLabel, isLocalizedLanguage, localizedLanguageCopy, localizedQuickReplies, usesAiCoach, type LocalizedFocus } from '../localizedLesson';
 import { requestLocalizedReport } from '../services/localizedAi';
 import { saveMistakes } from '../services/mistakes';
+import type { ContentReportContext } from '../services/contentReports';
 import {
   handleGrammarAnswer,
   handlePronunciationAnswer,
@@ -563,6 +564,10 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
   const quickReplies = isGuidedMode && hasAiCoachLesson && !sessionEnded && !isTyping && vocabStage === 'practice'
     ? localizedQuickReplies
     : [];
+  const reportFocus = getLocalizedFocus(modeId);
+  const reportContext: ContentReportContext | null = isGuidedMode && hasAiCoachLesson && reportFocus
+    ? { language: localizedLanguageCopy[targetLanguage].apiId, focus: reportFocus, topic: selectedTopic, levelId }
+    : null;
   const handleQuickReply = (text: string) => submitUserText(text);
   // The pending flow sees the aborted signal and posts its own "cancelled" reply.
   const handleCancelAi = () => abortAiRequests();
@@ -631,6 +636,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
     messages,
     messagesEndRef,
     quickReplies,
+    reportContext,
     sessionEnded,
     targetLanguage,
     textareaRef,
