@@ -67,15 +67,19 @@ describe('English AI coach', () => {
   });
 
   it('generates English grammar lessons with AI and keeps the context for feedback', async () => {
-    const fetchMock = vi.fn(async (_url: string, _init: RequestInit) => new Response(JSON.stringify({ lesson: grammarLesson }), { status: 200 }));
+    const fetchMock = vi.fn(async (url: string, _init?: RequestInit) => new Response(JSON.stringify(
+      url.startsWith('/api/chat/mistakes') ? { items: [{ id: 1, original: 'I go yesterday', corrected: 'I went yesterday' }] } : { lesson: grammarLesson },
+    ), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     const runtime = makeRuntime();
     selectGrammarTopic('past-simple', runtime);
     await flush();
-    const body = JSON.parse(String(fetchMock.mock.calls[0][1].body));
-    expect(body).toMatchObject({ language: 'english', focus: 'grammar', levelId: 'a2' });
+    const lessonCall = fetchMock.mock.calls.find(([url]) => url === '/api/ai/localized-lesson')!;
+    const body = JSON.parse(String(lessonCall[1]!.body));
+    expect(body).toMatchObject({ language: 'english', focus: 'grammar', levelId: 'a2', review: [{ original: 'I go yesterday', corrected: 'I went yesterday' }] });
     expect(runtime.setLocalizedLessonContext).toHaveBeenLastCalledWith(expect.stringContaining('Past Simple'));
     expect(String(vi.mocked(runtime.sendAiReply).mock.calls[0][0])).toContain('bahasa Inggris');
+    expect(String(vi.mocked(runtime.sendAiReply).mock.calls[0][0])).toContain('🔁 Materi ini juga mengulang kesalahanmu sebelumnya:\n• I go yesterday → I went yesterday');
   });
 
   it('falls back to the built-in English lesson when AI is unavailable', async () => {
@@ -88,8 +92,8 @@ describe('English AI coach', () => {
   });
 
   it('corrects answers with AI once an AI lesson is active', async () => {
-    const fetchMock = vi.fn(async (_url: string) => new Response(JSON.stringify({
-      status: 'incorrect', score: 50, feedback: '"I go" salah.', corrected: 'I went to school.', correctedReading: '', completedItems: [], nextTask: '',
+    const fetchMock = vi.fn(async (url: string, _init?: RequestInit) => new Response(JSON.stringify(url === '/api/chat/mistakes' ? { saved: 1 } : {
+      status: 'incorrect', score: 50, feedback: '"I go" salah. Pakai V2 untuk lampau.', corrected: 'I went to school.', correctedReading: '', completedItems: [], nextTask: '',
     }), { status: 200 }));
     vi.stubGlobal('fetch', fetchMock);
     const runtime = makeRuntime({ localizedLessonContext: 'Grammar point: Past Simple' });
@@ -97,6 +101,11 @@ describe('English AI coach', () => {
     await flush();
     expect(fetchMock.mock.calls[0][0]).toBe('/api/ai/localized-feedback');
     expect(String(vi.mocked(runtime.sendAiReply).mock.calls[0][0])).toContain('I went to school.');
+    const saved = fetchMock.mock.calls.find(([url]) => url === '/api/chat/mistakes')!;
+    expect(JSON.parse(String(saved[1]!.body))).toEqual({
+      language: 'english', focus: 'grammar', topic: 'past simple',
+      items: [{ original: 'I go to school yesterday.', corrected: 'I went to school.', explanation: '"I go" salah.' }],
+    });
   });
 
   it('keeps the current lesson when regenerating fails', async () => {

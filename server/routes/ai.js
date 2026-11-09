@@ -6,6 +6,7 @@ const { aiLimiter } = require('../middleware/rateLimits');
 const { buildAssessmentPrompt, findRubric, normalizeAssessment } = require('../lib/rubricAssessment');
 const { callGoogle, callKie, isStudioKey, parseJsonObject, verifyStudioKey } = require('../lib/aiProvider');
 const { consumeQuota, getQuota, refundQuota } = require('../lib/aiQuota');
+const { formatReviewItems } = require('../lib/mistakes');
 const {
   buildAssistPrompt,
   buildFeedbackPrompt,
@@ -549,7 +550,8 @@ module.exports = function register(app) {
 
     const access = await resolveAiAccess(req, res);
     if (!access) return;
-    const prompt = buildLessonPrompt({ language, focus, name, topic, levelId, variation, avoid });
+    const review = formatReviewItems(req.body?.review);
+    const prompt = buildLessonPrompt({ language, focus, name, topic, levelId, variation, avoid, review });
 
     try {
       const result = await callAiJson(access, { prompt, temperature: 0.4, maxOutputTokens: 7000 });

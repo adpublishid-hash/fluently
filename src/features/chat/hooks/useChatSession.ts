@@ -11,6 +11,7 @@ import type { PronunciationSentenceRow } from '../types';
 import type { FlowRuntime } from '../flows';
 import { formatLocalizedReport, getLocalizedLevelLabel, isLocalizedLanguage, localizedQuickReplies, usesAiCoach, type LocalizedFocus } from '../localizedLesson';
 import { requestLocalizedReport } from '../services/localizedAi';
+import { saveMistakes } from '../services/mistakes';
 import {
   handleGrammarAnswer,
   handlePronunciationAnswer,
@@ -519,6 +520,7 @@ export const useChatSession = ({ modeId, levelId, navigate, sessionId }: UseChat
         transcript,
       }).then((report) => {
         if (sessionEpochRef.current !== reportEpoch) return;
+        if (report?.errors.length) void saveMistakes(targetLanguage, focus, selectedTopic, report.errors);
         sendAiReplyFromMessages(
           (prev) => report
             ? formatLocalizedReport(targetLanguage, getLocalizedFocusLabel(targetLanguage, modeId), report, { topic: selectedTopic, levelId })

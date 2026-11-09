@@ -50,6 +50,19 @@ async function main() {
   const unauthenticated = await call('/api/users/progress');
   assert.equal(unauthenticated.status, 401);
 
+  const mistake = { original: 'I very like it', corrected: 'I really like it', explanation: 'very tidak dipakai sebelum kata kerja' };
+  const savedMistakes = await call('/api/chat/mistakes', { method: 'POST', token, body: { language: 'english', focus: 'writing', topic: 'Hobi', items: [mistake] } });
+  assert.equal(savedMistakes.data.saved, 1);
+  await call('/api/chat/mistakes', { method: 'POST', token, body: { language: 'english', focus: 'speaking', items: [{ ...mistake, original: 'i very like it.' }] } });
+  const notebook = await call('/api/chat/mistakes?language=english', { token });
+  assert.equal(notebook.status, 200);
+  assert.equal(notebook.data.items.length, 1, 'the same mistake is stored once');
+  assert.equal(notebook.data.items[0].timesSeen, 2);
+  const mastered = await call(`/api/chat/mistakes/${notebook.data.items[0].id}/mastered`, { method: 'POST', token });
+  assert.equal(mastered.status, 200);
+  const afterMastered = await call('/api/chat/mistakes?language=english', { token });
+  assert.equal(afterMastered.data.items.length, 0, 'mastered mistakes leave the notebook');
+
   console.log('Smoke test passed');
 }
 
