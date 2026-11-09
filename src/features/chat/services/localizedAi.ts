@@ -17,6 +17,8 @@ type LessonRequest = {
   name: string;
   topic: string;
   levelId?: string;
+  /** Aborts the request (the learner cancelled or the session changed). */
+  signal?: AbortSignal;
 };
 
 type LessonOptions = {
@@ -43,7 +45,7 @@ type FeedbackRequest = LessonRequest & {
 };
 
 export async function requestLocalizedLesson(
-  { language, focus, name, topic, levelId }: LessonRequest,
+  { language, focus, name, topic, levelId, signal }: LessonRequest,
   { variation = null, avoid = [], review = [] }: LessonOptions = {},
 ): Promise<FormattedLocalizedLesson | null> {
   try {
@@ -56,7 +58,7 @@ export async function requestLocalizedLesson(
       variation,
       avoid,
       review,
-    });
+    }, { signal });
     if (!response.ok) return null;
     const data = await response.json();
     if (!data?.lesson || typeof data.lesson !== 'object') return null;
@@ -66,7 +68,7 @@ export async function requestLocalizedLesson(
   }
 }
 
-export async function requestLocalizedFeedback({ language, focus, name, topic, levelId, answer, context, targetItems = [] }: FeedbackRequest): Promise<LocalizedFeedbackResult | null> {
+export async function requestLocalizedFeedback({ language, focus, name, topic, levelId, answer, context, targetItems = [], signal }: FeedbackRequest): Promise<LocalizedFeedbackResult | null> {
   try {
     const response = await aiFetch('/api/ai/localized-feedback', {
       language: localizedLanguageCopy[language].apiId,
@@ -77,7 +79,7 @@ export async function requestLocalizedFeedback({ language, focus, name, topic, l
       answer,
       context,
       targetItems,
-    });
+    }, { signal });
     if (!response.ok) return null;
     const data = await response.json();
     if (!data || typeof data.feedback !== 'string') return null;
@@ -95,7 +97,7 @@ export async function requestLocalizedFeedback({ language, focus, name, topic, l
   }
 }
 
-export async function requestLocalizedAssist({ language, focus, name, topic, levelId, action, question = '', context, lastCoachMessage }: AssistRequest): Promise<string | null> {
+export async function requestLocalizedAssist({ language, focus, name, topic, levelId, action, question = '', context, lastCoachMessage, signal }: AssistRequest): Promise<string | null> {
   try {
     const response = await aiFetch('/api/ai/localized-assist', {
       language: localizedLanguageCopy[language].apiId,
@@ -107,7 +109,7 @@ export async function requestLocalizedAssist({ language, focus, name, topic, lev
       question,
       context,
       lastCoachMessage,
-    });
+    }, { signal });
     if (!response.ok) return null;
     const data = await response.json();
     return typeof data?.reply === 'string' && data.reply.trim() ? data.reply.trim() : null;
@@ -116,7 +118,7 @@ export async function requestLocalizedAssist({ language, focus, name, topic, lev
   }
 }
 
-export async function requestLocalizedReport({ language, focus, name, topic, levelId, transcript }: ReportRequest): Promise<LocalizedReportResult | null> {
+export async function requestLocalizedReport({ language, focus, name, topic, levelId, transcript, signal }: ReportRequest): Promise<LocalizedReportResult | null> {
   try {
     const response = await aiFetch('/api/ai/localized-report', {
       language: localizedLanguageCopy[language].apiId,
@@ -125,7 +127,7 @@ export async function requestLocalizedReport({ language, focus, name, topic, lev
       topic: topic.replace(/^Day \d+\s*-\s*/i, ''),
       levelId,
       transcript,
-    });
+    }, { signal });
     if (!response.ok) return null;
     const data = await response.json();
     if (!data || typeof data.score !== 'number' || typeof data.summary !== 'string') return null;

@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { buildGrammarLesson } from '../english';
 import { getNativeLevelName, usesAiCoach } from '../localizedLesson';
 import { handleGrammarAnswer, selectGrammarTopic } from './index';
+import { CANCELLED_LESSON_NOTE, CANCELLED_REPLY } from './localizedFlow';
 import type { FlowRuntime } from './types';
 
 const grammarLesson = {
@@ -41,6 +42,7 @@ const makeRuntime = (overrides: Partial<FlowRuntime> = {}): FlowRuntime => ({
   setLocalizedLessonContext: vi.fn(),
   sendAiReply: vi.fn(),
   showTyping: vi.fn(),
+  signal: new AbortController().signal,
   ...overrides,
 });
 
@@ -115,5 +117,43 @@ describe('English AI coach', () => {
     await flush();
     expect(runtime.setLocalizedLessonContext).not.toHaveBeenCalled();
     expect(String(vi.mocked(runtime.sendAiReply).mock.calls[0][0])).toContain('lanjutkan dengan materi yang ada');
+  });
+
+  describe('when the learner cancels', () => {
+    // AI endpoints never answer; they only reject once the request is aborted.
+    const hangingFetch = vi.fn((url: string, init?: RequestInit) => new Promise<Response>((resolve, reject) => {
+      if (url.startsWith('/api/chat/mistakes')) {
+        resolve(new Response(JSON.stringify({ items: [] }), { status: 200 }));
+        return;
+      }
+      const abort = () => reject(new DOMException('Aborted', 'AbortError'));
+  if (init?.signal?.aborted) abort();
+  init?.signal?.addEventListener('abort', abort);
+    }));
+
+    it('shows the built-in lesson right away instead of waiting for AI', async () => {
+      vi.stubGlobal('fetch', hangingFetch);
+      const controller = new AbortController();
+      const runtime = makeRuntime({ signal: controller.signal });
+      selectGrammarTopic('past-simple', runtime);
+      await flush();
+      expect(runtime.sendAiReply).not.toHaveBeenCalled();
+      controller.abort();
+      await flush();
+      const topic = vi.mocked(runtime.setSelectedTopic).mock.calls[0][0];
+      expect(vi.mocked(runtime.sendAiReply).mock.calls[0][0]).toBe(`${CANCELLED_LESSON_NOTE}\n\n${buildGrammarLesson('Ana', topic, 'a2')}`);
+    });
+
+    it('drops a pending correction without offline feedback or saving a mistake', async () => {
+      vi.stubGlobal('fetch', hangingFetch);
+      const controller = new AbortController();
+      const runtime = makeRuntime({ signal: controller.signal, localizedLessonContext: 'Grammar point: Past Simple' });
+      handleGrammarAnswer('I go to school yesterday.', 'practice', runtime);
+      await flush();
+      controller.abort();
+      await flush();
+      expect(vi.mocked(runtime.sendAiReply).mock.calls).toEqual([[CANCELLED_REPLY, 200]]);
+      expect(hangingFetch.mock.calls.some(([url, init]) => url === '/api/chat/mistakes' && init?.method === 'POST')).toBe(false);
+    });
   });
 });

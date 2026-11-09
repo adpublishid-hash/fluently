@@ -30,6 +30,8 @@ export type FlowRuntime = {
   setLocalizedLessonContext: (context: string) => void;
   sendAiReply: SendAiReply;
   showTyping: () => void;
+  /** Aborted when the learner cancels the AI request or the session changes. */
+  signal: AbortSignal;
 };
 
 export type TopicRuntime = Pick<
@@ -48,4 +50,5 @@ export type TopicRuntime = Pick<
   | 'setLocalizedLessonContext'
   | 'sendAiReply'
   | 'showTyping'
+  | 'signal'
 >;

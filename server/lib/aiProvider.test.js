@@ -79,3 +79,13 @@ test('parseJsonObject reads fenced JSON and quotes bare IPA values', () => {
   assert.equal(parseJsonObject('not json'), null);
   assert.equal(parseJsonObject(''), null);
 });
+
+test('provider calls pass the abort signal to fetch', async () => {
+  const signal = new AbortController().signal;
+  const kie = fakeFetch(200, { choices: [{ message: { content: '{}' } }] });
+  await callKie({ apiKey: 'k', baseUrl: 'x', model: 'm', prompt: 'p', signal, fetchImpl: kie.impl });
+  assert.equal(kie.calls[0].init.signal, signal);
+  const google = fakeFetch(200, { candidates: [] });
+  await callGoogle({ apiKey: 'k', model: 'm', prompt: 'p', signal, fetchImpl: google.impl });
+  assert.equal(google.calls[0].init.signal, signal);
+});

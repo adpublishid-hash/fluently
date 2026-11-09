@@ -113,7 +113,7 @@ Latensi didominasi token "thinking" yang tersembunyi. Contohnya, vocabulary JA m
 
 1. **Latensi dan timeout 300 dtk.** Vocabulary/pronunciation dan ujian sering di atas 60 dtk, dan sesekali menggantung sampai 300 dtk. Rekomendasi:
    - coba `KIE_REASONING_EFFORT=low` di staging dengan beberapa topik lalu bandingkan kualitasnya;
-   - tambahkan indikator "AI sedang menyusun…" yang jelas, plus timeout atau tombol batal di klien (`src/features/chat/services/localizedAi.ts` belum punya timeout);
+   - ~~tambahkan indikator "AI sedang menyusun…" yang jelas, plus timeout atau tombol batal di klien~~ **Sudah:** indikator berstatus + tombol "Batal" di chat, timeout klien 200 dtk, dan timeout server `AI_TIMEOUT_MS` (default 130 dtk) yang mengembalikan kuota;
    - pertimbangkan `stream: true` untuk materi panjang.
 2. **Kesalahan faktual sesekali dalam tips.** Contoh: tip pelafalan ز menyebut "bibir merapat", padahal ز dibentuk dengan ujung lidah di belakang gigi. Ini tidak bisa ditangkap validasi. Pertimbangkan tombol "laporkan materi salah" di chat.
 3. **Level kadang sedikit naik.** Contohnya ～てほしい di bacaan N5 dan kata 存在/親孝行 di bacaan N3. Masih wajar tetapi perlu dipantau.
