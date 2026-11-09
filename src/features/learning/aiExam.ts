@@ -54,8 +54,12 @@ export function toFormattedQuestions(part: ExamPart, level: string, groups: Gene
     })));
 }
 
+// A section is two AI calls on the server (write, then verify the key), each
+// capped at AI_TIMEOUT_MS, so it may take longer than one chat reply.
+const SECTION_TIMEOUT_MS = 400_000;
+
 async function requestSection(language: StudyLanguage, levelId: string, partId: string, seed: string) {
-  const response = await aiFetch('/api/ai/exam-section', { language, levelId, partId, seed });
+  const response = await aiFetch('/api/ai/exam-section', { language, levelId, partId, seed }, { timeoutMs: SECTION_TIMEOUT_MS });
   if (!response.ok) throw new Error(`exam-section ${partId} ${response.status}`);
   return response.json() as Promise<{ groups?: GeneratedGroup[]; task?: WritingTask }>;
 }
