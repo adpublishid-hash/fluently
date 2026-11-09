@@ -163,6 +163,25 @@ async function ensureSchema() {
   `);
   await pool.query('create unique index if not exists chat_mistakes_user_key_uidx on chat_mistakes (user_id, language, mistake_key)');
 
+  // Learner reports of wrong AI chat content, reviewed in the admin panel.
+  await pool.query(`
+    create table if not exists ai_content_reports (
+      id serial primary key,
+      user_id integer references users(id) on delete set null,
+      language text not null,
+      focus text not null default 'chat',
+      topic text not null default '',
+      level_id text not null default '',
+      reason text not null default 'other',
+      note text not null default '',
+      excerpt text not null,
+      status text not null default 'open',
+      created_at timestamptz not null default now(),
+      resolved_at timestamptz
+    )
+  `);
+  await pool.query('create index if not exists ai_content_reports_status_idx on ai_content_reports (status, created_at desc)');
+
   await seedAdminUser();
   await seedShopProducts();
   await seedShopSettings();
