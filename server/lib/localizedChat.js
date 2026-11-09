@@ -3,11 +3,12 @@
 // error checklist, so the generated material is specific to that language
 // instead of a translated English lesson.
 
-const LANGUAGES = new Set(['japanese', 'mandarin', 'arabic']);
+const LANGUAGES = new Set(['english', 'japanese', 'mandarin', 'arabic']);
 const FOCUSES = new Set(['vocabulary', 'grammar', 'pronunciation', 'speaking', 'reading', 'writing']);
 const CEFR = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
 const LEVEL_NAMES = {
+  english: { A1: 'CEFR A1 Beginner', A2: 'CEFR A2 Elementary', B1: 'CEFR B1 Intermediate', B2: 'CEFR B2 Upper-Intermediate', C1: 'CEFR C1 Advanced', C2: 'CEFR C2 Proficiency' },
   japanese: { A1: 'JLPT N5', A2: 'JLPT N4', B1: 'JLPT N3', B2: 'JLPT N2', C1: 'JLPT N1', C2: 'JLPT N1+ (near-native)' },
   mandarin: { A1: 'HSK 1', A2: 'HSK 2', B1: 'HSK 3', B2: 'HSK 4', C1: 'HSK 5', C2: 'HSK 6' },
   arabic: {
@@ -21,8 +22,36 @@ const LEVEL_NAMES = {
 };
 
 const SPECS = {
+  english: {
+    name: 'English',
+    grammarStyle: 'show the affirmative, negative and question forms, when to use it versus a similar structure, and contrast with Indonesian where it helps',
+    passageScript: 'Use vocabulary and sentence length suitable for the CEFR level.',
+    passageReading: 'always an empty string (English needs no transcription).',
+    script: /[A-Za-z]/,
+    word: 'Natural, current English (American spelling unless the topic asks otherwise).',
+    reading: 'General American IPA in slashes, e.g. "/ˈskedʒuːl/". For sentences, phrase-level IPA.',
+    pos: 'noun, verb, adjective, adverb, phrasal verb, idiom, phrase, preposition, conjunction',
+    note: 'One useful usage note: a common collocation, the register (formal/informal), or a confusion Indonesian learners make (e.g. "borrow vs lend").',
+    example: 'Natural English sentence for the level.',
+    exampleReading: 'IPA of the key word or phrase only (not the whole sentence).',
+    levelRules: {
+      A1: 'present simple of be/have/do, can, there is/are, basic questions, everyday concrete words, very short sentences.',
+      A2: 'past simple, present continuous, going to, comparatives, countable/uncountable, polite requests.',
+      B1: 'present perfect, first/second conditional, modals of advice and obligation, relative clauses, phrasal verbs.',
+      B2: 'passive, reported speech, third conditional, linking words for argument, workplace and academic topics.',
+      C1: 'inversion, cleft sentences, nuanced modality, formal register, idiomatic and academic vocabulary.',
+      C2: 'native-like idiom, subtle register shifts, rhetorical structure, low-frequency precise vocabulary.',
+    },
+    pronunciation: 'TH /θ ð/, /ɪ/ vs /iː/, /æ/ vs /e/, final consonants and -ed/-s endings, consonant clusters, /v/ vs /f/, word stress, sentence stress, linking, weak forms, intonation in questions',
+    grammarChecklist: 'subject-verb agreement and third-person -s; tense choice and form; articles a/an/the; plural nouns; be verb with adjectives ("I am happy", not "I happy"); question word order and do-support; prepositions of time and place; word order of adjectives and adverbs; Indonesian interference such as "I very like" or "my name Wahib".',
+    writingScript: 'Expect English sentences with correct capitalisation and punctuation.',
+    transcriptNote: 'Browser speech recognition returns standard English words, so a wrong or missing word usually means that sound was unclear.',
+  },
   japanese: {
     name: 'Japanese',
+    grammarStyle: 'name the forms used in Japanese textbooks: ます形, て形, ない形, 辞書形, particles',
+    passageScript: 'Only use kanji appropriate for the JLPT level; write the rest in kana.',
+    passageReading: 'full hiragana reading of the passage for A1-B1; empty string for B2 and above.',
     script: /[぀-ヿ㐀-鿿]/,
     word: 'Write the word as a Japanese adult normally writes it (kanji + okurigana). At N5/N4 only use kanji from that JLPT list; otherwise write it in kana.',
     reading: 'Hiragana reading, then " · ", then Hepburn romaji with long vowels written as ou/ei/aa (e.g. "たべる · taberu", "がっこう · gakkou").',
@@ -45,6 +74,9 @@ const SPECS = {
   },
   mandarin: {
     name: 'Mandarin Chinese',
+    grammarStyle: 'show word order slots and aspect/complement structure; Chinese has no conjugation',
+    passageScript: 'Use Simplified characters suitable for the HSK level.',
+    passageReading: 'full pinyin with tone marks of the passage for A1-B1; empty string for B2 and above.',
     script: /[㐀-鿿]/,
     word: 'Simplified Chinese characters (简体字).',
     reading: 'Hanyu Pinyin with tone marks (ā á ǎ à, neutral tone unmarked), syllables of one word written together, e.g. "xuéshēng", "xièxie". Never tone numbers.',
@@ -67,6 +99,9 @@ const SPECS = {
   },
   arabic: {
     name: 'Modern Standard Arabic (Fusha)',
+    grammarStyle: 'use nahwu/sharaf terms like mubtada, khabar, fi\'il, fa\'il, i\'rab, with Indonesian explanation',
+    passageScript: 'Use full harakat for A1-B1, partial harakat for B2, none for C1-C2.',
+    passageReading: 'Latin transliteration of the passage for A1-B1; empty string for B2 and above.',
     script: /[؀-ۿ]/,
     word: 'Modern Standard Arabic with full harakat (tasykil), e.g. "كِتَابٌ".',
     reading: 'Indonesian-friendly Latin transliteration: long vowels doubled (aa, ii, uu), ʿ for ʿain, \' for hamzah, sy for ش, kh for خ, dz for ذ, e.g. "kitaabun", "ʿilmun".',
@@ -191,7 +226,7 @@ Return valid JSON only:
     return `${header(language, context, 'grammar teacher')}
 
 Task: build a complete mini grammar lesson for the topic. If the topic is not a grammar point, pick the most useful grammar point of this level for that situation.
-Explain the grammar the way ${spec.name} grammar actually works (${language === 'arabic' ? 'use nahwu/sharaf terms like mubtada, khabar, fi\'il, fa\'il, i\'rab, with Indonesian explanation' : language === 'japanese' ? 'name the forms used in Japanese textbooks: ます形, て形, ない形, 辞書形, particles' : 'show word order slots and aspect/complement structure; Chinese has no conjugation'}).
+Explain the grammar the way ${spec.name} grammar actually works (${spec.grammarStyle}).
 
 Include:
 - title: grammar point name (target language + Indonesian).
@@ -228,12 +263,12 @@ Return valid JSON only:
     return `${header(language, context, 'reading teacher')}
 
 Task: write an original ${spec.name} reading text about the topic (${length}) with comprehension work.
-${language === 'arabic' ? 'Use full harakat for A1-B1, partial harakat for B2, none for C1-C2.' : language === 'japanese' ? 'Only use kanji appropriate for the JLPT level; write the rest in kana.' : 'Use Simplified characters suitable for the HSK level.'}
+${spec.passageScript}
 
 Include:
 - title: in ${spec.name}.
 - passage: the text.
-- passageReading: ${language === 'arabic' ? 'Latin transliteration' : language === 'japanese' ? 'full hiragana reading' : 'full pinyin with tone marks'} of the passage for A1-B1; empty string for B2 and above.
+- passageReading: ${spec.passageReading}
 - translation: Indonesian translation (used only for checking answers).
 - glossary: 6-8 key words from the passage with reading and Indonesian meaning.
 - questions: 4 questions in Indonesian: main idea, two detail questions, one inference or vocabulary-in-context question.

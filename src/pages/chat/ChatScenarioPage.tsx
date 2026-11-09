@@ -8,6 +8,8 @@ import { useLanguage } from '../../i18n/LanguageContext';
 import type { TranslationKey } from '../../i18n/translations';
 import { useAuth } from '../../auth/AuthContext';
 import { getFreeChatLevelBlockMessage, isFreeAiChatUser, isFreeChatLevelAllowed } from '../../features/chat/freeChatLimits';
+import { getNativeLevelName } from '../../features/chat/localizedLesson';
+import { normalizeTargetLanguage } from '../../features/chat/targetLanguage';
 
 const cefrChatLevels = [
   { id: 'a1', label: 'A1', sublabel: 'Beginner', color: '#7EC3E6', bgColor: '#EAF7FC' },
@@ -26,6 +28,7 @@ export default function ChatScenarioPage() {
   const mode = chatAIModes.find((m) => m.id === modeId);
   const level = cefrChatLevels.find((item) => item.id === levelId);
   const locked = isFreeAiChatUser(user) && !isFreeChatLevelAllowed(levelId);
+  const nativeLevel = getNativeLevelName(normalizeTargetLanguage(user?.persona?.targetLanguage), levelId);
 
   if (!mode || !level) return null;
 
@@ -77,8 +80,8 @@ export default function ChatScenarioPage() {
               <span className="text-lg font-black" style={{ color: level.color }}>{level.label}</span>
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="font-extrabold text-[16px] text-text-primary">{t('chatAi.levelTitle')}: {level.label}</h2>
-              <p className="text-[13px] text-text-muted mt-0.5">{locked ? getFreeChatLevelBlockMessage(level.id) : level.sublabel}</p>
+              <h2 className="font-extrabold text-[16px] text-text-primary">{t('chatAi.levelTitle')}: {nativeLevel ?? level.label}</h2>
+              <p className="text-[13px] text-text-muted mt-0.5">{locked ? getFreeChatLevelBlockMessage(level.id) : nativeLevel ? `Setara ${level.label} · ${level.sublabel}` : level.sublabel}</p>
             </div>
             <div
               className="flex w-full items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-white text-[13px] font-bold transition-all sm:w-auto"
