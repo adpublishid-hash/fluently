@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { Boxes, CheckCircle2, Crown, MapPin, Package, RefreshCw, Settings as SettingsIcon, Shield, ShoppingBag, Trash2, UserCog, Users } from 'lucide-react';
+import { Boxes, CheckCircle2, Crown, Flag, MapPin, Package, RefreshCw, Settings as SettingsIcon, Shield, ShoppingBag, Trash2, UserCog, Users } from 'lucide-react';
 import PageContainer from '../../components/layout/PageContainer';
+import AdminContentReports from './AdminContentReports';
 import { useAuth } from '../../auth/AuthContext';
 import { formatRupiah } from '../../data/shopData';
 import type { ProductVariant } from '../../types/shop';
@@ -275,7 +276,7 @@ export default function AdminPage() {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [products, setProducts] = useState<AdminProduct[]>([]);
   const [orders, setOrders] = useState<AdminOrder[]>([]);
-  const [activeTab, setActiveTab] = useState<'users' | 'products' | 'orders' | 'settings'>('users');
+  const [activeTab, setActiveTab] = useState<'users' | 'products' | 'orders' | 'settings' | 'reports'>('users');
   const [loading, setLoading] = useState(true);
   const [savingId, setSavingId] = useState<string | number | null>(null);
   const [error, setError] = useState('');
@@ -657,6 +658,7 @@ export default function AdminPage() {
             { id: 'products', label: 'Products', icon: Boxes },
             { id: 'orders', label: 'Orders', icon: Package },
             { id: 'settings', label: 'Shop Settings', icon: SettingsIcon },
+            { id: 'reports', label: 'Laporan AI', icon: Flag },
           ].map((tab) => {
             const Icon = tab.icon;
             const active = activeTab === tab.id;
@@ -1377,6 +1379,8 @@ export default function AdminPage() {
                 </div>
               </section>
             )}
+
+            {activeTab === 'reports' && <AdminContentReports token={token} />}
 
             {activeTab === 'orders' && (
               <section className="overflow-hidden rounded-[10px] border border-[#CBD5E1] bg-white">

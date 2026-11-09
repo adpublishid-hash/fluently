@@ -7,12 +7,16 @@ import type { TargetLanguage } from '../targetLanguage';
 import { ChatEmptyState } from './ChatEmptyState';
 import { MessageContent } from './MessageContent';
 import { TypingIndicator } from './TypingIndicator';
+import { ReportMessageButton } from './ReportMessageButton';
+import type { ContentReportContext } from '../services/contentReports';
 
 type ChatMessageListProps = {
   messages: ChatMessage[];
   isTyping: boolean;
   aiWaitStartedAt?: number | null;
   onCancelAi?: () => void;
+  /** Set while an AI coach lesson runs; AI messages then get a "report" link. */
+  reportContext?: ContentReportContext | null;
   isGuidedMode: boolean;
   isVocabularyMode: boolean;
   isGrammarMode: boolean;
@@ -33,6 +37,14 @@ type ChatMessageListProps = {
   onSelectWritingTopic: (topic: string) => void;
 };
 
+// Lessons, corrections and reports; short prompts like "siapa namamu?" are not worth reporting.
+const MIN_REPORTABLE_LENGTH = 120;
+
+/** AI content worth reporting: not the scripted greeting (before the learner's first message) or a topic picker. */
+const isReportable = (message: ChatMessage, index: number, firstUserIndex: number) =>
+  message.isAi && firstUserIndex >= 0 && index > firstUserIndex
+  && message.text.length >= MIN_REPORTABLE_LENGTH && !message.text.includes('TOPIC_SELECT');
+
 const formatTime = (date: Date) =>
   date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 
@@ -48,6 +60,7 @@ export function ChatMessageList({
   isTyping,
   aiWaitStartedAt = null,
   onCancelAi,
+  reportContext = null,
   isGuidedMode,
   isVocabularyMode,
   isGrammarMode,
@@ -68,6 +81,7 @@ export function ChatMessageList({
   onSelectWritingTopic,
 }: ChatMessageListProps) {
   const { t } = useLanguage();
+  const firstUserIndex = messages.findIndex((message) => !message.isAi);
 
   return (
     <div className="flex-1 overflow-y-auto">
@@ -121,7 +135,7 @@ export function ChatMessageList({
 
             <div className="space-y-3">
               <AnimatePresence mode="popLayout">
-                {messages.map((msg) => (
+                {messages.map((msg, index) => (
                   <motion.div
                     key={msg.id}
                     className={`flex ${msg.isAi ? 'justify-start' : 'justify-end'} gap-2 w-full group`}
@@ -156,6 +170,9 @@ export function ChatMessageList({
                       <span className="text-[10px] text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-200 font-medium px-1">
                         {formatTime(msg.timestamp)}
                       </span>
+                      {reportContext && isReportable(msg, index, firstUserIndex) && (
+                        <ReportMessageButton context={reportContext} excerpt={msg.text} />
+                      )}
                     </div>
                   </motion.div>
                 ))}
